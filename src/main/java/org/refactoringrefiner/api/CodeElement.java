@@ -1,6 +1,6 @@
 package org.refactoringrefiner.api;
 
-public interface CodeElement {
+public interface CodeElement extends Comparable<CodeElement> {
 
     String getIdentifier();
 
