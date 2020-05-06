@@ -65,7 +65,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                 continue;
             }
             List<CodeElement> leafCodeElementsList = new ArrayList<>(leafEntry.getValue());
-            java.util.Collections.sort(leafCodeElementsList, (o1, o2) -> Integer.compare(o2.getVersion().getTime(), o1.getVersion().getTime()));
+            Collections.sort(leafCodeElementsList, (o1, o2) -> Integer.compare(o2.getVersion().getTime(), o1.getVersion().getTime()));
             Set<CodeElement> rootCodeElements = rootElement.get(leafEntry.getKey());
             for (CodeElement leafCodeElement : leafCodeElementsList) {
                 List<CodeElement> matched = new ArrayList<>();
@@ -75,7 +75,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     }
                 }
                 if (!matched.isEmpty()) {
-                    java.util.Collections.sort(matched, Comparator.comparingInt(o -> o.getVersion().getTime()));
+                    Collections.sort(matched, Comparator.comparingInt(o -> o.getVersion().getTime()));
                     graph.putEdgeValue(leafCodeElement, matched.get(0), RefactoringEdge.of(null, null));
                     rootCodeElements.remove(matched.get(0));
                 }
