@@ -7,7 +7,9 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.refactoringrefiner.api.Version;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class MethodElement extends BaseCodeElement {
     private final UMLOperation info;
@@ -24,13 +26,15 @@ public class MethodElement extends BaseCodeElement {
 
         MethodElement that = (MethodElement) o;
 
-        boolean equals = new EqualsBuilder().append(this.info.getName(), that.info.getName())
+        boolean equals = new EqualsBuilder()
+                .append(this.info.getName(), that.info.getName())
                 .append(this.info.getClassName(), that.info.getClassName())
                 .append(this.info.getLocationInfo().getFilePath(), that.info.getLocationInfo().getFilePath())
                 .append(this.getVersion().getId(), that.getVersion().getId())
                 .isEquals()
                 && this.info.equalParameterTypes(that.info)
-                && this.info.equalParameterNames(that.info);
+                && this.info.equalParameterNames(that.info)
+                && new HashSet<>(this.info.getAnnotations()).containsAll(new HashSet<>(that.info.getAnnotations()));
         return equals;
     }
 
@@ -43,6 +47,7 @@ public class MethodElement extends BaseCodeElement {
                 .append(this.info.getClassName())
                 .append(this.info.getLocationInfo().getFilePath())
                 .append(this.getVersion().getId())
+                .append(this.info.getAnnotations())
                 .toHashCode();
     }
 
@@ -68,7 +73,15 @@ public class MethodElement extends BaseCodeElement {
                 }
             }
         }
-        sb.append("):").append(returnParameter);
+        sb.append(")");
+        sb.append(":");
+        sb.append(returnParameter);
+        if (!this.info.getAnnotations().isEmpty()) {
+            sb.append("[");
+            this.info.getAnnotations().stream().map(umlAnnotation -> umlAnnotation.toString()).collect(Collectors.joining(";"));
+            sb.append("]");
+        }
+        sb.append(this.getVersion().toString());
         return sb.toString();
     }
 
