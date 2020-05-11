@@ -61,6 +61,7 @@ public class AttributeElement extends BaseCodeElement {
         sb.append(getFullName());
         sb.append(":");
         sb.append(this.variableInfo.getType());
+        sb.append(this.getVersion().toString());
         return sb.toString();
     }
 
