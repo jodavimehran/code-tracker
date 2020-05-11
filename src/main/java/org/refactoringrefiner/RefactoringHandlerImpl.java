@@ -285,25 +285,8 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addAttributeChange(moveAttributeRefactoring, revCommit, moveAttributeRefactoring.getOriginalAttribute(), moveAttributeRefactoring.getMovedAttribute());
                         break;
                     }
-                    case REPLACE_ATTRIBUTE: {
-                        ref.toString();
-                        break;
-                    }
-                    case MERGE_ATTRIBUTE: {
-                        ref.toString();
-                        break;
-
-                    }
                     case EXTRACT_ATTRIBUTE: {
                         ExtractAttributeRefactoring extractAttributeRefactoring = (ExtractAttributeRefactoring) ref;
-                        break;
-                    }
-                    case SPLIT_ATTRIBUTE: {
-                        ref.toString();
-                        break;
-                    }
-                    case MOVE_RENAME_ATTRIBUTE: {
-                        ref.toString();
                         break;
                     }
                     case PULL_UP_ATTRIBUTE: {
@@ -326,10 +309,11 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addAttributeChange(changeAttributeTypeRefactoring, revCommit, changeAttributeTypeRefactoring.getOriginalAttribute(), changeAttributeTypeRefactoring.getClassNameBefore(), changeAttributeTypeRefactoring.getChangedTypeAttribute(), changeAttributeTypeRefactoring.getClassNameAfter());
                         break;
                     }
-                    case REPLACE_VARIABLE_WITH_ATTRIBUTE: {
-                        ref.toString();
-                        break;
-                    }
+                    case REPLACE_ATTRIBUTE:
+                    case MERGE_ATTRIBUTE:
+                    case SPLIT_ATTRIBUTE:
+                    case MOVE_RENAME_ATTRIBUTE:
+                    case REPLACE_VARIABLE_WITH_ATTRIBUTE:
                     case SPLIT_VARIABLE:
                     case MERGE_VARIABLE:
                     case RENAME_VARIABLE:
