@@ -42,4 +42,9 @@ public class VersionImpl implements Version {
                 .append(id)
                 .toHashCode();
     }
+
+    @Override
+    public String toString() {
+        return String.format("<%s>", getId());
+    }
 }
