@@ -44,7 +44,10 @@ public class ClassElement extends BaseCodeElement {
 
     @Override
     public String getIdentifier() {
-        return getFullName();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getFullName());
+        sb.append(this.getVersion().toString());
+        return sb.toString();
     }
 
     @Override
