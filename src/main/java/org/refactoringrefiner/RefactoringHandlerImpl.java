@@ -200,6 +200,11 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addOperationChange(changeVariableTypeRefactoring, revCommit, changeVariableTypeRefactoring.getOperationBefore(), changeVariableTypeRefactoring.getOperationAfter());
                         break;
                     }
+                    case ADD_METHOD_ANNOTATION: {
+                        AddMethodAnnotationRefactoring addMethodAnnotationRefactoring = (AddMethodAnnotationRefactoring) ref;
+                        addOperationChange(addMethodAnnotationRefactoring, revCommit, addMethodAnnotationRefactoring.getOperationBefore(), addMethodAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
                     case RENAME_CLASS: {
                         RenameClassRefactoring renameClassRefactoring = (RenameClassRefactoring) ref;
                         UMLClass originalClass = renameClassRefactoring.getOriginalClass();
