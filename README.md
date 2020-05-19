@@ -15,8 +15,8 @@ To build the project, run `mvn package`. Hense this project uses RefactoringMine
 
 To add refactoring-refiner as a maven dependency in a project, run `maven install` to add `refactoring-refiner-1.0-SNAPSHOT.jar` into your local mvn repository, and then add the following dependency to your project:
       
-      <dependency>
-            <groupId>org.refactoringrefiner</groupId>
-            <artifactId>refactoring-refiner</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
+<dependency>
+    <groupId>org.refactoringrefiner</groupId>
+    <artifactId>refactoring-refiner</artifactId>
+    <version>1.0-SNAPSHOT</version>
+</dependency>
