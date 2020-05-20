@@ -14,7 +14,5 @@ public interface Edge {
 
     Set<Refactoring> getRefactorings();
 
-    int getCommitTime();
-
     String getCommitId();
 }

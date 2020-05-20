@@ -81,18 +81,18 @@ public class GraphImpl<N extends CodeElement, E extends Edge> implements org.ref
         return inducedSubGraphNodes;
     }
 
-    private static <N extends CodeElement, E extends Edge> Set<N> findReachable(ValueGraph<N, E> network, N node) {
+    private static <N extends CodeElement, E extends Edge> Set<N> findReachable(ValueGraph<N, E> graph, N node) {
         Set<N> reachable = new HashSet<>();
-        Traverser.forGraph(network).breadthFirst(node).forEach(reachable::add);
+        Traverser.forGraph(graph).breadthFirst(node).forEach(reachable::add);
         return reachable;
     }
 
-    public static <N extends CodeElement, E extends Edge> Map<N, E> getEdgesContainingCTR(GraphImpl<N, E> graph) {
-        return graph.graph.edges().stream()
-                .filter(x -> graph.graph.edgeValue(x).get().numberOfRefactoring() > 1)
-                .filter(x -> Arrays.stream(graph.graph.edgeValue(x).get().toString().split(",")).anyMatch(r -> CTR.contains(r)))
-                .collect(toMap(x -> x.nodeU(), x -> graph.graph.edgeValue(x).get(), (e1, e2) -> e1));
-    }
+//    public static <N extends CodeElement, E extends Edge> Map<N, E> getEdgesContainingCTR(GraphImpl<N, E> graph) {
+//        return graph.graph.edges().stream()
+//                .filter(x -> graph.graph.edgeValue(x).get().numberOfRefactoring() > 1)
+//                .filter(x -> Arrays.stream(graph.graph.edgeValue(x).get().toString().split(",")).anyMatch(r -> CTR.contains(r)))
+//                .collect(toMap(x -> x.nodeU(), x -> graph.graph.edgeValue(x).get(), (e1, e2) -> e1));
+//    }
 
     public void merge(GraphImpl<N, E> toMergeGraph) {
         for (EndpointPair<N> edge : toMergeGraph.graph.edges()) {
@@ -134,7 +134,7 @@ public class GraphImpl<N extends CodeElement, E extends Edge> implements org.ref
         return graph.successors(n);
     }
 
-    public boolean isMultiContainer() {
-        return graph.nodes().stream().map(n -> n.getContainerName()).collect(Collectors.toSet()).size() > 1;
-    }
+//    public boolean isMultiContainer() {
+//        return graph.nodes().stream().map(n -> n.getContainerName()).collect(Collectors.toSet()).size() > 1;
+//    }
 }

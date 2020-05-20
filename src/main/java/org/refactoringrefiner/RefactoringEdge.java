@@ -11,21 +11,21 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 class RefactoringEdge implements Edge {
-    private final RevCommit commit;
+    private final String commitId;
     private final List<Refactoring> refactorings = new ArrayList<>();
-    public RefactoringEdge(RevCommit revCommit, Refactoring refactoring) {
-        this.commit = revCommit;
+    public RefactoringEdge(String commitId, Refactoring refactoring) {
+        this.commitId = commitId;
         if (refactoring != null)
             this.refactorings.add(refactoring);
     }
 
-    static Edge of(RevCommit commit, Refactoring refactoring) {
-        return new RefactoringEdge(commit, refactoring);
+    static Edge of(String commitId, Refactoring refactoring) {
+        return new RefactoringEdge(commitId, refactoring);
     }
 
     @Override
     public String prettyPrint() {
-        if (commit == null || refactorings.isEmpty()) {
+        if (commitId == null || refactorings.isEmpty()) {
             return "";
         }
         return refactorings.stream()
@@ -56,12 +56,7 @@ class RefactoringEdge implements Edge {
     }
 
     @Override
-    public int getCommitTime() {
-        return this.commit != null ? this.commit.getCommitTime() : -1;
-    }
-
-    @Override
     public String getCommitId() {
-        return this.commit != null ? this.commit.getId().getName() : "";
+        return this.commitId;
     }
 }
