@@ -12,5 +12,7 @@ public interface CodeElement extends Comparable<CodeElement> {
 
     String getPackageName();
 
+    String getSourceFolder();
+
     Version getVersion();
 }

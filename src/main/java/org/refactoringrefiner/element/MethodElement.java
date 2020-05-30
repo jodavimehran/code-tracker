@@ -105,6 +105,11 @@ public class MethodElement extends BaseCodeElement {
         return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()) + this.info.getClassName();
     }
 
+    @Override
+    public String getSourceFolder() {
+        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getName());
+    }
+
     public String getPackageName() {
         return getPackage(this.info.getLocationInfo().getFilePath(), this.info.getClassName());
     }

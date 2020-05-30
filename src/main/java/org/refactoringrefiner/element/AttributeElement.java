@@ -84,7 +84,10 @@ public class AttributeElement extends BaseCodeElement {
     public String getContainerName() {
         return getPath(this.variableInfo.getLocationInfo().getFilePath(), this.className) + this.className;
     }
-
+    @Override
+    public String getSourceFolder() {
+        return getPath(this.variableInfo.getLocationInfo().getFilePath(), this.variableInfo.getVariableName());
+    }
     @Override
     public String getPackageName() {
         return getPackage(this.variableInfo.getLocationInfo().getFilePath(), this.className);

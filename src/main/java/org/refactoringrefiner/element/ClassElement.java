@@ -61,15 +61,18 @@ public class ClassElement extends BaseCodeElement {
     }
 
     @Override
-    public String getContainerName() {
-        String srcFile = getPath(this.info.getLocationInfo().getFilePath(), this.info.getName());
-        return srcFile + info.getPackageName();
+    public String getSourceFolder() {
+        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getName());
     }
 
     @Override
     public String getPackageName() {
-        return getContainerName();
+        return this.info.getPackageName();
     }
 
-
+    @Override
+    public String getContainerName() {
+        return this.getSourceFolder() + this.getPackageName();
+    }
+    
 }
