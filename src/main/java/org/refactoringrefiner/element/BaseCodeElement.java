@@ -78,9 +78,10 @@ public abstract class BaseCodeElement  implements CodeElement {
         }
         return "";
     }
+
     @Override
     public int compareTo(CodeElement o) {
-        return this.getFullName().compareTo(o.getFullName());
+        return this.getIdentifier().compareTo(o.getIdentifier());
     }
 
     @Override
