@@ -96,7 +96,7 @@ public class MethodElement extends BaseCodeElement {
     }
 
     @Override
-    public String getShortName() {
+    public String getName() {
         return this.info.getName();
     }
 

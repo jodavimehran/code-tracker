@@ -6,7 +6,7 @@ public interface CodeElement extends Comparable<CodeElement> {
 
     String getFullName();
 
-    String getShortName();
+    String getName();
 
     String getContainerName();
 

@@ -56,8 +56,8 @@ public class ClassElement extends BaseCodeElement {
     }
 
     @Override
-    public String getShortName() {
-        return info.getName();
+    public String getName() {
+        return this.info.getName().replace(this.info.getPackageName(), "").replace(".", "");
     }
 
     @Override

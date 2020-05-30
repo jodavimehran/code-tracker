@@ -76,7 +76,7 @@ public class AttributeElement extends BaseCodeElement {
     }
 
     @Override
-    public String getShortName() {
+    public String getName() {
         return this.variableInfo.getVariableName();
     }
 
