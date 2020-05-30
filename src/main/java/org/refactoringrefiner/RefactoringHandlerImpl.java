@@ -236,6 +236,18 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         matchAttributes(ref, parentCommitId, commitId, originalClass.getAttributes(), renamedClass.getAttributes());
                         break;
                     }
+                    case ADD_CLASS_ANNOTATION: {
+                        AddClassAnnotationRefactoring addClassAnnotationRefactoring = (AddClassAnnotationRefactoring) ref;
+                        addClassChange(addClassAnnotationRefactoring, parentCommitId, commitId, addClassAnnotationRefactoring.getClassBefore(), addClassAnnotationRefactoring.getClassAfter());
+                    }
+                    case REMOVE_CLASS_ANNOTATION: {
+                        RemoveClassAnnotationRefactoring removeClassAnnotationRefactoring = (RemoveClassAnnotationRefactoring) ref;
+                        addClassChange(removeClassAnnotationRefactoring, parentCommitId, commitId, removeClassAnnotationRefactoring.getClassBefore(), removeClassAnnotationRefactoring.getClassAfter());
+                    }
+                    case MODIFY_CLASS_ANNOTATION: {
+                        ModifyClassAnnotationRefactoring modifyClassAnnotationRefactoring = (ModifyClassAnnotationRefactoring) ref;
+                        addClassChange(modifyClassAnnotationRefactoring, parentCommitId, commitId, modifyClassAnnotationRefactoring.getClassBefore(), modifyClassAnnotationRefactoring.getClassAfter());
+                    }
                     case EXTRACT_INTERFACE:
                     case EXTRACT_SUPERCLASS: {
                         ExtractSuperclassRefactoring extractSuperclassRefactoring = (ExtractSuperclassRefactoring) ref;
@@ -313,7 +325,6 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case RENAME_VARIABLE:
                     case CONVERT_ANONYMOUS_CLASS_TO_TYPE:
                     case INTRODUCE_POLYMORPHISM:
-                    case CHANGE_METHOD_SIGNATURE:
                     case INLINE_VARIABLE:
                     case CHANGE_VARIABLE_TYPE:
                     case MERGE_OPERATION:
