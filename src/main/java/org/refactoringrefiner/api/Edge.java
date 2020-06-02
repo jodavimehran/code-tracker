@@ -6,7 +6,7 @@ import java.util.Set;
 
 public interface Edge {
 
-    void addRefactoring(Refactoring refactoring);
+    void addRefactoring(Refactoring refactoring, boolean isActualRefactoring);
 
     int numberOfRefactoring();
 
@@ -15,4 +15,6 @@ public interface Edge {
     Set<Refactoring> getRefactorings();
 
     String getCommitId();
+
+    boolean isActualRefactoring();
 }

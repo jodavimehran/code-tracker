@@ -6,14 +6,21 @@ import org.refactoringrefiner.api.Version;
 
 public class VersionImpl implements Version {
     private final String id;
+    private final int time;
 
-    public VersionImpl(String id) {
+    public VersionImpl(String id, int time) {
         this.id = id;
+        this.time = time;
     }
 
     @Override
     public String getId() {
-        return id;
+        return this.id;
+    }
+
+    @Override
+    public int getTime() {
+        return this.time;
     }
 
     @Override

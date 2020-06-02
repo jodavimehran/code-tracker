@@ -4,4 +4,5 @@ public interface Version {
 
     String getId();
 
+    int getTime();
 }

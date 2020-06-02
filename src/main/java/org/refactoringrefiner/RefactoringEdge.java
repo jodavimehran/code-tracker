@@ -1,6 +1,5 @@
 package org.refactoringrefiner;
 
-import org.eclipse.jgit.revwalk.RevCommit;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringrefiner.api.Edge;
 
@@ -13,6 +12,8 @@ import java.util.stream.Collectors;
 class RefactoringEdge implements Edge {
     private final String commitId;
     private final List<Refactoring> refactorings = new ArrayList<>();
+    private boolean actualRefactoring;
+
     public RefactoringEdge(String commitId, Refactoring refactoring) {
         this.commitId = commitId;
         if (refactoring != null)
@@ -45,9 +46,13 @@ class RefactoringEdge implements Edge {
 
     }
 
-    public void addRefactoring(Refactoring refactoring) {
+    @Override
+    public void addRefactoring(Refactoring refactoring, boolean isActualRefactoring) {
         if (refactoring != null)
             refactorings.add(refactoring);
+        if (!this.actualRefactoring) {
+            this.actualRefactoring = isActualRefactoring;
+        }
     }
 
     @Override
@@ -58,5 +63,10 @@ class RefactoringEdge implements Edge {
     @Override
     public String getCommitId() {
         return this.commitId;
+    }
+
+    @Override
+    public boolean isActualRefactoring() {
+        return actualRefactoring;
     }
 }
