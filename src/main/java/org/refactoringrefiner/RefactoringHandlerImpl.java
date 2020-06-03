@@ -83,38 +83,50 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     }
 
     private void addOperationChange(Refactoring ref, String parentCommitId, String childCommitId, UMLOperation leftSideOperation, UMLOperation rightSideOperation) {
-        MethodElement leftSideMethodElement = new MethodElement(leftSideOperation, new VersionImpl(parentCommitId));
-        MethodElement rightSideMethodElement = new MethodElement(rightSideOperation, new VersionImpl(childCommitId));
+        addOperationChange(ref, parentCommitId, childCommitId, leftSideOperation, rightSideOperation, true);
+    }
+
+    private void addOperationChange(Refactoring ref, String parentCommitId, String childCommitId, UMLOperation leftSideOperation, UMLOperation rightSideOperation, boolean isActualRefactoring) {
+        MethodElement leftSideMethodElement = new MethodElement(leftSideOperation, new VersionImpl(parentCommitId, commitTimeResolver.apply(parentCommitId)));
+        MethodElement rightSideMethodElement = new MethodElement(rightSideOperation, new VersionImpl(childCommitId, commitTimeResolver.apply(childCommitId)));
         if (!leftSideMethodElement.equals(rightSideMethodElement))
-            addChange(leftSideMethodElement, rightSideMethodElement, ref, childCommitId);
+            addChange(leftSideMethodElement, rightSideMethodElement, ref, childCommitId, isActualRefactoring);
     }
 
     private void addAttributeChange(Refactoring ref, String parentCommitId, String childCommitId, UMLAttribute leftSideAttribute, UMLAttribute rightSideAttribute) {
-        AttributeElement leftSideAttributeElement = new AttributeElement(leftSideAttribute, new VersionImpl(parentCommitId));
-        AttributeElement rightSideAttributeElement = new AttributeElement(rightSideAttribute, new VersionImpl(childCommitId));
+        addAttributeChange(ref, parentCommitId, childCommitId, leftSideAttribute, rightSideAttribute, true);
+    }
 
-        addChange(leftSideAttributeElement, rightSideAttributeElement, ref, childCommitId);
+    private void addAttributeChange(Refactoring ref, String parentCommitId, String childCommitId, UMLAttribute leftSideAttribute, UMLAttribute rightSideAttribute, boolean isActualRefactoring) {
+        AttributeElement leftSideAttributeElement = new AttributeElement(leftSideAttribute, new VersionImpl(parentCommitId, commitTimeResolver.apply(parentCommitId)));
+        AttributeElement rightSideAttributeElement = new AttributeElement(rightSideAttribute, new VersionImpl(childCommitId, commitTimeResolver.apply(childCommitId)));
+
+        addChange(leftSideAttributeElement, rightSideAttributeElement, ref, childCommitId, isActualRefactoring);
     }
 
     private void addAttributeChange(Refactoring ref, String parentCommitId, String childCommitId, VariableDeclaration leftSideAttribute, String leftSideClassName, VariableDeclaration rightSideAttribute, String rightSideClassName) {
-        AttributeElement leftSideAttributeElement = new AttributeElement(leftSideAttribute, leftSideClassName, new VersionImpl(parentCommitId));
-        AttributeElement rightSideAttributeElement = new AttributeElement(rightSideAttribute, rightSideClassName, new VersionImpl(childCommitId));
+        addAttributeChange(ref, parentCommitId, childCommitId, leftSideAttribute, leftSideClassName, rightSideAttribute, rightSideClassName, true);
+    }
 
-        addChange(leftSideAttributeElement, rightSideAttributeElement, ref, childCommitId);
+    private void addAttributeChange(Refactoring ref, String parentCommitId, String childCommitId, VariableDeclaration leftSideAttribute, String leftSideClassName, VariableDeclaration rightSideAttribute, String rightSideClassName, boolean isActualRefactoring) {
+        AttributeElement leftSideAttributeElement = new AttributeElement(leftSideAttribute, leftSideClassName, new VersionImpl(parentCommitId, commitTimeResolver.apply(parentCommitId)));
+        AttributeElement rightSideAttributeElement = new AttributeElement(rightSideAttribute, rightSideClassName, new VersionImpl(childCommitId, commitTimeResolver.apply(childCommitId)));
+
+        addChange(leftSideAttributeElement, rightSideAttributeElement, ref, childCommitId, isActualRefactoring);
     }
 
     private void addClassChange(Refactoring ref, String parentCommitId, String childCommitId, UMLClass leftSideClass, UMLClass rightSideClass) {
-        ClassElement leftSideClassElement = new ClassElement(leftSideClass, new VersionImpl(parentCommitId));
-        ClassElement rightSideClassElement = new ClassElement(rightSideClass, new VersionImpl(childCommitId));
+        ClassElement leftSideClassElement = new ClassElement(leftSideClass, new VersionImpl(parentCommitId, commitTimeResolver.apply(parentCommitId)));
+        ClassElement rightSideClassElement = new ClassElement(rightSideClass, new VersionImpl(childCommitId, commitTimeResolver.apply(childCommitId)));
 
-        addChange(leftSideClassElement, rightSideClassElement, ref, childCommitId);
+        addChange(leftSideClassElement, rightSideClassElement, ref, childCommitId, true);
     }
 
-    private void addChange(CodeElement leftSide, CodeElement rightSide, Refactoring ref, String commitId) {
+    private void addChange(CodeElement leftSide, CodeElement rightSide, Refactoring ref, String commitId, boolean isActualRefactoring) {
         Optional<Edge> edgeValue = graph.edgeValue(leftSide, rightSide);
         if (edgeValue.isPresent()) {
             Edge edge = edgeValue.get();
-            edge.addRefactoring(ref);
+            edge.addRefactoring(ref, isActualRefactoring);
         } else {
             Edge edge = RefactoringEdge.of(commitId, ref);
             graph.putEdgeValue(leftSide, rightSide, edge);
@@ -194,6 +206,18 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addOperationChange(changeVariableTypeRefactoring, parentCommitId, commitId, changeVariableTypeRefactoring.getOperationBefore(), changeVariableTypeRefactoring.getOperationAfter());
                         break;
                     }
+                    case ADD_PARAMETER: {
+                        AddParameterRefactoring addParameterRefactoring = (AddParameterRefactoring) ref;
+                        addOperationChange(addParameterRefactoring, parentCommitId, commitId, addParameterRefactoring.getOperationBefore(), addParameterRefactoring.getOperationAfter());
+                    }
+                    case REMOVE_PARAMETER: {
+                        RemoveParameterRefactoring removeParameterRefactoring = (RemoveParameterRefactoring) ref;
+                        addOperationChange(removeParameterRefactoring, parentCommitId, commitId, removeParameterRefactoring.getOperationBefore(), removeParameterRefactoring.getOperationAfter());
+                    }
+                    case REORDER_PARAMETER: {
+                        ReorderParameterRefactoring reorderParameterRefactoring = (ReorderParameterRefactoring) ref;
+                        addOperationChange(reorderParameterRefactoring, parentCommitId, commitId, reorderParameterRefactoring.getOperationBefore(), reorderParameterRefactoring.getOperationAfter());
+                    }
                     case ADD_METHOD_ANNOTATION: {
                         AddMethodAnnotationRefactoring addMethodAnnotationRefactoring = (AddMethodAnnotationRefactoring) ref;
                         addOperationChange(addMethodAnnotationRefactoring, parentCommitId, commitId, addMethodAnnotationRefactoring.getOperationBefore(), addMethodAnnotationRefactoring.getOperationAfter());
@@ -265,16 +289,6 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addClassChange(extractClassRefactoring, parentCommitId, commitId, originalClass, extractedClass);
                         break;
                     }
-                    case RENAME_PACKAGE: {
-                        RenamePackageRefactoring renamePackageRefactoring = (RenamePackageRefactoring) ref;
-                        for (MoveClassRefactoring moveClassRefactoring : renamePackageRefactoring.getMoveClassRefactorings()) {
-                            UMLClass originalClass = moveClassRefactoring.getOriginalClass();
-                            UMLClass movedClass = moveClassRefactoring.getMovedClass();
-                            matchAttributes(ref, parentCommitId, commitId, originalClass.getAttributes(), movedClass.getAttributes());
-                            matchOperations(ref, parentCommitId, commitId, originalClass.getOperations(), movedClass.getOperations());
-                        }
-                        break;
-                    }
                     case MOVE_SOURCE_FOLDER: {
                         MoveSourceFolderRefactoring moveSourceFolderRefactoring = (MoveSourceFolderRefactoring) ref;
                         for (MovedClassToAnotherSourceFolder movedClassToAnotherSourceFolder : moveSourceFolderRefactoring.getMovedClassesToAnotherSourceFolder()) {
@@ -329,6 +343,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case CHANGE_VARIABLE_TYPE:
                     case MERGE_OPERATION:
                     case EXTRACT_VARIABLE:
+                    case RENAME_PACKAGE:
                     default: {
                         ref.toString();
                     }
@@ -351,7 +366,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         for (UMLAttribute attributeBefore : leftSide) {
             for (UMLAttribute attributeAfter : rightSide) {
                 if (attributeBefore.getName().equals(attributeAfter.getName())) {
-                    addAttributeChange(ref, parentCommitId, childCommitId, attributeBefore, attributeAfter);
+                    addAttributeChange(ref, parentCommitId, childCommitId, attributeBefore, attributeAfter, false);
                 }
             }
         }
@@ -372,11 +387,11 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         }
         for (Map.Entry<UMLOperation, List<UMLOperation>> entry : matched.entrySet()) {
             if (entry.getValue().size() == 1) {
-                addOperationChange(ref, parentCommitId, childCommitId, entry.getKey(), entry.getValue().get(0));
+                addOperationChange(ref, parentCommitId, childCommitId, entry.getKey(), entry.getValue().get(0), false);
             } else {
                 for (UMLOperation operationAfter : entry.getValue()) {
                     if (entry.getKey().equalSignature(operationAfter)) {
-                        addOperationChange(ref, parentCommitId, childCommitId, entry.getKey(), operationAfter);
+                        addOperationChange(ref, parentCommitId, childCommitId, entry.getKey(), operationAfter, false);
                     }
                 }
             }
