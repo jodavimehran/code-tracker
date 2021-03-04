@@ -7,9 +7,6 @@ import org.refactoringrefiner.api.Edge;
 import org.refactoringrefiner.api.Graph;
 
 import java.util.*;
-import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toMap;
 
 /**
  * @param <N> Node Type
@@ -38,21 +35,21 @@ public class GraphImpl<N extends CodeElement, E extends Edge> implements org.ref
 
     public static <N extends CodeElement, E extends Edge> Set<Graph<N, E>> setOf(ValueGraph<N, E> graph) {
         Set<Graph<N, E>> graphs = new HashSet<>();
-        for (Set<N> nodes : induceDisconnectedSubgraphs(graph)) {
+        for (Set<N> nodes : induceDisconnectedSubGraphs(graph)) {
             graphs.add(new GraphImpl(Graphs.inducedSubgraph(graph, nodes)));
         }
         return graphs;
     }
 
-    public static <N extends CodeElement, E extends Edge> Set<Graph<N, E>> setOf(GraphImpl<N, E> graph) {
+    public static <N extends CodeElement, E extends Edge> Set<Graph<N, E>> setOf(Graph<N, E> graph) {
         Set<Graph<N, E>> graphs = new HashSet<>();
-        for (Set<N> nodes : induceDisconnectedSubgraphs(graph.graph)) {
-            graphs.add(new GraphImpl(Graphs.inducedSubgraph(graph.graph, nodes)));
+        for (Set<N> nodes : induceDisconnectedSubGraphs(((GraphImpl<N, E>) graph).graph)) {
+            graphs.add(new GraphImpl(Graphs.inducedSubgraph(((GraphImpl) graph).graph, nodes)));
         }
         return graphs;
     }
 
-    public static <N extends CodeElement, E extends Edge> List<Set<N>> induceDisconnectedSubgraphs(ValueGraph<N, E> graph) {
+    public static <N extends CodeElement, E extends Edge> List<Set<N>> induceDisconnectedSubGraphs(ValueGraph<N, E> graph) {
         List<Set<N>> inducedSubGraphNodes = new ArrayList<>();
         HashMap<N, Set<N>> visitedNodes = new HashMap<>();
         for (N node : graph.nodes()) {

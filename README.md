@@ -1,15 +1,18 @@
+<h1>Refactoring Refiner</h1>
+
+<p>
+This project aims to introduce Refactoring-Refiner, a JAVA API to refine the atomic refactoring activities mined by [RefactoringMiner](https://github.com/tsantalis/RefactoringMiner) in the historyImpl of a Java project.
+
+</p>
+
 # Table of Contents
 
-  * [General Info](#general-info)
   * [How to Build](#how-to-build)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
 
-# General Info
-refactoring-refiner is a JAVA API based on [RefactoringMiner](https://github.com/tsantalis/RefactoringMiner) to refine the atomic refactoring activities mined in the history of a Java project.
-
 # How to Build
 
-To build the project, run `mvn package`. Hense this project uses RefactoringMiner as a maven dependency, it is really important to add `RefactoringMiner.jar` into your local mvn repository. If you don't have RefactoringMiner, see [this](https://github.com/tsantalis/RefactoringMiner#how-to-use-refactoringminer-as-a-maven-dependency) section.
+To build the project, run `mvn package`.
 
 # How to add as a Maven dependency
 

@@ -4,6 +4,8 @@ public interface CodeElement extends Comparable<CodeElement> {
 
     String getIdentifier();
 
+    String getIdentifierExcludeVersion();
+
     String getFullName();
 
     String getName();
@@ -15,4 +17,8 @@ public interface CodeElement extends Comparable<CodeElement> {
     String getSourceFolder();
 
     Version getVersion();
+
+    boolean isAdded();
+
+    boolean isRemoved();
 }

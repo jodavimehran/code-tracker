@@ -8,10 +8,10 @@ import org.eclipse.jgit.revwalk.RevCommit;
 
 import java.io.IOException;
 
-public abstract class BaseRepositoryResolver {
+public class GitRepository implements IRepository {
     private final Repository repository;
 
-    public BaseRepositoryResolver(Repository repository) {
+    public GitRepository(Repository repository) {
         this.repository = repository;
     }
 
@@ -27,5 +27,15 @@ public abstract class BaseRepositoryResolver {
             e.printStackTrace();
         }
         return revCommit;
+    }
+
+    @Override
+    public String getParentId(String commitId) {
+        return getRevCommit(commitId).getParent(0).getId().getName();
+    }
+
+    @Override
+    public long getCommitTime(String commitId) {
+        return getRevCommit(commitId).getCommitTime();
     }
 }
