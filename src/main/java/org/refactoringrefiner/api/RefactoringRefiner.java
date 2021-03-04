@@ -26,7 +26,7 @@ public interface RefactoringRefiner {
      * @param endTag     End tag
      * @return the result
      */
-    Result analyseBetweenTags(Repository repository, String startTag, String endTag);
+    Result analyseBetweenTags(Repository repository, String startTag, String endTag) throws Exception;
 
     /**
      * Analyse specified commit
@@ -51,5 +51,22 @@ public interface RefactoringRefiner {
      * @return the result
      */
     Result analyseBetweenCommits(Repository repository, String startCommitId, String endCommitId);
+
+
+    /**
+     * @param repository Repository of a project
+     * @param filePath   file path
+     * @return result
+     */
+    Result analyseFileCommits(Repository repository, String filePath);
+
+    /**
+     * @param repository     Repository of a project
+     * @param startCommitId  Start commit
+     * @param filePath       file path
+     * @param codeElementKey code element
+     * @return the History of specified element
+     */
+    History findHistory(Repository repository, String startCommitId, String filePath, String codeElementKey);
 
 }

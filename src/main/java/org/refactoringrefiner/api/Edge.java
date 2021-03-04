@@ -1,20 +1,11 @@
 package org.refactoringrefiner.api;
 
-import org.refactoringminer.api.Refactoring;
-
 import java.util.Set;
 
 public interface Edge {
+    Set<Change> getChangeList();
 
-    void addRefactoring(Refactoring refactoring);
+    Change.Type getType();
 
-    int numberOfRefactoring();
-
-    String prettyPrint();
-
-    Set<Refactoring> getRefactorings();
-
-    int getCommitTime();
-
-    String getCommitId();
+    String toSummary();
 }
