@@ -1,9 +1,6 @@
 <h1>Refactoring Refiner</h1>
 
-<p>
-This project aims to introduce Refactoring-Refiner, a JAVA API to refine the atomic refactoring activities mined by [RefactoringMiner](https://github.com/tsantalis/RefactoringMiner) in the historyImpl of a Java project.
-
-</p>
+This project aims to introduce Refactoring-Refiner, a JAVA API to refine the atomic refactoring activities mined by [Refactoring Miner](https://github.com/tsantalis/RefactoringMiner.git "Refactoring Miner's Homepage") in the history of a Java project.
 
 # Table of Contents
 
