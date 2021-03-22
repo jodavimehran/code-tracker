@@ -27,8 +27,9 @@ public class Attribute extends BaseCodeElement<UMLAttribute> {
         Attribute that = (Attribute) o;
 
         return new EqualsBuilder()
-                .append(getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()), getPath(that.info.getLocationInfo().getFilePath(), that.info.getClassName()))
+                .append(this.getSourceFolder(), that.getSourceFolder())
                 .append(this.info.getClassName(), that.info.getClassName())
+                .append(this.info.getVisibility(), that.info.getVisibility())
                 .append(this.info.getName(), that.info.getName())
                 .append(this.info.getType(), that.info.getType())
                 .append(this.getVersion().getId(), that.getVersion().getId())
@@ -39,8 +40,9 @@ public class Attribute extends BaseCodeElement<UMLAttribute> {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(87, 93)
-                .append(getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()))
+                .append(this.getSourceFolder())
                 .append(this.info.getClassName())
+                .append(this.info.getVisibility())
                 .append(this.info.getName())
                 .append(this.info.getType())
                 .append(this.getVersion().getId())
@@ -55,18 +57,12 @@ public class Attribute extends BaseCodeElement<UMLAttribute> {
 
     @Override
     public String getIdentifierExcludeVersion() {
-        return getFullName() +
-                ":" +
-                this.info.getType() +
-                annotationsToString();
+        return String.format("(%s)%s:%s%s", this.info.getVisibility(), getFullName(), this.info.getType(), annotationsToString());
     }
 
     @Override
     public String getFullName() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()) +
-                this.info.getClassName() +
-                "@" +
-                this.info.getName();
+        return String.format("%s%s@%s", getSourceFolder(), this.info.getClassName(), this.info.getName());
     }
 
     @Override
@@ -76,12 +72,12 @@ public class Attribute extends BaseCodeElement<UMLAttribute> {
 
     @Override
     public String getContainerName() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()) + this.info.getClassName();
+        return getSourceFolder() + this.info.getClassName();
     }
 
     @Override
     public String getSourceFolder() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getName());
+        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName());
     }
 
     @Override

@@ -471,6 +471,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         }
                         break;
                     }
+                    //======================================ATTRIBUTE============================================================
                     case MOVE_ATTRIBUTE: {
                         MoveAttributeRefactoring moveAttributeRefactoring = (MoveAttributeRefactoring) ref;
                         addAttributeRefactored(moveAttributeRefactoring, parentCommitId, commitId, moveAttributeRefactoring.getOriginalAttribute(), moveAttributeRefactoring.getMovedAttribute());
@@ -509,6 +510,11 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case REMOVE_ATTRIBUTE_ANNOTATION: {
                         RemoveAttributeAnnotationRefactoring removeAttributeAnnotationRefactoring = (RemoveAttributeAnnotationRefactoring) ref;
                         addAttributeRefactored(removeAttributeAnnotationRefactoring, parentCommitId, commitId, removeAttributeAnnotationRefactoring.getAttributeBefore(), removeAttributeAnnotationRefactoring.getAttributeAfter());
+                        break;
+                    }
+                    case CHANGE_ATTRIBUTE_ACCESS_MODIFIER: {
+                        ChangeAttributeAccessModifierRefactoring changeAttributeAccessModifierRefactoring = (ChangeAttributeAccessModifierRefactoring) ref;
+                        addAttributeRefactored(changeAttributeAccessModifierRefactoring, parentCommitId, commitId, changeAttributeAccessModifierRefactoring.getAttributeBefore(), changeAttributeAccessModifierRefactoring.getAttributeAfter());
                         break;
                     }
                     case SPLIT_ATTRIBUTE: {
