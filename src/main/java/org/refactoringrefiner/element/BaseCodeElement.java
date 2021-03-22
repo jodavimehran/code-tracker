@@ -2,7 +2,6 @@ package org.refactoringrefiner.element;
 
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLType;
-import gr.uom.java.xmi.diff.UMLModelDiff;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Version;
@@ -93,13 +92,9 @@ public abstract class BaseCodeElement<T> implements CodeElement {
     }
 
     protected static String annotationsToString(List<UMLAnnotation> umlAnnotations) {
-        StringBuilder sb = new StringBuilder();
-        if (umlAnnotations != null && !umlAnnotations.isEmpty()) {
-            sb.append("[");
-            sb.append(umlAnnotations.stream().map(UMLAnnotation::toString).collect(Collectors.joining(";")));
-            sb.append("]");
-        }
-        return sb.toString();
+        return umlAnnotations != null && !umlAnnotations.isEmpty()
+                ? String.format("[%s]", umlAnnotations.stream().map(UMLAnnotation::toString).collect(Collectors.joining(";")))
+                : "";
     }
 
     protected final String annotationsToString() {
@@ -157,7 +152,7 @@ public abstract class BaseCodeElement<T> implements CodeElement {
         }
 
         protected boolean isSameType(String className, UMLType umlType) {
-            if(className == null || umlType == null){
+            if (className == null || umlType == null) {
                 return false;
             }
             return umlType.equalClassType(UMLType.extractTypeObject(className));

@@ -124,7 +124,7 @@ public class Method extends BaseCodeElement<UMLOperation> {
 
     @Override
     public String getFullName() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()) +
+        return getSourceFolder() +
                 this.info.getClassName() +
                 String.format("#(%s)", this.info.getVisibility()) +
                 this.info.getName();
@@ -137,12 +137,12 @@ public class Method extends BaseCodeElement<UMLOperation> {
 
     @Override
     public String getContainerName() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName()) + this.info.getClassName();
+        return getSourceFolder() + this.info.getClassName();
     }
 
     @Override
     public String getSourceFolder() {
-        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getName());
+        return getPath(this.info.getLocationInfo().getFilePath(), this.info.getClassName());
     }
 
     @Override

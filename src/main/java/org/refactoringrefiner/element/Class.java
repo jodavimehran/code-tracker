@@ -25,7 +25,7 @@ public class Class extends BaseCodeElement<UMLClass> {
         if (o == null || getClass() != o.getClass()) return false;
         Class that = (Class) o;
         return new EqualsBuilder()
-                .append(getPath(this.info.getLocationInfo().getFilePath(), this.info.getName()), getPath(that.info.getLocationInfo().getFilePath(), that.info.getName()))
+                .append(this.getSourceFolder(), that.getSourceFolder())
                 .append(this.info.getPackageName(), that.info.getPackageName())
                 .append(this.info.getName(), that.info.getName())
                 .append(this.getVersion().getId(), that.getVersion().getId())
@@ -36,7 +36,7 @@ public class Class extends BaseCodeElement<UMLClass> {
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(getPath(this.info.getLocationInfo().getFilePath(), this.info.getName()))
+                .append(this.getSourceFolder())
                 .append(this.info.getPackageName())
                 .append(this.info.getName())
                 .append(this.getVersion().getId())
