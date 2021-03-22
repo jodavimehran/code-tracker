@@ -72,7 +72,7 @@ public class Variable extends BaseCodeElement<VariableDeclaration> {
                 .append(this.info.getVariableName(), that.info.getVariableName())
                 .append(this.info.getType(), that.info.getType())
                 .append(this.info.getScope().getParentSignature(), that.info.getScope().getParentSignature())
-                .append(this.method, that.method)
+                .append(this.method.getIdentifierExcludeVersion(), that.method.getIdentifierExcludeVersion())
                 .append(this.getVersion().getId(), that.getVersion().getId())
                 .isEquals();
     }
@@ -83,7 +83,7 @@ public class Variable extends BaseCodeElement<VariableDeclaration> {
                 .append(this.info)
                 .append(this.info.getType())
                 .append(this.info.getScope().getParentSignature())
-                .append(this.method)
+                .append(this.method.getIdentifierExcludeVersion())
                 .append(this.getVersion().getId())
                 .toHashCode();
     }
