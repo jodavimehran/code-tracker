@@ -53,7 +53,7 @@ public class Starter {
     public static void main(String[] args) throws Exception {
 //        new Starter().historyTest("E:\\Data\\History\\processed.csv");
         //new Starter().correctDBType();
-        new Starter().variableHistoryTest(args[0]);
+        new Starter().variableHistoryTest("E:\\Data\\History\\Variable\\processed.csv");
         //new Starter().createVariableDataset();
         System.exit(0);
     }
@@ -367,11 +367,10 @@ public class Starter {
 //        return inputs;
 //    }
 
-    private static <T> void saveAllResultsToDatabase(Collection<HistoryResult> results) {
+    private static <T> void saveAllResultsToDatabase(Collection<HistoryResult> results, Session sessionObj) {
         System.out.println(".......Start Saving Data to Database.......\n");
-        Session sessionObj = null;
         try {
-            sessionObj = buildSessionFactory().openSession();
+
             sessionObj.beginTransaction();
 
             for (HistoryResult result : results) {
@@ -389,10 +388,6 @@ public class Starter {
                 sessionObj.getTransaction().rollback();
             }
             sqlException.printStackTrace();
-        } finally {
-            if (sessionObj != null) {
-                sessionObj.close();
-            }
         }
     }
 
@@ -621,7 +616,8 @@ public class Starter {
             case CHANGE_VARIABLE_TYPE:
             case CHANGE_ATTRIBUTE_TYPE:
                 return ChangeType.CHANGE_TYPE;
-
+            case MERGE_VARIABLE:
+                return ChangeType.MERGE_VARIABLE;
 
         }
 
@@ -676,7 +672,7 @@ public class Starter {
             for (HistoryResult historyResult : allHistory) {
                 historyResult.setOracle(db.get(historyResult.getElementKey()));
             }
-            saveAllResultsToDatabase(allHistory);
+            saveAllResultsToDatabase(allHistory, sessionObj);
         } catch (Exception sqlException) {
             if (null != sessionObj.getTransaction()) {
                 System.out.println("\n.......Transaction Is Being Rolled Back.......");
@@ -735,7 +731,7 @@ public class Starter {
                 }
                 long shovelProcessingTime = (System.nanoTime() - startTime) / 1000000;
 
-                saveAllResultsToDatabase(historyResultHashMap.values());
+                saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
                 writeToFile("E:\\Data\\History\\result.csv", String.format("%s;; %s;; %d;; %d;; %d" + System.lineSeparator(), repositoryWebURL, historyInfo.getFunctionKey(), refactoringMinerProcessingTime, apidiffProcessingTime, shovelProcessingTime), StandardOpenOption.APPEND);
                 writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
             }
@@ -880,7 +876,7 @@ public class Starter {
                         historyResult.setCodeShovelOracleVote(1);
                     }
                     processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), Detector.MINER, "variable", Starter::getChangeTypeRefactoringMiner);
-                    saveAllResultsToDatabase(historyResultHashMap.values());
+                    saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
                     writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
 
                 } catch (Exception exception) {
@@ -1294,7 +1290,8 @@ public class Starter {
         REMOVED("removed"),
         CHANGED_ANNOTATION("changed annotation"),
         MOVE_AND_RENAME("move and rename"),
-        CHANGE_TYPE("change type");
+        CHANGE_TYPE("change type"),
+        MERGE_VARIABLE("Merge Variable");
 
         private final String name;
 
