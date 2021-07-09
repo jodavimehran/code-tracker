@@ -19,10 +19,6 @@ public class GitRepository implements IRepository {
         RevCommit revCommit = null;
         try {
             revCommit = repository.parseCommit(ObjectId.fromString(commitId));
-        } catch (IncorrectObjectTypeException e) {
-            e.printStackTrace();
-        } catch (MissingObjectException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -36,6 +32,8 @@ public class GitRepository implements IRepository {
 
     @Override
     public long getCommitTime(String commitId) {
+        if ("0".equals(commitId))
+            return 0;
         return getRevCommit(commitId).getCommitTime();
     }
 }

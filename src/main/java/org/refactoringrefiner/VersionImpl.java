@@ -1,8 +1,8 @@
 package org.refactoringrefiner;
 
-import org.apache.commons.lang3.builder.EqualsBuilder;
-import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.refactoringrefiner.api.Version;
+
+import java.util.Objects;
 
 public class VersionImpl implements Version {
     private final String id;
@@ -26,21 +26,14 @@ public class VersionImpl implements Version {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-
         if (o == null || getClass() != o.getClass()) return false;
-
         VersionImpl version = (VersionImpl) o;
-
-        return new EqualsBuilder()
-                .append(id, version.id)
-                .isEquals();
+        return Objects.equals(id, version.id);
     }
 
     @Override
     public int hashCode() {
-        return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
+        return Objects.hash(id);
     }
 
     @Override

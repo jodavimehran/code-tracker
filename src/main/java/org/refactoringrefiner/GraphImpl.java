@@ -13,10 +13,10 @@ import java.util.*;
  * @param <E> Edge Type
  */
 public class GraphImpl<N extends CodeElement, E extends Edge> implements org.refactoringrefiner.api.Graph<N, E> {
-    private static List<String> CTR = Arrays.asList(RefactoringType.CHANGE_ATTRIBUTE_TYPE.getDisplayName(),
+    private static final List<String> CTR = Arrays.asList(RefactoringType.CHANGE_ATTRIBUTE_TYPE.getDisplayName(),
             RefactoringType.CHANGE_PARAMETER_TYPE.getDisplayName(), RefactoringType.CHANGE_RETURN_TYPE.getDisplayName(), RefactoringType.CHANGE_VARIABLE_TYPE.getDisplayName());
 
-    private MutableValueGraph<N, E> graph;
+    private final MutableValueGraph<N, E> graph;
 
     /**
      * @param graph
@@ -31,6 +31,24 @@ public class GraphImpl<N extends CodeElement, E extends Edge> implements org.ref
 
     public static <N extends CodeElement, E extends Edge> GraphImpl<N, E> of(ValueGraph<N, E> graph) {
         return new GraphImpl<>(graph);
+    }
+
+    public static <N extends CodeElement, E extends Edge> Graph<N, E> subGraph(ValueGraph<N, E> graph, N startNode) {
+        if (graph == null || startNode == null)
+            return null;
+        Set<N> connectedNodes = new HashSet<>();
+        Queue<N> queue = new LinkedList<>();
+        queue.add(startNode);
+        while (!queue.isEmpty()) {
+            N visitingNode = queue.poll();
+            if (!connectedNodes.contains(visitingNode)) {
+                connectedNodes.add(visitingNode);
+                queue.addAll(graph.successors(visitingNode));
+                queue.addAll(graph.predecessors(visitingNode));
+            }
+        }
+
+        return new GraphImpl(Graphs.inducedSubgraph(graph, connectedNodes));
     }
 
     public static <N extends CodeElement, E extends Edge> Set<Graph<N, E>> setOf(ValueGraph<N, E> graph) {
@@ -55,7 +73,7 @@ public class GraphImpl<N extends CodeElement, E extends Edge> implements org.ref
         for (N node : graph.nodes()) {
             if (graph.predecessors(node).isEmpty()) {
                 if (!visitedNodes.containsKey(node)) {
-                    Set<N> reachable = new HashSet<>(findReachable(graph, node));
+                    Set<N> reachable = findReachable(graph, node);
                     reachable.add(node);
 
                     Set<N> relatedReachable = null;

@@ -6,8 +6,8 @@ import org.refactoringrefiner.api.Change;
 public class Modified extends AbstractChange {
     private final Refactoring refactoring;
 
-    public Modified(Refactoring refactoring) {
-        super(Change.Type.MODIFIED);
+    public Modified(Refactoring refactoring, String description) {
+        super(Change.Type.MODIFIED, description);
         this.refactoring = refactoring;
     }
 
@@ -17,8 +17,10 @@ public class Modified extends AbstractChange {
 
     @Override
     public String toString() {
-        if (refactoring == null)
-            return "The body of the code element is changed.";
-        return String.format("The body of the code element is changed due to %s.", refactoring.toString());
+        if (refactoring != null)
+            return String.format("The body of the code element is changed due to %s.", refactoring);
+        if (description != null)
+            return description;
+        return "The body of the code element is changed.";
     }
 }

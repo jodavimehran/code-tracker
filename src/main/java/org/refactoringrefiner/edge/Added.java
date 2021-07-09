@@ -4,13 +4,13 @@ import org.refactoringrefiner.api.CodeElement;
 
 public class Added extends AbstractChange {
     private final CodeElement addedElement;
-    public Added(CodeElement addedElement) {
-        super(Type.ADDED);
+    public Added(CodeElement addedElement, String description) {
+        super(Type.ADDED, description);
         this.addedElement = addedElement;
     }
 
-    protected Added(Type type, CodeElement addedElement) {
-        super(type);
+    protected Added(Type type, CodeElement addedElement, String description) {
+        super(type, description);
         this.addedElement = addedElement;
     }
 
@@ -25,6 +25,6 @@ public class Added extends AbstractChange {
 
     @Override
     public String toString() {
-        return String.format("A code element with full name [%s] is added.", addedElement.getFullName());
+        return String.format("A code element with name [%s] is added.", addedElement.getName());
     }
 }

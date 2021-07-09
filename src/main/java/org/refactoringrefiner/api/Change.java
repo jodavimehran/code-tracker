@@ -4,7 +4,7 @@ public interface Change {
 
     Type getType();
 
-    String toSummary();
+    String getDescription();
 
     enum Type {
         NO_CHANGE("Not Changed"),
@@ -15,7 +15,9 @@ public interface Change {
         INLINED("Inlined"),
         EXTRACTED("Extracted"),
         CONTAINER_CHANGE("Changed in Container"),
-        MULTI_CHANGE("Changed Multiple Times");
+        MULTI_CHANGE("Changed Multiple Times"),
+        MERGED("Merged"),
+        BRANCHED("Branched");
 
         private final String title;
 

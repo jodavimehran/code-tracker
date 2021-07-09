@@ -7,7 +7,9 @@ import org.refactoringrefiner.api.Edge;
 public final class ChangeFactory {
     protected final AbstractChange.Type type;
     private Refactoring refactoring;
+    private Refactoring relatedRefactoring;
     private CodeElement codeElement;
+    private String description;
 
     private ChangeFactory(AbstractChange.Type type) {
         this.type = type;
@@ -22,8 +24,18 @@ public final class ChangeFactory {
         return this;
     }
 
+    public ChangeFactory relatedRefactoring(Refactoring relatedRefactoring) {
+        this.relatedRefactoring = relatedRefactoring;
+        return this;
+    }
+
     public ChangeFactory codeElement(CodeElement codeElement) {
         this.codeElement = codeElement;
+        return this;
+    }
+
+    public ChangeFactory description(String description) {
+        this.description = description;
         return this;
     }
 
@@ -44,41 +56,57 @@ public final class ChangeFactory {
         if (type == null)
             return null;
 
+        if (description == null && refactoring != null) {
+            description = refactoring.toString();
+        }
+
         AbstractChange change;
         switch (type) {
             case INLINED:
-                if (refactoring == null)
+                if (refactoring == null && description == null)
                     throw new NullPointerException();
-                change = new Inlined(refactoring, codeElement);
+                change = new Inlined(refactoring, codeElement, description);
                 break;
             case REFACTORED:
-                if (refactoring == null)
+                if (refactoring == null && description == null)
                     throw new NullPointerException();
-                change = new Refactored(refactoring);
+                if (relatedRefactoring != null)
+                    change = new Refactored(refactoring, relatedRefactoring, description);
+                else
+                    change = new Refactored(refactoring, description);
                 break;
             case EXTRACTED:
-                if (refactoring == null)
+                if (refactoring == null && description == null)
                     throw new NullPointerException();
-                change = new Extracted(refactoring, codeElement);
+                change = new Extracted(refactoring, codeElement, description);
                 break;
             case CONTAINER_CHANGE:
-                if (refactoring == null)
+                if (refactoring == null && description == null)
                     throw new NullPointerException();
-                change = new ContainerChange(refactoring);
+                change = new ContainerChange(refactoring, description);
                 break;
             case ADDED:
-                change = new Added(codeElement);
+                change = new Added(codeElement, description);
                 break;
             case REMOVED:
-                change = new Removed(codeElement);
+                change = new Removed(codeElement, description);
                 break;
             case MODIFIED:
-                change = new Modified(refactoring);
+                change = new Modified(refactoring, description);
                 break;
             case NO_CHANGE:
                 change = new NoChange();
                 break;
-
+            case BRANCHED:
+                if (refactoring == null && description == null)
+                    throw new NullPointerException();
+                change = new Branched(refactoring, description);
+                break;
+            case MERGED:
+                if (refactoring == null && description == null)
+                    throw new NullPointerException();
+                change = new Merged(refactoring, description);
+                break;
             default:
                 return null;
         }

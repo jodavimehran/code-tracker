@@ -8,27 +8,13 @@ import java.util.Objects;
 public class Inlined extends Removed {
     private final Refactoring inlineRefactoring;
 
-    public Inlined(Refactoring inlineRefactoring, CodeElement removedElement) {
-        super(Type.INLINED, removedElement);
+    public Inlined(Refactoring inlineRefactoring, CodeElement removedElement, String description) {
+        super(Type.INLINED, removedElement, description);
         this.inlineRefactoring = inlineRefactoring;
     }
 
     public Refactoring getInlineRefactoring() {
         return inlineRefactoring;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        if (!super.equals(o)) return false;
-        Inlined inlined = (Inlined) o;
-        return inlineRefactoring.equals(inlined.inlineRefactoring);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), inlineRefactoring);
     }
 
     @Override

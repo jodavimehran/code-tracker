@@ -61,12 +61,19 @@ public interface RefactoringRefiner {
     Result analyseFileCommits(Repository repository, String filePath);
 
     /**
-     * @param repository     Repository of a project
+     * @param projectDirectory     Repository of a project
      * @param startCommitId  Start commit
      * @param filePath       file path
      * @param codeElementKey code element
      * @return the History of specified element
      */
-    History findHistory(Repository repository, String startCommitId, String filePath, String codeElementKey);
+    History findHistory(String projectDirectory, String repositoryWebURL, String startCommitId, String filePath, String codeElementKey, CodeElementType codeElementType, boolean useApiDiffAsChangeDetector);
+
+    enum CodeElementType{
+        CLASS,
+        METHOD,
+        ATTRIBUTE,
+        VARIABLE;
+    }
 
 }

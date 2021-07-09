@@ -1,12 +1,14 @@
 package org.refactoringrefiner;
 
-import com.google.common.graph.EndpointPair;
+import com.google.common.collect.Sets;
 import com.google.common.graph.ImmutableValueGraph;
 import com.google.common.graph.MutableValueGraph;
-import com.google.common.graph.ValueGraphBuilder;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
+import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.decomposition.OperationBody;
+import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.decomposition.replacement.VariableDeclarationReplacement;
 import gr.uom.java.xmi.diff.*;
@@ -14,30 +16,38 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.api.RefactoringType;
+import org.refactoringminer.util.Hashing;
+import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
-import org.refactoringrefiner.edge.*;
-import org.refactoringrefiner.element.*;
+import org.refactoringrefiner.edge.AbstractChange;
+import org.refactoringrefiner.edge.ChangeFactory;
+import org.refactoringrefiner.element.Attribute;
 import org.refactoringrefiner.element.Class;
-import org.refactoringrefiner.util.*;
+import org.refactoringrefiner.element.Method;
+import org.refactoringrefiner.element.Variable;
+import org.refactoringrefiner.util.IRepository;
+import org.refactoringrefiner.util.Util;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class RefactoringHandlerImpl extends RefactoringHandler {
-    private final MutableValueGraph<CodeElement, Edge> attributeChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
-    private final MutableValueGraph<CodeElement, Edge> classChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
-    private final MutableValueGraph<CodeElement, Edge> methodChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
-    private final MutableValueGraph<CodeElement, Edge> variableChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
-
+    private final static Set<RefactoringType> CLASS_LEVEL_REFACTORING = Sets.newHashSet(RefactoringType.RENAME_CLASS, RefactoringType.MOVE_CLASS, RefactoringType.MOVE_RENAME_CLASS, RefactoringType.ADD_CLASS_ANNOTATION, RefactoringType.REMOVE_CLASS_ANNOTATION, RefactoringType.MODIFY_CLASS_ANNOTATION, RefactoringType.EXTRACT_INTERFACE, RefactoringType.EXTRACT_SUPERCLASS, RefactoringType.EXTRACT_SUBCLASS, RefactoringType.EXTRACT_CLASS);
+    private final ChangeHistory attributeChangeHistory = new ChangeHistory();
+    //    private final MutableValueGraph<CodeElement, Edge> attributeChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
+    private final ChangeHistory classChangeHistory = new ChangeHistory();
+    //    private final MutableValueGraph<CodeElement, Edge> classChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
+//    private final MutableValueGraph<CodeElement, Edge> methodChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
+    private final ChangeHistory methodChangeHistory = new ChangeHistory();
+    //    private final MutableValueGraph<CodeElement, Edge> variableChangeHistoryGraph = ValueGraphBuilder.directed().allowsSelfLoops(false).build();
+    private final ChangeHistory variableChangeHistory = new ChangeHistory();
     private final List<Refactoring> refactorings = new ArrayList<>();
     private final IRepository repository;
-    //file -> class -> method
-    private final HashMap<String, Method> methodElements = new HashMap<>();
-    private final HashMap<String, Method> methodElementsByIdentifier = new HashMap<>();
     //filters:
     private final Set<String> files = new HashSet<>();
-    private final Set<String> classNames = new HashSet<>();
-    private final Set<String> methodNames = new HashSet<>();
+    private final HashMap<UMLOperation, Refactoring> relatedRefactoringsToOperations = new HashMap<>();
+    private final HashMap<UMLAttribute, Refactoring> relatedRefactoringsToAttributes = new HashMap<>();
     private boolean trackVariables = true;
     private boolean trackClasses = true;
     private boolean trackMethods = true;
@@ -49,82 +59,34 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     }
 
     private static ImmutableValueGraph<CodeElement, Edge> getGraph(MutableValueGraph<CodeElement, Edge> graph) {
-        HashMap<String, Set<CodeElement>> leafElements = new HashMap<>();
-        HashMap<String, Set<CodeElement>> rootElement = new HashMap<>();
-        for (EndpointPair<CodeElement> edge : graph.edges()) {
-            CodeElement source = edge.source();
-            if (graph.predecessors(source).isEmpty() && !source.isAdded())
-                addCodeElementToMap(source, rootElement);
-
-            CodeElement target = edge.target();
-            if (graph.successors(target).isEmpty() && !target.isRemoved())
-                addCodeElementToMap(target, leafElements);
-        }
-        for (Map.Entry<String, Set<CodeElement>> leafEntry : leafElements.entrySet()) {
-            if (!rootElement.containsKey(leafEntry.getKey())) {
-                continue;
-            }
-            List<CodeElement> leafCodeElementsList = new ArrayList<>(leafEntry.getValue());
-            Collections.sort(leafCodeElementsList, (o1, o2) -> Long.compare(o2.getVersion().getTime(), o1.getVersion().getTime()));
-            Set<CodeElement> rootCodeElements = rootElement.get(leafEntry.getKey());
-            for (CodeElement leafCodeElement : leafCodeElementsList) {
-                List<CodeElement> matched = new ArrayList<>();
-                for (CodeElement rootCodeElement : rootCodeElements) {
-                    if (!rootCodeElement.getVersion().getId().equals(leafCodeElement.getVersion().getId()) && rootCodeElement.getVersion().getTime() >= leafCodeElement.getVersion().getTime()) {
-                        matched.add(rootCodeElement);
-                    }
-                }
-                if (!matched.isEmpty()) {
-                    Collections.sort(matched, Comparator.comparingLong(o -> o.getVersion().getTime()));
-                    graph.putEdgeValue(leafCodeElement, matched.get(0), ChangeFactory.of(AbstractChange.Type.NO_CHANGE).asEdge());
-                    rootCodeElements.remove(matched.get(0));
-                }
-            }
-        }
         return ImmutableValueGraph.copyOf(graph);
     }
 
-    private static void addCodeElementToMap(CodeElement codeElement, HashMap<String, Set<CodeElement>> elementsMap) {
-        Set<CodeElement> codeElements;
-        if (elementsMap.containsKey(codeElement.getIdentifierExcludeVersion())) {
-            codeElements = elementsMap.get(codeElement.getIdentifierExcludeVersion());
-        } else {
-            codeElements = new HashSet<>();
-            elementsMap.put(codeElement.getIdentifierExcludeVersion(), codeElements);
+    private static void addRefactored(ChangeHistory changeHistory, CodeElement leftSide, CodeElement rightSide, Refactoring refactoring) {
+        addRefactored(changeHistory, leftSide, rightSide, refactoring, null);
+    }
+
+    private static void addRefactored(ChangeHistory changeHistory, CodeElement leftSide, CodeElement rightSide, Refactoring refactoring, Refactoring relatedRefactoring) {
+        changeHistory.addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REFACTORED).refactoring(refactoring).relatedRefactoring(relatedRefactoring).description(refactoring.toString()));
+    }
+
+    public static boolean checkOperationBodyChanged(OperationBody body1, OperationBody body2) {
+        if (body1 == null && body2 == null) return false;
+
+        if (body1 == null || body2 == null) {
+            return true;
         }
-        codeElements.add(codeElement);
+        return !body1.getSha512().equals(body2.getSha512());
     }
 
-    private static void handleRemove(MutableValueGraph<CodeElement, Edge> graph, BaseCodeElement leftSide, BaseCodeElement rightSide) {
-        if (leftSide == null || rightSide == null)
-            return;
-        rightSide.setRemoved(true);
-        addChange(graph, leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REMOVED).codeElement(leftSide));
+    public static boolean checkOperationDocumentationChanged(UMLOperation operation1, UMLOperation operation2) {
+        String comments1 = Hashing.getSHA512(operation1.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
+        String comments2 = Hashing.getSHA512(operation2.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
+        return !comments1.equals(comments2);
     }
 
-    private static void handleAdd(MutableValueGraph<CodeElement, Edge> graph, BaseCodeElement leftSide, BaseCodeElement rightSide) {
-        if (leftSide == null || rightSide == null)
-            return;
-        leftSide.setAdded(true);
-        addChange(graph, leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.ADDED).codeElement(rightSide));
-    }
-
-    private static void addRefactored(MutableValueGraph<CodeElement, Edge> graph, CodeElement leftSide, CodeElement rightSide, Refactoring refactoring) {
-        addChange(graph, leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REFACTORED).refactoring(refactoring));
-    }
-
-    private static void addChange(MutableValueGraph<CodeElement, Edge> graph, CodeElement leftSide, CodeElement rightSide, ChangeFactory changeFactory) {
-        if (leftSide == null || rightSide == null)
-            return;
-        if (leftSide.equals(rightSide))
-            return;
-        Optional<Edge> edgeValue = graph.edgeValue(leftSide, rightSide);
-        if (edgeValue.isPresent()) {
-            EdgeImpl edge = (EdgeImpl) edgeValue.get();
-            edge.addChange(changeFactory.build());
-        } else {
-            graph.putEdgeValue(leftSide, rightSide, changeFactory.asEdge());
-        }
+    public IRepository getRepository() {
+        return repository;
     }
 
     private void addMethodChange(String parentCommitId, String commitId, UMLOperation leftSideOperation, UMLOperation rightSideOperation, ChangeFactory changeFactory) {
@@ -146,121 +108,108 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
             }
             changeFactory.codeElement(leftSideMethod);
         }
-        addChange(methodChangeHistoryGraph, leftSideMethod, rightSideMethod, changeFactory);
+
+        methodChangeHistory.addChange(leftSideMethod, rightSideMethod, changeFactory);
     }
 
     public int getNumberOfEdge() {
-        return attributeChangeHistoryGraph.edges().size() + classChangeHistoryGraph.edges().size() + methodChangeHistoryGraph.edges().size() + variableChangeHistoryGraph.edges().size();
+        return attributeChangeHistory.getNumberOfEdge() + classChangeHistory.getNumberOfEdge() + methodChangeHistory.getNumberOfEdge() + variableChangeHistory.getNumberOfEdge();
     }
 
-    public ImmutableValueGraph<CodeElement, Edge> getAttributeChangeHistoryGraph() {
-        return getGraph(attributeChangeHistoryGraph);
+    public ChangeHistory getAttributeChangeHistory() {
+        return attributeChangeHistory;
     }
 
-    public ImmutableValueGraph<CodeElement, Edge> getClassChangeHistoryGraph() {
-        return getGraph(classChangeHistoryGraph);
+    public ChangeHistory getClassChangeHistoryGraph() {
+        return classChangeHistory;
     }
 
-    public ImmutableValueGraph<CodeElement, Edge> getMethodChangeHistoryGraph() {
-        return getGraph(methodChangeHistoryGraph);
+    public ChangeHistory getMethodChangeHistoryGraph() {
+        return methodChangeHistory;
     }
 
-    public ImmutableValueGraph<CodeElement, Edge> getVariableChangeHistoryGraph() {
-        return getGraph(variableChangeHistoryGraph);
+    public ChangeHistory getVariableChangeHistoryGraph() {
+        return variableChangeHistory;
     }
 
     private Class getClass(String commitId, UMLClass umlClass) {
         if (!trackClasses)
             return null;
-        if (!files.isEmpty() && !files.contains(umlClass.getLocationInfo().getFilePath()))
-            return null;
-        return new Class(umlClass, getVersion(commitId));
+        return (Class) classChangeHistory.addNode(Class.of(umlClass, repository.getVersion(commitId)));
     }
 
     private Method getMethod(String commitId, UMLOperation umlOperation) {
-        Method method = new Method(umlOperation, getVersion(commitId));
-        String identifier = method.getIdentifier();
-        if (methodElementsByIdentifier.containsKey(identifier)) {
-            method = methodElementsByIdentifier.get(identifier);
-        } else {
-            methodElementsByIdentifier.put(identifier, method);
-        }
-
-        methodElements.put(String.format("%s>%s", umlOperation.getLocationInfo().getFilePath(), umlOperation.getKey()), method);
-        methodChangeHistoryGraph.addNode(method);
-        return method;
-    }
-
-    private VersionImpl getVersion(String commitId) {
-        return new VersionImpl(commitId, repository.getCommitTime(commitId));
+        if (!trackMethods)
+            return null;
+        return (Method) methodChangeHistory.addNode(Method.of(umlOperation, repository.getVersion(commitId)));
     }
 
     private Variable getVariable(VariableDeclaration variableDeclaration, UMLOperation umlOperation, String commitId) {
         if (!trackVariables)
             return null;
-        if (!files.isEmpty() && !files.contains(umlOperation.getLocationInfo().getFilePath()))
-            return null;
-        return new Variable(variableDeclaration, umlOperation, getVersion(commitId));
+        return (Variable) variableChangeHistory.addNode(Variable.of(variableDeclaration, umlOperation, repository.getVersion(commitId)));
     }
 
     private Attribute getAttributeElement(String commitId, UMLAttribute attribute) {
         if (!trackAttributes)
             return null;
-        return new Attribute(attribute, getVersion(commitId));
+        return (Attribute) attributeChangeHistory.addNode(Attribute.of(attribute, repository.getVersion(commitId)));
     }
 
     private void addOperationRefactored(Refactoring ref, String parentCommitId, String childCommitId, UMLOperation leftSideOperation, UMLOperation rightSideOperation) {
-        if (!trackMethods)
-            return;
         if (!files.isEmpty() && !(files.contains(leftSideOperation.getLocationInfo().getFilePath()) || files.contains(rightSideOperation.getLocationInfo().getFilePath())))
             return;
         Method leftSideMethod = getMethod(parentCommitId, leftSideOperation);
         Method rightSideMethod = getMethod(childCommitId, rightSideOperation);
 
-        if (!leftSideMethod.equals(rightSideMethod)) {
-            addRefactored(methodChangeHistoryGraph, leftSideMethod, rightSideMethod, ref);
+        if (leftSideMethod != null && rightSideMethod != null && !leftSideMethod.equals(rightSideMethod)) {
+            Refactoring relatedRefactoring = relatedRefactoringsToOperations.getOrDefault(leftSideOperation, null);
+            addRefactored(methodChangeHistory, leftSideMethod, rightSideMethod, ref, relatedRefactoring);
             matchVariables(ref, parentCommitId, childCommitId, leftSideOperation, rightSideOperation);
         }
     }
 
-    private void addAttributeRefactored(Refactoring ref, String parentCommitId, String childCommitId, UMLAttribute leftSideAttribute, UMLAttribute rightSideAttribute) {
-        Attribute leftSideAttributeElement = getAttributeElement(parentCommitId, leftSideAttribute);
-        Attribute rightSideAttributeElement = getAttributeElement(childCommitId, rightSideAttribute);
+    private void addAttributeRefactored(Refactoring ref, String parentCommitId, String childCommitId, UMLAttribute leftSideUMLAttribute, UMLAttribute rightSideUMLAttribute) {
+        if (!files.isEmpty() && !(files.contains(leftSideUMLAttribute.getLocationInfo().getFilePath()) || files.contains(rightSideUMLAttribute.getLocationInfo().getFilePath())))
+            return;
 
-        addRefactored(attributeChangeHistoryGraph, leftSideAttributeElement, rightSideAttributeElement, ref);
+        Attribute leftSideAttribute = getAttributeElement(parentCommitId, leftSideUMLAttribute);
+        Attribute rightSideAttribute = getAttributeElement(childCommitId, rightSideUMLAttribute);
+        if (leftSideAttribute != null && rightSideAttribute != null && !leftSideAttribute.equals(rightSideAttribute)) {
+            addRefactored(attributeChangeHistory, leftSideAttribute, rightSideAttribute, ref);
+        }
     }
 
-    private void addVariableRefactored(Refactoring ref, String parentCommitId, String childCommitId, VariableDeclaration leftSideVariable, UMLOperation leftSideOperation, VariableDeclaration rightSideVariable, UMLOperation rightSideOperation) {
-        Variable leftSideAttributeElement = getVariable(leftSideVariable, leftSideOperation, parentCommitId);
-        Variable rightSideAttributeElement = getVariable(rightSideVariable, rightSideOperation, childCommitId);
+    private void addVariableRefactored(Refactoring ref, String parentCommitId, String commitId, VariableDeclaration leftSideVariable, UMLOperation leftSideOperation, VariableDeclaration rightSideVariable, UMLOperation rightSideOperation) {
+        if (!files.isEmpty() && !(files.contains(leftSideVariable.getLocationInfo().getFilePath()) || files.contains(rightSideVariable.getLocationInfo().getFilePath())))
+            return;
 
-        addRefactored(variableChangeHistoryGraph, leftSideAttributeElement, rightSideAttributeElement, ref);
+        Variable leftSideAttributeElement = getVariable(leftSideVariable, leftSideOperation, parentCommitId);
+        Variable rightSideAttributeElement = getVariable(rightSideVariable, rightSideOperation, commitId);
+        if (leftSideAttributeElement != null && rightSideAttributeElement != null && !leftSideAttributeElement.equals(rightSideAttributeElement)) {
+            addRefactored(variableChangeHistory, leftSideAttributeElement, rightSideAttributeElement, ref);
+//            addMethodChange(parentCommitId, commitId, leftSideOperation, rightSideOperation, ChangeFactory.of(AbstractChange.Type.MODIFIED).description(ref.toString()).refactoring(ref));
+        }
     }
 
     private void addClassRefactored(Refactoring ref, String parentCommitId, String childCommitId, UMLClass leftSideClass, UMLClass rightSideClass) {
+        if (!files.isEmpty() && !(files.contains(leftSideClass.getLocationInfo().getFilePath()) || files.contains(rightSideClass.getLocationInfo().getFilePath())))
+            return;
+
         Class leftSideClassElement = getClass(parentCommitId, leftSideClass);
         Class rightSideClassElement = getClass(childCommitId, rightSideClass);
-
-        addRefactored(classChangeHistoryGraph, leftSideClassElement, rightSideClassElement, ref);
+        if (leftSideClassElement != null && rightSideClassElement != null && !leftSideClassElement.equals(rightSideClassElement)) {
+            addRefactored(classChangeHistory, leftSideClassElement, rightSideClassElement, ref);
+        }
     }
 
-    private void analyze(String commitId, List<Refactoring> refactorings) {
-        this.refactorings.addAll(refactorings);
-        String parentCommitId = repository.getParentId(commitId);
-        if (refactorings != null && !refactorings.isEmpty()) {
+    public void analyze(String commitId, Collection<Refactoring> refactorings) {
+        if (!refactorings.isEmpty()) {
+            this.refactorings.addAll(refactorings);
+            String parentCommitId = repository.getParentId(commitId);
             for (Refactoring ref : refactorings) {
                 RefactoringType refactoringType = ref.getRefactoringType();
                 switch (refactoringType) {
-                    case SPLIT_PARAMETER: {
-                        SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) ref;
-                        addOperationRefactored(splitVariableRefactoring, parentCommitId, commitId, splitVariableRefactoring.getOperationBefore(), splitVariableRefactoring.getOperationAfter());
-                        break;
-                    }
-                    case MERGE_PARAMETER: {
-                        MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) ref;
-                        addOperationRefactored(mergeVariableRefactoring, parentCommitId, commitId, mergeVariableRefactoring.getOperationBefore(), mergeVariableRefactoring.getOperationAfter());
-                        break;
-                    }
                     case PULL_UP_OPERATION: {
                         PullUpOperationRefactoring pullUpOperationRefactoring = (PullUpOperationRefactoring) ref;
                         addOperationRefactored(pullUpOperationRefactoring, parentCommitId, commitId, pullUpOperationRefactoring.getOriginalOperation(), pullUpOperationRefactoring.getMovedOperation());
@@ -274,7 +223,12 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case MOVE_AND_RENAME_OPERATION:
                     case MOVE_OPERATION: {
                         MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) ref;
-                        addOperationRefactored(moveOperationRefactoring, parentCommitId, commitId, moveOperationRefactoring.getOriginalOperation(), moveOperationRefactoring.getMovedOperation());
+                        UMLOperation leftSideOperation = moveOperationRefactoring.getOriginalOperation();
+                        UMLOperation rightSideOperation = moveOperationRefactoring.getMovedOperation();
+                        addOperationRefactored(moveOperationRefactoring, parentCommitId, commitId, leftSideOperation, rightSideOperation);
+                        if (checkOperationBodyChanged(leftSideOperation.getBody(), rightSideOperation.getBody())) {
+                            addMethodChange(parentCommitId, commitId, leftSideOperation, rightSideOperation, ChangeFactory.of(AbstractChange.Type.MODIFIED).description("The body of the method element is changed."));
+                        }
                         break;
                     }
                     case MOVE_AND_INLINE_OPERATION:
@@ -285,6 +239,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         UMLOperation operationBeforeInline = inlineOperationRefactoring.getTargetOperationBeforeInline();
 
                         addMethodChange(parentCommitId, commitId, inlinedOperation, inlinedOperation, ChangeFactory.of(AbstractChange.Type.INLINED).refactoring(inlineOperationRefactoring));
+//                        addMethodChange(parentCommitId, commitId, inlinedOperation, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MERGED).refactoring(inlineOperationRefactoring));
                         addMethodChange(parentCommitId, commitId, operationBeforeInline, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(inlineOperationRefactoring));
                         break;
                     }
@@ -296,7 +251,28 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         UMLOperation extractedOperation = extractOperationRefactoring.getExtractedOperation();
 
                         addMethodChange(parentCommitId, commitId, extractedOperation, extractedOperation, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractOperationRefactoring));
-                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, operationAfterExtraction, ChangeFactory.of(AbstractChange.Type.MODIFIED));
+//                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, extractedOperation, ChangeFactory.of(AbstractChange.Type.BRANCHED).refactoring(extractOperationRefactoring));
+                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, operationAfterExtraction, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(ref));
+                        break;
+                    }
+                    case RENAME_METHOD: {
+                        RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) ref;
+                        addOperationRefactored(renameOperationRefactoring, parentCommitId, commitId, renameOperationRefactoring.getOriginalOperation(), renameOperationRefactoring.getRenamedOperation());
+                        break;
+                    }
+                    case ADD_METHOD_ANNOTATION: {
+                        AddMethodAnnotationRefactoring addMethodAnnotationRefactoring = (AddMethodAnnotationRefactoring) ref;
+                        addOperationRefactored(addMethodAnnotationRefactoring, parentCommitId, commitId, addMethodAnnotationRefactoring.getOperationBefore(), addMethodAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case MODIFY_METHOD_ANNOTATION: {
+                        ModifyMethodAnnotationRefactoring modifyMethodAnnotationRefactoring = (ModifyMethodAnnotationRefactoring) ref;
+                        addOperationRefactored(modifyMethodAnnotationRefactoring, parentCommitId, commitId, modifyMethodAnnotationRefactoring.getOperationBefore(), modifyMethodAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case REMOVE_METHOD_ANNOTATION: {
+                        RemoveMethodAnnotationRefactoring removeMethodAnnotationRefactoring = (RemoveMethodAnnotationRefactoring) ref;
+                        addOperationRefactored(removeMethodAnnotationRefactoring, parentCommitId, commitId, removeMethodAnnotationRefactoring.getOperationBefore(), removeMethodAnnotationRefactoring.getOperationAfter());
                         break;
                     }
                     case CHANGE_RETURN_TYPE: {
@@ -304,9 +280,14 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addOperationRefactored(changeReturnTypeRefactoring, parentCommitId, commitId, changeReturnTypeRefactoring.getOperationBefore(), changeReturnTypeRefactoring.getOperationAfter());
                         break;
                     }
-                    case RENAME_METHOD: {
-                        RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) ref;
-                        addOperationRefactored(renameOperationRefactoring, parentCommitId, commitId, renameOperationRefactoring.getOriginalOperation(), renameOperationRefactoring.getRenamedOperation());
+                    case SPLIT_PARAMETER: {
+                        SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) ref;
+                        addOperationRefactored(splitVariableRefactoring, parentCommitId, commitId, splitVariableRefactoring.getOperationBefore(), splitVariableRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case MERGE_PARAMETER: {
+                        MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) ref;
+                        addOperationRefactored(mergeVariableRefactoring, parentCommitId, commitId, mergeVariableRefactoring.getOperationBefore(), mergeVariableRefactoring.getOperationAfter());
                         break;
                     }
                     case RENAME_PARAMETER:
@@ -336,19 +317,29 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addOperationRefactored(reorderParameterRefactoring, parentCommitId, commitId, reorderParameterRefactoring.getOperationBefore(), reorderParameterRefactoring.getOperationAfter());
                         break;
                     }
-                    case ADD_METHOD_ANNOTATION: {
-                        AddMethodAnnotationRefactoring addMethodAnnotationRefactoring = (AddMethodAnnotationRefactoring) ref;
-                        addOperationRefactored(addMethodAnnotationRefactoring, parentCommitId, commitId, addMethodAnnotationRefactoring.getOperationBefore(), addMethodAnnotationRefactoring.getOperationAfter());
+                    case ADD_PARAMETER_MODIFIER: {
+                        AddVariableModifierRefactoring addVariableModifierRefactoring = (AddVariableModifierRefactoring) ref;
+                        addOperationRefactored(addVariableModifierRefactoring, parentCommitId, commitId, addVariableModifierRefactoring.getOperationBefore(), addVariableModifierRefactoring.getOperationAfter());
                         break;
                     }
-                    case MODIFY_METHOD_ANNOTATION: {
-                        ModifyMethodAnnotationRefactoring modifyMethodAnnotationRefactoring = (ModifyMethodAnnotationRefactoring) ref;
-                        addOperationRefactored(modifyMethodAnnotationRefactoring, parentCommitId, commitId, modifyMethodAnnotationRefactoring.getOperationBefore(), modifyMethodAnnotationRefactoring.getOperationAfter());
+                    case REMOVE_PARAMETER_MODIFIER: {
+                        RemoveVariableModifierRefactoring removeVariableModifierRefactoring = (RemoveVariableModifierRefactoring) ref;
+                        addOperationRefactored(removeVariableModifierRefactoring, parentCommitId, commitId, removeVariableModifierRefactoring.getOperationBefore(), removeVariableModifierRefactoring.getOperationAfter());
                         break;
                     }
-                    case REMOVE_METHOD_ANNOTATION: {
-                        RemoveMethodAnnotationRefactoring removeMethodAnnotationRefactoring = (RemoveMethodAnnotationRefactoring) ref;
-                        addOperationRefactored(removeMethodAnnotationRefactoring, parentCommitId, commitId, removeMethodAnnotationRefactoring.getOperationBefore(), removeMethodAnnotationRefactoring.getOperationAfter());
+                    case ADD_PARAMETER_ANNOTATION: {
+                        AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) ref;
+                        addOperationRefactored(addVariableAnnotationRefactoring, parentCommitId, commitId, addVariableAnnotationRefactoring.getOperationBefore(), addVariableAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case REMOVE_PARAMETER_ANNOTATION: {
+                        RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) ref;
+                        addOperationRefactored(removeVariableAnnotationRefactoring, parentCommitId, commitId, removeVariableAnnotationRefactoring.getOperationBefore(), removeVariableAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case MODIFY_PARAMETER_ANNOTATION: {
+                        ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) ref;
+                        addOperationRefactored(modifyVariableAnnotationRefactoring, parentCommitId, commitId, modifyVariableAnnotationRefactoring.getOperationBefore(), modifyVariableAnnotationRefactoring.getOperationAfter());
                         break;
                     }
                     case ADD_THROWN_EXCEPTION_TYPE: {
@@ -371,21 +362,17 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addOperationRefactored(changeOperationAccessModifierRefactoring, parentCommitId, commitId, changeOperationAccessModifierRefactoring.getOperationBefore(), changeOperationAccessModifierRefactoring.getOperationAfter());
                         break;
                     }
-                    case ADD_PARAMETER_ANNOTATION: {
-                        AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) ref;
-                        addOperationRefactored(addVariableAnnotationRefactoring, parentCommitId, commitId, addVariableAnnotationRefactoring.getOperationBefore(), addVariableAnnotationRefactoring.getOperationAfter());
+                    case ADD_METHOD_MODIFIER: {
+                        AddMethodModifierRefactoring addMethodModifierRefactoring = (AddMethodModifierRefactoring) ref;
+                        addOperationRefactored(addMethodModifierRefactoring, parentCommitId, commitId, addMethodModifierRefactoring.getOperationBefore(), addMethodModifierRefactoring.getOperationAfter());
                         break;
                     }
-                    case REMOVE_PARAMETER_ANNOTATION: {
-                        RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) ref;
-                        addOperationRefactored(removeVariableAnnotationRefactoring, parentCommitId, commitId, removeVariableAnnotationRefactoring.getOperationBefore(), removeVariableAnnotationRefactoring.getOperationAfter());
+                    case REMOVE_METHOD_MODIFIER: {
+                        RemoveMethodModifierRefactoring removeMethodModifierRefactoring = (RemoveMethodModifierRefactoring) ref;
+                        addOperationRefactored(removeMethodModifierRefactoring, parentCommitId, commitId, removeMethodModifierRefactoring.getOperationBefore(), removeMethodModifierRefactoring.getOperationAfter());
                         break;
                     }
-                    case MODIFY_PARAMETER_ANNOTATION: {
-                        ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) ref;
-                        addOperationRefactored(modifyVariableAnnotationRefactoring, parentCommitId, commitId, modifyVariableAnnotationRefactoring.getOperationBefore(), modifyVariableAnnotationRefactoring.getOperationAfter());
-                        break;
-                    }
+                    //=======================================CLASS===========================================================
                     case RENAME_CLASS: {
                         RenameClassRefactoring renameClassRefactoring = (RenameClassRefactoring) ref;
                         UMLClass originalClass = renameClassRefactoring.getOriginalClass();
@@ -428,6 +415,21 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addClassRefactored(modifyClassAnnotationRefactoring, parentCommitId, commitId, modifyClassAnnotationRefactoring.getClassBefore(), modifyClassAnnotationRefactoring.getClassAfter());
                         break;
                     }
+                    case ADD_CLASS_MODIFIER: {
+                        AddClassModifierRefactoring addClassModifierRefactoring = (AddClassModifierRefactoring) ref;
+                        addClassRefactored(addClassModifierRefactoring, parentCommitId, commitId, addClassModifierRefactoring.getClassBefore(), addClassModifierRefactoring.getClassAfter());
+                        break;
+                    }
+                    case REMOVE_CLASS_MODIFIER: {
+                        RemoveClassModifierRefactoring removeClassModifierRefactoring = (RemoveClassModifierRefactoring) ref;
+                        addClassRefactored(removeClassModifierRefactoring, parentCommitId, commitId, removeClassModifierRefactoring.getClassBefore(), removeClassModifierRefactoring.getClassAfter());
+                        break;
+                    }
+                    case CHANGE_CLASS_ACCESS_MODIFIER: {
+                        ChangeClassAccessModifierRefactoring changeClassAccessModifierRefactoring = (ChangeClassAccessModifierRefactoring) ref;
+                        addClassRefactored(changeClassAccessModifierRefactoring, parentCommitId, commitId, changeClassAccessModifierRefactoring.getClassBefore(), changeClassAccessModifierRefactoring.getClassAfter());
+                        break;
+                    }
                     case EXTRACT_INTERFACE:
                     case EXTRACT_SUPERCLASS: {
                         //TODO: Change ExtractSuperclassRefactoring in a way that contains the information of original class before and after extraction
@@ -437,9 +439,9 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         Class rightSideExtractedClass = getClass(commitId, extractedClass);
                         if (leftSideExtractedClass != null)
                             leftSideExtractedClass.setAdded(true);
-                        addChange(classChangeHistoryGraph, leftSideExtractedClass, rightSideExtractedClass, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractSuperclassRefactoring).codeElement(rightSideExtractedClass));
+                        classChangeHistory.addChange(leftSideExtractedClass, rightSideExtractedClass, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractSuperclassRefactoring).codeElement(rightSideExtractedClass));
                         for (UMLClass originalClass : extractSuperclassRefactoring.getUMLSubclassSet()) {
-                            addChange(classChangeHistoryGraph, getClass(parentCommitId, originalClass), getClass(commitId, originalClass), ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(extractSuperclassRefactoring));
+                            classChangeHistory.addChange(getClass(parentCommitId, originalClass), getClass(commitId, originalClass), ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(extractSuperclassRefactoring));
                         }
                         break;
                     }
@@ -456,8 +458,15 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         Class rightSideExtractedClass = getClass(commitId, extractedClass);
                         if (leftSideExtractedClass != null)
                             leftSideExtractedClass.setAdded(true);
-                        addChange(classChangeHistoryGraph, leftSideExtractedClass, rightSideExtractedClass, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractClassRefactoring).codeElement(rightSideExtractedClass));
-                        addChange(classChangeHistoryGraph, leftSideSourceClass, rightSideSourceClass, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(extractClassRefactoring));
+                        classChangeHistory.addChange(leftSideExtractedClass, rightSideExtractedClass, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractClassRefactoring).codeElement(rightSideExtractedClass));
+                        classChangeHistory.addChange(leftSideSourceClass, rightSideSourceClass, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(extractClassRefactoring));
+
+                        for (UMLOperation extractedOperation : extractClassRefactoring.getExtractedOperations()) {
+                            relatedRefactoringsToOperations.put(extractedOperation, ref);
+                        }
+                        for (UMLAttribute extractedAttribute : extractClassRefactoring.getExtractedAttributes()) {
+                            relatedRefactoringsToAttributes.put(extractedAttribute, ref);
+                        }
                         break;
                     }
                     case MOVE_SOURCE_FOLDER: {
@@ -541,9 +550,21 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         addAttributeRefactored(moveAndRenameAttributeRefactoring, parentCommitId, commitId, moveAndRenameAttributeRefactoring.getOriginalAttribute(), moveAndRenameAttributeRefactoring.getMovedAttribute());
                         break;
                     }
+                    case ADD_ATTRIBUTE_MODIFIER: {
+                        AddAttributeModifierRefactoring addAttributeModifierRefactoring = (AddAttributeModifierRefactoring) ref;
+                        addAttributeRefactored(addAttributeModifierRefactoring, parentCommitId, commitId, addAttributeModifierRefactoring.getAttributeBefore(), addAttributeModifierRefactoring.getAttributeAfter());
+                        break;
+                    }
+                    case REMOVE_ATTRIBUTE_MODIFIER: {
+                        RemoveAttributeModifierRefactoring removeAttributeModifierRefactoring = (RemoveAttributeModifierRefactoring) ref;
+                        addAttributeRefactored(removeAttributeModifierRefactoring, parentCommitId, commitId, removeAttributeModifierRefactoring.getAttributeBefore(), removeAttributeModifierRefactoring.getAttributeAfter());
+                        break;
+                    }
+                    //=VARIABLE=========================================================================================
                     case RENAME_VARIABLE: {
                         RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) ref;
                         addVariableRefactored(renameVariableRefactoring, parentCommitId, commitId, renameVariableRefactoring.getOriginalVariable(), renameVariableRefactoring.getOperationBefore(), renameVariableRefactoring.getRenamedVariable(), renameVariableRefactoring.getOperationAfter());
+
                         break;
                     }
                     case CHANGE_VARIABLE_TYPE: {
@@ -575,7 +596,34 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         extractVariableRefactoring.toString();
                         break;
                     }
+                    case ADD_VARIABLE_ANNOTATION: {
+                        AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) ref;
+                        addVariableRefactored(addVariableAnnotationRefactoring, parentCommitId, commitId, addVariableAnnotationRefactoring.getVariableBefore(), addVariableAnnotationRefactoring.getOperationBefore(), addVariableAnnotationRefactoring.getVariableAfter(), addVariableAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case MODIFY_VARIABLE_ANNOTATION: {
+                        ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) ref;
+                        addVariableRefactored(modifyVariableAnnotationRefactoring, parentCommitId, commitId, modifyVariableAnnotationRefactoring.getVariableBefore(), modifyVariableAnnotationRefactoring.getOperationBefore(), modifyVariableAnnotationRefactoring.getVariableAfter(), modifyVariableAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case REMOVE_VARIABLE_ANNOTATION: {
+                        RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) ref;
+                        addVariableRefactored(removeVariableAnnotationRefactoring, parentCommitId, commitId, removeVariableAnnotationRefactoring.getVariableBefore(), removeVariableAnnotationRefactoring.getOperationBefore(), removeVariableAnnotationRefactoring.getVariableAfter(), removeVariableAnnotationRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case ADD_VARIABLE_MODIFIER: {
+                        AddVariableModifierRefactoring addVariableModifierRefactoring = (AddVariableModifierRefactoring) ref;
+                        addVariableRefactored(addVariableModifierRefactoring, parentCommitId, commitId, addVariableModifierRefactoring.getVariableBefore(), addVariableModifierRefactoring.getOperationBefore(), addVariableModifierRefactoring.getVariableAfter(), addVariableModifierRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case REMOVE_VARIABLE_MODIFIER: {
+                        RemoveVariableModifierRefactoring removeVariableModifierRefactoring = (RemoveVariableModifierRefactoring) ref;
+                        addVariableRefactored(removeVariableModifierRefactoring, parentCommitId, commitId, removeVariableModifierRefactoring.getVariableBefore(), removeVariableModifierRefactoring.getOperationBefore(), removeVariableModifierRefactoring.getVariableAfter(), removeVariableModifierRefactoring.getOperationAfter());
+                        break;
+                    }
+                    //==================================================================================================
                     case RENAME_PACKAGE: {
+                        //All moved classes are reported in separate refactoring
                         RenamePackageRefactoring renamePackageRefactoring = (RenamePackageRefactoring) ref;
                         renamePackageRefactoring.toString();
                         break;
@@ -595,8 +643,15 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
 
     @Override
     public void handle(String commitId, List<Refactoring> refactorings) {
-        analyze(commitId, refactorings);
+        relatedRefactoringsToAttributes.clear();
+        relatedRefactoringsToOperations.clear();
+
+        List<Refactoring> classLevelRefactorings = refactorings.stream().filter(refactoring -> CLASS_LEVEL_REFACTORING.contains(refactoring.getRefactoringType())).collect(Collectors.toList());
+        analyze(commitId, classLevelRefactorings);
+        List<Refactoring> otherRefactorings = refactorings.stream().filter(refactoring -> !CLASS_LEVEL_REFACTORING.contains(refactoring.getRefactoringType())).collect(Collectors.toList());
+        analyze(commitId, otherRefactorings);
     }
+
 
     @Override
     public void onFinish(int refactoringsCount, int commitsCount, int errorCommitsCount) {
@@ -613,21 +668,54 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     @Override
     public void handleExtraInfo(String commitId, UMLModelDiff umlModelDiff) {
         String parentCommitId = repository.getParentId(commitId);
-        for (VariableDeclarationReplacement variableDeclarationReplacement : umlModelDiff.getChangedScopeVariable()) {
-            VariableDeclaration leftSideVariable = variableDeclarationReplacement.getVariableDeclaration1();
-            UMLOperation leftSideOperation = variableDeclarationReplacement.getOperation1();
-
-            VariableDeclaration rightSideVariable = variableDeclarationReplacement.getVariableDeclaration2();
-            UMLOperation rightSideOperation = variableDeclarationReplacement.getOperation2();
-
-            addChange(variableChangeHistoryGraph, getVariable(leftSideVariable, leftSideOperation, parentCommitId), getVariable(rightSideVariable, rightSideOperation, commitId), ChangeFactory.of(AbstractChange.Type.MODIFIED));
+        for (Pair<Pair<VariableDeclaration, UMLOperation>, Pair<VariableDeclaration, UMLOperation>> matchedVariablePair : umlModelDiff.getMatchedVariables()) {
+            handleMatchedVariable(commitId, parentCommitId, matchedVariablePair);
         }
         for (UMLClass removedClass : umlModelDiff.getRemovedClasses()) {
             handleRemovedClassChange(commitId, parentCommitId, removedClass);
         }
         List<UMLOperation> removedOperations = umlModelDiff.getRemovedOperations();
+
+        List<UMLOperation> addedOperations = umlModelDiff.getAddedOperations();
+        HashMap<String, UMLOperation> addedOperationMap = new HashMap<>();
+        HashMap<String, Integer> addedOperationMapCount = new HashMap<>();
+        for (UMLOperation addedOperation : addedOperations) {
+            String key = String.format("%s%s#%s", Util.getPath(addedOperation.getLocationInfo().getFilePath(), addedOperation.getClassName()), addedOperation.getClassName(), addedOperation.getName());
+            addedOperationMap.putIfAbsent(key, addedOperation);
+            addedOperationMapCount.merge(key, 1, Integer::sum);
+        }
+        HashMap<String, UMLOperation> removedOperationMap = new HashMap<>();
+        HashMap<String, Integer> removedOperationMapCount = new HashMap<>();
+        for (UMLOperation removedOperation : removedOperations) {
+            String key = String.format("%s%s#%s", Util.getPath(removedOperation.getLocationInfo().getFilePath(), removedOperation.getClassName()), removedOperation.getClassName(), removedOperation.getName());
+            removedOperationMap.put(key, removedOperation);
+            removedOperationMapCount.merge(key, 1, Integer::sum);
+        }
+        for (Map.Entry<String, UMLOperation> entry : addedOperationMap.entrySet()) {
+            String key = entry.getKey();
+            if (addedOperationMapCount.get(key) > 1)
+                continue;
+            if (removedOperationMap.containsKey(key) && removedOperationMapCount.get(key) == 1) {
+                UMLOperation leftOperation = removedOperationMap.get(key);
+                UMLOperation rightOperation = entry.getValue();
+                UMLOperationDiff umlOperationDiff = new UMLOperationDiff(leftOperation, rightOperation);
+                analyze(commitId, umlOperationDiff.getRefactorings());
+                if (checkOperationBodyChanged(leftOperation.getBody(), rightOperation.getBody())) {
+                    addMethodChange(parentCommitId, commitId, leftOperation, rightOperation, ChangeFactory.of(AbstractChange.Type.MODIFIED).description("The body of the method element is changed."));
+                }
+                if (checkOperationDocumentationChanged(leftOperation, rightOperation)) {
+                    addMethodChange(parentCommitId, commitId, leftOperation, rightOperation, ChangeFactory.of(AbstractChange.Type.MODIFIED).description("Some comments inside the body of the method element is changed."));
+                }
+                removedOperations.remove(leftOperation);
+                addedOperations.remove(rightOperation);
+            }
+        }
+
         for (UMLOperation removedOperation : removedOperations) {
             handleRemovedMethod(commitId, parentCommitId, removedOperation);
+        }
+        for (UMLOperation addedOperation : addedOperations) {
+            handleAddedMethod(commitId, parentCommitId, addedOperation);
         }
         for (UMLAttribute removedAttribute : umlModelDiff.getRemovedAttributes()) {
             handleRemovedAttribute(commitId, parentCommitId, removedAttribute);
@@ -639,10 +727,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         for (UMLClass addedClass : addedClasses) {
             handleAddedClassChange(commitId, parentCommitId, addedClass);
         }
-        List<UMLOperation> addedOperations = umlModelDiff.getAddedOperations();
-        for (UMLOperation addedOperation : addedOperations) {
-            handleAddedMethod(commitId, parentCommitId, addedOperation);
-        }
+
         for (UMLAttribute addedAttribute : umlModelDiff.getAddedAttributes()) {
             handleAddedAttribute(commitId, parentCommitId, addedAttribute);
         }
@@ -651,20 +736,44 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         }
         Set<Pair<UMLOperation, UMLOperation>> changedBodyOperations = umlModelDiff.getChangedBodyOperations();
         for (Pair<UMLOperation, UMLOperation> changedBodyOperation : changedBodyOperations) {
-            addMethodChange(parentCommitId, commitId, changedBodyOperation.getLeft(), changedBodyOperation.getRight(), ChangeFactory.of(AbstractChange.Type.MODIFIED));
+            addMethodChange(parentCommitId, commitId, changedBodyOperation.getLeft(), changedBodyOperation.getRight(), ChangeFactory.of(AbstractChange.Type.MODIFIED).description("The body of the method element is changed."));
         }
+
+        Set<Pair<UMLOperation, UMLOperation>> changedCommentOperations = umlModelDiff.getChangedCommentOperations();
+        for (Pair<UMLOperation, UMLOperation> changedCommentOperation : changedCommentOperations) {
+            addMethodChange(parentCommitId, commitId, changedCommentOperation.getLeft(), changedCommentOperation.getRight(), ChangeFactory.of(AbstractChange.Type.MODIFIED).description("Some comments inside the body of the method element is changed."));
+        }
+        for (UMLClassMoveDiff umlClassMoveDiff : umlModelDiff.getInnerClassMoveDiffList()) {
+            MoveClassRefactoring moveClassRefactoring = new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass());
+            UMLClass originalClass = moveClassRefactoring.getOriginalClass();
+            UMLClass movedClass = moveClassRefactoring.getMovedClass();
+            addClassRefactored(moveClassRefactoring, parentCommitId, commitId, originalClass, movedClass);
+            String desc = umlClassMoveDiff.toString();
+            for (UMLOperationBodyMapper umlOperationBodyMapper : umlClassMoveDiff.getOperationBodyMapperList()) {
+                addMethodChange(parentCommitId, commitId, umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).description(desc));
+            }
+        }
+        methodChangeHistory.connectRelatedNodes();
+        classChangeHistory.connectRelatedNodes();
+        attributeChangeHistory.connectRelatedNodes();
+        variableChangeHistory.connectRelatedNodes();
+
     }
 
-    private void handleExtractClass() {
+    public void handleMatchedVariable(String commitId, String parentCommitId, Pair<Pair<VariableDeclaration, UMLOperation>, Pair<VariableDeclaration, UMLOperation>> matchedVariablePair) {
+        VariableDeclaration leftSideVariable = matchedVariablePair.getLeft().getLeft();
+        UMLOperation leftSideOperation = matchedVariablePair.getLeft().getRight();
 
+        VariableDeclaration rightSideVariable = matchedVariablePair.getRight().getLeft();
+        UMLOperation rightSideOperation = matchedVariablePair.getRight().getRight();
+
+        variableChangeHistory.addChange(getVariable(leftSideVariable, leftSideOperation, parentCommitId), getVariable(rightSideVariable, rightSideOperation, commitId), ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
     }
 
     private void handleRemovedMethod(String commitId, String parentCommitId, UMLOperation operation) {
         Method leftSideMethod = getMethod(parentCommitId, operation);
         Method rightSideMethod = getMethod(commitId, operation);
-        if (!methodChangeHistoryGraph.successors(leftSideMethod).isEmpty())
-            return;
-        handleRemove(methodChangeHistoryGraph, leftSideMethod, rightSideMethod);
+        methodChangeHistory.handleRemoved(leftSideMethod, rightSideMethod);
         if (operation.getBody() != null) {
             for (VariableDeclaration variableDeclaration : operation.getBody().getAllVariableDeclarations()) {
                 handleRemovedVariable(commitId, parentCommitId, operation, variableDeclaration);
@@ -672,12 +781,10 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         }
     }
 
-    private void handleAddedMethod(String commitId, String parentCommitId, UMLOperation operation) {
+    public void handleAddedMethod(String commitId, String parentCommitId, UMLOperation operation) {
         Method leftSideMethod = getMethod(parentCommitId, operation);
         Method rightSideMethod = getMethod(commitId, operation);
-        if (!methodChangeHistoryGraph.predecessors(rightSideMethod).isEmpty())
-            return;
-        handleAdd(methodChangeHistoryGraph, leftSideMethod, rightSideMethod);
+        methodChangeHistory.handleAdd(leftSideMethod, rightSideMethod);
         if (operation.getBody() != null) {
             for (VariableDeclaration variableDeclaration : operation.getBody().getAllVariableDeclarations()) {
                 handleAddedVariable(commitId, parentCommitId, operation, variableDeclaration);
@@ -685,22 +792,22 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
         }
     }
 
-    private void handleRemovedVariable(String commitId, String parentCommitId, UMLOperation operation, VariableDeclaration variableDeclaration) {
+    public void handleRemovedVariable(String commitId, String parentCommitId, UMLOperation operation, VariableDeclaration variableDeclaration) {
         Variable leftSideVariable = getVariable(variableDeclaration, operation, parentCommitId);
         Variable rightSideVariable = getVariable(variableDeclaration, operation, commitId);
-        handleRemove(variableChangeHistoryGraph, leftSideVariable, rightSideVariable);
+        variableChangeHistory.handleRemoved(leftSideVariable, rightSideVariable);
     }
 
-    private void handleAddedVariable(String commitId, String parentCommitId, UMLOperation operation, VariableDeclaration variableDeclaration) {
+    public void handleAddedVariable(String commitId, String parentCommitId, UMLOperation operation, VariableDeclaration variableDeclaration) {
         Variable leftSideVariable = getVariable(variableDeclaration, operation, parentCommitId);
         Variable rightSideVariable = getVariable(variableDeclaration, operation, commitId);
-        handleAdd(variableChangeHistoryGraph, leftSideVariable, rightSideVariable);
+        variableChangeHistory.handleAdd(leftSideVariable, rightSideVariable);
     }
 
     private void handleRemovedClassChange(String commitId, String parentCommitId, UMLClass removedClass) {
         Class leftSideClass = getClass(parentCommitId, removedClass);
         Class rightSideClass = getClass(commitId, removedClass);
-        handleRemove(classChangeHistoryGraph, leftSideClass, rightSideClass);
+        classChangeHistory.handleRemoved(leftSideClass, rightSideClass);
         for (UMLOperation operation : removedClass.getOperations()) {
             handleRemovedMethod(commitId, parentCommitId, operation);
         }
@@ -712,7 +819,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     private void handleAddedClassChange(String commitId, String parentCommitId, UMLClass addedClass) {
         Class leftSideClass = getClass(parentCommitId, addedClass);
         Class rightSideClass = getClass(commitId, addedClass);
-        handleAdd(classChangeHistoryGraph, leftSideClass, rightSideClass);
+        classChangeHistory.handleAdd(leftSideClass, rightSideClass);
         for (UMLOperation operation : addedClass.getOperations()) {
             handleAddedMethod(commitId, parentCommitId, operation);
         }
@@ -724,48 +831,60 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     private void handleRemovedAttribute(String commitId, String parentCommitId, UMLAttribute attribute) {
         Attribute leftSideAttribute = getAttributeElement(parentCommitId, attribute);
         Attribute rightSideAttribute = getAttributeElement(commitId, attribute);
-        handleRemove(attributeChangeHistoryGraph, leftSideAttribute, rightSideAttribute);
+        attributeChangeHistory.handleRemoved(leftSideAttribute, rightSideAttribute);
     }
 
     private void handleAddedAttribute(String commitId, String parentCommitId, UMLAttribute attribute) {
         Attribute leftSideAttribute = getAttributeElement(parentCommitId, attribute);
         Attribute rightSideAttribute = getAttributeElement(commitId, attribute);
-        handleAdd(attributeChangeHistoryGraph, leftSideAttribute, rightSideAttribute);
+        attributeChangeHistory.handleAdd(leftSideAttribute, rightSideAttribute);
     }
 
     private void matchVariables(Refactoring ref, String parentCommitId, String childCommitId, UMLOperation leftSideOperation, UMLOperation rightSideOperation) {
         for (VariableDeclaration variableBefore : leftSideOperation.getAllVariableDeclarations())
             for (VariableDeclaration variableAfter : rightSideOperation.getAllVariableDeclarations())
                 if (variableBefore.equals(variableAfter))
-                    addChange(variableChangeHistoryGraph, getVariable(variableBefore, leftSideOperation, parentCommitId), getVariable(variableAfter, rightSideOperation, childCommitId), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
+                    variableChangeHistory.addChange(getVariable(variableBefore, leftSideOperation, parentCommitId), getVariable(variableAfter, rightSideOperation, childCommitId), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
     }
 
     private void matchAttributes(Refactoring ref, String parentCommitId, String childCommitId, List<UMLAttribute> leftSide, List<UMLAttribute> rightSide) {
         for (UMLAttribute attributeBefore : leftSide)
             for (UMLAttribute attributeAfter : rightSide)
-                if (attributeBefore.getName().equals(attributeAfter.getName()))
-                    addChange(attributeChangeHistoryGraph, getAttributeElement(parentCommitId, attributeBefore), getAttributeElement(childCommitId, attributeAfter), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
+                if (attributeBefore.getName().equals(attributeAfter.getName())) {
+                    attributeChangeHistory.addChange(getAttributeElement(parentCommitId, attributeBefore), getAttributeElement(childCommitId, attributeAfter), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
+                    break;
+                }
     }
 
-    private void matchOperations(Refactoring ref, String parentCommitId, String childCommitId, List<UMLOperation> leftSide, List<UMLOperation> rightSide) {
-        Map<UMLOperation, List<UMLOperation>> matched = new HashMap<>();
-        for (UMLOperation operationBefore : leftSide) {
-            ArrayList<UMLOperation> maybe = new ArrayList<>();
-            matched.put(operationBefore, maybe);
-            for (UMLOperation operationAfter : rightSide) {
-                if (operationBefore.getName().equals(operationAfter.getName())) {
-                    maybe.add(operationAfter);
-                }
-            }
-        }
-        for (Map.Entry<UMLOperation, List<UMLOperation>> entry : matched.entrySet()) {
-            if (entry.getValue().size() == 1) {
-                addMethodChange(parentCommitId, childCommitId, entry.getKey(), entry.getValue().get(0), ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
-            } else {
-                for (UMLOperation operationAfter : entry.getValue()) {
-                    if (entry.getKey().equalSignature(operationAfter)) {
-                        addMethodChange(parentCommitId, childCommitId, entry.getKey(), operationAfter, ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
+    public void matchOperations(Refactoring ref, String parentCommitId, String commitId, List<UMLOperation> leftSide, List<UMLOperation> rightSide) {
+        Set<UMLOperation> leftMatched = new HashSet<>();
+        Set<UMLOperation> rightMatched = new HashSet<>();
+        matchOperation(ref, parentCommitId, commitId, leftSide, rightSide, leftMatched, rightMatched);
+    }
+
+    private void matchOperation(Refactoring ref, String parentCommitId, String commitId, List<UMLOperation> leftSide, List<UMLOperation> rightSide, Set<UMLOperation> leftMatched, Set<UMLOperation> rightMatched) {
+        for (UMLOperation leftOperation : leftSide) {
+            if (leftMatched.contains(leftOperation))
+                continue;
+//            Method leftMethod = Method.of(leftOperation, null);
+            for (UMLOperation rightOperation : rightSide) {
+                if (rightMatched.contains(rightOperation))
+                    continue;
+//                Method rightMethod = Method.of(rightOperation, null);
+//                String leftMethodIdentifier = containsBody ? leftMethod.getIdentifierExcludeVersion() : leftMethod.getIdentifierExcludeVersionAndBody();
+//                String rightIdentifier = containsBody ? rightMethod.getIdentifierExcludeVersion() : rightMethod.getIdentifierExcludeVersionAndBody();
+//                if (leftMethodIdentifier
+//                        .replace(Util.getPath(leftOperation.getLocationInfo().getFilePath(), leftOperation.getClassName()), Util.getPath(rightOperation.getLocationInfo().getFilePath(), rightOperation.getClassName()))
+//                        .replace(leftOperation.getClassName(), rightOperation.getClassName())
+//                        .equals(rightIdentifier)) {
+                if (leftOperation.equalSignature(rightOperation)) {
+                    addMethodChange(parentCommitId, commitId, leftOperation, rightOperation, ChangeFactory.of(AbstractChange.Type.CONTAINER_CHANGE).refactoring(ref));
+                    if (checkOperationBodyChanged(leftOperation.getBody(), rightOperation.getBody())) {
+                        addMethodChange(parentCommitId, commitId, leftOperation, rightOperation, ChangeFactory.of(AbstractChange.Type.MODIFIED).description("The body of the method element is changed."));
                     }
+                    leftMatched.add(leftOperation);
+                    rightMatched.add(rightOperation);
+                    break;
                 }
             }
         }
@@ -777,10 +896,6 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
 
     public int getCommitsCount() {
         return commitsCount;
-    }
-
-    public HashMap<String, Method> getMethodElements() {
-        return methodElements;
     }
 
     public Set<String> getFiles() {

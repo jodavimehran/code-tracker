@@ -2,37 +2,34 @@ package org.refactoringrefiner;
 
 import com.google.common.graph.EndpointPair;
 import com.google.common.graph.ImmutableValueGraph;
-import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
 import org.refactoringrefiner.api.Result;
 import org.refactoringrefiner.edge.EdgeImpl;
-import org.refactoringrefiner.element.Attribute;
-import org.refactoringrefiner.element.Class;
-import org.refactoringrefiner.element.Method;
-import org.refactoringrefiner.element.Variable;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ResultImpl implements Result {
-    private final GraphImpl<CodeElement, Edge> attributeChangeHistoryGraph;
-    private final GraphImpl<CodeElement, Edge> classChangeHistoryGraph;
-    private final GraphImpl<CodeElement, Edge> methodChangeHistoryGraph;
-    private final GraphImpl<CodeElement, Edge> variableChangeHistoryGraph;
+    private final GraphImpl<CodeElement, Edge> attributeChangeHistoryGraph = null;
+    private final GraphImpl<CodeElement, Edge> classChangeHistoryGraph = null;
+    private final GraphImpl<CodeElement, Edge> methodChangeHistoryGraph = null;
+    private final GraphImpl<CodeElement, Edge> variableChangeHistoryGraph = null;
     private final RefactoringHandlerImpl refactoringHandler;
-    private final List<Refactoring> aggregatedRefactorings;
+    private final List<Refactoring> aggregatedRefactorings = null;
     private double sameCodeElementChangeRate;
     private long refactoringMinerProcessTime, refactoringRefinerProcessTime;
 
     public ResultImpl(RefactoringHandlerImpl refactoringHandler) {
         this.refactoringHandler = refactoringHandler;
-        this.aggregatedRefactorings = findRefactorings();
-        attributeChangeHistoryGraph = GraphImpl.of(refactoringHandler.getAttributeChangeHistoryGraph());
-        classChangeHistoryGraph = GraphImpl.of(refactoringHandler.getClassChangeHistoryGraph());
-        methodChangeHistoryGraph = GraphImpl.of(refactoringHandler.getMethodChangeHistoryGraph());
-        variableChangeHistoryGraph = GraphImpl.of(refactoringHandler.getVariableChangeHistoryGraph());
+//        this.aggregatedRefactorings = findRefactorings();
+//        attributeChangeHistoryGraph = GraphImpl.of(refactoringHandler.getAttributeChangeHistoryGraph());
+//        classChangeHistoryGraph = GraphImpl.of(refactoringHandler.getClassChangeHistoryGraph());
+//        methodChangeHistoryGraph = GraphImpl.of(refactoringHandler.getMethodChangeHistoryGraph());
+//        variableChangeHistoryGraph = GraphImpl.of(refactoringHandler.getVariableChangeHistoryGraph());
     }
 
     private static HashSet<EndpointPair<CodeElement>> getPair(ImmutableValueGraph<CodeElement, Edge> graph) {
@@ -160,6 +157,7 @@ public class ResultImpl implements Result {
 
     @Override
     public GraphImpl<CodeElement, Edge> getVariableChangeHistoryGraph() {
+
         return variableChangeHistoryGraph;
     }
 
@@ -183,44 +181,44 @@ public class ResultImpl implements Result {
         return sameCodeElementChangeRate;
     }
 
-    public List<Refactoring> findRefactorings() {
-        HashSet<EndpointPair<CodeElement>> classLevelPairs = getPair(refactoringHandler.getClassChangeHistoryGraph());
-        HashSet<EndpointPair<CodeElement>> methodLevelPairs = getPair(refactoringHandler.getMethodChangeHistoryGraph());
-        HashSet<EndpointPair<CodeElement>> attributeLevelPairs = getPair(refactoringHandler.getAttributeChangeHistoryGraph());
-        HashSet<EndpointPair<CodeElement>> variableLevelPairs = getPair(refactoringHandler.getVariableChangeHistoryGraph());
-
-        HashMap<String, String> renamedOrMovedClasses = new HashMap<>();
-        List<Refactoring> result = new ArrayList<>();
-
-
-        HashMap<String, MoveSourceFolderRefactoring> moveSourceFolderMap = new HashMap<>();
-        result.addAll(
-                classLevelPairs.stream()
-                        .flatMap(pair -> new Class.ClassElementDiff((Class) pair.source(), (Class) pair.target()).getRefactorings(moveSourceFolderMap).stream())
-                        .collect(Collectors.toSet())
-        );
-
-        classLevelPairs.stream().forEach(classElements -> renamedOrMovedClasses.put(classElements.source().getFullName(), classElements.target().getFullName()));
-
-        result.addAll(
-                methodLevelPairs.stream()
-                        .flatMap(pair -> new Method.MethodElementDiff((Method) pair.source(), (Method) pair.target()).getRefactorings(renamedOrMovedClasses).stream())
-                        .collect(Collectors.toSet())
-        );
-
-        result.addAll(
-                attributeLevelPairs.stream()
-                        .flatMap(pair -> new Attribute.AttributeElementDiff((Attribute) pair.source(), (Attribute) pair.target()).getRefactorings(renamedOrMovedClasses).stream())
-                        .collect(Collectors.toSet())
-        );
-
-        result.addAll(
-                variableLevelPairs.stream()
-                        .flatMap(pair -> new Variable.VariableElementDiff((Variable) pair.source(), (Variable) pair.target()).getRefactorings().stream())
-                        .collect(Collectors.toSet())
-        );
-
-        sameCodeElementChangeRate = ((double) classLevelPairs.size() + methodLevelPairs.size() + attributeLevelPairs.size() + variableLevelPairs.size()) / refactoringHandler.getNumberOfEdge();
-        return result;
-    }
+//    public List<Refactoring> findRefactorings() {
+//        HashSet<EndpointPair<CodeElement>> classLevelPairs = getPair(refactoringHandler.getClassChangeHistoryGraph());
+//        HashSet<EndpointPair<CodeElement>> methodLevelPairs = getPair(refactoringHandler.getMethodChangeHistoryGraph());
+//        HashSet<EndpointPair<CodeElement>> attributeLevelPairs = getPair(refactoringHandler.getAttributeChangeHistoryGraph());
+//        HashSet<EndpointPair<CodeElement>> variableLevelPairs = getPair(refactoringHandler.getVariableChangeHistoryGraph());
+//
+//        HashMap<String, String> renamedOrMovedClasses = new HashMap<>();
+//        List<Refactoring> result = new ArrayList<>();
+//
+//
+//        HashMap<String, MoveSourceFolderRefactoring> moveSourceFolderMap = new HashMap<>();
+//        result.addAll(
+//                classLevelPairs.stream()
+//                        .flatMap(pair -> new Class.ClassElementDiff((Class) pair.source(), (Class) pair.target()).getRefactorings(moveSourceFolderMap).stream())
+//                        .collect(Collectors.toSet())
+//        );
+//
+//        classLevelPairs.stream().forEach(classElements -> renamedOrMovedClasses.put(classElements.source().getFullName(), classElements.target().getFullName()));
+//
+//        result.addAll(
+//                methodLevelPairs.stream()
+//                        .flatMap(pair -> new Method.MethodElementDiff((Method) pair.source(), (Method) pair.target()).getRefactorings(renamedOrMovedClasses).stream())
+//                        .collect(Collectors.toSet())
+//        );
+//
+//        result.addAll(
+//                attributeLevelPairs.stream()
+//                        .flatMap(pair -> new Attribute.AttributeElementDiff((Attribute) pair.source(), (Attribute) pair.target()).getRefactorings(renamedOrMovedClasses).stream())
+//                        .collect(Collectors.toSet())
+//        );
+//
+//        result.addAll(
+//                variableLevelPairs.stream()
+//                        .flatMap(pair -> new Variable.VariableElementDiff((Variable) pair.source(), (Variable) pair.target()).getRefactorings().stream())
+//                        .collect(Collectors.toSet())
+//        );
+//
+//        sameCodeElementChangeRate = ((double) classLevelPairs.size() + methodLevelPairs.size() + attributeLevelPairs.size() + variableLevelPairs.size()) / refactoringHandler.getNumberOfEdge();
+//        return result;
+//    }
 }

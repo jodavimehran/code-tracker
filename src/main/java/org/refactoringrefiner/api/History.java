@@ -4,8 +4,6 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 
-public interface History {
-    List<Pair<Version, Edge>> getEventList();
-
-    int getNumberOfCommit();
+public interface History<N extends CodeElement, E extends Edge> {
+    Graph<N, E> getGraph();
 }
