@@ -1,7 +1,5 @@
 package org.refactoringrefiner.util;
 
-import org.eclipse.jgit.errors.IncorrectObjectTypeException;
-import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
@@ -27,7 +25,10 @@ public class GitRepository implements IRepository {
 
     @Override
     public String getParentId(String commitId) {
-        return getRevCommit(commitId).getParent(0).getId().getName();
+        RevCommit revCommit = getRevCommit(commitId);
+        if (revCommit.getParentCount() > 0)
+            return revCommit.getParent(0).getId().getName();
+        return "0";
     }
 
     @Override
