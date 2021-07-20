@@ -10,14 +10,12 @@ import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.OperationBody;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
-import gr.uom.java.xmi.decomposition.replacement.VariableDeclarationReplacement;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringHandler;
 import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.util.Hashing;
-import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
 import org.refactoringrefiner.edge.AbstractChange;
@@ -63,11 +61,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
     }
 
     private static void addRefactored(ChangeHistory changeHistory, CodeElement leftSide, CodeElement rightSide, Refactoring refactoring) {
-        addRefactored(changeHistory, leftSide, rightSide, refactoring, null);
-    }
-
-    private static void addRefactored(ChangeHistory changeHistory, CodeElement leftSide, CodeElement rightSide, Refactoring refactoring, Refactoring relatedRefactoring) {
-        changeHistory.addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REFACTORED).refactoring(refactoring).relatedRefactoring(relatedRefactoring).description(refactoring.toString()));
+        changeHistory.addRefactored(leftSide, rightSide, refactoring, null);
     }
 
     public static boolean checkOperationBodyChanged(OperationBody body1, OperationBody body2) {
@@ -164,7 +158,7 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
 
         if (leftSideMethod != null && rightSideMethod != null && !leftSideMethod.equals(rightSideMethod)) {
             Refactoring relatedRefactoring = relatedRefactoringsToOperations.getOrDefault(leftSideOperation, null);
-            addRefactored(methodChangeHistory, leftSideMethod, rightSideMethod, ref, relatedRefactoring);
+            methodChangeHistory.addRefactored(leftSideMethod, rightSideMethod, ref, relatedRefactoring);
             matchVariables(ref, parentCommitId, childCommitId, leftSideOperation, rightSideOperation);
         }
     }
@@ -564,7 +558,6 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case RENAME_VARIABLE: {
                         RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) ref;
                         addVariableRefactored(renameVariableRefactoring, parentCommitId, commitId, renameVariableRefactoring.getOriginalVariable(), renameVariableRefactoring.getOperationBefore(), renameVariableRefactoring.getRenamedVariable(), renameVariableRefactoring.getOperationAfter());
-
                         break;
                     }
                     case CHANGE_VARIABLE_TYPE: {

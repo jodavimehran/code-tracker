@@ -865,14 +865,14 @@ public class Starter {
                 try {
                     RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
                     HistoryImpl<CodeElement, Edge> variableHistory = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findVariableHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitName(), historyInfo.getFilePath(), historyInfo.getFunctionKey(), historyInfo.getVariableKey());
-                    HashMap<String, HistoryResult> historyResultHashMap = allResults.getOrDefault(repositoryWebURL, new HashMap<>()).getOrDefault(historyInfo.getFunctionKey(), new HashMap<>());
+                    HashMap<String, HistoryResult> historyResultHashMap = allResults.getOrDefault(repositoryWebURL, new HashMap<>()).getOrDefault(String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), new HashMap<>());
                     for(Map.Entry<String, String> entry: historyInfo.getExpectedResult().entrySet()){
                         String key = String.format("%s-%s", entry.getKey(), entry.getValue());
                         if(!historyResultHashMap.containsKey(key)){
                             historyResultHashMap.put(key, new HistoryResult());
                         }
                         HistoryResult historyResult = historyResultHashMap.get(key);
-                        historyResult.setOracle("refactoring-miner");
+                        historyResult.setOracle("refactoring-miner-training");
                         historyResult.setCodeShovelOracleVote(1);
                     }
                     processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), Detector.MINER, "variable", Starter::getChangeTypeRefactoringMiner);

@@ -3,6 +3,7 @@ package org.refactoringrefiner.element;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.refactoringrefiner.api.Version;
+import org.refactoringrefiner.util.Util;
 
 public class Variable extends BaseCodeElement {
     private final VariableDeclaration variableDeclaration;
@@ -24,11 +25,12 @@ public class Variable extends BaseCodeElement {
     public static Variable of(VariableDeclaration variableDeclaration, Method method) {
         String name = String.format("%s$%s", method.getName(), variableDeclaration.getVariableName());
         String identifierExcludeVersion = String.format(
-                "%s$%s%s:%s",
+                "%s$%s%s:%s%s",
                 method.getIdentifierIgnoringVersionAndDocumentation(),
                 variableDeclaration.isFinal() ? "(final)" : "",
                 variableDeclaration.getVariableName(),
-                variableDeclaration.getType().toQualifiedString()
+                variableDeclaration.getType().toQualifiedString(),
+                Util.annotationsToString(variableDeclaration.getAnnotations())
         );
         return new Variable(variableDeclaration, method.getUmlOperation(), identifierExcludeVersion, name, variableDeclaration.getLocationInfo().getFilePath(), method.getVersion());
     }

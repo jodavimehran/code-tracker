@@ -3,6 +3,7 @@ package org.refactoringrefiner;
 import com.google.common.graph.EndpointPair;
 import com.google.common.graph.MutableValueGraph;
 import com.google.common.graph.ValueGraphBuilder;
+import org.refactoringminer.api.Refactoring;
 import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
@@ -171,5 +172,12 @@ public class ChangeHistory {
 
     public Set<CodeElement> predecessors(CodeElement codeElement){
         return changeHistoryGraph.predecessors(codeElement);
+    }
+
+    public void addRefactored(CodeElement leftSide, CodeElement rightSide, Refactoring refactoring) {
+        addRefactored(leftSide, rightSide, refactoring, null);
+    }
+    public void addRefactored(CodeElement leftSide, CodeElement rightSide, Refactoring refactoring, Refactoring relatedRefactoring) {
+        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REFACTORED).refactoring(refactoring).relatedRefactoring(relatedRefactoring).description(refactoring.toString()));
     }
 }
