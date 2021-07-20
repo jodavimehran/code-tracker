@@ -134,6 +134,7 @@ public class ChangeHistory {
     public void handleAdd(BaseCodeElement leftSide, BaseCodeElement rightSide, String description) {
         if (leftSide == null || rightSide == null)
             return;
+        changeHistoryGraph.addNode(rightSide);
         if (!changeHistoryGraph.predecessors(rightSide).isEmpty())
             return;
         leftSide.setAdded(true);
