@@ -490,13 +490,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                             continue;
                         }
 
-                        //Change Documentation
-                        leftMethod = getLeftMethod(umlModelPair, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocument);
-                        if (leftMethod != null) {
-                            System.out.println(commitId + " : Method Document Change");
-                            continue;
-                        }
-
                         //Change Body
                         leftMethod = getLeftMethod(umlModelPair, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
                         if (leftMethod != null) {
