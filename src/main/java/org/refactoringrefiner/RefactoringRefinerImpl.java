@@ -413,7 +413,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         }
     }
 
-    public History<CodeElement, Edge> findVariableHistory(String projectDirectory, String repositoryWebURL, String startCommitId, String filePath, String methodKey, String variableKey) {
+    public History<CodeElement, Edge> findVariableHistory(String projectDirectory, String repositoryWebURL, String startCommitId, String filePath, String methodKey, String variableName, int variableDeclarationLineNumber) {
         GitService gitService = new GitServiceImpl();
         try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
             try (Git git = new Git(repository)) {
@@ -426,7 +426,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 Variable start = null;
                 Version startVersion = refactoringMiner.getVersion(startCommitId);
                 Method methodByName = RefactoringMiner.getMethodByName(umlModel, startVersion, methodKey);
-                start = findVariable(variableKey, methodByName);
+                start = findVariable(variableName, variableDeclarationLineNumber, methodByName);
                 if (start == null) {
                     return null;
                 }
@@ -731,11 +731,13 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         return false;
     }
 
-    private Variable findVariable(String variableKey, Method methodByName) {
+    private Variable findVariable(String variableName, int variableDeclarationLineNumber, Method methodByName) {
         for (VariableDeclaration variable : methodByName.getUmlOperation().getAllVariableDeclarations()) {
             if (variable.isParameter())
                 continue;
-            if (variable.toString().equals(variableKey)) {
+            if (variable.getVariableName().equals(variableName) &&
+                    variable.getLocationInfo().getStartLine() <= variableDeclarationLineNumber &&
+                    variable.getLocationInfo().getEndLine() >= variableDeclarationLineNumber) {
                 return Variable.of(variable, methodByName);
 
             }

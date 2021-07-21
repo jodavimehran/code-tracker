@@ -864,7 +864,7 @@ public class Starter {
 
                 try {
                     RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
-                    HistoryImpl<CodeElement, Edge> variableHistory = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findVariableHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitName(), historyInfo.getFilePath(), historyInfo.getFunctionKey(), historyInfo.getVariableKey());
+                    HistoryImpl<CodeElement, Edge> variableHistory = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findVariableHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitName(), historyInfo.getFilePath(), historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine());
                     HashMap<String, HistoryResult> historyResultHashMap = allResults.getOrDefault(repositoryWebURL, new HashMap<>()).getOrDefault(String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), new HashMap<>());
                     for(Map.Entry<String, String> entry: historyInfo.getExpectedResult().entrySet()){
                         String key = String.format("%s-%s", entry.getKey(), entry.getValue());
@@ -875,7 +875,7 @@ public class Starter {
                         historyResult.setOracle("refactoring-miner-training");
                         historyResult.setCodeShovelOracleVote(1);
                     }
-                    processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), Detector.MINER, "variable", Starter::getChangeTypeRefactoringMiner);
+                    processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s(%d)", historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine()), Detector.MINER, "variable", Starter::getChangeTypeRefactoringMiner);
                     saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
                     writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
 
