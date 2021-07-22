@@ -473,8 +473,9 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         }
 
 
+                        UMLOperation umlOperationAfter = rightMethod.getUmlOperation();
                         if (umlModelPair.getLeft() == null) {
-                            Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
+                            Method leftMethod = Method.of(umlOperationAfter, parentVersion);
                             Variable leftVariable = Variable.of(rightVariable.getVariableDeclaration(), leftMethod);
                             leftVariable.setAdded(true);
                             refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().handleAdd(leftVariable, rightVariable);
@@ -494,20 +495,8 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         leftMethod = getLeftMethod(umlModelPair, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
                         if (leftMethod != null) {
                             {
-                                UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(leftMethod.getUmlOperation(), rightMethod.getUmlOperation(), null);
-                                Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactorings();
-
-                                //Check if refactored
-                                boolean found = isRefactored(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
-                                if (found)
-                                    break;
-                                // check if it is in the matched
-                                found = isMatched(umlOperationBodyMapper.getMatchedVariablesPair(), refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
-                                if (found)
-                                    break;
-                                //Check if is added
-                                found = isAdded(umlOperationBodyMapper.getAddedVariables(), refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
-                                if (found)
+                                UMLOperation umlOperationBefore = leftMethod.getUmlOperation();
+                                if (checkBodyOfMatchedOperations(refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable, umlOperationAfter, umlOperationBefore))
                                     break;
                             }
                         }
@@ -517,8 +506,18 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                             UMLModelDiff umlModelDiff = umlModelPair.getLeft().getLeft().diff(umlModelPair.getRight(), new ConcurrentHashMap<>());
                             List<Refactoring> refactorings = umlModelDiff.getRefactorings();
 
+                            boolean found = false;
+
+                            found = isContainerChanged(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable, rightMethod);
+                            if (found)
+                                break;
+
+                            found = isMovedFromExtraction(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
+                            if (found)
+                                break;
+
                             //Check if refactored
-                            boolean found = isRefactored(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
+                            found = isRefactored(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
                             if (found)
                                 break;
 
@@ -531,9 +530,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                             if (found)
                                 break;
 
-                            found = isMovedFromExtraction(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
-                            if (found)
-                                break;
+
                         }
 
                         //All refactorings
@@ -546,34 +543,11 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                 }
                                 List<Refactoring> refactorings = modelDiff.getRefactorings();
 
-                                UMLClassBaseDiff umlClassDiff = modelDiff.getUMLClassDiff(rightMethod.getUmlOperation().getClassName());
-                                if (umlClassDiff != null) {
-                                    for (UMLOperation operation : umlClassDiff.getAddedOperations()) {
-                                        Method method = Method.of(operation, parentVersion);
-                                        if (method.equalIdentifierIgnoringVersion(rightMethod)) {
-                                            List<Pair<VariableDeclaration, UMLOperation>> addedVariables = method.getUmlOperation().getBody().getAllVariableDeclarations().stream().filter(variableDeclaration -> !variableDeclaration.isParameter()).map(variableDeclaration -> Pair.of(variableDeclaration, method.getUmlOperation())).collect(Collectors.toList());
-                                            found = isAdded(addedVariables, refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
-                                            if (found)
-                                                break;
-                                        }
-                                    }
-                                }
-                                if (found) {
+                                found = isContainerChanged(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable, rightMethod);
+                                if (found)
                                     break;
-                                }
 
-                                UMLClass addedClass = modelDiff.getAddedClass(rightMethod.getUmlOperation().getClassName());
-                                if (addedClass != null) {
-                                    for (UMLOperation operation : addedClass.getOperations()) {
-                                        Method method = Method.of(operation, currentVersion);
-                                        if (method.equalIdentifierIgnoringVersion(rightMethod)) {
-                                            List<Pair<VariableDeclaration, UMLOperation>> addedVariables = method.getUmlOperation().getBody().getAllVariableDeclarations().stream().filter(variableDeclaration -> !variableDeclaration.isParameter()).map(variableDeclaration -> Pair.of(variableDeclaration, method.getUmlOperation())).collect(Collectors.toList());
-                                            found = isAdded(addedVariables, refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
-                                            if (found)
-                                                break;
-                                        }
-                                    }
-                                }
+                                found = isMovedFromExtraction(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
                                 if (found)
                                     break;
 
@@ -590,9 +564,35 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                 if (found)
                                     break;
 
-                                found = isMovedFromExtraction(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable);
-                                if (found)
+
+                                UMLClassBaseDiff umlClassDiff = modelDiff.getUMLClassDiff(umlOperationAfter.getClassName());
+                                if (umlClassDiff != null) {
+                                    for (UMLOperation operation : umlClassDiff.getAddedOperations()) {
+                                        Method method = Method.of(operation, parentVersion);
+                                        if (method.equalIdentifierIgnoringVersion(rightMethod)) {
+                                            List<Pair<VariableDeclaration, UMLOperation>> addedVariables = method.getUmlOperation().getBody().getAllVariableDeclarations().stream().filter(variableDeclaration -> !variableDeclaration.isParameter()).map(variableDeclaration -> Pair.of(variableDeclaration, method.getUmlOperation())).collect(Collectors.toList());
+                                            found = isAdded(addedVariables, refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
+                                            if (found)
+                                                break;
+                                        }
+                                    }
+                                }
+                                if (found) {
                                     break;
+                                }
+
+                                UMLClass addedClass = modelDiff.getAddedClass(umlOperationAfter.getClassName());
+                                if (addedClass != null) {
+                                    for (UMLOperation operation : addedClass.getOperations()) {
+                                        Method method = Method.of(operation, currentVersion);
+                                        if (method.equalIdentifierIgnoringVersion(rightMethod)) {
+                                            List<Pair<VariableDeclaration, UMLOperation>> addedVariables = method.getUmlOperation().getBody().getAllVariableDeclarations().stream().filter(variableDeclaration -> !variableDeclaration.isParameter()).map(variableDeclaration -> Pair.of(variableDeclaration, method.getUmlOperation())).collect(Collectors.toList());
+                                            found = isAdded(addedVariables, refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
+                                            if (found)
+                                                break;
+                                        }
+                                    }
+                                }
                             }
                         }
 
@@ -628,6 +628,21 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
             exception.printStackTrace();
             return null;
         }
+    }
+
+    private boolean checkBodyOfMatchedOperations(RefactoringMiner refactoringMiner, CodeElementType codeElementType, Queue<Variable> variables, Version currentVersion, Version parentVersion, Variable rightVariable, UMLOperation umlOperationAfter, UMLOperation umlOperationBefore) throws RefactoringMinerTimedOutException {
+        UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(umlOperationBefore, umlOperationAfter, null);
+        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactorings();
+
+        //Check if refactored
+
+        if (isRefactored(refactorings, refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable))
+            return true;
+        // check if it is in the matched
+        if (isMatched(umlOperationBodyMapper.getMatchedVariablesPair(), refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable))
+            return true;
+        //Check if is added
+        return isAdded(umlOperationBodyMapper.getAddedVariables(), refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable);
     }
 
     private boolean isAdded(Collection<Pair<VariableDeclaration, UMLOperation>> addedVariables, RefactoringMiner refactoringMiner, CodeElementType codeElementType, Queue<Variable> variables, Version currentVersion, Version parentVersion, Variable rightVariable) {
@@ -726,6 +741,184 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
                 if (isMatched(extractOperationRefactoring.getBodyMapper().getMatchedVariablesPair(), refactoringMiner, variables, codeElementType, currentVersion, parentVersion, rightVariable))
                     return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isContainerChanged(Collection<Refactoring> refactorings, RefactoringMiner refactoringMiner, Queue<Variable> variables, CodeElementType codeElementType, Version currentVersion, Version parentVersion, Variable rightVariable, Method rightMethod) throws RefactoringMinerTimedOutException {
+        for (Refactoring refactoring : refactorings) {
+            UMLOperation operationBefore = null;
+            UMLOperation operationAfter = null;
+            switch (refactoring.getRefactoringType()) {
+                case PULL_UP_OPERATION: {
+                    PullUpOperationRefactoring pullUpOperationRefactoring = (PullUpOperationRefactoring) refactoring;
+                    operationBefore = pullUpOperationRefactoring.getOriginalOperation();
+                    operationAfter = pullUpOperationRefactoring.getMovedOperation();
+                    break;
+                }
+                case PUSH_DOWN_OPERATION: {
+                    PushDownOperationRefactoring pushDownOperationRefactoring = (PushDownOperationRefactoring) refactoring;
+                    operationBefore = pushDownOperationRefactoring.getOriginalOperation();
+                    operationAfter = pushDownOperationRefactoring.getMovedOperation();
+                    break;
+                }
+                case MOVE_AND_RENAME_OPERATION:
+                case MOVE_OPERATION: {
+                    MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
+                    operationBefore = moveOperationRefactoring.getOriginalOperation();
+                    operationAfter = moveOperationRefactoring.getMovedOperation();
+                    break;
+                }
+                case RENAME_METHOD: {
+                    RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) refactoring;
+                    operationBefore = renameOperationRefactoring.getOriginalOperation();
+                    operationAfter = renameOperationRefactoring.getRenamedOperation();
+                    break;
+                }
+                case ADD_METHOD_ANNOTATION: {
+                    AddMethodAnnotationRefactoring addMethodAnnotationRefactoring = (AddMethodAnnotationRefactoring) refactoring;
+                    operationBefore = addMethodAnnotationRefactoring.getOperationBefore();
+                    operationAfter = addMethodAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case MODIFY_METHOD_ANNOTATION: {
+                    ModifyMethodAnnotationRefactoring modifyMethodAnnotationRefactoring = (ModifyMethodAnnotationRefactoring) refactoring;
+                    operationBefore = modifyMethodAnnotationRefactoring.getOperationBefore();
+                    operationAfter = modifyMethodAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_METHOD_ANNOTATION: {
+                    RemoveMethodAnnotationRefactoring removeMethodAnnotationRefactoring = (RemoveMethodAnnotationRefactoring) refactoring;
+                    operationBefore = removeMethodAnnotationRefactoring.getOperationBefore();
+                    operationAfter = removeMethodAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case CHANGE_RETURN_TYPE: {
+                    ChangeReturnTypeRefactoring changeReturnTypeRefactoring = (ChangeReturnTypeRefactoring) refactoring;
+                    operationBefore = changeReturnTypeRefactoring.getOperationBefore();
+                    operationAfter = changeReturnTypeRefactoring.getOperationAfter();
+                    break;
+                }
+                case SPLIT_PARAMETER: {
+                    SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) refactoring;
+                    operationBefore = splitVariableRefactoring.getOperationBefore();
+                    operationAfter = splitVariableRefactoring.getOperationAfter();
+                    break;
+                }
+                case MERGE_PARAMETER: {
+                    MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) refactoring;
+                    operationBefore = mergeVariableRefactoring.getOperationBefore();
+                    operationAfter = mergeVariableRefactoring.getOperationAfter();
+                    break;
+                }
+                case RENAME_PARAMETER:
+                case PARAMETERIZE_VARIABLE: {
+                    RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) refactoring;
+                    if (!renameVariableRefactoring.isExtraction()) {
+                        operationBefore = renameVariableRefactoring.getOperationBefore();
+                        operationAfter = renameVariableRefactoring.getOperationAfter();
+                    }
+                    break;
+                }
+                case CHANGE_PARAMETER_TYPE: {
+                    ChangeVariableTypeRefactoring changeVariableTypeRefactoring = (ChangeVariableTypeRefactoring) refactoring;
+                    operationBefore = changeVariableTypeRefactoring.getOperationBefore();
+                    operationAfter = changeVariableTypeRefactoring.getOperationAfter();
+                    break;
+                }
+                case ADD_PARAMETER: {
+                    AddParameterRefactoring addParameterRefactoring = (AddParameterRefactoring) refactoring;
+                    operationBefore = addParameterRefactoring.getOperationBefore();
+                    operationAfter = addParameterRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_PARAMETER: {
+                    RemoveParameterRefactoring removeParameterRefactoring = (RemoveParameterRefactoring) refactoring;
+                    operationBefore = removeParameterRefactoring.getOperationBefore();
+                    operationAfter = removeParameterRefactoring.getOperationAfter();
+                    break;
+                }
+                case REORDER_PARAMETER: {
+                    ReorderParameterRefactoring reorderParameterRefactoring = (ReorderParameterRefactoring) refactoring;
+                    operationBefore = reorderParameterRefactoring.getOperationBefore();
+                    operationAfter = reorderParameterRefactoring.getOperationAfter();
+                    break;
+                }
+                case ADD_PARAMETER_MODIFIER: {
+                    AddVariableModifierRefactoring addVariableModifierRefactoring = (AddVariableModifierRefactoring) refactoring;
+                    operationBefore = addVariableModifierRefactoring.getOperationBefore();
+                    operationAfter = addVariableModifierRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_PARAMETER_MODIFIER: {
+                    RemoveVariableModifierRefactoring removeVariableModifierRefactoring = (RemoveVariableModifierRefactoring) refactoring;
+                    operationBefore = removeVariableModifierRefactoring.getOperationBefore();
+                    operationAfter = removeVariableModifierRefactoring.getOperationAfter();
+                    break;
+                }
+                case ADD_PARAMETER_ANNOTATION: {
+                    AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) refactoring;
+                    operationBefore = addVariableAnnotationRefactoring.getOperationBefore();
+                    operationAfter = addVariableAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_PARAMETER_ANNOTATION: {
+                    RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) refactoring;
+                    operationBefore = removeVariableAnnotationRefactoring.getOperationBefore();
+                    operationAfter = removeVariableAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case MODIFY_PARAMETER_ANNOTATION: {
+                    ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) refactoring;
+                    operationBefore = modifyVariableAnnotationRefactoring.getOperationBefore();
+                    operationAfter = modifyVariableAnnotationRefactoring.getOperationAfter();
+                    break;
+                }
+                case ADD_THROWN_EXCEPTION_TYPE: {
+                    AddThrownExceptionTypeRefactoring addThrownExceptionTypeRefactoring = (AddThrownExceptionTypeRefactoring) refactoring;
+                    operationBefore = addThrownExceptionTypeRefactoring.getOperationBefore();
+                    operationAfter = addThrownExceptionTypeRefactoring.getOperationAfter();
+                    break;
+                }
+                case CHANGE_THROWN_EXCEPTION_TYPE: {
+                    ChangeThrownExceptionTypeRefactoring changeThrownExceptionTypeRefactoring = (ChangeThrownExceptionTypeRefactoring) refactoring;
+                    operationBefore = changeThrownExceptionTypeRefactoring.getOperationBefore();
+                    operationAfter = changeThrownExceptionTypeRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_THROWN_EXCEPTION_TYPE: {
+                    RemoveThrownExceptionTypeRefactoring removeThrownExceptionTypeRefactoring = (RemoveThrownExceptionTypeRefactoring) refactoring;
+                    operationBefore = removeThrownExceptionTypeRefactoring.getOperationBefore();
+                    operationAfter = removeThrownExceptionTypeRefactoring.getOperationAfter();
+                    break;
+                }
+                case CHANGE_OPERATION_ACCESS_MODIFIER: {
+                    ChangeOperationAccessModifierRefactoring changeOperationAccessModifierRefactoring = (ChangeOperationAccessModifierRefactoring) refactoring;
+                    operationBefore = changeOperationAccessModifierRefactoring.getOperationBefore();
+                    operationAfter = changeOperationAccessModifierRefactoring.getOperationAfter();
+                    break;
+                }
+                case ADD_METHOD_MODIFIER: {
+                    AddMethodModifierRefactoring addMethodModifierRefactoring = (AddMethodModifierRefactoring) refactoring;
+                    operationBefore = addMethodModifierRefactoring.getOperationBefore();
+                    operationAfter = addMethodModifierRefactoring.getOperationAfter();
+                    break;
+                }
+                case REMOVE_METHOD_MODIFIER: {
+                    RemoveMethodModifierRefactoring removeMethodModifierRefactoring = (RemoveMethodModifierRefactoring) refactoring;
+                    operationBefore = removeMethodModifierRefactoring.getOperationBefore();
+                    operationAfter = removeMethodModifierRefactoring.getOperationAfter();
+                    break;
+                }
+            }
+
+            if (operationAfter != null) {
+                Method methodAfter = Method.of(operationAfter, currentVersion);
+                if (rightMethod.equalIdentifierIgnoringVersion(methodAfter)) {
+                    if (checkBodyOfMatchedOperations(refactoringMiner, codeElementType, variables, currentVersion, parentVersion, rightVariable, operationAfter, operationBefore))
+                        return true;
+                }
             }
         }
         return false;

@@ -32,7 +32,7 @@ public class Variable extends BaseCodeElement {
         String sha512 = Hashing.getSHA512(variableDeclaration.getScope().getStatementsInScopeUsingVariable().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
         String identifierExcludeVersion = String.format(
                 "%s$%s%s:%s%s{%s}",
-                method.getIdentifierIgnoringVersionAndDocumentation(),
+                method.getIdentifierIgnoringVersion(),
                 variableDeclaration.isFinal() ? "(final)" : "",
                 variableDeclaration.getVariableName(),
                 variableDeclaration.getType().toQualifiedString(),

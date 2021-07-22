@@ -225,30 +225,6 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                         }
                         break;
                     }
-                    case MOVE_AND_INLINE_OPERATION:
-                    case INLINE_OPERATION: {
-                        InlineOperationRefactoring inlineOperationRefactoring = (InlineOperationRefactoring) ref;
-                        UMLOperation inlinedOperation = inlineOperationRefactoring.getInlinedOperation();
-                        UMLOperation operationAfterInline = inlineOperationRefactoring.getTargetOperationAfterInline();
-                        UMLOperation operationBeforeInline = inlineOperationRefactoring.getTargetOperationBeforeInline();
-
-                        addMethodChange(parentCommitId, commitId, inlinedOperation, inlinedOperation, ChangeFactory.of(AbstractChange.Type.INLINED).refactoring(inlineOperationRefactoring));
-//                        addMethodChange(parentCommitId, commitId, inlinedOperation, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MERGED).refactoring(inlineOperationRefactoring));
-                        addMethodChange(parentCommitId, commitId, operationBeforeInline, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(inlineOperationRefactoring));
-                        break;
-                    }
-                    case EXTRACT_AND_MOVE_OPERATION:
-                    case EXTRACT_OPERATION: {
-                        ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) ref;
-                        UMLOperation operationBeforeExtraction = extractOperationRefactoring.getSourceOperationBeforeExtraction();
-                        UMLOperation operationAfterExtraction = extractOperationRefactoring.getSourceOperationAfterExtraction();
-                        UMLOperation extractedOperation = extractOperationRefactoring.getExtractedOperation();
-
-                        addMethodChange(parentCommitId, commitId, extractedOperation, extractedOperation, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractOperationRefactoring));
-//                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, extractedOperation, ChangeFactory.of(AbstractChange.Type.BRANCHED).refactoring(extractOperationRefactoring));
-                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, operationAfterExtraction, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(ref));
-                        break;
-                    }
                     case RENAME_METHOD: {
                         RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) ref;
                         addOperationRefactored(renameOperationRefactoring, parentCommitId, commitId, renameOperationRefactoring.getOriginalOperation(), renameOperationRefactoring.getRenamedOperation());
@@ -364,6 +340,30 @@ public class RefactoringHandlerImpl extends RefactoringHandler {
                     case REMOVE_METHOD_MODIFIER: {
                         RemoveMethodModifierRefactoring removeMethodModifierRefactoring = (RemoveMethodModifierRefactoring) ref;
                         addOperationRefactored(removeMethodModifierRefactoring, parentCommitId, commitId, removeMethodModifierRefactoring.getOperationBefore(), removeMethodModifierRefactoring.getOperationAfter());
+                        break;
+                    }
+                    case MOVE_AND_INLINE_OPERATION:
+                    case INLINE_OPERATION: {
+                        InlineOperationRefactoring inlineOperationRefactoring = (InlineOperationRefactoring) ref;
+                        UMLOperation inlinedOperation = inlineOperationRefactoring.getInlinedOperation();
+                        UMLOperation operationAfterInline = inlineOperationRefactoring.getTargetOperationAfterInline();
+                        UMLOperation operationBeforeInline = inlineOperationRefactoring.getTargetOperationBeforeInline();
+
+                        addMethodChange(parentCommitId, commitId, inlinedOperation, inlinedOperation, ChangeFactory.of(AbstractChange.Type.INLINED).refactoring(inlineOperationRefactoring));
+//                        addMethodChange(parentCommitId, commitId, inlinedOperation, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MERGED).refactoring(inlineOperationRefactoring));
+                        addMethodChange(parentCommitId, commitId, operationBeforeInline, operationAfterInline, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(inlineOperationRefactoring));
+                        break;
+                    }
+                    case EXTRACT_AND_MOVE_OPERATION:
+                    case EXTRACT_OPERATION: {
+                        ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) ref;
+                        UMLOperation operationBeforeExtraction = extractOperationRefactoring.getSourceOperationBeforeExtraction();
+                        UMLOperation operationAfterExtraction = extractOperationRefactoring.getSourceOperationAfterExtraction();
+                        UMLOperation extractedOperation = extractOperationRefactoring.getExtractedOperation();
+
+                        addMethodChange(parentCommitId, commitId, extractedOperation, extractedOperation, ChangeFactory.of(AbstractChange.Type.EXTRACTED).refactoring(extractOperationRefactoring));
+//                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, extractedOperation, ChangeFactory.of(AbstractChange.Type.BRANCHED).refactoring(extractOperationRefactoring));
+                        addMethodChange(parentCommitId, commitId, operationBeforeExtraction, operationAfterExtraction, ChangeFactory.of(AbstractChange.Type.MODIFIED).refactoring(ref));
                         break;
                     }
                     //=======================================CLASS===========================================================
