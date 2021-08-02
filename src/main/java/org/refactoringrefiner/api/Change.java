@@ -1,23 +1,35 @@
 package org.refactoringrefiner.api;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public interface Change {
 
     Type getType();
 
-    String getDescription();
-
     enum Type {
-        NO_CHANGE("Not Changed"),
-        ADDED("Added"),
-        REMOVED("Removed"),
-        REFACTORED("Refactored"),
-        MODIFIED("Modified"),
-        INLINED("Inlined"),
-        EXTRACTED("Extracted"),
-        CONTAINER_CHANGE("Changed in Container"),
-        MULTI_CHANGE("Changed Multiple Times"),
-        MERGED("Merged"),
-        BRANCHED("Branched");
+        NO_CHANGE("not changed"),
+        INTRODUCED("introduced"),
+        REMOVED("removed"),
+        CONTAINER_CHANGE("container change"),
+        MULTI_CHANGE("changed multiple times"),
+        BODY_CHANGE("body change"),
+        DOCUMENTATION_CHANGE("documentation change"),
+        RENAME("rename"),
+        MODIFIER_CHANGE("modifier change"),
+        RETURN_TYPE_CHANGE("return type change"),
+        EXCEPTION_CHANGE("exception change"),
+        PARAMETER_CHANGE("parameter change"),
+        ANNOTATION_CHANGE("annotation change"),
+        METHOD_MOVE("method move");
+
+        private static final Map<String, Type> lookup = new HashMap<>();
+
+        static {
+            for (Type type : Type.values()) {
+                lookup.put(type.title, type);
+            }
+        }
 
         private final String title;
 
@@ -25,16 +37,12 @@ public interface Change {
             this.title = title;
         }
 
+        public static Type get(String title) {
+            return lookup.get(title);
+        }
+
         public String getTitle() {
             return title;
-        }
-
-        public boolean isNoChange() {
-            return NO_CHANGE.equals(this);
-        }
-
-        public boolean isRefactoring() {
-            return REFACTORED.equals(this);
         }
     }
 }

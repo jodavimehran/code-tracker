@@ -1,27 +1,23 @@
 package org.refactoringrefiner.edge;
 
 import org.refactoringrefiner.api.CodeElement;
+import org.refactoringrefiner.change.AbstractChange;
 
 public class Removed extends AbstractChange {
     private final CodeElement removedElement;
 
-    public Removed(CodeElement removedElement, String description) {
-        super(Type.REMOVED, description);
+    public Removed(CodeElement removedElement) {
+        super(Type.REMOVED);
         this.removedElement = removedElement;
     }
 
-    protected Removed(Type type, CodeElement removedElement, String description) {
-        super(type, description);
+    protected Removed(Type type, CodeElement removedElement) {
+        super(type);
         this.removedElement = removedElement;
     }
 
     public CodeElement getRemovedElement() {
         return removedElement;
-    }
-
-    @Override
-    public String toSummary() {
-        return String.format("[%s] is removed", removedElement.getName());
     }
 
     @Override

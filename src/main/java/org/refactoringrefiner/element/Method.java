@@ -3,7 +3,6 @@ package org.refactoringrefiner.element;
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLParameter;
-import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.refactoringrefiner.api.Version;
 import org.refactoringrefiner.util.Util;
 
@@ -13,13 +12,13 @@ import java.util.Set;
 
 public class Method extends BaseCodeElement {
     private final UMLOperation umlOperation;
-    private final String identifierIgnoringVersionAndDocumentation;
+    private final String documentsHashCode;
     private final String identifierIgnoringVersionAndDocumentationAndBody;
 
     private Method(UMLOperation umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentation, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.umlOperation = umlOperation;
-        this.identifierIgnoringVersionAndDocumentation = identifierIgnoringVersionAndDocumentation;
+        this.documentsHashCode = Util.getDocumentsSha512(umlOperation);
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
     }
 
@@ -36,20 +35,26 @@ public class Method extends BaseCodeElement {
         return umlOperation;
     }
 
-    public boolean equalIdentifierIgnoringVersionAndDocument(Method method) {
-        return this.identifierIgnoringVersionAndDocumentation.equals(method.identifierIgnoringVersionAndDocumentation);
-    }
-
     public boolean equalIdentifierIgnoringVersionAndDocumentAndBody(Method method) {
         return this.identifierIgnoringVersionAndDocumentationAndBody.equals(method.identifierIgnoringVersionAndDocumentationAndBody);
     }
 
-    public String getIdentifierIgnoringVersionAndDocumentation() {
-        return identifierIgnoringVersionAndDocumentation;
+    public boolean equalDocuments(Method method) {
+        if (this.documentsHashCode == null && method.documentsHashCode == null) return true;
+
+        if (this.documentsHashCode == null || method.documentsHashCode == null) {
+            return false;
+        }
+        return this.documentsHashCode.equals(method.documentsHashCode);
     }
 
-    public String getIdentifierIgnoringVersionAndDocumentationAndBody() {
-        return identifierIgnoringVersionAndDocumentationAndBody;
+    public boolean equalBody(Method method) {
+        if (this.umlOperation.getBody() == null && method.umlOperation.getBody() == null) return true;
+
+        if (this.umlOperation.getBody() == null || method.umlOperation.getBody() == null) {
+            return false;
+        }
+        return this.umlOperation.getBody().getSha512().equals(method.umlOperation.getBody().getSha512());
     }
 
     public boolean equalSignature(Method method) {

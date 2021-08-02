@@ -43,8 +43,8 @@ public class ResultImpl implements Result {
             }
             analyzed.add(endpointPair);
             switch (edge.getType()) {
-                case INLINED:
-                case EXTRACTED: {
+//                case INLINED:
+//                case EXTRACTED: {
 //                    CodeElement mostLeftSideSource = findMostLeftSide(endpointPair.source());
 //                    CodeElement mostRightSideSource = findMostRightSide(endpointPair.source());
 //
@@ -62,8 +62,8 @@ public class ResultImpl implements Result {
 //                            result.add(refactoring);
 //                        }
 //                    }
-                    break;
-                }
+//                    break;
+//                }
                 default:
                     if (!graph.predecessors(endpointPair.source()).isEmpty()) {
                         continue;

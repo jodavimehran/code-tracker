@@ -8,7 +8,7 @@ import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
 import org.refactoringrefiner.api.Graph;
-import org.refactoringrefiner.edge.AbstractChange;
+import org.refactoringrefiner.change.AbstractChange;
 import org.refactoringrefiner.edge.ChangeFactory;
 import org.refactoringrefiner.edge.EdgeImpl;
 import org.refactoringrefiner.element.BaseCodeElement;
@@ -115,30 +115,23 @@ public class ChangeHistory {
     }
 
     public void handleRemoved(BaseCodeElement leftSide, BaseCodeElement rightSide) {
-        handleRemoved(leftSide, rightSide, null);
-    }
-
-    public void handleRemoved(BaseCodeElement leftSide, BaseCodeElement rightSide, String description) {
         if (leftSide == null || rightSide == null)
             return;
+        changeHistoryGraph.addNode(leftSide);
         if (!changeHistoryGraph.successors(leftSide).isEmpty())
             return;
         rightSide.setRemoved(true);
-        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REMOVED).codeElement(leftSide).description(description));
+        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REMOVED).codeElement(leftSide));
     }
 
     public void handleAdd(BaseCodeElement leftSide, BaseCodeElement rightSide) {
-        handleAdd(leftSide, rightSide, null);
-    }
-
-    public void handleAdd(BaseCodeElement leftSide, BaseCodeElement rightSide, String description) {
         if (leftSide == null || rightSide == null)
             return;
         changeHistoryGraph.addNode(rightSide);
         if (!changeHistoryGraph.predecessors(rightSide).isEmpty())
             return;
         leftSide.setAdded(true);
-        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.ADDED).codeElement(rightSide).description(description));
+        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.INTRODUCED).codeElement(rightSide));
     }
 
     public List<CodeElement> findMostLeftSide(String codeElementName) {
@@ -157,8 +150,7 @@ public class ChangeHistory {
         for (CodeElement leftElement : predecessors) {
             EndpointPair<CodeElement> endpointPair = EndpointPair.ordered(leftElement, codeElement);
             Change.Type type = changeHistoryGraph.edgeValue(endpointPair).get().getType();
-            if (Change.Type.BRANCHED.equals(type) || Change.Type.MERGED.equals(type))
-                continue;
+
             if (!analyzed.contains(endpointPair)) {
                 analyzed.add(endpointPair);
                 codeElementList.addAll(findMostLeftSide(leftElement, analyzed));
@@ -175,10 +167,4 @@ public class ChangeHistory {
         return changeHistoryGraph.predecessors(codeElement);
     }
 
-    public void addRefactored(CodeElement leftSide, CodeElement rightSide, Refactoring refactoring) {
-        addRefactored(leftSide, rightSide, refactoring, null);
-    }
-    public void addRefactored(CodeElement leftSide, CodeElement rightSide, Refactoring refactoring, Refactoring relatedRefactoring) {
-        addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.REFACTORED).refactoring(refactoring).relatedRefactoring(relatedRefactoring).description(refactoring.toString()));
-    }
 }

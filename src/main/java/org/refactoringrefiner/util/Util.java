@@ -131,10 +131,16 @@ public class Util {
         }
         if (containsDocumentation && !info.getComments().isEmpty()) {
             sb.append("{");
-            sb.append(Hashing.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";"))));
+            sb.append(getDocumentsSha512(info));
             sb.append("}");
         }
         sb.append(annotationsToString(info.getAnnotations()));
         return sb.toString();
+    }
+
+    public static String getDocumentsSha512(UMLOperation info) {
+        if (info.getComments().isEmpty())
+            return null;
+        return Hashing.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
     }
 }

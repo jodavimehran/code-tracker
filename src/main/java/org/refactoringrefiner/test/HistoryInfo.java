@@ -4,6 +4,7 @@ import java.util.LinkedHashMap;
 
 public class HistoryInfo {
     private String repositoryName;
+    private String fileName;
     private String repositoryWebURL;
     private String filePath;
     private String functionName;
@@ -16,8 +17,7 @@ public class HistoryInfo {
 
     private String startCommitName;
     private String branchName;
-    private LinkedHashMap<String, String> expectedResult = new LinkedHashMap<>();
-
+    private LinkedHashMap<String, String> expectedResult;
 
     public String getRepositoryName() {
         return repositoryName;
@@ -113,5 +113,13 @@ public class HistoryInfo {
 
     public void setVariableStartLine(int variableStartLine) {
         this.variableStartLine = variableStartLine;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

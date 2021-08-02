@@ -3,6 +3,7 @@ package org.refactoringrefiner.edge;
 import org.apache.commons.collections4.SetUtils;
 import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.Edge;
+import org.refactoringrefiner.change.AbstractChange;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -12,10 +13,16 @@ public class EdgeImpl implements Edge {
     private final Map<Change.Type, Set<Change>> changeMap = new HashMap<>();
 
     public void addChange(AbstractChange change) {
-        if (Change.Type.NO_CHANGE.equals(change.type) && !changeList.isEmpty())
+        if (Change.Type.NO_CHANGE.equals(change.getType()) && !changeList.isEmpty())
+            return;
+        if (Change.Type.BODY_CHANGE.equals(change.getType()) && changeMap.containsKey(Change.Type.BODY_CHANGE))
+            return;
+        if (Change.Type.DOCUMENTATION_CHANGE.equals(change.getType()) && changeMap.containsKey(Change.Type.DOCUMENTATION_CHANGE))
+            return;
+        if (Change.Type.CONTAINER_CHANGE.equals(change.getType()) && changeMap.containsKey(Change.Type.CONTAINER_CHANGE))
             return;
         changeList.add(change);
-        changeMap.merge(change.type, new HashSet<>(Arrays.asList(change)), SetUtils::union);
+        changeMap.merge(change.getType(), new HashSet<>(Arrays.asList(change)), SetUtils::union);
     }
 
     public Change.Type getType() {
@@ -27,8 +34,7 @@ public class EdgeImpl implements Edge {
         }
         if (changeMap.keySet().size() == 1) {
             Change.Type type = changeMap.keySet().stream().findFirst().get();
-            if (!Change.Type.REFACTORED.equals(type))
-                return type;
+            return type;
         }
         return Change.Type.MULTI_CHANGE;
     }

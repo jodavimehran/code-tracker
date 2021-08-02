@@ -6,8 +6,8 @@ import org.refactoringrefiner.api.CodeElement;
 public class Extracted extends Added {
     private final Refactoring extractRefactoring;
 
-    public Extracted(Refactoring extractRefactoring, CodeElement addedElement, String description) {
-        super(Type.EXTRACTED, addedElement, description);
+    public Extracted(Refactoring extractRefactoring, CodeElement addedElement) {
+        super(Type.INTRODUCED, addedElement);
         this.extractRefactoring = extractRefactoring;
     }
 
@@ -17,6 +17,6 @@ public class Extracted extends Added {
 
     @Override
     public String toString() {
-        return extractRefactoring != null ? extractRefactoring.toString() : description;
+        return extractRefactoring != null ? extractRefactoring.toString() : String.format("A code element with name [%s] is extracted.", addedElement.getName());
     }
 }

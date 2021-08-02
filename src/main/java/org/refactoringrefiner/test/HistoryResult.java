@@ -59,12 +59,6 @@ public class HistoryResult {
     @Column(name = "code_shovel_desc")
     private String codeShovelDesc;
 
-    @Column(name = "refdiff_vote")
-    private int refdiffVote = -1;
-
-    @Column(name = "refdiff_desc")
-    private String refDiffDesc;
-
     @Column(name = "code_shovel_oracle_vote")
     private int codeShovelOracleVote = -1;
 
@@ -73,6 +67,9 @@ public class HistoryResult {
 
     @Column(name = "final_decision")
     private int finalDecision;
+
+    @Column(name = "mehran_vote")
+    private int refactoringMinerOracleVote = -1;
 
     public long getId() {
         return id;
@@ -210,22 +207,6 @@ public class HistoryResult {
         this.codeShovelDesc = codeShovelDesc;
     }
 
-    public int getRefdiffVote() {
-        return refdiffVote;
-    }
-
-    public void setRefdiffVote(int refdiffVote) {
-        this.refdiffVote = refdiffVote;
-    }
-
-    public String getRefDiffDesc() {
-        return refDiffDesc;
-    }
-
-    public void setRefDiffDesc(String refDiffDesc) {
-        this.refDiffDesc = refDiffDesc;
-    }
-
     public int getCodeShovelOracleVote() {
         return codeShovelOracleVote;
     }
@@ -248,5 +229,13 @@ public class HistoryResult {
 
     public void setFinalDecision(int finialDecision) {
         this.finalDecision = finialDecision;
+    }
+
+    public int getRefactoringMinerOracleVote() {
+        return refactoringMinerOracleVote;
+    }
+
+    public void setRefactoringMinerOracleVote(int refactoringMinerOracleVote) {
+        this.refactoringMinerOracleVote = refactoringMinerOracleVote;
     }
 }

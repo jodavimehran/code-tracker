@@ -1,12 +1,13 @@
 package org.refactoringrefiner.edge;
 
 import org.refactoringminer.api.Refactoring;
+import org.refactoringrefiner.change.AbstractChange;
 
 public class ContainerChange extends AbstractChange {
     private final Refactoring refactoring;
 
-    public ContainerChange(Refactoring refactoring, String description) {
-        super(Type.CONTAINER_CHANGE, description);
+    public ContainerChange(Refactoring refactoring) {
+        super(Type.CONTAINER_CHANGE);
         this.refactoring = refactoring;
     }
 
@@ -18,6 +19,6 @@ public class ContainerChange extends AbstractChange {
     public String toString() {
         if (refactoring != null)
             return String.format("The container of the code element is changed due to %s.", refactoring);
-        return description;
+        return super.toString();
     }
 }
