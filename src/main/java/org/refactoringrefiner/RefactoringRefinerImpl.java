@@ -220,7 +220,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         GitService gitService = new GitServiceImpl();
         try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
             try (Git git = new Git(repository)) {
-                git.fetch().setRemote("origin").call();
                 RefactoringMiner refactoringMiner = new RefactoringMiner(repository, repositoryWebURL);
                 refactoringMiner.getRefactoringHandler().setTrackAttributes(false);
                 refactoringMiner.getRefactoringHandler().setTrackClasses(false);
