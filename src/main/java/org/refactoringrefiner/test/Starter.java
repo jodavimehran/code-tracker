@@ -3,6 +3,13 @@ package org.refactoringrefiner.test;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.felixgrund.codeshovel.changes.*;
+import com.felixgrund.codeshovel.entities.Yresult;
+import com.felixgrund.codeshovel.execution.ShovelExecution;
+import com.felixgrund.codeshovel.services.RepositoryService;
+import com.felixgrund.codeshovel.services.impl.CachingRepositoryService;
+import com.felixgrund.codeshovel.util.Utl;
+import com.felixgrund.codeshovel.wrappers.StartEnvironment;
 import com.google.common.graph.EndpointPair;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
@@ -36,7 +43,9 @@ import org.refactoringrefiner.element.Method;
 import org.refactoringrefiner.element.Variable;
 
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -75,9 +84,36 @@ enum Detector {
 //}
 
 public class Starter {
+    public static final String DETAILED_RESULT_HEADER = "repository, element_key, parent_commit_id, commit_id, commit_time, change_type, element_file_before, element_file_after, element_name_before, element_name_after, result" + System.lineSeparator();
+    public static final String DETAILED_CONTENT_FORMAT = "\"%s\", \"%s\", %s, %s, %d, %s, %s, %s, \"%s\", \"%s\", %s" + System.lineSeparator();
     private final static String FOLDER_TO_CLONE = "H:\\Projects\\";
     private static final ObjectMapper mapper = new ObjectMapper();
+    private final static String RESULT_HEADER;
+    private final static String RESULT_HEADER_SHOVEL;
     static SessionFactory sessionFactoryObj;
+
+    static {
+        StringBuilder header = new StringBuilder();
+        StringBuilder headerShovel = new StringBuilder();
+        header.append("instance, processing_time, analysed_commits, git_log_command_calls, step2, step3, step4, step5,");
+        headerShovel.append("instance, processing_time,");
+        for (Change.Type changeType : Change.Type.values()) {
+            if (Change.Type.NO_CHANGE.equals(changeType) || Change.Type.MULTI_CHANGE.equals(changeType) || Change.Type.REMOVED.equals(changeType))
+                continue;
+            header.append("tp_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+            header.append("fp_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+            header.append("fn_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+
+            headerShovel.append("tp_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+            headerShovel.append("fp_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+            headerShovel.append("fn_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
+        }
+
+        header.append("tp_all, fp_all, fn_all").append(System.lineSeparator());
+        headerShovel.append("tp_all, fp_all, fn_all").append(System.lineSeparator());
+        RESULT_HEADER = header.toString();
+        RESULT_HEADER_SHOVEL = headerShovel.toString();
+    }
 
     public static void main(String[] args) throws Exception {
 //        new Starter().historyTest("E:\\Data\\History\\processed.csv");
@@ -85,7 +121,7 @@ public class Starter {
 
         Starter starter = new Starter();
 //        starter.methodHistoryExperiment("E:\\Data\\History\\processed.csv");
-        starter.methodHistoryExperiment(null);
+        starter.methodHistoryExperiment();
         //starter.correctDBType();
 //        starter.countNumberOfCommit();
 //        starter.variableHistoryTest("E:\\Data\\History\\Variable\\processed.csv");
@@ -246,32 +282,6 @@ public class Starter {
         }
     }
 
-    private static void writeToNewFile(String pathString, String header, String content) throws IOException {
-        writeToFile(pathString, header, content, StandardOpenOption.TRUNCATE_EXISTING);
-    }
-
-    private static void writeToFile(String pathString, String content, StandardOpenOption standardOpenOption) throws IOException {
-        writeToFile(pathString, null, content, standardOpenOption);
-    }
-
-    private static void writeToFile(String pathString, String header, String content, StandardOpenOption standardOpenOption) throws IOException {
-        Path path = Paths.get(pathString);
-        if (!path.toFile().exists()) {
-            Files.createFile(path);
-            if (header != null)
-                Files.write(path, header.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
-        }
-        Files.write(path, content.getBytes(), standardOpenOption);
-    }
-
-    public static String getNumber(Map<RefactoringType, Long> map, RefactoringType refactoringType) {
-        if (map.containsKey(refactoringType)) {
-            return map.get(refactoringType).toString();
-        } else {
-            return "0";
-        }
-    }
-
 //    private void createRawData() throws IOException {
 //        StringBuilder result = new StringBuilder();
 //        GitService gitService = new GitServiceImpl();
@@ -347,6 +357,32 @@ public class Starter {
 //        return inputs;
 //    }
 
+    private static void writeToNewFile(String pathString, String header, String content) throws IOException {
+        writeToFile(pathString, header, content, StandardOpenOption.TRUNCATE_EXISTING);
+    }
+
+    private static void writeToFile(String pathString, String content, StandardOpenOption standardOpenOption) throws IOException {
+        writeToFile(pathString, null, content, standardOpenOption);
+    }
+
+    private static void writeToFile(String pathString, String header, String content, StandardOpenOption standardOpenOption) throws IOException {
+        Path path = Paths.get(pathString);
+        if (!path.toFile().exists()) {
+            Files.createFile(path);
+            if (header != null)
+                Files.write(path, header.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
+        }
+        Files.write(path, content.getBytes(), standardOpenOption);
+    }
+
+    public static String getNumber(Map<RefactoringType, Long> map, RefactoringType refactoringType) {
+        if (map.containsKey(refactoringType)) {
+            return map.get(refactoringType).toString();
+        } else {
+            return "0";
+        }
+    }
+
     public static String getResults(RefactoringResult refactoringResult) {
         Map<RefactoringType, Long> refactoringRefiner = refactoringResult.getRefactoringRefiner().stream()
                 .collect(Collectors.groupingBy(Refactoring::getRefactoringType, Collectors.counting()));
@@ -408,6 +444,40 @@ public class Starter {
         return sessionFactoryObj;
     }
 
+    private static Yresult runShovelExecution(
+            String repositoryPathGit,
+            String repositoryName,
+            String startCommitName,
+            String filepath,
+            String methodName,
+            String outFilePath,
+            int startLine
+    ) throws Exception {
+        // Unix vs. Windows. Probably there is a better way to do this.
+        String pathDelimiter = repositoryPathGit.contains("\\") ? "\\" : "/";
+        // Repo paths need to reference the .git directory. We add it to the path if it's not provided.
+        String gitPathEnding = pathDelimiter + ".git";
+        if (!repositoryPathGit.endsWith(gitPathEnding)) {
+            repositoryPathGit += gitPathEnding;
+        }
+        Repository repository = Utl.createRepository(repositoryPathGit);
+        Git git = new Git(repository);
+        RepositoryService repositoryService = new CachingRepositoryService(git, repository, repositoryName, repositoryPathGit);
+        com.felixgrund.codeshovel.wrappers.Commit startCommit = repositoryService.findCommitByName(startCommitName);
+
+        StartEnvironment startEnv = new StartEnvironment(repositoryService);
+        startEnv.setRepositoryPath(repositoryPathGit);
+        startEnv.setFilePath(filepath);
+        startEnv.setFunctionName(methodName);
+        startEnv.setFunctionStartLine(startLine);
+        startEnv.setStartCommitName(startCommitName);
+        startEnv.setStartCommit(startCommit);
+        startEnv.setFileName(Utl.getFileName(startEnv.getFilePath()));
+        startEnv.setOutputFilePath(outFilePath);
+
+        return ShovelExecution.runSingle(startEnv, startEnv.getFilePath(), true);
+    }
+
     private static <T> void saveAllResultsToDatabase(Collection<HistoryResult> results, Session sessionObj) {
         System.out.println(".......Start Saving Data to Database.......\n");
         try {
@@ -449,40 +519,6 @@ public class Starter {
 
         return allHistory.get(0);
     }
-
-//    private static Yresult runShovelExecution(
-//            String repositoryPathGit,
-//            String repositoryName,
-//            String startCommitName,
-//            String filepath,
-//            String methodName,
-//            String outFilePath,
-//            int startLine
-//    ) throws Exception {
-//        // Unix vs. Windows. Probably there is a better way to do this.
-//        String pathDelimiter = repositoryPathGit.contains("\\") ? "\\" : "/";
-//        // Repo paths need to reference the .git directory. We add it to the path if it's not provided.
-//        String gitPathEnding = pathDelimiter + ".git";
-//        if (!repositoryPathGit.endsWith(gitPathEnding)) {
-//            repositoryPathGit += gitPathEnding;
-//        }
-//        Repository repository = Utl.createRepository(repositoryPathGit);
-//        Git git = new Git(repository);
-//        RepositoryService repositoryService = new CachingRepositoryService(git, repository, repositoryName, repositoryPathGit);
-//        Commit startCommit = repositoryService.findCommitByName(startCommitName);
-//
-//        StartEnvironment startEnv = new StartEnvironment(repositoryService);
-//        startEnv.setRepositoryPath(repositoryPathGit);
-//        startEnv.setFilePath(filepath);
-//        startEnv.setFunctionName(methodName);
-//        startEnv.setFunctionStartLine(startLine);
-//        startEnv.setStartCommitName(startCommitName);
-//        startEnv.setStartCommit(startCommit);
-//        startEnv.setFileName(Utl.getFileName(startEnv.getFilePath()));
-//        startEnv.setOutputFilePath(outFilePath);
-//
-//        return ShovelExecution.runSingle(startEnv, startEnv.getFilePath(), true);
-//    }
 
     private static List<HistoryResult> getMethodChangedCommits(Session sessionObj, String repository, String elementKey) {
         List<HistoryResult> allHistory = getAllHistory(sessionObj,
@@ -530,88 +566,6 @@ public class Starter {
         }
         throw new RuntimeException(ychange + " UNKNOWN CHANGE TYPE!!!!!!");
     }
-
-//    private void codeShovel(HashMap<String, HistoryResult> result, MethodHistoryInfo methodHistoryInfo, String projectDirectory, String repositoryWebURL) throws Exception {
-//        Yresult yresult = runShovelExecution(projectDirectory,
-//                methodHistoryInfo.getRepositoryName(),
-//                methodHistoryInfo.getStartCommitName(),
-//                methodHistoryInfo.getFilePath(),
-//                methodHistoryInfo.getFunctionName(),
-//                String.format("E:\\Data\\History\\shovel\\%s.csv", methodHistoryInfo.getFunctionKey()),
-//                methodHistoryInfo.getFunctionStartLine()
-//        );
-//        for (Map.Entry<String, Ychange> entry : yresult.entrySet()) {
-//            if (entry.getValue() instanceof Ynochange)
-//                continue;
-//            List<Ychange> changes = new ArrayList<>();
-//            if (entry.getValue() instanceof Ymultichange) {
-//                Ymultichange ymultichange = (Ymultichange) entry.getValue();
-//                changes.addAll(ymultichange.getChanges());
-//            } else {
-//                changes.add(entry.getValue());
-//            }
-//            for (Ychange ychange : changes) {
-//                ChangeType changeType = getChangeType(ychange);
-//                String commitId = entry.getKey();
-//                String elementFileBefore = null;
-//                String elementFileAfter = null;
-//
-//                String elementNameBefore = null;
-//                String elementNameAfter = null;
-//
-//                String elementVersionIdBefore = null;
-//                String elementVersionIdAfter = null;
-//
-//                long elementVersionTimeBefore = 0;
-//                long elementVersionTimeAfter = 0;
-//
-//                if (ychange instanceof Ycomparefunctionchange) {
-//                    Ycomparefunctionchange ycomparefunctionchange = (Ycomparefunctionchange) ychange;
-//                    elementFileBefore = ycomparefunctionchange.getOldFunction().getSourceFilePath();
-//                    elementFileAfter = ycomparefunctionchange.getNewFunction().getSourceFilePath();
-//
-//                    elementNameBefore = ycomparefunctionchange.getOldFunction().getId();
-//                    elementNameAfter = ycomparefunctionchange.getNewFunction().getId();
-//
-//                    elementVersionIdBefore = ycomparefunctionchange.getOldFunction().getCommitName();
-//                    elementVersionIdAfter = ycomparefunctionchange.getNewFunction().getCommitName();
-//
-//                    elementVersionTimeBefore = ycomparefunctionchange.getOldFunction().getCommit().getCommitTime();
-//                    elementVersionTimeAfter = ycomparefunctionchange.getNewFunction().getCommit().getCommitTime();
-//                } else if (ychange instanceof Yintroduced) {
-//                    Yintroduced yintroduced = (Yintroduced) ychange;
-//
-//                    elementFileBefore = yintroduced.getNewFunction().getSourceFilePath();
-//                    elementFileAfter = yintroduced.getNewFunction().getSourceFilePath();
-//
-//                    elementNameBefore = yintroduced.getNewFunction().getId();
-//                    elementNameAfter = yintroduced.getNewFunction().getId();
-//
-//                    elementVersionIdBefore = yintroduced.getNewFunction().getCommitName();
-//                    elementVersionIdAfter = entry.getKey();
-//
-//                    elementVersionTimeBefore = yintroduced.getNewFunction().getCommit().getCommitTime();
-//                    elementVersionTimeAfter = yintroduced.getNewFunction().getCommit().getCommitTime();
-//                }
-//
-//                addHistoryResult(result,
-//                        changeType,
-//                        commitId,
-//                        methodHistoryInfo.getFunctionKey(),
-//                        Detector.SHOVEL,
-//                        ychange.toString(),
-//                        repositoryWebURL,
-//                        elementFileBefore,
-//                        elementFileAfter,
-//                        elementNameBefore,
-//                        elementNameAfter,
-//                        elementVersionIdBefore,
-//                        elementVersionIdAfter,
-//                        elementVersionTimeBefore,
-//                        elementVersionTimeAfter);
-//            }
-//        }
-//    }
 
     private static Set<String> getAllProcessedSamples(String processedFilePath) throws IOException {
         Path path = Paths.get(processedFilePath);
@@ -719,54 +673,131 @@ public class Starter {
         throw new RuntimeException("invalid " + input);
     }
 
-    private void methodHistoryExperiment(String processedFilePath) throws Exception {
-        Path resultFolder = Paths.get("result");
-        if (!resultFolder.toFile().exists())
-            Files.createDirectories(resultFolder);
-        if (processedFilePath == null)
-            processedFilePath = "result/processedFile.csv";
-        Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
-        File historyFolder = new File(Starter.class.getClassLoader().getResource("history/method/oracle/training").getFile());
+    private Map<String, MethodHistoryInfo> readOracle(String name) throws IOException {
+        Map<String, MethodHistoryInfo> oracle = new TreeMap<>();
+        File oracleFolder = new File(Starter.class.getClassLoader().getResource("history/method/oracle/" + name).getFile());
+        for (File file : oracleFolder.listFiles()) {
+            oracle.put(file.getName(), mapper.readValue(file, MethodHistoryInfo.class));
+        }
+        return oracle;
+    }
 
-        for (File file : historyFolder.listFiles()) {
-            if (processedFiles.contains(file.getName()))
-                continue;
+    private void methodHistoryExperiment() throws Exception {
+        String[] neededDirectories = new String[]{"result", "result/shovel", "result/shovel/test", "result/shovel/training", "result/oracle"};
+        for (String directoryName : neededDirectories) {
+            Path directoryPath = Paths.get(directoryName);
+            if (!directoryPath.toFile().exists())
+                Files.createDirectories(directoryPath);
+        }
 
-            MethodHistoryInfo methodHistoryInfo = mapper.readValue(file, MethodHistoryInfo.class);
+        Map<String, MethodHistoryInfo> testOracle = readOracle("test");
 
-            String repositoryWebURL = methodHistoryInfo.getRepositoryWebURL();
-            String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-            String projectDirectory = FOLDER_TO_CLONE + repositoryName;
-
-            HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
-            oracle(methodHistoryInfo, repositoryWebURL, historyResultHashMap);
-            long startTime = System.nanoTime();
-            try {
-                refactoringRefiner(historyResultHashMap, methodHistoryInfo, projectDirectory);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            startTime = System.nanoTime();
-            try {
-//                refactoringRefiner(historyResultHashMap, methodHistoryInfo, projectDirectory, true);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            long apidiffProcessingTime = (System.nanoTime() - startTime) / 1000000;
-            startTime = System.nanoTime();
-            try {
-//                codeShovel(historyResultHashMap, methodHistoryInfo, projectDirectory, repositoryWebURL);
-            } catch (Exception exception) {
-                exception.printStackTrace();
-            }
-            long shovelProcessingTime = (System.nanoTime() - startTime) / 1000000;
-
-            //saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
-//            writeToFile("E:\\Data\\History\\result.csv", String.format("%s; %s; %d; %d; %d" + System.lineSeparator(), repositoryWebURL, methodHistoryInfo.getFunctionKey(), refactoringMinerProcessingTime, apidiffProcessingTime, shovelProcessingTime), StandardOpenOption.APPEND);
-
-            writeToFile(processedFilePath, "file_name" + System.lineSeparator(), file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
+        {
+            String oracleName = "training";
+            Map<String, MethodHistoryInfo> trainingOracle = readOracle(oracleName);
+            refactoringRefiner(trainingOracle, oracleName);
+            codeShovel(trainingOracle, oracleName);
+        }
+        {
+            String oracleName = "test";
+            Map<String, MethodHistoryInfo> oracle = readOracle(oracleName);
+            refactoringRefiner(oracle, oracleName);
+            codeShovel(testOracle, oracleName);
         }
     }
+
+
+//                        =============================================================================================
+//                    UMLModel startModel = refactoringMiner.getUMLModel(historyInfo.getStartCommitName(), Collections.singletonList(historyInfo.getFilePath()));
+//                    Method startMethod = RefactoringMiner.getMethodByName(startModel, refactoringMiner.getVersion(historyInfo.getStartCommitName()), historyInfo.getFunctionKey());
+//                    if (startMethod == null)
+//                        continue;
+//                    for (VariableDeclaration variableDeclaration : startMethod.getUmlOperation().getAllVariableDeclarations()) {
+//                        if (!variableDeclaration.isParameter())
+//                            continue;
+//                        HistoryInfo variableHistoryInfo = new HistoryInfo();
+//                        variableHistoryInfo.setRepositoryName(repositoryName);
+//                        variableHistoryInfo.setRepositoryWebURL(repositoryWebURL);
+//                        variableHistoryInfo.setFilePath(startMethod.getFilePath());
+//                        variableHistoryInfo.setFunctionName(startMethod.getUmlOperation().getName());
+//                        variableHistoryInfo.setFunctionKey(startMethod.getName());
+//                        variableHistoryInfo.setFunctionStartLine(historyInfo.getFunctionStartLine());
+//
+//                        variableHistoryInfo.setVariableName(variableDeclaration.getVariableName());
+//                        int startLine = variableDeclaration.getLocationInfo().getStartLine();
+//                        variableHistoryInfo.setVariableKey(String.format("%s$%s(%d)", historyInfo.getFunctionKey(), variableDeclaration.getVariableName(), startLine));
+//                        variableHistoryInfo.setVariableStartLine(startLine);
+//
+//                        variableHistoryInfo.setStartCommitName(historyInfo.getStartCommitName());
+//
+//                        HistoryResult methodIntroducedCommit = getMethodIntroducedCommit(sessionObj, repositoryWebURL, historyInfo.getFunctionKey());
+//
+//                        boolean addedFound = false;
+//                        if (methodIntroducedCommit != null) {
+//                            String commitId = methodIntroducedCommit.getElementVersionIdAfter();
+//                            UMLModel addedModel = refactoringMiner.getUMLModel(commitId, Collections.singletonList(methodIntroducedCommit.getElementFileAfter()));
+//                            Method addedMethod = RefactoringMiner.getMethodByName(addedModel, refactoringMiner.getVersion(commitId), methodIntroducedCommit.getElementNameAfter());
+//                            if (addedMethod != null) {
+//                                for (VariableDeclaration addedVariableDeclaration : addedMethod.getUmlOperation().getAllVariableDeclarations()) {
+//                                    if (addedVariableDeclaration.getVariableName().equals(variableDeclaration.getVariableName())) {
+//                                        variableHistoryInfo.getExpectedResult().put(commitId, "added");
+//                                        addedFound = true;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//                        if (!addedFound) {
+//                            List<HistoryResult> methodChangedCommits = getMethodChangedCommits(sessionObj, repositoryWebURL, historyInfo.getFunctionKey());
+//                            for (HistoryResult historyResult : methodChangedCommits) {
+//                                if (addedFound)
+//                                    break;
+//                                UMLModel changedBodyModelRight = refactoringMiner.getUMLModel(historyResult.getElementVersionIdAfter(), Collections.singletonList(historyResult.getElementFileAfter()));
+//                                Method changedBodyMethodRight = RefactoringMiner.getMethodByName(changedBodyModelRight, refactoringMiner.getVersion(historyResult.getElementVersionIdAfter()), historyResult.getElementNameAfter());
+//
+//                                UMLModel changedBodyModelLeft = refactoringMiner.getUMLModel(historyResult.getElementVersionIdBefore(), Collections.singletonList(historyResult.getElementFileBefore()));
+//                                Method changedBodyMethodLeft = RefactoringMiner.getMethodByName(changedBodyModelLeft, refactoringMiner.getVersion(historyResult.getElementVersionIdBefore()), historyResult.getElementNameBefore());
+//                                if (changedBodyMethodLeft == null || changedBodyMethodRight == null)
+//                                    continue;
+//                                UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(changedBodyMethodLeft.getUmlOperation(), changedBodyMethodRight.getUmlOperation(), null);
+//                                umlOperationBodyMapper.getRefactorings();
+//                                for (VariableDeclaration addedVariableDeclaration : umlOperationBodyMapper.getAddedVariables().stream().map(Pair::getLeft).collect(Collectors.toList())) {
+//                                    if (addedVariableDeclaration.getVariableName().equals(variableDeclaration.getVariableName())) {
+//                                        variableHistoryInfo.getExpectedResult().put(historyResult.getElementVersionIdAfter(), "added");
+//                                        addedFound = true;
+//                                        break;
+//                                    }
+//                                }
+//                            }
+//                        }
+//
+//                        File newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + ".json");
+//                        int i = 1;
+//                        while (newFile.exists()) {
+//                            newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + i + ".json");
+//                            i++;
+//                        }
+//                        writer.writeValue(newFile, variableHistoryInfo);
+//                        writeToFile(finishedFilePath, newFile.getName() + ", " + (addedFound ? "found" : "not found") + System.lineSeparator(), StandardOpenOption.APPEND);
+//                    }
+
+
+//                    HistoryResult methodIntroducedCommit = getMethodIntroducedCommit(repositoryWebURL, historyInfo.getFunctionKey());
+//                    if(methodIntroducedCommit!=null) {
+//                        UMLModel addedModel = refactoringMiner.getUMLModel(methodIntroducedCommit.getElementVersionIdAfter(), Collections.singletonList(methodIntroducedCommit.getElementFileAfter()));
+//                        Method addedMethod = RefactoringMiner.getMethodByName(addedModel, refactoringMiner.getVersion(methodIntroducedCommit.getElementVersionIdAfter()), methodIntroducedCommit.getElementNameAfter());
+//                        UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(addedMethod.getUmlOperation(), startMethod.getUmlOperation(), null);
+//                        System.out.println("");
+//                    }else {
+//                        System.out.println(file.getName());
+//                    }
+//                }
+//            }
+//            writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
+//        }
+//    }
+
+//}
 
     private HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> getHistoryResultMap(List<HistoryResult> allHistory) {
         HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> allResults = new HashMap<>();
@@ -1010,99 +1041,6 @@ public class Starter {
         }
     }
 
-
-//                        =============================================================================================
-//                    UMLModel startModel = refactoringMiner.getUMLModel(historyInfo.getStartCommitName(), Collections.singletonList(historyInfo.getFilePath()));
-//                    Method startMethod = RefactoringMiner.getMethodByName(startModel, refactoringMiner.getVersion(historyInfo.getStartCommitName()), historyInfo.getFunctionKey());
-//                    if (startMethod == null)
-//                        continue;
-//                    for (VariableDeclaration variableDeclaration : startMethod.getUmlOperation().getAllVariableDeclarations()) {
-//                        if (!variableDeclaration.isParameter())
-//                            continue;
-//                        HistoryInfo variableHistoryInfo = new HistoryInfo();
-//                        variableHistoryInfo.setRepositoryName(repositoryName);
-//                        variableHistoryInfo.setRepositoryWebURL(repositoryWebURL);
-//                        variableHistoryInfo.setFilePath(startMethod.getFilePath());
-//                        variableHistoryInfo.setFunctionName(startMethod.getUmlOperation().getName());
-//                        variableHistoryInfo.setFunctionKey(startMethod.getName());
-//                        variableHistoryInfo.setFunctionStartLine(historyInfo.getFunctionStartLine());
-//
-//                        variableHistoryInfo.setVariableName(variableDeclaration.getVariableName());
-//                        int startLine = variableDeclaration.getLocationInfo().getStartLine();
-//                        variableHistoryInfo.setVariableKey(String.format("%s$%s(%d)", historyInfo.getFunctionKey(), variableDeclaration.getVariableName(), startLine));
-//                        variableHistoryInfo.setVariableStartLine(startLine);
-//
-//                        variableHistoryInfo.setStartCommitName(historyInfo.getStartCommitName());
-//
-//                        HistoryResult methodIntroducedCommit = getMethodIntroducedCommit(sessionObj, repositoryWebURL, historyInfo.getFunctionKey());
-//
-//                        boolean addedFound = false;
-//                        if (methodIntroducedCommit != null) {
-//                            String commitId = methodIntroducedCommit.getElementVersionIdAfter();
-//                            UMLModel addedModel = refactoringMiner.getUMLModel(commitId, Collections.singletonList(methodIntroducedCommit.getElementFileAfter()));
-//                            Method addedMethod = RefactoringMiner.getMethodByName(addedModel, refactoringMiner.getVersion(commitId), methodIntroducedCommit.getElementNameAfter());
-//                            if (addedMethod != null) {
-//                                for (VariableDeclaration addedVariableDeclaration : addedMethod.getUmlOperation().getAllVariableDeclarations()) {
-//                                    if (addedVariableDeclaration.getVariableName().equals(variableDeclaration.getVariableName())) {
-//                                        variableHistoryInfo.getExpectedResult().put(commitId, "added");
-//                                        addedFound = true;
-//                                        break;
-//                                    }
-//                                }
-//                            }
-//                        }
-//                        if (!addedFound) {
-//                            List<HistoryResult> methodChangedCommits = getMethodChangedCommits(sessionObj, repositoryWebURL, historyInfo.getFunctionKey());
-//                            for (HistoryResult historyResult : methodChangedCommits) {
-//                                if (addedFound)
-//                                    break;
-//                                UMLModel changedBodyModelRight = refactoringMiner.getUMLModel(historyResult.getElementVersionIdAfter(), Collections.singletonList(historyResult.getElementFileAfter()));
-//                                Method changedBodyMethodRight = RefactoringMiner.getMethodByName(changedBodyModelRight, refactoringMiner.getVersion(historyResult.getElementVersionIdAfter()), historyResult.getElementNameAfter());
-//
-//                                UMLModel changedBodyModelLeft = refactoringMiner.getUMLModel(historyResult.getElementVersionIdBefore(), Collections.singletonList(historyResult.getElementFileBefore()));
-//                                Method changedBodyMethodLeft = RefactoringMiner.getMethodByName(changedBodyModelLeft, refactoringMiner.getVersion(historyResult.getElementVersionIdBefore()), historyResult.getElementNameBefore());
-//                                if (changedBodyMethodLeft == null || changedBodyMethodRight == null)
-//                                    continue;
-//                                UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(changedBodyMethodLeft.getUmlOperation(), changedBodyMethodRight.getUmlOperation(), null);
-//                                umlOperationBodyMapper.getRefactorings();
-//                                for (VariableDeclaration addedVariableDeclaration : umlOperationBodyMapper.getAddedVariables().stream().map(Pair::getLeft).collect(Collectors.toList())) {
-//                                    if (addedVariableDeclaration.getVariableName().equals(variableDeclaration.getVariableName())) {
-//                                        variableHistoryInfo.getExpectedResult().put(historyResult.getElementVersionIdAfter(), "added");
-//                                        addedFound = true;
-//                                        break;
-//                                    }
-//                                }
-//                            }
-//                        }
-//
-//                        File newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + ".json");
-//                        int i = 1;
-//                        while (newFile.exists()) {
-//                            newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + i + ".json");
-//                            i++;
-//                        }
-//                        writer.writeValue(newFile, variableHistoryInfo);
-//                        writeToFile(finishedFilePath, newFile.getName() + ", " + (addedFound ? "found" : "not found") + System.lineSeparator(), StandardOpenOption.APPEND);
-//                    }
-
-
-//                    HistoryResult methodIntroducedCommit = getMethodIntroducedCommit(repositoryWebURL, historyInfo.getFunctionKey());
-//                    if(methodIntroducedCommit!=null) {
-//                        UMLModel addedModel = refactoringMiner.getUMLModel(methodIntroducedCommit.getElementVersionIdAfter(), Collections.singletonList(methodIntroducedCommit.getElementFileAfter()));
-//                        Method addedMethod = RefactoringMiner.getMethodByName(addedModel, refactoringMiner.getVersion(methodIntroducedCommit.getElementVersionIdAfter()), methodIntroducedCommit.getElementNameAfter());
-//                        UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(addedMethod.getUmlOperation(), startMethod.getUmlOperation(), null);
-//                        System.out.println("");
-//                    }else {
-//                        System.out.println(file.getName());
-//                    }
-//                }
-//            }
-//            writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
-//        }
-//    }
-
-//}
-
     private void oracle(MethodHistoryInfo methodHistoryInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap) {
         for (ChangeHistory changeHistory : methodHistoryInfo.getExpectedChanges()) {
             Change.Type changeType = Change.Type.get(changeHistory.getChangeType());
@@ -1164,22 +1102,232 @@ public class Starter {
         }
     }
 
-    private void refactoringRefiner(HashMap<String, HistoryResult> result, MethodHistoryInfo historyInfo, String projectDirectory) throws IOException {
-        RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
-        String repositoryWebURL = historyInfo.getRepositoryWebURL();
-        HistoryImpl<CodeElement, Edge> historyImpl;
-        long startTime = System.nanoTime();
-        historyImpl = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findMethodHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitId(), historyInfo.getFilePath(), historyInfo.getFunctionKey());
-        long refactoringMinerProcessingTime = (System.nanoTime() - startTime) / 1000000;
-        processHistory(historyImpl, result, repositoryWebURL, historyInfo.getFunctionKey(), Detector.MINER, "method");
+    private void refactoringRefiner(Map<String, MethodHistoryInfo> oracle, String oracleName) throws IOException {
+        String processedFilePath = String.format("result/processedFileMiner-%s.csv", oracleName);
+        Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
+        for (Map.Entry<String, MethodHistoryInfo> entry : oracle.entrySet()) {
+            String fileName = entry.getKey();
+            try {
+                if (processedFiles.contains(fileName))
+                    continue;
+                MethodHistoryInfo methodHistoryInfo = entry.getValue();
+                String repositoryWebURL = methodHistoryInfo.getRepositoryWebURL();
+                String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
+                String projectDirectory = FOLDER_TO_CLONE + repositoryName;
 
-        long tp = result.entrySet().stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
-        long fn = result.entrySet().stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
-        long fp = result.entrySet().stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+                HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
+                oracle(methodHistoryInfo, repositoryWebURL, historyResultHashMap);
 
-        writeToFile("result/miner_result.csv",
-                "instance, processing_time, tp, fp, fn" + System.lineSeparator(),
-                String.format("\"%s\", %d, %d, %d, %d" + System.lineSeparator(), historyInfo.getFunctionKey(), refactoringMinerProcessingTime, tp, fp, fn), StandardOpenOption.APPEND);
+
+                RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
+
+                HistoryImpl<CodeElement, Edge> historyImpl;
+                long startTime = System.nanoTime();
+                historyImpl = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findMethodHistory(projectDirectory, repositoryWebURL, methodHistoryInfo.getStartCommitId(), methodHistoryInfo.getFilePath(), methodHistoryInfo.getFunctionKey());
+                long refactoringMinerProcessingTime = (System.nanoTime() - startTime) / 1000000;
+                processHistory(historyImpl, historyResultHashMap, repositoryWebURL, methodHistoryInfo.getFunctionKey(), Detector.MINER, "method");
+
+                StringBuilder content = new StringBuilder();
+
+                History.HistoryReport historyReport = historyImpl.getHistoryReport();
+                content.append("\"")
+                        .append(methodHistoryInfo.getFunctionKey()).append("\",")
+                        .append(refactoringMinerProcessingTime).append(",")
+                        .append(historyReport.getAnalysedCommits()).append(",")
+                        .append(historyReport.getGitLogCommandCalls()).append(",")
+                        .append(historyReport.getStep2()).append(",")
+                        .append(historyReport.getStep3()).append(",")
+                        .append(historyReport.getStep4()).append(",")
+                        .append(historyReport.getStep5()).append(",")
+                ;
+                Set<Map.Entry<String, HistoryResult>> resultEntrySet = historyResultHashMap.entrySet();
+                for (Change.Type changeType : Change.Type.values()) {
+                    if (Change.Type.NO_CHANGE.equals(changeType) || Change.Type.MULTI_CHANGE.equals(changeType) || Change.Type.REMOVED.equals(changeType))
+                        continue;
+                    long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                    long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getRefactoringMinerVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                    long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+                    content.append(tp).append(",").append(fp).append(",").append(fn).append(",");
+                }
+
+
+                long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+                content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
+
+                writeToFile(String.format("result/miner_result_%s.csv", oracleName),
+                        RESULT_HEADER,
+                        content.toString(), StandardOpenOption.APPEND);
+
+                for (HistoryResult historyResult : resultEntrySet.stream().map(Map.Entry::getValue).sorted(Comparator.comparing(HistoryResult::getElementVersionIdAfter).reversed()).collect(Collectors.toList())) {
+                    String resultType;
+                    if (historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1)
+                        resultType = "TP";
+                    else if (historyResult.getRefactoringMinerVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1)
+                        resultType = "FN";
+                    else if (historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1)
+                        resultType = "FP";
+                    else
+                        resultType = "UN!";
+
+                    writeToFile(String.format("result/miner_detailed_result_%s.csv", oracleName),
+                            DETAILED_RESULT_HEADER,
+                            String.format(DETAILED_CONTENT_FORMAT,
+                                    historyResult.getRepository(), historyResult.getElementKey(), historyResult.getElementVersionIdBefore(), historyResult.getElementVersionIdAfter(), historyResult.getElementVersionTimeAfter(), historyResult.getChangeType(),
+                                    historyResult.getElementFileBefore(), historyResult.getElementFileAfter(), historyResult.getElementNameBefore(), historyResult.getElementNameAfter(), resultType
+                            ),
+                            StandardOpenOption.APPEND);
+                }
+                writeToFile(processedFilePath, "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
+            } catch (Exception exception) {
+                try (FileWriter fw = new FileWriter(String.format("result/miner-error-%s-%s.txt", oracleName, fileName), false)) {
+                    try (PrintWriter pw = new PrintWriter(fw)) {
+                        exception.printStackTrace(pw);
+                    }
+                }
+            }
+        }
+    }
+
+    private void codeShovel(Map<String, MethodHistoryInfo> oracle, String oracleName) throws Exception {
+        String processedFilePath = String.format("result/processedFileShovel-%s.csv", oracleName);
+        Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
+        for (Map.Entry<String, MethodHistoryInfo> oracleEntry : oracle.entrySet()) {
+            String fileName = oracleEntry.getKey();
+            try {
+                if (processedFiles.contains(fileName))
+                    continue;
+                MethodHistoryInfo methodHistoryInfo = oracleEntry.getValue();
+                String repositoryWebURL = methodHistoryInfo.getRepositoryWebURL();
+                String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
+                String projectDirectory = FOLDER_TO_CLONE + repositoryName;
+
+                HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
+                oracle(methodHistoryInfo, repositoryWebURL, historyResultHashMap);
+
+                long startTime = System.nanoTime();
+
+                Yresult yresult = runShovelExecution(projectDirectory,
+                        methodHistoryInfo.getRepositoryName(),
+                        methodHistoryInfo.getStartCommitId(),
+                        methodHistoryInfo.getFilePath(),
+                        methodHistoryInfo.getFunctionName(),
+                        String.format("result/shovel/%s/%s", oracleName, fileName),
+                        methodHistoryInfo.getFunctionStartLine()
+                );
+                long codeShovelProcessingTime = (System.nanoTime() - startTime) / 1000000;
+                for (Map.Entry<String, Ychange> entry : yresult.entrySet()) {
+                    if (entry.getValue() instanceof Ynochange)
+                        continue;
+                    List<Ychange> changes = new ArrayList<>();
+                    if (entry.getValue() instanceof Ymultichange) {
+                        Ymultichange ymultichange = (Ymultichange) entry.getValue();
+                        changes.addAll(ymultichange.getChanges());
+                    } else {
+                        changes.add(entry.getValue());
+                    }
+                    for (Ychange ychange : changes) {
+                        Change.Type changeType = getChangeType(ychange.getTypeAsString());
+                        String commitId = entry.getKey();
+                        String elementFileBefore = null;
+                        String elementFileAfter = null;
+
+                        String elementNameBefore = null;
+                        String elementNameAfter = null;
+
+                        String elementVersionIdBefore = null;
+                        String elementVersionIdAfter = null;
+
+                        long elementVersionTimeBefore = 0;
+                        long elementVersionTimeAfter = 0;
+
+                        if (ychange instanceof Ycomparefunctionchange) {
+                            Ycomparefunctionchange ycomparefunctionchange = (Ycomparefunctionchange) ychange;
+                            elementFileBefore = ycomparefunctionchange.getOldFunction().getSourceFilePath();
+                            elementFileAfter = ycomparefunctionchange.getNewFunction().getSourceFilePath();
+
+                            elementNameBefore = ycomparefunctionchange.getOldFunction().getId();
+                            elementNameAfter = ycomparefunctionchange.getNewFunction().getId();
+
+                            elementVersionIdBefore = ycomparefunctionchange.getOldFunction().getCommitName();
+                            elementVersionIdAfter = ycomparefunctionchange.getNewFunction().getCommitName();
+
+                            elementVersionTimeBefore = ycomparefunctionchange.getOldFunction().getCommit().getCommitTime();
+                            elementVersionTimeAfter = ycomparefunctionchange.getNewFunction().getCommit().getCommitTime();
+                        } else if (ychange instanceof Yintroduced) {
+                            Yintroduced yintroduced = (Yintroduced) ychange;
+
+                            elementFileBefore = yintroduced.getNewFunction().getSourceFilePath();
+                            elementFileAfter = yintroduced.getNewFunction().getSourceFilePath();
+
+                            elementNameBefore = yintroduced.getNewFunction().getId();
+                            elementNameAfter = yintroduced.getNewFunction().getId();
+
+                            elementVersionIdBefore = yintroduced.getNewFunction().getCommitName();
+                            elementVersionIdAfter = entry.getKey();
+
+                            elementVersionTimeBefore = yintroduced.getNewFunction().getCommit().getCommitTime();
+                            elementVersionTimeAfter = yintroduced.getNewFunction().getCommit().getCommitTime();
+                        }
+
+                        addHistoryResult(historyResultHashMap,
+                                changeType,
+                                commitId,
+                                methodHistoryInfo.getFunctionKey(),
+                                "method",
+                                Detector.SHOVEL,
+                                ychange.toString(),
+                                repositoryWebURL,
+                                elementFileBefore,
+                                elementFileAfter,
+                                elementNameBefore,
+                                elementNameAfter,
+                                elementVersionIdBefore,
+                                elementVersionIdAfter,
+                                elementVersionTimeBefore,
+                                elementVersionTimeAfter);
+                    }
+                }
+
+
+                StringBuilder content = new StringBuilder();
+                content.append("\"")
+                        .append(methodHistoryInfo.getFunctionKey()).append("\",")
+                        .append(codeShovelProcessingTime).append(",")
+                ;
+                Set<Map.Entry<String, HistoryResult>> resultEntrySet = historyResultHashMap.entrySet();
+                for (Change.Type changeType : Change.Type.values()) {
+                    if (Change.Type.NO_CHANGE.equals(changeType) || Change.Type.MULTI_CHANGE.equals(changeType) || Change.Type.REMOVED.equals(changeType))
+                        continue;
+                    long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                    long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                    long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+                    content.append(tp).append(",").append(fp).append(",").append(fn).append(",");
+                }
+
+                long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+                content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
+
+                writeToFile(String.format("result/shovel_result_%s.csv", oracleName),
+                        RESULT_HEADER_SHOVEL,
+                        content.toString(), StandardOpenOption.APPEND);
+
+                writeToFile(processedFilePath, "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
+            } catch (Exception exception) {
+                try (FileWriter fw = new FileWriter(String.format("result/shovel-error-%s-%s.txt", oracleName, fileName), false)) {
+                    try (PrintWriter pw = new PrintWriter(fw)) {
+                        exception.printStackTrace(pw);
+                    }
+                }
+            }
+        }
     }
 
     private void processHistory(HistoryImpl<CodeElement, Edge> historyImpl, HashMap<String, HistoryResult> result, String repositoryWebURL, String elementKey, Detector detector, String elementType) {

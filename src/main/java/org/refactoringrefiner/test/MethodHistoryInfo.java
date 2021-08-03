@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MethodHistoryInfo {
+    private String repositoryName;
     private String repositoryWebURL;
     private String startCommitId;
     private String filePath;
@@ -11,7 +12,7 @@ public class MethodHistoryInfo {
     private String functionKey;
     private int functionStartLine;
 
-    private List<ChangeHistory> expectedChanges = new ArrayList<>();
+    private final List<ChangeHistory> expectedChanges = new ArrayList<>();
 
     public String getRepositoryWebURL() {
         return repositoryWebURL;
@@ -63,5 +64,13 @@ public class MethodHistoryInfo {
 
     public List<ChangeHistory> getExpectedChanges() {
         return expectedChanges;
+    }
+
+    public String getRepositoryName() {
+        return repositoryName;
+    }
+
+    public void setRepositoryName(String repositoryName) {
+        this.repositoryName = repositoryName;
     }
 }

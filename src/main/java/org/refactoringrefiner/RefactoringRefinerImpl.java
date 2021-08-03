@@ -340,7 +340,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         }
                     }
                 }
-                return new HistoryImpl<>(refactoringMiner.findSubGraph(codeElementType, start));
+                return new HistoryImpl<>(refactoringMiner.findSubGraph(codeElementType, start), historyReport);
             }
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -555,7 +555,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
                     }
                 }
-                return new HistoryImpl<>(refactoringMiner.findSubGraph(codeElementType, start));
+                return new HistoryImpl<>(refactoringMiner.findSubGraph(codeElementType, start), null);
             }
         } catch (Exception exception) {
             exception.printStackTrace();
