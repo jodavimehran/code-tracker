@@ -23,6 +23,7 @@ import org.refactoringrefiner.util.IRepository;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class RefactoringMiner implements ChangeDetector {
     private final GitHistoryRefactoringMinerImpl gitHistoryRefactoringMiner;
@@ -148,42 +149,26 @@ public class RefactoringMiner implements ChangeDetector {
 //        return true;
 //    }
 
-//    public Pair<UMLModel, UMLModel> getUMLModel(String commitId) {
-//        return getUMLModel(commitId, (s -> true));
-//    }
-//
-//    public Pair<UMLModel, UMLModel> getUMLModel(String commitId, Predicate<String> filterFile) {
-//        try (RevWalk walk = new RevWalk(repository)) {
-//            RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
-//            if (currentCommit.getParentCount() != 1)
-//                return null;
-//            walk.parseCommit(currentCommit.getParent(0));
-//            RevCommit parentCommit = currentCommit.getParent(0);
-//            List<String> filePathsBefore = new ArrayList<>();
-//            List<String> filePathsCurrent = new ArrayList<>();
-//            Map<String, String> renamedFilesHint = new HashMap<>();
-//            gitService.fileTreeDiff(repository, parentCommit, currentCommit, filePathsBefore, filePathsCurrent, renamedFilesHint);
-//
-//            List<String> filePathBeforeFilter = filePathsBefore.stream().filter(filterFile).collect(Collectors.toList());
-//            List<String> filePathCurrentFilter = filePathsCurrent.stream().filter(filterFile).collect(Collectors.toList());
-//            UMLModel leftSideUMLModel = null;
-//            UMLModel rightSideUMLModel = null;
-//            if (!filePathBeforeFilter.isEmpty())
-//                leftSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, parentCommit, filePathBeforeFilter);
-//            if (!filePathCurrentFilter.isEmpty())
-//                rightSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, currentCommit, filePathCurrentFilter);
-//            if (leftSideUMLModel == null && rightSideUMLModel == null)
-//                return null;
-//
-//            return Pair.of(leftSideUMLModel, rightSideUMLModel);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    public CommitModel getCommitModel(String commitId) throws Exception {
+        try (RevWalk walk = new RevWalk(repository)) {
+            RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
+            RevCommit parentCommit1 = null;
+            if (currentCommit.getParentCount() == 1 || currentCommit.getParentCount() == 2) {
+                walk.parseCommit(currentCommit.getParent(0));
+                parentCommit1 = currentCommit.getParent(0);
+            }
+            RevCommit parentCommit2 = null;
+            if (currentCommit.getParentCount() == 2) {
+                walk.parseCommit(currentCommit.getParent(1));
+                parentCommit2 = currentCommit.getParent(1);
 
-    public List<UMLModelDiff> getUMLModelDiff(String commitId, List<String> rightSideFileNames) {
-        List<UMLModelDiff> result = new ArrayList<>();
+            }
+            return getCommitModel(parentCommit1, parentCommit2, currentCommit);
+        }
+    }
+
+    public List<ModelDiff> getUMLModelDiff(String commitId, List<String> rightSideFileNames) throws Exception {
+        List<ModelDiff> result = new ArrayList<>();
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
             if (currentCommit.getParentCount() == 1 || currentCommit.getParentCount() == 2) {
@@ -197,63 +182,106 @@ public class RefactoringMiner implements ChangeDetector {
                 RevCommit parentCommit = currentCommit.getParent(1);
                 result.add(getUMLModelDiff(rightSideFileNames, currentCommit, parentCommit));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+            return result;
         }
-        return result;
     }
 
-    private UMLModelDiff getUMLModelDiff(List<String> rightSideFileNames, RevCommit currentCommit, RevCommit parentCommit) throws Exception {
+    private CommitModel getCommitModel(RevCommit parentCommit1, RevCommit parentCommit2, RevCommit currentCommit) throws Exception {
+        Map<String, String> renamedFilesHint = new HashMap<>();
+        List<String> filePathsBefore1 = new ArrayList<>();
+        List<String> filePathsCurrent1 = new ArrayList<>();
+        if (parentCommit1 != null) {
+            gitService.fileTreeDiff(repository, parentCommit1, currentCommit, filePathsBefore1, filePathsCurrent1, renamedFilesHint);
+        }
+
+        List<String> filePathsBefore2 = new ArrayList<>();
+        List<String> filePathsCurrent2 = new ArrayList<>();
+        if (parentCommit2 != null) {
+            gitService.fileTreeDiff(repository, parentCommit2, currentCommit, filePathsBefore2, filePathsCurrent2, renamedFilesHint);
+        }
+
+        Set<String> repositoryDirectoriesBefore = new LinkedHashSet<String>();
+        Map<String, String> fileContentsBefore = new LinkedHashMap<String, String>();
+
+        Set<String> repositoryDirectoriesCurrent = new LinkedHashSet<String>();
+        Map<String, String> fileContentsCurrent = new LinkedHashMap<String, String>();
+
+        if (parentCommit1 != null) {
+            GitHistoryRefactoringMinerImpl.populateFileContents(repository, parentCommit1, filePathsBefore1, fileContentsBefore, repositoryDirectoriesBefore);
+        }
+        if (parentCommit2 != null) {
+            GitHistoryRefactoringMinerImpl.populateFileContents(repository, parentCommit2, filePathsBefore2, fileContentsBefore, repositoryDirectoriesBefore);
+        }
+        Set<String> filePathsCurrent = new HashSet<>();
+        filePathsCurrent.addAll(filePathsCurrent1);
+        filePathsCurrent.addAll(filePathsCurrent2);
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, new ArrayList<>(filePathsCurrent), fileContentsCurrent, repositoryDirectoriesCurrent);
+
+        Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(fileContentsBefore);
+        Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
+        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed, renamedFilesHint);
+
+        return new CommitModel(repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
+    }
+
+    private ModelDiff getUMLModelDiff(List<String> rightSideFileNames, RevCommit currentCommit, RevCommit parentCommit) throws Exception {
         List<String> filePathsBefore = new ArrayList<>();
         List<String> filePathsCurrent = new ArrayList<>();
         Map<String, String> renamedFilesHint = new HashMap<>();
         gitService.fileTreeDiff(repository, parentCommit, currentCommit, filePathsBefore, filePathsCurrent, renamedFilesHint);
 
-        UMLModel leftSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, parentCommit, filePathsBefore);
-        UMLModel rightSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, currentCommit, rightSideFileNames != null ? rightSideFileNames : filePathsCurrent);
+        Set<String> repositoryDirectoriesBefore = new LinkedHashSet<String>();
+        Set<String> repositoryDirectoriesCurrent = new LinkedHashSet<String>();
+        Map<String, String> fileContentsBefore = new LinkedHashMap<String, String>();
+        Map<String, String> fileContentsCurrent = new LinkedHashMap<String, String>();
 
-        return leftSideUMLModel.diff(rightSideUMLModel, renamedFilesHint);
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, parentCommit, filePathsBefore, fileContentsBefore, repositoryDirectoriesBefore);
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, filePathsCurrent, fileContentsCurrent, repositoryDirectoriesCurrent);
+
+        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBefore, fileContentsCurrent, renamedFilesHint);
+
+        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsBefore, repositoryDirectoriesBefore);
+        //UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsCurrent, repositoryDirectoriesCurrent);
+        UMLModel rightSideUMLModel;
+        if (rightSideFileNames != null)
+            rightSideUMLModel = GitHistoryRefactoringMinerImpl.getUmlModel(repository, currentCommit, rightSideFileNames);
+        else
+            rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsCurrent, repositoryDirectoriesCurrent);
+
+        ModelDiff modelDiff = new ModelDiff(leftSideUMLModel.diff(rightSideUMLModel, renamedFilesHint), filePathsBefore, filePathsCurrent, renamedFilesHint, moveSourceFolderRefactorings);
+        return modelDiff;
     }
 
-    public Pair<Pair<UMLModel, UMLModel>, UMLModel> getUMLModelPair(String commitId, List<String> rightSideFileNames) {
-        Pair<Pair<UMLModel, UMLModel>, UMLModel> result = null;
-        if (rightSideFileNames == null)
-            throw new IllegalArgumentException("File names could not be null.");
+    public Pair<UMLModel, UMLModel> getUMLModelPair(RefactoringMiner.CommitModel commitModel, String rightSideFileName, boolean filterLeftSide) throws Exception {
+        if (rightSideFileName == null)
+            throw new IllegalArgumentException("File name could not be null.");
 
-        if (rightSideFileNames.isEmpty())
-            return null;
+        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
 
-        try (RevWalk walk = new RevWalk(repository)) {
-            RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-
-            UMLModel rightSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, revCommit, rightSideFileNames);
-
-
-            UMLModel leftSideUMLModel1 = null;
-            UMLModel leftSideUMLModel2 = null;
-            switch (revCommit.getParentCount()) {
-                case 0: {
-                    return Pair.of(null, rightSideUMLModel);
+        UMLModel leftSideUMLModel;
+        if(filterLeftSide) {
+            String leftSideFileName = rightSideFileName;
+            if (commitModel.moveSourceFolderRefactorings != null) {
+                boolean found = false;
+                for (MoveSourceFolderRefactoring moveSourceFolderRefactoring : commitModel.moveSourceFolderRefactorings) {
+                    if (found)
+                        break;
+                    for (Map.Entry<String, String> identicalPath : moveSourceFolderRefactoring.getIdenticalFilePaths().entrySet()) {
+                        if (identicalPath.getValue().equals(rightSideFileName)) {
+                            leftSideFileName = identicalPath.getKey();
+                            found = true;
+                            break;
+                        }
+                    }
                 }
-                case 2: {
-                    walk.parseCommit(revCommit.getParent(1));
-                    RevCommit parentCommit = revCommit.getParent(1);
-                    leftSideUMLModel2 = gitHistoryRefactoringMiner.getUmlModel(repository, parentCommit, rightSideFileNames);
-                }
-                case 1: {
-                    walk.parseCommit(revCommit.getParent(0));
-                    RevCommit parentCommit = revCommit.getParent(0);
-                    leftSideUMLModel1 = gitHistoryRefactoringMiner.getUmlModel(repository, parentCommit, rightSideFileNames);
-                    break;
-                }
-
             }
 
-            result = Pair.of(Pair.of(leftSideUMLModel1, leftSideUMLModel2), rightSideUMLModel);
-        } catch (Exception e) {
-            e.printStackTrace();
+            final String leftSideFileNameFinal = leftSideFileName;
+            leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
+        }else {
+            leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
         }
-        return result;
+        return Pair.of(leftSideUMLModel, rightSideUMLModel);
     }
 
     public UMLModel getUMLModel(String commitId, List<String> fileNames) {
@@ -261,9 +289,37 @@ public class RefactoringMiner implements ChangeDetector {
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-            return gitHistoryRefactoringMiner.getUmlModel(repository, revCommit, fileNames);
+            return GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        return null;
+    }
+
+    public List<CodeElement> findMostLeftElement(RefactoringRefiner.CodeElementType codeElementType, String codeElementKey) {
+        switch (codeElementType) {
+            case CLASS:
+                return refactoringHandler.getClassChangeHistoryGraph().findMostLeftSide(codeElementKey);
+            case ATTRIBUTE:
+                return refactoringHandler.getAttributeChangeHistory().findMostLeftSide(codeElementKey);
+            case METHOD:
+                return refactoringHandler.getMethodChangeHistoryGraph().findMostLeftSide(codeElementKey);
+            case VARIABLE:
+                return refactoringHandler.getVariableChangeHistoryGraph().findMostLeftSide(codeElementKey);
+        }
+        return Collections.emptyList();
+    }
+
+    public Graph<CodeElement, Edge> findSubGraph(RefactoringRefiner.CodeElementType codeElementType, CodeElement start) {
+        switch (codeElementType) {
+            case CLASS:
+                return refactoringHandler.getClassChangeHistoryGraph().findSubGraph(start);
+            case ATTRIBUTE:
+                return refactoringHandler.getAttributeChangeHistory().findSubGraph(start);
+            case METHOD:
+                return refactoringHandler.getMethodChangeHistoryGraph().findSubGraph(start);
+            case VARIABLE:
+                return refactoringHandler.getVariableChangeHistoryGraph().findSubGraph(start);
         }
         return null;
     }
@@ -293,34 +349,6 @@ public class RefactoringMiner implements ChangeDetector {
 //    private boolean isAttributeChanged(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel, String key) {
 //        return isChanged(leftSideUMLModel, rightSideUMLModel, key, RefactoringMiner::getAttribute);
 //    }
-
-    public List<CodeElement> findMostLeftElement(RefactoringRefiner.CodeElementType codeElementType, String codeElementKey) {
-        switch (codeElementType) {
-            case CLASS:
-                return refactoringHandler.getClassChangeHistoryGraph().findMostLeftSide(codeElementKey);
-            case ATTRIBUTE:
-                return refactoringHandler.getAttributeChangeHistory().findMostLeftSide(codeElementKey);
-            case METHOD:
-                return refactoringHandler.getMethodChangeHistoryGraph().findMostLeftSide(codeElementKey);
-            case VARIABLE:
-                return refactoringHandler.getVariableChangeHistoryGraph().findMostLeftSide(codeElementKey);
-        }
-        return Collections.emptyList();
-    }
-
-    public Graph<CodeElement, Edge> findSubGraph(RefactoringRefiner.CodeElementType codeElementType, CodeElement start) {
-        switch (codeElementType) {
-            case CLASS:
-                return refactoringHandler.getClassChangeHistoryGraph().findSubGraph(start);
-            case ATTRIBUTE:
-                return refactoringHandler.getAttributeChangeHistory().findSubGraph(start);
-            case METHOD:
-                return refactoringHandler.getMethodChangeHistoryGraph().findSubGraph(start);
-            case VARIABLE:
-                return refactoringHandler.getVariableChangeHistoryGraph().findSubGraph(start);
-        }
-        return null;
-    }
 
     public IRepository getRepository() {
         return refactoringHandler.getRepository();
@@ -748,14 +776,87 @@ public class RefactoringMiner implements ChangeDetector {
                 if (RefactoringHandlerImpl.checkOperationDocumentationChanged(methodBefore.getUmlOperation(), methodAfter.getUmlOperation())) {
                     refactoringHandler.getMethodChangeHistoryGraph().addChange(methodBefore, methodAfter, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
                 }
-                if(!operationBefore.getLocationInfo().getFilePath().equals(operationAfter.getLocationInfo().getFilePath()) || !operationBefore.getClassName().equals(operationAfter.getClassName())){
-                    refactoringHandler.getMethodChangeHistoryGraph().addChange(methodBefore, methodAfter, ChangeFactory.forMethod(Change.Type.CONTAINER_CHANGE));
-                }
+//                if(!Change.Type.METHOD_MOVE.equals(changeType) && !operationBefore.getLocationInfo().getFilePath().equals(operationAfter.getLocationInfo().getFilePath()) || !operationBefore.getClassName().equals(operationAfter.getClassName())){
+//                    refactoringHandler.getMethodChangeHistoryGraph().addChange(methodBefore, methodAfter, ChangeFactory.forMethod(Change.Type.CONTAINER_CHANGE));
+//                }
                 leftMethodSet.add(methodBefore);
                 return true;
             }
         }
         return false;
+    }
+
+    //    public Pair<UMLModel, UMLModel> getUMLModel(String commitId) {
+//        return getUMLModel(commitId, (s -> true));
+//    }
+//
+//    public Pair<UMLModel, UMLModel> getUMLModel(String commitId, Predicate<String> filterFile) {
+//        try (RevWalk walk = new RevWalk(repository)) {
+//            RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
+//            if (currentCommit.getParentCount() != 1)
+//                return null;
+//            walk.parseCommit(currentCommit.getParent(0));
+//            RevCommit parentCommit = currentCommit.getParent(0);
+//            List<String> filePathsBefore = new ArrayList<>();
+//            List<String> filePathsCurrent = new ArrayList<>();
+//            Map<String, String> renamedFilesHint = new HashMap<>();
+//            gitService.fileTreeDiff(repository, parentCommit, currentCommit, filePathsBefore, filePathsCurrent, renamedFilesHint);
+//
+//            List<String> filePathBeforeFilter = filePathsBefore.stream().filter(filterFile).collect(Collectors.toList());
+//            List<String> filePathCurrentFilter = filePathsCurrent.stream().filter(filterFile).collect(Collectors.toList());
+//            UMLModel leftSideUMLModel = null;
+//            UMLModel rightSideUMLModel = null;
+//            if (!filePathBeforeFilter.isEmpty())
+//                leftSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, parentCommit, filePathBeforeFilter);
+//            if (!filePathCurrentFilter.isEmpty())
+//                rightSideUMLModel = gitHistoryRefactoringMiner.getUmlModel(repository, currentCommit, filePathCurrentFilter);
+//            if (leftSideUMLModel == null && rightSideUMLModel == null)
+//                return null;
+//
+//            return Pair.of(leftSideUMLModel, rightSideUMLModel);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return null;
+//    }
+    public static class CommitModel {
+        public final Set<String> repositoryDirectoriesBefore;
+        public final Map<String, String> fileContentsBeforeOriginal;
+        public final Map<String, String> fileContentsBeforeTrimmed;
+
+        public final Set<String> repositoryDirectoriesCurrent;
+        public final Map<String, String> fileContentsCurrentOriginal;
+        public final Map<String, String> fileContentsCurrentTrimmed;
+
+        public final Map<String, String> renamedFilesHint;
+        public final List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings;
+
+        public CommitModel(Set<String> repositoryDirectoriesBefore, Map<String, String> fileContentsBeforeOriginal, Map<String, String> fileContentsBeforeTrimmed, Set<String> repositoryDirectoriesCurrent, Map<String, String> fileContentsCurrentOriginal, Map<String, String> fileContentsCurrentTrimmed, Map<String, String> renamedFilesHint, List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings) {
+            this.repositoryDirectoriesBefore = repositoryDirectoriesBefore;
+            this.fileContentsBeforeOriginal = fileContentsBeforeOriginal;
+            this.fileContentsBeforeTrimmed = fileContentsBeforeTrimmed;
+            this.repositoryDirectoriesCurrent = repositoryDirectoriesCurrent;
+            this.fileContentsCurrentOriginal = fileContentsCurrentOriginal;
+            this.fileContentsCurrentTrimmed = fileContentsCurrentTrimmed;
+            this.renamedFilesHint = renamedFilesHint;
+            this.moveSourceFolderRefactorings = moveSourceFolderRefactorings;
+        }
+    }
+
+    public static class ModelDiff {
+        public final UMLModelDiff umlModelDiff;
+        public final List<String> filePathsBefore;
+        public final List<String> filePathsCurrent;
+        public final Map<String, String> renamedFilesHint;
+        public final List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings;
+
+        public ModelDiff(UMLModelDiff umlModelDiff, List<String> filePathsBefore, List<String> filePathsCurrent, Map<String, String> renamedFilesHint, List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings) {
+            this.umlModelDiff = umlModelDiff;
+            this.filePathsBefore = filePathsBefore;
+            this.filePathsCurrent = filePathsCurrent;
+            this.renamedFilesHint = renamedFilesHint;
+            this.moveSourceFolderRefactorings = moveSourceFolderRefactorings;
+        }
     }
 
 //    private interface CodeElementFinder<U> {

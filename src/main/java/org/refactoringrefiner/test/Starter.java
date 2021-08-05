@@ -84,8 +84,8 @@ enum Detector {
 //}
 
 public class Starter {
-    public static final String DETAILED_RESULT_HEADER = "repository, element_key, parent_commit_id, commit_id, commit_time, change_type, element_file_before, element_file_after, element_name_before, element_name_after, result" + System.lineSeparator();
-    public static final String DETAILED_CONTENT_FORMAT = "\"%s\", \"%s\", %s, %s, %d, %s, %s, %s, \"%s\", \"%s\", %s" + System.lineSeparator();
+    public static final String DETAILED_RESULT_HEADER = "repository,element_key,parent_commit_id,commit_id,commit_time, change_type,element_file_before,element_file_after,element_name_before,element_name_after,result" + System.lineSeparator();
+    public static final String DETAILED_CONTENT_FORMAT = "\"%s\",\"%s\",%s,%s,%d,%s,%s,%s,\"%s\",\"%s\",%s" + System.lineSeparator();
     private final static String FOLDER_TO_CLONE = "H:\\Projects\\";
     private static final ObjectMapper mapper = new ObjectMapper();
     private final static String RESULT_HEADER;
@@ -95,8 +95,8 @@ public class Starter {
     static {
         StringBuilder header = new StringBuilder();
         StringBuilder headerShovel = new StringBuilder();
-        header.append("instance, processing_time, analysed_commits, git_log_command_calls, step2, step3, step4, step5,");
-        headerShovel.append("instance, processing_time,");
+        header.append("instance,processing_time,analysed_commits,git_log_command_calls,step2,step3,step4,step5,");
+        headerShovel.append("instance,processing_time,");
         for (Change.Type changeType : Change.Type.values()) {
             if (Change.Type.NO_CHANGE.equals(changeType) || Change.Type.MULTI_CHANGE.equals(changeType) || Change.Type.REMOVED.equals(changeType))
                 continue;
@@ -109,8 +109,8 @@ public class Starter {
             headerShovel.append("fn_").append(changeType.getTitle().toLowerCase().replace(" ", "_")).append(",");
         }
 
-        header.append("tp_all, fp_all, fn_all").append(System.lineSeparator());
-        headerShovel.append("tp_all, fp_all, fn_all").append(System.lineSeparator());
+        header.append("tp_all,fp_all,fn_all").append(System.lineSeparator());
+        headerShovel.append("tp_all,fp_all,fn_all").append(System.lineSeparator());
         RESULT_HEADER = header.toString();
         RESULT_HEADER_SHOVEL = headerShovel.toString();
     }
@@ -690,19 +690,17 @@ public class Starter {
                 Files.createDirectories(directoryPath);
         }
 
-        Map<String, MethodHistoryInfo> testOracle = readOracle("test");
-
         {
             String oracleName = "training";
-            Map<String, MethodHistoryInfo> trainingOracle = readOracle(oracleName);
-            refactoringRefiner(trainingOracle, oracleName);
-            codeShovel(trainingOracle, oracleName);
+            Map<String, MethodHistoryInfo> oracle = readOracle(oracleName);
+            refactoringRefiner(oracle, oracleName);
+//            codeShovel(oracle, oracleName);
         }
         {
             String oracleName = "test";
             Map<String, MethodHistoryInfo> oracle = readOracle(oracleName);
             refactoringRefiner(oracle, oracleName);
-            codeShovel(testOracle, oracleName);
+            //codeShovel(oracle, oracleName);
         }
     }
 
@@ -1162,7 +1160,8 @@ public class Starter {
                         RESULT_HEADER,
                         content.toString(), StandardOpenOption.APPEND);
 
-                for (HistoryResult historyResult : resultEntrySet.stream().map(Map.Entry::getValue).sorted(Comparator.comparing(HistoryResult::getElementVersionIdAfter).reversed()).collect(Collectors.toList())) {
+                List<HistoryResult> historyResults = resultEntrySet.stream().map(Map.Entry::getValue).sorted(Comparator.comparing(HistoryResult::getElementVersionIdAfter).reversed()).collect(Collectors.toList());
+                for (HistoryResult historyResult : historyResults) {
                     String resultType;
                     if (historyResult.getRefactoringMinerVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1)
                         resultType = "TP";
