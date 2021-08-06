@@ -259,27 +259,25 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         String parentCommitId = refactoringMiner.getRepository().getParentId(commitId);
                         Version parentVersion = refactoringMiner.getVersion(parentCommitId);
 
-                        UMLModel rightModel = refactoringMiner.getUMLModel(commitId, Collections.singletonList(currentMethod.getFilePath()));
-                        UMLModel leftModel = refactoringMiner.getUMLModel(parentCommitId, Collections.singletonList(currentMethod.getFilePath()));
 
+                        UMLModel rightModel = refactoringMiner.getUMLModel(commitId, Collections.singletonList(currentMethod.getFilePath()));
                         Method rightMethod = RefactoringMiner.getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                         if (rightMethod == null) {
                             continue;
                         }
-
-                        ChangeHistory methodChangeHistoryGraph = refactoringMiner.getRefactoringHandler().getMethodChangeHistoryGraph();
-                        Method leftMethod;
-//                        //handle first commit of repository which doesn't have any parent
-//                        if (umlModelPair.getLeft() == null) {
-//                            leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
-//                            methodChangeHistoryGraph.handleAdd(leftMethod, rightMethod);
-//                            refactoringMiner.connectRelatedNodes(codeElementType);
-//                            methods.add(leftMethod);
-//                            break;
-//                        }
                         historyReport.analysedCommitsPlusPlus();
+                        ChangeHistory methodChangeHistoryGraph = refactoringMiner.getRefactoringHandler().getMethodChangeHistoryGraph();
+                        if ("0".equals(parentCommitId)) {
+                            Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
+                            methodChangeHistoryGraph.handleAdd(leftMethod, rightMethod);
+                            refactoringMiner.connectRelatedNodes(codeElementType);
+                            methods.add(leftMethod);
+                            break;
+                        }
+                        UMLModel leftModel = refactoringMiner.getUMLModel(parentCommitId, Collections.singletonList(currentMethod.getFilePath()));
+
                         //NO CHANGE
-                        leftMethod = RefactoringMiner.getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                        Method leftMethod = RefactoringMiner.getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                         if (leftMethod != null) {
                             historyReport.step2PlusPlus();
                             continue;
