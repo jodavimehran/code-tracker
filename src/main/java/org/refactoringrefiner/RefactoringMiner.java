@@ -21,6 +21,7 @@ import org.refactoringrefiner.element.Variable;
 import org.refactoringrefiner.util.GitRepository;
 import org.refactoringrefiner.util.IRepository;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -252,13 +253,10 @@ public class RefactoringMiner implements ChangeDetector {
         return modelDiff;
     }
 
-    public Pair<UMLModel, UMLModel> getUMLModelPair(RefactoringMiner.CommitModel commitModel, String rightSideFileName, boolean filterLeftSide) throws Exception {
+    public Pair<UMLModel, UMLModel> getUMLModelPair(final RefactoringMiner.CommitModel commitModel, final String rightSideFileName, final Set<String> rightSideFileNames, final boolean filterLeftSide) throws Exception {
         if (rightSideFileName == null)
             throw new IllegalArgumentException("File name could not be null.");
 
-        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
-
-        UMLModel leftSideUMLModel;
         if(filterLeftSide) {
             String leftSideFileName = rightSideFileName;
             if (commitModel.moveSourceFolderRefactorings != null) {
@@ -277,23 +275,24 @@ public class RefactoringMiner implements ChangeDetector {
             }
 
             final String leftSideFileNameFinal = leftSideFileName;
-            leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
+            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            return Pair.of(leftSideUMLModel, rightSideUMLModel);
         }else {
-            leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
+            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNames.contains(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            return Pair.of(leftSideUMLModel, rightSideUMLModel);
         }
-        return Pair.of(leftSideUMLModel, rightSideUMLModel);
+
     }
 
-    public UMLModel getUMLModel(String commitId, List<String> fileNames) {
+    public UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
         if (fileNames == null || fileNames.isEmpty())
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
             return GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
-        return null;
     }
 
     public List<CodeElement> findMostLeftElement(RefactoringRefiner.CodeElementType codeElementType, String codeElementKey) {

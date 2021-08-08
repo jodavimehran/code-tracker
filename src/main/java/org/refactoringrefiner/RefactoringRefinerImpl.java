@@ -1,8 +1,6 @@
 package org.refactoringrefiner;
 
-import gr.uom.java.xmi.UMLClass;
-import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.*;
@@ -29,6 +27,8 @@ import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Predicate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -298,9 +298,10 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         }
 
                         //Local Refactoring
+                        UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
                         {
-                            UMLModelDiff umlModelDiff = leftModel.diff(rightModel, new HashMap<>());
-                            List<Refactoring> refactorings = umlModelDiff.getRefactorings();
+
+                            List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
                             boolean refactored = isMethodRefactored(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             if (refactored) {
                                 historyReport.step4PlusPlus();
@@ -311,11 +312,11 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         {
 
                             RefactoringMiner.CommitModel commitModel = refactoringMiner.getCommitModel(commitId);
-                            {
-                                Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), true);
+                            if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
+                                Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), Collections.emptySet(),true);
                                 UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
                                 List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-                                boolean containerChanged = isMethodContainerChanged(commitModel, refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                boolean containerChanged = isMethodContainerChanged(refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
                                 boolean refactored = isMethodRefactored(refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
@@ -323,15 +324,22 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
+
+                                boolean checkInnerClassMoveDiffList = checkInnerClassMoveDiffList(umlModelDiffPartial.getInnerClassMoveDiffList(), refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                if (checkInnerClassMoveDiffList) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
                             }
                             {
 
-                                Pair<UMLModel, UMLModel> umlModelPairAll = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), false);
-                                UMLModelDiff umlModelDiff = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                                Set<String> fileNames = getRightSideFileNames(currentMethod, commitModel, umlModelDiffLocal);
+                                Pair<UMLModel, UMLModel> umlModelPairAll = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames, false);
+                                UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
 
-                                List<Refactoring> refactorings = umlModelDiff.getRefactorings();
+                                List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
-                                boolean containerChanged = isMethodContainerChanged(commitModel, refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                boolean containerChanged = isMethodContainerChanged(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
                                 boolean refactored = isMethodRefactored(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
@@ -340,7 +348,13 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                     break;
                                 }
 
-                                if (isMethodAdded(umlModelDiff, refactoringMiner, methods, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion)) {
+                                boolean checkInnerClassMoveDiffList = checkInnerClassMoveDiffList(umlModelDiffAll.getInnerClassMoveDiffList(), refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                if (checkInnerClassMoveDiffList) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+
+                                if (isMethodAdded(umlModelDiffAll, refactoringMiner, methods, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion)) {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
@@ -351,6 +365,58 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 return new HistoryImpl<>(refactoringMiner.findSubGraph(codeElementType, start), historyReport);
             }
         }
+    }
+
+    private Set<String> getRightSideFileNames(Method currentMethod, RefactoringMiner.CommitModel commitModel, UMLModelDiff umlModelDiff) {
+        Set<String> fileNames = new HashSet<>();
+        fileNames.add(currentMethod.getFilePath());
+        UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentMethod.getUmlOperation().getClassName());
+
+        if (classInChildModel instanceof UMLClass) {
+            UMLClass umlClass = (UMLClass) classInChildModel;
+            StringBuilder regxSb = new StringBuilder();
+            String orChar = "";
+            if(umlClass.getSuperclass()!=null){
+                regxSb.append(" extends ").append(umlClass.getSuperclass().getClassType()).append("| class ").append(umlClass.getSuperclass().getClassType());
+                orChar = "|";
+            }
+
+            for (UMLType implementedInterfaces : umlClass.getImplementedInterfaces()) {
+                regxSb.append(orChar).append(" implements .*").append(implementedInterfaces);
+                orChar = "|";
+            }
+            String regx = regxSb.toString();
+            if(!regx.isEmpty()){
+                Pattern pattern = Pattern.compile(regx);
+                for (Map.Entry<String, String> entry : commitModel.fileContentsCurrentTrimmed.entrySet()) {
+                    Matcher matcher = pattern.matcher(entry.getValue());
+                    if (matcher.find()) {
+                        fileNames.add(entry.getKey());
+                    }
+                }
+            }
+        }
+        return fileNames;
+    }
+
+    private boolean checkInnerClassMoveDiffList(List<UMLClassMoveDiff> innerClassMoveDiffList, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
+        Set<Method> leftMethodSet = new HashSet<>();
+        for (UMLClassMoveDiff umlClassMoveDiff : innerClassMoveDiffList) {
+            for (UMLOperationBodyMapper umlOperationBodyMapper : umlClassMoveDiff.getOperationBodyMapperList()) {
+                UMLOperation leftOperation = umlOperationBodyMapper.getOperation1();
+                UMLOperation rightOperation = umlOperationBodyMapper.getOperation2();
+                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, leftOperation, rightOperation, Change.Type.CONTAINER_CHANGE)) {
+                    methods.addAll(leftMethodSet);
+                    refactoringMiner.getRefactoringHandler().getMethodChangeHistoryGraph().connectRelatedNodes();
+                    return true;
+                }
+            }
+            for (UMLOperation addedOperations : umlClassMoveDiff.getAddedOperations()) {
+                if (handleAddOperation(refactoringMiner, methods, currentVersion, parentVersion, equalOperator, addedOperations))
+                    return true;
+            }
+        }
+        return false;
     }
 
     public History<CodeElement, Edge> findVariableHistory(String projectDirectory, String repositoryWebURL, String startCommitId, String filePath, String methodKey, String variableName, int variableDeclarationLineNumber) {
@@ -617,7 +683,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         return !leftMethodSet.isEmpty();
     }
 
-    private boolean isMethodContainerChanged(RefactoringMiner.CommitModel commitModel, Collection<Refactoring> refactorings, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
+    private boolean isMethodContainerChanged(Collection<Refactoring> refactorings, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
         Set<Method> leftMethodSet = new HashSet<>();
         boolean found = false;
         Change.Type changeType = Change.Type.CONTAINER_CHANGE;
@@ -630,24 +696,14 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                     UMLClass originalClass = renameClassRefactoring.getOriginalClass();
                     UMLClass renamedClass = renameClassRefactoring.getRenamedClass();
 
-                    for (String filePathsCurrent : commitModel.fileContentsCurrentOriginal.keySet()) {
-                        if (originalClass.getLocationInfo().getFilePath().equals(filePathsCurrent)) {
-                            changeType = Change.Type.METHOD_MOVE;
-                        }
-                    }
                     found = isMethodMatched(originalClass.getOperations(), renamedClass.getOperations(), refactoringMiner, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
-
                     break;
                 }
                 case MOVE_CLASS: {
                     MoveClassRefactoring moveClassRefactoring = (MoveClassRefactoring) refactoring;
                     UMLClass originalClass = moveClassRefactoring.getOriginalClass();
                     UMLClass movedClass = moveClassRefactoring.getMovedClass();
-                    for (String filePathsCurrent : commitModel.fileContentsCurrentOriginal.keySet()) {
-                        if (originalClass.getLocationInfo().getFilePath().equals(filePathsCurrent)) {
-                            changeType = Change.Type.METHOD_MOVE;
-                        }
-                    }
+
                     found = isMethodMatched(originalClass.getOperations(), movedClass.getOperations(), refactoringMiner, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                     break;
                 }
@@ -655,11 +711,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                     MoveAndRenameClassRefactoring moveAndRenameClassRefactoring = (MoveAndRenameClassRefactoring) refactoring;
                     UMLClass originalClass = moveAndRenameClassRefactoring.getOriginalClass();
                     UMLClass renamedClass = moveAndRenameClassRefactoring.getRenamedClass();
-                    for (String filePathsCurrent : commitModel.fileContentsCurrentOriginal.keySet()) {
-                        if (originalClass.getLocationInfo().getFilePath().equals(filePathsCurrent)) {
-                            changeType = Change.Type.METHOD_MOVE;
-                        }
-                    }
+
                     found = isMethodMatched(originalClass.getOperations(), renamedClass.getOperations(), refactoringMiner, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                     break;
                 }
