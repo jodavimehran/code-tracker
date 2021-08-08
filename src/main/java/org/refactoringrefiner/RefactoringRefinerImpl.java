@@ -313,7 +313,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
                             RefactoringMiner.CommitModel commitModel = refactoringMiner.getCommitModel(commitId);
                             if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
-                                Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), Collections.emptySet(),true);
+                                Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), Collections.emptySet(), true);
                                 UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
                                 List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
                                 boolean containerChanged = isMethodContainerChanged(refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
@@ -374,10 +374,12 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
         if (classInChildModel instanceof UMLClass) {
             UMLClass umlClass = (UMLClass) classInChildModel;
+
             StringBuilder regxSb = new StringBuilder();
+            regxSb.append("@link ").append(umlClass.getNonQualifiedName());
             String orChar = "";
-            if(umlClass.getSuperclass()!=null){
-                regxSb.append(" extends ").append(umlClass.getSuperclass().getClassType()).append("| class ").append(umlClass.getSuperclass().getClassType());
+            if (umlClass.getSuperclass() != null) {
+                regxSb.append(orChar).append(" extends ").append(umlClass.getSuperclass().getClassType()).append("| class ").append(umlClass.getSuperclass().getClassType());
                 orChar = "|";
             }
 
@@ -386,7 +388,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 orChar = "|";
             }
             String regx = regxSb.toString();
-            if(!regx.isEmpty()){
+            if (!regx.isEmpty()) {
                 Pattern pattern = Pattern.compile(regx);
                 for (Map.Entry<String, String> entry : commitModel.fileContentsCurrentTrimmed.entrySet()) {
                     Matcher matcher = pattern.matcher(entry.getValue());
