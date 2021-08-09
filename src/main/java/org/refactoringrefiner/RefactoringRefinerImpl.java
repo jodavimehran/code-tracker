@@ -316,7 +316,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                 Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), Collections.emptySet(), true);
                                 UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
                                 List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-                                boolean containerChanged = isMethodContainerChanged(refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                boolean containerChanged = isMethodContainerChanged(umlModelDiffPartial, refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
                                 boolean refactored = isMethodRefactored(refactoringsPartial, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
@@ -339,7 +339,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
                                 List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
-                                boolean containerChanged = isMethodContainerChanged(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                boolean containerChanged = isMethodContainerChanged(umlModelDiffAll, refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
                                 boolean refactored = isMethodRefactored(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 
@@ -376,16 +376,14 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
             UMLClass umlClass = (UMLClass) classInChildModel;
 
             StringBuilder regxSb = new StringBuilder();
-            regxSb.append("@link ").append(umlClass.getNonQualifiedName());
-            String orChar = "";
+            regxSb.append("@link\\s*").append(umlClass.getNonQualifiedName());
+            String orChar = "|";
             if (umlClass.getSuperclass() != null) {
-                regxSb.append(orChar).append(" extends ").append(umlClass.getSuperclass().getClassType()).append("| class ").append(umlClass.getSuperclass().getClassType());
-                orChar = "|";
+                regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getSuperclass().getClassType());
             }
 
             for (UMLType implementedInterfaces : umlClass.getImplementedInterfaces()) {
-                regxSb.append(orChar).append(" implements .*").append(implementedInterfaces);
-                orChar = "|";
+                regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterfaces);
             }
             String regx = regxSb.toString();
             if (!regx.isEmpty()) {
@@ -393,7 +391,20 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 for (Map.Entry<String, String> entry : commitModel.fileContentsCurrentTrimmed.entrySet()) {
                     Matcher matcher = pattern.matcher(entry.getValue());
                     if (matcher.find()) {
-                        fileNames.add(entry.getKey());
+                        String matcherGroup = matcher.group().trim();
+                        if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
+                            String[] split = matcherGroup.split("\\s");
+                            String className = split[split.length - 1];
+                            if (className.contains(".")) {
+                                className = className.substring(0, className.indexOf("."));
+                            }
+                            final String fileName = className + ".java";
+                            if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName))) {
+                                fileNames.add(entry.getKey());
+                            }
+                        } else {
+                            fileNames.add(entry.getKey());
+                        }
                     }
                 }
             }
@@ -685,7 +696,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         return !leftMethodSet.isEmpty();
     }
 
-    private boolean isMethodContainerChanged(Collection<Refactoring> refactorings, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
+    private boolean isMethodContainerChanged(UMLModelDiff umlModelDiffAll, Collection<Refactoring> refactorings, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
         Set<Method> leftMethodSet = new HashSet<>();
         boolean found = false;
         Change.Type changeType = Change.Type.CONTAINER_CHANGE;
@@ -734,6 +745,24 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
             methods.addAll(leftMethodSet);
             refactoringMiner.getRefactoringHandler().getMethodChangeHistoryGraph().connectRelatedNodes();
             return true;
+        }
+        for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
+            for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
+                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
+                    return true;
+            }
+        }
+        for (UMLClassMoveDiff classMoveDiff : umlModelDiffAll.getClassMoveDiffList()){
+            for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
+                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
+                    return true;
+            }
+        }
+        for (UMLClassMoveDiff innerClassMoveDiff : umlModelDiffAll.getInnerClassMoveDiffList()){
+            for (UMLOperationBodyMapper umlOperationBodyMapper : innerClassMoveDiff.getOperationBodyMapperList()) {
+                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(innerClassMoveDiff.getOriginalClass(), innerClassMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
+                    return true;
+            }
         }
         return false;
     }
