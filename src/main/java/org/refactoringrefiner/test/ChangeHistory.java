@@ -3,6 +3,7 @@ package org.refactoringrefiner.test;
 public class ChangeHistory {
     private String parentCommitId;
     private String commitId;
+    private String altCommitId;
     private long commitTime;
     private String changeType;
     private String elementFileBefore;
@@ -72,5 +73,13 @@ public class ChangeHistory {
 
     public void setParentCommitId(String parentCommitId) {
         this.parentCommitId = parentCommitId;
+    }
+
+    public String getAltCommitId() {
+        return altCommitId;
+    }
+
+    public void setAltCommitId(String altCommitId) {
+        this.altCommitId = altCommitId;
     }
 }

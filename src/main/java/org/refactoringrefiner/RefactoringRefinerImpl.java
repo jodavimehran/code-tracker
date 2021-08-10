@@ -369,7 +369,8 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
     private Set<String> getRightSideFileNames(Method currentMethod, RefactoringMiner.CommitModel commitModel, UMLModelDiff umlModelDiff) {
         Set<String> fileNames = new HashSet<>();
-        fileNames.add(currentMethod.getFilePath());
+        String currentMethodFilePath = currentMethod.getFilePath();
+        fileNames.add(currentMethodFilePath);
         UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentMethod.getUmlOperation().getClassName());
 
         if (classInChildModel instanceof UMLClass) {
@@ -409,6 +410,8 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 }
             }
         }
+        final String currentMethodFileName = currentMethodFilePath.substring(currentMethodFilePath.lastIndexOf("/"));
+        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(s -> s.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
         return fileNames;
     }
 
@@ -741,28 +744,37 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 }
             }
         }
+        for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
+            if (found)
+                break;
+            for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
+                found = refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+                if (found)
+                    break;
+            }
+        }
+        for (UMLClassMoveDiff classMoveDiff : umlModelDiffAll.getClassMoveDiffList()) {
+            if (found)
+                break;
+            for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
+                found = refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+                if (found)
+                    break;
+            }
+        }
+        for (UMLClassMoveDiff innerClassMoveDiff : umlModelDiffAll.getInnerClassMoveDiffList()) {
+            if (found)
+                break;
+            for (UMLOperationBodyMapper umlOperationBodyMapper : innerClassMoveDiff.getOperationBodyMapperList()) {
+                found = refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(innerClassMoveDiff.getOriginalClass(), innerClassMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+                if (found)
+                    break;
+            }
+        }
         if (found) {
             methods.addAll(leftMethodSet);
             refactoringMiner.getRefactoringHandler().getMethodChangeHistoryGraph().connectRelatedNodes();
             return true;
-        }
-        for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
-            for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
-                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
-                    return true;
-            }
-        }
-        for (UMLClassMoveDiff classMoveDiff : umlModelDiffAll.getClassMoveDiffList()){
-            for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
-                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
-                    return true;
-            }
-        }
-        for (UMLClassMoveDiff innerClassMoveDiff : umlModelDiffAll.getInnerClassMoveDiffList()){
-            for (UMLOperationBodyMapper umlOperationBodyMapper : innerClassMoveDiff.getOperationBodyMapperList()) {
-                if (refactoringMiner.addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(innerClassMoveDiff.getOriginalClass(), innerClassMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType))
-                    return true;
-            }
         }
         return false;
     }
