@@ -300,7 +300,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         //Local Refactoring
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
                         {
-
                             List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
                             boolean refactored = isMethodRefactored(refactorings, refactoringMiner, methods, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             if (refactored) {
@@ -310,7 +309,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         }
                         //All refactorings
                         {
-
                             RefactoringMiner.CommitModel commitModel = refactoringMiner.getCommitModel(commitId);
                             if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
                                 Pair<UMLModel, UMLModel> umlModelPairPartial = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), Collections.emptySet(), true);
@@ -332,7 +330,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                 }
                             }
                             {
-
                                 Set<String> fileNames = getRightSideFileNames(currentMethod, commitModel, umlModelDiffLocal);
                                 Pair<UMLModel, UMLModel> umlModelPairAll = refactoringMiner.getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames, false);
                                 UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
@@ -375,17 +372,31 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
 
         if (classInChildModel instanceof UMLClass) {
             UMLClass umlClass = (UMLClass) classInChildModel;
-
+            boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentMethodFilePath);
             StringBuilder regxSb = new StringBuilder();
-            regxSb.append("@link\\s*").append(umlClass.getNonQualifiedName());
-            String orChar = "|";
+
+            String orChar = "";
             if (umlClass.getSuperclass() != null) {
                 regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getSuperclass().getClassType());
+                orChar = "|";
+                if(newlyAddedFile){
+                    regxSb.append(orChar).append("\\s*class\\s*").append(umlClass.getSuperclass().getClassType()).append("\\s\\s*");
+                }
             }
 
             for (UMLType implementedInterfaces : umlClass.getImplementedInterfaces()) {
-                regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterfaces);
+                regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterfaces).append("\\s*");
+                orChar = "|";
             }
+
+            //newly added file
+            if (newlyAddedFile) {
+                regxSb.append(orChar).append("@link\\s*").append(umlClass.getNonQualifiedName());
+                orChar = "|";
+                regxSb.append(orChar).append("new\\s*").append(umlClass.getNonQualifiedName()).append("\\(");
+
+            }
+
             String regx = regxSb.toString();
             if (!regx.isEmpty()) {
                 Pattern pattern = Pattern.compile(regx);
@@ -393,26 +404,59 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                     Matcher matcher = pattern.matcher(entry.getValue());
                     if (matcher.find()) {
                         String matcherGroup = matcher.group().trim();
+                        String filePath = entry.getKey();
+                        boolean isAnExistingFile = commitModel.fileContentsBeforeTrimmed.containsKey(filePath) || commitModel.renamedFilesHint.values().stream().anyMatch(s -> s.equals(filePath));
                         if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
-                            String[] split = matcherGroup.split("\\s");
-                            String className = split[split.length - 1];
-                            if (className.contains(".")) {
-                                className = className.substring(0, className.indexOf("."));
+                            if (isAnExistingFile) {
+                                String[] split = matcherGroup.split("\\s");
+                                String className = split[split.length - 1];
+                                if (className.contains(".")) {
+                                    className = className.substring(0, className.indexOf("."));
+                                }
+                                String[] tokens = LeafType.CAMEL_CASE_SPLIT_PATTERN.split(className);
+                                final String fileName = className + ".java";
+                                if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName) || s.endsWith(tokens[tokens.length - 1] + ".java"))) {
+                                    fileNames.add(filePath);
+                                }
                             }
-                            final String fileName = className + ".java";
-                            if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName))) {
-                                fileNames.add(entry.getKey());
+                        } else if (matcherGroup.startsWith("new")) {
+                            if (isAnExistingFile) {
+                                fileNames.add(filePath);
                             }
-                        } else {
-                            fileNames.add(entry.getKey());
+                        } else if (matcherGroup.startsWith("@link")) {
+                            fileNames.add(filePath);
+                        } else if (matcherGroup.startsWith("class")) {
+                            if (isAnExistingFile) {
+                                fileNames.add(filePath);
+                            }
                         }
                     }
                 }
             }
         }
+
+        Set<String> toBeAddedFileNamesIfTheyAreNewFiles = new HashSet<>();
+        for (UMLParameter parameter : currentMethod.getUmlOperation().getParameters()) {
+            String parameterType = parameter.getType().getClassType();
+            if ("void".equals(parameterType))
+                continue;
+            toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
+        }
+        fileNames.addAll(
+                commitModel.fileContentsCurrentTrimmed.keySet().stream()
+                        .filter(filePath -> toBeAddedFileNamesIfTheyAreNewFiles.stream().anyMatch(filePath::endsWith))
+                        .filter(filePath -> isNewlyAddedFile(commitModel, filePath))
+                        .collect(Collectors.toSet())
+        );
+
+
         final String currentMethodFileName = currentMethodFilePath.substring(currentMethodFilePath.lastIndexOf("/"));
-        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(s -> s.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
+        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
         return fileNames;
+    }
+
+    private boolean isNewlyAddedFile(RefactoringMiner.CommitModel commitModel, String currentMethodFilePath) {
+        return commitModel.fileContentsCurrentTrimmed.containsKey(currentMethodFilePath) && !commitModel.fileContentsBeforeTrimmed.containsKey(currentMethodFilePath) && commitModel.renamedFilesHint.values().stream().noneMatch(s -> s.equals(currentMethodFilePath));
     }
 
     private boolean checkInnerClassMoveDiffList(List<UMLClassMoveDiff> innerClassMoveDiffList, RefactoringMiner refactoringMiner, Queue<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
