@@ -858,7 +858,8 @@ public class Starter {
 
             }
         }
-        writeToNewFile("result/final_result.text", "", finalResult.toString());
+
+        writeToFile("result/final_result.text", "", finalResult.toString(), StandardOpenOption.APPEND);
     }
 
 //                        =============================================================================================
