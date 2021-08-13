@@ -369,17 +369,17 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
         String currentMethodFilePath = currentMethod.getFilePath();
         fileNames.add(currentMethodFilePath);
         UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentMethod.getUmlOperation().getClassName());
-
+        boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentMethodFilePath);
         if (classInChildModel instanceof UMLClass) {
             UMLClass umlClass = (UMLClass) classInChildModel;
-            boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentMethodFilePath);
+
             StringBuilder regxSb = new StringBuilder();
 
             String orChar = "";
             if (umlClass.getSuperclass() != null) {
                 regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getSuperclass().getClassType());
                 orChar = "|";
-                if(newlyAddedFile){
+                if (newlyAddedFile) {
                     regxSb.append(orChar).append("\\s*class\\s*").append(umlClass.getSuperclass().getClassType()).append("\\s\\s*");
                 }
             }
@@ -394,7 +394,8 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 regxSb.append(orChar).append("@link\\s*").append(umlClass.getNonQualifiedName());
                 orChar = "|";
                 regxSb.append(orChar).append("new\\s*").append(umlClass.getNonQualifiedName()).append("\\(");
-
+                regxSb.append(orChar).append("@deprecated\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\n");
+                regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\\{");
             }
 
             String regx = regxSb.toString();
@@ -406,7 +407,11 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         String matcherGroup = matcher.group().trim();
                         String filePath = entry.getKey();
                         boolean isAnExistingFile = commitModel.fileContentsBeforeTrimmed.containsKey(filePath) || commitModel.renamedFilesHint.values().stream().anyMatch(s -> s.equals(filePath));
-                        if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
+                        if (matcherGroup.startsWith("extends") && matcherGroup.contains(umlClass.getNonQualifiedName())) {
+                            if (isAnExistingFile) {
+                                fileNames.add(filePath);
+                            }
+                        } else if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
                             if (isAnExistingFile) {
                                 String[] split = matcherGroup.split("\\s");
                                 String className = split[split.length - 1];
@@ -429,7 +434,12 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                             if (isAnExistingFile) {
                                 fileNames.add(filePath);
                             }
+                        } else if (matcherGroup.startsWith("@deprecated")) {
+                            if (isAnExistingFile) {
+                                fileNames.add(filePath);
+                            }
                         }
+
                     }
                 }
             }
@@ -449,9 +459,10 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         .collect(Collectors.toSet())
         );
 
-
-        final String currentMethodFileName = currentMethodFilePath.substring(currentMethodFilePath.lastIndexOf("/"));
-        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
+        if (newlyAddedFile) {
+            final String currentMethodFileName = currentMethodFilePath.substring(currentMethodFilePath.lastIndexOf("/"));
+            fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
+        }
         return fileNames;
     }
 
@@ -856,6 +867,15 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
             for (UMLOperation operation : addedClass.getOperations()) {
                 if (handleAddOperation(refactoringMiner, methods, currentVersion, parentVersion, equalOperator, operation))
                     return true;
+            }
+        }
+
+        for(UMLClassRenameDiff classRenameDiffList : modelDiff.getClassRenameDiffList()){
+            for(UMLAnonymousClass addedAnonymousClasses : classRenameDiffList.getAddedAnonymousClasses()){
+                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+                    if (handleAddOperation(refactoringMiner, methods, currentVersion, parentVersion, equalOperator, operation))
+                        return true;
+                }
             }
         }
         return false;
