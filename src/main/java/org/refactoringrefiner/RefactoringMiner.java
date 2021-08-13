@@ -752,6 +752,9 @@ public class RefactoringMiner implements ChangeDetector {
                         Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
                         extractedOperationBefore.setAdded(true);
                         refactoringHandler.getMethodChangeHistoryGraph().addChange(extractedOperationBefore, extractedOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED).refactoring(extractOperationRefactoring).codeElement(extractedOperationAfter));
+                        refactoringHandler.getMethodChangeHistoryGraph().connectRelatedNodes();
+                        leftMethodSet.add(extractedOperationBefore);
+                        return leftMethodSet;
                     }
                     break;
                 }
