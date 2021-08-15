@@ -1,5 +1,6 @@
 package org.refactoringrefiner.test;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -14,11 +15,6 @@ import com.google.common.graph.EndpointPair;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
-import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
-import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
-import gr.uom.java.xmi.decomposition.VariableDeclaration;
-import org.apache.commons.lang3.tuple.Pair;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.PullCommand;
 import org.eclipse.jgit.lib.Repository;
@@ -35,15 +31,11 @@ import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.refactoringminer.util.GitServiceImpl;
 import org.refactoringrefiner.HistoryImpl;
-import org.refactoringrefiner.RefactoringMiner;
 import org.refactoringrefiner.RefactoringRefinerImpl;
 import org.refactoringrefiner.api.*;
-import org.refactoringrefiner.change.AbstractChange;
-import org.refactoringrefiner.edge.ChangeFactory;
 import org.refactoringrefiner.edge.EdgeImpl;
 import org.refactoringrefiner.element.Attribute;
-import org.refactoringrefiner.element.Method;
-import org.refactoringrefiner.element.Variable;
+import org.refactoringrefiner.test.oracle.MethodOracle;
 
 import java.io.*;
 import java.nio.file.Files;
@@ -60,34 +52,18 @@ enum Detector {
     SHOVEL_ORACLE,
 }
 
-//enum ChangeType {
-//    DOCUMENTATION_CHANGE("documentation change"),
-//    CHANGED_BODY("changed body"),
-//    CHANGED_PARAMETER("changed parameter"),
-//    CHANGED_CONTAINER("changed container"),
-//    CHANGED_MODIFIER("changed modifier"),
-//    CHANGED_THROWN_EXCEPTION("change thrown exception"),
-//    MOVED("moved"),
-//    RENAMED("renamed"),
-//    CHANGED_RETURN_TYPE("changed return type"),
-//    ADDED("added"),
-//    REMOVED("removed"),
-//    CHANGED_ANNOTATION("changed annotation"),
-//    CHANGE_TYPE("change type"),
-//    MERGE_VARIABLE("Merge Variable");
-//
-//    public final String name;
-//
-//    ChangeType(String name) {
-//        this.name = name;
-//    }
-//}
-
 public class Starter {
+    public static final String FINAL_RESULT_HEADER = "tool,oracle,level,processing_time_avg,processing_time_median,tp,fp,fn,precision,recall" + System.lineSeparator();
+    public static final String FINAL_RESULT_FORMAT = "%s,%s,%s,%f,%d,%d,%d,%d,%f,%f" + System.lineSeparator();
     public static final String DETAILED_RESULT_HEADER = "repository,element_key,parent_commit_id,commit_id,commit_time, change_type,element_file_before,element_file_after,element_name_before,element_name_after,result" + System.lineSeparator();
     public static final String DETAILED_CONTENT_FORMAT = "\"%s\",\"%s\",%s,%s,%d,%s,%s,%s,\"%s\",\"%s\",%s" + System.lineSeparator();
+    public static final String SUMMARY_RESULT_FILE_NAME_FORMAT = "result/summary-%s-%s.csv";
+    public static final String DETAILED_RESULT_FILE_NAME_FORMAT = "result/detailed-%s-%s.csv";
+    public static final String ERROR_FILE_NAME_FORMAT = "result/error-%s-%s-%s.txt";
+    public static final String PROCESSED_FILE_NAME_FORMAT = "result/processed-%s-%s.csv";
+    public static final String RESULT_FINAL_CSV = "result/final.csv";
     private final static String FOLDER_TO_CLONE = "H:\\Projects\\";
-    private static final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper MAPPER = new ObjectMapper();
     private final static String RESULT_HEADER;
     private final static String RESULT_HEADER_SHOVEL;
     static SessionFactory sessionFactoryObj;
@@ -113,6 +89,7 @@ public class Starter {
         headerShovel.append("tp_all,fp_all,fn_all").append(System.lineSeparator());
         RESULT_HEADER = header.toString();
         RESULT_HEADER_SHOVEL = headerShovel.toString();
+        MAPPER.setSerializationInclusion(JsonInclude.Include.NON_NULL);
     }
 
     public static void main(String[] args) throws Exception {
@@ -138,7 +115,7 @@ public class Starter {
         for (File file : historyFolder.listFiles()) {
             if (processedFiles.contains(file.getName()))
                 continue;
-            AttributeHistoryInfo attributeHistoryInfo = mapper.readValue(file, AttributeHistoryInfo.class);
+            AttributeHistoryInfo attributeHistoryInfo = MAPPER.readValue(file, AttributeHistoryInfo.class);
             String repositoryWebURL = attributeHistoryInfo.getRepositoryWebURL();
             String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
             String projectDirectory = FOLDER_TO_CLONE + repositoryName;
@@ -582,14 +559,14 @@ public class Starter {
 
     public void correctDBType() throws IOException {
         String resultPath = "E:\\Data\\History\\method\\oracle\\test\\";
-        ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+        ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
         ClassLoader classLoader = Starter.class.getClassLoader();
 
-        HashMap<String, HistoryInfo> originalHistoryMap = new HashMap<>();
+        HashMap<String, VariableHistoryInfo> originalHistoryMap = new HashMap<>();
         File historyFolder = new File(classLoader.getResource("history/method/test").getFile());
         for (File file : historyFolder.listFiles()) {
-            HistoryInfo historyInfo = mapper.readValue(file, HistoryInfo.class);
-            historyInfo.setFileName(file.getName());
+            VariableHistoryInfo historyInfo = MAPPER.readValue(file, VariableHistoryInfo.class);
+//            historyInfo.setFileName(file.getName());
             originalHistoryMap.put(historyInfo.getFunctionKey(), historyInfo);
         }
 
@@ -605,7 +582,7 @@ public class Starter {
 
             for (Map.Entry<String, List<HistoryResult>> entry : elementMap.entrySet()) {
                 String methodKey = entry.getKey();
-                HistoryInfo originalHistoryInfo = originalHistoryMap.get(methodKey);
+                VariableHistoryInfo originalHistoryInfo = originalHistoryMap.get(methodKey);
                 MethodHistoryInfo methodHistoryInfo = new MethodHistoryInfo();
                 methodHistoryInfo.setRepositoryWebURL(originalHistoryInfo.getRepositoryWebURL());
                 methodHistoryInfo.setFilePath(originalHistoryInfo.getFilePath());
@@ -613,7 +590,7 @@ public class Starter {
                 methodHistoryInfo.setFunctionName(originalHistoryInfo.getFunctionName());
                 methodHistoryInfo.setFunctionStartLine(originalHistoryInfo.getFunctionStartLine());
                 methodHistoryInfo.setRepositoryWebURL(originalHistoryInfo.getRepositoryWebURL());
-                methodHistoryInfo.setStartCommitId(originalHistoryInfo.getStartCommitName());
+                methodHistoryInfo.setStartCommitId(originalHistoryInfo.getStartCommitId());
                 List<HistoryResult> historyResults = entry.getValue();
                 historyResults.sort(Comparator.comparingLong(HistoryResult::getElementVersionTimeAfter));
                 for (HistoryResult historyResult : historyResults) {
@@ -632,7 +609,7 @@ public class Starter {
                     methodHistoryInfo.getExpectedChanges().add(changeHistory);
                 }
                 methodHistoryInfo.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed());
-                File newFile = new File(resultPath + originalHistoryInfo.getFileName());
+                File newFile = new File(resultPath);
                 writer.writeValue(newFile, methodHistoryInfo);
             }
         } catch (Exception sqlException) {
@@ -679,14 +656,6 @@ public class Starter {
         throw new RuntimeException("invalid " + input);
     }
 
-    private Map<String, MethodHistoryInfo> readOracle(String name) throws IOException {
-        Map<String, MethodHistoryInfo> oracle = new TreeMap<>();
-        File oracleFolder = new File(Starter.class.getClassLoader().getResource("history/method/oracle/" + name).getFile());
-        for (File file : oracleFolder.listFiles()) {
-            oracle.put(file.getName(), mapper.readValue(file, MethodHistoryInfo.class));
-        }
-        return oracle;
-    }
 
     private void methodHistoryExperiment() throws Exception {
         String[] neededDirectories = new String[]{"result", "result/shovel", "result/shovel/test", "result/shovel/training", "result/oracle"};
@@ -695,172 +664,89 @@ public class Starter {
             if (!directoryPath.toFile().exists())
                 Files.createDirectories(directoryPath);
         }
-
-        {
-            String oracleName = "training";
-            Map<String, MethodHistoryInfo> oracle = readOracle(oracleName);
-            refactoringRefiner(oracle, oracleName);
-            codeShovel(oracle, oracleName);
-            calculateFinalResults(oracleName);
-        }
-        {
-            String oracleName = "test";
-            Map<String, MethodHistoryInfo> oracle = readOracle(oracleName);
-            refactoringRefiner(oracle, oracleName);
-            codeShovel(oracle, oracleName);
-            calculateFinalResults(oracleName);
+        String[] toolNames = new String[]{"tracker", "shovel"};
+        for (MethodOracle oracle : MethodOracle.all()) {
+            for (String toolName : toolNames) {
+                switch (toolName) {
+                    case "tracker":
+                        codeTracker(oracle);
+                        calculateFinalResults(oracle.getName(), toolName);
+                        break;
+                    case "shovel":
+                        codeShovel(oracle);
+                        calculateFinalResults(oracle.getName(), toolName);
+                        break;
+                }
+            }
         }
     }
 
-    private void calculateFinalResults(String oracleName) throws IOException, CsvException {
-        StringBuilder finalResult = new StringBuilder();
-        {
-            Map<String, Set<String>> commitLevelExpected = new HashMap<>();
-            Map<String, Set<String>> commitLevelActual = new HashMap<>();
+    private void calculateFinalResults(String oracleName, String toolName) {
+        Map<String, Set<String>> commitLevelExpected = new HashMap<>();
+        Map<String, Set<String>> commitLevelActual = new HashMap<>();
+        try {
+            List<Integer> processingTime = new ArrayList<>();
+            List<String[]> summaryResults = readResults(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, toolName, oracleName));
+            int tp = 0, fp = 0, fn = 0;
+            for (String[] result : summaryResults) {
+                tp += Integer.parseInt(result[result.length - 3]);
+                fp += Integer.parseInt(result[result.length - 2]);
+                fn += Integer.parseInt(result[result.length - 1]);
 
-            try {
-                FileReader filereader = new FileReader(String.format("result/miner_result_%s.csv", oracleName));
-                CSVReader csvReader = new CSVReaderBuilder(filereader)
-                        .withSkipLines(1)
-                        .build();
-                List<String[]> results = csvReader.readAll();
-                int tp = 0;
-                int fp = 0;
-                int fn = 0;
-                for (String[] result : results) {
-                    if (result[result.length - 1].equals("fn_all")) {
-                        continue;
-                    } else {
-                        tp += Integer.parseInt(result[result.length - 3]);
-                        fp += Integer.parseInt(result[result.length - 2]);
-                        fn += Integer.parseInt(result[result.length - 1]);
-                    }
-                    commitLevelExpected.put(result[0], new HashSet<>());
-                    commitLevelActual.put(result[0], new HashSet<>());
-                }
-                    finalResult.append(String.format("Change Level: refactoring miner   -   %s:     TP: %d,     FP: %d,     FN: %d,     precision: %f,      recall: %f", oracleName, tp, fp, fn, ((double) tp / (tp + fp)) * 100, ((double) tp / (tp + fn)) * 100)).append(System.lineSeparator());
-
-            } catch (Exception exception) {
-
+                commitLevelExpected.put(result[0], new HashSet<>());
+                commitLevelActual.put(result[0], new HashSet<>());
+                processingTime.add(Integer.parseInt(result[1]));
             }
-            try {
-                FileReader filereader = new FileReader(String.format("result/miner_detailed_result_%s.csv", oracleName));
-                CSVReader csvReader = new CSVReaderBuilder(filereader)
-                        .withSkipLines(1)
-                        .build();
-                List<String[]> results = csvReader.readAll();
+            Collections.sort(processingTime);
+            int middle = processingTime.size() / 2;
+            middle = middle > 0 && middle % 2 == 0 ? middle - 1 : middle;
+            int processingTimeMedian = processingTime.get(middle);
+            double processingTimeAverage = processingTime.stream().mapToInt(Integer::intValue).average().getAsDouble();
+            writeToFile(RESULT_FINAL_CSV, FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "change", processingTimeAverage, processingTimeMedian, tp, fp, fn, ((double) tp / (tp + fp)) * 100, ((double) tp / (tp + fn)) * 100), StandardOpenOption.APPEND);
 
-                for (String[] result : results) {
-                    if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FN")) {
-                        Set<String> commitIds = commitLevelExpected.get(result[1]);
-                        commitIds.add(result[3]);
-                    }
-                    if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FP")) {
-                        Set<String> commitIds = commitLevelActual.get(result[1]);
-                        commitIds.add(result[3]);
-                    }
+            List<String[]> detailedResults = readResults(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, toolName, oracleName));
+
+            for (String[] result : detailedResults) {
+                if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FN")) {
+                    Set<String> commitIds = commitLevelExpected.get(result[1]);
+                    commitIds.add(result[3]);
                 }
-                int sumTp = 0, sumFP = 0, sumFn = 0;
-                for (Map.Entry<String, Set<String>> entry : commitLevelExpected.entrySet()) {
-                    String instanceName = entry.getKey();
-                    Set<String> expectedCommitIds = entry.getValue();
-                    Set<String> actualCommitIds = commitLevelActual.get(instanceName);
-                    int actualSize = actualCommitIds.size();
-                    HashSet<String> actualCopy = new HashSet<>(actualCommitIds);
-                    actualCopy.removeAll(expectedCommitIds);
-                    int fp = actualCopy.size();
-                    sumFP += fp;
-
-                    HashSet<String> expectedCopy = new HashSet<>(expectedCommitIds);
-                    expectedCopy.removeAll(actualCommitIds);
-                    int fn = expectedCopy.size();
-                    sumFn += fn;
-
-                    int tp = actualSize - fp;
-                    sumTp += tp;
+                if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FP")) {
+                    Set<String> commitIds = commitLevelActual.get(result[1]);
+                    commitIds.add(result[3]);
                 }
-
-                finalResult.append(String.format("Commit Level: refactoring miner   -   %s:     TP: %d,     FP: %d,     FN: %d,     precision: %f,      recall: %f", oracleName, sumTp, sumFP, sumFn, ((double) sumTp / (sumTp + sumFP)) * 100, ((double) sumTp / (sumTp + sumFn)) * 100)).append(System.lineSeparator());
-
-            } catch (Exception exception) {
-
             }
+            int sumTp = 0, sumFP = 0, sumFn = 0;
+            for (Map.Entry<String, Set<String>> entry : commitLevelExpected.entrySet()) {
+                String instanceName = entry.getKey();
+                Set<String> expectedCommitIds = entry.getValue();
+                Set<String> actualCommitIds = commitLevelActual.get(instanceName);
+                int actualSize = actualCommitIds.size();
+                HashSet<String> actualCopy = new HashSet<>(actualCommitIds);
+                actualCopy.removeAll(expectedCommitIds);
+                int commitLevelFp = actualCopy.size();
+                sumFP += commitLevelFp;
+
+                HashSet<String> expectedCopy = new HashSet<>(expectedCommitIds);
+                expectedCopy.removeAll(actualCommitIds);
+                int commitLevelFn = expectedCopy.size();
+                sumFn += commitLevelFn;
+
+                int commitLevelTp = actualSize - commitLevelFp;
+                sumTp += commitLevelTp;
+            }
+            writeToFile(RESULT_FINAL_CSV, FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "commit", processingTimeAverage, processingTimeMedian, sumTp, sumFP, sumFn, ((double) sumTp / (sumTp + sumFP)) * 100, ((double) sumTp / (sumTp + sumFn)) * 100), StandardOpenOption.APPEND);
+        } catch (Exception exception) {
+            exception.printStackTrace();
         }
-        {
-            Map<String, Set<String>> commitLevelExpected = new HashMap<>();
-            Map<String, Set<String>> commitLevelActual = new HashMap<>();
-
-            try {
-                FileReader filereader = new FileReader(String.format("result/shovel_result_%s.csv", oracleName));
-                CSVReader csvReader = new CSVReaderBuilder(filereader)
-                        .withSkipLines(1)
-                        .build();
-                List<String[]> results = csvReader.readAll();
-                int tp = 0;
-                int fp = 0;
-                int fn = 0;
-                for (String[] result : results) {
-                    if (result[result.length - 1].equals("fn_all")) {
-                        continue;
-                    } else {
-                        tp += Integer.parseInt(result[result.length - 3]);
-                        fp += Integer.parseInt(result[result.length - 2]);
-                        fn += Integer.parseInt(result[result.length - 1]);
-                    }
-                    commitLevelExpected.put(result[0], new HashSet<>());
-                    commitLevelActual.put(result[0], new HashSet<>());
-                }
-                finalResult.append(String.format("Change Level: Code Shovel -   %s:     TP: %d,     FP: %d,     FN: %d,     precision: %f,      recall: %f", oracleName, tp, fp, fn, ((double) tp / (tp + fp)) * 100, ((double) tp / (tp + fn)) * 100)).append(System.lineSeparator());
-
-
-            } catch (Exception exception) {
-
-            }
-            try {
-                FileReader filereader = new FileReader(String.format("result/shovel_detailed_result_%s.csv", oracleName));
-                CSVReader csvReader = new CSVReaderBuilder(filereader)
-                        .withSkipLines(1)
-                        .build();
-                List<String[]> results = csvReader.readAll();
-
-                for (String[] result : results) {
-                    if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FN")) {
-                        Set<String> commitIds = commitLevelExpected.get(result[1]);
-                        commitIds.add(result[3]);
-                    }
-                    if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FP")) {
-                        Set<String> commitIds = commitLevelActual.get(result[1]);
-                        commitIds.add(result[3]);
-                    }
-                }
-                int sumTp = 0, sumFP = 0, sumFn = 0;
-                for (Map.Entry<String, Set<String>> entry : commitLevelExpected.entrySet()) {
-                    String instanceName = entry.getKey();
-                    Set<String> expectedCommitIds = entry.getValue();
-                    Set<String> actualCommitIds = commitLevelActual.get(instanceName);
-                    int actualSize = actualCommitIds.size();
-                    HashSet<String> actualCopy = new HashSet<>(actualCommitIds);
-                    actualCopy.removeAll(expectedCommitIds);
-                    int fp = actualCopy.size();
-                    sumFP += fp;
-
-                    HashSet<String> expectedCopy = new HashSet<>(expectedCommitIds);
-                    expectedCopy.removeAll(actualCommitIds);
-                    int fn = expectedCopy.size();
-                    sumFn += fn;
-
-                    int tp = actualSize - fp;
-                    sumTp += tp;
-                }
-
-                finalResult.append(String.format("Commit Level: Code Shovel -   %s:     TP: %d,     FP: %d,     FN: %d,     precision: %f,      recall: %f", oracleName, sumTp, sumFP, sumFn, ((double) sumTp / (sumTp + sumFP)) * 100, ((double) sumTp / (sumTp + sumFn)) * 100)).append(System.lineSeparator());
-            } catch (Exception exception) {
-
-            }
-        }
-
-        writeToFile("result/final_result.text", "", finalResult.toString(), StandardOpenOption.APPEND);
     }
+
+    private List<String[]> readResults(String fileName) throws IOException, CsvException {
+        FileReader filereader = new FileReader(fileName);
+        CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
+        return csvReader.readAll();
+    }
+
 
 //                        =============================================================================================
 //                    UMLModel startModel = refactoringMiner.getUMLModel(historyInfo.getStartCommitName(), Collections.singletonList(historyInfo.getFilePath()));
@@ -966,235 +852,73 @@ public class Starter {
         return allResults;
     }
 
-    private void countNumberOfCommit() throws Exception {
-        File historyFolder = new File("H:\\Projects\\ataraxie\\codeshovel\\src\\test\\resources\\oracles\\java\\test");
-        Map<String, Integer> byType = new HashMap<>();
-        for (File file : historyFolder.listFiles()) {
-            HistoryInfo historyInfo = mapper.readValue(file, HistoryInfo.class);
-            for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
-                String key = entry.getValue().startsWith("Ymultichange") ? "Ymultichange" : entry.getValue();
-                byType.merge(key, 1, Integer::sum);
-            }
-        }
-        System.out.println();
-    }
+//    private void countNumberOfCommit() throws Exception {
+//        File historyFolder = new File("H:\\Projects\\ataraxie\\codeshovel\\src\\test\\resources\\oracles\\java\\test");
+//        Map<String, Integer> byType = new HashMap<>();
+//        for (File file : historyFolder.listFiles()) {
+//            VariableHistoryInfo historyInfo = mapper.readValue(file, VariableHistoryInfo.class);
+//            for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
+//                String key = entry.getValue().startsWith("Ymultichange") ? "Ymultichange" : entry.getValue();
+//                byType.merge(key, 1, Integer::sum);
+//            }
+//        }
+//        System.out.println();
+//    }
 
-    private void variableHistoryTest(String processedFilePath) throws Exception {
-        Session sessionObj = null;
-        try {
-            sessionObj = buildSessionFactory().openSession();
-            Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
-            File historyFolder = new File(Starter.class.getClassLoader().getResource("history/variable/training").getFile());
+//    private void variableHistoryTest(String processedFilePath) throws Exception {
+//        Session sessionObj = null;
+//        try {
+//            sessionObj = buildSessionFactory().openSession();
+//            Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
+//            File historyFolder = new File(Starter.class.getClassLoader().getResource("history/variable/training").getFile());
+//
+//            List<HistoryResult> allVariableHistory = getAllVariableHistory(sessionObj);
+//            HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> allResults = getHistoryResultMap(allVariableHistory);
+//
+//            for (File file : historyFolder.listFiles()) {
+//                if (processedFiles.contains(file.getName()))
+//                    continue;
+//
+//                VariableHistoryInfo historyInfo = mapper.readValue(file, VariableHistoryInfo.class);
+//
+//                String repositoryWebURL = historyInfo.getRepositoryWebURL();
+//                String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
+//                String projectDirectory = FOLDER_TO_CLONE + repositoryName;
+//
+//                try {
+//                    RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
+//                    HistoryImpl<CodeElement, Edge> variableHistory = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findVariableHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitName(), historyInfo.getFilePath(), historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine());
+//                    HashMap<String, HistoryResult> historyResultHashMap = allResults.getOrDefault(repositoryWebURL, new HashMap<>()).getOrDefault(String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), new HashMap<>());
+//                    for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
+//                        String key = String.format("%s-%s", entry.getKey(), entry.getValue());
+//                        if (!historyResultHashMap.containsKey(key)) {
+//                            historyResultHashMap.put(key, new HistoryResult());
+//                        }
+//                        HistoryResult historyResult = historyResultHashMap.get(key);
+//                        historyResult.setOracle("refactoring-miner-training");
+//                        historyResult.setCodeShovelOracleVote(1);
+//                    }
+//                    processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s(%d)", historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine()), Detector.MINER, "variable");
+//                    saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
+////                    writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
+//
+//                } catch (Exception exception) {
+//                    exception.printStackTrace();
+//                }
+//            }
+//        } catch (Exception sqlException) {
+//            if (null != sessionObj.getTransaction()) {
+//                System.out.println("\n.......Transaction Is Being Rolled Back.......");
+//                sessionObj.getTransaction().rollback();
+//            }
+//            sqlException.printStackTrace();
+//        } finally {
+//            if (sessionObj != null) {
+//                sessionObj.close();
+//            }
+//        }
+//    }
 
-            List<HistoryResult> allVariableHistory = getAllVariableHistory(sessionObj);
-            HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> allResults = getHistoryResultMap(allVariableHistory);
-
-            for (File file : historyFolder.listFiles()) {
-                if (processedFiles.contains(file.getName()))
-                    continue;
-
-                HistoryInfo historyInfo = mapper.readValue(file, HistoryInfo.class);
-
-                String repositoryWebURL = historyInfo.getRepositoryWebURL();
-                String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-                String projectDirectory = FOLDER_TO_CLONE + repositoryName;
-
-                try {
-                    RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
-                    HistoryImpl<CodeElement, Edge> variableHistory = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findVariableHistory(projectDirectory, repositoryWebURL, historyInfo.getStartCommitName(), historyInfo.getFilePath(), historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine());
-                    HashMap<String, HistoryResult> historyResultHashMap = allResults.getOrDefault(repositoryWebURL, new HashMap<>()).getOrDefault(String.format("%s$%s", historyInfo.getFunctionKey(), historyInfo.getVariableKey()), new HashMap<>());
-                    for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
-                        String key = String.format("%s-%s", entry.getKey(), entry.getValue());
-                        if (!historyResultHashMap.containsKey(key)) {
-                            historyResultHashMap.put(key, new HistoryResult());
-                        }
-                        HistoryResult historyResult = historyResultHashMap.get(key);
-                        historyResult.setOracle("refactoring-miner-training");
-                        historyResult.setCodeShovelOracleVote(1);
-                    }
-                    processHistory(variableHistory, historyResultHashMap, repositoryWebURL, String.format("%s$%s(%d)", historyInfo.getFunctionKey(), historyInfo.getVariableName(), historyInfo.getVariableStartLine()), Detector.MINER, "variable");
-                    saveAllResultsToDatabase(historyResultHashMap.values(), sessionObj);
-//                    writeToFile(processedFilePath, file.getName() + System.lineSeparator(), StandardOpenOption.APPEND);
-
-                } catch (Exception exception) {
-                    exception.printStackTrace();
-                }
-            }
-        } catch (Exception sqlException) {
-            if (null != sessionObj.getTransaction()) {
-                System.out.println("\n.......Transaction Is Being Rolled Back.......");
-                sessionObj.getTransaction().rollback();
-            }
-            sqlException.printStackTrace();
-        } finally {
-            if (sessionObj != null) {
-                sessionObj.close();
-            }
-        }
-    }
-
-    private void createVariableDataset() throws Exception {
-        Session sessionObj = null;
-        try {
-            sessionObj = buildSessionFactory().openSession();
-
-            String processedFilePath = "E:\\Data\\History\\Variable\\dataset\\processed.csv";
-            String finishedFilePath = "E:\\Data\\History\\Variable\\dataset\\report.csv";
-            Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
-            ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
-            ClassLoader classLoader = Starter.class.getClassLoader();
-            File historyFolder = new File(classLoader.getResource("history/method/train").getFile());
-//        File resultFolder = new File(classLoader.getResource("history/variable/training").getFile());
-            File resultFolder = new File("E:\\Data\\History\\Variable\\dataset\\training");
-            for (File file : historyFolder.listFiles()) {
-                if (processedFiles.contains(file.getName()))
-                    continue;
-
-                HistoryInfo historyInfo = mapper.readValue(file, HistoryInfo.class);
-                String repositoryWebURL = historyInfo.getRepositoryWebURL();
-                String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-                String projectDirectory = FOLDER_TO_CLONE + repositoryName;
-
-
-                GitService gitService = new GitServiceImpl();
-                try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
-                    try (Git git = new Git(repository)) {
-                        RefactoringMiner refactoringMiner = new RefactoringMiner(repository, repositoryWebURL);
-
-                        List<HistoryResult> methodChangedCommits = getMethodChangedCommits(sessionObj, repositoryWebURL, historyInfo.getFunctionKey());
-                        Set<String> processedCommits = new HashSet<>();
-                        for (HistoryResult historyResult : methodChangedCommits) {
-                            String commitId = historyResult.getElementVersionIdAfter();
-                            if (processedCommits.contains(commitId))
-                                continue;
-                            processedCommits.add(commitId);
-
-                            Version currentVersion = refactoringMiner.getVersion(commitId);
-                            String parentCommitId = refactoringMiner.getRepository().getParentId(commitId);
-                            Version parentVersion = refactoringMiner.getVersion(parentCommitId);
-
-                            UMLModel changedModelRight = refactoringMiner.getUMLModel(commitId, Collections.singletonList(historyResult.getElementFileAfter()));
-                            Method changedMethodRight = RefactoringMiner.getMethodByName(changedModelRight, refactoringMiner.getVersion(commitId), historyResult.getElementNameAfter());
-
-                            if ("added".equals(historyResult.getChangeType())) {
-                                for (VariableDeclaration variableDeclaration : changedMethodRight.getUmlOperation().getAllVariableDeclarations()) {
-                                    Variable variableBefore = Variable.of(variableDeclaration, changedMethodRight.getUmlOperation(), parentVersion);
-                                    Variable variableAfter = Variable.of(variableDeclaration, changedMethodRight.getUmlOperation(), currentVersion);
-                                    refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().handleAdd(variableBefore, variableAfter);
-                                }
-                                continue;
-                            }
-                            UMLModel changedModelLeft = refactoringMiner.getUMLModel(historyResult.getElementVersionIdBefore(), Collections.singletonList(historyResult.getElementFileBefore()));
-                            Method changedMethodLeft = RefactoringMiner.getMethodByName(changedModelLeft, refactoringMiner.getVersion(historyResult.getElementVersionIdBefore()), historyResult.getElementNameBefore());
-
-                            UMLOperationBodyMapper umlOperationBodyMapper = new UMLOperationBodyMapper(changedMethodLeft.getUmlOperation(), changedMethodRight.getUmlOperation(), null);
-                            Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactorings();
-
-                            refactoringMiner.analyseVariableRefactorings(refactorings, currentVersion, parentVersion, variable -> true);
-
-                            for (Pair<Pair<VariableDeclaration, UMLOperation>, Pair<VariableDeclaration, UMLOperation>> matchedVariablePair : umlOperationBodyMapper.getMatchedVariablesPair()) {
-                                Variable variableAfter = Variable.of(matchedVariablePair.getRight().getLeft(), matchedVariablePair.getRight().getRight(), currentVersion);
-                                Variable variableBefore = Variable.of(matchedVariablePair.getLeft().getLeft(), matchedVariablePair.getLeft().getRight(), parentVersion);
-                                refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().addChange(variableBefore, variableAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                            }
-
-
-                            for (Pair<VariableDeclaration, UMLOperation> addedVariable : umlOperationBodyMapper.getAddedVariables()) {
-                                Variable variableAfter = Variable.of(addedVariable.getLeft(), addedVariable.getRight(), currentVersion);
-                                Variable variableBefore = Variable.of(addedVariable.getLeft(), addedVariable.getRight(), parentVersion);
-                                refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().handleAdd(variableBefore, variableAfter);
-                            }
-
-                            for (Pair<VariableDeclaration, UMLOperation> removedVariable : umlOperationBodyMapper.getRemovedVariables()) {
-                                Variable variableBefore = Variable.of(removedVariable.getLeft(), removedVariable.getRight(), parentVersion);
-                                Variable variableAfter = Variable.of(removedVariable.getLeft(), removedVariable.getRight(), currentVersion);
-
-                                refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().handleRemoved(variableBefore, variableAfter);
-                            }
-
-                            refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().connectRelatedNodes();
-                        }
-
-                        String startCommitId = historyInfo.getStartCommitName();
-                        UMLModel startModel = refactoringMiner.getUMLModel(startCommitId, Collections.singletonList(historyInfo.getFilePath()));
-                        Method startMethod = RefactoringMiner.getMethodByName(startModel, refactoringMiner.getVersion(startCommitId), historyInfo.getFunctionKey());
-                        Version startVersion = refactoringMiner.getVersion(startCommitId);
-
-                        for (VariableDeclaration variableDeclaration : startMethod.getUmlOperation().getAllVariableDeclarations()) {
-                            Variable variableStart = Variable.of(variableDeclaration, startMethod.getUmlOperation(), startVersion);
-                            refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().addNode(variableStart);
-                        }
-                        refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().connectRelatedNodes();
-
-
-                        for (VariableDeclaration variableDeclaration : startMethod.getUmlOperation().getAllVariableDeclarations()) {
-                            Variable variableStart = Variable.of(variableDeclaration, startMethod.getUmlOperation(), startVersion);
-                            Graph<CodeElement, Edge> variableHistory = refactoringMiner.getRefactoringHandler().getVariableChangeHistoryGraph().findSubGraph(variableStart);
-
-                            HistoryInfo variableHistoryInfo = new HistoryInfo();
-                            variableHistoryInfo.setRepositoryName(repositoryName);
-                            variableHistoryInfo.setRepositoryWebURL(repositoryWebURL);
-                            variableHistoryInfo.setFilePath(startMethod.getFilePath());
-                            variableHistoryInfo.setFunctionName(startMethod.getUmlOperation().getName());
-                            variableHistoryInfo.setFunctionKey(startMethod.getName());
-                            variableHistoryInfo.setFunctionStartLine(historyInfo.getFunctionStartLine());
-
-                            variableHistoryInfo.setVariableName(variableDeclaration.getVariableName());
-                            int startLine = variableDeclaration.getLocationInfo().getStartLine();
-                            variableHistoryInfo.setVariableKey(String.format("%s$%s(%d)", historyInfo.getFunctionKey(), variableDeclaration.getVariableName(), startLine));
-                            variableHistoryInfo.setVariableStartLine(startLine);
-
-                            for (EndpointPair<CodeElement> edge : variableHistory.getEdges()) {
-                                EdgeImpl edgeValue = (EdgeImpl) variableHistory.getEdgeValue(edge).get();
-                                for (Change change : edgeValue.getChangeList()) {
-                                    if (Change.Type.NO_CHANGE.equals(change.getType()))
-                                        continue;
-                                    Change.Type changeType = change.getType();
-                                    CodeElement target = edge.target();
-                                    String commitId = target.getVersion().getId();
-                                    ChangeHistory changeHistory = new ChangeHistory();
-                                    changeHistory.setChangeType(changeType.getTitle());
-//                                    changeHistory.setType(change.getSummary());
-//                                    changeHistory.setDescription(change.toString());
-
-                                    changeHistory.setCommitId(commitId);
-                                    changeHistory.setCommitTime(target.getVersion().getTime());
-
-                                    changeHistory.setElementFileAfter(target.getFilePath());
-                                    changeHistory.setElementNameAfter(target.getName());
-
-                                    CodeElement source = edge.source();
-                                    changeHistory.setElementFileBefore(source.getFilePath());
-                                    changeHistory.setElementNameBefore(source.getName());
-
-//                                    variableHistoryInfo.getExpectedResults().add(changeHistory);
-                                }
-                            }
-
-                            File newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + ".json");
-                            int i = 1;
-                            while (newFile.exists()) {
-                                newFile = new File(resultFolder.getPath() + "\\" + file.getName().replace(".json", "") + "-" + variableDeclaration.getVariableName() + i + ".json");
-                                i++;
-                            }
-                            writer.writeValue(newFile, variableHistoryInfo);
-                        }
-
-                    }
-                }
-            }
-        } catch (Exception sqlException) {
-            if (null != sessionObj.getTransaction()) {
-                System.out.println("\n.......Transaction Is Being Rolled Back.......");
-                sessionObj.getTransaction().rollback();
-            }
-            sqlException.printStackTrace();
-        } finally {
-            if (sessionObj != null) {
-                sessionObj.close();
-            }
-        }
-    }
 
     private void oracle(MethodHistoryInfo methodHistoryInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap, boolean useAltCommit) {
         for (ChangeHistory changeHistory : methodHistoryInfo.getExpectedChanges()) {
@@ -1223,46 +947,48 @@ public class Starter {
 
     }
 
-    private void codeShovelOracle(HistoryInfo historyInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap) {
-        for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
-            if (entry.getValue().equals("Ynochange"))
-                continue;
-            List<String> changes = new ArrayList<>();
-            if (entry.getValue().contains("Ymultichange")) {
-                for (String change : entry.getValue().replace("Ymultichange(", "").replace(")", "").split(",")) {
-                    changes.add(change);
-                }
-            } else {
-                changes.add(entry.getValue());
-            }
-            for (String ychange : changes) {
-                Change.Type changeType = getChangeType(ychange);
-                String commitId = entry.getKey();
+//    private void codeShovelOracle(VariableHistoryInfo historyInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap) {
+//        for (Map.Entry<String, String> entry : historyInfo.getExpectedResult().entrySet()) {
+//            if (entry.getValue().equals("Ynochange"))
+//                continue;
+//            List<String> changes = new ArrayList<>();
+//            if (entry.getValue().contains("Ymultichange")) {
+//                for (String change : entry.getValue().replace("Ymultichange(", "").replace(")", "").split(",")) {
+//                    changes.add(change);
+//                }
+//            } else {
+//                changes.add(entry.getValue());
+//            }
+//            for (String ychange : changes) {
+//                Change.Type changeType = getChangeType(ychange);
+//                String commitId = entry.getKey();
+//
+//                addHistoryResult(historyResultHashMap,
+//                        changeType,
+//                        commitId,
+//                        historyInfo.getFunctionKey(),
+//                        "method",
+//                        Detector.SHOVEL_ORACLE,
+//                        ychange,
+//                        repositoryWebURL,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        null,
+//                        commitId,
+//                        -1,
+//                        -1);
+//            }
+//        }
+//    }
 
-                addHistoryResult(historyResultHashMap,
-                        changeType,
-                        commitId,
-                        historyInfo.getFunctionKey(),
-                        "method",
-                        Detector.SHOVEL_ORACLE,
-                        ychange,
-                        repositoryWebURL,
-                        null,
-                        null,
-                        null,
-                        null,
-                        null,
-                        commitId,
-                        -1,
-                        -1);
-            }
-        }
-    }
-
-    private void refactoringRefiner(Map<String, MethodHistoryInfo> oracle, String oracleName) throws IOException {
-        String processedFilePath = String.format("result/processedFileMiner-%s.csv", oracleName);
+    private void codeTracker(MethodOracle methodOracle) throws IOException {
+        String oracleName = methodOracle.getName();
+        String toolName = "tracker";
+        String processedFilePath = String.format(PROCESSED_FILE_NAME_FORMAT, toolName, oracleName);
         Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
-        for (Map.Entry<String, MethodHistoryInfo> entry : oracle.entrySet()) {
+        for (Map.Entry<String, MethodHistoryInfo> entry : methodOracle.getOracle().entrySet()) {
             String fileName = entry.getKey();
             try {
                 if (processedFiles.contains(fileName))
@@ -1286,7 +1012,7 @@ public class Starter {
 
 
                 //TEMPv
-//                ObjectWriter writer = mapper.writer(new DefaultPrettyPrinter());
+//                ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
 //                methodHistoryInfo.getExpectedChanges().clear();
 //                for (HistoryResult documentChangeResult : historyResultHashMap.values().stream().filter(historyResult -> historyResult.getRefactoringMinerVote() == 1).collect(Collectors.toList())) {
 //                    documentChangeResult.setRefactoringMinerOracleVote(1);
@@ -1339,9 +1065,7 @@ public class Starter {
 
                 content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
 
-                writeToFile(String.format("result/miner_result_%s.csv", oracleName),
-                        RESULT_HEADER,
-                        content.toString(), StandardOpenOption.APPEND);
+                writeToFile(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, toolName, oracleName), RESULT_HEADER, content.toString(), StandardOpenOption.APPEND);
 
                 List<HistoryResult> historyResults = resultEntrySet.stream().map(Map.Entry::getValue).sorted(Comparator.comparing(HistoryResult::getElementVersionIdAfter).reversed()).collect(Collectors.toList());
                 for (HistoryResult historyResult : historyResults) {
@@ -1355,7 +1079,7 @@ public class Starter {
                     else
                         resultType = "UN!";
 
-                    writeToFile(String.format("result/miner_detailed_result_%s.csv", oracleName),
+                    writeToFile(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, toolName, oracleName),
                             DETAILED_RESULT_HEADER,
                             String.format(DETAILED_CONTENT_FORMAT,
                                     historyResult.getRepository(), historyResult.getElementKey(), historyResult.getElementVersionIdBefore(), historyResult.getElementVersionIdAfter(), historyResult.getElementVersionTimeAfter(), historyResult.getChangeType(),
@@ -1365,7 +1089,7 @@ public class Starter {
                 }
                 writeToFile(processedFilePath, "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
             } catch (Exception exception) {
-                try (FileWriter fw = new FileWriter(String.format("result/miner-error-%s-%s.txt", oracleName, fileName), false)) {
+                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, toolName, oracleName, fileName), false)) {
                     try (PrintWriter pw = new PrintWriter(fw)) {
                         exception.printStackTrace(pw);
                     }
@@ -1374,10 +1098,12 @@ public class Starter {
         }
     }
 
-    private void codeShovel(Map<String, MethodHistoryInfo> oracle, String oracleName) throws Exception {
-        String processedFilePath = String.format("result/processedFileShovel-%s.csv", oracleName);
+    private void codeShovel(MethodOracle methodOracle) throws Exception {
+        String oracleName = methodOracle.getName();
+        String toolName = "shovel";
+        String processedFilePath = String.format(PROCESSED_FILE_NAME_FORMAT, toolName, oracleName);
         Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
-        for (Map.Entry<String, MethodHistoryInfo> oracleEntry : oracle.entrySet()) {
+        for (Map.Entry<String, MethodHistoryInfo> oracleEntry : methodOracle.getOracle().entrySet()) {
             String fileName = oracleEntry.getKey();
             try {
                 if (processedFiles.contains(fileName))
@@ -1497,9 +1223,7 @@ public class Starter {
 
                 content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
 
-                writeToFile(String.format("result/shovel_result_%s.csv", oracleName),
-                        RESULT_HEADER_SHOVEL,
-                        content.toString(), StandardOpenOption.APPEND);
+                writeToFile(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, toolName, oracleName), RESULT_HEADER_SHOVEL, content.toString(), StandardOpenOption.APPEND);
 
                 List<HistoryResult> historyResults = resultEntrySet.stream().map(Map.Entry::getValue).sorted(Comparator.comparing(HistoryResult::getElementVersionIdAfter).reversed()).collect(Collectors.toList());
                 for (HistoryResult historyResult : historyResults) {
@@ -1513,7 +1237,7 @@ public class Starter {
                     else
                         resultType = "UN!";
 
-                    writeToFile(String.format("result/shovel_detailed_result_%s.csv", oracleName),
+                    writeToFile(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, toolName, oracleName),
                             DETAILED_RESULT_HEADER,
                             String.format(DETAILED_CONTENT_FORMAT,
                                     historyResult.getRepository(), historyResult.getElementKey(), historyResult.getElementVersionIdBefore(), historyResult.getElementVersionIdAfter(), historyResult.getElementVersionTimeAfter(), historyResult.getChangeType(),
@@ -1524,7 +1248,7 @@ public class Starter {
 
                 writeToFile(processedFilePath, "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
             } catch (Exception exception) {
-                try (FileWriter fw = new FileWriter(String.format("result/shovel-error-%s-%s.txt", oracleName, fileName), false)) {
+                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, toolName, oracleName, fileName), false)) {
                     try (PrintWriter pw = new PrintWriter(fw)) {
                         exception.printStackTrace(pw);
                     }

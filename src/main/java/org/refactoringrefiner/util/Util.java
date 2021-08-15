@@ -143,4 +143,8 @@ public class Util {
             return null;
         return Hashing.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
     }
+
+    public static String getRepositoryNameFromRepositoryWebUrl(String repositoryWebURL) {
+        return repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
+    }
 }

@@ -18,6 +18,7 @@ public interface Change {
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
         RETURN_TYPE_CHANGE("return type change"),
+        TYPE_CHANGE("type change"),
         EXCEPTION_CHANGE("exception change"),
         PARAMETER_CHANGE("parameter change"),
         ANNOTATION_CHANGE("annotation change"),

@@ -1,10 +1,10 @@
 package org.refactoringrefiner.test;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
-public class HistoryInfo {
+public class VariableHistoryInfo {
     private String repositoryName;
-    private String fileName;
     private String repositoryWebURL;
     private String filePath;
     private String functionName;
@@ -15,9 +15,9 @@ public class HistoryInfo {
     private String variableKey;
     private int variableStartLine;
 
-    private String startCommitName;
+    private String startCommitId;
     private String branchName;
-    private LinkedHashMap<String, String> expectedResult;
+    private final List<ChangeHistory> expectedChanges = new ArrayList<>();
 
     public String getRepositoryName() {
         return repositoryName;
@@ -59,20 +59,16 @@ public class HistoryInfo {
         this.functionKey = functionKey;
     }
 
-    public String getStartCommitName() {
-        return startCommitName;
+    public String getStartCommitId() {
+        return startCommitId;
     }
 
-    public void setStartCommitName(String startCommitName) {
-        this.startCommitName = startCommitName;
+    public void setStartCommitId(String startCommitId) {
+        this.startCommitId = startCommitId;
     }
 
-    public LinkedHashMap<String, String> getExpectedResult() {
-        return expectedResult;
-    }
-
-    public void setExpectedResult(LinkedHashMap<String, String> expectedResult) {
-        this.expectedResult = expectedResult;
+    public List<ChangeHistory> getExpectedChanges() {
+        return expectedChanges;
     }
 
     public int getFunctionStartLine() {
@@ -115,11 +111,4 @@ public class HistoryInfo {
         this.variableStartLine = variableStartLine;
     }
 
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName(String fileName) {
-        this.fileName = fileName;
-    }
 }

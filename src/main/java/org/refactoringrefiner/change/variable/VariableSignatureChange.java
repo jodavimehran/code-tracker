@@ -1,11 +1,12 @@
-package org.refactoringrefiner.change.method;
+package org.refactoringrefiner.change.variable;
 
 import org.refactoringminer.api.Refactoring;
 
-public abstract class SignatureChange extends MethodChange {
+public abstract class VariableSignatureChange extends VariableChange {
+
     private final Refactoring refactoring;
 
-    public SignatureChange(Type type, Refactoring refactoring) {
+    public VariableSignatureChange(Type type, Refactoring refactoring) {
         super(type);
         this.refactoring = refactoring;
     }

@@ -21,7 +21,6 @@ import org.refactoringrefiner.element.Variable;
 import org.refactoringrefiner.util.GitRepository;
 import org.refactoringrefiner.util.IRepository;
 
-import java.io.IOException;
 import java.util.*;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -257,7 +256,7 @@ public class RefactoringMiner implements ChangeDetector {
         if (rightSideFileName == null)
             throw new IllegalArgumentException("File name could not be null.");
 
-        if(filterLeftSide) {
+        if (filterLeftSide) {
             String leftSideFileName = rightSideFileName;
             if (commitModel.moveSourceFolderRefactorings != null) {
                 boolean found = false;
@@ -278,7 +277,7 @@ public class RefactoringMiner implements ChangeDetector {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
-        }else {
+        } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNames.contains(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
@@ -442,58 +441,66 @@ public class RefactoringMiner implements ChangeDetector {
     public Set<Variable> analyseVariableRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         Set<Variable> leftVariableSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
-            List<Variable> variableBeforeList = new ArrayList<>();
-            List<Variable> variableAfterList = new ArrayList<>();
+            Variable variableBefore = null;
+            Variable variableAfter = null;
+            Change.Type changeType = null;
 
             switch (refactoring.getRefactoringType()) {
                 case RENAME_VARIABLE:
                 case RENAME_PARAMETER:
                 case PARAMETERIZE_VARIABLE: {
                     RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(renameVariableRefactoring.getRenamedVariable(), renameVariableRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(renameVariableRefactoring.getOriginalVariable(), renameVariableRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(renameVariableRefactoring.getOriginalVariable(), renameVariableRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(renameVariableRefactoring.getRenamedVariable(), renameVariableRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.RENAME;
                     break;
                 }
                 case CHANGE_VARIABLE_TYPE:
                 case CHANGE_PARAMETER_TYPE: {
                     ChangeVariableTypeRefactoring changeVariableTypeRefactoring = (ChangeVariableTypeRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(changeVariableTypeRefactoring.getChangedTypeVariable(), changeVariableTypeRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(changeVariableTypeRefactoring.getOriginalVariable(), changeVariableTypeRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(changeVariableTypeRefactoring.getOriginalVariable(), changeVariableTypeRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(changeVariableTypeRefactoring.getChangedTypeVariable(), changeVariableTypeRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.TYPE_CHANGE;
                     break;
                 }
                 case ADD_VARIABLE_MODIFIER:
                 case ADD_PARAMETER_MODIFIER: {
                     AddVariableModifierRefactoring addVariableModifierRefactoring = (AddVariableModifierRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(addVariableModifierRefactoring.getVariableAfter(), addVariableModifierRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(addVariableModifierRefactoring.getVariableBefore(), addVariableModifierRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(addVariableModifierRefactoring.getVariableBefore(), addVariableModifierRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(addVariableModifierRefactoring.getVariableAfter(), addVariableModifierRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.MODIFIER_CHANGE;
                     break;
                 }
                 case REMOVE_VARIABLE_MODIFIER:
                 case REMOVE_PARAMETER_MODIFIER: {
                     RemoveVariableModifierRefactoring removeVariableModifierRefactoring = (RemoveVariableModifierRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(removeVariableModifierRefactoring.getVariableAfter(), removeVariableModifierRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(removeVariableModifierRefactoring.getVariableBefore(), removeVariableModifierRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(removeVariableModifierRefactoring.getVariableBefore(), removeVariableModifierRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(removeVariableModifierRefactoring.getVariableAfter(), removeVariableModifierRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.MODIFIER_CHANGE;
                     break;
                 }
                 case ADD_VARIABLE_ANNOTATION:
                 case ADD_PARAMETER_ANNOTATION: {
                     AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(addVariableAnnotationRefactoring.getVariableAfter(), addVariableAnnotationRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(addVariableAnnotationRefactoring.getVariableBefore(), addVariableAnnotationRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(addVariableAnnotationRefactoring.getVariableBefore(), addVariableAnnotationRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(addVariableAnnotationRefactoring.getVariableAfter(), addVariableAnnotationRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.ANNOTATION_CHANGE;
                     break;
                 }
                 case MODIFY_VARIABLE_ANNOTATION:
                 case MODIFY_PARAMETER_ANNOTATION: {
                     ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(modifyVariableAnnotationRefactoring.getVariableAfter(), modifyVariableAnnotationRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(modifyVariableAnnotationRefactoring.getVariableBefore(), modifyVariableAnnotationRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(modifyVariableAnnotationRefactoring.getVariableBefore(), modifyVariableAnnotationRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(modifyVariableAnnotationRefactoring.getVariableAfter(), modifyVariableAnnotationRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.ANNOTATION_CHANGE;
                     break;
                 }
                 case REMOVE_VARIABLE_ANNOTATION:
                 case REMOVE_PARAMETER_ANNOTATION: {
                     RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) refactoring;
-                    variableAfterList.add(Variable.of(removeVariableAnnotationRefactoring.getVariableAfter(), removeVariableAnnotationRefactoring.getOperationAfter(), currentVersion));
-                    variableBeforeList.add(Variable.of(removeVariableAnnotationRefactoring.getVariableBefore(), removeVariableAnnotationRefactoring.getOperationBefore(), parentVersion));
+                    variableBefore = Variable.of(removeVariableAnnotationRefactoring.getVariableBefore(), removeVariableAnnotationRefactoring.getOperationBefore(), parentVersion);
+                    variableAfter = Variable.of(removeVariableAnnotationRefactoring.getVariableAfter(), removeVariableAnnotationRefactoring.getOperationAfter(), currentVersion);
+                    changeType = Change.Type.ANNOTATION_CHANGE;
                     break;
                 }
 
@@ -501,31 +508,46 @@ public class RefactoringMiner implements ChangeDetector {
                 case SPLIT_VARIABLE: {
                     SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) refactoring;
                     for (VariableDeclaration splitVariable : splitVariableRefactoring.getSplitVariables()) {
-                        variableAfterList.add(Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), currentVersion));
+                        Variable addedVariableAfter = Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), parentVersion);
+                        if (equalOperator.test(addedVariableAfter)) {
+                            Variable addedVariableBefore = Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), parentVersion);
+                            addedVariableBefore.setAdded(true);
+                            refactoringHandler.getVariableChangeHistoryGraph().addChange(addedVariableBefore, addedVariableAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED).refactoring(splitVariableRefactoring).codeElement(addedVariableBefore));
+                        }
                     }
-                    variableBeforeList.add(Variable.of(splitVariableRefactoring.getOldVariable(), splitVariableRefactoring.getOperationBefore(), parentVersion));
+
+                    Variable removedVariableBefore = Variable.of(splitVariableRefactoring.getOldVariable(), splitVariableRefactoring.getOperationBefore(), parentVersion);
+                    Variable removedVariableAfter = Variable.of(splitVariableRefactoring.getOldVariable(), splitVariableRefactoring.getOperationBefore(), currentVersion);
+                    removedVariableAfter.setRemoved(true);
+                    refactoringHandler.getVariableChangeHistoryGraph().addChange(removedVariableBefore, removedVariableAfter, ChangeFactory.forMethod(Change.Type.REMOVED).refactoring(splitVariableRefactoring).codeElement(removedVariableAfter));
                     break;
                 }
                 case MERGE_PARAMETER:
                 case MERGE_VARIABLE: {
                     MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) refactoring;
                     for (VariableDeclaration mergeVariable : mergeVariableRefactoring.getMergedVariables()) {
-                        variableBeforeList.add(Variable.of(mergeVariable, mergeVariableRefactoring.getOperationBefore(), currentVersion));
+                        Variable removedVariableBefore = Variable.of(mergeVariable, mergeVariableRefactoring.getOperationBefore(), parentVersion);
+                        Variable removedVariableAfter = Variable.of(mergeVariable, mergeVariableRefactoring.getOperationBefore(), currentVersion);
+                        removedVariableAfter.setRemoved(true);
+                        refactoringHandler.getVariableChangeHistoryGraph().addChange(removedVariableBefore, removedVariableAfter, ChangeFactory.forMethod(Change.Type.REMOVED).refactoring(mergeVariableRefactoring).codeElement(removedVariableAfter));
+
                     }
-                    variableAfterList.add(Variable.of(mergeVariableRefactoring.getNewVariable(), mergeVariableRefactoring.getOperationAfter(), parentVersion));
+                    Variable addedVariableAfter = Variable.of(mergeVariableRefactoring.getNewVariable(), mergeVariableRefactoring.getOperationAfter(), parentVersion);
+                    if (equalOperator.test(addedVariableAfter)) {
+                        Variable addedVariableBefore = Variable.of(mergeVariableRefactoring.getNewVariable(), mergeVariableRefactoring.getOperationAfter(), parentVersion);
+                        addedVariableBefore.setAdded(true);
+                        refactoringHandler.getVariableChangeHistoryGraph().addChange(addedVariableBefore, addedVariableAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED).refactoring(mergeVariableRefactoring).codeElement(addedVariableBefore));
+                    }
                     break;
                 }
             }
-            for (Variable variableAfter : variableAfterList) {
+            if(changeType != null) {
                 if (equalOperator.test(variableAfter)) {
-                    for (Variable variableBefore : variableBeforeList) {
-                        //TODO: add change type for every case
-                        //refactoringHandler.getVariableChangeHistoryGraph().addRefactored(variableBefore, variableAfter, refactoring);
-                        leftVariableSet.add(variableBefore);
-                    }
+                    refactoringHandler.getVariableChangeHistoryGraph().addChange(variableBefore, variableAfter, ChangeFactory.forVariable(changeType).refactoring(refactoring));
                 }
             }
         }
+        refactoringHandler.getMethodChangeHistoryGraph().connectRelatedNodes();
         return leftVariableSet;
     }
 

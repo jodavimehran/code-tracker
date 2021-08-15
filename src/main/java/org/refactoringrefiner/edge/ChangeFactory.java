@@ -1,28 +1,37 @@
 package org.refactoringrefiner.edge;
 
 import org.refactoringminer.api.Refactoring;
+import org.refactoringrefiner.api.Change;
 import org.refactoringrefiner.api.CodeElement;
 import org.refactoringrefiner.api.Edge;
 import org.refactoringrefiner.change.AbstractChange;
 import org.refactoringrefiner.change.method.*;
+import org.refactoringrefiner.change.variable.VariableAnnotationChange;
+import org.refactoringrefiner.change.variable.VariableContainerChange;
+import org.refactoringrefiner.change.variable.VariableModifierChange;
+import org.refactoringrefiner.change.variable.VariableRename;
 
 public final class ChangeFactory {
-    protected final AbstractChange.Type type;
+    protected final Change.Type type;
     protected final String elementType;
     private Refactoring refactoring;
     private Refactoring relatedRefactoring;
     private CodeElement codeElement;
 
-    private ChangeFactory(AbstractChange.Type type, String elementType) {
+    private ChangeFactory(Change.Type type, String elementType) {
         this.type = type;
         this.elementType = elementType;
     }
 
-    public static ChangeFactory forMethod(AbstractChange.Type type) {
+    public static ChangeFactory forMethod(Change.Type type) {
         return new ChangeFactory(type, "method");
     }
 
-    public static ChangeFactory of(AbstractChange.Type type) {
+    public static ChangeFactory forVariable(Change.Type type) {
+        return new ChangeFactory(type, "variable");
+    }
+
+    public static ChangeFactory of(Change.Type type) {
         return new ChangeFactory(type, null);
     }
 
@@ -31,7 +40,7 @@ public final class ChangeFactory {
         return this;
     }
 
-    public boolean containsRefactoring(){
+    public boolean containsRefactoring() {
         return this.refactoring != null;
     }
 
@@ -45,7 +54,7 @@ public final class ChangeFactory {
         return this;
     }
 
-    public AbstractChange.Type getType() {
+    public Change.Type getType() {
         return type;
     }
 
@@ -69,7 +78,11 @@ public final class ChangeFactory {
                 break;
 
             case CONTAINER_CHANGE:
-                change = new ContainerChange(refactoring);
+                if(isMethod()){
+                    change = new MethodContainerChange(refactoring);
+                }else if(isVariable()){
+                    change = new VariableContainerChange(refactoring);
+                }
                 break;
             case INTRODUCED: {
                 if (codeElement == null)
@@ -98,15 +111,17 @@ public final class ChangeFactory {
             case RENAME: {
                 if (refactoring == null)
                     throw new NullPointerException();
-                if ("method".equals(elementType)) {
+                if (isMethod()) {
                     change = new MethodRename(refactoring);
+                } else if (isVariable()) {
+                    change = new VariableRename(refactoring);
                 }
                 break;
             }
             case METHOD_MOVE: {
                 if (refactoring == null)
                     throw new NullPointerException();
-                if ("method".equals(elementType)) {
+                if (isMethod()) {
                     change = new MethodMove(refactoring);
                 }
                 break;
@@ -114,8 +129,10 @@ public final class ChangeFactory {
             case MODIFIER_CHANGE: {
                 if (refactoring == null)
                     throw new NullPointerException();
-                if ("method".equals(elementType)) {
+                if (isMethod()) {
                     change = new MethodModifierChange(refactoring);
+                } else if (isVariable()) {
+                    change = new VariableModifierChange(refactoring);
                 }
                 break;
             }
@@ -134,16 +151,31 @@ public final class ChangeFactory {
             case ANNOTATION_CHANGE: {
                 if (refactoring == null)
                     throw new NullPointerException();
-                if ("method".equals(elementType)) {
-                    change = new AnnotationChange(refactoring);
+                if (isMethod()) {
+                    change = new MethodAnnotationChange(refactoring);
+                } else if (isVariable()) {
+                    change = new VariableAnnotationChange(refactoring);
                 }
                 break;
             }
-
+            case TYPE_CHANGE: {
+                if (isVariable()) {
+                    change = new VariableAnnotationChange(refactoring);
+                }
+                break;
+            }
             default:
-                return null;
+                throw new RuntimeException("Something is wrong!!!!!!!");
         }
 
         return change;
+    }
+
+    private boolean isMethod() {
+        return "method".equals(elementType);
+    }
+
+    private boolean isVariable() {
+        return "variable".equals(elementType);
     }
 }

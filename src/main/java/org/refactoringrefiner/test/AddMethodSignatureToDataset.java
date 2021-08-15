@@ -39,7 +39,7 @@ public class AddMethodSignatureToDataset {
         File historyFolder = new File(AddMethodSignatureToDataset.class.getClassLoader().getResource("history/shovelTraining").getFile());
         File resultFolder = new File(AddMethodSignatureToDataset.class.getClassLoader().getResource("history/method/test").getFile());
         for (File file : historyFolder.listFiles()) {
-            HistoryInfo historyInfo = mapper.readValue(file, HistoryInfo.class);
+            VariableHistoryInfo historyInfo = mapper.readValue(file, VariableHistoryInfo.class);
 
             GitService gitService = new GitServiceImpl();
             historyInfo.setRepositoryWebURL(repo.get(historyInfo.getRepositoryName()));
@@ -51,7 +51,7 @@ public class AddMethodSignatureToDataset {
                     git.fetch().setRemote("origin").call();
                     RefactoringMiner refactoringMiner = new RefactoringMiner(repository, repositoryWebURL);
 
-                    UMLModel umlModel = refactoringMiner.getUMLModel(historyInfo.getStartCommitName(), Collections.singletonList(historyInfo.getFilePath()));
+                    UMLModel umlModel = refactoringMiner.getUMLModel(historyInfo.getStartCommitId(), Collections.singletonList(historyInfo.getFilePath()));
                     for (UMLClass umlClass : umlModel.getClassList()) {
                         for (UMLOperation umlOperation : umlClass.getOperations()) {
                             if (umlOperation.getName().equals(historyInfo.getFunctionName()) &&
