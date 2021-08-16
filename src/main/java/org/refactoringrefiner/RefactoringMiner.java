@@ -541,7 +541,7 @@ public class RefactoringMiner implements ChangeDetector {
                     break;
                 }
             }
-            if(changeType != null) {
+            if (changeType != null) {
                 if (equalOperator.test(variableAfter)) {
                     refactoringHandler.getVariableChangeHistoryGraph().addChange(variableBefore, variableAfter, ChangeFactory.forVariable(changeType).refactoring(refactoring));
                 }
@@ -638,7 +638,9 @@ public class RefactoringMiner implements ChangeDetector {
                     break;
                 }
                 case RENAME_PARAMETER:
-                case PARAMETERIZE_VARIABLE: {
+                case PARAMETERIZE_ATTRIBUTE:
+                case PARAMETERIZE_VARIABLE:
+                case LOCALIZE_PARAMETER: {
                     RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) refactoring;
                     if (!renameVariableRefactoring.isExtraction()) {
                         operationBefore = renameVariableRefactoring.getOperationBefore();

@@ -557,6 +557,15 @@ public class Starter {
         return a;
     }
 
+    private static Set<Change.Type> shovelChangeToChange(String change) {
+        if (change.startsWith("Ymultichange")) {
+            return Arrays.stream(change.replace("Ymultichange(", "").replace(")", "").split(",")).map(Starter::getChangeType).collect(Collectors.toSet());
+        }
+        Set<Change.Type> result = new HashSet<>();
+        result.add(getChangeType(change));
+        return result;
+    }
+
     public void correctDBType() throws IOException {
         String resultPath = "E:\\Data\\History\\method\\oracle\\test\\";
         ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
@@ -656,7 +665,6 @@ public class Starter {
         throw new RuntimeException("invalid " + input);
     }
 
-
     private void methodHistoryExperiment() throws Exception {
         String[] neededDirectories = new String[]{"result", "result/shovel", "result/shovel/test", "result/shovel/training", "result/oracle"};
         for (String directoryName : neededDirectories) {
@@ -664,7 +672,7 @@ public class Starter {
             if (!directoryPath.toFile().exists())
                 Files.createDirectories(directoryPath);
         }
-        String[] toolNames = new String[]{"tracker", "shovel"};
+        String[] toolNames = new String[]{"tracker", "shovel", "shovel-oracle"};
         for (MethodOracle oracle : MethodOracle.all()) {
             for (String toolName : toolNames) {
                 switch (toolName) {
@@ -675,6 +683,9 @@ public class Starter {
                     case "shovel":
                         codeShovel(oracle);
                         calculateFinalResults(oracle.getName(), toolName);
+                        break;
+                    case "shovel-oracle":
+                        analyseCodeShovelOracle(oracle);
                         break;
                 }
             }
@@ -692,7 +703,6 @@ public class Starter {
                 tp += Integer.parseInt(result[result.length - 3]);
                 fp += Integer.parseInt(result[result.length - 2]);
                 fn += Integer.parseInt(result[result.length - 1]);
-
                 commitLevelExpected.put(result[0], new HashSet<>());
                 commitLevelActual.put(result[0], new HashSet<>());
                 processingTime.add(Integer.parseInt(result[1]));
@@ -707,13 +717,17 @@ public class Starter {
             List<String[]> detailedResults = readResults(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, toolName, oracleName));
 
             for (String[] result : detailedResults) {
-                if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FN")) {
-                    Set<String> commitIds = commitLevelExpected.get(result[1]);
-                    commitIds.add(result[3]);
+                String elementKey = result[1];
+                String commitId = result[3];
+                if (result[result.length - 1].equals("TP")) {
+                    commitLevelExpected.get(elementKey).add(commitId);
+                    commitLevelActual.get(elementKey).add(commitId);
                 }
-                if (result[result.length - 1].equals("TP") || result[result.length - 1].equals("FP")) {
-                    Set<String> commitIds = commitLevelActual.get(result[1]);
-                    commitIds.add(result[3]);
+                if (result[result.length - 1].equals("FN")) {
+                    commitLevelExpected.get(elementKey).add(commitId);
+                }
+                if (result[result.length - 1].equals("FP")) {
+                    commitLevelActual.get(elementKey).add(commitId);
                 }
             }
             int sumTp = 0, sumFP = 0, sumFn = 0;
@@ -721,6 +735,7 @@ public class Starter {
                 String instanceName = entry.getKey();
                 Set<String> expectedCommitIds = entry.getValue();
                 Set<String> actualCommitIds = commitLevelActual.get(instanceName);
+                int expectedSize = expectedCommitIds.size();
                 int actualSize = actualCommitIds.size();
                 HashSet<String> actualCopy = new HashSet<>(actualCommitIds);
                 actualCopy.removeAll(expectedCommitIds);
@@ -739,12 +754,6 @@ public class Starter {
         } catch (Exception exception) {
             exception.printStackTrace();
         }
-    }
-
-    private List<String[]> readResults(String fileName) throws IOException, CsvException {
-        FileReader filereader = new FileReader(fileName);
-        CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
-        return csvReader.readAll();
     }
 
 
@@ -840,16 +849,10 @@ public class Starter {
 
 //}
 
-    private HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> getHistoryResultMap(List<HistoryResult> allHistory) {
-        HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> allResults = new HashMap<>();
-        for (HistoryResult historyResult : allHistory) {
-            allResults.putIfAbsent(historyResult.getRepository(), new HashMap<>());
-            HashMap<String, HashMap<String, HistoryResult>> repositoryMap = allResults.get(historyResult.getRepository());
-            repositoryMap.putIfAbsent(historyResult.getElementKey(), new HashMap<>());
-            HashMap<String, HistoryResult> historyResultHashMap = repositoryMap.get(historyResult.getElementKey());
-            historyResultHashMap.putIfAbsent(String.format("%s-%s", historyResult.getElementVersionIdAfter(), historyResult.getChangeType()), historyResult);
-        }
-        return allResults;
+    private List<String[]> readResults(String fileName) throws IOException, CsvException {
+        FileReader filereader = new FileReader(fileName);
+        CSVReader csvReader = new CSVReaderBuilder(filereader).withSkipLines(1).build();
+        return csvReader.readAll();
     }
 
 //    private void countNumberOfCommit() throws Exception {
@@ -919,8 +922,19 @@ public class Starter {
 //        }
 //    }
 
+    private HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> getHistoryResultMap(List<HistoryResult> allHistory) {
+        HashMap<String, HashMap<String, HashMap<String, HistoryResult>>> allResults = new HashMap<>();
+        for (HistoryResult historyResult : allHistory) {
+            allResults.putIfAbsent(historyResult.getRepository(), new HashMap<>());
+            HashMap<String, HashMap<String, HistoryResult>> repositoryMap = allResults.get(historyResult.getRepository());
+            repositoryMap.putIfAbsent(historyResult.getElementKey(), new HashMap<>());
+            HashMap<String, HistoryResult> historyResultHashMap = repositoryMap.get(historyResult.getElementKey());
+            historyResultHashMap.putIfAbsent(String.format("%s-%s", historyResult.getElementVersionIdAfter(), historyResult.getChangeType()), historyResult);
+        }
+        return allResults;
+    }
 
-    private void oracle(MethodHistoryInfo methodHistoryInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap, boolean useAltCommit) {
+    private void oracle(MethodHistoryInfo methodHistoryInfo, HashMap<String, HistoryResult> historyResultHashMap, boolean useAltCommit) {
         for (ChangeHistory changeHistory : methodHistoryInfo.getExpectedChanges()) {
             Change.Type changeType = Change.Type.get(changeHistory.getChangeType());
             String commitId = changeHistory.getCommitId();
@@ -934,7 +948,7 @@ public class Starter {
                     "method",
                     Detector.MINER_ORACLE,
                     null,
-                    repositoryWebURL,
+                    methodHistoryInfo.getRepositoryWebURL(),
                     changeHistory.getElementFileBefore(),
                     changeHistory.getElementFileAfter(),
                     changeHistory.getElementNameBefore(),
@@ -945,6 +959,69 @@ public class Starter {
                     changeHistory.getCommitTime());
         }
 
+    }
+
+    private void analyseCodeShovelOracle(MethodOracle oracle) throws IOException {
+        HashMap<String, ShovelHistoryInfo> codeShovelOracle = new HashMap<>();
+        ObjectMapper mapper = new ObjectMapper();
+        File oracleFolder = new File(Objects.requireNonNull(Starter.class.getClassLoader().getResource("history/method/codeShovel/" + oracle.getName())).getFile());
+        for (File file : Objects.requireNonNull(oracleFolder.listFiles())) {
+            codeShovelOracle.put(file.getName(), mapper.readValue(file, ShovelHistoryInfo.class));
+        }
+
+        for (Map.Entry<String, MethodHistoryInfo> entry : oracle.getOracle().entrySet()) {
+            MethodHistoryInfo methodHistoryInfo = entry.getValue();
+            HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
+            oracle(entry.getValue(), historyResultHashMap, true);
+
+            ShovelHistoryInfo shovelHistoryInfo = codeShovelOracle.get(entry.getKey());
+            for (Map.Entry<String, String> shovelEntry : shovelHistoryInfo.getExpectedResult().entrySet()) {
+                for (Change.Type shovelChange : shovelChangeToChange(shovelEntry.getValue())) {
+                    addHistoryResult(historyResultHashMap,
+                            shovelChange,
+                            shovelEntry.getKey(),
+                            entry.getValue().getFunctionKey(),
+                            "method",
+                            Detector.SHOVEL_ORACLE,
+                            null,
+                            entry.getValue().getRepositoryWebURL(),
+                            null,
+                            null,
+                            null,
+                            null,
+                            null,
+                            shovelEntry.getKey(),
+                            -1,
+                            -1);
+                }
+            }
+
+            StringBuilder content = new StringBuilder();
+            content.append("\"")
+                    .append(methodHistoryInfo.getFunctionKey()).append("\",")
+                    .append(0).append(",")
+            ;
+            Set<Map.Entry<String, HistoryResult>> resultEntrySet = historyResultHashMap.entrySet();
+            for (Change.Type changeType : Change.Type.values()) {
+                if (Change.Type.NO_CHANGE.equals(changeType) || Change.Type.MULTI_CHANGE.equals(changeType) || Change.Type.REMOVED.equals(changeType))
+                    continue;
+                long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelOracleVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelOracleVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+                long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelOracleVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+                content.append(tp).append(",").append(fp).append(",").append(fn).append(",");
+            }
+
+            long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelOracleVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+            long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelOracleVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
+            long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getCodeShovelOracleVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
+
+            content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
+
+            writeToFile(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, "shovel-oracle", oracle.getName()), RESULT_HEADER_SHOVEL, content.toString(), StandardOpenOption.APPEND);
+
+
+        }
     }
 
 //    private void codeShovelOracle(VariableHistoryInfo historyInfo, String repositoryWebURL, HashMap<String, HistoryResult> historyResultHashMap) {
@@ -999,7 +1076,7 @@ public class Starter {
                 String projectDirectory = FOLDER_TO_CLONE + repositoryName;
 
                 HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
-                oracle(methodHistoryInfo, repositoryWebURL, historyResultHashMap, false);
+                oracle(methodHistoryInfo, historyResultHashMap, false);
 
 
                 RefactoringRefinerImpl refactoringRefinerImpl = (RefactoringRefinerImpl) RefactoringRefinerImpl.factory();
@@ -1114,7 +1191,7 @@ public class Starter {
                 String projectDirectory = FOLDER_TO_CLONE + repositoryName;
 
                 HashMap<String, HistoryResult> historyResultHashMap = new HashMap<>();
-                oracle(methodHistoryInfo, repositoryWebURL, historyResultHashMap, true);
+                oracle(methodHistoryInfo, historyResultHashMap, true);
 
                 long startTime = System.nanoTime();
 
@@ -1213,7 +1290,6 @@ public class Starter {
                     long tp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
                     long fn = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == -1 && historyResult.getRefactoringMinerOracleVote() == 1).count();
                     long fp = resultEntrySet.stream().map(Map.Entry::getValue).filter(historyResult -> historyResult.getChangeType().equals(changeType.getTitle()) && historyResult.getCodeShovelVote() == 1 && historyResult.getRefactoringMinerOracleVote() == -1).count();
-
                     content.append(tp).append(",").append(fp).append(",").append(fn).append(",");
                 }
 
@@ -1329,11 +1405,31 @@ public class Starter {
                                   long elementVersionTimeBefore,
                                   long elementVersionTimeAfter
     ) {
+        if ((Detector.SHOVEL.equals(detector) || Detector.SHOVEL_ORACLE.equals(detector)) && Change.Type.BODY_CHANGE.equals(changeType)) {
+            String changeDocumentationKey = getChangeKey(Change.Type.DOCUMENTATION_CHANGE, commitId);
+            if (result.containsKey(changeDocumentationKey)) {
+                switch (detector) {
+                    case SHOVEL_ORACLE:
+                        result.get(changeDocumentationKey).setCodeShovelOracleVote(1);
+                        break;
+                    case SHOVEL:
+                        result.get(changeDocumentationKey).setCodeShovelVote(1);
+                        break;
+                }
+
+            }
+        }
         String changeKey = getChangeKey(changeType, commitId);
         HistoryResult historyResult;
         if (result.containsKey(changeKey)) {
             historyResult = result.get(changeKey);
         } else {
+            if ((Detector.SHOVEL.equals(detector) || Detector.SHOVEL_ORACLE.equals(detector)) && Change.Type.BODY_CHANGE.equals(changeType)) {
+                String changeDocumentationKey = getChangeKey(Change.Type.DOCUMENTATION_CHANGE, commitId);
+                if (result.containsKey(changeDocumentationKey)) {
+                    return;
+                }
+            }
             historyResult = new HistoryResult();
             result.put(changeKey, historyResult);
         }
