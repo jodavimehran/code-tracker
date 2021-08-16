@@ -42,8 +42,8 @@ public class VariableDatasetCreator {
     }
 
     private void createVariableDataset() throws Exception {
-//        for (MethodOracle methodOracle : MethodOracle.all())
-        MethodOracle methodOracle = MethodOracle.training();
+        for (MethodOracle methodOracle : MethodOracle.all())
+//        MethodOracle methodOracle = MethodOracle.training();
         {
             for (Map.Entry<String, MethodHistoryInfo> oracleEntry : methodOracle.getOracle().entrySet()) {
                 String fileName = oracleEntry.getKey();
@@ -55,8 +55,12 @@ public class VariableDatasetCreator {
                 try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
                     try (Git git = new Git(repository)) {
                         RefactoringMiner refactoringMiner = new RefactoringMiner(repository, repositoryWebURL);
+                        Set<String> processedCommits = new HashSet<>();
                         for (ChangeHistory changeHistory : methodHistoryInfo.getExpectedChanges()) {
                             String commitId = changeHistory.getCommitId();
+                            if(processedCommits.contains(commitId))
+                                continue;
+                            processedCommits.add(commitId);
                             Version currentVersion = refactoringMiner.getVersion(commitId);
                             String parentCommitId = refactoringMiner.getRepository().getParentId(commitId);
                             Version parentVersion = refactoringMiner.getVersion(parentCommitId);
