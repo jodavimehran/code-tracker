@@ -6,11 +6,35 @@
   "functionKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)",
   "functionStartLine" : 108,
   "variableName" : "hasRequestBody",
-  "variableKey" : "hasRequestBody : boolean",
+  "variableKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$hasRequestBody(111)",
   "variableStartLine" : 111,
-  "startCommitName" : "5224f3045ba9b171fce521777edf389f9206173c",
-  "branchName" : null,
-  "expectedResult" : {
-    "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e" : "added"
-  }
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges" : [ {
+    "parentCommitId" : "07309c1c7d9e296014268ebd155ebf7ef8679f6c",
+    "commitId" : "578d8debd65202f574b544f876b45e6110afdb69",
+    "commitTime" : 1479734851,
+    "changeType" : "rename",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$permitsRequestBody",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$hasRequestBody"
+  }, {
+    "parentCommitId" : "ec1b266f1d75f6063b1b84ad06d5c8a689742150",
+    "commitId" : "64b607fc113cec3c18d04574ee1c024192d8cc43",
+    "commitTime" : 1415672451,
+    "changeType" : "rename",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)$hasRequestBody",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)$permitsRequestBody"
+  }, {
+    "parentCommitId" : "063964211c05103bd10fddeda9fafe93a856506b",
+    "commitId" : "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
+    "commitTime" : 1343052148,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/libcore/net/http/SpdyTransport.java",
+    "elementNameBefore" : "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()$hasRequestBody",
+    "elementFileAfter" : "src/main/java/libcore/net/http/SpdyTransport.java",
+    "elementNameAfter" : "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()$hasRequestBody"
+  } ]
 }

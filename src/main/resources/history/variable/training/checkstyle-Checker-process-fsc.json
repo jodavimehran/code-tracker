@@ -6,14 +6,26 @@
   "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)",
   "functionStartLine" : 206,
   "variableName" : "fsc",
-  "variableKey" : "fsc : FileSetCheck",
+  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$fsc(213)",
   "variableStartLine" : 213,
-  "startCommitName" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "branchName" : null,
-  "expectedResult" : {
-    "e00c478dd61d9d883e41b500b780ab217582c2e7" : "changed modifier",
-    "f1afaf83f39b83cc3bd07a2388448b262652a76b" : "multichange(renamed, changed modifier)",
-    "5d7063c660b241bce251f1a8c89394619f2791fb" : "changed modifier",
-    "abff1a2489ea8af10e1bc0a335551262d22f44e7" : "added"
-  }
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges" : [ {
+    "parentCommitId" : "6e96026ec6d95fc5eadd3044cab91c24c73c8e0c",
+    "commitId" : "e00c478dd61d9d883e41b500b780ab217582c2e7",
+    "commitTime" : 1287650559,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(List)$fsc",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(List)$fsc"
+  }, {
+    "parentCommitId" : "08638b5f739d9929698860048c052da2d5f80209",
+    "commitId" : "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+    "commitTime" : 1197706480,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$fsc",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$fsc"
+  } ]
 }

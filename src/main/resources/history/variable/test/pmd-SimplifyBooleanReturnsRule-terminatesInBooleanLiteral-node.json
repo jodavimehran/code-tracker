@@ -8,9 +8,24 @@
   "variableName" : "node",
   "variableKey" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)$node(209)",
   "variableStartLine" : 209,
-  "startCommitName" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
-  "branchName" : null,
-  "expectedResult" : {
-    "bd57e8010dbdcfe2fc434083512f77419c5fde2d" : "added"
-  }
+  "startCommitId" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "expectedChanges" : [ {
+    "parentCommitId" : "d239a4d8cd8688be708b6dfd46994f3f9756f2fe",
+    "commitId" : "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+    "commitTime" : 1207281072,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(SimpleNode)$node",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)$node"
+  }, {
+    "parentCommitId" : "a8b3c474104d0f947434dae5787ba9aab631922e",
+    "commitId" : "bd57e8010dbdcfe2fc434083512f77419c5fde2d",
+    "commitTime" : 1029339266,
+    "changeType" : "introduced",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)$node",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)$node"
+  } ]
 }

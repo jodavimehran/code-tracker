@@ -6,9 +6,26 @@
   "functionKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)",
   "functionStartLine" : 158,
   "variableName" : "asyncContext",
-  "variableKey" : "asyncContext : AsyncContext",
+  "variableKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$asyncContext(166)",
   "variableStartLine" : 166,
-  "startCommitName" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "branchName" : null,
-  "expectedResult" : { }
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges" : [ {
+    "parentCommitId" : "d2fce24eb4d685e89ce6e818ac584cfafecbd703",
+    "commitId" : "e64907eed8b4accdda53c6be0145087017eae820",
+    "commitTime" : 1468396419,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(HttpServletRequest, HttpServletResponse)$context",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(HttpServletRequest, HttpServletResponse)$asyncContext"
+  }, {
+    "parentCommitId" : "3b45087c87a3386f74be88cb918a4d2055ae5400",
+    "commitId" : "f518d76a771def7289ac4f85ddc66812f428a16f",
+    "commitTime" : 1436266425,
+    "changeType" : "introduced",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/rx/web/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.rx.web.servlet.HttpHandlerServlet#service(HttpServletRequest, HttpServletResponse)$context",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/rx/web/servlet/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.rx.web.servlet.HttpHandlerServlet#service(HttpServletRequest, HttpServletResponse)$context"
+  } ]
 }

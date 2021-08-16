@@ -8,7 +8,42 @@
   "variableName" : "beanMethod",
   "variableKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(BeanMethod)$beanMethod(174)",
   "variableStartLine" : 174,
-  "startCommitName" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "branchName" : null,
-  "expectedResult" : { }
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges" : [ {
+    "parentCommitId" : "f683f781c584b12790752ddfb0ee334e61a0b9e9",
+    "commitId" : "0a790c143feeabf571e98f8ee0700a4586cbb67c",
+    "commitTime" : 1304708516,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(ConfigurationClassMethod)$beanMethod",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(BeanMethod)$beanMethod"
+  }, {
+    "parentCommitId" : "b04987ccc37985eae59a2b5cc19a1c6ea5d6c844",
+    "commitId" : "b4fea47d5cff9f3c85e62c233c2fe86b1d616592",
+    "commitTime" : 1297176153,
+    "changeType" : "rename",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForModelMethod(ConfigurationClassMethod)$method",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(ConfigurationClassMethod)$beanMethod"
+  }, {
+    "parentCommitId" : "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+    "commitId" : "14bd47551900ced88eeacf2a5f63c187ff72028c",
+    "commitTime" : 1240184731,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader#loadBeanDefinitionsForModelMethod(BeanMethod)$method",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForModelMethod(ConfigurationClassMethod)$method"
+  }, {
+    "parentCommitId" : "2bbc4e48adfc697903ccc5c61504be3fd2ac1c0c",
+    "commitId" : "8a5c2a6a56e7b88b44af7111edb2bfc8b1781f48",
+    "commitTime" : 1237761544,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader#loadBeanDefinitionsForModelMethod(BeanMethod)$method",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader#loadBeanDefinitionsForModelMethod(BeanMethod)$method"
+  } ]
 }

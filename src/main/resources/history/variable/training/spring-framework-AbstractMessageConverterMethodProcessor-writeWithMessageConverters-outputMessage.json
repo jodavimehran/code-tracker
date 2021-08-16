@@ -8,7 +8,24 @@
   "variableName" : "outputMessage",
   "variableKey" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputMessage(180)",
   "variableStartLine" : 180,
-  "startCommitName" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "branchName" : null,
-  "expectedResult" : { }
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges" : [ {
+    "parentCommitId" : "a618bcc8cde89b7c7cc6e9fbc4348465387a8e99",
+    "commitId" : "1eaca6572091c014379e453299773e880a7766b9",
+    "commitTime" : 1305718487,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+    "elementNameBefore" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, HttpInputMessage, HttpOutputMessage, Set)$outputMessage",
+    "elementFileAfter" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+    "elementNameAfter" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputMessage"
+  }, {
+    "parentCommitId" : "0f7d43ba90943f42f0e9f81697899a441ee9fa0c",
+    "commitId" : "acc75aa4b898a34dce42748df5b54624f8b3e9f2",
+    "commitTime" : 1302089459,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+    "elementNameBefore" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, HttpInputMessage, HttpOutputMessage)$outputMessage",
+    "elementFileAfter" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+    "elementNameAfter" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, HttpInputMessage, HttpOutputMessage)$outputMessage"
+  } ]
 }

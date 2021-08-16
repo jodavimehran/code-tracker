@@ -6,9 +6,35 @@
   "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
   "functionStartLine" : 49,
   "variableName" : "selector",
-  "variableKey" : "selector : IndexManagerSelector",
+  "variableKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$selector(52)",
   "variableStartLine" : 52,
-  "startCommitName" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "branchName" : null,
-  "expectedResult" : { }
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "expectedChanges" : [ {
+    "parentCommitId" : "e7d6d979caf1c0fa919765d7a25062f78171f46e",
+    "commitId" : "1cf93d1325d9c1635bf919198916f2fdf6977dd6",
+    "commitTime" : 1499100337,
+    "changeType" : "rename",
+    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$shardingStrategy",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$selector"
+  }, {
+    "parentCommitId" : "e7d6d979caf1c0fa919765d7a25062f78171f46e",
+    "commitId" : "1cf93d1325d9c1635bf919198916f2fdf6977dd6",
+    "commitTime" : 1499100337,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$shardingStrategy",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$selector"
+  }, {
+    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
+    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
+    "commitTime" : 1246314343,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$shardingStrategy",
+    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$shardingStrategy"
+  } ]
 }

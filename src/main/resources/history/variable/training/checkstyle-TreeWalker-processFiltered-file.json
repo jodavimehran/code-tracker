@@ -8,7 +8,42 @@
   "variableName" : "file",
   "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$file(176)",
   "variableStartLine" : 176,
-  "startCommitName" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "branchName" : null,
-  "expectedResult" : { }
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges" : [ {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)$aFile",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)$file"
+  }, {
+    "parentCommitId" : "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
+    "commitId" : "822384a711290170148b43b5ae390dd4e8cfaf4f",
+    "commitTime" : 1037515736,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)$f",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)$aFile"
+  }, {
+    "parentCommitId" : "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
+    "commitId" : "822384a711290170148b43b5ae390dd4e8cfaf4f",
+    "commitTime" : 1037515736,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)$f",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)$aFile"
+  }, {
+    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+    "commitTime" : 999188004,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)$f",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)$f"
+  } ]
 }

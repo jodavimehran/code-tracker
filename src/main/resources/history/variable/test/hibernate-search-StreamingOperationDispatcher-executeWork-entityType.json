@@ -6,11 +6,26 @@
   "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
   "functionStartLine" : 49,
   "variableName" : "entityType",
-  "variableKey" : "entityType : IndexedTypeIdentifier",
+  "variableKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType(50)",
   "variableStartLine" : 50,
-  "startCommitName" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "branchName" : null,
-  "expectedResult" : {
-    "f7b4e276eb754193a72fa98a8972b66da837664e" : "added"
-  }
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "expectedChanges" : [ {
+    "parentCommitId" : "c02f76eeea20c5e50341dfaed53dfa38970d7e8d",
+    "commitId" : "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
+    "commitTime" : 1497310060,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType"
+  }, {
+    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
+    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
+    "commitTime" : 1246314343,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType",
+    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType"
+  } ]
 }

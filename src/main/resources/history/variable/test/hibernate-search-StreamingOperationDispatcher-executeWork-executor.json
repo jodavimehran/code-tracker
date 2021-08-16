@@ -6,11 +6,17 @@
   "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
   "functionStartLine" : 49,
   "variableName" : "executor",
-  "variableKey" : "executor : StreamingOperationExecutor",
+  "variableKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$executor(53)",
   "variableStartLine" : 53,
-  "startCommitName" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "branchName" : null,
-  "expectedResult" : {
-    "8767c010fd19bc441e9676ee0e5bd13e86774679" : "added"
-  }
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "expectedChanges" : [ {
+    "parentCommitId" : "ef140113952526f0f7f6f4271d4fb2ebfb0fbc7b",
+    "commitId" : "8767c010fd19bc441e9676ee0e5bd13e86774679",
+    "commitTime" : 1429201749,
+    "changeType" : "introduced",
+    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor"
+  } ]
 }
