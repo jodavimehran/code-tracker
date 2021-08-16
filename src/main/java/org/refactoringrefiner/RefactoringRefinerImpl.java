@@ -394,7 +394,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 regxSb.append(orChar).append("@link\\s*").append(umlClass.getNonQualifiedName());
                 orChar = "|";
                 regxSb.append(orChar).append("new\\s*").append(umlClass.getNonQualifiedName()).append("\\(");
-                regxSb.append(orChar).append("@deprecated\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\n");
+                regxSb.append(orChar).append("@deprecated\\s*.*").append(umlClass.getNonQualifiedName()).append("\\s*.*\n");
                 regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\\{");
             }
 
