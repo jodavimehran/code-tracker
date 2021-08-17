@@ -32,6 +32,7 @@ public class RefactoringMiner implements ChangeDetector {
     private final Repository repository;
     private final HashSet<String> analysedCommits = new HashSet<>();
     private final String repositoryWebURL;
+    private final HashMap<String, UMLModel> umlModelCache = new HashMap<>();
 
     public RefactoringMiner(Repository repository, String repositoryWebURL) {
         this.repository = repository;
@@ -43,16 +44,6 @@ public class RefactoringMiner implements ChangeDetector {
 
     public static Class getClass(UMLModel umlModel, String key) {
         return getClass(umlModel, key, null);
-    }
-
-    public static Class getClass(UMLModel umlModel, String key, Version version) {
-        for (UMLClass umlClass : umlModel.getClassList()) {
-            Class clazz = Class.of(umlClass, version);
-            if (key.equals(clazz.getName())) {
-                return clazz;
-            }
-        }
-        return null;
     }
 
 //    public static Attribute getAttribute(UMLModel umlModel, String key) {
@@ -71,6 +62,16 @@ public class RefactoringMiner implements ChangeDetector {
 //        }
 //        return null;
 //    }
+
+    public static Class getClass(UMLModel umlModel, String key, Version version) {
+        for (UMLClass umlClass : umlModel.getClassList()) {
+            Class clazz = Class.of(umlClass, version);
+            if (key.equals(clazz.getName())) {
+                return clazz;
+            }
+        }
+        return null;
+    }
 
     public static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
         if (umlModel != null)
@@ -116,14 +117,6 @@ public class RefactoringMiner implements ChangeDetector {
         return null;
     }
 
-    @Override
-    public void detectAtCommit(String commitId) {
-        if (analysedCommits.contains(commitId))
-            return;
-        gitHistoryRefactoringMiner.detectAtCommit(repository, commitId, refactoringHandler, 36000);
-        analysedCommits.add(commitId);
-    }
-
 //    public boolean isChanged(Pair<UMLModel, UMLModel> umlModel, String elementKey, RefactoringRefiner.CodeElementType codeElementType) {
 //        if (umlModel == null)
 //            return false;
@@ -149,7 +142,17 @@ public class RefactoringMiner implements ChangeDetector {
 //        return true;
 //    }
 
+    @Override
+    public void detectAtCommit(String commitId) {
+        if (analysedCommits.contains(commitId))
+            return;
+        gitHistoryRefactoringMiner.detectAtCommit(repository, commitId, refactoringHandler, 36000);
+        analysedCommits.add(commitId);
+    }
+    private final HashMap<String, CommitModel> commitModelCache = new HashMap<>();
     public CommitModel getCommitModel(String commitId) throws Exception {
+        if(commitModelCache.containsKey(commitId))
+            return commitModelCache.get(commitId);
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
             RevCommit parentCommit1 = null;
@@ -163,7 +166,9 @@ public class RefactoringMiner implements ChangeDetector {
                 parentCommit2 = currentCommit.getParent(1);
 
             }
-            return getCommitModel(parentCommit1, parentCommit2, currentCommit);
+            CommitModel commitModel = getCommitModel(parentCommit1, parentCommit2, currentCommit);
+            commitModelCache.put(commitId, commitModel);
+            return commitModel;
         }
     }
 
@@ -252,7 +257,7 @@ public class RefactoringMiner implements ChangeDetector {
         return modelDiff;
     }
 
-    public Pair<UMLModel, UMLModel> getUMLModelPair(final RefactoringMiner.CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate , final boolean filterLeftSide) throws Exception {
+    public Pair<UMLModel, UMLModel> getUMLModelPair(final RefactoringMiner.CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate, final boolean filterLeftSide) throws Exception {
         if (rightSideFileName == null)
             throw new IllegalArgumentException("File name could not be null.");
 
@@ -288,9 +293,14 @@ public class RefactoringMiner implements ChangeDetector {
     public UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
         if (fileNames == null || fileNames.isEmpty())
             return null;
+        String key = String.format("%s-%s", commitId, String.join(",", fileNames));
+        if (umlModelCache.containsKey(key))
+            return umlModelCache.get(key);
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-            return GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
+            UMLModel umlModel = GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
+            umlModelCache.put(key, umlModel);
+            return umlModel;
         }
     }
 
