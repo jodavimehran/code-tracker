@@ -252,7 +252,7 @@ public class RefactoringMiner implements ChangeDetector {
         return modelDiff;
     }
 
-    public Pair<UMLModel, UMLModel> getUMLModelPair(final RefactoringMiner.CommitModel commitModel, final String rightSideFileName, final Set<String> rightSideFileNames, final boolean filterLeftSide) throws Exception {
+    public Pair<UMLModel, UMLModel> getUMLModelPair(final RefactoringMiner.CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate , final boolean filterLeftSide) throws Exception {
         if (rightSideFileName == null)
             throw new IllegalArgumentException("File name could not be null.");
 
@@ -279,7 +279,7 @@ public class RefactoringMiner implements ChangeDetector {
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNames.contains(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         }
 
@@ -544,6 +544,7 @@ public class RefactoringMiner implements ChangeDetector {
             if (changeType != null) {
                 if (equalOperator.test(variableAfter)) {
                     refactoringHandler.getVariableChangeHistoryGraph().addChange(variableBefore, variableAfter, ChangeFactory.forVariable(changeType).refactoring(refactoring));
+                    leftVariableSet.add(variableBefore);
                 }
             }
         }

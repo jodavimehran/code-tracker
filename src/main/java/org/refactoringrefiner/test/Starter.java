@@ -343,14 +343,17 @@ public class Starter {
         writeToFile(pathString, null, content, standardOpenOption);
     }
 
-    private static void writeToFile(String pathString, String header, String content, StandardOpenOption standardOpenOption) throws IOException {
+    private static Path writeToFile(String pathString, String header, String content, StandardOpenOption standardOpenOption) throws IOException {
         Path path = Paths.get(pathString);
         if (!path.toFile().exists()) {
             Files.createFile(path);
             if (header != null)
                 Files.write(path, header.getBytes(), StandardOpenOption.TRUNCATE_EXISTING);
         }
-        Files.write(path, content.getBytes(), standardOpenOption);
+        if (content != null) {
+            Files.write(path, content.getBytes(), standardOpenOption);
+        }
+        return path;
     }
 
     public static String getNumber(Map<RefactoringType, Long> map, RefactoringType refactoringType) {
@@ -546,9 +549,7 @@ public class Starter {
     }
 
     private static Set<String> getAllProcessedSamples(String processedFilePath) throws IOException {
-        Path path = Paths.get(processedFilePath);
-        if (!path.toFile().exists())
-            Files.createFile(path);
+        Path path = writeToFile(processedFilePath, "file-names" + System.lineSeparator(), null, StandardOpenOption.APPEND);
         return new HashSet<>(Files.readAllLines(path));
     }
 
@@ -672,12 +673,17 @@ public class Starter {
             if (!directoryPath.toFile().exists())
                 Files.createDirectories(directoryPath);
         }
-        String[] toolNames = new String[]{"tracker", "shovel", "shovel-oracle"};
-        for (MethodOracle oracle : MethodOracle.all()) {
-            for (String toolName : toolNames) {
+        String[] toolNames = new String[]{"tracker-naive", "tracker", "shovel", "shovel-oracle"};
+        List<MethodOracle> oracles = MethodOracle.all();
+        for (String toolName : toolNames) {
+            for (MethodOracle oracle : oracles) {
                 switch (toolName) {
                     case "tracker":
-                        codeTracker(oracle);
+                        codeTracker(oracle, false);
+                        calculateFinalResults(oracle.getName(), toolName);
+                        break;
+                    case "tracker-naive":
+                        codeTracker(oracle, true);
                         calculateFinalResults(oracle.getName(), toolName);
                         break;
                     case "shovel":
@@ -1060,9 +1066,9 @@ public class Starter {
 //        }
 //    }
 
-    private void codeTracker(MethodOracle methodOracle) throws IOException {
+    private void codeTracker(MethodOracle methodOracle, boolean naive) throws IOException {
         String oracleName = methodOracle.getName();
-        String toolName = "tracker";
+        String toolName = "tracker" + (naive ? "-naive" : "");
         String processedFilePath = String.format(PROCESSED_FILE_NAME_FORMAT, toolName, oracleName);
         Set<String> processedFiles = getAllProcessedSamples(processedFilePath);
         for (Map.Entry<String, MethodHistoryInfo> entry : methodOracle.getOracle().entrySet()) {
@@ -1083,7 +1089,12 @@ public class Starter {
 
                 HistoryImpl<CodeElement, Edge> historyImpl;
                 long startTime = System.nanoTime();
-                historyImpl = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findMethodHistory(projectDirectory, repositoryWebURL, methodHistoryInfo.getStartCommitId(), methodHistoryInfo.getFilePath(), methodHistoryInfo.getFunctionKey());
+                if (naive) {
+                    historyImpl = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findMethodHistory2(projectDirectory, repositoryWebURL, methodHistoryInfo.getStartCommitId(), methodHistoryInfo.getFilePath(), methodHistoryInfo.getFunctionKey());
+                } else {
+                    historyImpl = (HistoryImpl<CodeElement, Edge>) refactoringRefinerImpl.findMethodHistory(projectDirectory, repositoryWebURL, methodHistoryInfo.getStartCommitId(), methodHistoryInfo.getFilePath(), methodHistoryInfo.getFunctionKey());
+                }
+
                 long refactoringMinerProcessingTime = (System.nanoTime() - startTime) / 1000000;
                 processHistory(historyImpl, historyResultHashMap, repositoryWebURL, methodHistoryInfo.getFunctionKey(), Detector.MINER, "method");
 
