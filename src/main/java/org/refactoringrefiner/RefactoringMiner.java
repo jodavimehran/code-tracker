@@ -32,7 +32,6 @@ public class RefactoringMiner implements ChangeDetector {
     private final Repository repository;
     private final HashSet<String> analysedCommits = new HashSet<>();
     private final String repositoryWebURL;
-    private final HashMap<String, UMLModel> umlModelCache = new HashMap<>();
 
     public RefactoringMiner(Repository repository, String repositoryWebURL) {
         this.repository = repository;
@@ -149,10 +148,8 @@ public class RefactoringMiner implements ChangeDetector {
         gitHistoryRefactoringMiner.detectAtCommit(repository, commitId, refactoringHandler, 36000);
         analysedCommits.add(commitId);
     }
-    private final HashMap<String, CommitModel> commitModelCache = new HashMap<>();
+
     public CommitModel getCommitModel(String commitId) throws Exception {
-        if(commitModelCache.containsKey(commitId))
-            return commitModelCache.get(commitId);
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
             RevCommit parentCommit1 = null;
@@ -167,7 +164,6 @@ public class RefactoringMiner implements ChangeDetector {
 
             }
             CommitModel commitModel = getCommitModel(parentCommit1, parentCommit2, currentCommit);
-            commitModelCache.put(commitId, commitModel);
             return commitModel;
         }
     }
@@ -293,13 +289,9 @@ public class RefactoringMiner implements ChangeDetector {
     public UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
         if (fileNames == null || fileNames.isEmpty())
             return null;
-        String key = String.format("%s-%s", commitId, String.join(",", fileNames));
-        if (umlModelCache.containsKey(key))
-            return umlModelCache.get(key);
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
             UMLModel umlModel = GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
-            umlModelCache.put(key, umlModel);
             return umlModel;
         }
     }

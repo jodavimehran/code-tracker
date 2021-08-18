@@ -1,6 +1,5 @@
 package org.refactoringrefiner;
 
-import com.google.common.collect.Sets;
 import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
@@ -1321,7 +1320,6 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                 methods.addFirst(start);
                 HashSet<String> analysedCommits = new HashSet<>();
                 List<String> commits = null;
-                HashMap<String, Pair<UMLModelDiff, List<Refactoring>>> analysedCommitCache = new HashMap<>();
                 String lastFileName = null;
                 while (!methods.isEmpty()) {
                     Method currentMethod = methods.poll();
@@ -1372,16 +1370,8 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                         UMLModelDiff umlModelDiffAll;
                         List<Refactoring> refactorings;
 
-                        if (analysedCommitCache.containsKey(commitId)) {
-                            Pair<UMLModelDiff, List<Refactoring>> cacheHit = analysedCommitCache.get(commitId);
-                            umlModelDiffAll = cacheHit.getKey();
-                            refactorings = cacheHit.getValue();
-                        } else {
-                            umlModelDiffAll = leftModel.diff(GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent), commitModel.renamedFilesHint);
-                            refactorings = umlModelDiffAll.getRefactorings();
-                            analysedCommitCache.put(commitId, Pair.of(umlModelDiffAll, refactorings));
-                        }
-
+                        umlModelDiffAll = leftModel.diff(GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent), commitModel.renamedFilesHint);
+                        refactorings = umlModelDiffAll.getRefactorings();
 
                         //NO CHANGE
                         Method leftMethod = RefactoringMiner.getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
