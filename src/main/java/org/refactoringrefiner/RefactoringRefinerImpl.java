@@ -1347,9 +1347,7 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                             String parentCommitId = refactoringMiner.getRepository().getParentId(commitId);
                             Version parentVersion = refactoringMiner.getVersion(parentCommitId);
 
-                            RefactoringMiner.CommitModel commitModel = refactoringMiner.getCommitModel(commitId);
-
-                            UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(currentMethodFilePath)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
+                            UMLModel rightModel = refactoringMiner.getUMLModel(commitId, Collections.singletonList(currentMethod.getFilePath()));
                             Method rightMethod = RefactoringMiner.getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                             if (rightMethod == null) {
                                 continue;
@@ -1366,13 +1364,9 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                 methods.add(leftMethod);
                                 break;
                             }
+                            RefactoringMiner.CommitModel commitModel = refactoringMiner.getCommitModel(commitId);
+
                             UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-
-                            UMLModelDiff umlModelDiffAll;
-                            List<Refactoring> refactorings;
-
-                            umlModelDiffAll = leftModel.diff(GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent), commitModel.renamedFilesHint);
-                            refactorings = umlModelDiffAll.getRefactorings();
 
                             //NO CHANGE
                             Method leftMethod = RefactoringMiner.getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
@@ -1420,6 +1414,11 @@ public class RefactoringRefinerImpl implements RefactoringRefiner {
                                         break;
                                     }
                                 }
+                                UMLModelDiff umlModelDiffAll;
+                                List<Refactoring> refactorings;
+
+                                umlModelDiffAll = leftModel.diff(GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent), commitModel.renamedFilesHint);
+                                refactorings = umlModelDiffAll.getRefactorings();
                                 {
 
 
