@@ -15,26 +15,29 @@
     "commitTime" : 1452645032,
     "changeType" : "annotation change",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1602)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1610)",
+    "comment" : "Add Parameter Annotation @NonNull in parameter have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
   }, {
     "parentCommitId" : "100e9429b5a7eea8383c6e693d17b6233794c488",
     "commitId" : "74333e63b60440be5ff9f591f2203b635e26e3a0",
     "commitTime" : 1313522319,
     "changeType" : "type change",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$have",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$have:Collection<?extendsObjectId>(1260)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1340)",
+    "comment" : "Change Parameter Type have : Collection<? extends ObjectId> to have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
   }, {
     "parentCommitId" : "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
     "commitId" : "2fbcba41e365752681f635c706d577e605d3336a",
     "commitTime" : 1296572604,
     "changeType" : "introduced",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
+    "comment" : "Add Parameter have : Collection<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
   } ]
 }

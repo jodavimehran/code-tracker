@@ -15,17 +15,19 @@
     "commitTime" : 1418395997,
     "changeType" : "type change",
     "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
-    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits:List<LocatableInputSplit>(95)",
     "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
-    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits"
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits:LocatableInputSplitChooser(109)",
+    "comment" : "Change Variable Type localSplits : List<LocatableInputSplit> to localSplits : LocatableInputSplitChooser in method public getNextInputSplit(host String) : LocatableInputSplit from class org.apache.flink.api.common.io.LocatableInputSplitAssigner"
   }, {
     "parentCommitId" : "028fcf55c41f4b2a7677eb31d0ead3973e457efc",
     "commitId" : "c32569aed12ffa968e2c2289c2d56db262c0eba4",
     "commitTime" : 1411236168,
     "changeType" : "introduced",
     "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits:List<LocatableInputSplit>(94)",
     "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits"
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner#getNextInputSplit(String)$localSplits:List<LocatableInputSplit>(94)",
+    "comment" : "added with method"
   } ]
 }

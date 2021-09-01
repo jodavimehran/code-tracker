@@ -15,8 +15,9 @@
     "commitTime" : 1524768403,
     "changeType" : "introduced",
     "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$requestedLockMode",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$requestedLockMode:LockMode(177)",
     "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$requestedLockMode"
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$requestedLockMode:LockMode(177)",
+    "comment" : "Extract Variable requestedLockMode : LockMode in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
   } ]
 }

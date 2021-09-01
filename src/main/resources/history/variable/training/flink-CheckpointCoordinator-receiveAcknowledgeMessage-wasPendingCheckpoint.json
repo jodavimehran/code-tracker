@@ -15,17 +15,19 @@
     "commitTime" : 1481295943,
     "changeType" : "rename",
     "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint:boolean(629)",
     "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$wasPendingCheckpoint"
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$wasPendingCheckpoint:boolean(674)",
+    "comment" : "Rename Variable isPendingCheckpoint : boolean to wasPendingCheckpoint : boolean in method public receiveAcknowledgeMessage(message AcknowledgeCheckpoint) : boolean from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
   }, {
     "parentCommitId" : "6bdf9d07cc93ba5f3a193ceafc0e13d35353316b",
     "commitId" : "d739ee2532e0fd49ef37508b1c2e4a355473aaa5",
     "commitTime" : 1452526243,
     "changeType" : "introduced",
     "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint:boolean(534)",
     "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint"
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator#receiveAcknowledgeMessage(AcknowledgeCheckpoint)$isPendingCheckpoint:boolean(534)",
+    "comment" : "new variable"
   } ]
 }

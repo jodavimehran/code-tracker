@@ -15,8 +15,9 @@
     "commitTime" : 1307665786,
     "changeType" : "introduced",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$rw",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$rw:RevWalk(890)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$rw"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$rw:RevWalk(890)",
+    "comment" : "Extract Method private sendPack(sideband boolean) : void extracted from private sendPack() : void in class org.eclipse.jgit.transport.UploadPack"
   } ]
 }

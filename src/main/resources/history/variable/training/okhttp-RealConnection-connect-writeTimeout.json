@@ -10,13 +10,14 @@
   "variableStartLine" : 130,
   "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
   "expectedChanges" : [ {
-    "parentCommitId" : "5c7257d8d1c07b66cb7b14832bc0d16b88abcfb5",
-    "commitId" : "8331b2d75a51631bee622daf2175854fe49ce29a",
-    "commitTime" : 1483378611,
+    "parentCommitId" : "a867db645727acfd8d77212552bf835e6e8eb1c8",
+    "commitId" : "41aa4b6805141369d614964152d329a686aabdb8",
+    "commitTime" : 1397855170,
     "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, List, boolean)$writeTimeout",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, List, boolean)$writeTimeout"
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, TunnelRequest)$writeTimeout:int(137)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, TunnelRequest)$writeTimeout:int(137)",
+    "comment" : "Add Parameter writeTimeout : int in method public connect(connectTimeout int, readTimeout int, writeTimeout int, tunnelRequest TunnelRequest) : void from class com.squareup.okhttp.Connection"
   } ]
 }

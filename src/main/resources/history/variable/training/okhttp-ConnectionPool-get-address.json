@@ -10,13 +10,24 @@
   "variableStartLine" : 122,
   "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
   "expectedChanges" : [ {
-    "parentCommitId" : "de8699b62d24e3b31205229a259be5b26b040957",
-    "commitId" : "98443a9ca8ca9ad82d5fb9b05b32f180bb510601",
-    "commitTime" : 1483816548,
+    "parentCommitId" : "73291e89c43de449949450c216a5220d9b903da6",
+    "commitId" : "78c6624b11d5f33504dae8211b4592383468343e",
+    "commitTime" : 1356327588,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
+    "elementNameBefore" : "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)$address:HttpConnection.Address(61)",
+    "elementFileAfter" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)$address:Address(77)",
+    "comment" : "Change Parameter Type address : HttpConnection.Address to address : Address in method public get(address Address) : Connection from class com.squareup.okhttp.ConnectionPool"
+  }, {
+    "parentCommitId" : "063964211c05103bd10fddeda9fafe93a856506b",
+    "commitId" : "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
+    "commitTime" : 1343052148,
     "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)$address",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)$address"
+    "elementFileBefore" : "src/main/java/libcore/net/http/HttpConnectionPool.java",
+    "elementNameBefore" : "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)$address:HttpConnection.Address(62)",
+    "elementFileAfter" : "src/main/java/libcore/net/http/HttpConnectionPool.java",
+    "elementNameAfter" : "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)$address:HttpConnection.Address(62)",
+    "comment" : "added with method"
   } ]
 }

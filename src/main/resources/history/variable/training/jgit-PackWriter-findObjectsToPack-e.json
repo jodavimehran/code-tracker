@@ -15,17 +15,19 @@
     "commitTime" : 1282351287,
     "changeType" : "rename",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$x",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$x:MissingObjectException(981)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$e"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$e:MissingObjectException(1045)",
+    "comment" : "Rename Variable x : MissingObjectException to e : MissingObjectException in method private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk from class org.eclipse.jgit.storage.pack.PackWriter"
   }, {
     "parentCommitId" : "0",
     "commitId" : "1a6964c8274c50f0253db75f010d78ef0e739343",
     "commitTime" : 1254268023,
     "changeType" : "introduced",
     "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)$x",
+    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)$x:MissingObjectException(845)",
     "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)$x"
+    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)$x:MissingObjectException(845)",
+    "comment" : "Initial commit!"
   } ]
 }

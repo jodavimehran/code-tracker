@@ -15,35 +15,39 @@
     "commitTime" : 1214936994,
     "changeType" : "type change",
     "elementFileBefore" : "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-    "elementNameBefore" : "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)$annotation",
+    "elementNameBefore" : "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)$annotation:TestAnnotation(114)",
     "elementFileAfter" : "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-    "elementNameAfter" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)$annotation"
+    "elementNameAfter" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#possiblyExpectingExceptions(FrameworkMethod, Object, Statement)$annotation:Test(115)",
+    "comment" : "Change Variable Type annotation : TestAnnotation to annotation : Test in method protected possiblyExpectingExceptions(method FrameworkMethod, test Object, next Statement) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
   }, {
     "parentCommitId" : "53e85db0bec2e03bf93afc73dced9b4a0b231644",
     "commitId" : "8bed6c9278517d9fb13f274bc5a6ade358a39745",
     "commitTime" : 1195064490,
     "changeType" : "type change",
     "elementFileBefore" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Statement)$method",
+    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Statement)$method:TestMethod(119)",
     "elementFileAfter" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestAnnotation, Statement)$annotation"
+    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestAnnotation, Statement)$annotation:TestAnnotation(122)",
+    "comment" : "Change Parameter Type method : TestMethod to annotation : TestAnnotation in method private possiblyExpectingExceptions(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
   }, {
     "parentCommitId" : "53e85db0bec2e03bf93afc73dced9b4a0b231644",
     "commitId" : "8bed6c9278517d9fb13f274bc5a6ade358a39745",
     "commitTime" : 1195064490,
     "changeType" : "rename",
     "elementFileBefore" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Statement)$method",
+    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Statement)$method:TestMethod(119)",
     "elementFileAfter" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestAnnotation, Statement)$annotation"
+    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestAnnotation, Statement)$annotation:TestAnnotation(122)",
+    "comment" : "Rename Parameter method : TestMethod to annotation : TestAnnotation in method private possiblyExpectingExceptions(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
   }, {
-    "parentCommitId" : "2bb6d5de002052680d443065e1c26f59be212e4b",
-    "commitId" : "6887479f1b64c5a18f5708ea6905bb59804a9a0f",
-    "commitTime" : 1191947142,
+    "parentCommitId" : "57302f0df76fba83ba72a676bd660efeb5881af6",
+    "commitId" : "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
+    "commitTime" : 1191872431,
     "changeType" : "introduced",
     "elementFileBefore" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Link)$method",
+    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#handleExceptions(Link, TestMethod)$method:TestMethod(153)",
     "elementFileAfter" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#possiblyExpectingExceptions(TestMethod, Link)$method"
+    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#handleExceptions(Link, TestMethod)$method:TestMethod(153)",
+    "comment" : "Add Parameter method : TestMethod in method public handleExceptions(next Link, method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
   } ]
 }

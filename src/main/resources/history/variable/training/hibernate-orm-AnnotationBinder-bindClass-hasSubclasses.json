@@ -15,8 +15,9 @@
     "commitTime" : 1386917867,
     "changeType" : "introduced",
     "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$hasSubclasses",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$hasSubclasses:boolean(708)",
     "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$hasSubclasses"
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$hasSubclasses:boolean(708)",
+    "comment" : "Extract Variable hasSubclasses : boolean in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings Mappings) : void from class org.hibernate.cfg.AnnotationBinder"
   } ]
 }

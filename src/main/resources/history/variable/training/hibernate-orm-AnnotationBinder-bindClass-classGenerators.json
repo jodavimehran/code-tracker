@@ -15,17 +15,19 @@
     "commitTime" : 1426024431,
     "changeType" : "type change",
     "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$classGenerators",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$classGenerators:HashMap<String,IdGenerator>(772)",
     "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$classGenerators"
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$classGenerators:HashMap<String,IdentifierGeneratorDefinition>(812)",
+    "comment" : "Change Variable Type classGenerators : HashMap<String,IdGenerator> to classGenerators : HashMap<String,IdentifierGeneratorDefinition> in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, context MetadataBuildingContext) : void from class org.hibernate.cfg.AnnotationBinder"
   }, {
     "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
     "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
     "commitTime" : 1225219270,
     "changeType" : "introduced",
     "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$classGenerators",
+    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$classGenerators:HashMap<String,IdGenerator>(664)",
     "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$classGenerators"
+    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$classGenerators:HashMap<String,IdGenerator>(664)",
+    "comment" : "added with method"
   } ]
 }

@@ -15,26 +15,19 @@
     "commitTime" : 1479734851,
     "changeType" : "rename",
     "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$permitsRequestBody",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$permitsRequestBody:boolean(104)",
     "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$hasRequestBody"
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)$hasRequestBody:boolean(103)",
+    "comment" : "Rename Variable permitsRequestBody : boolean to hasRequestBody : boolean in method public writeRequestHeaders(request Request) : void from class okhttp3.internal.http2.Http2Codec"
   }, {
-    "parentCommitId" : "ec1b266f1d75f6063b1b84ad06d5c8a689742150",
-    "commitId" : "64b607fc113cec3c18d04574ee1c024192d8cc43",
-    "commitTime" : 1415672451,
-    "changeType" : "rename",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)$hasRequestBody",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)$permitsRequestBody"
-  }, {
-    "parentCommitId" : "063964211c05103bd10fddeda9fafe93a856506b",
-    "commitId" : "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
-    "commitTime" : 1343052148,
+    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
+    "commitTime" : 1448721366,
     "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/libcore/net/http/SpdyTransport.java",
-    "elementNameBefore" : "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()$hasRequestBody",
-    "elementFileAfter" : "src/main/java/libcore/net/http/SpdyTransport.java",
-    "elementNameAfter" : "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()$hasRequestBody"
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)$permitsRequestBody:boolean(130)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)$permitsRequestBody:boolean(130)",
+    "comment" : "added with method"
   } ]
 }

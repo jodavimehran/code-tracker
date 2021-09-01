@@ -15,26 +15,29 @@
     "commitTime" : 1507281370,
     "changeType" : "rename",
     "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri:URI(300)",
     "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsUri"
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsUri:URI(309)",
+    "comment" : "Rename Parameter uri : URI to fsUri : URI in method public getUnguardedFileSystem(fsUri URI) : FileSystem from class org.apache.flink.core.fs.FileSystem"
   }, {
     "parentCommitId" : "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
     "commitId" : "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
     "commitTime" : 1507281370,
     "changeType" : "modifier change",
     "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri:URI(300)",
     "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsUri"
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsUri:URI(309)",
+    "comment" : "Add Parameter Modifier final in parameter fsUri : URI in method public getUnguardedFileSystem(fsUri URI) : FileSystem from class org.apache.flink.core.fs.FileSystem"
   }, {
     "parentCommitId" : "c590912c93a4059b40452dfa6cffbdd4d58cac13",
     "commitId" : "ba8ed263695d16eacb4bdfdf195dd22c83bb53ed",
     "commitTime" : 1479853012,
     "changeType" : "introduced",
     "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri:URI(255)",
     "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri"
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$uri:URI(255)",
+    "comment" : "Extract Method public getUnguardedFileSystem(uri URI) : FileSystem extracted from public get(uri URI) : FileSystem in class org.apache.flink.core.fs.FileSystem"
   } ]
 }

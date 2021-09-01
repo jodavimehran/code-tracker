@@ -10,31 +10,44 @@
   "variableStartLine" : 141,
   "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
   "expectedChanges" : [ {
+    "parentCommitId" : "9dfdeb44e98e0253b4c49f67017d4619fd6b2ca0",
+    "commitId" : "920f6ea401ff38d1d66b594ddddfedb98bc8b68c",
+    "commitTime" : 1516470048,
+    "changeType" : "introduced",
+    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#prepare(JupiterEngineExecutionContext)$registry:ExtensionRegistry(122)",
+    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#prepare(JupiterEngineExecutionContext)$registry:ExtensionRegistry(122)",
+    "comment" : "Extract Variable registry : ExtensionRegistry in method public prepare(context JupiterEngineExecutionContext) : JupiterEngineExecutionContext from class org.junit.jupiter.engine.descriptor.ClassTestDescriptor"
+  }, {
     "parentCommitId" : "36b132b0fc63a723ec0926e58921379020326c2b",
     "commitId" : "b2ba6b95138382f25ca757a5ca2a7295bee4c3b8",
     "commitTime" : 1462203042,
     "changeType" : "rename",
     "elementFileBefore" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry",
+    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry:ExtensionRegistry(106)",
     "elementFileAfter" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$registry"
+    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$registry:ExtensionRegistry(109)",
+    "comment" : "Rename Variable newExtensionRegistry : ExtensionRegistry to registry : ExtensionRegistry in method public prepare(context JUnit5EngineExecutionContext) : JUnit5EngineExecutionContext from class org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor"
   }, {
     "parentCommitId" : "8e2c2311932b5997f569be004fe8ade74db27b96",
     "commitId" : "c0a0e14d2c11bb77bfe25aee9594b04e793b04aa",
     "commitTime" : 1453381386,
     "changeType" : "type change",
     "elementFileBefore" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry",
+    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry:TestExtensionRegistry(104)",
     "elementFileAfter" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry"
+    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry:ExtensionRegistry(104)",
+    "comment" : "Change Variable Type newExtensionRegistry : TestExtensionRegistry to newExtensionRegistry : ExtensionRegistry in method public prepare(context JUnit5EngineExecutionContext) : JUnit5EngineExecutionContext from class org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor"
   }, {
     "parentCommitId" : "4dfb1c838ff287ef3e8b986c3a7920169de06ab8",
     "commitId" : "0027ade00fd483e08714ece1021a7715bb1855da",
     "commitTime" : 1450776847,
     "changeType" : "introduced",
     "elementFileBefore" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry",
+    "elementNameBefore" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry:TestExtensionRegistry(104)",
     "elementFileAfter" : "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java",
-    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry"
+    "elementNameAfter" : "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.ClassTestDescriptor#prepare(JUnit5EngineExecutionContext)$newExtensionRegistry:TestExtensionRegistry(104)",
+    "comment" : "added with method"
   } ]
 }

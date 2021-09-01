@@ -15,17 +15,19 @@
     "commitTime" : 1456778239,
     "changeType" : "type change",
     "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$coMapper",
+    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$coMapper:CoMapFunction<IN1,IN2,OUT>(200)",
     "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$coMapper"
+    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$coMapper:CoMapFunction<IN1,IN2,R>(200)",
+    "comment" : "Change Parameter Type coMapper : CoMapFunction<IN1,IN2,OUT> to coMapper : CoMapFunction<IN1,IN2,R> in method public map(coMapper CoMapFunction<IN1,IN2,R>) : SingleOutputStreamOperator<R> from class org.apache.flink.streaming.api.datastream.ConnectedStreams"
   }, {
     "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
     "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
     "commitTime" : 1408371796,
     "changeType" : "introduced",
     "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/CoDataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.CoDataStream#map(CoMapFunction)$coMapper",
+    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.CoDataStream#map(CoMapFunction)$coMapper:CoMapFunction<IN1,IN2,OUT>(92)",
     "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/CoDataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.CoDataStream#map(CoMapFunction)$coMapper"
+    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.CoDataStream#map(CoMapFunction)$coMapper:CoMapFunction<IN1,IN2,OUT>(92)",
+    "comment" : "added with method"
   } ]
 }

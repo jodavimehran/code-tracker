@@ -15,17 +15,19 @@
     "commitTime" : 1513200872,
     "changeType" : "type change",
     "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers:ArrayList<Tuple2<RestHandlerSpecification,ChannelInboundHandler>>(148)",
     "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers"
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers:List<Tuple2<RestHandlerSpecification,ChannelInboundHandler>>(68)",
+    "comment" : "Change Variable Type handlers : ArrayList<Tuple2<RestHandlerSpecification,ChannelInboundHandler>> to handlers : List<Tuple2<RestHandlerSpecification,ChannelInboundHandler>> in method protected initializeHandlers(restAddressFuture CompletableFuture<String>) : List<Tuple2<RestHandlerSpecification,ChannelInboundHandler>> from class org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint"
   }, {
     "parentCommitId" : "55b76d54f0dcc4bdaa96eaa463ce0bfcad23d239",
     "commitId" : "dbabdb1cc2c122dbf1e83ffb9960491eaf4914bb",
     "commitTime" : 1505922627,
     "changeType" : "introduced",
     "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers:ArrayList<Tuple2<RestHandlerSpecification,ChannelInboundHandler>>(73)",
     "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers"
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$handlers:ArrayList<Tuple2<RestHandlerSpecification,ChannelInboundHandler>>(73)",
+    "comment" : "new variable"
   } ]
 }

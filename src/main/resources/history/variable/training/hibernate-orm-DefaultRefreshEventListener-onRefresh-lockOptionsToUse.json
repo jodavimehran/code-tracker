@@ -15,8 +15,9 @@
     "commitTime" : 1524768403,
     "changeType" : "introduced",
     "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$lockOptionsToUse",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$lockOptionsToUse:LockOptions(178)",
     "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$lockOptionsToUse"
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$lockOptionsToUse:LockOptions(178)",
+    "comment" : "Extract Variable lockOptionsToUse : LockOptions in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
   } ]
 }

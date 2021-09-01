@@ -15,17 +15,19 @@
     "commitTime" : 1529361191,
     "changeType" : "rename",
     "elementFileBefore" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue",
+    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue:Object(180)",
     "elementFileAfter" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$body"
+    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$body:Object(180)",
+    "comment" : "Rename Variable outputValue : Object to body : Object in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
   }, {
     "parentCommitId" : "e5122d084a936551da9786711b3de55dc0bc53d1",
     "commitId" : "b204437cef0976f5af0e1c5290e77e266b306a51",
     "commitTime" : 1467463695,
     "changeType" : "introduced",
     "elementFileBefore" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue",
+    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue:Object(168)",
     "elementFileAfter" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue"
+    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$outputValue:Object(168)",
+    "comment" : "Extract Variable outputValue : Object in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
   } ]
 }

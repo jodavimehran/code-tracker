@@ -15,17 +15,19 @@
     "commitTime" : 1487967646,
     "changeType" : "type change",
     "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/MethodTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor",
+    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor:Consumer<TestDescriptor>(147)",
     "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/MethodTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestExecutor"
+    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestExecutor:DynamicTestExecutor(146)",
+    "comment" : "Change Parameter Type dynamicTestExecutor : Consumer<TestDescriptor> to dynamicTestExecutor : DynamicTestExecutor in method public execute(context JupiterEngineExecutionContext, dynamicTestExecutor DynamicTestExecutor) : JupiterEngineExecutionContext from class org.junit.jupiter.engine.descriptor.MethodTestDescriptor"
   }, {
     "parentCommitId" : "35aba4af865ff265717be7e0e7596eb8fe1e6b41",
     "commitId" : "4b41518fa052b28a953e99b087d505603a22c175",
     "commitTime" : 1487967646,
     "changeType" : "introduced",
     "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/MethodTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor",
+    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor:Consumer<TestDescriptor>(148)",
     "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/MethodTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor"
+    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.MethodTestDescriptor#execute(JupiterEngineExecutionContext, Consumer)$dynamicTestExecutor:Consumer<TestDescriptor>(148)",
+    "comment" : "Add Parameter dynamicTestExecutor : Consumer<TestDescriptor> in method public execute(context JupiterEngineExecutionContext, dynamicTestExecutor Consumer<TestDescriptor>) : JupiterEngineExecutionContext from class org.junit.jupiter.engine.descriptor.MethodTestDescriptor"
   } ]
 }
