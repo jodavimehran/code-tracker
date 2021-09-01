@@ -15,17 +15,19 @@
     "commitTime" : 1399920417,
     "changeType" : "rename",
     "elementFileBefore" : "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
-    "elementNameBefore" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)$map",
+    "elementNameBefore" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)$map:Map<String,Object>(185)",
     "elementFileAfter" : "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
-    "elementNameAfter" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)$errorAttributes"
+    "elementNameAfter" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)$errorAttributes:Map<String,Object>(131)",
+    "comment" : "Rename Parameter map : Map<String,Object> to errorAttributes : Map<String,Object> in method private addErrorMessage(errorAttributes Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes"
   }, {
     "parentCommitId" : "4474b104b62e1e82cedb6c38581ceb3565165b32",
     "commitId" : "27580e726fa907c57590a0935673d1d7c620c57a",
     "commitTime" : 1398781408,
     "changeType" : "introduced",
     "elementFileBefore" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$map",
+    "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$map:Map<String,Object>(180)",
     "elementFileAfter" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$map"
+    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$map:Map<String,Object>(180)",
+    "comment" : "Extract Method protected addMessage(map Map<String,Object>, error Throwable) : void extracted from public extract(attributes RequestAttributes, trace boolean, log boolean) : Map<String,Object> in class org.springframework.boot.actuate.web.BasicErrorController"
   } ]
 }

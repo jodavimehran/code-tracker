@@ -10,13 +10,24 @@
   "variableStartLine" : 88,
   "startCommitId" : "fc5dd874f3deda71e6cd42af994a5af5cb6be4af",
   "expectedChanges" : [ {
+    "parentCommitId" : "7f98b6465845968e4c4f4417b160dcd56a73189e",
+    "commitId" : "e35c51eb7d91d099e7e84e308d30010ecaa6a0c5",
+    "commitTime" : 1418919274,
+    "changeType" : "rename",
+    "elementFileBefore" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$isHeadRequest:boolean(71)",
+    "elementFileAfter" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$isHeadRequest:boolean(76)",
+    "comment" : "Parameterize Variable isHeadRequest : boolean to isHeadRequest : boolean in method public send(info MetaData.Response, isHeadRequest boolean, content ByteBuffer, lastContent boolean, callback Callback) : void from class org.eclipse.jetty.http2.server.HttpTransportOverHTTP2"
+  }, {
     "parentCommitId" : "1d2e9da29cfb7fe9f5bc7abb0e914d939f8c8a5f",
     "commitId" : "ad034f4d54aa4d6ce04c6fe3da8e8f48f63b21e5",
     "commitTime" : 1402394574,
     "changeType" : "introduced",
     "elementFileBefore" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$isHeadRequest",
+    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$isHeadRequest:boolean(44)",
     "elementFileAfter" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$isHeadRequest"
+    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$isHeadRequest:boolean(44)",
+    "comment" : "new variable"
   } ]
 }

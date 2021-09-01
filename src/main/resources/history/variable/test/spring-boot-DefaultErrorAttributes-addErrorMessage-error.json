@@ -15,8 +15,9 @@
     "commitTime" : 1398781408,
     "changeType" : "introduced",
     "elementFileBefore" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error",
+    "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
     "elementFileAfter" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error"
+    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
+    "comment" : "Extract Method protected addMessage(map Map<String,Object>, error Throwable) : void extracted from public extract(attributes RequestAttributes, trace boolean, log boolean) : Map<String,Object> in class org.springframework.boot.actuate.web.BasicErrorController"
   } ]
 }

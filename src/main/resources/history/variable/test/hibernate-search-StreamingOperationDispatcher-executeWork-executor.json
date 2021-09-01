@@ -15,8 +15,9 @@
     "commitTime" : 1429201749,
     "changeType" : "introduced",
     "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor:StreamingOperationExecutor(61)",
     "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor"
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$executor:StreamingOperationExecutor(61)",
+    "comment" : "Extract Variable executor : StreamingOperationExecutor in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
   } ]
 }

@@ -15,26 +15,39 @@
     "commitTime" : 1333231930,
     "changeType" : "type change",
     "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, InvocationImpl)$invocation",
+    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, InvocationImpl)$invocation:InvocationImpl(21)",
     "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$invocation"
+    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$invocation:Invocation(22)",
+    "comment" : "Change Parameter Type invocation : InvocationImpl to invocation : Invocation in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
   }, {
     "parentCommitId" : "82a1c42f1e83016618996bd4ea4448d7a7a54168",
     "commitId" : "a99d63b477bac80720fa25214ef7c3eb73576627",
     "commitTime" : 1333231806,
     "changeType" : "type change",
     "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$invocation",
+    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$invocation:Invocation(21)",
     "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, InvocationImpl)$invocation"
+    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, InvocationImpl)$invocation:InvocationImpl(21)",
+    "comment" : "Change Parameter Type invocation : Invocation to invocation : InvocationImpl in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation InvocationImpl) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+  }, {
+    "parentCommitId" : "a925c010179fde193723dacebbd59c8896785325",
+    "commitId" : "110e46a16b4fa91c1856958e78cc45fe70fff9d2",
+    "commitTime" : 1197331062,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/org/mockito/internal/MatchersBinder.java",
+    "elementNameBefore" : "src/org.mockito.internal.MatchersBinder#bindMatchers(Invocation)$invocation:Invocation(10)",
+    "elementFileAfter" : "src/org/mockito/internal/MatchersBinder.java",
+    "elementNameAfter" : "src/org.mockito.internal.MatchersBinder#bindMatchers(Invocation)$invocation:Invocation(10)",
+    "comment" : "Add Parameter invocation : Invocation in method public bindMatchers(invocation Invocation) : InvocationMatcher from class org.mockito.internal.MatchersBinder"
   }, {
     "parentCommitId" : "c4374978e703502f961e21ec830e2d3e81528206",
     "commitId" : "bc4a76c83eee655989238025d70de91b71376ebd",
     "commitTime" : 1196531463,
     "changeType" : "introduced",
     "elementFileBefore" : "src/org/mockito/internal/MockControl.java",
-    "elementNameBefore" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation",
+    "elementNameBefore" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation:Invocation(80)",
     "elementFileAfter" : "src/org/mockito/internal/MockControl.java",
-    "elementNameAfter" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation"
+    "elementNameAfter" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation:Invocation(80)",
+    "comment" : "new variable"
   } ]
 }

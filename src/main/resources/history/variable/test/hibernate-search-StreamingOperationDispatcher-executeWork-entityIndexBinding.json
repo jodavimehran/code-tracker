@@ -15,44 +15,49 @@
     "commitTime" : 1372951862,
     "changeType" : "type change",
     "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinder(70)",
     "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding"
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinding(70)",
+    "comment" : "Change Variable Type entityIndexBinding : EntityIndexBinder to entityIndexBinding : EntityIndexBinding in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
   }, {
     "parentCommitId" : "1b951f6ba476986761d954cd24bc70795ad67662",
     "commitId" : "8f131200bafd1ba324d47f2b7079d69c313a8fe4",
     "commitTime" : 1319117305,
     "changeType" : "type change",
     "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding",
+    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinder<?>(61)",
     "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding"
+    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinder(61)",
+    "comment" : "Change Variable Type entityIndexBinding : EntityIndexBinder<?> to entityIndexBinding : EntityIndexBinder in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
   }, {
     "parentCommitId" : "d46648205b811c7b3e545a9c38bd19001ef44213",
     "commitId" : "814c399d6b23a3a1b16d3af63f2c575da50dc53f",
     "commitTime" : 1311892976,
     "changeType" : "type change",
     "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexMapping",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexMapping:EntityIndexMapping<?>(66)",
     "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding"
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinder<?>(66)",
+    "comment" : "Change Variable Type entityIndexMapping : EntityIndexMapping<?> to entityIndexBinding : EntityIndexBinder<?> in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
   }, {
     "parentCommitId" : "d46648205b811c7b3e545a9c38bd19001ef44213",
     "commitId" : "814c399d6b23a3a1b16d3af63f2c575da50dc53f",
     "commitTime" : 1311892976,
     "changeType" : "rename",
     "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexMapping",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexMapping:EntityIndexMapping<?>(66)",
     "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding"
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)$entityIndexBinding:EntityIndexBinder<?>(66)",
+    "comment" : "Rename Variable entityIndexMapping : EntityIndexMapping<?> to entityIndexBinding : EntityIndexBinder<?> in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
   }, {
     "parentCommitId" : "fabff8b00abedf2ea4fbd87e3e553b444b975183",
     "commitId" : "c866b2799a080b4806438f7047f30ee2c673106f",
     "commitTime" : 1311846710,
     "changeType" : "introduced",
     "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping:EntityIndexMapping<?>(115)",
     "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping"
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping:EntityIndexMapping<?>(115)",
+    "comment" : "new variable"
   } ]
 }

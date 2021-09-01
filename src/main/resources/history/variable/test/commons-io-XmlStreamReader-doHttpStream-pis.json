@@ -15,26 +15,39 @@
     "commitTime" : 1354308699,
     "changeType" : "modifier change",
     "elementFileBefore" : "src/main/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis",
+    "elementNameBefore" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis:BOMInputStream(450)",
     "elementFileAfter" : "src/main/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis"
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis:BOMInputStream(450)",
+    "comment" : "Add Parameter Modifier final in parameter pis : BOMInputStream in method private doHttpStream(bom BOMInputStream, pis BOMInputStream, httpContentType String, lenient boolean) : String from class org.apache.commons.io.input.XmlStreamReader"
+  }, {
+    "parentCommitId" : "6322084e97e79ddbc810123960216227c3283cb1",
+    "commitId" : "97191772383bc267d16497c884a1c8b90033911b",
+    "commitTime" : 1293073929,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/apache/commons/io/input/XmlStreamReader.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis:BOMInputStream(437)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/io/input/XmlStreamReader.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(BOMInputStream, BOMInputStream, String, boolean)$pis:BOMInputStream(437)",
+    "comment" : "Add Parameter pis : BOMInputStream in method private doHttpStream(bom BOMInputStream, pis BOMInputStream, httpContentType String, lenient boolean) : String from class org.apache.commons.io.input.XmlStreamReader"
   }, {
     "parentCommitId" : "5b75cf83b2db408f8228b26910a8d3d3633cd54f",
     "commitId" : "2fbbf47aaf12f3efc333caf06bb61d63472d610e",
     "commitTime" : 1286161487,
     "changeType" : "type change",
     "elementFileBefore" : "src/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis",
+    "elementNameBefore" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
     "elementFileAfter" : "src/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis"
+    "elementNameAfter" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BOMInputStream(429)",
+    "comment" : "Change Variable Type pis : BufferedInputStream to pis : BOMInputStream in method private doHttpStream(is InputStream, httpContentType String, lenient boolean) : void from class org.apache.commons.io.input.XmlStreamReader"
   }, {
     "parentCommitId" : "d43262058d2a3530c4d7305ea1a1e03d7001bd1d",
     "commitId" : "5b75cf83b2db408f8228b26910a8d3d3633cd54f",
     "commitTime" : 1286161189,
     "changeType" : "introduced",
     "elementFileBefore" : "src/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis",
+    "elementNameBefore" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
     "elementFileAfter" : "src/java/org/apache/commons/io/input/XmlStreamReader.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis"
+    "elementNameAfter" : "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
+    "comment" : "added with method"
   } ]
 }

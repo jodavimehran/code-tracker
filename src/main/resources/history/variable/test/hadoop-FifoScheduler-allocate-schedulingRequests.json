@@ -15,8 +15,9 @@
     "commitTime" : 1517391017,
     "changeType" : "introduced",
     "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$schedulingRequests",
+    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$schedulingRequests:List<SchedulingRequest>(324)",
     "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$schedulingRequests"
+    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$schedulingRequests:List<SchedulingRequest>(324)",
+    "comment" : "Add Parameter schedulingRequests : List<SchedulingRequest> in method public allocate(applicationAttemptId ApplicationAttemptId, ask List<ResourceRequest>, schedulingRequests List<SchedulingRequest>, release List<ContainerId>, blacklistAdditions List<String>, blacklistRemovals List<String>, updateRequests ContainerUpdates) : Allocation from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler"
   } ]
 }

@@ -15,26 +15,29 @@
     "commitTime" : 1520524225,
     "changeType" : "rename",
     "elementFileBefore" : "src/main/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename",
+    "elementNameBefore" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename:String(1368)",
     "elementFileAfter" : "src/main/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$fileName"
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$fileName:String(1368)",
+    "comment" : "Rename Parameter filename : String to fileName : String in method public wildcardMatch(fileName String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
   }, {
     "parentCommitId" : "efca1657258b7555b80bbee207a3221489b9ffed",
     "commitId" : "6aa00766b9103d75c763160280429af8e1f0549e",
     "commitTime" : 1354308699,
     "changeType" : "modifier change",
     "elementFileBefore" : "src/main/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename",
+    "elementNameBefore" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename:String(1277)",
     "elementFileAfter" : "src/main/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename"
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$filename:String(1277)",
+    "comment" : "Add Parameter Modifier final in parameter filename : String in method public wildcardMatch(filename String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
   }, {
     "parentCommitId" : "d1080684022a6b33b775d2e963218921af6a5826",
     "commitId" : "745375d22e427574f1ef1301c8378cd81e85a1fc",
     "commitTime" : 1112830543,
     "changeType" : "introduced",
     "elementFileBefore" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$filename",
+    "elementNameBefore" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$filename:String(912)",
     "elementFileAfter" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$filename"
+    "elementNameAfter" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$filename:String(912)",
+    "comment" : "Extract Method private wildcardMatch(filename String, wildcardMatcher String, system boolean) : boolean extracted from public wildcardMatch(filename String, wildcardMatcher String) : boolean in class org.apache.commons.io.FilenameUtils"
   } ]
 }

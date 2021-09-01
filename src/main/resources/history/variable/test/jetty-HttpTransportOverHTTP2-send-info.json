@@ -15,17 +15,19 @@
     "commitTime" : 1414126280,
     "changeType" : "type change",
     "elementFileBefore" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info",
+    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info:HttpGenerator.ResponseInfo(67)",
     "elementFileAfter" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$info"
+    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$info:MetaData.Response(67)",
+    "comment" : "Change Parameter Type info : HttpGenerator.ResponseInfo to info : MetaData.Response in method public send(info MetaData.Response, head boolean, content ByteBuffer, lastContent boolean, callback Callback) : void from class org.eclipse.jetty.http2.server.HttpTransportOverHTTP2"
   }, {
-    "parentCommitId" : "35f0103add1fc4241c18a5735aee02f01798885e",
-    "commitId" : "17c03385d68fbf1baa4b8a8c8273a704df1928b6",
-    "commitTime" : 1407146950,
+    "parentCommitId" : "36081dbcbf64243f1c2098067290e490dc3ec656",
+    "commitId" : "c1247ff6779c78917598a149d36e773702c490d5",
+    "commitTime" : 1402315276,
     "changeType" : "introduced",
     "elementFileBefore" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info",
+    "elementNameBefore" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info:HttpGenerator.ResponseInfo(30)",
     "elementFileAfter" : "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
-    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info"
+    "elementNameAfter" : "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(HttpGenerator.ResponseInfo, ByteBuffer, boolean, Callback)$info:HttpGenerator.ResponseInfo(30)",
+    "comment" : "added with method"
   } ]
 }

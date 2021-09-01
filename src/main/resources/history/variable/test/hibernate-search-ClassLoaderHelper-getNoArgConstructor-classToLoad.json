@@ -15,17 +15,19 @@
     "commitTime" : 1525280880,
     "changeType" : "type change",
     "elementFileBefore" : "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#checkHasNoArgConstructor(Class, String)$classToLoad",
+    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#checkHasNoArgConstructor(Class, String)$classToLoad:Class<?>(234)",
     "elementFileAfter" : "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#getNoArgConstructor(Class, String)$classToLoad"
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#getNoArgConstructor(Class, String)$classToLoad:Class<T>(253)",
+    "comment" : "Change Parameter Type classToLoad : Class<?> to classToLoad : Class<T> in method private getNoArgConstructor(classToLoad Class<T>, componentDescription String) : Constructor<T> from class org.hibernate.search.util.impl.ClassLoaderHelper"
   }, {
     "parentCommitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
     "commitId" : "dfc8c23684ab4e6769f9b566e1f97101166ba7d8",
     "commitTime" : 1246487910,
     "changeType" : "introduced",
     "elementFileBefore" : "src/main/java/org/hibernate/search/util/PluginLoader.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.util.PluginLoader#checkHasValidconstructor(Class, String)$classToLoad",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.util.PluginLoader#checkHasValidconstructor(Class, String)$classToLoad:Class<?>(69)",
     "elementFileAfter" : "src/main/java/org/hibernate/search/util/PluginLoader.java",
-    "elementNameAfter" : "src/main/java/org.hibernate.search.util.PluginLoader#checkHasValidconstructor(Class, String)$classToLoad"
+    "elementNameAfter" : "src/main/java/org.hibernate.search.util.PluginLoader#checkHasValidconstructor(Class, String)$classToLoad:Class<?>(69)",
+    "comment" : "added with method"
   } ]
 }

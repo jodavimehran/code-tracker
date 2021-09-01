@@ -10,13 +10,14 @@
   "variableStartLine" : 1033,
   "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
   "expectedChanges" : [ {
-    "parentCommitId" : "12fc8c7ae0090ab4c1fee97000f17ecc8c250752",
-    "commitId" : "5dfba25e3496063b82d53aa759796a639b1d8e3b",
-    "commitTime" : 1521117993,
+    "parentCommitId" : "9938a39a872d4f232f718b2672d0245cae658e0b",
+    "commitId" : "872bd9145cd9504fc16b318f7ea0a666d9429103",
+    "commitTime" : 1407610475,
     "changeType" : "introduced",
     "elementFileBefore" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$t1",
+    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown(boolean)$t:Throwable(942)",
     "elementFileAfter" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$t1"
+    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$t:Throwable(915)",
+    "comment" : "Inline Method public shutdown(waitForMerges boolean) : void inlined to private shutdown() : void in class org.apache.lucene.index.IndexWriter"
   } ]
 }
