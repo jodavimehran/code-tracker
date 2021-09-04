@@ -136,6 +136,11 @@ In the extended oracle we fixed all inaccuracies that we found in the original o
   * [intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject.json)
   * [mockito-MatchersBinder-bindMatchers](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/mockito-MatchersBinder-bindMatchers.json)
 
-# Execution Time Experiment
-As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
+# Experiments
+## Execution Time:
+  As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
+## Tracking Accuracy
+  All data we collect to compute the precision and recall of CodeTracker and CodeShovel at commit level and change level are available in the following links:
+* [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/method)
+* [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/variable)
  
