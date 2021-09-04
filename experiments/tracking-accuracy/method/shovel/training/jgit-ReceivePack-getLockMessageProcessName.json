@@ -1,0 +1,151 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "jgit",
+  "repositoryPath": "H:\\Projects\\eclipse\\jgit/.git",
+  "startCommitName": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "sourceFileName": "ReceivePack.java",
+  "functionName": "getLockMessageProcessName",
+  "functionId": "getLockMessageProcessName",
+  "sourceFilePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+  "functionStartLine": 344,
+  "functionEndLine": 346,
+  "numCommitsSeen": 119,
+  "timeTaken": 1119,
+  "changeHistory": [
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+    "27cbdaf4975b01a23a95e94b6367318d3c7c4e0b"
+  ],
+  "changeHistoryShort": {
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c": "Ybodychange",
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2": "Ymultichange(Yrename,Yreturntypechange,Ymodifierchange,Ybodychange)",
+    "27cbdaf4975b01a23a95e94b6367318d3c7c4e0b": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "c310fa0c802f40a774edb58641de3ac5bfad0e2c": {
+      "type": "Ybodychange",
+      "commitMessage": "Mark non-externalizable strings as such\n\nA few classes such as Constanrs are marked with @SuppressWarnings, as are\ntoString() methods with many liternal, but otherwise $NLS-n$ is used for\nstring containing text that should not be translated. A few literals may\nfall into the gray zone, but mostly I\u0027ve tried to only tag the obvious\nones.\n\nChange-Id: I22e50a77e2bf9e0b842a66bdf674e8fa1692f590\n",
+      "commitDate": "2012-12-27, 10:57 a.m.",
+      "commitName": "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
+      "commitAuthor": "Robin Rosenberg",
+      "commitDateOld": "2012-09-05, 11:20 a.m.",
+      "commitNameOld": "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
+      "commitAuthorOld": "Shawn O. Pearce",
+      "daysBetweenCommits": 113.03,
+      "commitsBetweenForRepo": 118,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tprotected String getLockMessageProcessName() {\n\t\treturn \"jgit receive-pack\"; //$NON-NLS-1$\n\t}",
+      "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "functionStartLine": 244,
+      "functionName": "getLockMessageProcessName",
+      "diff": "@@ -1,3 +1,3 @@\n \tprotected String getLockMessageProcessName() {\n-\t\treturn \"jgit receive-pack\";\n+\t\treturn \"jgit receive-pack\"; //$NON-NLS-1$\n \t}\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "cc37cb777e57f6a5a8e0068945d322ac0f6834e2": {
+      "type": "Ymultichange(Yrename,Yreturntypechange,Ymodifierchange,Ybodychange)",
+      "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+      "commitDate": "2012-05-14, 2:41 p.m.",
+      "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+      "commitAuthor": "Dave Borowitz",
+      "subchanges": [
+        {
+          "type": "Yrename",
+          "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+          "commitDate": "2012-05-14, 2:41 p.m.",
+          "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+          "commitAuthor": "Dave Borowitz",
+          "commitDateOld": "2012-03-23, 5:38 p.m.",
+          "commitNameOld": "e0531ace35b9c8eca9ded0a7b1540de3c49dbde6",
+          "commitAuthorOld": "Dave Borowitz",
+          "daysBetweenCommits": 51.88,
+          "commitsBetweenForRepo": 38,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tprotected String getLockMessageProcessName() {\n\t\treturn \"jgit receive-pack\";\n\t}",
+          "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+          "functionStartLine": 207,
+          "functionName": "getLockMessageProcessName",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic OutputStream getMessageOutputStream() {\n-\t\treturn msgOutWrapper;\n+\tprotected String getLockMessageProcessName() {\n+\t\treturn \"jgit receive-pack\";\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "getMessageOutputStream",
+            "newValue": "getLockMessageProcessName"
+          }
+        },
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+          "commitDate": "2012-05-14, 2:41 p.m.",
+          "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+          "commitAuthor": "Dave Borowitz",
+          "commitDateOld": "2012-03-23, 5:38 p.m.",
+          "commitNameOld": "e0531ace35b9c8eca9ded0a7b1540de3c49dbde6",
+          "commitAuthorOld": "Dave Borowitz",
+          "daysBetweenCommits": 51.88,
+          "commitsBetweenForRepo": 38,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tprotected String getLockMessageProcessName() {\n\t\treturn \"jgit receive-pack\";\n\t}",
+          "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+          "functionStartLine": 207,
+          "functionName": "getLockMessageProcessName",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic OutputStream getMessageOutputStream() {\n-\t\treturn msgOutWrapper;\n+\tprotected String getLockMessageProcessName() {\n+\t\treturn \"jgit receive-pack\";\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "OutputStream",
+            "newValue": "String"
+          }
+        },
+        {
+          "type": "Ymodifierchange",
+          "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+          "commitDate": "2012-05-14, 2:41 p.m.",
+          "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+          "commitAuthor": "Dave Borowitz",
+          "commitDateOld": "2012-03-23, 5:38 p.m.",
+          "commitNameOld": "e0531ace35b9c8eca9ded0a7b1540de3c49dbde6",
+          "commitAuthorOld": "Dave Borowitz",
+          "daysBetweenCommits": 51.88,
+          "commitsBetweenForRepo": 38,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tprotected String getLockMessageProcessName() {\n\t\treturn \"jgit receive-pack\";\n\t}",
+          "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+          "functionStartLine": 207,
+          "functionName": "getLockMessageProcessName",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic OutputStream getMessageOutputStream() {\n-\t\treturn msgOutWrapper;\n+\tprotected String getLockMessageProcessName() {\n+\t\treturn \"jgit receive-pack\";\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[public]",
+            "newValue": "[protected]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Factor a base class out of ReceivePack\n\nWe are working on a publish/subscribe based git protocol, and we want to\nreuse several parts of the ReceivePack-like code for reading commands\nand processing a pack. In this new implementation, the connection\nmanagement will be very different, in particular, there may be multiple\npacks received on a single open connection. So, hoist out as much as we\ncan from ReceivePack, mostly just leaving behind the single-connection\nversion in that class.\n\nChange-Id: I5567aad6ae77951f73f59c1f91996d934ea88334\n",
+          "commitDate": "2012-05-14, 2:41 p.m.",
+          "commitName": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+          "commitAuthor": "Dave Borowitz",
+          "commitDateOld": "2012-03-23, 5:38 p.m.",
+          "commitNameOld": "e0531ace35b9c8eca9ded0a7b1540de3c49dbde6",
+          "commitAuthorOld": "Dave Borowitz",
+          "daysBetweenCommits": 51.88,
+          "commitsBetweenForRepo": 38,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tprotected String getLockMessageProcessName() {\n\t\treturn \"jgit receive-pack\";\n\t}",
+          "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+          "functionStartLine": 207,
+          "functionName": "getLockMessageProcessName",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic OutputStream getMessageOutputStream() {\n-\t\treturn msgOutWrapper;\n+\tprotected String getLockMessageProcessName() {\n+\t\treturn \"jgit receive-pack\";\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "27cbdaf4975b01a23a95e94b6367318d3c7c4e0b": {
+      "type": "Yintroduced",
+      "commitMessage": "Expose an OutputStream from ReceivePack for sending client messages\n\nCallers may want to format and flush their own output, for example in a\nPreReceiveHook that creates its own TextProgressMonitor. The actual\nunderlying msgOut can change over the lifetime of ReceivePack, so we\nimplement a small wrapper.\n\nChange-Id: I57b6d6cad2542aaa93dcadc06cb3e933e81bcd3d\n",
+      "commitDate": "2012-02-29, 10:09 p.m.",
+      "commitName": "27cbdaf4975b01a23a95e94b6367318d3c7c4e0b",
+      "commitAuthor": "Dave Borowitz",
+      "diff": "@@ -0,0 +1,3 @@\n+\tpublic OutputStream getMessageOutputStream() {\n+\t\treturn msgOutWrapper;\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tpublic OutputStream getMessageOutputStream() {\n\t\treturn msgOutWrapper;\n\t}",
+      "path": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "functionStartLine": 612,
+      "functionName": "getMessageOutputStream"
+    }
+  }
+}

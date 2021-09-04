@@ -1,0 +1,185 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "spring-boot",
+  "repositoryPath": "H:\\Projects\\spring-projects\\spring-boot/.git",
+  "startCommitName": "5cfe8dbee950dbf3a8de3ece2f6f3363f13d904a",
+  "sourceFileName": "TomcatDataSourcePoolMetadata.java",
+  "functionName": "getMin",
+  "functionId": "getMin",
+  "sourceFilePath": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+  "functionStartLine": 47,
+  "functionEndLine": 49,
+  "numCommitsSeen": 14,
+  "timeTaken": 3351,
+  "changeHistory": [
+    "0ba4830b4fb20deea040ca5e1c9a34651708b222",
+    "2e51b48cd9ad9ad3e599aa0cb0b916061a061dfa",
+    "69107cb1df70247a0b04b79e9989b5efcce52881",
+    "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
+    "2694941b9346258fdf828f43d27abac9f39e7d24",
+    "3dc932db888d4b8da0a0c47a593e328dfbc28811"
+  ],
+  "changeHistoryShort": {
+    "0ba4830b4fb20deea040ca5e1c9a34651708b222": "Yfilerename",
+    "2e51b48cd9ad9ad3e599aa0cb0b916061a061dfa": "Yfilerename",
+    "69107cb1df70247a0b04b79e9989b5efcce52881": "Yfilerename",
+    "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8": "Ymultichange(Yfilerename,Yrename)",
+    "2694941b9346258fdf828f43d27abac9f39e7d24": "Yfilerename",
+    "3dc932db888d4b8da0a0c47a593e328dfbc28811": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "0ba4830b4fb20deea040ca5e1c9a34651708b222": {
+      "type": "Yfilerename",
+      "commitMessage": "Relocate projects to spring-boot-project\n\nMove projects to better reflect the way that Spring Boot is released.\n\nThe following projects are under `spring-boot-project`:\n\n  - `spring-boot`\n  - `spring-boot-autoconfigure`\n  - `spring-boot-tools`\n  - `spring-boot-starters`\n  - `spring-boot-actuator`\n  - `spring-boot-actuator-autoconfigure`\n  - `spring-boot-test`\n  - `spring-boot-test-autoconfigure`\n  - `spring-boot-devtools`\n  - `spring-boot-cli`\n  - `spring-boot-docs`\n\nSee gh-9316\n",
+      "commitDate": "2017-10-04, 7:34 p.m.",
+      "commitName": "0ba4830b4fb20deea040ca5e1c9a34651708b222",
+      "commitAuthor": "Phillip Webb",
+      "commitDateOld": "2017-10-04, 7:04 p.m.",
+      "commitNameOld": "0419d42b7ca37611955bc0211359c215e5477fa4",
+      "commitAuthorOld": "Phillip Webb",
+      "daysBetweenCommits": 0.02,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Integer getMin() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+      "path": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+      "functionStartLine": 47,
+      "functionName": "getMin",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+        "newPath": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java"
+      }
+    },
+    "2e51b48cd9ad9ad3e599aa0cb0b916061a061dfa": {
+      "type": "Yfilerename",
+      "commitMessage": "Refactor actuator package locations\n\nRestructure actuator packages to improve structure. The following\nchanges have been made:\n\n - Separate actuator and actuator auto-configuration into different\n   modules.\n - Move endpoint code into `spring-boot-actuator`.\n - Move `Endpoint` implementations from a single package into\n   technology specific packages.\n - Move `HealthIndicator` implementations from a single package into\n   technology specific packages.\n - As much as possible attempt to mirror the `spring-boot` package\n   structure and class naming in `spring-boot-actuator` and\n   `spring-boot-actuator-autoconfigure`.\n - Move `DataSourceBuilder` and DataSource meta-data support from\n   `spring-boot-actuator` to `spring-boot`.\n\nFixes gh-10261\n",
+      "commitDate": "2017-09-12, 3:11 a.m.",
+      "commitName": "2e51b48cd9ad9ad3e599aa0cb0b916061a061dfa",
+      "commitAuthor": "Phillip Webb",
+      "commitDateOld": "2017-09-12, 3:02 a.m.",
+      "commitNameOld": "0f99b29b1a8b8c61e9e5b0ed23bc6b42941975eb",
+      "commitAuthorOld": "Phillip Webb",
+      "daysBetweenCommits": 0.01,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Integer getMin() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+      "path": "spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+      "functionStartLine": 47,
+      "functionName": "getMin",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+        "newPath": "spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java"
+      }
+    },
+    "69107cb1df70247a0b04b79e9989b5efcce52881": {
+      "type": "Yfilerename",
+      "commitMessage": "Create metadata sub-package\n\nCreate `org.springframework.boot.autoconfigure.jdbc.metadata` package\nand move DataSourcePoolMetadata classes.\n",
+      "commitDate": "2014-09-01, 3:29 p.m.",
+      "commitName": "69107cb1df70247a0b04b79e9989b5efcce52881",
+      "commitAuthor": "Phillip Webb",
+      "commitDateOld": "2014-09-01, 3:29 p.m.",
+      "commitNameOld": "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
+      "commitAuthorOld": "Phillip Webb",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Integer getMin() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+      "path": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
+      "functionStartLine": 45,
+      "functionName": "getMin",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
+        "newPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/metadata/TomcatDataSourcePoolMetadata.java"
+      }
+    },
+    "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8": {
+      "type": "Ymultichange(Yfilerename,Yrename)",
+      "commitMessage": "DataSourceMetadata -\u003e DataSourcePoolMetadata\n\nRename DataSourceMetadata to DataSourcePoolMetadata\n",
+      "commitDate": "2014-09-01, 3:29 p.m.",
+      "commitName": "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
+      "commitAuthor": "Phillip Webb",
+      "subchanges": [
+        {
+          "type": "Yfilerename",
+          "commitMessage": "DataSourceMetadata -\u003e DataSourcePoolMetadata\n\nRename DataSourceMetadata to DataSourcePoolMetadata\n",
+          "commitDate": "2014-09-01, 3:29 p.m.",
+          "commitName": "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
+          "commitAuthor": "Phillip Webb",
+          "commitDateOld": "2014-09-01, 3:27 p.m.",
+          "commitNameOld": "e17769fc2fb0376121043522438470eac18119c1",
+          "commitAuthorOld": "Phillip Webb",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tpublic Integer getMin() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+          "path": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
+          "functionStartLine": 45,
+          "functionName": "getMin",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic Integer getMinPoolSize() {\n+\tpublic Integer getMin() {\n \t\treturn getDataSource().getMinIdle();\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java",
+            "newPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java"
+          }
+        },
+        {
+          "type": "Yrename",
+          "commitMessage": "DataSourceMetadata -\u003e DataSourcePoolMetadata\n\nRename DataSourceMetadata to DataSourcePoolMetadata\n",
+          "commitDate": "2014-09-01, 3:29 p.m.",
+          "commitName": "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
+          "commitAuthor": "Phillip Webb",
+          "commitDateOld": "2014-09-01, 3:27 p.m.",
+          "commitNameOld": "e17769fc2fb0376121043522438470eac18119c1",
+          "commitAuthorOld": "Phillip Webb",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tpublic Integer getMin() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+          "path": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
+          "functionStartLine": 45,
+          "functionName": "getMin",
+          "diff": "@@ -1,3 +1,3 @@\n-\tpublic Integer getMinPoolSize() {\n+\tpublic Integer getMin() {\n \t\treturn getDataSource().getMinIdle();\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "getMinPoolSize",
+            "newValue": "getMin"
+          }
+        }
+      ]
+    },
+    "2694941b9346258fdf828f43d27abac9f39e7d24": {
+      "type": "Yfilerename",
+      "commitMessage": "Fix DataSourceMetadata location\n\nThis commit complements 3dc932db8 and fix the package location of\nDataSourceMetadata.\n\nFixes gh-1013\n",
+      "commitDate": "2014-08-29, 8:35 a.m.",
+      "commitName": "2694941b9346258fdf828f43d27abac9f39e7d24",
+      "commitAuthor": "Stephane Nicoll",
+      "commitDateOld": "2014-08-29, 5:22 a.m.",
+      "commitNameOld": "3dc932db888d4b8da0a0c47a593e328dfbc28811",
+      "commitAuthorOld": "Stephane Nicoll",
+      "daysBetweenCommits": 0.13,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Integer getMinPoolSize() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+      "path": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java",
+      "functionStartLine": 47,
+      "functionName": "getMinPoolSize",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/metrics/jdbc/TomcatDataSourceMetadata.java",
+        "newPath": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java"
+      }
+    },
+    "3dc932db888d4b8da0a0c47a593e328dfbc28811": {
+      "type": "Yintroduced",
+      "commitMessage": "DataSource metrics\n\nThis commit adds an abstraction that provides a standard manner to\nretrieve various metadata that are shared by most data sources.\n\nDataSourceMetadata is implemented by the three data source\nimplementations that boot supports out-of-the-box: Tomcat, Hikari and\nCommons dbcp.\n\nThis abstraction is used to provide two additional metrics per data\nsource defined in the application: the number of allocated\nconnection(s) (.active) and the current usage of the connection pool\n(.usage).\n\nAll such metrics share the \u0027datasource.\u0027 prefix. The prefix is further\nqualified for each data source:\n\n* If the data source is the primary data source (that is either the\n  only available data source or the one flagged @Primary amongst the\n  existing ones), the prefix is \"datasource.primary\"\n* If the data source bean name ends with \"dataSource\", the prefix is\n  the name of the bean without it (i.e. batchDataSource becomes batch)\n* In all other cases, the name of the bean is used\n\nIt is possible to override part or all of those defaults by\nregistering a bean with a customized version of\nDataSourcePublicMetrics.\n\nAdditional DataSourceMetadata implementations for other data source\ntypes can be added very easily, check\nDataourceMetadataProvidersConfiguration for more details.\n\nFixes gh-1013\n",
+      "commitDate": "2014-08-29, 5:22 a.m.",
+      "commitName": "3dc932db888d4b8da0a0c47a593e328dfbc28811",
+      "commitAuthor": "Stephane Nicoll",
+      "diff": "@@ -0,0 +1,3 @@\n+\tpublic Integer getMinPoolSize() {\n+\t\treturn getDataSource().getMinIdle();\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tpublic Integer getMinPoolSize() {\n\t\treturn getDataSource().getMinIdle();\n\t}",
+      "path": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/metrics/jdbc/TomcatDataSourceMetadata.java",
+      "functionStartLine": 47,
+      "functionName": "getMinPoolSize"
+    }
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hadoop",
+  "repositoryPath": "H:\\Projects\\apache\\hadoop/.git",
+  "startCommitName": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "sourceFileName": "LeveldbConfigurationStore.java",
+  "functionName": "retrieve",
+  "functionId": "retrieve",
+  "sourceFilePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/capacity/conf/LeveldbConfigurationStore.java",
+  "functionStartLine": 238,
+  "functionEndLine": 252,
+  "numCommitsSeen": 4,
+  "timeTaken": 2263,
+  "changeHistory": [
+    "d6622daaa3c95a5040d06f91dc0c793bafa70f95",
+    "ff39c0de206a4fce1f0e8a416357a7a8261f8634",
+    "74ba6ffa0b601badc68366685dcf993a0844520a"
+  ],
+  "changeHistoryShort": {
+    "d6622daaa3c95a5040d06f91dc0c793bafa70f95": "Ybodychange",
+    "ff39c0de206a4fce1f0e8a416357a7a8261f8634": "Ybodychange",
+    "74ba6ffa0b601badc68366685dcf993a0844520a": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "d6622daaa3c95a5040d06f91dc0c793bafa70f95": {
+      "type": "Ybodychange",
+      "commitMessage": "YARN-7046. Add closing logic to configuration store\n",
+      "commitDate": "2017-10-09, 2:11 p.m.",
+      "commitName": "d6622daaa3c95a5040d06f91dc0c793bafa70f95",
+      "commitAuthor": "Jonathan Hung",
+      "commitDateOld": "2017-10-09, 2:11 p.m.",
+      "commitNameOld": "ff39c0de206a4fce1f0e8a416357a7a8261f8634",
+      "commitAuthorOld": "Wangda Tan",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public synchronized Configuration retrieve() {\n    DBIterator itr \u003d db.iterator();\n    itr.seekToFirst();\n    Configuration config \u003d new Configuration(false);\n    while (itr.hasNext()) {\n      Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n      String key \u003d new String(entry.getKey(), StandardCharsets.UTF_8);\n      String value \u003d new String(entry.getValue(), StandardCharsets.UTF_8);\n      if (key.equals(LOG_KEY) || key.equals(VERSION_KEY)) {\n        break;\n      }\n      config.set(key, value);\n    }\n    return config;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/capacity/conf/LeveldbConfigurationStore.java",
+      "functionStartLine": 238,
+      "functionName": "retrieve",
+      "diff": "@@ -1,12 +1,15 @@\n   public synchronized Configuration retrieve() {\n     DBIterator itr \u003d db.iterator();\n-    itr.seek(bytes(LOG_KEY));\n+    itr.seekToFirst();\n     Configuration config \u003d new Configuration(false);\n-    itr.next();\n     while (itr.hasNext()) {\n       Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n-      config.set(new String(entry.getKey(), StandardCharsets.UTF_8),\n-          new String(entry.getValue(), StandardCharsets.UTF_8));\n+      String key \u003d new String(entry.getKey(), StandardCharsets.UTF_8);\n+      String value \u003d new String(entry.getValue(), StandardCharsets.UTF_8);\n+      if (key.equals(LOG_KEY) || key.equals(VERSION_KEY)) {\n+        break;\n+      }\n+      config.set(key, value);\n     }\n     return config;\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "ff39c0de206a4fce1f0e8a416357a7a8261f8634": {
+      "type": "Ybodychange",
+      "commitMessage": "YARN-6840. Implement zookeeper based store for scheduler configuration updates. (Jonathan Hung via wangda)\n\nChange-Id: I9debea674fe8c7e4109d4ca136965a1ea4c48bcc\n",
+      "commitDate": "2017-10-09, 2:11 p.m.",
+      "commitName": "ff39c0de206a4fce1f0e8a416357a7a8261f8634",
+      "commitAuthor": "Wangda Tan",
+      "commitDateOld": "2017-10-09, 2:11 p.m.",
+      "commitNameOld": "4d8abd84f40a6124e7b05b34c14b4035309623ef",
+      "commitAuthorOld": "Xuan",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public synchronized Configuration retrieve() {\n    DBIterator itr \u003d db.iterator();\n    itr.seek(bytes(LOG_KEY));\n    Configuration config \u003d new Configuration(false);\n    itr.next();\n    while (itr.hasNext()) {\n      Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n      config.set(new String(entry.getKey(), StandardCharsets.UTF_8),\n          new String(entry.getValue(), StandardCharsets.UTF_8));\n    }\n    return config;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/capacity/conf/LeveldbConfigurationStore.java",
+      "functionStartLine": 226,
+      "functionName": "retrieve",
+      "diff": "@@ -1,12 +1,12 @@\n   public synchronized Configuration retrieve() {\n     DBIterator itr \u003d db.iterator();\n-    itr.seek(bytes(LOG_COMMITTED_TXN));\n+    itr.seek(bytes(LOG_KEY));\n     Configuration config \u003d new Configuration(false);\n     itr.next();\n     while (itr.hasNext()) {\n       Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n       config.set(new String(entry.getKey(), StandardCharsets.UTF_8),\n           new String(entry.getValue(), StandardCharsets.UTF_8));\n     }\n     return config;\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "74ba6ffa0b601badc68366685dcf993a0844520a": {
+      "type": "Yintroduced",
+      "commitMessage": "YARN-5947: Create LeveldbConfigurationStore class using Leveldb as backing store. Contributed by Jonathan Hung\n",
+      "commitDate": "2017-10-09, 2:11 p.m.",
+      "commitName": "74ba6ffa0b601badc68366685dcf993a0844520a",
+      "commitAuthor": "Xuan",
+      "diff": "@@ -0,0 +1,12 @@\n+  public synchronized Configuration retrieve() {\n+    DBIterator itr \u003d db.iterator();\n+    itr.seek(bytes(LOG_COMMITTED_TXN));\n+    Configuration config \u003d new Configuration(false);\n+    itr.next();\n+    while (itr.hasNext()) {\n+      Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n+      config.set(new String(entry.getKey(), StandardCharsets.UTF_8),\n+          new String(entry.getValue(), StandardCharsets.UTF_8));\n+    }\n+    return config;\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  public synchronized Configuration retrieve() {\n    DBIterator itr \u003d db.iterator();\n    itr.seek(bytes(LOG_COMMITTED_TXN));\n    Configuration config \u003d new Configuration(false);\n    itr.next();\n    while (itr.hasNext()) {\n      Map.Entry\u003cbyte[], byte[]\u003e entry \u003d itr.next();\n      config.set(new String(entry.getKey(), StandardCharsets.UTF_8),\n          new String(entry.getValue(), StandardCharsets.UTF_8));\n    }\n    return config;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/capacity/conf/LeveldbConfigurationStore.java",
+      "functionStartLine": 266,
+      "functionName": "retrieve"
+    }
+  }
+}

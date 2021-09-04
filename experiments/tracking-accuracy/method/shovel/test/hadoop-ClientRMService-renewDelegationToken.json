@@ -1,0 +1,100 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hadoop",
+  "repositoryPath": "H:\\Projects\\apache\\hadoop/.git",
+  "startCommitName": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "sourceFileName": "ClientRMService.java",
+  "functionName": "renewDelegationToken",
+  "functionId": "renewDelegationToken___request-RenewDelegationTokenRequest",
+  "sourceFilePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/ClientRMService.java",
+  "functionStartLine": 1102,
+  "functionEndLine": 1124,
+  "numCommitsSeen": 113,
+  "timeTaken": 4595,
+  "changeHistory": [
+    "a83fb61ac07c0468cbc7a38526e92683883dd932",
+    "a2c42330047bf955a6a585dcddf798920d4c8640",
+    "ba5b19fb5d6a925231a123616d171e3f6062bd27",
+    "dd8fc7e499200476f44a3d1d38127f5c47c9eefb"
+  ],
+  "changeHistoryShort": {
+    "a83fb61ac07c0468cbc7a38526e92683883dd932": "Yexceptionschange",
+    "a2c42330047bf955a6a585dcddf798920d4c8640": "Ybodychange",
+    "ba5b19fb5d6a925231a123616d171e3f6062bd27": "Ybodychange",
+    "dd8fc7e499200476f44a3d1d38127f5c47c9eefb": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "a83fb61ac07c0468cbc7a38526e92683883dd932": {
+      "type": "Yexceptionschange",
+      "commitMessage": "YARN-635. Renamed YarnRemoteException to YarnException. Contributed by Siddharth Seth.\nMAPREDUCE-5301. Updated MR code to work with YARN-635 changes of renaming YarnRemoteException to YarnException. Contributed by Siddharth Seth\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1489283 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-06-04, 12:05 a.m.",
+      "commitName": "a83fb61ac07c0468cbc7a38526e92683883dd932",
+      "commitAuthor": "Vinod Kumar Vavilapalli",
+      "commitDateOld": "2013-06-03, 8:34 p.m.",
+      "commitNameOld": "d33534c4fb35cb82ff8d56abeeb63a949e72a031",
+      "commitAuthorOld": "Vinod Kumar Vavilapalli",
+      "daysBetweenCommits": 0.15,
+      "commitsBetweenForRepo": 5,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public RenewDelegationTokenResponse renewDelegationToken(\n      RenewDelegationTokenRequest request) throws YarnException {\n    try {\n      if (!isAllowedDelegationTokenOp()) {\n        throw new IOException(\n            \"Delegation Token can be renewed only with kerberos authentication\");\n      }\n      \n      org.apache.hadoop.yarn.api.records.Token protoToken \u003d request.getDelegationToken();\n      Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n          protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n          new Text(protoToken.getKind()), new Text(protoToken.getService()));\n\n      String user \u003d getRenewerForToken(token);\n      long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n      RenewDelegationTokenResponse renewResponse \u003d Records\n          .newRecord(RenewDelegationTokenResponse.class);\n      renewResponse.setNextExpirationTime(nextExpTime);\n      return renewResponse;\n    } catch (IOException e) {\n      throw RPCUtil.getRemoteException(e);\n    }\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/ClientRMService.java",
+      "functionStartLine": 532,
+      "functionName": "renewDelegationToken",
+      "diff": "@@ -1,23 +1,23 @@\n   public RenewDelegationTokenResponse renewDelegationToken(\n-      RenewDelegationTokenRequest request) throws YarnRemoteException {\n+      RenewDelegationTokenRequest request) throws YarnException {\n     try {\n       if (!isAllowedDelegationTokenOp()) {\n         throw new IOException(\n             \"Delegation Token can be renewed only with kerberos authentication\");\n       }\n       \n       org.apache.hadoop.yarn.api.records.Token protoToken \u003d request.getDelegationToken();\n       Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n           protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n           new Text(protoToken.getKind()), new Text(protoToken.getService()));\n \n       String user \u003d getRenewerForToken(token);\n       long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n       RenewDelegationTokenResponse renewResponse \u003d Records\n           .newRecord(RenewDelegationTokenResponse.class);\n       renewResponse.setNextExpirationTime(nextExpTime);\n       return renewResponse;\n     } catch (IOException e) {\n       throw RPCUtil.getRemoteException(e);\n     }\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[YarnRemoteException]",
+        "newValue": "[YarnException]"
+      }
+    },
+    "a2c42330047bf955a6a585dcddf798920d4c8640": {
+      "type": "Ybodychange",
+      "commitMessage": "YARN-717. Put object creation factories for Token in the class itself and remove useless derivations for specific tokens. Contributed by Jian He.\nMAPREDUCE-5289. Updated MR App to use Token directly after YARN-717. Contributed by Jian He.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1488616 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-06-01, 5:43 p.m.",
+      "commitName": "a2c42330047bf955a6a585dcddf798920d4c8640",
+      "commitAuthor": "Vinod Kumar Vavilapalli",
+      "commitDateOld": "2013-05-23, 11:22 p.m.",
+      "commitNameOld": "259edf8dca44de54033e96f7eb65a83aaa6096f2",
+      "commitAuthorOld": "Vinod Kumar Vavilapalli",
+      "daysBetweenCommits": 8.76,
+      "commitsBetweenForRepo": 43,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public RenewDelegationTokenResponse renewDelegationToken(\n      RenewDelegationTokenRequest request) throws YarnRemoteException {\n    try {\n      if (!isAllowedDelegationTokenOp()) {\n        throw new IOException(\n            \"Delegation Token can be renewed only with kerberos authentication\");\n      }\n      \n      org.apache.hadoop.yarn.api.records.Token protoToken \u003d request.getDelegationToken();\n      Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n          protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n          new Text(protoToken.getKind()), new Text(protoToken.getService()));\n\n      String user \u003d getRenewerForToken(token);\n      long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n      RenewDelegationTokenResponse renewResponse \u003d Records\n          .newRecord(RenewDelegationTokenResponse.class);\n      renewResponse.setNextExpirationTime(nextExpTime);\n      return renewResponse;\n    } catch (IOException e) {\n      throw RPCUtil.getRemoteException(e);\n    }\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/ClientRMService.java",
+      "functionStartLine": 532,
+      "functionName": "renewDelegationToken",
+      "diff": "@@ -1,23 +1,23 @@\n   public RenewDelegationTokenResponse renewDelegationToken(\n       RenewDelegationTokenRequest request) throws YarnRemoteException {\n     try {\n       if (!isAllowedDelegationTokenOp()) {\n         throw new IOException(\n             \"Delegation Token can be renewed only with kerberos authentication\");\n       }\n       \n-      DelegationToken protoToken \u003d request.getDelegationToken();\n+      org.apache.hadoop.yarn.api.records.Token protoToken \u003d request.getDelegationToken();\n       Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n           protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n           new Text(protoToken.getKind()), new Text(protoToken.getService()));\n \n       String user \u003d getRenewerForToken(token);\n       long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n       RenewDelegationTokenResponse renewResponse \u003d Records\n           .newRecord(RenewDelegationTokenResponse.class);\n       renewResponse.setNextExpirationTime(nextExpTime);\n       return renewResponse;\n     } catch (IOException e) {\n       throw RPCUtil.getRemoteException(e);\n     }\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "ba5b19fb5d6a925231a123616d171e3f6062bd27": {
+      "type": "Ybodychange",
+      "commitMessage": "YARN-320. RM should always be able to renew its own tokens. Contributed by Daryn Sharp\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1431020 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-01-09, 2:33 p.m.",
+      "commitName": "ba5b19fb5d6a925231a123616d171e3f6062bd27",
+      "commitAuthor": "Siddharth Seth",
+      "commitDateOld": "2013-01-09, 12:08 a.m.",
+      "commitNameOld": "453926397182078c65a4428eb5de5a90d6af6448",
+      "commitAuthorOld": "Arun Murthy",
+      "daysBetweenCommits": 0.6,
+      "commitsBetweenForRepo": 5,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public RenewDelegationTokenResponse renewDelegationToken(\n      RenewDelegationTokenRequest request) throws YarnRemoteException {\n    try {\n      if (!isAllowedDelegationTokenOp()) {\n        throw new IOException(\n            \"Delegation Token can be renewed only with kerberos authentication\");\n      }\n      \n      DelegationToken protoToken \u003d request.getDelegationToken();\n      Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n          protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n          new Text(protoToken.getKind()), new Text(protoToken.getService()));\n\n      String user \u003d getRenewerForToken(token);\n      long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n      RenewDelegationTokenResponse renewResponse \u003d Records\n          .newRecord(RenewDelegationTokenResponse.class);\n      renewResponse.setNextExpirationTime(nextExpTime);\n      return renewResponse;\n    } catch (IOException e) {\n      throw RPCUtil.getRemoteException(e);\n    }\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/ClientRMService.java",
+      "functionStartLine": 509,
+      "functionName": "renewDelegationToken",
+      "diff": "@@ -1,23 +1,23 @@\n   public RenewDelegationTokenResponse renewDelegationToken(\n       RenewDelegationTokenRequest request) throws YarnRemoteException {\n     try {\n       if (!isAllowedDelegationTokenOp()) {\n         throw new IOException(\n             \"Delegation Token can be renewed only with kerberos authentication\");\n       }\n       \n       DelegationToken protoToken \u003d request.getDelegationToken();\n       Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n           protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n           new Text(protoToken.getKind()), new Text(protoToken.getService()));\n \n-      String user \u003d UserGroupInformation.getCurrentUser().getShortUserName();\n+      String user \u003d getRenewerForToken(token);\n       long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n       RenewDelegationTokenResponse renewResponse \u003d Records\n           .newRecord(RenewDelegationTokenResponse.class);\n       renewResponse.setNextExpirationTime(nextExpTime);\n       return renewResponse;\n     } catch (IOException e) {\n       throw RPCUtil.getRemoteException(e);\n     }\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "dd8fc7e499200476f44a3d1d38127f5c47c9eefb": {
+      "type": "Yintroduced",
+      "commitMessage": "YARN-50. Implement renewal / cancellation of Delegation Tokens(Siddharth Seth via tgraves)\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1429085 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-01-04, 3:15 p.m.",
+      "commitName": "dd8fc7e499200476f44a3d1d38127f5c47c9eefb",
+      "commitAuthor": "Thomas Graves",
+      "diff": "@@ -0,0 +1,23 @@\n+  public RenewDelegationTokenResponse renewDelegationToken(\n+      RenewDelegationTokenRequest request) throws YarnRemoteException {\n+    try {\n+      if (!isAllowedDelegationTokenOp()) {\n+        throw new IOException(\n+            \"Delegation Token can be renewed only with kerberos authentication\");\n+      }\n+      \n+      DelegationToken protoToken \u003d request.getDelegationToken();\n+      Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n+          protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n+          new Text(protoToken.getKind()), new Text(protoToken.getService()));\n+\n+      String user \u003d UserGroupInformation.getCurrentUser().getShortUserName();\n+      long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n+      RenewDelegationTokenResponse renewResponse \u003d Records\n+          .newRecord(RenewDelegationTokenResponse.class);\n+      renewResponse.setNextExpirationTime(nextExpTime);\n+      return renewResponse;\n+    } catch (IOException e) {\n+      throw RPCUtil.getRemoteException(e);\n+    }\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  public RenewDelegationTokenResponse renewDelegationToken(\n      RenewDelegationTokenRequest request) throws YarnRemoteException {\n    try {\n      if (!isAllowedDelegationTokenOp()) {\n        throw new IOException(\n            \"Delegation Token can be renewed only with kerberos authentication\");\n      }\n      \n      DelegationToken protoToken \u003d request.getDelegationToken();\n      Token\u003cRMDelegationTokenIdentifier\u003e token \u003d new Token\u003cRMDelegationTokenIdentifier\u003e(\n          protoToken.getIdentifier().array(), protoToken.getPassword().array(),\n          new Text(protoToken.getKind()), new Text(protoToken.getService()));\n\n      String user \u003d UserGroupInformation.getCurrentUser().getShortUserName();\n      long nextExpTime \u003d rmDTSecretManager.renewToken(token, user);\n      RenewDelegationTokenResponse renewResponse \u003d Records\n          .newRecord(RenewDelegationTokenResponse.class);\n      renewResponse.setNextExpirationTime(nextExpTime);\n      return renewResponse;\n    } catch (IOException e) {\n      throw RPCUtil.getRemoteException(e);\n    }\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/ClientRMService.java",
+      "functionStartLine": 509,
+      "functionName": "renewDelegationToken"
+    }
+  }
+}

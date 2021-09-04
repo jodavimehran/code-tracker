@@ -1,0 +1,286 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "mockito",
+  "repositoryPath": "H:\\Projects\\mockito\\mockito/.git",
+  "startCommitName": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "sourceFileName": "StringUtil.java",
+  "functionName": "join",
+  "functionId": "join___start-String__linePrefix-String__lines-Collection__?__",
+  "sourceFilePath": "src/main/java/org/mockito/internal/util/StringUtil.java",
+  "functionStartLine": 52,
+  "functionEndLine": 61,
+  "numCommitsSeen": 21,
+  "timeTaken": 1551,
+  "changeHistory": [
+    "3d2fb7a146e943003cb3e3cfe18c82f1663b833a",
+    "ec61a3b6c645b273d238b5e6e6b0cd621f31fb64",
+    "0307f92995e165bd1d360f6b91e545e2ee60fe54",
+    "9d5176f738f887cd6b2a7447deedd21f9518fae0",
+    "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+    "98f7799a2bf0e2016eb4c7e0cce46e17fb796966"
+  ],
+  "changeHistoryShort": {
+    "3d2fb7a146e943003cb3e3cfe18c82f1663b833a": "Ymultichange(Yparameterchange,Ybodychange)",
+    "ec61a3b6c645b273d238b5e6e6b0cd621f31fb64": "Ymovefromfile",
+    "0307f92995e165bd1d360f6b91e545e2ee60fe54": "Yparameterchange",
+    "9d5176f738f887cd6b2a7447deedd21f9518fae0": "Ymultichange(Yparameterchange,Ybodychange)",
+    "05f8ff853250918a97a9954cd3341787fe7a1cc0": "Ymultichange(Yparameterchange,Ymodifierchange,Ybodychange)",
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27": "Yfilerename",
+    "98f7799a2bf0e2016eb4c7e0cce46e17fb796966": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3d2fb7a146e943003cb3e3cfe18c82f1663b833a": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Improved StringUtil\n\n- Added new method useful for modelling clean exception messages\n- Added Javadoc\n",
+      "commitDate": "2017-03-05, 6:15 p.m.",
+      "commitName": "3d2fb7a146e943003cb3e3cfe18c82f1663b833a",
+      "commitAuthor": "Szczepan Faber",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Improved StringUtil\n\n- Added new method useful for modelling clean exception messages\n- Added Javadoc\n",
+          "commitDate": "2017-03-05, 6:15 p.m.",
+          "commitName": "3d2fb7a146e943003cb3e3cfe18c82f1663b833a",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2017-02-06, 10:00 a.m.",
+          "commitNameOld": "e9516f42b1182ae675022c101954e721e20b2c72",
+          "commitAuthorOld": "Allon Murienik",
+          "daysBetweenCommits": 27.34,
+          "commitsBetweenForRepo": 41,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(String start, String linePrefix, Collection\u003c?\u003e lines) {\n        if (lines.isEmpty()) {\n            return \"\";\n        }\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(linePrefix).append(line).append(\"\\n\");\n        }\n        return out.substring(0, out.length() - 1); //lose last EOL\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringUtil.java",
+          "functionStartLine": 48,
+          "functionName": "join",
+          "diff": "@@ -1,8 +1,10 @@\n-    public static String join(String start, Iterable\u003c?\u003e lines) {\n+    public static String join(String start, String linePrefix, Collection\u003c?\u003e lines) {\n+        if (lines.isEmpty()) {\n+            return \"\";\n+        }\n         StringBuilder out \u003d new StringBuilder(start);\n         for (Object line : lines) {\n-            out.append(line.toString()).append(\"\\n\");\n+            out.append(linePrefix).append(line).append(\"\\n\");\n         }\n-        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n-        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n+        return out.substring(0, out.length() - 1); //lose last EOL\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[start-String, lines-Iterable\u003c?\u003e]",
+            "newValue": "[start-String, linePrefix-String, lines-Collection\u003c?\u003e]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Improved StringUtil\n\n- Added new method useful for modelling clean exception messages\n- Added Javadoc\n",
+          "commitDate": "2017-03-05, 6:15 p.m.",
+          "commitName": "3d2fb7a146e943003cb3e3cfe18c82f1663b833a",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2017-02-06, 10:00 a.m.",
+          "commitNameOld": "e9516f42b1182ae675022c101954e721e20b2c72",
+          "commitAuthorOld": "Allon Murienik",
+          "daysBetweenCommits": 27.34,
+          "commitsBetweenForRepo": 41,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(String start, String linePrefix, Collection\u003c?\u003e lines) {\n        if (lines.isEmpty()) {\n            return \"\";\n        }\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(linePrefix).append(line).append(\"\\n\");\n        }\n        return out.substring(0, out.length() - 1); //lose last EOL\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringUtil.java",
+          "functionStartLine": 48,
+          "functionName": "join",
+          "diff": "@@ -1,8 +1,10 @@\n-    public static String join(String start, Iterable\u003c?\u003e lines) {\n+    public static String join(String start, String linePrefix, Collection\u003c?\u003e lines) {\n+        if (lines.isEmpty()) {\n+            return \"\";\n+        }\n         StringBuilder out \u003d new StringBuilder(start);\n         for (Object line : lines) {\n-            out.append(line.toString()).append(\"\\n\");\n+            out.append(linePrefix).append(line).append(\"\\n\");\n         }\n-        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n-        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n+        return out.substring(0, out.length() - 1); //lose last EOL\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "ec61a3b6c645b273d238b5e6e6b0cd621f31fb64": {
+      "type": "Ymovefromfile",
+      "commitMessage": "Unify Decamelizer, StringJoiner and RemoveFirstLine in static utility class StringUtil (#914)\n\n\r\n",
+      "commitDate": "2017-01-31, 11:42 a.m.",
+      "commitName": "ec61a3b6c645b273d238b5e6e6b0cd621f31fb64",
+      "commitAuthor": "Christian Schwarz",
+      "commitDateOld": "2017-01-30, 4:52 p.m.",
+      "commitNameOld": "59a544060fbddd9fec8d430cc54fce442d16654e",
+      "commitAuthorOld": "Szczepan Faber",
+      "daysBetweenCommits": 0.78,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public static String join(String start, Iterable\u003c?\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+      "path": "src/main/java/org/mockito/internal/util/StringUtil.java",
+      "functionStartLine": 33,
+      "functionName": "join",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+        "newPath": "src/main/java/org/mockito/internal/util/StringUtil.java",
+        "oldMethodName": "join",
+        "newMethodName": "join"
+      }
+    },
+    "0307f92995e165bd1d360f6b91e545e2ee60fe54": {
+      "type": "Yparameterchange",
+      "commitMessage": "Removed more raw types. Fixed String joiner resolution.\n",
+      "commitDate": "2016-06-19, 6:48 p.m.",
+      "commitName": "0307f92995e165bd1d360f6b91e545e2ee60fe54",
+      "commitAuthor": "Rafael Winterhalter",
+      "commitDateOld": "2016-06-19, 5:30 p.m.",
+      "commitNameOld": "2f92126a765bbb6f5e6551fa50e007f9c8a14acc",
+      "commitAuthorOld": "Rafael Winterhalter",
+      "daysBetweenCommits": 0.05,
+      "commitsBetweenForRepo": 11,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public static String join(String start, Iterable\u003c?\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+      "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+      "functionStartLine": 29,
+      "functionName": "join",
+      "diff": "@@ -1,8 +1,8 @@\n-    public static String join(String start, Iterable\u003cString\u003e lines) {\n+    public static String join(String start, Iterable\u003c?\u003e lines) {\n         StringBuilder out \u003d new StringBuilder(start);\n         for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[start-String, lines-Iterable\u003cString\u003e]",
+        "newValue": "[start-String, lines-Iterable\u003c?\u003e]"
+      }
+    },
+    "9d5176f738f887cd6b2a7447deedd21f9518fae0": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "More refactoring to StringJoiner\n\nThis class is quite confusing, added another TODO. Changed the class so that it is easy to use right now, will revisit and tidy up later.\n",
+      "commitDate": "2016-04-17, 8:40 p.m.",
+      "commitName": "9d5176f738f887cd6b2a7447deedd21f9518fae0",
+      "commitAuthor": "Szczepan Faber",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "More refactoring to StringJoiner\n\nThis class is quite confusing, added another TODO. Changed the class so that it is easy to use right now, will revisit and tidy up later.\n",
+          "commitDate": "2016-04-17, 8:40 p.m.",
+          "commitName": "9d5176f738f887cd6b2a7447deedd21f9518fae0",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2016-04-17, 8:40 p.m.",
+          "commitNameOld": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+          "commitAuthorOld": "Szczepan Faber",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(String start, Iterable\u003cString\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+          "functionStartLine": 29,
+          "functionName": "join",
+          "diff": "@@ -1,8 +1,8 @@\n-    public static String join(Iterable\u003cString\u003e lines) {\n-        StringBuilder out \u003d new StringBuilder(\"\\n\");\n+    public static String join(String start, Iterable\u003cString\u003e lines) {\n+        StringBuilder out \u003d new StringBuilder(start);\n         for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[lines-Iterable\u003cString\u003e]",
+            "newValue": "[start-String, lines-Iterable\u003cString\u003e]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "More refactoring to StringJoiner\n\nThis class is quite confusing, added another TODO. Changed the class so that it is easy to use right now, will revisit and tidy up later.\n",
+          "commitDate": "2016-04-17, 8:40 p.m.",
+          "commitName": "9d5176f738f887cd6b2a7447deedd21f9518fae0",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2016-04-17, 8:40 p.m.",
+          "commitNameOld": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+          "commitAuthorOld": "Szczepan Faber",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(String start, Iterable\u003cString\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(start);\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+          "functionStartLine": 29,
+          "functionName": "join",
+          "diff": "@@ -1,8 +1,8 @@\n-    public static String join(Iterable\u003cString\u003e lines) {\n-        StringBuilder out \u003d new StringBuilder(\"\\n\");\n+    public static String join(String start, Iterable\u003cString\u003e lines) {\n+        StringBuilder out \u003d new StringBuilder(start);\n         for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "05f8ff853250918a97a9954cd3341787fe7a1cc0": {
+      "type": "Ymultichange(Yparameterchange,Ymodifierchange,Ybodychange)",
+      "commitMessage": "Made StringJoiner easier to use\n\nAt times, I need to pass collections as parameter, not only an array. Unit test missing.\n",
+      "commitDate": "2016-04-17, 8:40 p.m.",
+      "commitName": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+      "commitAuthor": "Szczepan Faber",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Made StringJoiner easier to use\n\nAt times, I need to pass collections as parameter, not only an array. Unit test missing.\n",
+          "commitDate": "2016-04-17, 8:40 p.m.",
+          "commitName": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2015-07-09, 12:42 a.m.",
+          "commitNameOld": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+          "commitAuthorOld": "Szczepan Faber",
+          "daysBetweenCommits": 283.83,
+          "commitsBetweenForRepo": 137,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(Iterable\u003cString\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(\"\\n\");\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+          "functionStartLine": 27,
+          "functionName": "join",
+          "diff": "@@ -1,7 +1,8 @@\n-    private static String join(StringBuilder out, Object[] linesToBreak) {\n-        for (Object line : linesToBreak) {\n+    public static String join(Iterable\u003cString\u003e lines) {\n+        StringBuilder out \u003d new StringBuilder(\"\\n\");\n+        for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[out-StringBuilder, linesToBreak-Object[]]",
+            "newValue": "[lines-Iterable\u003cString\u003e]"
+          }
+        },
+        {
+          "type": "Ymodifierchange",
+          "commitMessage": "Made StringJoiner easier to use\n\nAt times, I need to pass collections as parameter, not only an array. Unit test missing.\n",
+          "commitDate": "2016-04-17, 8:40 p.m.",
+          "commitName": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2015-07-09, 12:42 a.m.",
+          "commitNameOld": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+          "commitAuthorOld": "Szczepan Faber",
+          "daysBetweenCommits": 283.83,
+          "commitsBetweenForRepo": 137,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(Iterable\u003cString\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(\"\\n\");\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+          "functionStartLine": 27,
+          "functionName": "join",
+          "diff": "@@ -1,7 +1,8 @@\n-    private static String join(StringBuilder out, Object[] linesToBreak) {\n-        for (Object line : linesToBreak) {\n+    public static String join(Iterable\u003cString\u003e lines) {\n+        StringBuilder out \u003d new StringBuilder(\"\\n\");\n+        for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[private, static]",
+            "newValue": "[public, static]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Made StringJoiner easier to use\n\nAt times, I need to pass collections as parameter, not only an array. Unit test missing.\n",
+          "commitDate": "2016-04-17, 8:40 p.m.",
+          "commitName": "05f8ff853250918a97a9954cd3341787fe7a1cc0",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2015-07-09, 12:42 a.m.",
+          "commitNameOld": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+          "commitAuthorOld": "Szczepan Faber",
+          "daysBetweenCommits": 283.83,
+          "commitsBetweenForRepo": 137,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static String join(Iterable\u003cString\u003e lines) {\n        StringBuilder out \u003d new StringBuilder(\"\\n\");\n        for (Object line : lines) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+          "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+          "functionStartLine": 27,
+          "functionName": "join",
+          "diff": "@@ -1,7 +1,8 @@\n-    private static String join(StringBuilder out, Object[] linesToBreak) {\n-        for (Object line : linesToBreak) {\n+    public static String join(Iterable\u003cString\u003e lines) {\n+        StringBuilder out \u003d new StringBuilder(\"\\n\");\n+        for (Object line : lines) {\n             out.append(line.toString()).append(\"\\n\");\n         }\n         int lastBreak \u003d out.lastIndexOf(\"\\n\");\n         return out.replace(lastBreak, lastBreak+1, \"\").toString();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27": {
+      "type": "Yfilerename",
+      "commitMessage": "Moved sources to standard location\n\nLet\u0027s make the project be as close as possible to standard, conventional project for better clarity\n",
+      "commitDate": "2015-07-09, 12:42 a.m.",
+      "commitName": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "commitAuthor": "Szczepan Faber",
+      "commitDateOld": "2015-07-08, 12:16 p.m.",
+      "commitNameOld": "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+      "commitAuthorOld": "Szczepan Faber",
+      "daysBetweenCommits": 0.52,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static String join(StringBuilder out, Object[] linesToBreak) {\n        for (Object line : linesToBreak) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+      "path": "src/main/java/org/mockito/internal/util/StringJoiner.java",
+      "functionStartLine": 15,
+      "functionName": "join",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/org/mockito/internal/util/StringJoiner.java",
+        "newPath": "src/main/java/org/mockito/internal/util/StringJoiner.java"
+      }
+    },
+    "98f7799a2bf0e2016eb4c7e0cce46e17fb796966": {
+      "type": "Yintroduced",
+      "commitMessage": "Externalized the reponsiblity to notify listeners from MockHandler.\nSome renaming here and there.\n\n--HG--\nbranch : issue148\nrename : src/org/mockito/invocation/InvocationListener.java \u003d\u003e src/org/mockito/listeners/InvocationListener.java\nrename : src/org/mockito/invocation/MethodCallReport.java \u003d\u003e src/org/mockito/listeners/MethodInvocationReport.java\n",
+      "commitDate": "2011-05-15, 11:43 a.m.",
+      "commitName": "98f7799a2bf0e2016eb4c7e0cce46e17fb796966",
+      "commitAuthor": "Brice",
+      "diff": "@@ -0,0 +1,7 @@\n+    private static String join(StringBuilder out, Object[] linesToBreak) {\n+        for (Object line : linesToBreak) {\n+            out.append(line.toString()).append(\"\\n\");\n+        }\n+        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n+        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    private static String join(StringBuilder out, Object[] linesToBreak) {\n        for (Object line : linesToBreak) {\n            out.append(line.toString()).append(\"\\n\");\n        }\n        int lastBreak \u003d out.lastIndexOf(\"\\n\");\n        return out.replace(lastBreak, lastBreak+1, \"\").toString();\n    }",
+      "path": "src/org/mockito/internal/util/StringJoiner.java",
+      "functionStartLine": 14,
+      "functionName": "join"
+    }
+  }
+}

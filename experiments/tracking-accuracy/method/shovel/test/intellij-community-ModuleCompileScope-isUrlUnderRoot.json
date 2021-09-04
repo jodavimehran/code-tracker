@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "intellij-community",
+  "repositoryPath": "H:\\Projects\\JetBrains\\intellij-community/.git",
+  "startCommitName": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "sourceFileName": "ModuleCompileScope.java",
+  "functionName": "isUrlUnderRoot",
+  "functionId": "isUrlUnderRoot___url-String(modifiers-final)__root-String(modifiers-final)",
+  "sourceFilePath": "java/compiler/impl/src/com/intellij/compiler/impl/ModuleCompileScope.java",
+  "functionStartLine": 168,
+  "functionEndLine": 170,
+  "numCommitsSeen": 21,
+  "timeTaken": 11215,
+  "changeHistory": [
+    "62061626c6844513ba00233768eb72efd7bc23fc",
+    "20639250de6910bfd8904ba3fb54ded5624f6656",
+    "637afa62e37f2ff15acf2f0129aa7eae57024506",
+    "7619b9b7ad0e2eab8668102737af0e097e0a1137",
+    "47a24ec2553ae5015c7440688bac7846aff346ab"
+  ],
+  "changeHistoryShort": {
+    "62061626c6844513ba00233768eb72efd7bc23fc": "Yfilerename",
+    "20639250de6910bfd8904ba3fb54ded5624f6656": "Yfilerename",
+    "637afa62e37f2ff15acf2f0129aa7eae57024506": "Yfilerename",
+    "7619b9b7ad0e2eab8668102737af0e097e0a1137": "Ybodychange",
+    "47a24ec2553ae5015c7440688bac7846aff346ab": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "62061626c6844513ba00233768eb72efd7bc23fc": {
+      "type": "Yfilerename",
+      "commitMessage": "compiler-impl\n",
+      "commitDate": "2009-08-30, 12:52 p.m.",
+      "commitName": "62061626c6844513ba00233768eb72efd7bc23fc",
+      "commitAuthor": "Dmitry Jemerov",
+      "commitDateOld": "2009-08-30, 12:45 p.m.",
+      "commitNameOld": "b37036acfc3c4c158f8a6f19055f0a8e5d817be9",
+      "commitAuthorOld": "Dmitry Jemerov",
+      "daysBetweenCommits": 0.01,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  private static boolean isUrlUnderRoot(final String url, final String root) {\n    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 FileUtil.startsWith(url, root);\n  }",
+      "path": "java/compiler/impl/src/com/intellij/compiler/impl/ModuleCompileScope.java",
+      "functionStartLine": 141,
+      "functionName": "isUrlUnderRoot",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "compiler/impl/com/intellij/compiler/impl/ModuleCompileScope.java",
+        "newPath": "java/compiler/impl/src/com/intellij/compiler/impl/ModuleCompileScope.java"
+      }
+    },
+    "20639250de6910bfd8904ba3fb54ded5624f6656": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename/Move: //IDEA/compiler-impl/src/com/intellij/compiler/actions/AntBuildForm.form To: //IDEA/compiler/impl/com/intellij/compiler/actions/AntBuildForm.form\n",
+      "commitDate": "2005-10-17, 10:53 a.m.",
+      "commitName": "20639250de6910bfd8904ba3fb54ded5624f6656",
+      "commitAuthor": "no_reply@jetbrains.com",
+      "commitDateOld": "2005-10-17, 10:50 a.m.",
+      "commitNameOld": "b2b49f93655500d98f371e75d0670bd39aeb3def",
+      "commitAuthorOld": "no_reply@jetbrains.com",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  private static boolean isUrlUnderRoot(final String url, final String root) {\n    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 FileUtil.startsWith(url, root);\n  }",
+      "path": "compiler/impl/com/intellij/compiler/impl/ModuleCompileScope.java",
+      "functionStartLine": 140,
+      "functionName": "isUrlUnderRoot",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "compiler-impl/src/com/intellij/compiler/impl/ModuleCompileScope.java",
+        "newPath": "compiler/impl/com/intellij/compiler/impl/ModuleCompileScope.java"
+      }
+    },
+    "637afa62e37f2ff15acf2f0129aa7eae57024506": {
+      "type": "Yfilerename",
+      "commitMessage": "compiler extraction\n",
+      "commitDate": "2005-10-17, 5:25 a.m.",
+      "commitName": "637afa62e37f2ff15acf2f0129aa7eae57024506",
+      "commitAuthor": "no_reply@jetbrains.com",
+      "commitDateOld": "2005-10-17, 4:42 a.m.",
+      "commitNameOld": "ce3545c59aebd9c0e61a63e615dd8da148c5bc93",
+      "commitAuthorOld": "Eugene Vigdorchik",
+      "daysBetweenCommits": 0.03,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  private static boolean isUrlUnderRoot(final String url, final String root) {\n    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 FileUtil.startsWith(url, root);\n  }",
+      "path": "compiler-impl/src/com/intellij/compiler/impl/ModuleCompileScope.java",
+      "functionStartLine": 140,
+      "functionName": "isUrlUnderRoot",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "source/com/intellij/compiler/impl/ModuleCompileScope.java",
+        "newPath": "compiler-impl/src/com/intellij/compiler/impl/ModuleCompileScope.java"
+      }
+    },
+    "7619b9b7ad0e2eab8668102737af0e097e0a1137": {
+      "type": "Ybodychange",
+      "commitMessage": "IDEADEV-1937\n",
+      "commitDate": "2005-07-14, 1:06 p.m.",
+      "commitName": "7619b9b7ad0e2eab8668102737af0e097e0a1137",
+      "commitAuthor": "Maxim Shafirov",
+      "commitDateOld": "2005-03-14, 7:04 a.m.",
+      "commitNameOld": "cd56e225332f280580ad36eac697f5decfaa005e",
+      "commitAuthorOld": "Eugene Zhuravlev",
+      "daysBetweenCommits": 122.21,
+      "commitsBetweenForRepo": 2806,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  private static boolean isUrlUnderRoot(final String url, final String root) {\n    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 FileUtil.startsWith(url, root);\n  }",
+      "path": "source/com/intellij/compiler/impl/ModuleCompileScope.java",
+      "functionStartLine": 140,
+      "functionName": "isUrlUnderRoot",
+      "diff": "@@ -1,3 +1,3 @@\n   private static boolean isUrlUnderRoot(final String url, final String root) {\n-    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 CompilerUtil.startsWith(url, root);\n+    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 FileUtil.startsWith(url, root);\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "47a24ec2553ae5015c7440688bac7846aff346ab": {
+      "type": "Yintroduced",
+      "commitMessage": "(no message)",
+      "commitDate": "2005-03-10, 12:17 p.m.",
+      "commitName": "47a24ec2553ae5015c7440688bac7846aff346ab",
+      "commitAuthor": "Eugene Zhuravlev",
+      "diff": "@@ -0,0 +1,3 @@\n+  private static boolean isUrlUnderRoot(final String url, final String root) {\n+    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 CompilerUtil.startsWith(url, root);\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  private static boolean isUrlUnderRoot(final String url, final String root) {\n    return (url.length() \u003e root.length()) \u0026\u0026 url.charAt(root.length()) \u003d\u003d \u0027/\u0027 \u0026\u0026 CompilerUtil.startsWith(url, root);\n  }",
+      "path": "source/com/intellij/compiler/impl/ModuleCompileScope.java",
+      "functionStartLine": 139,
+      "functionName": "isUrlUnderRoot"
+    }
+  }
+}

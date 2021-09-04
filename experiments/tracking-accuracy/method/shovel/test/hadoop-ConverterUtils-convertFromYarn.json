@@ -1,0 +1,139 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hadoop",
+  "repositoryPath": "H:\\Projects\\apache\\hadoop/.git",
+  "startCommitName": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "sourceFileName": "ConverterUtils.java",
+  "functionName": "convertFromYarn",
+  "functionId": "convertFromYarn___protoToken-org.apache.hadoop.yarn.api.records.Token__serviceAddr-InetSocketAddress",
+  "sourceFilePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
+  "functionStartLine": 176,
+  "functionEndLine": 187,
+  "numCommitsSeen": 30,
+  "timeTaken": 6349,
+  "changeHistory": [
+    "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
+    "6a2f2551fd13f6d3c932cc9b592e2a23b616a7f5",
+    "e1fdf62123625e4ba399af02f8aad500637d29d1",
+    "aa60da6c2ec049cc70897afee6c368cb70493773"
+  ],
+  "changeHistoryShort": {
+    "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b": "Ymultichange(Ymovefromfile,Yrename)",
+    "6a2f2551fd13f6d3c932cc9b592e2a23b616a7f5": "Yparameterchange",
+    "e1fdf62123625e4ba399af02f8aad500637d29d1": "Yfilerename",
+    "aa60da6c2ec049cc70897afee6c368cb70493773": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b": {
+      "type": "Ymultichange(Ymovefromfile,Yrename)",
+      "commitMessage": "YARN-840. Moved ProtoUtils to yarn.api.records.pb.impl. Contributed by Jian He.\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1494027 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-06-18, 1:47 a.m.",
+      "commitName": "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
+      "commitAuthor": "Arun Murthy",
+      "subchanges": [
+        {
+          "type": "Ymovefromfile",
+          "commitMessage": "YARN-840. Moved ProtoUtils to yarn.api.records.pb.impl. Contributed by Jian He.\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1494027 13f79535-47bb-0310-9956-ffa450edef68\n",
+          "commitDate": "2013-06-18, 1:47 a.m.",
+          "commitName": "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
+          "commitAuthor": "Arun Murthy",
+          "commitDateOld": "2013-06-18, 12:47 a.m.",
+          "commitNameOld": "364b379cb84ab053d5704e2f761ebec27fd54cc4",
+          "commitAuthorOld": "Chris Nauroth",
+          "daysBetweenCommits": 0.04,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromYarn(\n      org.apache.hadoop.yarn.api.records.Token protoToken,\n      InetSocketAddress serviceAddr) {\n    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                  protoToken.getPassword().array(),\n                                  new Text(protoToken.getKind()),\n                                  new Text(protoToken.getService()));\n    if (serviceAddr !\u003d null) {\n      SecurityUtil.setTokenService(token, serviceAddr);\n    }\n    return token;\n  }",
+          "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
+          "functionStartLine": 218,
+          "functionName": "convertFromYarn",
+          "diff": "@@ -1,12 +1,12 @@\n-  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromProtoFormat(\n+  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromYarn(\n       org.apache.hadoop.yarn.api.records.Token protoToken,\n       InetSocketAddress serviceAddr) {\n     Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                   protoToken.getPassword().array(),\n                                   new Text(protoToken.getKind()),\n                                   new Text(protoToken.getService()));\n     if (serviceAddr !\u003d null) {\n       SecurityUtil.setTokenService(token, serviceAddr);\n     }\n     return token;\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
+            "newPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
+            "oldMethodName": "convertFromProtoFormat",
+            "newMethodName": "convertFromYarn"
+          }
+        },
+        {
+          "type": "Yrename",
+          "commitMessage": "YARN-840. Moved ProtoUtils to yarn.api.records.pb.impl. Contributed by Jian He.\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1494027 13f79535-47bb-0310-9956-ffa450edef68\n",
+          "commitDate": "2013-06-18, 1:47 a.m.",
+          "commitName": "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
+          "commitAuthor": "Arun Murthy",
+          "commitDateOld": "2013-06-18, 12:47 a.m.",
+          "commitNameOld": "364b379cb84ab053d5704e2f761ebec27fd54cc4",
+          "commitAuthorOld": "Chris Nauroth",
+          "daysBetweenCommits": 0.04,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromYarn(\n      org.apache.hadoop.yarn.api.records.Token protoToken,\n      InetSocketAddress serviceAddr) {\n    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                  protoToken.getPassword().array(),\n                                  new Text(protoToken.getKind()),\n                                  new Text(protoToken.getService()));\n    if (serviceAddr !\u003d null) {\n      SecurityUtil.setTokenService(token, serviceAddr);\n    }\n    return token;\n  }",
+          "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
+          "functionStartLine": 218,
+          "functionName": "convertFromYarn",
+          "diff": "@@ -1,12 +1,12 @@\n-  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromProtoFormat(\n+  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromYarn(\n       org.apache.hadoop.yarn.api.records.Token protoToken,\n       InetSocketAddress serviceAddr) {\n     Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                   protoToken.getPassword().array(),\n                                   new Text(protoToken.getKind()),\n                                   new Text(protoToken.getService()));\n     if (serviceAddr !\u003d null) {\n       SecurityUtil.setTokenService(token, serviceAddr);\n     }\n     return token;\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "convertFromProtoFormat",
+            "newValue": "convertFromYarn"
+          }
+        }
+      ]
+    },
+    "6a2f2551fd13f6d3c932cc9b592e2a23b616a7f5": {
+      "type": "Yparameterchange",
+      "commitMessage": "YARN-135. Client tokens should be per app-attempt, and should be unregistered on App-finish. Contributed by Vinod Kumar Vavilapalli\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1433570 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-01-15, 1:33 p.m.",
+      "commitName": "6a2f2551fd13f6d3c932cc9b592e2a23b616a7f5",
+      "commitAuthor": "Siddharth Seth",
+      "commitDateOld": "2012-08-08, 1:22 a.m.",
+      "commitNameOld": "e1fdf62123625e4ba399af02f8aad500637d29d1",
+      "commitAuthorOld": "Arun Murthy",
+      "daysBetweenCommits": 160.55,
+      "commitsBetweenForRepo": 867,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromProtoFormat(\n      org.apache.hadoop.yarn.api.records.Token protoToken,\n      InetSocketAddress serviceAddr) {\n    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                  protoToken.getPassword().array(),\n                                  new Text(protoToken.getKind()),\n                                  new Text(protoToken.getService()));\n    if (serviceAddr !\u003d null) {\n      SecurityUtil.setTokenService(token, serviceAddr);\n    }\n    return token;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
+      "functionStartLine": 208,
+      "functionName": "convertFromProtoFormat",
+      "diff": "@@ -1,10 +1,12 @@\n-  convertFromProtoFormat(DelegationToken protoToken, InetSocketAddress serviceAddr) {\n+  public static \u003cT extends TokenIdentifier\u003e Token\u003cT\u003e convertFromProtoFormat(\n+      org.apache.hadoop.yarn.api.records.Token protoToken,\n+      InetSocketAddress serviceAddr) {\n     Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                   protoToken.getPassword().array(),\n                                   new Text(protoToken.getKind()),\n                                   new Text(protoToken.getService()));\n     if (serviceAddr !\u003d null) {\n       SecurityUtil.setTokenService(token, serviceAddr);\n     }\n     return token;\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[protoToken-DelegationToken, serviceAddr-InetSocketAddress]",
+        "newValue": "[protoToken-org.apache.hadoop.yarn.api.records.Token, serviceAddr-InetSocketAddress]"
+      }
+    },
+    "e1fdf62123625e4ba399af02f8aad500637d29d1": {
+      "type": "Yfilerename",
+      "commitMessage": "YARN-1. Promote YARN to be a sub-project of Apache Hadoop.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1370666 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2012-08-08, 1:22 a.m.",
+      "commitName": "e1fdf62123625e4ba399af02f8aad500637d29d1",
+      "commitAuthor": "Arun Murthy",
+      "commitDateOld": "2012-08-07, 10:53 p.m.",
+      "commitNameOld": "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
+      "commitAuthorOld": "Aaron Myers",
+      "daysBetweenCommits": 0.1,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  convertFromProtoFormat(DelegationToken protoToken, InetSocketAddress serviceAddr) {\n    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                  protoToken.getPassword().array(),\n                                  new Text(protoToken.getKind()),\n                                  new Text(protoToken.getService()));\n    if (serviceAddr !\u003d null) {\n      SecurityUtil.setTokenService(token, serviceAddr);\n    }\n    return token;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
+      "functionStartLine": 210,
+      "functionName": "convertFromProtoFormat",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
+        "newPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java"
+      }
+    },
+    "aa60da6c2ec049cc70897afee6c368cb70493773": {
+      "type": "Yintroduced",
+      "commitMessage": "MAPREDUCE-4162. Correctly set token service (Daryn Sharp via bobby)\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1335567 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2012-05-08, 11:07 a.m.",
+      "commitName": "aa60da6c2ec049cc70897afee6c368cb70493773",
+      "commitAuthor": "Robert Joseph Evans",
+      "diff": "@@ -0,0 +1,10 @@\n+  convertFromProtoFormat(DelegationToken protoToken, InetSocketAddress serviceAddr) {\n+    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n+                                  protoToken.getPassword().array(),\n+                                  new Text(protoToken.getKind()),\n+                                  new Text(protoToken.getService()));\n+    if (serviceAddr !\u003d null) {\n+      SecurityUtil.setTokenService(token, serviceAddr);\n+    }\n+    return token;\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  convertFromProtoFormat(DelegationToken protoToken, InetSocketAddress serviceAddr) {\n    Token\u003cT\u003e token \u003d new Token\u003cT\u003e(protoToken.getIdentifier().array(),\n                                  protoToken.getPassword().array(),\n                                  new Text(protoToken.getKind()),\n                                  new Text(protoToken.getService()));\n    if (serviceAddr !\u003d null) {\n      SecurityUtil.setTokenService(token, serviceAddr);\n    }\n    return token;\n  }",
+      "path": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
+      "functionStartLine": 210,
+      "functionName": "convertFromProtoFormat"
+    }
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "elasticsearch",
+  "repositoryPath": "H:\\Projects\\elastic\\elasticsearch/.git",
+  "startCommitName": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "sourceFileName": "RestTable.java",
+  "functionName": "expandHeadersFromRequest",
+  "functionId": "expandHeadersFromRequest___table-Table__request-RestRequest",
+  "sourceFilePath": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+  "functionStartLine": 222,
+  "functionEndLine": 248,
+  "numCommitsSeen": 34,
+  "timeTaken": 5807,
+  "changeHistory": [
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "9d5e7895080cd186f8cea327f4fa43445476bee6",
+    "fc224a0de8153652ed2d0e409bc2dbd8746068e8"
+  ],
+  "changeHistoryShort": {
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": "Yfilerename",
+    "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f": "Yfilerename",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": "Yfilerename",
+    "9d5e7895080cd186f8cea327f4fa43445476bee6": "Ybodychange",
+    "fc224a0de8153652ed2d0e409bc2dbd8746068e8": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename core module to server (#28180)\n\nThis is related to #27933. It renames the core module to server. This is\r\nthe first step towards introducing an elasticsearch-core jar.",
+      "commitDate": "2018-01-11, 1:30 p.m.",
+      "commitName": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitAuthor": "Tim Brooks",
+      "commitDateOld": "2018-01-11, 11:31 a.m.",
+      "commitNameOld": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitAuthorOld": "Martijn van Groningen",
+      "daysBetweenCommits": 0.08,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n\n        // check headers and aliases\n        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n            if (Regex.isSimpleMatchPattern(header)) {\n                for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                    String configuredHeader \u003d tableHeaderCell.value.toString();\n                    if (Regex.simpleMatch(header, configuredHeader)) {\n                        headers.add(configuredHeader);\n                    } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                        String[] aliases \u003d Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                        for (String alias : aliases) {\n                            if (Regex.simpleMatch(header, alias)) {\n                                headers.add(configuredHeader);\n                                break;\n                            }\n                        }\n                    }\n                }\n            } else {\n                headers.add(header);\n            }\n        }\n\n        return headers;\n    }",
+      "path": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+      "functionStartLine": 222,
+      "functionName": "expandHeadersFromRequest",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+        "newPath": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java"
+      }
+    },
+    "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f": {
+      "type": "Yfilerename",
+      "commitMessage": "Squash the rest of o.e.rest.action\n\nSquashes all the subpackages of `org.elasticsearch.rest.action` down to\nthe following:\n* `o.e.rest.action.admin` - Administrative actions\n* `o.e.rest.action.cat` - Actions that make tables for `grep`ing\n* `o.e.rest.action.document` - Actions that act on documents\n* `o.e.rest.action.ingest` - Actions that act on ingest pipelines\n* `o.e.rest.action.search` - Actions that search\n\nI\u0027m tempted to merge `search` into `document` but the `document`\npackage feels fairly complete as is and `Suggest` isn\u0027t actually always\nabout documents either....\n\nI\u0027m also tempted to merge `ingest` into `admin.cluster` because the\nlatter contains the actions for dealing with stored scripts.\n\nI\u0027ve moved the `o.e.rest.action.support` into `o.e.rest.action`.\n\nI\u0027ve also added `package-info.java`s to all packges in `o.e.rest`. I\nfigure if the package is too small to deserve a `package-info.java` file\nthen it is too small to deserve to be a package....\n\nAlso fixes checkstyle in all moved classes.\n",
+      "commitDate": "2016-08-15, 9:06 p.m.",
+      "commitName": "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
+      "commitAuthor": "Nik Everett",
+      "commitDateOld": "2016-08-15, 9:00 p.m.",
+      "commitNameOld": "2adc2a19719eeb5781a49e00fbc23f86128103bf",
+      "commitAuthorOld": "chengpohi",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n\n        // check headers and aliases\n        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n            if (Regex.isSimpleMatchPattern(header)) {\n                for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                    String configuredHeader \u003d tableHeaderCell.value.toString();\n                    if (Regex.simpleMatch(header, configuredHeader)) {\n                        headers.add(configuredHeader);\n                    } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                        String[] aliases \u003d Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                        for (String alias : aliases) {\n                            if (Regex.simpleMatch(header, alias)) {\n                                headers.add(configuredHeader);\n                                break;\n                            }\n                        }\n                    }\n                }\n            } else {\n                headers.add(header);\n            }\n        }\n\n        return headers;\n    }",
+      "path": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+      "functionStartLine": 184,
+      "functionName": "expandHeadersFromRequest",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+        "newPath": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java"
+      }
+    },
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": {
+      "type": "Yfilerename",
+      "commitMessage": "create core module\n",
+      "commitDate": "2015-06-05, 7:12 a.m.",
+      "commitName": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitAuthor": "Simon Willnauer",
+      "commitDateOld": "2015-06-05, 7:11 a.m.",
+      "commitNameOld": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitAuthorOld": "Simon Willnauer",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n\n        // check headers and aliases\n        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n            if (Regex.isSimpleMatchPattern(header)) {\n                for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                    String configuredHeader \u003d tableHeaderCell.value.toString();\n                    if (Regex.simpleMatch(header, configuredHeader)) {\n                        headers.add(configuredHeader);\n                    } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                        String[] aliases \u003d Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                        for (String alias : aliases) {\n                            if (Regex.simpleMatch(header, alias)) {\n                                headers.add(configuredHeader);\n                                break;\n                            }\n                        }\n                    }\n                }\n            } else {\n                headers.add(header);\n            }\n        }\n\n        return headers;\n    }",
+      "path": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "functionStartLine": 157,
+      "functionName": "expandHeadersFromRequest",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+        "newPath": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java"
+      }
+    },
+    "9d5e7895080cd186f8cea327f4fa43445476bee6": {
+      "type": "Ybodychange",
+      "commitMessage": "Cat API: Do not rely on hashmap for sorted entries\n\nThe tests for the recently added added wildcard feature were\nrelying on order of the hashmap being used, which could be\ndifferent.\n\nThe implementation now ensures, that the header fields are\nparsed in the order they have been added.\n",
+      "commitDate": "2015-05-27, 11:46 a.m.",
+      "commitName": "9d5e7895080cd186f8cea327f4fa43445476bee6",
+      "commitAuthor": "Alexander Reelsen",
+      "commitDateOld": "2015-05-27, 10:09 a.m.",
+      "commitNameOld": "fc224a0de8153652ed2d0e409bc2dbd8746068e8",
+      "commitAuthorOld": "Alexander Reelsen",
+      "daysBetweenCommits": 0.07,
+      "commitsBetweenForRepo": 4,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n\n        // check headers and aliases\n        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n            if (Regex.isSimpleMatchPattern(header)) {\n                for (Table.Cell tableHeaderCell : table.getHeaders()) {\n                    String configuredHeader \u003d tableHeaderCell.value.toString();\n                    if (Regex.simpleMatch(header, configuredHeader)) {\n                        headers.add(configuredHeader);\n                    } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n                        String[] aliases \u003d Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                        for (String alias : aliases) {\n                            if (Regex.simpleMatch(header, alias)) {\n                                headers.add(configuredHeader);\n                                break;\n                            }\n                        }\n                    }\n                }\n            } else {\n                headers.add(header);\n            }\n        }\n\n        return headers;\n    }",
+      "path": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "functionStartLine": 157,
+      "functionName": "expandHeadersFromRequest",
+      "diff": "@@ -1,28 +1,27 @@\n     private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n         Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n \n-        Map\u003cString, Table.Cell\u003e headerMap \u003d table.getHeaderMap();\n         // check headers and aliases\n         for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n             if (Regex.isSimpleMatchPattern(header)) {\n-                for (Map.Entry\u003cString, Table.Cell\u003e configuredHeaderEntry : headerMap.entrySet()) {\n-                    String configuredHeader \u003d configuredHeaderEntry.getKey();\n+                for (Table.Cell tableHeaderCell : table.getHeaders()) {\n+                    String configuredHeader \u003d tableHeaderCell.value.toString();\n                     if (Regex.simpleMatch(header, configuredHeader)) {\n                         headers.add(configuredHeader);\n-                    } else if (configuredHeaderEntry.getValue().attr.containsKey(\"alias\")) {\n-                        String[] aliases \u003d Strings.splitStringByCommaToArray(configuredHeaderEntry.getValue().attr.get(\"alias\"));\n+                    } else if (tableHeaderCell.attr.containsKey(\"alias\")) {\n+                        String[] aliases \u003d Strings.splitStringByCommaToArray(tableHeaderCell.attr.get(\"alias\"));\n                         for (String alias : aliases) {\n                             if (Regex.simpleMatch(header, alias)) {\n                                 headers.add(configuredHeader);\n                                 break;\n                             }\n                         }\n                     }\n                 }\n             } else {\n                 headers.add(header);\n             }\n         }\n \n         return headers;\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "fc224a0de8153652ed2d0e409bc2dbd8746068e8": {
+      "type": "Yintroduced",
+      "commitMessage": "Cat API: Add wildcard support for header names\n\nThis adds wildcard support (simple regexes) for specifying header names.\nAliases are supported as well.\n\nCloses #10811\n",
+      "commitDate": "2015-05-27, 10:09 a.m.",
+      "commitName": "fc224a0de8153652ed2d0e409bc2dbd8746068e8",
+      "commitAuthor": "Alexander Reelsen",
+      "diff": "@@ -0,0 +1,28 @@\n+    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n+        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n+\n+        Map\u003cString, Table.Cell\u003e headerMap \u003d table.getHeaderMap();\n+        // check headers and aliases\n+        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n+            if (Regex.isSimpleMatchPattern(header)) {\n+                for (Map.Entry\u003cString, Table.Cell\u003e configuredHeaderEntry : headerMap.entrySet()) {\n+                    String configuredHeader \u003d configuredHeaderEntry.getKey();\n+                    if (Regex.simpleMatch(header, configuredHeader)) {\n+                        headers.add(configuredHeader);\n+                    } else if (configuredHeaderEntry.getValue().attr.containsKey(\"alias\")) {\n+                        String[] aliases \u003d Strings.splitStringByCommaToArray(configuredHeaderEntry.getValue().attr.get(\"alias\"));\n+                        for (String alias : aliases) {\n+                            if (Regex.simpleMatch(header, alias)) {\n+                                headers.add(configuredHeader);\n+                                break;\n+                            }\n+                        }\n+                    }\n+                }\n+            } else {\n+                headers.add(header);\n+            }\n+        }\n+\n+        return headers;\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    private static Set\u003cString\u003e expandHeadersFromRequest(Table table, RestRequest request) {\n        Set\u003cString\u003e headers \u003d new LinkedHashSet\u003c\u003e(table.getHeaders().size());\n\n        Map\u003cString, Table.Cell\u003e headerMap \u003d table.getHeaderMap();\n        // check headers and aliases\n        for (String header : Strings.splitStringByCommaToArray(request.param(\"h\"))) {\n            if (Regex.isSimpleMatchPattern(header)) {\n                for (Map.Entry\u003cString, Table.Cell\u003e configuredHeaderEntry : headerMap.entrySet()) {\n                    String configuredHeader \u003d configuredHeaderEntry.getKey();\n                    if (Regex.simpleMatch(header, configuredHeader)) {\n                        headers.add(configuredHeader);\n                    } else if (configuredHeaderEntry.getValue().attr.containsKey(\"alias\")) {\n                        String[] aliases \u003d Strings.splitStringByCommaToArray(configuredHeaderEntry.getValue().attr.get(\"alias\"));\n                        for (String alias : aliases) {\n                            if (Regex.simpleMatch(header, alias)) {\n                                headers.add(configuredHeader);\n                                break;\n                            }\n                        }\n                    }\n                }\n            } else {\n                headers.add(header);\n            }\n        }\n\n        return headers;\n    }",
+      "path": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "functionStartLine": 157,
+      "functionName": "expandHeadersFromRequest"
+    }
+  }
+}

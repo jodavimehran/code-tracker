@@ -1,0 +1,234 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "okhttp",
+  "repositoryPath": "H:\\Projects\\square\\okhttp/.git",
+  "startCommitName": "5224f3045ba9b171fce521777edf389f9206173c",
+  "sourceFileName": "Http2Connection.java",
+  "functionName": "pushStream",
+  "functionId": "pushStream___associatedStreamId-int__requestHeaders-List__Header____out-boolean",
+  "sourceFilePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionStartLine": 218,
+  "functionEndLine": 222,
+  "numCommitsSeen": 109,
+  "timeTaken": 1316,
+  "changeHistory": [
+    "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+    "0c04821a25c83fddebb29e8cd590609142ba20a2",
+    "c9a89876de476983f273edbf108c365127c18c5e",
+    "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+    "a5ba3e9062f3bde4bb6896f1db433a2408119e94",
+    "110a4fac4257fe2df0e23149fbef76e750604cf4",
+    "fb46f100a4d66342a0b101624fd351a51b6f14a9"
+  ],
+  "changeHistoryShort": {
+    "3d43a8dba89ccd7333c3ebcf74928e441790d943": "Ymultichange(Yfilerename,Yreturntypechange)",
+    "0c04821a25c83fddebb29e8cd590609142ba20a2": "Ybodychange",
+    "c9a89876de476983f273edbf108c365127c18c5e": "Yfilerename",
+    "c753d2e41ba667f9b5a31451a16ecbaecdc65d80": "Ymultichange(Yfilerename,Yreturntypechange)",
+    "a5ba3e9062f3bde4bb6896f1db433a2408119e94": "Ybodychange",
+    "110a4fac4257fe2df0e23149fbef76e750604cf4": "Yfilerename",
+    "fb46f100a4d66342a0b101624fd351a51b6f14a9": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3d43a8dba89ccd7333c3ebcf74928e441790d943": {
+      "type": "Ymultichange(Yfilerename,Yreturntypechange)",
+      "commitMessage": "Rename FramedConnection to Http2Connection.\n\nAlso rename HttpStream to HttpCodec. This is the interface implemented\nfor both HTTP/1.1 and HTTP/2. The HTTP/2 codec creates a stream when\nit is used.\n",
+      "commitDate": "2016-07-09, 6:09 p.m.",
+      "commitName": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "commitAuthor": "jwilson",
+      "subchanges": [
+        {
+          "type": "Yfilerename",
+          "commitMessage": "Rename FramedConnection to Http2Connection.\n\nAlso rename HttpStream to HttpCodec. This is the interface implemented\nfor both HTTP/1.1 and HTTP/2. The HTTP/2 codec creates a stream when\nit is used.\n",
+          "commitDate": "2016-07-09, 6:09 p.m.",
+          "commitName": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+          "commitAuthor": "jwilson",
+          "commitDateOld": "2016-07-09, 5:27 p.m.",
+          "commitNameOld": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+          "commitAuthorOld": "Jesse Wilson",
+          "daysBetweenCommits": 0.03,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public Http2Stream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    return newStream(associatedStreamId, requestHeaders, out);\n  }",
+          "path": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+          "functionStartLine": 193,
+          "functionName": "pushStream",
+          "diff": "@@ -1,5 +1,5 @@\n-  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n+  public Http2Stream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n     return newStream(associatedStreamId, requestHeaders, out);\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldPath": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+            "newPath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java"
+          }
+        },
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Rename FramedConnection to Http2Connection.\n\nAlso rename HttpStream to HttpCodec. This is the interface implemented\nfor both HTTP/1.1 and HTTP/2. The HTTP/2 codec creates a stream when\nit is used.\n",
+          "commitDate": "2016-07-09, 6:09 p.m.",
+          "commitName": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+          "commitAuthor": "jwilson",
+          "commitDateOld": "2016-07-09, 5:27 p.m.",
+          "commitNameOld": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+          "commitAuthorOld": "Jesse Wilson",
+          "daysBetweenCommits": 0.03,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public Http2Stream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    return newStream(associatedStreamId, requestHeaders, out);\n  }",
+          "path": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+          "functionStartLine": 193,
+          "functionName": "pushStream",
+          "diff": "@@ -1,5 +1,5 @@\n-  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n+  public Http2Stream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n     return newStream(associatedStreamId, requestHeaders, out);\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "FramedStream",
+            "newValue": "Http2Stream"
+          }
+        }
+      ]
+    },
+    "0c04821a25c83fddebb29e8cd590609142ba20a2": {
+      "type": "Ybodychange",
+      "commitMessage": "Drop support for SPDY/3.\n\nIt\u0027s redundant with HTTP/2.\n",
+      "commitDate": "2016-07-09, 5:19 p.m.",
+      "commitName": "0c04821a25c83fddebb29e8cd590609142ba20a2",
+      "commitAuthor": "jwilson",
+      "commitDateOld": "2016-07-06, 10:02 p.m.",
+      "commitNameOld": "1267cb958c507f123ab135cac638768009dc84b5",
+      "commitAuthorOld": "Dave Roberge",
+      "daysBetweenCommits": 2.8,
+      "commitsBetweenForRepo": 7,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    return newStream(associatedStreamId, requestHeaders, out);\n  }",
+      "path": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "functionStartLine": 193,
+      "functionName": "pushStream",
+      "diff": "@@ -1,6 +1,5 @@\n   public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n-    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n-    return newStream(associatedStreamId, requestHeaders, out, false);\n+    return newStream(associatedStreamId, requestHeaders, out);\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "c9a89876de476983f273edbf108c365127c18c5e": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename com.squareup.okhttp to okhttp3\n\nMaven group changes will come in follow up.\n",
+      "commitDate": "2015-12-16, 1:34 a.m.",
+      "commitName": "c9a89876de476983f273edbf108c365127c18c5e",
+      "commitAuthor": "jwilson",
+      "commitDateOld": "2015-12-15, 9:36 p.m.",
+      "commitNameOld": "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+      "commitAuthorOld": "Jake Wharton",
+      "daysBetweenCommits": 0.17,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+      "path": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "functionStartLine": 232,
+      "functionName": "pushStream",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+        "newPath": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java"
+      }
+    },
+    "c753d2e41ba667f9b5a31451a16ecbaecdc65d80": {
+      "type": "Ymultichange(Yfilerename,Yreturntypechange)",
+      "commitMessage": "Rename \u0027spdy\u0027 references to \u0027framed\u0027 where appropriate.\n",
+      "commitDate": "2015-06-17, 6:40 p.m.",
+      "commitName": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "commitAuthor": "Jake Wharton",
+      "subchanges": [
+        {
+          "type": "Yfilerename",
+          "commitMessage": "Rename \u0027spdy\u0027 references to \u0027framed\u0027 where appropriate.\n",
+          "commitDate": "2015-06-17, 6:40 p.m.",
+          "commitName": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+          "commitAuthor": "Jake Wharton",
+          "commitDateOld": "2015-06-16, 12:46 p.m.",
+          "commitNameOld": "b262f2a03001cd990568b929b2739dd3c7adb75f",
+          "commitAuthorOld": "Jesse Wilson",
+          "daysBetweenCommits": 1.25,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+          "path": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+          "functionStartLine": 228,
+          "functionName": "pushStream",
+          "diff": "@@ -1,6 +1,6 @@\n-  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n+  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n     if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n     return newStream(associatedStreamId, requestHeaders, out, false);\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldPath": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+            "newPath": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java"
+          }
+        },
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Rename \u0027spdy\u0027 references to \u0027framed\u0027 where appropriate.\n",
+          "commitDate": "2015-06-17, 6:40 p.m.",
+          "commitName": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+          "commitAuthor": "Jake Wharton",
+          "commitDateOld": "2015-06-16, 12:46 p.m.",
+          "commitNameOld": "b262f2a03001cd990568b929b2739dd3c7adb75f",
+          "commitAuthorOld": "Jesse Wilson",
+          "daysBetweenCommits": 1.25,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+          "path": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+          "functionStartLine": 228,
+          "functionName": "pushStream",
+          "diff": "@@ -1,6 +1,6 @@\n-  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n+  public FramedStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n     if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n     return newStream(associatedStreamId, requestHeaders, out, false);\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "SpdyStream",
+            "newValue": "FramedStream"
+          }
+        }
+      ]
+    },
+    "a5ba3e9062f3bde4bb6896f1db433a2408119e94": {
+      "type": "Ybodychange",
+      "commitMessage": "Add HTTP/2 PushObserver.\n",
+      "commitDate": "2014-03-02, 12:23 a.m.",
+      "commitName": "a5ba3e9062f3bde4bb6896f1db433a2408119e94",
+      "commitAuthor": "Adrian Cole",
+      "commitDateOld": "2014-02-27, 11:28 p.m.",
+      "commitNameOld": "110a4fac4257fe2df0e23149fbef76e750604cf4",
+      "commitAuthorOld": "Jesse Wilson",
+      "daysBetweenCommits": 2.04,
+      "commitsBetweenForRepo": 10,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+      "path": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "functionStartLine": 213,
+      "functionName": "pushStream",
+      "diff": "@@ -1,5 +1,6 @@\n   public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n       throws IOException {\n     if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n+    if (protocol !\u003d Protocol.HTTP_2) throw new IllegalStateException(\"protocol !\u003d HTTP_2\");\n     return newStream(associatedStreamId, requestHeaders, out, false);\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "110a4fac4257fe2df0e23149fbef76e750604cf4": {
+      "type": "Yfilerename",
+      "commitMessage": "Rearrange OkHttp modules.\n\nThe HTTP client and SPDY code are now a single module that\nmockwebserver depends upon.\n\nThe tests are now in a separate module that depends on both\nOkHttp and mockwebserver.\n",
+      "commitDate": "2014-02-27, 11:28 p.m.",
+      "commitName": "110a4fac4257fe2df0e23149fbef76e750604cf4",
+      "commitAuthor": "Jesse Wilson",
+      "commitDateOld": "2014-02-25, 10:34 p.m.",
+      "commitNameOld": "d5cbd0aebe090d956f54b6697068fcbff6d668e7",
+      "commitAuthorOld": "Adrian Cole",
+      "daysBetweenCommits": 2.04,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+      "path": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "functionStartLine": 208,
+      "functionName": "pushStream",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+        "newPath": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java"
+      }
+    },
+    "fb46f100a4d66342a0b101624fd351a51b6f14a9": {
+      "type": "Yintroduced",
+      "commitMessage": "Teach MockWebServer HTTP/2 Push Promise.\n",
+      "commitDate": "2014-02-23, 8:16 p.m.",
+      "commitName": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
+      "commitAuthor": "Adrian Cole",
+      "diff": "@@ -0,0 +1,5 @@\n+  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n+      throws IOException {\n+    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n+    return newStream(associatedStreamId, requestHeaders, out, false);\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  public SpdyStream pushStream(int associatedStreamId, List\u003cHeader\u003e requestHeaders, boolean out)\n      throws IOException {\n    if (client) throw new IllegalStateException(\"Client cannot push requests.\");\n    return newStream(associatedStreamId, requestHeaders, out, false);\n  }",
+      "path": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "functionStartLine": 208,
+      "functionName": "pushStream"
+    }
+  }
+}

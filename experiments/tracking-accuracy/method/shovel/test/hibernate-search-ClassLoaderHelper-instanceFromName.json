@@ -1,0 +1,110 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hibernate-search",
+  "repositoryPath": "H:\\Projects\\hibernate\\hibernate-search/.git",
+  "startCommitName": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "sourceFileName": "ClassLoaderHelper.java",
+  "functionName": "instanceFromName",
+  "functionId": "instanceFromName___targetSuperType-Class__T____classNameToLoad-String__componentDescription-String__serviceManager-ServiceManager",
+  "sourceFilePath": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+  "functionStartLine": 59,
+  "functionEndLine": 65,
+  "numCommitsSeen": 29,
+  "timeTaken": 705,
+  "changeHistory": [
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "915e3992753a5681b6d2e0eed49a7b171eab2902"
+  ],
+  "changeHistoryShort": {
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38": "Ymultichange(Yparameterchange,Ybodychange)",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": "Yfilerename",
+    "915e3992753a5681b6d2e0eed49a7b171eab2902": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3db8c2dfa425219fd0d660c6c0e4194bfb818a38": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+      "commitDate": "2014-03-10, 10:28 a.m.",
+      "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+      "commitAuthor": "Hardy Ferentschik",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014-03-10, 10:28 a.m.",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014-03-10, 10:28 a.m.",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType,\n\t\t\tString classNameToLoad,\n\t\t\tString componentDescription,\n\t\t\tServiceManager serviceManager) {\n\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, componentDescription, serviceManager );\n\t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n\t}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "diff": "@@ -1,5 +1,7 @@\n-\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader,\n-\t\t\tString componentDescription) {\n-\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, fallbackClassLoader, componentDescription );\n+\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType,\n+\t\t\tString classNameToLoad,\n+\t\t\tString componentDescription,\n+\t\t\tServiceManager serviceManager) {\n+\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, componentDescription, serviceManager );\n \t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[targetSuperType-Class\u003cT\u003e, classNameToLoad-String, fallbackClassLoader-ClassLoader, componentDescription-String]",
+            "newValue": "[targetSuperType-Class\u003cT\u003e, classNameToLoad-String, componentDescription-String, serviceManager-ServiceManager]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "HSEARCH-1121 Cleaning up classloading via ClassLoadingHelper. All classloading needs to occur via the ClassLoaderService.\n",
+          "commitDate": "2014-03-10, 10:28 a.m.",
+          "commitName": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+          "commitAuthor": "Hardy Ferentschik",
+          "commitDateOld": "2014-03-10, 10:28 a.m.",
+          "commitNameOld": "fa9e756e26d0f36f48938de2647ad769fa467b9d",
+          "commitAuthorOld": "Hardy Ferentschik",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 2,
+          "commitsBetweenForFile": 1,
+          "actualSource": "\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType,\n\t\t\tString classNameToLoad,\n\t\t\tString componentDescription,\n\t\t\tServiceManager serviceManager) {\n\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, componentDescription, serviceManager );\n\t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n\t}",
+          "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+          "functionStartLine": 70,
+          "functionName": "instanceFromName",
+          "diff": "@@ -1,5 +1,7 @@\n-\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader,\n-\t\t\tString componentDescription) {\n-\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, fallbackClassLoader, componentDescription );\n+\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType,\n+\t\t\tString classNameToLoad,\n+\t\t\tString componentDescription,\n+\t\t\tServiceManager serviceManager) {\n+\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, componentDescription, serviceManager );\n \t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n \t}\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": {
+      "type": "Yfilerename",
+      "commitMessage": "HSEARCH-1310 Dropping the hibernate-search directory prefix, renaming hibernate-search into legacy\n",
+      "commitDate": "2013-04-23, 1:02 p.m.",
+      "commitName": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitAuthor": "Hardy Ferentschik",
+      "commitDateOld": "2013-04-23, 9:27 a.m.",
+      "commitNameOld": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitAuthorOld": "Sanne Grinovero",
+      "daysBetweenCommits": 0.15,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader,\n\t\t\tString componentDescription) {\n\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, fallbackClassLoader, componentDescription );\n\t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n\t}",
+      "path": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "functionStartLine": 133,
+      "functionName": "instanceFromName",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+        "newPath": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java"
+      }
+    },
+    "915e3992753a5681b6d2e0eed49a7b171eab2902": {
+      "type": "Yintroduced",
+      "commitMessage": "HSEARCH-1268 Add method to ClassLoaderHelper to pass a fallback\nClassLoader\n",
+      "commitDate": "2013-02-05, 10:56 a.m.",
+      "commitName": "915e3992753a5681b6d2e0eed49a7b171eab2902",
+      "commitAuthor": "Davide D\u0027Alto",
+      "diff": "@@ -0,0 +1,5 @@\n+\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader,\n+\t\t\tString componentDescription) {\n+\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, fallbackClassLoader, componentDescription );\n+\t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tpublic static \u003cT\u003e T instanceFromName(Class\u003cT\u003e targetSuperType, String classNameToLoad, ClassLoader fallbackClassLoader,\n\t\t\tString componentDescription) {\n\t\tfinal Class\u003c?\u003e clazzDef \u003d classForName( classNameToLoad, fallbackClassLoader, componentDescription );\n\t\treturn instanceFromClass( targetSuperType, clazzDef, componentDescription );\n\t}",
+      "path": "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "functionStartLine": 133,
+      "functionName": "instanceFromName"
+    }
+  }
+}

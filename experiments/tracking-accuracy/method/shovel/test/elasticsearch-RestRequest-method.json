@@ -1,0 +1,156 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "elasticsearch",
+  "repositoryPath": "H:\\Projects\\elastic\\elasticsearch/.git",
+  "startCommitName": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "sourceFileName": "RestRequest.java",
+  "functionName": "method",
+  "functionId": "method",
+  "sourceFilePath": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+  "functionStartLine": 150,
+  "functionEndLine": 152,
+  "numCommitsSeen": 48,
+  "timeTaken": 6972,
+  "changeHistory": [
+    "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "bc0909b2325edb97ccb7254ce956469e3d678920"
+  ],
+  "changeHistoryShort": {
+    "fcf1e41e429b10e03c5cf9b8551636df7519b4c5": "Ymultichange(Yrename,Yreturntypechange,Ybodychange)",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": "Yfilerename",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": "Yfilerename",
+    "bc0909b2325edb97ccb7254ce956469e3d678920": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "fcf1e41e429b10e03c5cf9b8551636df7519b4c5": {
+      "type": "Ymultichange(Yrename,Yreturntypechange,Ybodychange)",
+      "commitMessage": "Extract common http logic to server (#31311)\n\nThis is related to #28898. With the addition of the http nio transport,\r\nwe now have two different modules that provide http transports.\r\nCurrently most of the http logic lives at the module level. However,\r\nsome of this logic can live in server. In particular, some of the\r\nsetting of headers, cors, and pipelining. This commit begins this moving\r\nin that direction by introducing lower level abstraction (HttpChannel,\r\nHttpRequest, and HttpResonse) that is implemented by the modules. The\r\nhigher level rest request and rest channel work can live entirely in\r\nserver.",
+      "commitDate": "2018-06-14, 5:10 p.m.",
+      "commitName": "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+      "commitAuthor": "Tim Brooks",
+      "subchanges": [
+        {
+          "type": "Yrename",
+          "commitMessage": "Extract common http logic to server (#31311)\n\nThis is related to #28898. With the addition of the http nio transport,\r\nwe now have two different modules that provide http transports.\r\nCurrently most of the http logic lives at the module level. However,\r\nsome of this logic can live in server. In particular, some of the\r\nsetting of headers, cors, and pipelining. This commit begins this moving\r\nin that direction by introducing lower level abstraction (HttpChannel,\r\nHttpRequest, and HttpResonse) that is implemented by the modules. The\r\nhigher level rest request and rest channel work can live entirely in\r\nserver.",
+          "commitDate": "2018-06-14, 5:10 p.m.",
+          "commitName": "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+          "commitAuthor": "Tim Brooks",
+          "commitDateOld": "2018-06-01, 7:07 p.m.",
+          "commitNameOld": "f8785dda9df4a79fb0ff4cd23fb5f4fe98acff16",
+          "commitAuthorOld": "Tim Brooks",
+          "daysBetweenCommits": 12.92,
+          "commitsBetweenForRepo": 210,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public Method method() {\n        return httpRequest.method();\n    }",
+          "path": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+          "functionStartLine": 150,
+          "functionName": "method",
+          "diff": "@@ -1,3 +1,3 @@\n-    public SocketAddress getLocalAddress() {\n-        return null;\n+    public Method method() {\n+        return httpRequest.method();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "getLocalAddress",
+            "newValue": "method"
+          }
+        },
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Extract common http logic to server (#31311)\n\nThis is related to #28898. With the addition of the http nio transport,\r\nwe now have two different modules that provide http transports.\r\nCurrently most of the http logic lives at the module level. However,\r\nsome of this logic can live in server. In particular, some of the\r\nsetting of headers, cors, and pipelining. This commit begins this moving\r\nin that direction by introducing lower level abstraction (HttpChannel,\r\nHttpRequest, and HttpResonse) that is implemented by the modules. The\r\nhigher level rest request and rest channel work can live entirely in\r\nserver.",
+          "commitDate": "2018-06-14, 5:10 p.m.",
+          "commitName": "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+          "commitAuthor": "Tim Brooks",
+          "commitDateOld": "2018-06-01, 7:07 p.m.",
+          "commitNameOld": "f8785dda9df4a79fb0ff4cd23fb5f4fe98acff16",
+          "commitAuthorOld": "Tim Brooks",
+          "daysBetweenCommits": 12.92,
+          "commitsBetweenForRepo": 210,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public Method method() {\n        return httpRequest.method();\n    }",
+          "path": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+          "functionStartLine": 150,
+          "functionName": "method",
+          "diff": "@@ -1,3 +1,3 @@\n-    public SocketAddress getLocalAddress() {\n-        return null;\n+    public Method method() {\n+        return httpRequest.method();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "SocketAddress",
+            "newValue": "Method"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Extract common http logic to server (#31311)\n\nThis is related to #28898. With the addition of the http nio transport,\r\nwe now have two different modules that provide http transports.\r\nCurrently most of the http logic lives at the module level. However,\r\nsome of this logic can live in server. In particular, some of the\r\nsetting of headers, cors, and pipelining. This commit begins this moving\r\nin that direction by introducing lower level abstraction (HttpChannel,\r\nHttpRequest, and HttpResonse) that is implemented by the modules. The\r\nhigher level rest request and rest channel work can live entirely in\r\nserver.",
+          "commitDate": "2018-06-14, 5:10 p.m.",
+          "commitName": "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+          "commitAuthor": "Tim Brooks",
+          "commitDateOld": "2018-06-01, 7:07 p.m.",
+          "commitNameOld": "f8785dda9df4a79fb0ff4cd23fb5f4fe98acff16",
+          "commitAuthorOld": "Tim Brooks",
+          "daysBetweenCommits": 12.92,
+          "commitsBetweenForRepo": 210,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public Method method() {\n        return httpRequest.method();\n    }",
+          "path": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+          "functionStartLine": 150,
+          "functionName": "method",
+          "diff": "@@ -1,3 +1,3 @@\n-    public SocketAddress getLocalAddress() {\n-        return null;\n+    public Method method() {\n+        return httpRequest.method();\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename core module to server (#28180)\n\nThis is related to #27933. It renames the core module to server. This is\r\nthe first step towards introducing an elasticsearch-core jar.",
+      "commitDate": "2018-01-11, 1:30 p.m.",
+      "commitName": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitAuthor": "Tim Brooks",
+      "commitDateOld": "2018-01-11, 11:31 a.m.",
+      "commitNameOld": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitAuthorOld": "Martijn van Groningen",
+      "daysBetweenCommits": 0.08,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public SocketAddress getLocalAddress() {\n        return null;\n    }",
+      "path": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "functionStartLine": 203,
+      "functionName": "getLocalAddress",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+        "newPath": "server/src/main/java/org/elasticsearch/rest/RestRequest.java"
+      }
+    },
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": {
+      "type": "Yfilerename",
+      "commitMessage": "create core module\n",
+      "commitDate": "2015-06-05, 7:12 a.m.",
+      "commitName": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitAuthor": "Simon Willnauer",
+      "commitDateOld": "2015-06-05, 7:11 a.m.",
+      "commitNameOld": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitAuthorOld": "Simon Willnauer",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public SocketAddress getLocalAddress() {\n        return null;\n    }",
+      "path": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "functionStartLine": 80,
+      "functionName": "getLocalAddress",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+        "newPath": "core/src/main/java/org/elasticsearch/rest/RestRequest.java"
+      }
+    },
+    "bc0909b2325edb97ccb7254ce956469e3d678920": {
+      "type": "Yintroduced",
+      "commitMessage": "move RestRequest to be an abstract class, and expose local/remote address\n",
+      "commitDate": "2014-01-08, 6:05 p.m.",
+      "commitName": "bc0909b2325edb97ccb7254ce956469e3d678920",
+      "commitAuthor": "Shay Banon",
+      "diff": "@@ -0,0 +1,3 @@\n+    public SocketAddress getLocalAddress() {\n+        return null;\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public SocketAddress getLocalAddress() {\n        return null;\n    }",
+      "path": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "functionStartLine": 85,
+      "functionName": "getLocalAddress"
+    }
+  }
+}

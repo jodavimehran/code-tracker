@@ -1,0 +1,158 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "mockito",
+  "repositoryPath": "H:\\Projects\\mockito\\mockito/.git",
+  "startCommitName": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "sourceFileName": "InvocationContainerImpl.java",
+  "functionName": "getStubbingsDescending",
+  "functionId": "getStubbingsDescending",
+  "sourceFilePath": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+  "functionStartLine": 143,
+  "functionEndLine": 145,
+  "numCommitsSeen": 85,
+  "timeTaken": 855,
+  "changeHistory": [
+    "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c",
+    "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+    "501e8f84361af21ce23d506e3c5b284375908bdd",
+    "d78fdd1cde2a224f0a70e15e8e61de3176e74625"
+  ],
+  "changeHistoryShort": {
+    "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c": "Yrename",
+    "a5ec3322be0d02f5a44b4580064cb96797332ed8": "Ymultichange(Yreturntypechange,Ybodychange)",
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27": "Yfilerename",
+    "501e8f84361af21ce23d506e3c5b284375908bdd": "Yfilerename",
+    "d78fdd1cde2a224f0a70e15e8e61de3176e74625": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c": {
+      "type": "Yrename",
+      "commitMessage": "Rename job for consistency\n",
+      "commitDate": "2018-07-24, 12:11 a.m.",
+      "commitName": "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c",
+      "commitAuthor": "Szczepan Faber",
+      "commitDateOld": "2018-07-24, 12:11 a.m.",
+      "commitNameOld": "bef4d861da694e39ed4040152bcd94d184476a41",
+      "commitAuthorOld": "Szczepan Faber",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public List\u003cStubbing\u003e getStubbingsDescending() {\n        return (List) stubbed;\n    }",
+      "path": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "functionStartLine": 143,
+      "functionName": "getStubbingsDescending",
+      "diff": "@@ -1,3 +1,3 @@\n-    public List\u003cStubbing\u003e getStubbedInvocations() {\n+    public List\u003cStubbing\u003e getStubbingsDescending() {\n         return (List) stubbed;\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "getStubbedInvocations",
+        "newValue": "getStubbingsDescending"
+      }
+    },
+    "a5ec3322be0d02f5a44b4580064cb96797332ed8": {
+      "type": "Ymultichange(Yreturntypechange,Ybodychange)",
+      "commitMessage": "Experimented with MockHandler API\n\nIn an effort to clean up the API to make it easier to cleanly integrate PowerMockito scenarios.\n\n1. MockHandler API currently is a semi public API. Technically it lives in public package but the documentation clearly states that users should not provide own implementations. Internally, Mockito always casts MockHandler into InternalMockHandler. This is a dealbreaker for Powermockito (see https://github.com/powermock/powermock/blob/68d988b9cb6a20007d9387d01ded9cc6f7781e5c/powermock-api/powermock-api-mockito2/src/main/java/org/powermock/api/mockito/mockmaker/PowerMockMaker.java#L57).\n2. InternalMockHandler is internal because it leaks internal StubbedInvocationMatcher API. This change makes InternalMockHandler ready to be converted into public API. We can start using Stubbing interface in place of StubbedInvocationMatcher. Stubbing interface was introduced this year, it was not available when we created MockMaker plugin.\n3. This change makes Stubbing interface additionally extend Answer. This adds \"answer()\" method to Stubbing. Stubbings can give answers so it is a good change from the standpoint of the model\n",
+      "commitDate": "2017-08-27, 4:00 p.m.",
+      "commitName": "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+      "commitAuthor": "Szczepan Faber",
+      "subchanges": [
+        {
+          "type": "Yreturntypechange",
+          "commitMessage": "Experimented with MockHandler API\n\nIn an effort to clean up the API to make it easier to cleanly integrate PowerMockito scenarios.\n\n1. MockHandler API currently is a semi public API. Technically it lives in public package but the documentation clearly states that users should not provide own implementations. Internally, Mockito always casts MockHandler into InternalMockHandler. This is a dealbreaker for Powermockito (see https://github.com/powermock/powermock/blob/68d988b9cb6a20007d9387d01ded9cc6f7781e5c/powermock-api/powermock-api-mockito2/src/main/java/org/powermock/api/mockito/mockmaker/PowerMockMaker.java#L57).\n2. InternalMockHandler is internal because it leaks internal StubbedInvocationMatcher API. This change makes InternalMockHandler ready to be converted into public API. We can start using Stubbing interface in place of StubbedInvocationMatcher. Stubbing interface was introduced this year, it was not available when we created MockMaker plugin.\n3. This change makes Stubbing interface additionally extend Answer. This adds \"answer()\" method to Stubbing. Stubbings can give answers so it is a good change from the standpoint of the model\n",
+          "commitDate": "2017-08-27, 4:00 p.m.",
+          "commitName": "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2017-02-06, 10:00 a.m.",
+          "commitNameOld": "e9516f42b1182ae675022c101954e721e20b2c72",
+          "commitAuthorOld": "Allon Murienik",
+          "daysBetweenCommits": 202.21,
+          "commitsBetweenForRepo": 263,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public List\u003cStubbing\u003e getStubbedInvocations() {\n        return (List) stubbed;\n    }",
+          "path": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+          "functionStartLine": 132,
+          "functionName": "getStubbedInvocations",
+          "diff": "@@ -1,3 +1,3 @@\n-    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n-        return stubbed;\n+    public List\u003cStubbing\u003e getStubbedInvocations() {\n+        return (List) stubbed;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "List\u003cStubbedInvocationMatcher\u003e",
+            "newValue": "List\u003cStubbing\u003e"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Experimented with MockHandler API\n\nIn an effort to clean up the API to make it easier to cleanly integrate PowerMockito scenarios.\n\n1. MockHandler API currently is a semi public API. Technically it lives in public package but the documentation clearly states that users should not provide own implementations. Internally, Mockito always casts MockHandler into InternalMockHandler. This is a dealbreaker for Powermockito (see https://github.com/powermock/powermock/blob/68d988b9cb6a20007d9387d01ded9cc6f7781e5c/powermock-api/powermock-api-mockito2/src/main/java/org/powermock/api/mockito/mockmaker/PowerMockMaker.java#L57).\n2. InternalMockHandler is internal because it leaks internal StubbedInvocationMatcher API. This change makes InternalMockHandler ready to be converted into public API. We can start using Stubbing interface in place of StubbedInvocationMatcher. Stubbing interface was introduced this year, it was not available when we created MockMaker plugin.\n3. This change makes Stubbing interface additionally extend Answer. This adds \"answer()\" method to Stubbing. Stubbings can give answers so it is a good change from the standpoint of the model\n",
+          "commitDate": "2017-08-27, 4:00 p.m.",
+          "commitName": "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+          "commitAuthor": "Szczepan Faber",
+          "commitDateOld": "2017-02-06, 10:00 a.m.",
+          "commitNameOld": "e9516f42b1182ae675022c101954e721e20b2c72",
+          "commitAuthorOld": "Allon Murienik",
+          "daysBetweenCommits": 202.21,
+          "commitsBetweenForRepo": 263,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public List\u003cStubbing\u003e getStubbedInvocations() {\n        return (List) stubbed;\n    }",
+          "path": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+          "functionStartLine": 132,
+          "functionName": "getStubbedInvocations",
+          "diff": "@@ -1,3 +1,3 @@\n-    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n-        return stubbed;\n+    public List\u003cStubbing\u003e getStubbedInvocations() {\n+        return (List) stubbed;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "fe7bbabb82ce3d1000c13d39d6355c134e94ac27": {
+      "type": "Yfilerename",
+      "commitMessage": "Moved sources to standard location\n\nLet\u0027s make the project be as close as possible to standard, conventional project for better clarity\n",
+      "commitDate": "2015-07-09, 12:42 a.m.",
+      "commitName": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "commitAuthor": "Szczepan Faber",
+      "commitDateOld": "2015-07-08, 12:16 p.m.",
+      "commitNameOld": "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+      "commitAuthorOld": "Szczepan Faber",
+      "daysBetweenCommits": 0.52,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n        return stubbed;\n    }",
+      "path": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "functionStartLine": 124,
+      "functionName": "getStubbedInvocations",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+        "newPath": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java"
+      }
+    },
+    "501e8f84361af21ce23d506e3c5b284375908bdd": {
+      "type": "Yfilerename",
+      "commitMessage": "refactoring, rename job\n\n--HG--\nrename : src/org/mockito/internal/stubbing/MockitoStubber.java \u003d\u003e src/org/mockito/internal/stubbing/InvocationContainerImpl.java\nextra : convert_revision : svn%3Aaa2aecf3-ea3e-0410-9d70-716747e7c967/trunk%401729\n",
+      "commitDate": "2009-11-15, 3:19 p.m.",
+      "commitName": "501e8f84361af21ce23d506e3c5b284375908bdd",
+      "commitAuthor": "Szczepan Faber",
+      "commitDateOld": "2009-11-15, 3:19 p.m.",
+      "commitNameOld": "ec9ca3637db4f353fb8aaf89e0abc235a8bc558e",
+      "commitAuthorOld": "Szczepan Faber",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n        return stubbed;\n    }",
+      "path": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "functionStartLine": 112,
+      "functionName": "getStubbedInvocations",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+        "newPath": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java"
+      }
+    },
+    "d78fdd1cde2a224f0a70e15e8e61de3176e74625": {
+      "type": "Yintroduced",
+      "commitMessage": "In order to prepare Mockito for new feature: printing invocations for debugging\nIn the middle of refactoring\n\n--HG--\nextra : convert_revision : svn%3Aaa2aecf3-ea3e-0410-9d70-716747e7c967/trunk%401723\n",
+      "commitDate": "2009-11-15, 3:18 p.m.",
+      "commitName": "d78fdd1cde2a224f0a70e15e8e61de3176e74625",
+      "commitAuthor": "Szczepan Faber",
+      "diff": "@@ -0,0 +1,3 @@\n+    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n+        return stubbed;\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public List\u003cStubbedInvocationMatcher\u003e getStubbedInvocations() {\n        return stubbed;\n    }",
+      "path": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "functionStartLine": 112,
+      "functionName": "getStubbedInvocations"
+    }
+  }
+}

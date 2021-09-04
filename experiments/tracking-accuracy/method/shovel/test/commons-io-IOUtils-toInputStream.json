@@ -1,0 +1,134 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "commons-io",
+  "repositoryPath": "H:\\Projects\\apache\\commons-io/.git",
+  "startCommitName": "559de2c461e94ab636c959149c775bb27111fb48",
+  "sourceFileName": "IOUtils.java",
+  "functionName": "toInputStream",
+  "functionId": "toInputStream___input-CharSequence(modifiers-final)__encoding-Charset(modifiers-final)",
+  "sourceFilePath": "src/main/java/org/apache/commons/io/IOUtils.java",
+  "functionStartLine": 1596,
+  "functionEndLine": 1598,
+  "numCommitsSeen": 167,
+  "timeTaken": 507,
+  "changeHistory": [
+    "6aa00766b9103d75c763160280429af8e1f0549e",
+    "34f049caaa1f9048cc7385e0224136110bfc75f9",
+    "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a",
+    "61b41ee528d4d5cd358f8f5b0a4b2c5a743da561"
+  ],
+  "changeHistoryShort": {
+    "6aa00766b9103d75c763160280429af8e1f0549e": "Yparametermetachange",
+    "34f049caaa1f9048cc7385e0224136110bfc75f9": "Ymultichange(Yparameterchange,Ybodychange)",
+    "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a": "Yfilerename",
+    "61b41ee528d4d5cd358f8f5b0a4b2c5a743da561": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "6aa00766b9103d75c763160280429af8e1f0549e": {
+      "type": "Yparametermetachange",
+      "commitMessage": "Use final where possible.\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@1415850 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2012-11-30, 3:51 p.m.",
+      "commitName": "6aa00766b9103d75c763160280429af8e1f0549e",
+      "commitAuthor": "Gary D. Gregory",
+      "commitDateOld": "2012-11-30, 2:10 p.m.",
+      "commitNameOld": "efca1657258b7555b80bbee207a3221489b9ffed",
+      "commitAuthorOld": "Gary D. Gregory",
+      "daysBetweenCommits": 0.07,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public static InputStream toInputStream(final CharSequence input, final Charset encoding) {\n        return toInputStream(input.toString(), encoding);\n    }",
+      "path": "src/main/java/org/apache/commons/io/IOUtils.java",
+      "functionStartLine": 1166,
+      "functionName": "toInputStream",
+      "diff": "@@ -1,3 +1,3 @@\n-    public static InputStream toInputStream(CharSequence input, Charset encoding) {\n+    public static InputStream toInputStream(final CharSequence input, final Charset encoding) {\n         return toInputStream(input.toString(), encoding);\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[input-CharSequence, encoding-Charset]",
+        "newValue": "[input-CharSequence(modifiers-final), encoding-Charset(modifiers-final)]"
+      }
+    },
+    "34f049caaa1f9048cc7385e0224136110bfc75f9": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "[IO-318] Add Charset sister APIs to method that take a String charset name.\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@1307397 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2012-03-30, 9:12 a.m.",
+      "commitName": "34f049caaa1f9048cc7385e0224136110bfc75f9",
+      "commitAuthor": "Gary D. Gregory",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "[IO-318] Add Charset sister APIs to method that take a String charset name.\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@1307397 13f79535-47bb-0310-9956-ffa450edef68\n",
+          "commitDate": "2012-03-30, 9:12 a.m.",
+          "commitName": "34f049caaa1f9048cc7385e0224136110bfc75f9",
+          "commitAuthor": "Gary D. Gregory",
+          "commitDateOld": "2012-03-22, 11:36 p.m.",
+          "commitNameOld": "1d6feac910975c5d22b66b7f2a46ec87dd844d66",
+          "commitAuthorOld": "Gary D. Gregory",
+          "daysBetweenCommits": 7.4,
+          "commitsBetweenForRepo": 12,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static InputStream toInputStream(CharSequence input, Charset encoding) {\n        return toInputStream(input.toString(), encoding);\n    }",
+          "path": "src/main/java/org/apache/commons/io/IOUtils.java",
+          "functionStartLine": 1069,
+          "functionName": "toInputStream",
+          "diff": "@@ -1,3 +1,3 @@\n-    public static InputStream toInputStream(CharSequence input) {\n-        return toInputStream(input.toString());\n+    public static InputStream toInputStream(CharSequence input, Charset encoding) {\n+        return toInputStream(input.toString(), encoding);\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[input-CharSequence]",
+            "newValue": "[input-CharSequence, encoding-Charset]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "[IO-318] Add Charset sister APIs to method that take a String charset name.\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@1307397 13f79535-47bb-0310-9956-ffa450edef68\n",
+          "commitDate": "2012-03-30, 9:12 a.m.",
+          "commitName": "34f049caaa1f9048cc7385e0224136110bfc75f9",
+          "commitAuthor": "Gary D. Gregory",
+          "commitDateOld": "2012-03-22, 11:36 p.m.",
+          "commitNameOld": "1d6feac910975c5d22b66b7f2a46ec87dd844d66",
+          "commitAuthorOld": "Gary D. Gregory",
+          "daysBetweenCommits": 7.4,
+          "commitsBetweenForRepo": 12,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public static InputStream toInputStream(CharSequence input, Charset encoding) {\n        return toInputStream(input.toString(), encoding);\n    }",
+          "path": "src/main/java/org/apache/commons/io/IOUtils.java",
+          "functionStartLine": 1069,
+          "functionName": "toInputStream",
+          "diff": "@@ -1,3 +1,3 @@\n-    public static InputStream toInputStream(CharSequence input) {\n-        return toInputStream(input.toString());\n+    public static InputStream toInputStream(CharSequence input, Charset encoding) {\n+        return toInputStream(input.toString(), encoding);\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a": {
+      "type": "Yfilerename",
+      "commitMessage": "Build changes - re-organize to standard m2 layout, remove useless JIRA report and fix some Ant issues\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@1004358 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2010-10-04, 2:54 p.m.",
+      "commitName": "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a",
+      "commitAuthor": "Niall Pemberton",
+      "commitDateOld": "2010-10-04, 1:54 p.m.",
+      "commitNameOld": "19f48eb1711427a43a5e10c84bbbf1218a08bdd2",
+      "commitAuthorOld": "Niall Pemberton",
+      "daysBetweenCommits": 0.04,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public static InputStream toInputStream(CharSequence input) {\n        return toInputStream(input.toString());\n    }",
+      "path": "src/main/java/org/apache/commons/io/IOUtils.java",
+      "functionStartLine": 738,
+      "functionName": "toInputStream",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/java/org/apache/commons/io/IOUtils.java",
+        "newPath": "src/main/java/org/apache/commons/io/IOUtils.java"
+      }
+    },
+    "61b41ee528d4d5cd358f8f5b0a4b2c5a743da561": {
+      "type": "Yintroduced",
+      "commitMessage": "IO-140 JDK 1.5 changes: Add new CharSequence flavours of methods\n\ngit-svn-id: https://svn.apache.org/repos/asf/commons/proper/io/trunk@619188 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2008-02-06, 5:33 p.m.",
+      "commitName": "61b41ee528d4d5cd358f8f5b0a4b2c5a743da561",
+      "commitAuthor": "Niall Pemberton",
+      "diff": "@@ -0,0 +1,3 @@\n+    public static InputStream toInputStream(CharSequence input) {\n+        return toInputStream(input.toString());\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public static InputStream toInputStream(CharSequence input) {\n        return toInputStream(input.toString());\n    }",
+      "path": "src/java/org/apache/commons/io/IOUtils.java",
+      "functionStartLine": 612,
+      "functionName": "toInputStream"
+    }
+  }
+}

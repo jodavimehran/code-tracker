@@ -1,0 +1,304 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "elasticsearch",
+  "repositoryPath": "H:\\Projects\\elastic\\elasticsearch/.git",
+  "startCommitName": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "sourceFileName": "BulkRequest.java",
+  "functionName": "add",
+  "functionId": "add___requests-DocWriteRequest__?__",
+  "sourceFilePath": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+  "functionStartLine": 102,
+  "functionEndLine": 107,
+  "numCommitsSeen": 174,
+  "timeTaken": 17279,
+  "changeHistory": [
+    "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "0e8b6532ecc9e38c689b64ebb178271085e69c80",
+    "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+    "396f80c963a44992d3e60531c15adee8c50aaed5",
+    "b5079ce0092e2dfd742fbe3aed8a8f95931a378d"
+  ],
+  "changeHistoryShort": {
+    "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd": "Ymultichange(Yparameterchange,Ybodychange)",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": "Yfilerename",
+    "0e8b6532ecc9e38c689b64ebb178271085e69c80": "Ymultichange(Yparameterchange,Ybodychange)",
+    "661067d160e9ace12a8bbe3b12a783dd97bf78e6": "Ymultichange(Yparameterchange,Ybodychange)",
+    "396f80c963a44992d3e60531c15adee8c50aaed5": "Ymultichange(Yparameterchange,Ybodychange)",
+    "b5079ce0092e2dfd742fbe3aed8a8f95931a378d": "Ymultichange(Yparameterchange,Ybodychange)"
+  },
+  "changeHistoryDetails": {
+    "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Reduce number of raw types warnings (#31523)\n\nA first attempt to reduce the number of raw type warnings, \r\nmost of the time by using the unbounded wildcard.",
+      "commitDate": "2018-06-25, 9:59 a.m.",
+      "commitName": "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd",
+      "commitAuthor": "Christoph Büscher",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Reduce number of raw types warnings (#31523)\n\nA first attempt to reduce the number of raw type warnings, \r\nmost of the time by using the unbounded wildcard.",
+          "commitDate": "2018-06-25, 9:59 a.m.",
+          "commitName": "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd",
+          "commitAuthor": "Christoph Büscher",
+          "commitDateOld": "2018-05-02, 11:08 a.m.",
+          "commitNameOld": "916bf9d26d6292dcb9b229123c58a86f0e741ffd",
+          "commitAuthorOld": "Ryan Ernst",
+          "daysBetweenCommits": 53.95,
+          "commitsBetweenForRepo": 763,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocWriteRequest\u003c?\u003e... requests) {\n        for (DocWriteRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 102,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocWriteRequest... requests) {\n-        for (DocWriteRequest request : requests) {\n+    public BulkRequest add(DocWriteRequest\u003c?\u003e... requests) {\n+        for (DocWriteRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[requests-DocWriteRequest]",
+            "newValue": "[requests-DocWriteRequest\u003c?\u003e]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Reduce number of raw types warnings (#31523)\n\nA first attempt to reduce the number of raw type warnings, \r\nmost of the time by using the unbounded wildcard.",
+          "commitDate": "2018-06-25, 9:59 a.m.",
+          "commitName": "86ab3a2d1a3bc5f4478d25cd28906915c2ec03fd",
+          "commitAuthor": "Christoph Büscher",
+          "commitDateOld": "2018-05-02, 11:08 a.m.",
+          "commitNameOld": "916bf9d26d6292dcb9b229123c58a86f0e741ffd",
+          "commitAuthorOld": "Ryan Ernst",
+          "daysBetweenCommits": 53.95,
+          "commitsBetweenForRepo": 763,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocWriteRequest\u003c?\u003e... requests) {\n        for (DocWriteRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 102,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocWriteRequest... requests) {\n-        for (DocWriteRequest request : requests) {\n+    public BulkRequest add(DocWriteRequest\u003c?\u003e... requests) {\n+        for (DocWriteRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename core module to server (#28180)\n\nThis is related to #27933. It renames the core module to server. This is\r\nthe first step towards introducing an elasticsearch-core jar.",
+      "commitDate": "2018-01-11, 1:30 p.m.",
+      "commitName": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitAuthor": "Tim Brooks",
+      "commitDateOld": "2018-01-11, 11:31 a.m.",
+      "commitNameOld": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitAuthorOld": "Martijn van Groningen",
+      "daysBetweenCommits": 0.08,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public BulkRequest add(DocWriteRequest... requests) {\n        for (DocWriteRequest request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+      "path": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "functionStartLine": 106,
+      "functionName": "add",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+        "newPath": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java"
+      }
+    },
+    "0e8b6532ecc9e38c689b64ebb178271085e69c80": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "rename DocumentRequest to DocWriteRequest\n",
+      "commitDate": "2016-10-11, 4:00 p.m.",
+      "commitName": "0e8b6532ecc9e38c689b64ebb178271085e69c80",
+      "commitAuthor": "Areek Zillur",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "rename DocumentRequest to DocWriteRequest\n",
+          "commitDate": "2016-10-11, 4:00 p.m.",
+          "commitName": "0e8b6532ecc9e38c689b64ebb178271085e69c80",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-11, 3:58 p.m.",
+          "commitNameOld": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocWriteRequest... requests) {\n        for (DocWriteRequest request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest... requests) {\n-        for (DocumentRequest request : requests) {\n+    public BulkRequest add(DocWriteRequest... requests) {\n+        for (DocWriteRequest request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[requests-DocumentRequest]",
+            "newValue": "[requests-DocWriteRequest]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "rename DocumentRequest to DocWriteRequest\n",
+          "commitDate": "2016-10-11, 4:00 p.m.",
+          "commitName": "0e8b6532ecc9e38c689b64ebb178271085e69c80",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-11, 3:58 p.m.",
+          "commitNameOld": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocWriteRequest... requests) {\n        for (DocWriteRequest request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest... requests) {\n-        for (DocumentRequest request : requests) {\n+    public BulkRequest add(DocWriteRequest... requests) {\n+        for (DocWriteRequest request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "661067d160e9ace12a8bbe3b12a783dd97bf78e6": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "change DocumentRequest\u003c?\u003e to DocumentRequest for readibility\n",
+      "commitDate": "2016-10-11, 3:58 p.m.",
+      "commitName": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+      "commitAuthor": "Areek Zillur",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "change DocumentRequest\u003c?\u003e to DocumentRequest for readibility\n",
+          "commitDate": "2016-10-11, 3:58 p.m.",
+          "commitName": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-07, 5:50 p.m.",
+          "commitNameOld": "97a67565219ea2834bf30dfb0fa23e64d7a1c586",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 3.92,
+          "commitsBetweenForRepo": 4,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentRequest... requests) {\n        for (DocumentRequest request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n-        for (DocumentRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentRequest... requests) {\n+        for (DocumentRequest request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[requests-DocumentRequest\u003c?\u003e]",
+            "newValue": "[requests-DocumentRequest]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "change DocumentRequest\u003c?\u003e to DocumentRequest for readibility\n",
+          "commitDate": "2016-10-11, 3:58 p.m.",
+          "commitName": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-07, 5:50 p.m.",
+          "commitNameOld": "97a67565219ea2834bf30dfb0fa23e64d7a1c586",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 3.92,
+          "commitsBetweenForRepo": 4,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentRequest... requests) {\n        for (DocumentRequest request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n-        for (DocumentRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentRequest... requests) {\n+        for (DocumentRequest request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "396f80c963a44992d3e60531c15adee8c50aaed5": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Revert \"rename DocumentRequest to DocumentWriteRequest\"\n\nThis reverts commit b5079ce0092e2dfd742fbe3aed8a8f95931a378d.\n",
+      "commitDate": "2016-10-07, 5:50 p.m.",
+      "commitName": "396f80c963a44992d3e60531c15adee8c50aaed5",
+      "commitAuthor": "Areek Zillur",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Revert \"rename DocumentRequest to DocumentWriteRequest\"\n\nThis reverts commit b5079ce0092e2dfd742fbe3aed8a8f95931a378d.\n",
+          "commitDate": "2016-10-07, 5:50 p.m.",
+          "commitName": "396f80c963a44992d3e60531c15adee8c50aaed5",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-06, 5:05 a.m.",
+          "commitNameOld": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 1.53,
+          "commitsBetweenForRepo": 5,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n        for (DocumentRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n-        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n+        for (DocumentRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[requests-DocumentWriteRequest\u003c?\u003e]",
+            "newValue": "[requests-DocumentRequest\u003c?\u003e]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Revert \"rename DocumentRequest to DocumentWriteRequest\"\n\nThis reverts commit b5079ce0092e2dfd742fbe3aed8a8f95931a378d.\n",
+          "commitDate": "2016-10-07, 5:50 p.m.",
+          "commitName": "396f80c963a44992d3e60531c15adee8c50aaed5",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-06, 5:05 a.m.",
+          "commitNameOld": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 1.53,
+          "commitsBetweenForRepo": 5,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n        for (DocumentRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n-        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n+        for (DocumentRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "b5079ce0092e2dfd742fbe3aed8a8f95931a378d": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "rename DocumentRequest to DocumentWriteRequest\n",
+      "commitDate": "2016-10-06, 5:05 a.m.",
+      "commitName": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
+      "commitAuthor": "Areek Zillur",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "rename DocumentRequest to DocumentWriteRequest\n",
+          "commitDate": "2016-10-06, 5:05 a.m.",
+          "commitName": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-06, 5:02 a.m.",
+          "commitNameOld": "eee0d18f94108b5ece7b18a450bbcc5c729d9311",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n-        for (DocumentRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n+        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[requests-DocumentRequest\u003c?\u003e]",
+            "newValue": "[requests-DocumentWriteRequest\u003c?\u003e]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "rename DocumentRequest to DocumentWriteRequest\n",
+          "commitDate": "2016-10-06, 5:05 a.m.",
+          "commitName": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
+          "commitAuthor": "Areek Zillur",
+          "commitDateOld": "2016-10-06, 5:02 a.m.",
+          "commitNameOld": "eee0d18f94108b5ece7b18a450bbcc5c729d9311",
+          "commitAuthorOld": "Areek Zillur",
+          "daysBetweenCommits": 0.0,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n            add(request, null);\n        }\n        return this;\n    }",
+          "path": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+          "functionStartLine": 90,
+          "functionName": "add",
+          "diff": "@@ -1,6 +1,6 @@\n-    public BulkRequest add(DocumentRequest\u003c?\u003e... requests) {\n-        for (DocumentRequest\u003c?\u003e request : requests) {\n+    public BulkRequest add(DocumentWriteRequest\u003c?\u003e... requests) {\n+        for (DocumentWriteRequest\u003c?\u003e request : requests) {\n             add(request, null);\n         }\n         return this;\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    }
+  }
+}

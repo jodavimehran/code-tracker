@@ -1,0 +1,55 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "checkstyle",
+  "repositoryPath": "H:\\Projects\\checkstyle\\checkstyle/.git",
+  "startCommitName": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "sourceFileName": "WhitespaceAroundCheck.java",
+  "functionName": "shouldCheckSeparationFromNextToken",
+  "functionId": "shouldCheckSeparationFromNextToken___ast-DetailAST__nextChar-char",
+  "sourceFilePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+  "functionStartLine": 462,
+  "functionEndLine": 468,
+  "numCommitsSeen": 61,
+  "timeTaken": 543,
+  "changeHistory": [
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b",
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9"
+  ],
+  "changeHistoryShort": {
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b": "Ybodychange",
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "f77a01ba3683c16a5d23670b04f5929e2b042b5b": {
+      "type": "Ybodychange",
+      "commitMessage": "Issue #3202: ARRAY_INIT whitespace follow check deleted, test cases added and fixed\n",
+      "commitDate": "2016-10-16, 9:25 a.m.",
+      "commitName": "f77a01ba3683c16a5d23670b04f5929e2b042b5b",
+      "commitAuthor": "zenigata",
+      "commitDateOld": "2016-05-27, 9:42 a.m.",
+      "commitNameOld": "39b343a32a4f1ce18ee98a34618fda0a5404d6a0",
+      "commitAuthorOld": "rnveach",
+      "daysBetweenCommits": 141.99,
+      "commitsBetweenForRepo": 235,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n        return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN\n                    \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI)\n                \u0026\u0026 ast.getType() !\u003d TokenTypes.ARRAY_INIT\n                \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar)\n                \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n    }",
+      "path": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "functionStartLine": 449,
+      "functionName": "shouldCheckSeparationFromNextToken",
+      "diff": "@@ -1,6 +1,7 @@\n     private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n         return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN\n                     \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI)\n+                \u0026\u0026 ast.getType() !\u003d TokenTypes.ARRAY_INIT\n                 \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar)\n                 \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "e545ce56a19877ef98f367b3aa20fd6098bbeca9": {
+      "type": "Yintroduced",
+      "commitMessage": "Issue #2838: Make WhitespaceAround allow double-brace initialization.\n",
+      "commitDate": "2016-02-10, 2:21 p.m.",
+      "commitName": "e545ce56a19877ef98f367b3aa20fd6098bbeca9",
+      "commitAuthor": "liscju",
+      "diff": "@@ -0,0 +1,6 @@\n+    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n+        return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN\n+                    \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI)\n+                \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar)\n+                \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    private static boolean shouldCheckSeparationFromNextToken(DetailAST ast, char nextChar) {\n        return !(ast.getType() \u003d\u003d TokenTypes.LITERAL_RETURN\n                    \u0026\u0026 ast.getFirstChild().getType() \u003d\u003d TokenTypes.SEMI)\n                \u0026\u0026 !isAnonymousInnerClassEnd(ast.getType(), nextChar)\n                \u0026\u0026 !isPartOfDoubleBraceInitializerForNextToken(ast);\n    }",
+      "path": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "functionStartLine": 449,
+      "functionName": "shouldCheckSeparationFromNextToken"
+    }
+  }
+}

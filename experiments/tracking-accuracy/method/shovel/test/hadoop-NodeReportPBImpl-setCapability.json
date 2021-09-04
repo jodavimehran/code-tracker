@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hadoop",
+  "repositoryPath": "H:\\Projects\\apache\\hadoop/.git",
+  "startCommitName": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "sourceFileName": "NodeReportPBImpl.java",
+  "functionName": "setCapability",
+  "functionId": "setCapability___capability-Resource",
+  "sourceFilePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+  "functionStartLine": 180,
+  "functionEndLine": 186,
+  "numCommitsSeen": 15,
+  "timeTaken": 1868,
+  "changeHistory": [
+    "b46ca7e73b8bac3fdbff0b13afe009308078acf2",
+    "2fd7f2823074cbfbcc083a6f66edff62c7a131f0",
+    "e1fdf62123625e4ba399af02f8aad500637d29d1",
+    "cd7157784e5e5ddc4e77144d042e54dd0d04bac1",
+    "dbecbe5dfe50f834fc3b8401709079e9470cc517"
+  ],
+  "changeHistoryShort": {
+    "b46ca7e73b8bac3fdbff0b13afe009308078acf2": "Ybodychange",
+    "2fd7f2823074cbfbcc083a6f66edff62c7a131f0": "Yfilerename",
+    "e1fdf62123625e4ba399af02f8aad500637d29d1": "Yfilerename",
+    "cd7157784e5e5ddc4e77144d042e54dd0d04bac1": "Yfilerename",
+    "dbecbe5dfe50f834fc3b8401709079e9470cc517": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "b46ca7e73b8bac3fdbff0b13afe009308078acf2": {
+      "type": "Ybodychange",
+      "commitMessage": "YARN-6483. Add nodes transitioning to DECOMMISSIONING state to the list of updated nodes returned to the AM. (Juan Rodriguez Hortala via asuresh)\n",
+      "commitDate": "2017-11-22, 10:18 p.m.",
+      "commitName": "b46ca7e73b8bac3fdbff0b13afe009308078acf2",
+      "commitAuthor": "Arun Suresh",
+      "commitDateOld": "2017-06-08, 1:08 p.m.",
+      "commitNameOld": "a062374c396ba2bddbbe4d3806cc2896293b4e0b",
+      "commitAuthorOld": "Daniel Templeton",
+      "daysBetweenCommits": 167.42,
+      "commitsBetweenForRepo": 1285,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability \u003d\u003d null) {\n      builder.clearCapability();\n    }\n    this.capability \u003d capability;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+      "functionStartLine": 180,
+      "functionName": "setCapability",
+      "diff": "@@ -1,6 +1,7 @@\n   public void setCapability(Resource capability) {\n     maybeInitBuilder();\n-    if (capability \u003d\u003d null)\n+    if (capability \u003d\u003d null) {\n       builder.clearCapability();\n+    }\n     this.capability \u003d capability;\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "2fd7f2823074cbfbcc083a6f66edff62c7a131f0": {
+      "type": "Yfilerename",
+      "commitMessage": "YARN-846.  Move pb Impl classes from yarn-api to yarn-common. Contributed by Jian He.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1494052 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2013-06-18, 3:36 a.m.",
+      "commitName": "2fd7f2823074cbfbcc083a6f66edff62c7a131f0",
+      "commitAuthor": "Vinod Kumar Vavilapalli",
+      "commitDateOld": "2013-06-18, 2:34 a.m.",
+      "commitNameOld": "6451288704922576e75dd1597f5fd0ef09ab4f26",
+      "commitAuthorOld": "Arun Murthy",
+      "daysBetweenCommits": 0.04,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability \u003d\u003d null)\n      builder.clearCapability();\n    this.capability \u003d capability;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+      "functionStartLine": 168,
+      "functionName": "setCapability",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+        "newPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java"
+      }
+    },
+    "e1fdf62123625e4ba399af02f8aad500637d29d1": {
+      "type": "Yfilerename",
+      "commitMessage": "YARN-1. Promote YARN to be a sub-project of Apache Hadoop.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1370666 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2012-08-08, 1:22 a.m.",
+      "commitName": "e1fdf62123625e4ba399af02f8aad500637d29d1",
+      "commitAuthor": "Arun Murthy",
+      "commitDateOld": "2012-08-07, 10:53 p.m.",
+      "commitNameOld": "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
+      "commitAuthorOld": "Aaron Myers",
+      "daysBetweenCommits": 0.1,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability \u003d\u003d null)\n      builder.clearCapability();\n    this.capability \u003d capability;\n  }",
+      "path": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+      "functionStartLine": 156,
+      "functionName": "setCapability",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+        "newPath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java"
+      }
+    },
+    "cd7157784e5e5ddc4e77144d042e54dd0d04bac1": {
+      "type": "Yfilerename",
+      "commitMessage": "HADOOP-7560. Change src layout to be heirarchical. Contributed by Alejandro Abdelnur.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1161332 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2011-08-24, 8:14 p.m.",
+      "commitName": "cd7157784e5e5ddc4e77144d042e54dd0d04bac1",
+      "commitAuthor": "Arun Murthy",
+      "commitDateOld": "2011-08-24, 8:06 p.m.",
+      "commitNameOld": "bb0005cfec5fd2861600ff5babd259b48ba18b63",
+      "commitAuthorOld": "Arun Murthy",
+      "daysBetweenCommits": 0.01,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  public void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability \u003d\u003d null)\n      builder.clearCapability();\n    this.capability \u003d capability;\n  }",
+      "path": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+      "functionStartLine": 117,
+      "functionName": "setCapability",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+        "newPath": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java"
+      }
+    },
+    "dbecbe5dfe50f834fc3b8401709079e9470cc517": {
+      "type": "Yintroduced",
+      "commitMessage": "MAPREDUCE-279. MapReduce 2.0. Merging MR-279 branch into trunk. Contributed by Arun C Murthy, Christopher Douglas, Devaraj Das, Greg Roelofs, Jeffrey Naisbitt, Josh Wills, Jonathan Eagles, Krishna Ramachandran, Luke Lu, Mahadev Konar, Robert Evans, Sharad Agarwal, Siddharth Seth, Thomas Graves, and Vinod Kumar Vavilapalli.\n\n\ngit-svn-id: https://svn.apache.org/repos/asf/hadoop/common/trunk@1159166 13f79535-47bb-0310-9956-ffa450edef68\n",
+      "commitDate": "2011-08-18, 7:07 a.m.",
+      "commitName": "dbecbe5dfe50f834fc3b8401709079e9470cc517",
+      "commitAuthor": "Vinod Kumar Vavilapalli",
+      "diff": "@@ -0,0 +1,6 @@\n+  public void setCapability(Resource capability) {\n+    maybeInitBuilder();\n+    if (capability \u003d\u003d null)\n+      builder.clearCapability();\n+    this.capability \u003d capability;\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  public void setCapability(Resource capability) {\n    maybeInitBuilder();\n    if (capability \u003d\u003d null)\n      builder.clearCapability();\n    this.capability \u003d capability;\n  }",
+      "path": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/api/records/impl/pb/NodeReportPBImpl.java",
+      "functionStartLine": 117,
+      "functionName": "setCapability"
+    }
+  }
+}

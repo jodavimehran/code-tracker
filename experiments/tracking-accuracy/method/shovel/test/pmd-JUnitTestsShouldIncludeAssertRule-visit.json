@@ -1,0 +1,206 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "pmd",
+  "repositoryPath": "H:\\Projects\\pmd\\pmd/.git",
+  "startCommitName": "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "sourceFileName": "JUnitTestsShouldIncludeAssertRule.java",
+  "functionName": "visit",
+  "functionId": "visit___node-ASTClassOrInterfaceDeclaration__data-Object",
+  "sourceFilePath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/bestpractices/JUnitTestsShouldIncludeAssertRule.java",
+  "functionStartLine": 31,
+  "functionEndLine": 36,
+  "numCommitsSeen": 47,
+  "timeTaken": 2411,
+  "changeHistory": [
+    "238494b09253575f341ebaef34aebdca6f1020fc",
+    "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
+    "82d36689d3696a80c4f867bc50a8aec76794d261",
+    "1d8de6b34ea0ddb64fc94b478c0950c0d35de605",
+    "a2e6178abd02c67de6a9ccaf077233f1b1ba4dd0"
+  ],
+  "changeHistoryShort": {
+    "238494b09253575f341ebaef34aebdca6f1020fc": "Yfilerename",
+    "ad88b4784d78bf1698fac72cad3825144caf6863": "Yfilerename",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": "Yfilerename",
+    "4e02b9b831743c0e6f46514ae6a209ed96e86e22": "Yfilerename",
+    "82d36689d3696a80c4f867bc50a8aec76794d261": "Yfilerename",
+    "1d8de6b34ea0ddb64fc94b478c0950c0d35de605": "Ymultichange(Yparameterchange,Ybodychange)",
+    "a2e6178abd02c67de6a9ccaf077233f1b1ba4dd0": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "238494b09253575f341ebaef34aebdca6f1020fc": {
+      "type": "Yfilerename",
+      "commitMessage": "[java] Moving rules into correct packages according to the new category - Part 3\n",
+      "commitDate": "2017-11-03, 6:54 a.m.",
+      "commitName": "238494b09253575f341ebaef34aebdca6f1020fc",
+      "commitAuthor": "Andreas Dangel",
+      "commitDateOld": "2017-11-02, 3:36 p.m.",
+      "commitNameOld": "696c1cb651f7e4394bd33122db4ed20e5ab9caea",
+      "commitAuthorOld": "Andreas Dangel",
+      "daysBetweenCommits": 0.64,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+      "path": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/bestpractices/JUnitTestsShouldIncludeAssertRule.java",
+      "functionStartLine": 30,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+        "newPath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/bestpractices/JUnitTestsShouldIncludeAssertRule.java"
+      }
+    },
+    "ad88b4784d78bf1698fac72cad3825144caf6863": {
+      "type": "Yfilerename",
+      "commitMessage": "Move java into own sub-module pmd-java\n",
+      "commitDate": "2014-10-04, 11:36 a.m.",
+      "commitName": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "commitAuthor": "Andreas Dangel",
+      "commitDateOld": "2014-10-04, 10:59 a.m.",
+      "commitNameOld": "fa950a82960993c7a7d70e276553b85174eec8b2",
+      "commitAuthorOld": "Andreas Dangel",
+      "daysBetweenCommits": 0.03,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+      "path": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+      "functionStartLine": 21,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+        "newPath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java"
+      }
+    },
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": {
+      "type": "Yfilerename",
+      "commitMessage": "pmd: Move all java sources to src/main/java, adapt pom.xml, test and other files accordingly\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@7476 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2011-11-21, 3:45 p.m.",
+      "commitName": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "commitAuthor": "Romain Pelisse",
+      "commitDateOld": "2011-11-21, 1:10 p.m.",
+      "commitNameOld": "821f452f692c1497e2849302b5d9417c90edc054",
+      "commitAuthorOld": "Brian Remedios",
+      "daysBetweenCommits": 0.11,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+      "path": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+      "functionStartLine": 17,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+        "newPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java"
+      }
+    },
+    "4e02b9b831743c0e6f46514ae6a209ed96e86e22": {
+      "type": "Yfilerename",
+      "commitMessage": "Rule refactoring into proper Language packages.\n\nAlso renamed Rules to following standard convention and organization, and enhanced the RuleSetFactoryTest case to assert this convention.  For example, if the non-XPath Rule is XxxYyy/zzz.xml, then the rule class should be:\n\n   lang.${lang}.rule.${zzz}.${XxxYyy}Rule\n\nAhh... wonderous consistency. :)\n\nWe\u0027re getting closer, much of the big stuff is now done, but still a fair bit to do, see changelog for details.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5958 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-04, 5:38 p.m.",
+      "commitName": "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-04-04, 3:27 p.m.",
+      "commitNameOld": "82d36689d3696a80c4f867bc50a8aec76794d261",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 0.09,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+      "path": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+      "functionStartLine": 16,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldContainAsserts.java",
+        "newPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java"
+      }
+    },
+    "82d36689d3696a80c4f867bc50a8aec76794d261": {
+      "type": "Yfilerename",
+      "commitMessage": "Having problems moving packages around, tool is telling me to commit changes first.  Committing basic refactoring, this clearly broken, a correction will follow later today.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5957 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-04, 3:27 p.m.",
+      "commitName": "82d36689d3696a80c4f867bc50a8aec76794d261",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-04-04, 5:59 a.m.",
+      "commitNameOld": "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 0.39,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+      "path": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldContainAsserts.java",
+      "functionStartLine": 16,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+        "newPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldContainAsserts.java"
+      }
+    },
+    "1d8de6b34ea0ddb64fc94b478c0950c0d35de605": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "Fixed bug 797742 - PMD now parses JDK 1.5 source code.  Note that it\u0027s not perfect yet; it fails on some generics/annotations/enums.  More testing and bug reports are welcome!\n\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@3332 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2005-03-08, 3:23 p.m.",
+      "commitName": "1d8de6b34ea0ddb64fc94b478c0950c0d35de605",
+      "commitAuthor": "Tom Copeland",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "Fixed bug 797742 - PMD now parses JDK 1.5 source code.  Note that it\u0027s not perfect yet; it fails on some generics/annotations/enums.  More testing and bug reports are welcome!\n\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@3332 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+          "commitDate": "2005-03-08, 3:23 p.m.",
+          "commitName": "1d8de6b34ea0ddb64fc94b478c0950c0d35de605",
+          "commitAuthor": "Tom Copeland",
+          "commitDateOld": "2005-03-08, 10:51 a.m.",
+          "commitNameOld": "d4d473a5e2973fe95ae246d9617ca2d0592f87c8",
+          "commitAuthorOld": "Miguel Griffa",
+          "daysBetweenCommits": 0.19,
+          "commitsBetweenForRepo": 3,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+          "path": "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+          "functionStartLine": 22,
+          "functionName": "visit",
+          "diff": "@@ -1,3 +1,6 @@\n-    public Object visit(ASTInterfaceDeclaration decl, Object data) {\n-        return data; // just skip interfaces\n+    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n+        if (node.isInterface()) {\n+            return data;\n+        }\n+        return super.visit(node, data);\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[decl-ASTInterfaceDeclaration, data-Object]",
+            "newValue": "[node-ASTClassOrInterfaceDeclaration, data-Object]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "Fixed bug 797742 - PMD now parses JDK 1.5 source code.  Note that it\u0027s not perfect yet; it fails on some generics/annotations/enums.  More testing and bug reports are welcome!\n\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@3332 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+          "commitDate": "2005-03-08, 3:23 p.m.",
+          "commitName": "1d8de6b34ea0ddb64fc94b478c0950c0d35de605",
+          "commitAuthor": "Tom Copeland",
+          "commitDateOld": "2005-03-08, 10:51 a.m.",
+          "commitNameOld": "d4d473a5e2973fe95ae246d9617ca2d0592f87c8",
+          "commitAuthorOld": "Miguel Griffa",
+          "daysBetweenCommits": 0.19,
+          "commitsBetweenForRepo": 3,
+          "commitsBetweenForFile": 1,
+          "actualSource": "    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n        if (node.isInterface()) {\n            return data;\n        }\n        return super.visit(node, data);\n    }",
+          "path": "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+          "functionStartLine": 22,
+          "functionName": "visit",
+          "diff": "@@ -1,3 +1,6 @@\n-    public Object visit(ASTInterfaceDeclaration decl, Object data) {\n-        return data; // just skip interfaces\n+    public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {\n+        if (node.isInterface()) {\n+            return data;\n+        }\n+        return super.visit(node, data);\n     }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "a2e6178abd02c67de6a9ccaf077233f1b1ba4dd0": {
+      "type": "Yintroduced",
+      "commitMessage": "Fixed bug 1088459 - JUnitTestsShouldContainAsserts no longer throws ClassCastException on interface, native, and abstract method declarations.\n\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@3094 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2004-12-20, 12:08 p.m.",
+      "commitName": "a2e6178abd02c67de6a9ccaf077233f1b1ba4dd0",
+      "commitAuthor": "Tom Copeland",
+      "diff": "@@ -0,0 +1,3 @@\n+    public Object visit(ASTInterfaceDeclaration decl, Object data) {\n+        return data; // just skip interfaces\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public Object visit(ASTInterfaceDeclaration decl, Object data) {\n        return data; // just skip interfaces\n    }",
+      "path": "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+      "functionStartLine": 22,
+      "functionName": "visit"
+    }
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "intellij-community",
+  "repositoryPath": "H:\\Projects\\JetBrains\\intellij-community/.git",
+  "startCommitName": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "sourceFileName": "TranslatingCompilerFilesMonitor.java",
+  "functionName": "isInContentOfOpenedProject",
+  "functionId": "isInContentOfOpenedProject___file-VirtualFile(annotations-@NotNull__modifiers-final)",
+  "sourceFilePath": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+  "functionStartLine": 100,
+  "functionEndLine": 111,
+  "numCommitsSeen": 249,
+  "timeTaken": 17814,
+  "changeHistory": [
+    "1f4d0df3058dc5b3d29833916702ac54985be802",
+    "d8382bb2262d98dc8cb60fce328698613f2ee276",
+    "f0d0f8e7d33aa42691d5d849c874b2916311f636"
+  ],
+  "changeHistoryShort": {
+    "1f4d0df3058dc5b3d29833916702ac54985be802": "Ymultichange(Yparameterchange,Ybodychange)",
+    "d8382bb2262d98dc8cb60fce328698613f2ee276": "Ymultichange(Yparameterchange,Ybodychange)",
+    "f0d0f8e7d33aa42691d5d849c874b2916311f636": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "1f4d0df3058dc5b3d29833916702ac54985be802": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "notify BuildManager only if file events affect opened and watched projects (second part of IDEA-122685)\n",
+      "commitDate": "2014-06-01, 10:40 a.m.",
+      "commitName": "1f4d0df3058dc5b3d29833916702ac54985be802",
+      "commitAuthor": "Eugene Zhuravlev",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "notify BuildManager only if file events affect opened and watched projects (second part of IDEA-122685)\n",
+          "commitDate": "2014-06-01, 10:40 a.m.",
+          "commitName": "1f4d0df3058dc5b3d29833916702ac54985be802",
+          "commitAuthor": "Eugene Zhuravlev",
+          "commitDateOld": "2014-05-28, 7:14 a.m.",
+          "commitNameOld": "29b98dbe5df9b3ec0a58b9f0ac0b44997b4251f9",
+          "commitAuthorOld": "Eugene Zhuravlev",
+          "daysBetweenCommits": 4.14,
+          "commitsBetweenForRepo": 165,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n    for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n      if (!project.isInitialized() || !BuildManager.getInstance().isProjectWatched(project)) {\n        continue;\n      }\n      if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n        return true;\n      }\n    }\n    return false;\n  }",
+          "path": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+          "functionStartLine": 110,
+          "functionName": "isInContentOfOpenedProject",
+          "diff": "@@ -1,17 +1,12 @@\n-  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n+  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n     // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n-    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n-      public Boolean compute() {\n-        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n-          if (!project.isInitialized()) {\n-            continue;\n-          }\n-          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n-            return Boolean.TRUE;\n-          }\n-        }\n-        return Boolean.FALSE;\n+    for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n+      if (!project.isInitialized() || !BuildManager.getInstance().isProjectWatched(project)) {\n+        continue;\n       }\n-    };\n-    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n+      if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n+        return true;\n+      }\n+    }\n+    return false;\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[file-VirtualFile(annotations-@NotNull__modifiers-final), needReadAction-boolean]",
+            "newValue": "[file-VirtualFile(annotations-@NotNull__modifiers-final)]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "notify BuildManager only if file events affect opened and watched projects (second part of IDEA-122685)\n",
+          "commitDate": "2014-06-01, 10:40 a.m.",
+          "commitName": "1f4d0df3058dc5b3d29833916702ac54985be802",
+          "commitAuthor": "Eugene Zhuravlev",
+          "commitDateOld": "2014-05-28, 7:14 a.m.",
+          "commitNameOld": "29b98dbe5df9b3ec0a58b9f0ac0b44997b4251f9",
+          "commitAuthorOld": "Eugene Zhuravlev",
+          "daysBetweenCommits": 4.14,
+          "commitsBetweenForRepo": 165,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n    for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n      if (!project.isInitialized() || !BuildManager.getInstance().isProjectWatched(project)) {\n        continue;\n      }\n      if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n        return true;\n      }\n    }\n    return false;\n  }",
+          "path": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+          "functionStartLine": 110,
+          "functionName": "isInContentOfOpenedProject",
+          "diff": "@@ -1,17 +1,12 @@\n-  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n+  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n     // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n-    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n-      public Boolean compute() {\n-        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n-          if (!project.isInitialized()) {\n-            continue;\n-          }\n-          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n-            return Boolean.TRUE;\n-          }\n-        }\n-        return Boolean.FALSE;\n+    for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n+      if (!project.isInitialized() || !BuildManager.getInstance().isProjectWatched(project)) {\n+        continue;\n       }\n-    };\n-    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n+      if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n+        return true;\n+      }\n+    }\n+    return false;\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "d8382bb2262d98dc8cb60fce328698613f2ee276": {
+      "type": "Ymultichange(Yparameterchange,Ybodychange)",
+      "commitMessage": "remove unneeded read actions\n",
+      "commitDate": "2014-03-12, 11:35 a.m.",
+      "commitName": "d8382bb2262d98dc8cb60fce328698613f2ee276",
+      "commitAuthor": "Eugene Zhuravlev",
+      "subchanges": [
+        {
+          "type": "Yparameterchange",
+          "commitMessage": "remove unneeded read actions\n",
+          "commitDate": "2014-03-12, 11:35 a.m.",
+          "commitName": "d8382bb2262d98dc8cb60fce328698613f2ee276",
+          "commitAuthor": "Eugene Zhuravlev",
+          "commitDateOld": "2014-03-12, 9:28 a.m.",
+          "commitNameOld": "f0d0f8e7d33aa42691d5d849c874b2916311f636",
+          "commitAuthorOld": "Eugene Zhuravlev",
+          "daysBetweenCommits": 0.09,
+          "commitsBetweenForRepo": 17,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n      public Boolean compute() {\n        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n          if (!project.isInitialized()) {\n            continue;\n          }\n          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n            return Boolean.TRUE;\n          }\n        }\n        return Boolean.FALSE;\n      }\n    };\n    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n  }",
+          "path": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+          "functionStartLine": 1072,
+          "functionName": "isInContentOfOpenedProject",
+          "diff": "@@ -1,12 +1,17 @@\n-  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n-    return ApplicationManager.getApplication().runReadAction(new Computable\u003cBoolean\u003e() {\n+  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n+    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n+    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n       public Boolean compute() {\n         for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n+          if (!project.isInitialized()) {\n+            continue;\n+          }\n           if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n             return Boolean.TRUE;\n           }\n         }\n         return Boolean.FALSE;\n       }\n-    });\n+    };\n+    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldValue": "[file-VirtualFile(annotations-@NotNull__modifiers-final)]",
+            "newValue": "[file-VirtualFile(annotations-@NotNull__modifiers-final), needReadAction-boolean]"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "remove unneeded read actions\n",
+          "commitDate": "2014-03-12, 11:35 a.m.",
+          "commitName": "d8382bb2262d98dc8cb60fce328698613f2ee276",
+          "commitAuthor": "Eugene Zhuravlev",
+          "commitDateOld": "2014-03-12, 9:28 a.m.",
+          "commitNameOld": "f0d0f8e7d33aa42691d5d849c874b2916311f636",
+          "commitAuthorOld": "Eugene Zhuravlev",
+          "daysBetweenCommits": 0.09,
+          "commitsBetweenForRepo": 17,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n      public Boolean compute() {\n        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n          if (!project.isInitialized()) {\n            continue;\n          }\n          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n            return Boolean.TRUE;\n          }\n        }\n        return Boolean.FALSE;\n      }\n    };\n    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n  }",
+          "path": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+          "functionStartLine": 1072,
+          "functionName": "isInContentOfOpenedProject",
+          "diff": "@@ -1,12 +1,17 @@\n-  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n-    return ApplicationManager.getApplication().runReadAction(new Computable\u003cBoolean\u003e() {\n+  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file, boolean needReadAction) {\n+    // probably need a read action to ensure that the project was not disposed during the iteration over the project list\n+    final Computable\u003cBoolean\u003e computation \u003d new Computable\u003cBoolean\u003e() {\n       public Boolean compute() {\n         for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n+          if (!project.isInitialized()) {\n+            continue;\n+          }\n           if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n             return Boolean.TRUE;\n           }\n         }\n         return Boolean.FALSE;\n       }\n-    });\n+    };\n+    return needReadAction? ApplicationManager.getApplication().runReadAction(computation) : computation.compute();\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "f0d0f8e7d33aa42691d5d849c874b2916311f636": {
+      "type": "Yintroduced",
+      "commitMessage": "do not build VFS for excluded directories\n",
+      "commitDate": "2014-03-12, 9:28 a.m.",
+      "commitName": "f0d0f8e7d33aa42691d5d849c874b2916311f636",
+      "commitAuthor": "Eugene Zhuravlev",
+      "diff": "@@ -0,0 +1,12 @@\n+  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n+    return ApplicationManager.getApplication().runReadAction(new Computable\u003cBoolean\u003e() {\n+      public Boolean compute() {\n+        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n+          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n+            return Boolean.TRUE;\n+          }\n+        }\n+        return Boolean.FALSE;\n+      }\n+    });\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  private static boolean isInContentOfOpenedProject(@NotNull final VirtualFile file) {\n    return ApplicationManager.getApplication().runReadAction(new Computable\u003cBoolean\u003e() {\n      public Boolean compute() {\n        for (Project project : ProjectManager.getInstance().getOpenProjects()) {\n          if (ProjectRootManager.getInstance(project).getFileIndex().isInContent(file)) {\n            return Boolean.TRUE;\n          }\n        }\n        return Boolean.FALSE;\n      }\n    });\n  }",
+      "path": "java/compiler/impl/src/com/intellij/compiler/impl/TranslatingCompilerFilesMonitor.java",
+      "functionStartLine": 1072,
+      "functionName": "isInContentOfOpenedProject"
+    }
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "pmd",
+  "repositoryPath": "H:\\Projects\\pmd\\pmd/.git",
+  "startCommitName": "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "sourceFileName": "AbstractJavaRule.java",
+  "functionName": "visit",
+  "functionId": "visit___node-ASTArgumentList__data-Object",
+  "sourceFilePath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+  "functionStartLine": 504,
+  "functionEndLine": 506,
+  "numCommitsSeen": 25,
+  "timeTaken": 1790,
+  "changeHistory": [
+    "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+    "ea75c3016bf406fb43ccf50541249205de0c2b20",
+    "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+    "9f86c8b174b84c9b394320c2f16690f0d70a27b6"
+  ],
+  "changeHistoryShort": {
+    "ad88b4784d78bf1698fac72cad3825144caf6863": "Yfilerename",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": "Yfilerename",
+    "86d6d24dad6ba51be61bfaa9905a2baabf994bf1": "Yfilerename",
+    "ea75c3016bf406fb43ccf50541249205de0c2b20": "Yfilerename",
+    "113e719ad482e8c2ff7b4702de1cf6855e8ef79b": "Ybodychange",
+    "9f86c8b174b84c9b394320c2f16690f0d70a27b6": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "ad88b4784d78bf1698fac72cad3825144caf6863": {
+      "type": "Yfilerename",
+      "commitMessage": "Move java into own sub-module pmd-java\n",
+      "commitDate": "2014-10-04, 11:36 a.m.",
+      "commitName": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "commitAuthor": "Andreas Dangel",
+      "commitDateOld": "2014-10-04, 10:59 a.m.",
+      "commitNameOld": "fa950a82960993c7a7d70e276553b85174eec8b2",
+      "commitAuthorOld": "Andreas Dangel",
+      "daysBetweenCommits": 0.03,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTArgumentList node, Object data) {\n\treturn visit((JavaNode) node, data);\n    }",
+      "path": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+      "functionStartLine": 402,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+        "newPath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java"
+      }
+    },
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": {
+      "type": "Yfilerename",
+      "commitMessage": "pmd: Move all java sources to src/main/java, adapt pom.xml, test and other files accordingly\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@7476 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2011-11-21, 3:45 p.m.",
+      "commitName": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "commitAuthor": "Romain Pelisse",
+      "commitDateOld": "2011-11-21, 1:10 p.m.",
+      "commitNameOld": "821f452f692c1497e2849302b5d9417c90edc054",
+      "commitAuthorOld": "Brian Remedios",
+      "daysBetweenCommits": 0.11,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public Object visit(ASTArgumentList node, Object data) {\n\treturn visit((JavaNode) node, data);\n    }",
+      "path": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+      "functionStartLine": 397,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+        "newPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java"
+      }
+    },
+    "86d6d24dad6ba51be61bfaa9905a2baabf994bf1": {
+      "type": "Yfilerename",
+      "commitMessage": "Add RuleViolationFactory to allow AbstractRule to create Rules based upon the LanguageVersion on the RuleContext.  This fixes this issue with XPathRule not working on JSPs.  Some minor cleanup in XPathRule to make it completely independent of the Java AST.  Also moved more classes in the .rule subpackages, including XPath rule, all Rules and RuleSets updated accordingly.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5956 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-04, 5:59 a.m.",
+      "commitName": "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-04-04, 3:35 a.m.",
+      "commitNameOld": "ea75c3016bf406fb43ccf50541249205de0c2b20",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 0.1,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Object visit(ASTArgumentList node, Object data) {\n\t\treturn visit((JavaNode)node, data);\n\t}",
+      "path": "pmd/src/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java",
+      "functionStartLine": 396,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/lang/java/AbstractJavaRule.java",
+        "newPath": "pmd/src/net/sourceforge/pmd/lang/java/rule/AbstractJavaRule.java"
+      }
+    },
+    "ea75c3016bf406fb43ccf50541249205de0c2b20": {
+      "type": "Yfilerename",
+      "commitMessage": "First pass at package refactoring.  All AST code refactored into the pmd.lang hierarchy.  Sourcetype and Parser code also refactored.  The Rule implementations are not yet done.  Still a fair bit to do with some of the other Rule support packages, but this is the basic idea.\n\nAlso, replaced the tagging CompilationUnit interface with the RootNode interface, and where possible changed existing usages of CompilationUnit to be the new common Node interface, which is actually useful.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5955 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-04, 3:35 a.m.",
+      "commitName": "ea75c3016bf406fb43ccf50541249205de0c2b20",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-04-03, 11:51 p.m.",
+      "commitNameOld": "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 0.16,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Object visit(ASTArgumentList node, Object data) {\n\t\treturn visit((JavaNode)node, data);\n\t}",
+      "path": "pmd/src/net/sourceforge/pmd/lang/java/AbstractJavaRule.java",
+      "functionStartLine": 462,
+      "functionName": "visit",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/AbstractJavaRule.java",
+        "newPath": "pmd/src/net/sourceforge/pmd/lang/java/AbstractJavaRule.java"
+      }
+    },
+    "113e719ad482e8c2ff7b4702de1cf6855e8ef79b": {
+      "type": "Ybodychange",
+      "commitMessage": "Generalize AST treatment.  Extracted a common Node interface and base class, combining common features of Node and SimpleNode from all ASTs whenever possible.  Reworked Java and Jsp AST classes to use the new interface.  All existing usages of SimpleNode changed to Node.  Yeah, no more stupid casts for AST navigation/visitation operations!  Turned AccessNode from the Java AST into an interface as it should be.  Deleted and renamed AST classes as appropriate to following convention in absence of SimpleNode classes.\n\nJSP XPath rules are not yet working.  Need to work on further generalization of RuleViolation code to make it a Language feature, and not something gathered via Rule class hierarchy inheritance.\n\nWill be moving packages around soon!\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5954 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-03, 11:51 p.m.",
+      "commitName": "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-03-30, 8:52 p.m.",
+      "commitNameOld": "b940abb989fdbd7e69e20231c057581e0bc6c0a1",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 4.12,
+      "commitsBetweenForRepo": 6,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tpublic Object visit(ASTArgumentList node, Object data) {\n\t\treturn visit((JavaNode)node, data);\n\t}",
+      "path": "pmd/src/net/sourceforge/pmd/AbstractJavaRule.java",
+      "functionStartLine": 460,
+      "functionName": "visit",
+      "diff": "@@ -1,3 +1,3 @@\n \tpublic Object visit(ASTArgumentList node, Object data) {\n-\t\treturn visit((SimpleJavaNode)node, data);\n+\t\treturn visit((JavaNode)node, data);\n \t}\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "9f86c8b174b84c9b394320c2f16690f0d70a27b6": {
+      "type": "Yintroduced",
+      "commitMessage": "Refactored Rule base classes around Rule interface instead of around AST Visitor interfaces.\n\nLong term goal is to support additional languages beyond Java.  Organized like so:\n\n   pmd.AbstractRule          // Core Rule implementation\n   pmd.XPathRule             // Core XPath Rule implementation\n   pmd.java.AbstractJavaRule // Java specific Rule implementation\n   pmd.jsp.AbstractJspRule   // JSP specific Rule implementation\n   pmd.xxx.AbstractXxxRule   // Language XXX specific Rule implementation\n   ...\n\nThis is a start, there\u0027s a much larger reorganizing effort to get things in sync.  Additional work is needed on generalizing XPathRule.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5734 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-02-05, 12:11 a.m.",
+      "commitName": "9f86c8b174b84c9b394320c2f16690f0d70a27b6",
+      "commitAuthor": "Ryan Gustafson",
+      "diff": "@@ -0,0 +1,3 @@\n+\tpublic Object visit(ASTArgumentList node, Object data) {\n+\t\treturn visit((SimpleJavaNode)node, data);\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tpublic Object visit(ASTArgumentList node, Object data) {\n\t\treturn visit((SimpleJavaNode)node, data);\n\t}",
+      "path": "pmd/src/net/sourceforge/pmd/AbstractJavaRule.java",
+      "functionStartLine": 460,
+      "functionName": "visit"
+    }
+  }
+}

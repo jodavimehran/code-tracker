@@ -1,0 +1,109 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "intellij-community",
+  "repositoryPath": "H:\\Projects\\JetBrains\\intellij-community/.git",
+  "startCommitName": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "sourceFileName": "TypeRenderer.java",
+  "functionName": "createCachedEvaluator",
+  "functionId": "createCachedEvaluator",
+  "sourceFilePath": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+  "functionStartLine": 61,
+  "functionEndLine": 68,
+  "numCommitsSeen": 8,
+  "timeTaken": 17943,
+  "changeHistory": [
+    "3a1ed388b11d11e0c6185b353358368a8bd34daf",
+    "3c8f350a73251898468aaeeaccc34f066f91e26f",
+    "8fdfb44a9dde5828221c8075ed208975ae84a978"
+  ],
+  "changeHistoryShort": {
+    "3a1ed388b11d11e0c6185b353358368a8bd34daf": "Ybodychange",
+    "3c8f350a73251898468aaeeaccc34f066f91e26f": "Ymultichange(Ymovefromfile,Ybodychange)",
+    "8fdfb44a9dde5828221c8075ed208975ae84a978": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "3a1ed388b11d11e0c6185b353358368a8bd34daf": {
+      "type": "Ybodychange",
+      "commitMessage": "cleanup\n",
+      "commitDate": "2016-11-02, 6:43 a.m.",
+      "commitName": "3a1ed388b11d11e0c6185b353358368a8bd34daf",
+      "commitAuthor": "Vladimir Krivosheev",
+      "commitDateOld": "2016-11-02, 6:41 a.m.",
+      "commitNameOld": "eadac1cfe3c6f9ad93dcc02137ba2ee64aaf8c81",
+      "commitAuthorOld": "Vladimir Krivosheev",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  protected CachedEvaluator createCachedEvaluator() {\n    return new CachedEvaluator() {\n      @Override\n      protected String getClassName() {\n        return TypeRenderer.this.getClassName();\n      }\n    };\n  }",
+      "path": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+      "functionStartLine": 75,
+      "functionName": "createCachedEvaluator",
+      "diff": "@@ -1,7 +1,8 @@\n   protected CachedEvaluator createCachedEvaluator() {\n     return new CachedEvaluator() {\n+      @Override\n       protected String getClassName() {\n         return TypeRenderer.this.getClassName();\n       }\n     };\n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "3c8f350a73251898468aaeeaccc34f066f91e26f": {
+      "type": "Ymultichange(Ymovefromfile,Ybodychange)",
+      "commitMessage": "allow user renderers for primitive types\n",
+      "commitDate": "2016-08-03, 7:47 a.m.",
+      "commitName": "3c8f350a73251898468aaeeaccc34f066f91e26f",
+      "commitAuthor": "Egor.Ushakov",
+      "subchanges": [
+        {
+          "type": "Ymovefromfile",
+          "commitMessage": "allow user renderers for primitive types\n",
+          "commitDate": "2016-08-03, 7:47 a.m.",
+          "commitName": "3c8f350a73251898468aaeeaccc34f066f91e26f",
+          "commitAuthor": "Egor.Ushakov",
+          "commitDateOld": "2016-08-03, 7:26 a.m.",
+          "commitNameOld": "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
+          "commitAuthorOld": "Rustam Vishnyakov",
+          "daysBetweenCommits": 0.01,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  protected CachedEvaluator createCachedEvaluator() {\n    return new CachedEvaluator() {\n      protected String getClassName() {\n        return TypeRenderer.this.getClassName();\n      }\n    };\n  }",
+          "path": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+          "functionStartLine": 71,
+          "functionName": "createCachedEvaluator",
+          "diff": "@@ -1,7 +1,7 @@\n   protected CachedEvaluator createCachedEvaluator() {\n     return new CachedEvaluator() {\n       protected String getClassName() {\n-        return ReferenceRenderer.this.getClassName();\n+        return TypeRenderer.this.getClassName();\n       }\n     };\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {
+            "oldPath": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/ReferenceRenderer.java",
+            "newPath": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+            "oldMethodName": "createCachedEvaluator",
+            "newMethodName": "createCachedEvaluator"
+          }
+        },
+        {
+          "type": "Ybodychange",
+          "commitMessage": "allow user renderers for primitive types\n",
+          "commitDate": "2016-08-03, 7:47 a.m.",
+          "commitName": "3c8f350a73251898468aaeeaccc34f066f91e26f",
+          "commitAuthor": "Egor.Ushakov",
+          "commitDateOld": "2016-08-03, 7:26 a.m.",
+          "commitNameOld": "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
+          "commitAuthorOld": "Rustam Vishnyakov",
+          "daysBetweenCommits": 0.01,
+          "commitsBetweenForRepo": 1,
+          "commitsBetweenForFile": 1,
+          "actualSource": "  protected CachedEvaluator createCachedEvaluator() {\n    return new CachedEvaluator() {\n      protected String getClassName() {\n        return TypeRenderer.this.getClassName();\n      }\n    };\n  }",
+          "path": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+          "functionStartLine": 71,
+          "functionName": "createCachedEvaluator",
+          "diff": "@@ -1,7 +1,7 @@\n   protected CachedEvaluator createCachedEvaluator() {\n     return new CachedEvaluator() {\n       protected String getClassName() {\n-        return ReferenceRenderer.this.getClassName();\n+        return TypeRenderer.this.getClassName();\n       }\n     };\n   }\n\\ No newline at end of file\n",
+          "extendedDetails": {}
+        }
+      ]
+    },
+    "8fdfb44a9dde5828221c8075ed208975ae84a978": {
+      "type": "Yintroduced",
+      "commitMessage": "fixed blinking NodeRendererSettingsTest.testAutoRendererConfigurable\n",
+      "commitDate": "2015-09-11, 11:04 a.m.",
+      "commitName": "8fdfb44a9dde5828221c8075ed208975ae84a978",
+      "commitAuthor": "Egor.Ushakov",
+      "diff": "@@ -0,0 +1,7 @@\n+  protected CachedEvaluator createCachedEvaluator() {\n+    return new CachedEvaluator() {\n+      protected String getClassName() {\n+        return ReferenceRenderer.this.getClassName();\n+      }\n+    };\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  protected CachedEvaluator createCachedEvaluator() {\n    return new CachedEvaluator() {\n      protected String getClassName() {\n        return ReferenceRenderer.this.getClassName();\n      }\n    };\n  }",
+      "path": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/ReferenceRenderer.java",
+      "functionStartLine": 72,
+      "functionName": "createCachedEvaluator"
+    }
+  }
+}

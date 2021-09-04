@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hibernate-search",
+  "repositoryPath": "H:\\Projects\\hibernate\\hibernate-search/.git",
+  "startCommitName": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "sourceFileName": "ArrayBridge.java",
+  "functionName": "indexNotNullArray",
+  "functionId": "indexNotNullArray___name-String__value-Object__document-Document__luceneOptions-LuceneOptions",
+  "sourceFilePath": "engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+  "functionStartLine": 46,
+  "functionEndLine": 51,
+  "numCommitsSeen": 7,
+  "timeTaken": 545,
+  "changeHistory": [
+    "7c1e5321baf4322da71ca747d75c771b9103e412",
+    "76077dbe4b6ba1036e402f76386545c008a76799",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+    "b663d28591ec25f73d6523655ae646c2eaadfdbf"
+  ],
+  "changeHistoryShort": {
+    "7c1e5321baf4322da71ca747d75c771b9103e412": "Ybodychange",
+    "76077dbe4b6ba1036e402f76386545c008a76799": "Ymodifierchange",
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": "Yfilerename",
+    "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1": "Yfilerename",
+    "b663d28591ec25f73d6523655ae646c2eaadfdbf": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "7c1e5321baf4322da71ca747d75c771b9103e412": {
+      "type": "Ybodychange",
+      "commitMessage": "HSEARCH-2510 Support indexing arrays of primitive types\n",
+      "commitDate": "2017-01-21, 7:57 p.m.",
+      "commitName": "7c1e5321baf4322da71ca747d75c771b9103e412",
+      "commitAuthor": "Yoann Rodière",
+      "commitDateOld": "2014-12-04, 3:38 p.m.",
+      "commitNameOld": "76077dbe4b6ba1036e402f76386545c008a76799",
+      "commitAuthorOld": "Hardy Ferentschik",
+      "daysBetweenCommits": 779.18,
+      "commitsBetweenForRepo": 1479,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tprivate void indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n\t\t// Use CollectionHelper.iterableFromArray to also support arrays of primitive values\n\t\tfor ( Object entry : CollectionHelper.iterableFromArray( value ) ) {\n\t\t\tindexEntry( name, entry, document, luceneOptions );\n\t\t}\n\t}",
+      "path": "engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+      "functionStartLine": 46,
+      "functionName": "indexNotNullArray",
+      "diff": "@@ -1,6 +1,6 @@\n \tprivate void indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n-\t\tObject[] collection \u003d (Object[]) value;\n-\t\tfor ( Object entry : collection ) {\n+\t\t// Use CollectionHelper.iterableFromArray to also support arrays of primitive values\n+\t\tfor ( Object entry : CollectionHelper.iterableFromArray( value ) ) {\n \t\t\tindexEntry( name, entry, document, luceneOptions );\n \t\t}\n \t}\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "76077dbe4b6ba1036e402f76386545c008a76799": {
+      "type": "Ymodifierchange",
+      "commitMessage": "HSEARCH-763 Making it possible to detect numeric field encoding for container bridges by introducing a new interface ContainerBridge\n",
+      "commitDate": "2014-12-04, 3:38 p.m.",
+      "commitName": "76077dbe4b6ba1036e402f76386545c008a76799",
+      "commitAuthor": "Hardy Ferentschik",
+      "commitDateOld": "2014-05-15, 5:54 a.m.",
+      "commitNameOld": "5a9396f82246f74a76d3fea15d712711662f11ec",
+      "commitAuthorOld": "Hardy Ferentschik",
+      "daysBetweenCommits": 203.45,
+      "commitsBetweenForRepo": 216,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tprivate void indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n\t\tObject[] collection \u003d (Object[]) value;\n\t\tfor ( Object entry : collection ) {\n\t\t\tindexEntry( name, entry, document, luceneOptions );\n\t\t}\n\t}",
+      "path": "engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+      "functionStartLine": 45,
+      "functionName": "indexNotNullArray",
+      "diff": "@@ -1,6 +1,6 @@\n-\tvoid indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n+\tprivate void indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n \t\tObject[] collection \u003d (Object[]) value;\n \t\tfor ( Object entry : collection ) {\n \t\t\tindexEntry( name, entry, document, luceneOptions );\n \t\t}\n \t}\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[]",
+        "newValue": "[private]"
+      }
+    },
+    "354f2cadec6dee7d4dde2250e13f468e2d93cd27": {
+      "type": "Yfilerename",
+      "commitMessage": "HSEARCH-1310 Dropping the hibernate-search directory prefix, renaming hibernate-search into legacy\n",
+      "commitDate": "2013-04-23, 1:02 p.m.",
+      "commitName": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitAuthor": "Hardy Ferentschik",
+      "commitDateOld": "2013-04-23, 9:27 a.m.",
+      "commitNameOld": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitAuthorOld": "Sanne Grinovero",
+      "daysBetweenCommits": 0.15,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tvoid indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n\t\tObject[] collection \u003d (Object[]) value;\n\t\tfor ( Object entry : collection ) {\n\t\t\tindexEntry( name, entry, document, luceneOptions );\n\t\t}\n\t}",
+      "path": "engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+      "functionStartLine": 56,
+      "functionName": "indexNotNullArray",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hibernate-search-engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+        "newPath": "engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java"
+      }
+    },
+    "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1": {
+      "type": "Yfilerename",
+      "commitMessage": "HSEARCH-677 renaming directory hibernate-search to hibernate-search-engine\n",
+      "commitDate": "2011-09-27, 6:03 p.m.",
+      "commitName": "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+      "commitAuthor": "Sanne Grinovero",
+      "commitDateOld": "2011-09-27, 1:39 p.m.",
+      "commitNameOld": "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
+      "commitAuthorOld": "Sanne Grinovero",
+      "daysBetweenCommits": 0.18,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "\tvoid indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n\t\tObject[] collection \u003d (Object[]) value;\n\t\tfor ( Object entry : collection ) {\n\t\t\tindexEntry( name, entry, document, luceneOptions );\n\t\t}\n\t}",
+      "path": "hibernate-search-engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+      "functionStartLine": 56,
+      "functionName": "indexNotNullArray",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "hibernate-search/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+        "newPath": "hibernate-search-engine/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java"
+      }
+    },
+    "b663d28591ec25f73d6523655ae646c2eaadfdbf": {
+      "type": "Yintroduced",
+      "commitMessage": "HSEARCH-566 HSEARCH-670 Add FieldBridges for arrays\n",
+      "commitDate": "2011-08-29, 4:50 p.m.",
+      "commitName": "b663d28591ec25f73d6523655ae646c2eaadfdbf",
+      "commitAuthor": "Davide D\u0027Alto",
+      "diff": "@@ -0,0 +1,6 @@\n+\tvoid indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n+\t\tObject[] collection \u003d (Object[]) value;\n+\t\tfor ( Object entry : collection ) {\n+\t\t\tindexEntry( name, entry, document, luceneOptions );\n+\t\t}\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tvoid indexNotNullArray(String name, Object value, Document document, LuceneOptions luceneOptions) {\n\t\tObject[] collection \u003d (Object[]) value;\n\t\tfor ( Object entry : collection ) {\n\t\t\tindexEntry( name, entry, document, luceneOptions );\n\t\t}\n\t}",
+      "path": "hibernate-search/src/main/java/org/hibernate/search/bridge/builtin/ArrayBridge.java",
+      "functionStartLine": 56,
+      "functionName": "indexNotNullArray"
+    }
+  }
+}

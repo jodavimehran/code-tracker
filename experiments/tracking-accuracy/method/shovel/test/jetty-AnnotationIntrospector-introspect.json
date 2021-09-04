@@ -1,0 +1,79 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "jetty.project",
+  "repositoryPath": "H:\\Projects\\eclipse\\jetty.project/.git",
+  "startCommitName": "fc5dd874f3deda71e6cd42af994a5af5cb6be4af",
+  "sourceFileName": "AnnotationIntrospector.java",
+  "functionName": "introspect",
+  "functionId": "introspect___clazz-Class__?__",
+  "sourceFilePath": "jetty-annotations/src/main/java/org/eclipse/jetty/annotations/AnnotationIntrospector.java",
+  "functionStartLine": 86,
+  "functionEndLine": 109,
+  "numCommitsSeen": 15,
+  "timeTaken": 653,
+  "changeHistory": [
+    "5e83df20c8842f3da1ccdec7c3152da6b8e5beac",
+    "b4f4c0ae36ef23321b5b9cd0698fdf8acb907d6a",
+    "314f94decc0e814baf31f500502020e05fcb73a2"
+  ],
+  "changeHistoryShort": {
+    "5e83df20c8842f3da1ccdec7c3152da6b8e5beac": "Yparameterchange",
+    "b4f4c0ae36ef23321b5b9cd0698fdf8acb907d6a": "Ybodychange",
+    "314f94decc0e814baf31f500502020e05fcb73a2": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "5e83df20c8842f3da1ccdec7c3152da6b8e5beac": {
+      "type": "Yparameterchange",
+      "commitMessage": "various sonar/findbug code cleanups\n",
+      "commitDate": "2012-04-24, 10:00 a.m.",
+      "commitName": "5e83df20c8842f3da1ccdec7c3152da6b8e5beac",
+      "commitAuthor": "Greg Wilkins",
+      "commitDateOld": "2010-12-17, 6:50 a.m.",
+      "commitNameOld": "b4edc055a1e96a03ddf3d5c138fceac5bfdf6011",
+      "commitAuthorOld": "Jan Bartel",
+      "daysBetweenCommits": 494.09,
+      "commitsBetweenForRepo": 1821,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public void introspect (Class\u003c?\u003e clazz)\n    {\n        if (_handlers \u003d\u003d null)\n            return;\n        if (clazz \u003d\u003d null)\n            return;\n        \n        for (IntrospectableAnnotationHandler handler:_handlers)\n        {\n            try\n            {\n                handler.handle(clazz);\n            }\n            catch (RuntimeException e)\n            {\n                throw e;\n            }\n            catch (Exception e)\n            {\n                throw new RuntimeException(e);\n            }\n        }\n     \n    }",
+      "path": "jetty-annotations/src/main/java/org/eclipse/jetty/annotations/AnnotationIntrospector.java",
+      "functionStartLine": 80,
+      "functionName": "introspect",
+      "diff": "@@ -1,24 +1,24 @@\n-    public void introspect (Class clazz)\n+    public void introspect (Class\u003c?\u003e clazz)\n     {\n         if (_handlers \u003d\u003d null)\n             return;\n         if (clazz \u003d\u003d null)\n             return;\n         \n         for (IntrospectableAnnotationHandler handler:_handlers)\n         {\n             try\n             {\n                 handler.handle(clazz);\n             }\n             catch (RuntimeException e)\n             {\n                 throw e;\n             }\n             catch (Exception e)\n             {\n                 throw new RuntimeException(e);\n             }\n         }\n      \n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[clazz-Class]",
+        "newValue": "[clazz-Class\u003c?\u003e]"
+      }
+    },
+    "b4f4c0ae36ef23321b5b9cd0698fdf8acb907d6a": {
+      "type": "Ybodychange",
+      "commitMessage": "320073 further improved configuration\n\ngit-svn-id: svn+ssh://dev.eclipse.org/svnroot/rt/org.eclipse.jetty/jetty/trunk@2175 7e9141cc-0065-0410-87d8-b60c137991c4\n",
+      "commitDate": "2010-07-26, 5:40 a.m.",
+      "commitName": "b4f4c0ae36ef23321b5b9cd0698fdf8acb907d6a",
+      "commitAuthor": "Greg Wilkins",
+      "commitDateOld": "2010-07-16, 3:15 a.m.",
+      "commitNameOld": "314f94decc0e814baf31f500502020e05fcb73a2",
+      "commitAuthorOld": "Jan Bartel",
+      "daysBetweenCommits": 10.1,
+      "commitsBetweenForRepo": 15,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public void introspect (Class clazz)\n    {\n        if (_handlers \u003d\u003d null)\n            return;\n        if (clazz \u003d\u003d null)\n            return;\n        \n        for (IntrospectableAnnotationHandler handler:_handlers)\n        {\n            try\n            {\n                handler.handle(clazz);\n            }\n            catch (RuntimeException e)\n            {\n                throw e;\n            }\n            catch (Exception e)\n            {\n                throw new RuntimeException(e);\n            }\n        }\n     \n    }",
+      "path": "jetty-annotations/src/main/java/org/eclipse/jetty/annotations/AnnotationIntrospector.java",
+      "functionStartLine": 82,
+      "functionName": "introspect",
+      "diff": "@@ -1,20 +1,24 @@\n     public void introspect (Class clazz)\n     {\n         if (_handlers \u003d\u003d null)\n             return;\n         if (clazz \u003d\u003d null)\n             return;\n         \n         for (IntrospectableAnnotationHandler handler:_handlers)\n         {\n             try\n             {\n                 handler.handle(clazz);\n             }\n+            catch (RuntimeException e)\n+            {\n+                throw e;\n+            }\n             catch (Exception e)\n             {\n-                Log.warn(e);\n+                throw new RuntimeException(e);\n             }\n         }\n      \n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "314f94decc0e814baf31f500502020e05fcb73a2": {
+      "type": "Yintroduced",
+      "commitMessage": "320073 Reconcile jetty-8 and jetty-7 webapp configuration mechanisms\n\ngit-svn-id: svn+ssh://dev.eclipse.org/svnroot/rt/org.eclipse.jetty/jetty/trunk@2145 7e9141cc-0065-0410-87d8-b60c137991c4\n",
+      "commitDate": "2010-07-16, 3:15 a.m.",
+      "commitName": "314f94decc0e814baf31f500502020e05fcb73a2",
+      "commitAuthor": "Jan Bartel",
+      "diff": "@@ -0,0 +1,20 @@\n+    public void introspect (Class clazz)\n+    {\n+        if (_handlers \u003d\u003d null)\n+            return;\n+        if (clazz \u003d\u003d null)\n+            return;\n+        \n+        for (IntrospectableAnnotationHandler handler:_handlers)\n+        {\n+            try\n+            {\n+                handler.handle(clazz);\n+            }\n+            catch (Exception e)\n+            {\n+                Log.warn(e);\n+            }\n+        }\n+     \n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public void introspect (Class clazz)\n    {\n        if (_handlers \u003d\u003d null)\n            return;\n        if (clazz \u003d\u003d null)\n            return;\n        \n        for (IntrospectableAnnotationHandler handler:_handlers)\n        {\n            try\n            {\n                handler.handle(clazz);\n            }\n            catch (Exception e)\n            {\n                Log.warn(e);\n            }\n        }\n     \n    }",
+      "path": "jetty-annotations/src/main/java/org/eclipse/jetty/annotations/AnnotationIntrospector.java",
+      "functionStartLine": 82,
+      "functionName": "introspect"
+    }
+  }
+}

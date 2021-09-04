@@ -1,0 +1,103 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "elasticsearch",
+  "repositoryPath": "H:\\Projects\\elastic\\elasticsearch/.git",
+  "startCommitName": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "sourceFileName": "ESFileStore.java",
+  "functionName": "getUnallocatedSpace",
+  "functionId": "getUnallocatedSpace",
+  "sourceFilePath": "server/src/main/java/org/elasticsearch/env/ESFileStore.java",
+  "functionStartLine": 121,
+  "functionEndLine": 128,
+  "numCommitsSeen": 11,
+  "timeTaken": 3448,
+  "changeHistory": [
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "ef15e1b91f93e0b3c825c1cf86e20ee37720de01",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "a66cf85f37a016d30a473dd29951e05c5857f24d"
+  ],
+  "changeHistoryShort": {
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": "Yfilerename",
+    "ef15e1b91f93e0b3c825c1cf86e20ee37720de01": "Ybodychange",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": "Yfilerename",
+    "a66cf85f37a016d30a473dd29951e05c5857f24d": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename core module to server (#28180)\n\nThis is related to #27933. It renames the core module to server. This is\r\nthe first step towards introducing an elasticsearch-core jar.",
+      "commitDate": "2018-01-11, 1:30 p.m.",
+      "commitName": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitAuthor": "Tim Brooks",
+      "commitDateOld": "2018-01-11, 11:31 a.m.",
+      "commitNameOld": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitAuthorOld": "Martijn van Groningen",
+      "daysBetweenCommits": 0.08,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public long getUnallocatedSpace() throws IOException {\n        long result \u003d in.getUnallocatedSpace();\n        if (result \u003c 0) {\n            // see https://bugs.openjdk.java.net/browse/JDK-8162520:\n            result \u003d Long.MAX_VALUE;\n        }\n        return result;\n    }",
+      "path": "server/src/main/java/org/elasticsearch/env/ESFileStore.java",
+      "functionStartLine": 123,
+      "functionName": "getUnallocatedSpace",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/env/ESFileStore.java",
+        "newPath": "server/src/main/java/org/elasticsearch/env/ESFileStore.java"
+      }
+    },
+    "ef15e1b91f93e0b3c825c1cf86e20ee37720de01": {
+      "type": "Ybodychange",
+      "commitMessage": "work around JDK bug: if FileStore.getXXXSpace APIs return negative value, change that to Long.MAX_VALUE instead\n",
+      "commitDate": "2016-07-28, 11:31 a.m.",
+      "commitName": "ef15e1b91f93e0b3c825c1cf86e20ee37720de01",
+      "commitAuthor": "Mike McCandless",
+      "commitDateOld": "2016-07-04, 8:41 a.m.",
+      "commitNameOld": "3343ceeae44f3d28e3c1ba7861886848df74e390",
+      "commitAuthorOld": "Jason Tedor",
+      "daysBetweenCommits": 24.12,
+      "commitsBetweenForRepo": 251,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public long getUnallocatedSpace() throws IOException {\n        long result \u003d in.getUnallocatedSpace();\n        if (result \u003c 0) {\n            // see https://bugs.openjdk.java.net/browse/JDK-8162520:\n            result \u003d Long.MAX_VALUE;\n        }\n        return result;\n    }",
+      "path": "core/src/main/java/org/elasticsearch/env/ESFileStore.java",
+      "functionStartLine": 235,
+      "functionName": "getUnallocatedSpace",
+      "diff": "@@ -1,3 +1,8 @@\n     public long getUnallocatedSpace() throws IOException {\n-        return in.getUnallocatedSpace();\n+        long result \u003d in.getUnallocatedSpace();\n+        if (result \u003c 0) {\n+            // see https://bugs.openjdk.java.net/browse/JDK-8162520:\n+            result \u003d Long.MAX_VALUE;\n+        }\n+        return result;\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": {
+      "type": "Yfilerename",
+      "commitMessage": "create core module\n",
+      "commitDate": "2015-06-05, 7:12 a.m.",
+      "commitName": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitAuthor": "Simon Willnauer",
+      "commitDateOld": "2015-06-05, 7:11 a.m.",
+      "commitNameOld": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitAuthorOld": "Simon Willnauer",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public long getUnallocatedSpace() throws IOException {\n        return in.getUnallocatedSpace();\n    }",
+      "path": "core/src/main/java/org/elasticsearch/env/ESFileStore.java",
+      "functionStartLine": 140,
+      "functionName": "getUnallocatedSpace",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/main/java/org/elasticsearch/env/ESFileStore.java",
+        "newPath": "core/src/main/java/org/elasticsearch/env/ESFileStore.java"
+      }
+    },
+    "a66cf85f37a016d30a473dd29951e05c5857f24d": {
+      "type": "Yintroduced",
+      "commitMessage": "refactor SSD/FileStore logic out of NodeEnvironment\n",
+      "commitDate": "2015-04-23, 11:28 a.m.",
+      "commitName": "a66cf85f37a016d30a473dd29951e05c5857f24d",
+      "commitAuthor": "Robert Muir",
+      "diff": "@@ -0,0 +1,3 @@\n+    public long getUnallocatedSpace() throws IOException {\n+        return in.getUnallocatedSpace();\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public long getUnallocatedSpace() throws IOException {\n        return in.getUnallocatedSpace();\n    }",
+      "path": "src/main/java/org/elasticsearch/env/ESFileStore.java",
+      "functionStartLine": 136,
+      "functionName": "getUnallocatedSpace"
+    }
+  }
+}

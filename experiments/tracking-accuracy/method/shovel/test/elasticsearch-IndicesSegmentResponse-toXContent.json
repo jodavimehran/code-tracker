@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "elasticsearch",
+  "repositoryPath": "H:\\Projects\\elastic\\elasticsearch/.git",
+  "startCommitName": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "sourceFileName": "IndicesSegmentResponse.java",
+  "functionName": "toXContent",
+  "functionId": "toXContent___builder-XContentBuilder__tree-Accountable",
+  "sourceFilePath": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+  "functionStartLine": 196,
+  "functionEndLine": 209,
+  "numCommitsSeen": 27,
+  "timeTaken": 5335,
+  "changeHistory": [
+    "4a8099c6962da1e68309e0e382d0e6198a3937c2",
+    "4bd217c94f4cea806b1ab41b359908355ac2984c",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "f7f99b8dbfe4cc10612faceec8f82e03884f0d6d"
+  ],
+  "changeHistoryShort": {
+    "4a8099c6962da1e68309e0e382d0e6198a3937c2": "Ymodifierchange",
+    "4bd217c94f4cea806b1ab41b359908355ac2984c": "Ybodychange",
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": "Yfilerename",
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": "Yfilerename",
+    "f7f99b8dbfe4cc10612faceec8f82e03884f0d6d": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "4a8099c6962da1e68309e0e382d0e6198a3937c2": {
+      "type": "Ymodifierchange",
+      "commitMessage": "Change BroadcastResponse from ToXContentFragment to ToXContentObject (#28878)\n\nWhile working on #27799, we find that it might make sense to change BroadcastResponse from ToXContentFragment to ToXContentObject, seeing that it\u0027s rather a complete XContent object and also the other Responses are normally ToXContentObject.\r\n\r\nBy doing this, we can also move the XContent build logic of BroadcastResponse\u0027s subclasses, from Rest Layer to the concrete classes themselves.\r\n\r\nRelates to #3889",
+      "commitDate": "2018-03-23, 5:53 a.m.",
+      "commitName": "4a8099c6962da1e68309e0e382d0e6198a3937c2",
+      "commitAuthor": "Yu",
+      "commitDateOld": "2018-03-20, 1:39 p.m.",
+      "commitNameOld": "4bd217c94f4cea806b1ab41b359908355ac2984c",
+      "commitAuthorOld": "Lee Hinman",
+      "daysBetweenCommits": 2.68,
+      "commitsBetweenForRepo": 25,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    private static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n        builder.startObject();\n        builder.field(Fields.DESCRIPTION, tree.toString());\n        builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n        if (children.isEmpty() \u003d\u003d false) {\n            builder.startArray(Fields.CHILDREN);\n            for (Accountable child : children) {\n                toXContent(builder, child);\n            }\n            builder.endArray();\n        }\n        builder.endObject();\n    }",
+      "path": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "functionStartLine": 196,
+      "functionName": "toXContent",
+      "diff": "@@ -1,14 +1,14 @@\n-    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n+    private static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n         builder.startObject();\n         builder.field(Fields.DESCRIPTION, tree.toString());\n         builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n         Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n         if (children.isEmpty() \u003d\u003d false) {\n             builder.startArray(Fields.CHILDREN);\n             for (Accountable child : children) {\n                 toXContent(builder, child);\n             }\n             builder.endArray();\n         }\n         builder.endObject();\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {
+        "oldValue": "[static]",
+        "newValue": "[private, static]"
+      }
+    },
+    "4bd217c94f4cea806b1ab41b359908355ac2984c": {
+      "type": "Ybodychange",
+      "commitMessage": "Add pluggable XContentBuilder writers and human readable writers (#29120)\n\n* Add pluggable XContentBuilder writers and human readable writers\r\n\r\nThis adds the ability to use SPI to plug in writers for XContentBuilder. By\r\nimplementing the XContentBuilderProvider class we can allow Elasticsearch to\r\nplug in different ways to encode types to JSON.\r\n\r\nImportant caveat for this, we should always try to have the class implement\r\n`ToXContentFragment` first, however, in the case of classes from our\r\ndependencies (think Joda classes or Lucene classes) we need a way to specify\r\nwriters for these classes.\r\n\r\nThis also makes the human-readable field writers generic and pluggable, so that\r\nwe no longer need to tie XContentBuilder to things like `TimeValue` and\r\n`ByteSizeValue`. Contained as part of this moves all the TimeValue human\r\nreadable fields to the new `humanReadableField` method. A future commit will\r\nmove the `ByteSizeValue` calls over to this method.\r\n\r\nRelates to #28504\r\n",
+      "commitDate": "2018-03-20, 1:39 p.m.",
+      "commitName": "4bd217c94f4cea806b1ab41b359908355ac2984c",
+      "commitAuthor": "Lee Hinman",
+      "commitDateOld": "2018-01-22, 9:51 a.m.",
+      "commitNameOld": "0c83ee2a5dc13cbf9069f02b007b89459373b477",
+      "commitAuthorOld": "Luca Cavanna",
+      "daysBetweenCommits": 57.12,
+      "commitsBetweenForRepo": 531,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n        builder.startObject();\n        builder.field(Fields.DESCRIPTION, tree.toString());\n        builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n        if (children.isEmpty() \u003d\u003d false) {\n            builder.startArray(Fields.CHILDREN);\n            for (Accountable child : children) {\n                toXContent(builder, child);\n            }\n            builder.endArray();\n        }\n        builder.endObject();\n    }",
+      "path": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "functionStartLine": 198,
+      "functionName": "toXContent",
+      "diff": "@@ -1,14 +1,14 @@\n     static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n         builder.startObject();\n         builder.field(Fields.DESCRIPTION, tree.toString());\n-        builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n+        builder.humanReadableField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n         Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n         if (children.isEmpty() \u003d\u003d false) {\n             builder.startArray(Fields.CHILDREN);\n             for (Accountable child : children) {\n                 toXContent(builder, child);\n             }\n             builder.endArray();\n         }\n         builder.endObject();\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "99f88f15c5febbca2d13b5b5fda27b844153bf1a": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename core module to server (#28180)\n\nThis is related to #27933. It renames the core module to server. This is\r\nthe first step towards introducing an elasticsearch-core jar.",
+      "commitDate": "2018-01-11, 1:30 p.m.",
+      "commitName": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitAuthor": "Tim Brooks",
+      "commitDateOld": "2018-01-11, 11:31 a.m.",
+      "commitNameOld": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitAuthorOld": "Martijn van Groningen",
+      "daysBetweenCommits": 0.08,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n        builder.startObject();\n        builder.field(Fields.DESCRIPTION, tree.toString());\n        builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n        if (children.isEmpty() \u003d\u003d false) {\n            builder.startArray(Fields.CHILDREN);\n            for (Accountable child : children) {\n                toXContent(builder, child);\n            }\n            builder.endArray();\n        }\n        builder.endObject();\n    }",
+      "path": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "functionStartLine": 197,
+      "functionName": "toXContent",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+        "newPath": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java"
+      }
+    },
+    "15a62448343fd24f8e63f43b1e4b16f50005e4a5": {
+      "type": "Yfilerename",
+      "commitMessage": "create core module\n",
+      "commitDate": "2015-06-05, 7:12 a.m.",
+      "commitName": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitAuthor": "Simon Willnauer",
+      "commitDateOld": "2015-06-05, 7:11 a.m.",
+      "commitNameOld": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitAuthorOld": "Simon Willnauer",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n        builder.startObject();\n        builder.field(Fields.DESCRIPTION, tree.toString());\n        builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n        if (children.isEmpty() \u003d\u003d false) {\n            builder.startArray(Fields.CHILDREN);\n            for (Accountable child : children) {\n                toXContent(builder, child);\n            }\n            builder.endArray();\n        }\n        builder.endObject();\n    }",
+      "path": "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "functionStartLine": 169,
+      "functionName": "toXContent",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+        "newPath": "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java"
+      }
+    },
+    "f7f99b8dbfe4cc10612faceec8f82e03884f0d6d": {
+      "type": "Yintroduced",
+      "commitMessage": "Stats: Added verbose option to segments api, with full ram tree as first\nadditional element per segment.\n\nThis commit adds a verbose flag to the _segments api.  Currently the\nonly additional information returned when set to true is the full\nram tree from lucene for each segment.\n",
+      "commitDate": "2015-01-06, 1:04 p.m.",
+      "commitName": "f7f99b8dbfe4cc10612faceec8f82e03884f0d6d",
+      "commitAuthor": "Ryan Ernst",
+      "diff": "@@ -0,0 +1,14 @@\n+    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n+        builder.startObject();\n+        builder.field(Fields.DESCRIPTION, tree.toString());\n+        builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n+        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n+        if (children.isEmpty() \u003d\u003d false) {\n+            builder.startArray(Fields.CHILDREN);\n+            for (Accountable child : children) {\n+                toXContent(builder, child);\n+            }\n+            builder.endArray();\n+        }\n+        builder.endObject();\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    static void toXContent(XContentBuilder builder, Accountable tree) throws IOException {\n        builder.startObject();\n        builder.field(Fields.DESCRIPTION, tree.toString());\n        builder.byteSizeField(Fields.SIZE_IN_BYTES, Fields.SIZE, new ByteSizeValue(tree.ramBytesUsed()));\n        Collection\u003cAccountable\u003e children \u003d tree.getChildResources();\n        if (children.isEmpty() \u003d\u003d false) {\n            builder.startArray(Fields.CHILDREN);\n            for (Accountable child : children) {\n                toXContent(builder, child);\n            }\n            builder.endArray();\n        }\n        builder.endObject();\n    }",
+      "path": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "functionStartLine": 170,
+      "functionName": "toXContent"
+    }
+  }
+}

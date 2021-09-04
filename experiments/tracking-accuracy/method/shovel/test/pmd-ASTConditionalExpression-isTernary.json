@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "pmd",
+  "repositoryPath": "H:\\Projects\\pmd\\pmd/.git",
+  "startCommitName": "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "sourceFileName": "ASTConditionalExpression.java",
+  "functionName": "isTernary",
+  "functionId": "isTernary",
+  "sourceFilePath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+  "functionStartLine": 53,
+  "functionEndLine": 55,
+  "numCommitsSeen": 20,
+  "timeTaken": 2169,
+  "changeHistory": [
+    "07516ee8ac8e698a6078a3f6025c0e9046d92e0c",
+    "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "ea75c3016bf406fb43ccf50541249205de0c2b20",
+    "6857df0422e85f0bdb308fc3855ef7b6d8dad7a2"
+  ],
+  "changeHistoryShort": {
+    "07516ee8ac8e698a6078a3f6025c0e9046d92e0c": "Ybodychange",
+    "ad88b4784d78bf1698fac72cad3825144caf6863": "Yfilerename",
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": "Yfilerename",
+    "ea75c3016bf406fb43ccf50541249205de0c2b20": "Yfilerename",
+    "6857df0422e85f0bdb308fc3855ef7b6d8dad7a2": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "07516ee8ac8e698a6078a3f6025c0e9046d92e0c": {
+      "type": "Ybodychange",
+      "commitMessage": "Deprecate isTernary on ConditionalExpression\n",
+      "commitDate": "2018-07-02, 8:13 p.m.",
+      "commitName": "07516ee8ac8e698a6078a3f6025c0e9046d92e0c",
+      "commitAuthor": "Clément Fournier",
+      "commitDateOld": "2018-06-26, 6:21 a.m.",
+      "commitNameOld": "80e27d049abfaabb52596975e6189e9f1ff4cb0a",
+      "commitAuthorOld": "Clément Fournier",
+      "daysBetweenCommits": 6.58,
+      "commitsBetweenForRepo": 6,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public boolean isTernary() {\n        return true;\n    }",
+      "path": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+      "functionStartLine": 49,
+      "functionName": "isTernary",
+      "diff": "@@ -1,3 +1,3 @@\n     public boolean isTernary() {\n-        return this.isTernary;\n+        return true;\n     }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "ad88b4784d78bf1698fac72cad3825144caf6863": {
+      "type": "Yfilerename",
+      "commitMessage": "Move java into own sub-module pmd-java\n",
+      "commitDate": "2014-10-04, 11:36 a.m.",
+      "commitName": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "commitAuthor": "Andreas Dangel",
+      "commitDateOld": "2014-10-04, 10:59 a.m.",
+      "commitNameOld": "fa950a82960993c7a7d70e276553b85174eec8b2",
+      "commitAuthorOld": "Andreas Dangel",
+      "daysBetweenCommits": 0.03,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public boolean isTernary() {\n        return this.isTernary;\n    }",
+      "path": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+      "functionStartLine": 23,
+      "functionName": "isTernary",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+        "newPath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java"
+      }
+    },
+    "75daf38ed303bcdbfe1034fd3a070a4306402c2d": {
+      "type": "Yfilerename",
+      "commitMessage": "pmd: Move all java sources to src/main/java, adapt pom.xml, test and other files accordingly\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@7476 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2011-11-21, 3:45 p.m.",
+      "commitName": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "commitAuthor": "Romain Pelisse",
+      "commitDateOld": "2011-11-21, 1:10 p.m.",
+      "commitNameOld": "821f452f692c1497e2849302b5d9417c90edc054",
+      "commitAuthorOld": "Brian Remedios",
+      "daysBetweenCommits": 0.11,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public boolean isTernary() {\n        return this.isTernary;\n    }",
+      "path": "pmd/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+      "functionStartLine": 20,
+      "functionName": "isTernary",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+        "newPath": "pmd/src/main/java/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java"
+      }
+    },
+    "ea75c3016bf406fb43ccf50541249205de0c2b20": {
+      "type": "Yfilerename",
+      "commitMessage": "First pass at package refactoring.  All AST code refactored into the pmd.lang hierarchy.  Sourcetype and Parser code also refactored.  The Rule implementations are not yet done.  Still a fair bit to do with some of the other Rule support packages, but this is the basic idea.\n\nAlso, replaced the tagging CompilationUnit interface with the RootNode interface, and where possible changed existing usages of CompilationUnit to be the new common Node interface, which is actually useful.\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@5955 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2008-04-04, 3:35 a.m.",
+      "commitName": "ea75c3016bf406fb43ccf50541249205de0c2b20",
+      "commitAuthor": "Ryan Gustafson",
+      "commitDateOld": "2008-04-03, 11:51 p.m.",
+      "commitNameOld": "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+      "commitAuthorOld": "Ryan Gustafson",
+      "daysBetweenCommits": 0.16,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "    public boolean isTernary() {\n        return this.isTernary;\n    }",
+      "path": "pmd/src/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java",
+      "functionStartLine": 20,
+      "functionName": "isTernary",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "pmd/src/net/sourceforge/pmd/ast/ASTConditionalExpression.java",
+        "newPath": "pmd/src/net/sourceforge/pmd/lang/java/ast/ASTConditionalExpression.java"
+      }
+    },
+    "6857df0422e85f0bdb308fc3855ef7b6d8dad7a2": {
+      "type": "Yintroduced",
+      "commitMessage": "Modified NullAssignmentRule to catch null assignments in ternary expressions; thx to Tom Parker for the heads up\n\n\ngit-svn-id: https://pmd.svn.sourceforge.net/svnroot/pmd/trunk@3530 51baf565-9d33-0410-a72c-fc3788e3496d\n",
+      "commitDate": "2005-06-01, 9:21 a.m.",
+      "commitName": "6857df0422e85f0bdb308fc3855ef7b6d8dad7a2",
+      "commitAuthor": "Tom Copeland",
+      "diff": "@@ -0,0 +1,3 @@\n+    public boolean isTernary() {\n+        return this.isTernary;\n+    }\n\\ No newline at end of file\n",
+      "actualSource": "    public boolean isTernary() {\n        return this.isTernary;\n    }",
+      "path": "pmd/src/net/sourceforge/pmd/ast/ASTConditionalExpression.java",
+      "functionStartLine": 22,
+      "functionName": "isTernary"
+    }
+  }
+}

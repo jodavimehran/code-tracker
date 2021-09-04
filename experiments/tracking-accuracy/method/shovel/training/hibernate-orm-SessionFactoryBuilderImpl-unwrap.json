@@ -1,0 +1,34 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "hibernate-orm",
+  "repositoryPath": "H:\\Projects\\hibernate\\hibernate-orm/.git",
+  "startCommitName": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "sourceFileName": "SessionFactoryBuilderImpl.java",
+  "functionName": "unwrap",
+  "functionId": "unwrap___type-Class__T__",
+  "sourceFilePath": "hibernate-core/src/main/java/org/hibernate/boot/internal/SessionFactoryBuilderImpl.java",
+  "functionStartLine": 460,
+  "functionEndLine": 462,
+  "numCommitsSeen": 44,
+  "timeTaken": 1104,
+  "changeHistory": [
+    "2c968538a542fd5f6c705745f235be118c07370a"
+  ],
+  "changeHistoryShort": {
+    "2c968538a542fd5f6c705745f235be118c07370a": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "2c968538a542fd5f6c705745f235be118c07370a": {
+      "type": "Yintroduced",
+      "commitMessage": "HHH-9728 - Audit Settings to decide what should become a SessionFactoryServiceRegistry service\n",
+      "commitDate": "2015-04-16, 1:59 a.m.",
+      "commitName": "2c968538a542fd5f6c705745f235be118c07370a",
+      "commitAuthor": "Steve Ebersole",
+      "diff": "@@ -0,0 +1,3 @@\n+\tpublic \u003cT extends SessionFactoryBuilder\u003e T unwrap(Class\u003cT\u003e type) {\n+\t\treturn (T) this;\n+\t}\n\\ No newline at end of file\n",
+      "actualSource": "\tpublic \u003cT extends SessionFactoryBuilder\u003e T unwrap(Class\u003cT\u003e type) {\n\t\treturn (T) this;\n\t}",
+      "path": "hibernate-core/src/main/java/org/hibernate/boot/internal/SessionFactoryBuilderImpl.java",
+      "functionStartLine": 436,
+      "functionName": "unwrap"
+    }
+  }
+}

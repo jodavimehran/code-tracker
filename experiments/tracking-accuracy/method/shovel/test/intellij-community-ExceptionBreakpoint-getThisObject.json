@@ -1,0 +1,127 @@
+{
+  "origin": "codeshovel",
+  "repositoryName": "intellij-community",
+  "repositoryPath": "H:\\Projects\\JetBrains\\intellij-community/.git",
+  "startCommitName": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "sourceFileName": "ExceptionBreakpoint.java",
+  "functionName": "getThisObject",
+  "functionId": "getThisObject___context-SuspendContextImpl__event-LocatableEvent",
+  "sourceFilePath": "java/debugger/impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+  "functionStartLine": 140,
+  "functionEndLine": 145,
+  "numCommitsSeen": 44,
+  "timeTaken": 9658,
+  "changeHistory": [
+    "920d5b4fbadcb5c95d03e879885d158b483bd0a8",
+    "786fa6b666889eb866b86ada8dc674d53a553aa4",
+    "1b12b4f6ab85d0409467c49dbc54918796edf0b8",
+    "ed963063110c01a599ee9840c4ad9eb8a7949988",
+    "7460e5adae69c7b17c951f1198a6b6900721a1ee"
+  ],
+  "changeHistoryShort": {
+    "920d5b4fbadcb5c95d03e879885d158b483bd0a8": "Ybodychange",
+    "786fa6b666889eb866b86ada8dc674d53a553aa4": "Yfilerename",
+    "1b12b4f6ab85d0409467c49dbc54918796edf0b8": "Yfilerename",
+    "ed963063110c01a599ee9840c4ad9eb8a7949988": "Yfilerename",
+    "7460e5adae69c7b17c951f1198a6b6900721a1ee": "Yintroduced"
+  },
+  "changeHistoryDetails": {
+    "920d5b4fbadcb5c95d03e879885d158b483bd0a8": {
+      "type": "Ybodychange",
+      "commitMessage": "removed default file header, because it adds no information but subtracts attention and space\n",
+      "commitDate": "2017-05-11, 6:39 a.m.",
+      "commitName": "920d5b4fbadcb5c95d03e879885d158b483bd0a8",
+      "commitAuthor": "Alexey Kudravtsev",
+      "commitDateOld": "2017-04-21, 6:54 a.m.",
+      "commitNameOld": "c05c3f1bea878bb3691e4ce3c1ae4aa5b047d1d6",
+      "commitAuthorOld": "Egor.Ushakov",
+      "daysBetweenCommits": 19.99,
+      "commitsBetweenForRepo": 1161,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n    if(event instanceof ExceptionEvent) {\n      return ((ExceptionEvent) event).exception();\n    }\n    return super.getThisObject(context, event);    \n  }",
+      "path": "java/debugger/impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+      "functionStartLine": 154,
+      "functionName": "getThisObject",
+      "diff": "@@ -1,6 +1,6 @@\n   protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n     if(event instanceof ExceptionEvent) {\n       return ((ExceptionEvent) event).exception();\n     }\n-    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n+    return super.getThisObject(context, event);    \n   }\n\\ No newline at end of file\n",
+      "extendedDetails": {}
+    },
+    "786fa6b666889eb866b86ada8dc674d53a553aa4": {
+      "type": "Yfilerename",
+      "commitMessage": "debugger-impl\n",
+      "commitDate": "2009-08-30, 12:39 p.m.",
+      "commitName": "786fa6b666889eb866b86ada8dc674d53a553aa4",
+      "commitAuthor": "Dmitry Jemerov",
+      "commitDateOld": "2009-08-29, 9:11 a.m.",
+      "commitNameOld": "abec9f6b355cfab53064655ba7d1fd35823f345b",
+      "commitAuthorOld": "Dmitry Jemerov",
+      "daysBetweenCommits": 1.14,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n    if(event instanceof ExceptionEvent) {\n      return ((ExceptionEvent) event).exception();\n    }\n    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n  }",
+      "path": "java/debugger/impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+      "functionStartLine": 145,
+      "functionName": "getThisObject",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "debugger/impl/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+        "newPath": "java/debugger/impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java"
+      }
+    },
+    "1b12b4f6ab85d0409467c49dbc54918796edf0b8": {
+      "type": "Yfilerename",
+      "commitMessage": "Rename/Move: //IDEA/debugger-impl/src/com/intellij/debugger/actions/AddToWatchAction.java To: //IDEA/debugger/impl/com/intellij/debugger/actions/AddToWatchAction.java\n",
+      "commitDate": "2005-10-17, 10:55 a.m.",
+      "commitName": "1b12b4f6ab85d0409467c49dbc54918796edf0b8",
+      "commitAuthor": "no_reply@jetbrains.com",
+      "commitDateOld": "2005-10-17, 10:55 a.m.",
+      "commitNameOld": "f183ad06c732befeaa76de1cbaeb763337084e3e",
+      "commitAuthorOld": "no_reply@jetbrains.com",
+      "daysBetweenCommits": 0.0,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n    if(event instanceof ExceptionEvent) {\n      return ((ExceptionEvent) event).exception();\n    }\n    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n  }",
+      "path": "debugger/impl/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+      "functionStartLine": 147,
+      "functionName": "getThisObject",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "debugger-impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+        "newPath": "debugger/impl/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java"
+      }
+    },
+    "ed963063110c01a599ee9840c4ad9eb8a7949988": {
+      "type": "Yfilerename",
+      "commitMessage": "debugger extraction\n",
+      "commitDate": "2005-10-17, 6:28 a.m.",
+      "commitName": "ed963063110c01a599ee9840c4ad9eb8a7949988",
+      "commitAuthor": "no_reply@jetbrains.com",
+      "commitDateOld": "2005-10-17, 5:25 a.m.",
+      "commitNameOld": "637afa62e37f2ff15acf2f0129aa7eae57024506",
+      "commitAuthorOld": "no_reply@jetbrains.com",
+      "daysBetweenCommits": 0.04,
+      "commitsBetweenForRepo": 1,
+      "commitsBetweenForFile": 1,
+      "actualSource": "  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n    if(event instanceof ExceptionEvent) {\n      return ((ExceptionEvent) event).exception();\n    }\n    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n  }",
+      "path": "debugger-impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+      "functionStartLine": 147,
+      "functionName": "getThisObject",
+      "diff": "",
+      "extendedDetails": {
+        "oldPath": "source/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+        "newPath": "debugger-impl/src/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java"
+      }
+    },
+    "7460e5adae69c7b17c951f1198a6b6900721a1ee": {
+      "type": "Yintroduced",
+      "commitMessage": "initial\n",
+      "commitDate": "2005-01-13, 3:44 p.m.",
+      "commitName": "7460e5adae69c7b17c951f1198a6b6900721a1ee",
+      "commitAuthor": "Maxim Shafirov",
+      "diff": "@@ -0,0 +1,6 @@\n+  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n+    if(event instanceof ExceptionEvent) {\n+      return ((ExceptionEvent) event).exception();\n+    }\n+    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n+  }\n\\ No newline at end of file\n",
+      "actualSource": "  protected ObjectReference getThisObject(SuspendContextImpl context, LocatableEvent event) throws EvaluateException {\n    if(event instanceof ExceptionEvent) {\n      return ((ExceptionEvent) event).exception();\n    }\n    return super.getThisObject(context, event);    //To change body of overriden methods use Options | File Templates.\n  }",
+      "path": "source/com/intellij/debugger/ui/breakpoints/ExceptionBreakpoint.java",
+      "functionStartLine": 120,
+      "functionName": "getThisObject"
+    }
+  }
+}
