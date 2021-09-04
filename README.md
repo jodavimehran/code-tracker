@@ -7,7 +7,7 @@ This project aims to introduce Code Tracker, a refactoring-aware tool that can g
   * [How to Build](#how-to-build)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
-  * 
+  * [How to Track Variables](#how-to-track-variables)
 
 # How to Build
 To build this project you need to have Gradle and Maven.
