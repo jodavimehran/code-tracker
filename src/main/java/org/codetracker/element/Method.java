@@ -1,12 +1,12 @@
-package org.refactoringrefiner.element;
+package org.codetracker.element;
 
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLParameter;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
-import org.refactoringrefiner.api.Version;
-import org.refactoringrefiner.util.Util;
+import org.codetracker.api.Version;
+import org.codetracker.util.Util;
 
 import java.util.HashSet;
 import java.util.Objects;
@@ -118,75 +118,4 @@ public class Method extends BaseCodeElement {
 
 
     }
-
-//    /**
-//     *
-//     */
-//    public static class MethodElementDiff extends BaseClassMemberElementDiff<Method> {
-//
-//        public MethodElementDiff(Method leftSide, Method rightSide) {
-//            super(leftSide, rightSide);
-//        }
-//
-//
-//        protected Refactoring getRenameRefactoring() {
-//            return new RenameOperationRefactoring(this.leftSide.info, this.rightSide.info);
-//        }
-//
-//        protected Refactoring getMoveRefactoring() {
-//            return getRefactoring();
-//        }
-//
-//        protected Refactoring getMoveAndRenameRefactoring() {
-//            return getRefactoring();
-//        }
-//
-//        protected Set<Refactoring> getOtherRefactorings() {
-//            return new UMLOperationDiff(this.leftSide.info, this.rightSide.info).getRefactorings();
-//        }
-//
-//        private Refactoring getRefactoring() {
-//            if (isSameType(rightSide.info.getClassName(), leftSide.info.getSuperclass()))
-//                return new PullUpOperationRefactoring(leftSide.info, rightSide.info);
-//
-//            if (isSameType(leftSide.info.getClassName(), rightSide.info.getSuperclass()))
-//                return new PushDownOperationRefactoring(leftSide.info, rightSide.info);
-//
-//            return new MoveOperationRefactoring(this.leftSide.info, this.rightSide.info);
-//        }
-//
-//
-//    }
-//
-//    public static class ExtractRefactoringBuilder {
-//        private final Method extractedOperation;
-//        private final Method sourceOperationBeforeExtraction;
-//        private final Method sourceOperationAfterExtraction;
-//
-//        public ExtractRefactoringBuilder(Method extractedOperation, Method sourceOperationBeforeExtraction, Method sourceOperationAfterExtraction) {
-//            this.extractedOperation = extractedOperation;
-//            this.sourceOperationBeforeExtraction = sourceOperationBeforeExtraction;
-//            this.sourceOperationAfterExtraction = sourceOperationAfterExtraction;
-//        }
-//
-//        public Refactoring getRefactoring() {
-//            return new ExtractOperationRefactoring(null, this.extractedOperation.info, this.sourceOperationBeforeExtraction.info, this.sourceOperationAfterExtraction.info, new ArrayList<>());
-//        }
-//    }
-//
-//    public static class InlineRefactoringBuilder {
-//        private final Method inlinedOperation;
-//        private final Method targetOperationBeforeInline;
-//        private final Method targetOperationAfterInline;
-//
-//        public InlineRefactoringBuilder(Method inlinedOperation, Method targetOperationBeforeInline, Method targetOperationAfterInline) {
-//            this.inlinedOperation = inlinedOperation;
-//            this.targetOperationBeforeInline = targetOperationBeforeInline;
-//            this.targetOperationAfterInline = targetOperationAfterInline;
-//        }
-//
-//        public Refactoring getRefactoring() {
-//            return new InlineOperationRefactoring(this.inlinedOperation.info, this.targetOperationBeforeInline.info, this.targetOperationAfterInline.info);
-//        }
-//    }
 }

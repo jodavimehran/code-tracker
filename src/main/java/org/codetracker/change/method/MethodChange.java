@@ -1,6 +1,6 @@
-package org.refactoringrefiner.change.method;
+package org.codetracker.change.method;
 
-import org.refactoringrefiner.change.AbstractChange;
+import org.codetracker.change.AbstractChange;
 
 public abstract class MethodChange extends AbstractChange {
     public MethodChange(Type type) {

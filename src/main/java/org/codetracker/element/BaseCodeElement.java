@@ -1,7 +1,7 @@
-package org.refactoringrefiner.element;
+package org.codetracker.element;
 
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.api.Version;
+import org.codetracker.api.CodeElement;
+import org.codetracker.api.Version;
 
 import java.util.Objects;
 
@@ -59,10 +59,6 @@ public abstract class BaseCodeElement implements CodeElement {
         return name;
     }
 
-    public boolean equalName(BaseCodeElement baseCodeElement) {
-        return this.getName().equals(baseCodeElement.getName());
-    }
-
     public boolean equalIdentifierIgnoringVersion(BaseCodeElement codeElement) {
         return this.identifierIgnoringVersion.equals(codeElement.identifierIgnoringVersion);
     }
@@ -94,64 +90,5 @@ public abstract class BaseCodeElement implements CodeElement {
     public String getIdentifierIgnoringVersion() {
         return identifierIgnoringVersion;
     }
-
-//        /**
-//     * @param <T> Code Element
-//     */
-//    public static abstract class BaseElementDiff<T extends CodeElement> {
-//        protected final T leftSide;
-//        protected final T rightSide;
-//
-//        public BaseElementDiff(T leftSide, T rightSide) {
-//            this.leftSide = leftSide;
-//            this.rightSide = rightSide;
-//        }
-//
-//        protected boolean isSameType(String className, UMLType umlType) {
-//            if (className == null || umlType == null) {
-//                return false;
-//            }
-//            return umlType.equalClassType(UMLType.extractTypeObject(className));
-//        }
-//    }
-
-//    public static abstract class BaseClassMemberElementDiff<T extends CodeElement> extends BaseElementDiff<T> {
-//
-//        public BaseClassMemberElementDiff(T leftSide, T rightSide) {
-//            super(leftSide, rightSide);
-//        }
-//
-//        public Set<Refactoring> getRefactorings(HashMap<String, String> renamedOrMovedContainers) {
-//            Set<Refactoring> results = new HashSet<>();
-//            boolean isRenamed = !this.leftSide.getName().equals(this.rightSide.getName());
-//            boolean isMoved = !this.leftSide.getContainerName().equals(this.rightSide.getContainerName());
-//
-//            if (renamedOrMovedContainers.containsKey(this.leftSide.getContainerName())) {
-//                if (renamedOrMovedContainers.get(this.leftSide.getContainerName()).equals(this.rightSide.getContainerName())) {
-//                    isMoved = false;
-//                }
-//            }
-//
-//            if (isMoved && isRenamed) {
-//                results.add(getMoveAndRenameRefactoring());
-//            } else if (isRenamed) {
-//                results.add(getRenameRefactoring());
-//            } else if (isMoved) {
-//                results.add(getMoveRefactoring());
-//            }
-//
-//            results.addAll(getOtherRefactorings());
-//
-//            return results;
-//        }
-//
-//        protected abstract Refactoring getRenameRefactoring();
-//
-//        protected abstract Refactoring getMoveRefactoring();
-//
-//        protected abstract Refactoring getMoveAndRenameRefactoring();
-//
-//        protected abstract Set<Refactoring> getOtherRefactorings();
-//    }
 
 }

@@ -1,10 +1,10 @@
-package org.refactoringrefiner;
+package org.codetracker;
 
 import com.google.common.graph.*;
 import org.refactoringminer.api.RefactoringType;
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.api.Edge;
-import org.refactoringrefiner.api.Graph;
+import org.codetracker.api.CodeElement;
+import org.codetracker.api.Edge;
+import org.codetracker.api.Graph;
 
 import java.util.*;
 
@@ -12,7 +12,7 @@ import java.util.*;
  * @param <N> Node Type
  * @param <E> Edge Type
  */
-public class GraphImpl<N extends CodeElement, E extends Edge> implements org.refactoringrefiner.api.Graph<N, E> {
+public class GraphImpl<N extends CodeElement, E extends Edge> implements org.codetracker.api.Graph<N, E> {
     private static final List<String> CTR = Arrays.asList(RefactoringType.CHANGE_ATTRIBUTE_TYPE.getDisplayName(),
             RefactoringType.CHANGE_PARAMETER_TYPE.getDisplayName(), RefactoringType.CHANGE_RETURN_TYPE.getDisplayName(), RefactoringType.CHANGE_VARIABLE_TYPE.getDisplayName());
 

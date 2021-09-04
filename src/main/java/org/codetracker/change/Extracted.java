@@ -1,8 +1,7 @@
-package org.refactoringrefiner.change;
+package org.codetracker.change;
 
 import org.refactoringminer.api.Refactoring;
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.change.Added;
+import org.codetracker.api.CodeElement;
 
 public class Extracted extends Added {
 

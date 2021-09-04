@@ -1,7 +1,6 @@
-package org.refactoringrefiner.change;
+package org.codetracker.change;
 
 import org.refactoringminer.api.Refactoring;
-import org.refactoringrefiner.change.AbstractChange;
 
 public class ContainerChange extends AbstractChange {
     private final Refactoring refactoring;

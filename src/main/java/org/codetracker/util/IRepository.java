@@ -1,6 +1,6 @@
-package org.refactoringrefiner.util;
+package org.codetracker.util;
 
-import org.refactoringrefiner.VersionImpl;
+import org.codetracker.VersionImpl;
 
 public interface IRepository {
     String getParentId(String commitId);

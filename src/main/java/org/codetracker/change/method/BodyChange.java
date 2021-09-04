@@ -1,6 +1,6 @@
-package org.refactoringrefiner.change.method;
+package org.codetracker.change.method;
 
-import org.refactoringrefiner.api.Change;
+import org.codetracker.api.Change;
 
 public class BodyChange extends MethodChange {
     public BodyChange() {

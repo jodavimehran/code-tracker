@@ -1,6 +1,6 @@
-package org.refactoringrefiner.change;
+package org.codetracker.change;
 
-import org.refactoringrefiner.api.Change;
+import org.codetracker.api.Change;
 
 public abstract class AbstractChange implements Change {
     protected final Type type;

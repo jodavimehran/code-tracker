@@ -1,23 +1,21 @@
-package org.refactoringrefiner.element;
+package org.codetracker.element;
 
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
-import org.refactoringrefiner.api.Version;
-import org.refactoringrefiner.util.Util;
+import org.codetracker.api.Version;
+import org.codetracker.util.Util;
 
 import java.util.stream.Collectors;
 
 public class Variable extends BaseCodeElement {
     private final VariableDeclaration variableDeclaration;
     private final UMLOperation operation;
-    private final String identifierIgnoringVersionAndContainer;
 
     private Variable(VariableDeclaration variableDeclaration, UMLOperation operation, String identifierExcludeVersion, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.variableDeclaration = variableDeclaration;
         this.operation = operation;
-        this.identifierIgnoringVersionAndContainer = identifierExcludeVersion.substring(identifierExcludeVersion.indexOf('$'));
     }
 
     public static Variable of(VariableDeclaration variableDeclaration, UMLOperation operation, Version version) {
@@ -49,34 +47,4 @@ public class Variable extends BaseCodeElement {
         return operation;
     }
 
-    public boolean equalIdentifierIgnoringVersionAndContainer(Variable variable) {
-        return this.identifierIgnoringVersionAndContainer.equals(variable.identifierIgnoringVersionAndContainer);
-    }
-
-    //    public static class VariableElementDiff extends BaseCodeElement.BaseElementDiff<Variable> {
-//
-//        public VariableElementDiff(Variable leftSide, Variable rightSide) {
-//            super(leftSide, rightSide);
-//        }
-//
-//        public Set<Refactoring> getRefactorings() {
-//            Set<Refactoring> results = new HashSet<>();
-//
-//            boolean isTypeChanged = !this.leftSide.info.getType().equals(this.rightSide.info.getType());
-//            if (isTypeChanged) {
-//                results.add(new ChangeVariableTypeRefactoring(this.leftSide.info, this.rightSide.info, this.leftSide.method.getInfo(), this.rightSide.method.getInfo(), Collections.EMPTY_SET));
-//            }
-//
-//            boolean isRenamed = !this.leftSide.getName().equals(this.rightSide.getName());
-//            if (isRenamed) {
-//                results.add(new RenameVariableRefactoring(this.leftSide.info, this.rightSide.info, this.leftSide.method.getInfo(), this.rightSide.method.getInfo(), Collections.EMPTY_SET));
-//            }
-//
-//            if (!(isRenamed || isTypeChanged)) {
-////                results.add(new ChangeVariableScopeRefactoring(this.leftSide.info, this.rightSide.info, this.leftSide.method.getInfo(), this.rightSide.method.getInfo()));
-//            }
-//            return results;
-//        }
-//
-//    }
 }

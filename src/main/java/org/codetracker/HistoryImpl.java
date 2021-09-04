@@ -1,21 +1,21 @@
-package org.refactoringrefiner;
+package org.codetracker;
 
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.api.Edge;
-import org.refactoringrefiner.api.Graph;
-import org.refactoringrefiner.api.History;
+import org.codetracker.api.CodeElement;
+import org.codetracker.api.Edge;
+import org.codetracker.api.Graph;
+import org.codetracker.api.History;
 
-public class HistoryImpl<N extends CodeElement, E extends Edge> implements History<N, E> {
-    private final Graph<N, E> graph;
+public class HistoryImpl<N extends CodeElement> implements History<N> {
+    private final Graph<N, Edge> graph;
     private final HistoryReportImpl historyReport;
 
-    public HistoryImpl(Graph<N, E> graph, HistoryReportImpl historyReport) {
+    public HistoryImpl(Graph<N, Edge> graph, HistoryReportImpl historyReport) {
         this.graph = graph;
         this.historyReport = historyReport;
     }
 
     @Override
-    public Graph<N, E> getGraph() {
+    public Graph<N, Edge> getGraph() {
         return graph;
     }
 

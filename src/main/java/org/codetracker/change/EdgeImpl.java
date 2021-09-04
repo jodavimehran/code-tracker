@@ -1,4 +1,4 @@
-package org.codetracker.edge;
+package org.codetracker.change;
 
 import org.apache.commons.collections4.SetUtils;
 import org.codetracker.api.Change;

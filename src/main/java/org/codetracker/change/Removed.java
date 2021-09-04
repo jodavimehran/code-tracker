@@ -1,7 +1,6 @@
-package org.refactoringrefiner.change;
+package org.codetracker.change;
 
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.change.AbstractChange;
+import org.codetracker.api.CodeElement;
 
 public class Removed extends AbstractChange {
     private final CodeElement removedElement;

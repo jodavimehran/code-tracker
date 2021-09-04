@@ -1,6 +1,4 @@
-package org.refactoringrefiner.change;
-
-import org.refactoringrefiner.change.AbstractChange;
+package org.codetracker.change;
 
 public class NoChange extends AbstractChange {
     public NoChange() {

@@ -1,12 +1,11 @@
-package org.refactoringrefiner.change;
+package org.codetracker.change;
 
 import org.refactoringminer.api.Refactoring;
-import org.refactoringrefiner.api.Change;
-import org.refactoringrefiner.api.CodeElement;
-import org.refactoringrefiner.api.Edge;
-import org.refactoringrefiner.change.method.*;
-import org.refactoringrefiner.change.variable.*;
-import org.refactoringrefiner.edge.EdgeImpl;
+import org.codetracker.api.Change;
+import org.codetracker.api.CodeElement;
+import org.codetracker.api.Edge;
+import org.codetracker.change.method.*;
+import org.codetracker.change.variable.*;
 
 public final class ChangeFactory {
     private final Change.Type type;

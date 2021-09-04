@@ -1,7 +1,7 @@
-package org.refactoringrefiner.api;
+package org.codetracker.api;
 
-public interface History<N extends CodeElement, E extends Edge> {
-    Graph<N, E> getGraph();
+public interface History<N extends CodeElement> {
+    Graph<N, Edge> getGraph();
 
     HistoryReport getHistoryReport();
 

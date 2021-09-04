@@ -1,6 +1,6 @@
-package org.refactoringrefiner.change.variable;
+package org.codetracker.change.variable;
 
-import org.refactoringrefiner.change.AbstractChange;
+import org.codetracker.change.AbstractChange;
 
 public abstract class VariableChange extends AbstractChange {
     public VariableChange(Type type) {

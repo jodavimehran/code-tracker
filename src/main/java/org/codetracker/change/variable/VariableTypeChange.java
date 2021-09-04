@@ -1,4 +1,4 @@
-package org.refactoringrefiner.change.variable;
+package org.codetracker.change.variable;
 
 import org.refactoringminer.api.Refactoring;
 

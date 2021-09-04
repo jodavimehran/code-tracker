@@ -1,9 +1,9 @@
-package org.refactoringrefiner.util;
+package org.codetracker.util;
 
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLOperation;
-import org.refactoringrefiner.element.Method;
+import org.codetracker.element.Method;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

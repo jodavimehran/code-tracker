@@ -1,7 +1,7 @@
-package org.refactoringrefiner.change.method;
+package org.codetracker.change.method;
 
 import org.refactoringminer.api.Refactoring;
-import org.refactoringrefiner.api.Change;
+import org.codetracker.api.Change;
 
 public class ExceptionChange extends MethodSignatureChange {
     public ExceptionChange(Refactoring refactoring) {
