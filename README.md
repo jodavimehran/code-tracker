@@ -1,6 +1,6 @@
 <h1>Code Tracker</h1>
 
-This project aims to introduce Code Tracker, a refactoring-aware tool that can generate the commit change history for method and variable declarations in the history of a Java project with a very high accuracy.
+This project aims to introduce CodeTracker, a refactoring-aware tool that can generate the commit change history for method and variable declarations in a Java project with a very high accuracy.
 
 # Table of Contents
 
@@ -15,11 +15,9 @@ This project aims to introduce Code Tracker, a refactoring-aware tool that can g
 # How to Build
 To build this project you need to have Gradle and Maven.
 
-Download CodeTracker and Refactoring Miner from [here](https://drive.google.com/file/d/1XzrvwVXA-Agy66JoviFqpkoCJBkcSDtt/view?usp=sharing).
-
-First step is building Refactoring Miner. Just run `gradle publishToMavenLocal` in the root folder of Refactoring Miner.
-
-Second and last step is building CodeTracker. Just run `mvn install` int the root folder of CodeTracker.
+Download CodeTracker and RefactoringMiner from [here](https://drive.google.com/file/d/1XzrvwVXA-Agy66JoviFqpkoCJBkcSDtt/view?usp=sharing).
+1. **Build RefactoringMiner**: Run `gradle publishToMavenLocal` in the root folder of RefactoringMiner.
+2. **Build CodeTracker**: Run `mvn install` int the root folder of CodeTracker.
 
 # How to add as a Maven dependency
 
@@ -99,7 +97,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # Oracle
-The oracle we used to evaluate CodeTracker, which is the evolved version of [CodeShovel's oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available in the following links:
+The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available in the following links:
 * [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle)
   * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training)
   * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test)
@@ -107,7 +105,7 @@ The oracle we used to evaluate CodeTracker, which is the evolved version of [Cod
   * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/training)
   * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/test)
 
-In the oracle we fixed all inaccuracies that we found in the original oracle, for example following methods in the original oracle are erroneously matched with another method which the method is extracted from. In fact the method is newly added as a result of an extract refactoring.
+In the extended oracle we fixed all inaccuracies that we found in the original oracle. For example, the following methods in the original oracle are erroneously matched with another method which is extracted from their body. In fact, these methods are *introduced* as a result of an Extract Method refactoring.
 * Training
   * [checkstyle-CommonUtils-createPattern](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-CommonUtils-createPattern.json)
   * [checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken.json)
@@ -139,5 +137,5 @@ In the oracle we fixed all inaccuracies that we found in the original oracle, fo
   * [mockito-MatchersBinder-bindMatchers](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/mockito-MatchersBinder-bindMatchers.json)
 
 # Execution Time Experiment
-As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time chart are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
+As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
  
