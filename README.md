@@ -9,6 +9,8 @@ This project aims to introduce Code Tracker, a refactoring-aware tool that can g
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
   * [Oracle](#oracle)
+  * [Execution Time Experiment](#execution-time-experiment)
+
 
 # How to Build
 To build this project you need to have Gradle and Maven.
@@ -135,3 +137,7 @@ In the oracle we fixed all inaccuracies that we found in the original oracle, fo
   * [intellij-community-ModuleCompileScope-isUrlUnderRoot](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/intellij-community-ModuleCompileScope-isUrlUnderRoot.json)
   * [intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject.json)
   * [mockito-MatchersBinder-bindMatchers](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/mockito-MatchersBinder-bindMatchers.json)
+
+# Execution Time Experiment
+As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time chart are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
+ 
