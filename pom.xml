@@ -2,12 +2,11 @@
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.refactoringrefiner</groupId>
-    <artifactId>refactoring-refiner</artifactId>
+    <groupId>org.codetracker</groupId>
+    <artifactId>code-tracker</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>Refactoring Refiner</name>
-    <url>https://github.com/jodavimehran/refactoring-refiner</url>
+    <name>Code Tracker</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -61,58 +60,17 @@
             <version>5.4.0</version>
             <scope>test</scope>
         </dependency>
-        <!-- Hibernate 4.3.6 Final -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.0.10.Final</version>
-        </dependency>
-        <!-- Mysql Connector -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.16</version>
-        </dependency>
-        <dependency>
-            <groupId>com.vladmihalcea</groupId>
-            <artifactId>hibernate-types-52</artifactId>
-            <version>2.10.0</version>
-        </dependency>
-        <!-- API, java.xml.bind module -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
-        </dependency>
-
-        <!-- Runtime, com.sun.xml.bind module -->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
-        </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.github.aserg-ufmg</groupId>-->
-<!--            <artifactId>apidiff</artifactId>-->
-<!--            <version>2.0.1-SNAPSHOT</version>-->
-<!--        </dependency>-->
-        <dependency>
-            <groupId>com.felixgrund.codeshovel</groupId>
-            <artifactId>codeshovel</artifactId>
-            <version>1.1</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.kohsuke/github-api -->
         <dependency>
             <groupId>org.kohsuke</groupId>
             <artifactId>github-api</artifactId>
             <version>1.132</version>
         </dependency>
-
-        <!--        <dependency>-->
-<!--            <groupId>com.github.aserg-ufmg</groupId>-->
-<!--            <artifactId>refdiff-java</artifactId>-->
-<!--            <version>2.0.0</version>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>org.eclipse.jgit</groupId>
+            <artifactId>org.eclipse.jgit</artifactId>
+            <version>5.10.0.202012080955-r</version>
+        </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -180,10 +138,4 @@
             </plugin>
         </plugins>
     </build>
-    <distributionManagement>
-        <repository>
-            <id>github</id>
-            <url>https://maven.pkg.github.com/jodavimehran/refactoring-refiner</url>
-        </repository>
-    </distributionManagement>
 </project>
