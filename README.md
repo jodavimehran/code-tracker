@@ -8,6 +8,7 @@ This project aims to introduce Code Tracker, a refactoring-aware tool that can g
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
+  * [Oracle](#oracle)
 
 # How to Build
 To build this project you need to have Gradle and Maven.
@@ -94,3 +95,12 @@ In the code snippet below we demonstrate how to print all changes performed in t
         }
     }
 ```
+
+# Oracle
+The oracle we used for evaluation of CodeTracker, which is the evolved version of [CodeShovel's oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods are available in this repository.
+* [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle)
+  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training)
+  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test)
+* [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable)
+  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/training)
+  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/test)
