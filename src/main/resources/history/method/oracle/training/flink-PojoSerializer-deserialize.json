@@ -41,7 +41,8 @@
     "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
     "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
     "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
-    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)"
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
+    "comment" : "Move Source Folder flink-java to flink-core"
   }, {
     "parentCommitId" : "2dcff4c122f37ca58a485e886fec9295fef0c832",
     "commitId" : "6ba5fcdf85f802748fd47218ce8c41a617d224c9",
@@ -50,7 +51,8 @@
     "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
     "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
     "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
-    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)"
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
+    "comment" : "Modify Method Annotation @SuppressWarnings(\"unchecked\") to @SuppressWarnings({\"unchecked\",\"rawtypes\"}) in method public deserialize(source DataInputView) : T from class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
   }, {
     "parentCommitId" : "6b402f43d01495fd9a6bea1c80b2b2b50393b92d",
     "commitId" : "7407076d3990752eb5fa4072cd036efd2f656cbc",
@@ -95,6 +97,7 @@
     "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
     "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
     "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
-    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)"
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer#deserialize(DataInputView)",
+    "comment" : "new method"
   } ]
 }

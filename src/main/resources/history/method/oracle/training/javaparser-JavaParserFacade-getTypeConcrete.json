@@ -14,7 +14,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Move Source Folder java-symbol-solver-core to javaparser-symbol-solver-core"
   }, {
     "parentCommitId" : "e15d5a8aa84a34917e4ef47135dfc62e58ea7650",
     "commitId" : "198ba6cbe49832ac09ca84c6920e9be661a3b56a",
@@ -23,7 +24,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Change Return Type Type to ResolvedType in method private getTypeConcrete(node Node, solveLambdas boolean) : ResolvedType from class com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "07d522aaacf4dfeba0e94d6ac64c9b4d06b825f6",
     "commitId" : "0f40221492b47df25615a1b5909fefa6f2d6fa0e",
@@ -235,7 +237,7 @@
     "parentCommitId" : "b1da215b407e8cfc2c77182f0ab3e67e0ab16ef3",
     "commitId" : "9c53c2cbc607ea694438ade8630be0c155a33162",
     "commitTime" : 1476945549,
-    "changeType" : "container change",
+    "changeType" : "body change",
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
@@ -244,11 +246,12 @@
     "parentCommitId" : "b1da215b407e8cfc2c77182f0ab3e67e0ab16ef3",
     "commitId" : "9c53c2cbc607ea694438ade8630be0c155a33162",
     "commitTime" : 1476945549,
-    "changeType" : "body change",
+    "changeType" : "container change",
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade moved to com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "fcce831695005fd1d3c1ba173a629a3261403d1f",
     "commitId" : "6624f3653734698f477561c8407357e2395d411c",
@@ -338,7 +341,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Change Return Type TypeUsage to Type in method private getTypeConcrete(node Node, solveLambdas boolean) : Type from class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "b7b2efe2e0230b18139f0441e237b9488893de3b",
     "commitId" : "acf74024c2d341bf4009af7173c9b1b972f19c32",
@@ -446,7 +450,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade moved to me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "605f06d2742d3818a35e13ee6970faa547f62018",
     "commitId" : "ead147279ca0b84d2f479a714943b20cd689e7c7",
@@ -545,7 +550,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Move Source Folder src to java-symbol-solver-core/src"
   }, {
     "parentCommitId" : "a5d9eb5388b2547bd24deede01fe50cdf50859e0",
     "commitId" : "39477e7f9375d6a539eb0ddc69eb69d986b2a8c8",
@@ -563,7 +569,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.JavaParserFacade moved to me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade"
   }, {
     "parentCommitId" : "ae0023c1c4a2afefcc12f063dc4afe1143b9b39e",
     "commitId" : "c04083d20425a664115db6b0df3ca9632e66ecca",
@@ -824,6 +831,7 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#getTypeConcrete(Node, boolean)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#getTypeConcrete(Node, boolean)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#getTypeConcrete(Node, boolean)",
+    "comment" : "Extract Method private getTypeConcrete(node Node, solveLambdas boolean) : TypeUsage extracted from public getType(node Node, solveLambdas boolean) : TypeUsage in class me.tomassetti.symbolsolver.JavaParserFacade"
   } ]
 }

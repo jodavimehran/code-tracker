@@ -155,7 +155,7 @@
     "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
     "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
     "commitTime" : 1450247699,
-    "changeType" : "container change",
+    "changeType" : "body change",
     "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
     "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)",
     "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
@@ -164,11 +164,12 @@
     "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
     "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
     "commitTime" : 1450247699,
-    "changeType" : "body change",
+    "changeType" : "container change",
     "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
     "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)",
     "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection#connect(int, int, int, List, boolean)"
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection#connect(int, int, int, List, boolean)",
+    "comment" : "Move Class com.squareup.okhttp.internal.io.RealConnection moved to okhttp3.internal.io.RealConnection"
   }, {
     "parentCommitId" : "992dd934f061a21f8a802ed8fd8d99b75047dba8",
     "commitId" : "b63841d3a3922440c258098190371f1e17d977c1",
@@ -218,24 +219,6 @@
     "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
     "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
     "commitTime" : 1448721366,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)"
-  }, {
-    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
-    "commitTime" : 1448721366,
-    "changeType" : "method move",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)"
-  }, {
-    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
-    "commitTime" : 1448721366,
     "changeType" : "body change",
     "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
     "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
@@ -250,6 +233,26 @@
     "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
     "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
     "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)"
+  }, {
+    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
+    "commitTime" : 1448721366,
+    "changeType" : "method move",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)",
+    "comment" : "Push Down Method package connect(connectTimeout int, readTimeout int, writeTimeout int, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.Connection to public connect(connectTimeout int, readTimeout int, writeTimeout int, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.internal.io.RealConnection"
+  }, {
+    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
+    "commitTime" : 1448721366,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)",
+    "comment" : "Change Method Access Modifier package to public in method public connect(connectTimeout int, readTimeout int, writeTimeout int, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.internal.io.RealConnection"
   }, {
     "parentCommitId" : "3edddd11276a4f1218278479a1f93a99534db498",
     "commitId" : "529c4a36bb21b3fb7717c27f8a31c39c1b603e9d",
@@ -375,7 +378,8 @@
     "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
     "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request)",
     "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request)"
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request)",
+    "comment" : "Change Method Access Modifier public to package in method package connect(connectTimeout int, readTimeout int, writeTimeout int, tunnelRequest Request) : void from class com.squareup.okhttp.Connection"
   }, {
     "parentCommitId" : "452b44b08492ca01a83e80e56362d9582641ee2d",
     "commitId" : "b60875421b0f67575970b6b63582b7e5e31c4a06",
@@ -582,7 +586,8 @@
     "elementFileBefore" : "src/main/java/com/squareup/okhttp/Connection.java",
     "elementNameBefore" : "src/main/java/com.squareup.okhttp.Connection#connect(int, int, TunnelRequest)",
     "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, TunnelRequest)"
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, TunnelRequest)",
+    "comment" : "Move Source Folder src to okhttp/src"
   }, {
     "parentCommitId" : "383b49df9df36fa4c335177b0e5d6984a9fb52e1",
     "commitId" : "194290e5f3819bf91d87c5d08c152946b6aa3509",
@@ -636,7 +641,8 @@
     "elementFileBefore" : "src/main/java/libcore/net/http/HttpConnection.java",
     "elementNameBefore" : "src/main/java/libcore.net.http.HttpConnection#connect(int, int, TunnelConfig)",
     "elementFileAfter" : "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnection.java",
-    "elementNameAfter" : "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnection#connect(int, int, TunnelConfig)"
+    "elementNameAfter" : "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnection#connect(int, int, TunnelConfig)",
+    "comment" : "Move Class libcore.net.http.HttpConnection moved to com.squareup.okhttp.internal.net.http.HttpConnection"
   }, {
     "parentCommitId" : "21e9c8398867f983e8c3cf29c6382690c1e4785d",
     "commitId" : "3355d0c99bb946a6441f08fe6fd1c9881a9ea96a",
@@ -645,6 +651,7 @@
     "elementFileBefore" : "src/main/java/libcore/net/http/HttpConnection.java",
     "elementNameBefore" : "src/main/java/libcore.net.http.HttpConnection#connect(int, int, TunnelConfig)",
     "elementFileAfter" : "src/main/java/libcore/net/http/HttpConnection.java",
-    "elementNameAfter" : "src/main/java/libcore.net.http.HttpConnection#connect(int, int, TunnelConfig)"
+    "elementNameAfter" : "src/main/java/libcore.net.http.HttpConnection#connect(int, int, TunnelConfig)",
+    "comment" : "new method"
   } ]
 }

@@ -212,7 +212,8 @@
     "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
     "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discoverRoot(TestDiscoveryRequest, String)",
     "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)"
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.JUnit5Launcher renamed to org.junit.gen5.launcher.main.DefaultLauncher"
   }, {
     "parentCommitId" : "027bc980ad0a17a6130013aeec068296606bbfef",
     "commitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
@@ -221,7 +222,8 @@
     "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
     "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(TestDiscoveryRequest, String)",
     "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discoverRoot(TestDiscoveryRequest, String)"
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discoverRoot(TestDiscoveryRequest, String)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.Launcher renamed to org.junit.gen5.launcher.main.JUnit5Launcher"
   }, {
     "parentCommitId" : "df37664a0193b0ed2d46f9aeeb1cd173213bced4",
     "commitId" : "795066436d5b33a32375cd421a9241f1b1d0499d",
@@ -392,6 +394,7 @@
     "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
     "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)",
     "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)"
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)",
+    "comment" : "Extract Method private discoverRootDescriptor(specification TestPlanSpecification) : RootTestDescriptor extracted from public discover(specification TestPlanSpecification) : TestPlan in class org.junit.gen5.launcher.Launcher"
   } ]
 }

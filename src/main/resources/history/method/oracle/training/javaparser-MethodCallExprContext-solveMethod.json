@@ -14,7 +14,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
     "elementFileAfter" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)"
+    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
+    "comment" : "Move Source Folder java-symbol-solver-core to javaparser-symbol-solver-core"
   }, {
     "parentCommitId" : "c6db610f516f3748ab7863414e45ed7fbf39b7be",
     "commitId" : "1db4cd7914d4f36224a4a8944e546650d5fc5a4d",
@@ -59,7 +60,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
+    "comment" : "Change Return Type SymbolReference<MethodDeclaration> to SymbolReference<ResolvedMethodDeclaration> in method public solveMethod(name String, argumentsTypes List<ResolvedType>, staticOnly boolean, typeSolver TypeSolver) : SymbolReference<ResolvedMethodDeclaration> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
   }, {
     "parentCommitId" : "5ea0249ec0806f73f6c26d2460d343bbb2f42da0",
     "commitId" : "acdac6790f4424f8097b3aa6c888e825cac485f9",
@@ -158,7 +160,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext moved to com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
   }, {
     "parentCommitId" : "4601dfb9d1acf7f564948b7ddbb9201d62849ad7",
     "commitId" : "0d14741fef3a17451db153cfe379e398da4b4b79",
@@ -293,7 +296,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext moved to me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
   }, {
     "parentCommitId" : "f4b07b1a2deac6d1b562424ac2380b92cec77a90",
     "commitId" : "4a18b1ee8ed716d6e32e190f728f1eee57148872",
@@ -311,7 +315,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
+    "comment" : "Move Source Folder src to java-symbol-solver-core/src"
   }, {
     "parentCommitId" : "e21fca16e413a8bf31d613aa97a744d075c374dd",
     "commitId" : "40ddb5e17127d2139e4b66b980ad11004749e86a",
@@ -347,7 +352,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext moved to me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext"
   }, {
     "parentCommitId" : "22bf613d486d43114d1547e5bc623535aa2aca2a",
     "commitId" : "d393205e2ee874242b73e4fe819d1bc874587d8a",
@@ -437,6 +443,7 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)",
+    "comment" : "added with new class"
   } ]
 }

@@ -59,7 +59,8 @@
     "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
     "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)"
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+    "comment" : "Rename Parameter aFileName : String to fileName : String in method public fireErrors(fileName String, errors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
     "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
@@ -77,7 +78,8 @@
     "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
     "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)"
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+    "comment" : "Add Method Annotation @Override in method public fireErrors(aFileName String, aErrors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
     "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
@@ -86,7 +88,8 @@
     "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
     "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)"
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
   }, {
     "parentCommitId" : "5ce771ac776af4197ce832792a049e9357ca90b8",
     "commitId" : "1d614c3a7ecf8a3ede4df8a50da46e71792d0025",
@@ -95,7 +98,8 @@
     "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)",
     "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)"
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+    "comment" : "Change Parameter Type aErrors : TreeSet<LocalizedMessage> to aErrors : SortedSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "6e96026ec6d95fc5eadd3044cab91c24c73c8e0c",
     "commitId" : "e00c478dd61d9d883e41b500b780ab217582c2e7",
@@ -113,7 +117,8 @@
     "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])",
     "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)"
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)",
+    "comment" : "Change Parameter Type aErrors : LocalizedMessage[] to aErrors : TreeSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors TreeSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "f1afaf83f39b83cc3bd07a2388448b262652a76b",
     "commitId" : "e50e1fcd1c17ba1f73d11df38382907cc163a1d1",
@@ -176,7 +181,8 @@
     "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])",
     "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])"
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])",
+    "comment" : "Change Method Access Modifier protected to public in method public fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "b33ff29c69de2b8aca3b7f73315f4594bdce4c24",
     "commitId" : "82b2ba526976588d550cac698e512f8de6c1ffc6",
@@ -212,7 +218,8 @@
     "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
     "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])",
     "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])"
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])",
+    "comment" : "Change Parameter Type aErrors : LineText[] to aErrors : LocalizedMessage[] in method protected fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
   }, {
     "parentCommitId" : "2279ec2a489d1104f2741f2aa3458857d862ac34",
     "commitId" : "6970485b88600343de72af03a6bf87cf78e6cf55",

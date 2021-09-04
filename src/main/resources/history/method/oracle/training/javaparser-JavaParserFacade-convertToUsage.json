@@ -41,7 +41,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Move Source Folder java-symbol-solver-core to javaparser-symbol-solver-core"
   }, {
     "parentCommitId" : "1ce778adbd65164443df6ed3a9838b0b43df3715",
     "commitId" : "f63811a47591d89b25a1de78686bdc6dfcaf42b9",
@@ -95,7 +96,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Change Method Access Modifier public to protected in method protected convertToUsage(type Type, context Context) : Type from class com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "07d522aaacf4dfeba0e94d6ac64c9b4d06b825f6",
     "commitId" : "0f40221492b47df25615a1b5909fefa6f2d6fa0e",
@@ -104,7 +106,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Change Method Access Modifier private to public in method public convertToUsage(type Type, context Context) : Type from class com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "3c93fac674a0b1feadff3b17399ffbee70e854b9",
     "commitId" : "33d37d1089463ba9af543996a05cac5955c46251",
@@ -230,7 +233,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade moved to com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "03e407957d600a18ef0a4a83224c17d155ef8645",
     "commitId" : "4601dfb9d1acf7f564948b7ddbb9201d62849ad7",
@@ -293,16 +297,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
-  }, {
-    "parentCommitId" : "b75d0c51157475833e5364ec6df88b2b6fe0db79",
-    "commitId" : "82eb44707b620803d424188a1eb8708fcaf093cb",
-    "commitTime" : 1476389491,
-    "changeType" : "return type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Body Change"
   }, {
     "parentCommitId" : "b75d0c51157475833e5364ec6df88b2b6fe0db79",
     "commitId" : "82eb44707b620803d424188a1eb8708fcaf093cb",
@@ -311,7 +307,18 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Change Parameter Type type : Type to type : com.github.javaparser.ast.type.Type in method public convertToUsage(type com.github.javaparser.ast.type.Type, context Context) : Type from class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
+  }, {
+    "parentCommitId" : "b75d0c51157475833e5364ec6df88b2b6fe0db79",
+    "commitId" : "82eb44707b620803d424188a1eb8708fcaf093cb",
+    "commitTime" : 1476389491,
+    "changeType" : "return type change",
+    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Change Return Type TypeUsage to Type in method public convertToUsage(type Type, context Context) : Type from class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "e581ddb297f5a1da9790adaeadbb6d0f43c8432f",
     "commitId" : "14c9305d49885a12acdb7c09d2e35ad29b5403cf",
@@ -338,7 +345,8 @@
     "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
     "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade moved to me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
   }, {
     "parentCommitId" : "f4b07b1a2deac6d1b562424ac2380b92cec77a90",
     "commitId" : "4a18b1ee8ed716d6e32e190f728f1eee57148872",
@@ -356,7 +364,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Move Source Folder src to java-symbol-solver-core/src"
   }, {
     "parentCommitId" : "fb388c36c0045c50744cf215521e5c280036aa70",
     "commitId" : "03ec309bba14eaf50a32b05353fa9711b831de7f",
@@ -374,7 +383,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.JavaParserFacade moved to me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade"
   }, {
     "parentCommitId" : "882960307830e3d736cb9bda78fc0421988a5469",
     "commitId" : "1613b8d9cc00da012539ea3db05cdb0cc8153358",
@@ -500,7 +510,8 @@
     "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
     "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#convertToUsage(Type, Context)",
     "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#convertToUsage(Type, Context)"
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade#convertToUsage(Type, Context)",
+    "comment" : "Change Method Access Modifier private to public in method public convertToUsage(type Type, context Context) : TypeUsage from class me.tomassetti.symbolsolver.JavaParserFacade"
   }, {
     "parentCommitId" : "4d05d549c2b858fc83777763e92e537909faa513",
     "commitId" : "2568d9ebe91ceb0a13c98b16f99593cd22084efa",
