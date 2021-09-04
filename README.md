@@ -15,7 +15,7 @@ This project aims to introduce Code Tracker, a refactoring-aware tool that can g
 # How to Build
 To build this project you need to have Gradle and Maven.
 
-Download CodeTracker and Refactoring Miner from [here](#).
+Download CodeTracker and Refactoring Miner from [here](https://drive.google.com/file/d/1b7Ir9DqBNli1uhKApcuRmO4JEIRalh7X/view?usp=sharing).
 
 First step is building Refactoring Miner. Just run `gradle publishToMavenLocal` in the root folder of Refactoring Miner.
 
