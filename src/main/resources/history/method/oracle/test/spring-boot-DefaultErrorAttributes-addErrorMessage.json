@@ -104,7 +104,8 @@
     "elementFileBefore" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
     "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)",
     "elementFileAfter" : "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
-    "elementNameAfter" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)"
+    "elementNameAfter" : "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
+    "comment" : "Move Class org.springframework.boot.actuate.web.BasicErrorController moved to org.springframework.boot.autoconfigure.web.BasicErrorController"
   }, {
     "parentCommitId" : "4474b104b62e1e82cedb6c38581ceb3565165b32",
     "commitId" : "27580e726fa907c57590a0935673d1d7c620c57a",
@@ -113,6 +114,7 @@
     "elementFileBefore" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
     "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)",
     "elementFileAfter" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)"
+    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)",
+    "comment" : "Extract Method protected addMessage(map Map<String,Object>, error Throwable) : void extracted from public extract(attributes RequestAttributes, trace boolean, log boolean) : Map<String,Object> in class org.springframework.boot.actuate.web.BasicErrorController"
   } ]
 }
