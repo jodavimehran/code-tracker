@@ -97,10 +97,41 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # Oracle
-The oracle we used for evaluation of CodeTracker, which is the evolved version of [CodeShovel's oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods are available in this repository.
+The oracle we used to evaluate CodeTracker, which is the evolved version of [CodeShovel's oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available in the following links:
 * [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle)
   * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training)
   * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test)
 * [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable)
   * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/training)
   * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/test)
+
+In the oracle we fixed all inaccuracies that we found in the original oracle, for example following methods in the original oracle are erroneously matched with another method which the method is extracted from. In fact the method is newly added as a result of an extract refactoring.
+* Training
+  * [checkstyle-CommonUtils-createPattern](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-CommonUtils-createPattern.json)
+  * [checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken.json)
+  * [checkstyle-WhitespaceAroundCheck-isNotRelevantSituation](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-WhitespaceAroundCheck-isNotRelevantSituation.json)
+  * [commons-lang-EqualsBuilder-reflectionAppend](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/commons-lang-EqualsBuilder-reflectionAppend.json)
+  * [commons-lang-RandomStringUtils-random](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/commons-lang-RandomStringUtils-random.json)
+  * [commons-lang-NumberUtils-isCreatable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/commons-lang-NumberUtils-isCreatable.json)
+  * [flink-FileSystem-getUnguardedFileSystem](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/flink-FileSystem-getUnguardedFileSystem.json)
+  * [flink-RemoteStreamEnvironment-executeRemotely](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/flink-RemoteStreamEnvironment-executeRemotely.json)
+  * [hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter.json)
+  * [javaparser-MethodResolutionLogic-isApplicable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/javaparser-MethodResolutionLogic-isApplicable.json)
+  * [javaparser-Difference-applyRemovedDiffElement](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/javaparser-Difference-applyRemovedDiffElement.json)
+  * [javaparser-JavaParserFacade-getTypeConcrete](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/javaparser-JavaParserFacade-getTypeConcrete.json)
+  * [jgit-IndexDiff-diff](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/jgit-IndexDiff-diff.json)
+  * [jgit-UploadPack-sendPack](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/jgit-UploadPack-sendPack.json)
+  * [junit4-ParentRunner-applyValidators](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/junit4-ParentRunner-applyValidators.json)
+  * [junit5-TestMethodTestDescriptor-invokeTestMethod](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/junit5-TestMethodTestDescriptor-invokeTestMethod.json)
+  * [junit5-DefaultLauncher-discoverRoot](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/junit5-DefaultLauncher-discoverRoot.json)
+  * [okhttp-Http2Connection-newStream](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/okhttp-Http2Connection-newStream.json)
+* Test
+  * []()
+  * []()
+  * []()
+  * []()
+  * []()
+  * []()
+  * []()
+  * []()
+  * []()
