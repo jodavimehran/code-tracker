@@ -49,7 +49,7 @@ for tool in tools:
 fig.update_yaxes(title_font=dict(size=30, family='Rockwell', color='black'),type='log', range= (1,5.5), tickfont=dict(family='Rockwell', color='black', size=20))
 fig.update_xaxes(title_font=dict(size=30, family='Rockwell', color='black'), tickfont=dict(family='Rockwell', color='black', size=20))
 
-fig.write_image("C:/Users/tsantalis/Downloads/Runtimes/runtimes.pdf",width=1600, height=600)
+fig.write_image("C:/Users/user/Runtimes/runtimes.pdf",width=1600, height=600)
 # pio.to_image(fig,"SVG")
 #fig.show()
 
