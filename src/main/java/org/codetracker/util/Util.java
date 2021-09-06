@@ -128,7 +128,7 @@ public class Util {
         }
         if (containsBody && info.getBody() != null) {
             sb.append("{");
-            sb.append(getSHA512(String.join("", info.getBody().stringRepresentation())));
+            sb.append(info.getBody().getBodyHashCode());
             sb.append("}");
         }
         if (containsDocumentation && !info.getComments().isEmpty()) {
