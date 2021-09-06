@@ -163,7 +163,7 @@ public class VariableExperimentStarter extends AbstractExperimentStarter {
 
                 content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
 
-                writeToFile(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, TOOL_NAME, oracleName), SUMMARY_RESULT_HEADER, content.toString(), StandardOpenOption.APPEND);
+                writeToSummaryFile(oracleName, TOOL_NAME, content.toString());
 
                 List<ChangeHistory> historyResults = allChanges.values().stream().sorted(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId)).collect(Collectors.toList());
                 for (ChangeHistory changeHistory : historyResults) {
@@ -178,27 +178,16 @@ public class VariableExperimentStarter extends AbstractExperimentStarter {
                     else
                         resultType = "UN!";
 
-                    writeToFile(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, TOOL_NAME, oracleName),
-                            DETAILED_RESULT_HEADER,
-                            String.format(DETAILED_CONTENT_FORMAT,
-                                    variableHistoryInfo.getRepositoryWebURL(),
-                                    variableHistoryInfo.getVariableKey(),
-                                    changeHistory.getParentCommitId(),
-                                    changeHistory.getCommitId(),
-                                    changeHistory.getCommitTime(),
-                                    changeHistory.getChangeType(),
-                                    changeHistory.getElementFileBefore(),
-                                    changeHistory.getElementFileAfter(),
-                                    changeHistory.getElementNameBefore(),
-                                    changeHistory.getElementNameAfter(),
-                                    resultType,
-                                    changeHistory.getComment()
-                            ),
-                            StandardOpenOption.APPEND);
+                    writeToDetailedFile(oracleName, TOOL_NAME, fileName, variableHistoryInfo.getRepositoryWebURL(),
+                            variableHistoryInfo.getVariableKey(), changeHistory.getParentCommitId(), changeHistory.getCommitId(),
+                            changeHistory.getCommitTime(), changeHistory.getChangeType(), changeHistory.getElementFileBefore(),
+                            changeHistory.getElementFileAfter(), changeHistory.getElementNameBefore(), changeHistory.getElementNameAfter()
+                            , resultType, changeHistory.getComment()
+                    );
                 }
                 writeToFile(getProcessedFilePath(oracleName, TOOL_NAME), "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
             } catch (Exception exception) {
-                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, TOOL_NAME, oracleName, fileName), false)) {
+                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, TOOL_NAME, TOOL_NAME, oracleName, fileName), false)) {
                     try (PrintWriter pw = new PrintWriter(fw)) {
                         pw.println(exception.getMessage());
                         pw.println("====================================================================================");

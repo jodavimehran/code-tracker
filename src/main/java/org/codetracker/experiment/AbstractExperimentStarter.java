@@ -18,20 +18,18 @@ import java.util.*;
 import static org.codetracker.util.FileUtil.writeToFile;
 
 public abstract class AbstractExperimentStarter {
-    private static final String RESULT_FINAL_CSV = "result/%s/final.csv";
     protected final static String FOLDER_TO_CLONE = "H:\\Projects\\";
-    protected static final String SUMMARY_RESULT_FILE_NAME_FORMAT = "result/%s/summary-%s-%s.csv";
+    protected static final String SUMMARY_RESULT_FILE_NAME_FORMAT = "experiments/tracking-accuracy/%s/%s/summary-%s-%s.csv";
     protected final static String SUMMARY_RESULT_HEADER;
-
-    protected static final String DETAILED_RESULT_HEADER = "repository,element_key,parent_commit_id,commit_id,commit_time, change_type,element_file_before,element_file_after,element_name_before,element_name_after,result,comment" + System.lineSeparator();
-    protected static final String DETAILED_RESULT_FILE_NAME_FORMAT = "result/%s/detailed-%s-%s.csv";
+    protected static final String DETAILED_RESULT_HEADER = "file_name, repository,element_key,parent_commit_id,commit_id,commit_time, change_type,element_file_before,element_file_after,element_name_before,element_name_after,result,comment" + System.lineSeparator();
+    protected static final String DETAILED_RESULT_FILE_NAME_FORMAT = "experiments/tracking-accuracy/%s/%s/detailed-%s-%s.csv";
     protected static final String FINAL_RESULT_HEADER = "tool,oracle,level,processing_time_avg,processing_time_median,tp,fp,fn,precision,recall" + System.lineSeparator();
-    protected static final String DETAILED_CONTENT_FORMAT = "\"%s\",\"%s\",%s,%s,%d,%s,%s,%s,\"%s\",\"%s\",%s,\"%s\"" + System.lineSeparator();
+    protected static final String DETAILED_CONTENT_FORMAT = "%s,\"%s\",\"%s\",%s,%s,%d,%s,%s,%s,\"%s\",\"%s\",%s,\"%s\"" + System.lineSeparator();
     protected static final String FINAL_RESULT_FORMAT = "%s,%s,%s,%f,%d,%d,%d,%d,%f,%f" + System.lineSeparator();
-    protected static final String ERROR_FILE_NAME_FORMAT = "result/%s/error-%s-%s-%s.txt";
+    protected static final String ERROR_FILE_NAME_FORMAT = "experiments/tracking-accuracy/%s/%s/error-%s-%s-%s.txt";
     protected static final ObjectMapper MAPPER = new ObjectMapper();
-
-    private static final String PROCESSED_FILE_NAME_FORMAT = "result/%s/processed-%s-%s.csv";
+    private static final String RESULT_FINAL_CSV = "experiments/tracking-accuracy/%s/%s/final.csv";
+    private static final String PROCESSED_FILE_NAME_FORMAT = "experiments/tracking-accuracy/%s/%s/processed-%s-%s.csv";
 
     static {
         StringBuilder header = new StringBuilder();
@@ -81,7 +79,7 @@ public abstract class AbstractExperimentStarter {
     }
 
     protected String getProcessedFilePath(String oracleName, String toolName) {
-        return String.format(PROCESSED_FILE_NAME_FORMAT, getCodeElementName(), toolName, oracleName);
+        return String.format(PROCESSED_FILE_NAME_FORMAT, getCodeElementName(), toolName, toolName, oracleName);
     }
 
     protected Set<String> getAllProcessedSamples(String oracleName, String toolName) throws IOException {
@@ -91,12 +89,13 @@ public abstract class AbstractExperimentStarter {
     }
 
     protected abstract String getCodeElementName();
+
     protected void calculateFinalResults(String oracleName, String toolName) {
         Map<String, Set<String>> commitLevelExpected = new HashMap<>();
         Map<String, Set<String>> commitLevelActual = new HashMap<>();
         try {
             List<Integer> processingTime = new ArrayList<>();
-            List<String[]> summaryResults = readResults(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, getCodeElementName(), toolName, oracleName));
+            List<String[]> summaryResults = readResults(getSummaryResultFileName(oracleName, toolName));
             int tp = 0, fp = 0, fn = 0;
             for (String[] result : summaryResults) {
                 tp += Integer.parseInt(result[result.length - 3]);
@@ -111,13 +110,13 @@ public abstract class AbstractExperimentStarter {
             middle = middle > 0 && middle % 2 == 0 ? middle - 1 : middle;
             int processingTimeMedian = processingTime.get(middle);
             double processingTimeAverage = processingTime.stream().mapToInt(Integer::intValue).average().getAsDouble();
-            writeToFile(String.format(RESULT_FINAL_CSV, getCodeElementName()), FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "change", processingTimeAverage, processingTimeMedian, tp, fp, fn, ((double) tp / (tp + fp)) * 100, ((double) tp / (tp + fn)) * 100), StandardOpenOption.APPEND);
+            writeToFile(String.format(RESULT_FINAL_CSV, getCodeElementName(), toolName), FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "change", processingTimeAverage, processingTimeMedian, tp, fp, fn, ((double) tp / (tp + fp)) * 100, ((double) tp / (tp + fn)) * 100), StandardOpenOption.APPEND);
 
-            List<String[]> detailedResults = readResults(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, getCodeElementName(), toolName, oracleName));
+            List<String[]> detailedResults = readResults(getDetailedResultFileName(oracleName, toolName));
 
             for (String[] result : detailedResults) {
-                String elementKey = result[1];
-                String commitId = result[3];
+                String elementKey = result[2];
+                String commitId = result[4];
                 if (result[result.length - 2].equals("TP")) {
                     commitLevelExpected.get(elementKey).add(commitId);
                     commitLevelActual.get(elementKey).add(commitId);
@@ -149,9 +148,37 @@ public abstract class AbstractExperimentStarter {
                 int commitLevelTp = actualSize - commitLevelFp;
                 sumTp += commitLevelTp;
             }
-            writeToFile(String.format(RESULT_FINAL_CSV, getCodeElementName()), FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "commit", processingTimeAverage, processingTimeMedian, sumTp, sumFP, sumFn, ((double) sumTp / (sumTp + sumFP)) * 100, ((double) sumTp / (sumTp + sumFn)) * 100), StandardOpenOption.APPEND);
+            writeToFile(String.format(RESULT_FINAL_CSV, getCodeElementName(), toolName), FINAL_RESULT_HEADER, String.format(FINAL_RESULT_FORMAT, toolName, oracleName, "commit", processingTimeAverage, processingTimeMedian, sumTp, sumFP, sumFn, ((double) sumTp / (sumTp + sumFP)) * 100, ((double) sumTp / (sumTp + sumFn)) * 100), StandardOpenOption.APPEND);
         } catch (Exception exception) {
             exception.printStackTrace();
         }
     }
+
+    private String getSummaryResultFileName(String oracleName, String toolName) {
+        return String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, getCodeElementName(), toolName, toolName, oracleName);
+    }
+
+    protected void writeToSummaryFile(String oracleName, String toolName, String content) throws IOException {
+        writeToFile(getSummaryResultFileName(oracleName, toolName), SUMMARY_RESULT_HEADER, content, StandardOpenOption.APPEND);
+    }
+
+    private String getDetailedResultFileName(String oracleName, String toolName) {
+        return String.format(DETAILED_RESULT_FILE_NAME_FORMAT, getCodeElementName(), toolName, toolName, oracleName);
+    }
+
+    protected void writeToDetailedFile(String oracleName, String toolName, String oracleFileName,
+                                       String repositoryWebURL, String elementKey, String parentCommitId, String commitId,
+                                       long commitTime, String changeType, String elementFileBefore, String elementFileAfter,
+                                       String elementNameBefore, String elementNameAfter, String resultType, String comment) throws IOException {
+
+        writeToFile(getDetailedResultFileName(oracleName, toolName), DETAILED_RESULT_HEADER,
+                getDetailedResultContent(oracleFileName, repositoryWebURL, elementKey, parentCommitId, commitId, commitTime, changeType, elementFileBefore, elementFileAfter, elementNameBefore, elementNameAfter, resultType, comment), StandardOpenOption.APPEND);
+    }
+
+    private String getDetailedResultContent(String oracleFileName, String repositoryWebURL, String elementKey, String parentCommitId, String commitId, long commitTime, String changeType, String elementFileBefore, String elementFileAfter, String elementNameBefore, String elementNameAfter, String resultType, String comment) {
+        return String.format(DETAILED_CONTENT_FORMAT, oracleFileName, repositoryWebURL, elementKey, parentCommitId,
+                commitId, commitTime, changeType, elementFileBefore, elementFileAfter, elementNameBefore, elementNameAfter,
+                resultType, comment);
+    }
+
 }

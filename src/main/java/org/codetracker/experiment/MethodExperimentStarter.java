@@ -32,7 +32,7 @@ public class MethodExperimentStarter extends AbstractExperimentStarter {
     }
 
     public void start() throws IOException {
-        createDirectory(new String[]{"result", "result/method", "result/method/shovel", "result/method/shovel/test", "result/method/shovel/training"});
+//        createDirectory(new String[]{"result", "result/method", "result/method/shovel", "result/method/shovel/test", "result/method/shovel/training"});
         String[] toolNames = new String[]{"tracker", "shovel", "shovel-oracle"};
         List<MethodOracle> oracles = MethodOracle.all();
         for (String toolName : toolNames) {
@@ -149,7 +149,7 @@ public class MethodExperimentStarter extends AbstractExperimentStarter {
 
                 content.append(tp).append(",").append(fp).append(",").append(fn).append(System.lineSeparator());
 
-                writeToFile(String.format(SUMMARY_RESULT_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, toolName, oracleName), SUMMARY_RESULT_HEADER, content.toString(), StandardOpenOption.APPEND);
+                writeToSummaryFile(oracleName, toolName, content.toString());
 
                 List<ChangeHistory> historyResults = allChanges.values().stream().sorted(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId)).collect(Collectors.toList());
                 for (ChangeHistory changeHistory : historyResults) {
@@ -164,28 +164,17 @@ public class MethodExperimentStarter extends AbstractExperimentStarter {
                     else
                         resultType = "UN!";
 
-                    writeToFile(String.format(DETAILED_RESULT_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, toolName, oracleName),
-                            DETAILED_RESULT_HEADER,
-                            String.format(DETAILED_CONTENT_FORMAT,
-                                    methodHistoryInfo.getRepositoryWebURL(),
-                                    methodHistoryInfo.getFunctionKey(),
-                                    changeHistory.getParentCommitId(),
-                                    changeHistory.getCommitId(),
-                                    changeHistory.getCommitTime(),
-                                    changeHistory.getChangeType(),
-                                    changeHistory.getElementFileBefore(),
-                                    changeHistory.getElementFileAfter(),
-                                    changeHistory.getElementNameBefore(),
-                                    changeHistory.getElementNameAfter(),
-                                    resultType,
-                                    changeHistory.getComment()
-                            ),
-                            StandardOpenOption.APPEND);
+                    writeToDetailedFile(oracleName, toolName, fileName, methodHistoryInfo.getRepositoryWebURL(),
+                            methodHistoryInfo.getFunctionKey(), changeHistory.getParentCommitId(), changeHistory.getCommitId(),
+                            changeHistory.getCommitTime(), changeHistory.getChangeType(), changeHistory.getElementFileBefore(),
+                            changeHistory.getElementFileAfter(), changeHistory.getElementNameBefore(), changeHistory.getElementNameAfter()
+                            , resultType, changeHistory.getComment()
+                    );
                 }
                 writeToFile(getProcessedFilePath(oracleName, toolName), "file_name" + System.lineSeparator(), fileName + System.lineSeparator(), StandardOpenOption.APPEND);
 
             } catch (Exception exception) {
-                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, toolName, oracleName, fileName), false)) {
+                try (FileWriter fw = new FileWriter(String.format(ERROR_FILE_NAME_FORMAT, CODE_ELEMENT_NAME, toolName, toolName, oracleName, fileName), false)) {
                     try (PrintWriter pw = new PrintWriter(fw)) {
                         pw.println(exception.getMessage());
                         pw.println("====================================================================================");
