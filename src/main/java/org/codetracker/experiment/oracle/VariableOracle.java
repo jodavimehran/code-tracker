@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.*;
 
 public class VariableOracle extends Oracle {
-    protected static final String HISTORY_VARIABLE_ORACLE = "history/variable/";
+    protected static final String HISTORY_VARIABLE_ORACLE = "oracle/variable/";
     private final Map<String, VariableHistoryInfo> oracle = new TreeMap<>();
 
     public VariableOracle(String name) throws IOException {

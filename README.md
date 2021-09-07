@@ -97,13 +97,13 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # Oracle
-The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available in the following links:
-* [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle)
-  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training)
-  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test)
-* [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable)
-  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/training)
-  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/test)
+The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available [here](https://drive.google.com/file/d/1l7VwdIE85Bh6zGpLSiavhmZxhdqtL4NI/view?usp=sharing) or in the following links:
+* [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/method)
+  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/method/training)
+  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/method/test)
+* [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/variable)
+  * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/variable/training)
+  * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/oracle/variable/test)
 
 ### Some Samples of CodeShovel's false cases
 In the extended oracle we fixed all inaccuracies that we found in the original oracle. For example, the following methods in the original oracle are erroneously matched with another method which is extracted from their body. In fact, these methods are *introduced* as a result of an Extract Method refactoring.

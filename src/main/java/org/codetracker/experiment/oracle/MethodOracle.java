@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class MethodOracle extends Oracle {
-    protected static final String HISTORY_METHOD_ORACLE = "history/method/oracle/";
+    protected static final String HISTORY_METHOD_ORACLE = "oracle/method/";
     private final Map<String, MethodHistoryInfo> oracle = new TreeMap<>();
 
     public MethodOracle(String name) throws IOException {
