@@ -105,6 +105,7 @@ The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle
   * [Training](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/training)
   * [Test](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/variable/test)
 
+### Some Samples of CodeShovel's false cases
 In the extended oracle we fixed all inaccuracies that we found in the original oracle. For example, the following methods in the original oracle are erroneously matched with another method which is extracted from their body. In fact, these methods are *introduced* as a result of an Extract Method refactoring.
 * Training
   * [checkstyle-CommonUtils-createPattern](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/training/checkstyle-CommonUtils-createPattern.json)
@@ -136,10 +137,13 @@ In the extended oracle we fixed all inaccuracies that we found in the original o
   * [intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject.json)
   * [mockito-MatchersBinder-bindMatchers](https://github.com/jodavimehran/refactoring-refiner/tree/master/src/main/resources/history/method/oracle/test/mockito-MatchersBinder-bindMatchers.json)
 
+### CodeTracker's misreporting samples
+To avoid unnecessary processing and speed up the tracking process, CodeTracker excludes some files from the source code model. The excluding action may cause misreporting of change type in some special scenarios. Although CodeTracker supports three scenarios in which additional files need to be included in the source code model, it may misreport MoveMethod changes as FileMove because the child commit model did not include the origin file of the method. In the test oracle, there are three such cases: [case 1](https://github.com/jodavimehran/refactoring-refiner/blob/master/src/main/resources/history/method/oracle/test/hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities.json), [case 2](https://github.com/jodavimehran/refactoring-refiner/blob/master/src/main/resources/history/method/oracle/test/mockito-AdditionalMatchers-geq.json) and [case 3](https://github.com/jodavimehran/refactoring-refiner/blob/master/src/main/resources/history/method/oracle/test/mockito-AdditionalMatchers-gt.json). 
+
 # Experiments
-## Execution Time:
+### Execution Time:
   As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/execution-time).
-## Tracking Accuracy
+### Tracking Accuracy
   All data we collect to compute the precision and recall of CodeTracker and CodeShovel at commit level and change level are available in the following links:
 * [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/method)
 * [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/variable)
