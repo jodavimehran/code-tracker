@@ -98,27 +98,6 @@ public class VariableExperimentStarter extends AbstractExperimentStarter {
                 HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
                 HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<Variable>) variableHistory);
 
-                //TEMPv
-                {
-                    ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
-                    VariableHistoryInfo variableHistoryInfo2 = new VariableHistoryInfo();
-                    variableHistoryInfo2.setRepositoryName(variableHistoryInfo.getRepositoryName());
-                    variableHistoryInfo2.setRepositoryWebURL(variableHistoryInfo.getRepositoryWebURL());
-                    variableHistoryInfo2.setFilePath(variableHistoryInfo.getFilePath());
-                    variableHistoryInfo2.setFunctionName(variableHistoryInfo.getFunctionName());
-                    variableHistoryInfo2.setFunctionKey(variableHistoryInfo.getFunctionKey());
-                    variableHistoryInfo2.setFunctionStartLine(variableHistoryInfo.getFunctionStartLine());
-                    variableHistoryInfo2.setStartCommitId(variableHistoryInfo.getStartCommitId());
-                    variableHistoryInfo2.setVariableName(variableHistoryInfo.getVariableName());
-                    variableHistoryInfo2.setVariableKey(variableHistoryInfo.getVariableKey());
-                    variableHistoryInfo2.setVariableStartLine(variableHistoryInfo.getVariableStartLine());
-                    variableHistoryInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
-                    variableHistoryInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType).reversed());
-                    File newFile = new File(String.format("E:\\Data\\History\\variable\\oracle\\%s\\%s", oracleName, fileName));
-                    writer.writeValue(newFile, variableHistoryInfo2);
-                }
-                //TEMP^
-
                 for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
                     String changeKey = oracleChangeEntry.getKey();
                     if (falseDetectedChanges.containsKey(changeKey)) {

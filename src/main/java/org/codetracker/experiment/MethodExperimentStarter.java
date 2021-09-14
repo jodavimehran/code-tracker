@@ -88,25 +88,6 @@ public class MethodExperimentStarter extends AbstractExperimentStarter {
                 HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
                 HashMap<String, ChangeHistory> falseDetectedChanges = processHistory(methodHistory);
 
-
-                //TEMPv
-                {
-                    ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
-                    MethodHistoryInfo methodHistoryInfo2 = new MethodHistoryInfo();
-                    methodHistoryInfo2.setRepositoryName(methodHistoryInfo.getRepositoryName());
-                    methodHistoryInfo2.setRepositoryWebURL(methodHistoryInfo.getRepositoryWebURL());
-                    methodHistoryInfo2.setFilePath(methodHistoryInfo.getFilePath());
-                    methodHistoryInfo2.setFunctionName(methodHistoryInfo.getFunctionName());
-                    methodHistoryInfo2.setFunctionKey(methodHistoryInfo.getFunctionKey());
-                    methodHistoryInfo2.setFunctionStartLine(methodHistoryInfo.getFunctionStartLine());
-                    methodHistoryInfo2.setStartCommitId(methodHistoryInfo.getStartCommitId());
-                    methodHistoryInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
-                    methodHistoryInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType));
-                    File newFile = new File(String.format("E:\\Data\\History\\method\\oracle\\%s\\%s", oracleName, fileName));
-                    writer.writeValue(newFile, methodHistoryInfo2);
-                }
-                //TEMP^
-
                 for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
                     String changeKey = oracleChangeEntry.getKey();
                     if (falseDetectedChanges.containsKey(changeKey)) {
