@@ -387,7 +387,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) refactoring;
                     variableBefore = Variable.of(renameVariableRefactoring.getOriginalVariable(), renameVariableRefactoring.getOperationBefore(), parentVersion);
                     variableAfter = Variable.of(renameVariableRefactoring.getRenamedVariable(), renameVariableRefactoring.getOperationAfter(), currentVersion);
-                    if (variableBefore.getName().equals(variableAfter.getName()))
+                    if (variableBefore.getVariableDeclaration().getVariableName().equals(variableAfter.getVariableDeclaration().getVariableName()))
                         changeType = Change.Type.NO_CHANGE;
                     else
                         changeType = Change.Type.RENAME;
