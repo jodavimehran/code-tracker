@@ -30,14 +30,14 @@
     "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, InvocationImpl)$invocation:InvocationImpl(21)",
     "comment" : "Change Parameter Type invocation : Invocation to invocation : InvocationImpl in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation InvocationImpl) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
   }, {
-    "parentCommitId" : "c4374978e703502f961e21ec830e2d3e81528206",
-    "commitId" : "bc4a76c83eee655989238025d70de91b71376ebd",
-    "commitTime" : 1196531463,
+    "parentCommitId" : "b3a2e2a6814c141295d5faab7e2feff180d6502a",
+    "commitId" : "f6a503519f2f7eff22490079b8c9a70a000c4e3c",
+    "commitTime" : 1196469205,
     "changeType" : "introduced",
     "elementFileBefore" : "src/org/mockito/internal/MockControl.java",
-    "elementNameBefore" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation:Invocation(80)",
+    "elementNameBefore" : "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$invocation:Invocation(77)",
     "elementFileAfter" : "src/org/mockito/internal/MockControl.java",
-    "elementNameAfter" : "src/org.mockito.internal.MockControl#expectedInvocation(Object, Method, Object[])$invocation:Invocation(80)",
-    "comment" : "new variable"
+    "elementNameAfter" : "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$invocation:Invocation(77)",
+    "comment" : "Extract Method private expectedInvocation(invocation Invocation) : ExpectedInvocation extracted from public invoke(proxy Object, method Method, args Object[]) : Object in class org.mockito.internal.MockControl"
   } ]
 }
