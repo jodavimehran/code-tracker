@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+  "attributeName" : "metadataReaderFactory",
+  "attributeKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@metadataReaderFactory:MetadataReaderFactory(107)",
+  "attributeDeclarationLine" : 107,
+  "expectedChanges" : [ {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:MetadataReaderFactory(105)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:MetadataReaderFactory(105)",
+    "comment" : "Move Source Folder org.springframework.context to spring-context"
+  }, {
+    "parentCommitId" : "37e1333a41adb6b36952e475cf84b1a24d7a8ed9",
+    "commitId" : "b5d21108da24f8344be3bc708c7afdfca9a1d089",
+    "commitTime" : 1240571806,
+    "changeType" : "type change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:SimpleMetadataReaderFactory(85)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:MetadataReaderFactory(84)",
+    "comment" : "Change Attribute Type metadataReaderFactory : SimpleMetadataReaderFactory to metadataReaderFactory : MetadataReaderFactory in class org.springframework.context.annotation.ConfigurationClassPostProcessor"
+  }, {
+    "parentCommitId" : "4c42597cbcd7b2f0a225a368554198f54224b1c3",
+    "commitId" : "ea9d8925a27e80d31d924826cf54f70b2bbcc638",
+    "commitTime" : 1240397184,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:SimpleMetadataReaderFactory(85)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)metadataReaderFactory:SimpleMetadataReaderFactory(85)",
+    "comment" : "new attribute"
+  } ]
+}

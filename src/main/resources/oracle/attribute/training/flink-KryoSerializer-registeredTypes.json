@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+  "attributeName" : "registeredTypes",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@registeredTypes:LinkedHashSet<Class<?>>(119)",
+  "attributeDeclarationLine" : 119,
+  "expectedChanges" : [ {
+    "parentCommitId" : "409319a065407f8ed6ae3f43c06b327adfd2501c",
+    "commitId" : "8aa5e05733655e7b3d1f11ed15f61672d61e5cb5",
+    "commitTime" : 1494180263,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:LinkedHashSet<Class<?>>(79)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(private)registeredTypes:LinkedHashSet<Class<?>>(110)",
+    "comment" : "Remove Attribute Modifier final in attribute private registeredTypes : LinkedHashSet<Class<?>> from class org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer"
+  }, {
+    "parentCommitId" : "7081836e0d640ee640687606bd73b6673d3f2a07",
+    "commitId" : "21a715867d655bb61df9a9f7eef37e42b99e206a",
+    "commitTime" : 1454428544,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:LinkedHashSet<Class<?>>(76)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:LinkedHashSet<Class<?>>(76)",
+    "comment" : "Move Source Folder flink-java to flink-core"
+  }, {
+    "parentCommitId" : "a1d2df6149491fe9a087882f88c87e09476bb429",
+    "commitId" : "ae446388b91ecc0f08887da19400395b96b32f6c",
+    "commitTime" : 1432633486,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:List<Class<?>>(66)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:LinkedHashSet<Class<?>>(67)",
+    "comment" : "Change Attribute Type registeredTypes : List<Class<?>> to registeredTypes : LinkedHashSet<Class<?>> in class org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer"
+  }, {
+    "parentCommitId" : "5015ab490f89d384ac93752c22caf201ceb43776",
+    "commitId" : "354efec0f9da0fa03ea9b337b02a1a2a03a9ac16",
+    "commitTime" : 1424271128,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.KryoSerializer@(final)(private)registeredTypes:Set<Class<?>>(60)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:List<Class<?>>(66)",
+    "comment" : "Move Class org.apache.flink.api.java.typeutils.runtime.KryoSerializer moved to org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer"
+  }, {
+    "parentCommitId" : "5015ab490f89d384ac93752c22caf201ceb43776",
+    "commitId" : "354efec0f9da0fa03ea9b337b02a1a2a03a9ac16",
+    "commitTime" : 1424271128,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.KryoSerializer@(final)(private)registeredTypes:Set<Class<?>>(60)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)registeredTypes:List<Class<?>>(66)",
+    "comment" : "Change Attribute Type registeredTypes : Set<Class<?>> to registeredTypes : List<Class<?>> in class org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer"
+  }, {
+    "parentCommitId" : "2d4ed15e8d2aa1a1fcd7001fccea2ee70cc8a8b0",
+    "commitId" : "a0b6af20beed6d12d0f33f6f58f323b20cc12961",
+    "commitTime" : 1421618379,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.KryoSerializer@(final)(private)registeredTypes:Set<Class<?>>(66)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.KryoSerializer@(final)(private)registeredTypes:Set<Class<?>>(66)",
+    "comment" : "new attribute"
+  } ]
+}

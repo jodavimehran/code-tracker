@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+  "attributeName" : "LOG",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@LOG:Logger(208)",
+  "attributeDeclarationLine" : 208,
+  "expectedChanges" : [ {
+    "parentCommitId" : "bad3df54d20677157f48c3ee1f3251d2c4bce8ba",
+    "commitId" : "77e3701ca1f8bfab33a07f11992955eb131126c3",
+    "commitTime" : 1507304713,
+    "changeType" : "moved",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/fs/maprfs/MapRFileSystem.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.fs.maprfs.MapRFileSystem@(final,static)(private)LOG:Logger(59)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)LOG:Logger(205)",
+    "comment" : "Pull Up Attribute private LOG : Logger from class org.apache.flink.runtime.fs.maprfs.MapRFileSystem to private LOG : Logger from class org.apache.flink.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "3aa5511ddd474659b7592969dc923301e87820b5",
+    "commitId" : "08188508d528c1072a746aacbf2a5c712d4f8467",
+    "commitTime" : 1409911022,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/fs/maprfs/MapRFileSystem.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.fs.maprfs.MapRFileSystem@(final,static)(private)LOG:Log(54)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/fs/maprfs/MapRFileSystem.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.fs.maprfs.MapRFileSystem@(final,static)(private)LOG:Logger(54)",
+    "comment" : "Change Attribute Type LOG : Log to LOG : Logger in class org.apache.flink.runtime.fs.maprfs.MapRFileSystem"
+  }, {
+    "parentCommitId" : "8d7e33c3c5b0f7a1b87e0184ebb1ef2cbbb16470",
+    "commitId" : "bbde5faef4bbf73c53c33f50276e19d69dd72a9a",
+    "commitTime" : 1408359504,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/fs/maprfs/MapRFileSystem.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.fs.maprfs.MapRFileSystem@(final,static)(private)LOG:Log(54)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/fs/maprfs/MapRFileSystem.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.fs.maprfs.MapRFileSystem@(final,static)(private)LOG:Log(54)",
+    "comment" : "added with new class"
+  } ]
+}

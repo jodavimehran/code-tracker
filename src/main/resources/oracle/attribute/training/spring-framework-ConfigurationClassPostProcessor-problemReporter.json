@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+  "attributeName" : "problemReporter",
+  "attributeKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@problemReporter:ProblemReporter(97)",
+  "attributeDeclarationLine" : 97,
+  "expectedChanges" : [ {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)problemReporter:ProblemReporter(97)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)problemReporter:ProblemReporter(97)",
+    "comment" : "Move Source Folder org.springframework.context to spring-context"
+  }, {
+    "parentCommitId" : "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+    "commitId" : "14bd47551900ced88eeacf2a5f63c187ff72028c",
+    "commitTime" : 1240184731,
+    "changeType" : "moved",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/AbstractConfigurationClassProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(52)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor@(private)problemReporter:ProblemReporter(80)",
+    "comment" : "Move Attribute private problemReporter : ProblemReporter from class org.springframework.context.annotation.AbstractConfigurationClassProcessor to private problemReporter : ProblemReporter from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
+  }, {
+    "parentCommitId" : "2c0c523d7099ed1ad77864242f25d30e218b2a95",
+    "commitId" : "1697932c57af5389fe07971e91866980e966403f",
+    "commitTime" : 1238129833,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/support/AbstractConfigurationClassProcessor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(54)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/AbstractConfigurationClassProcessor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(52)",
+    "comment" : "Move Class org.springframework.context.annotation.support.AbstractConfigurationClassProcessor moved to org.springframework.context.annotation.AbstractConfigurationClassProcessor"
+  }, {
+    "parentCommitId" : "63b5c48461f69cc611f4378d52f46197998334db",
+    "commitId" : "cd50e456457ecac48f61e2da991b6fd5dc0c6ee7",
+    "commitTime" : 1237783684,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/AbstractConfigurationClassProcessor.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(53)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/support/AbstractConfigurationClassProcessor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(53)",
+    "comment" : "Move Source Folder org.springframework.config.java to org.springframework.context"
+  }, {
+    "parentCommitId" : "3f196517f99b7a7148e68531d1fa1b475ff81939",
+    "commitId" : "ef02c61e581dcd1f3cf110608da72ed133777d62",
+    "commitTime" : 1237782205,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/AbstractConfigurationClassProcessor.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(53)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/AbstractConfigurationClassProcessor.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(53)",
+    "comment" : "Move Class org.springframework.config.java.support.AbstractConfigurationClassProcessor moved to org.springframework.context.annotation.support.AbstractConfigurationClassProcessor"
+  }, {
+    "parentCommitId" : "c41c64389f5b50bd6780fd85fdcf2a0ee8d36c2d",
+    "commitId" : "100ba6599fdf5855a75ca88c74a4197420ec320d",
+    "commitTime" : 1236396142,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/AbstractConfigurationClassProcessor.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(55)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/AbstractConfigurationClassProcessor.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.AbstractConfigurationClassProcessor@(private)problemReporter:ProblemReporter(55)",
+    "comment" : "new attribute"
+  } ]
+}

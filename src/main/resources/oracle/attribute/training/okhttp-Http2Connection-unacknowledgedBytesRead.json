@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "attributeName" : "unacknowledgedBytesRead",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@unacknowledgedBytesRead:long(115)",
+  "attributeDeclarationLine" : 115,
+  "expectedChanges" : [ {
+    "parentCommitId" : "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+    "commitId" : "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+    "commitTime" : 1468102159,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(package)unacknowledgedBytesRead:long(101)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@(package)unacknowledgedBytesRead:long(101)",
+    "comment" : "Move And Rename Class okhttp3.internal.framed.FramedConnection moved and renamed to okhttp3.internal.http2.Http2Connection"
+  }, {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection@(package)unacknowledgedBytesRead:long(105)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(package)unacknowledgedBytesRead:long(105)",
+    "comment" : "Move Class com.squareup.okhttp.internal.framed.FramedConnection moved to okhttp3.internal.framed.FramedConnection"
+  }, {
+    "parentCommitId" : "b262f2a03001cd990568b929b2739dd3c7adb75f",
+    "commitId" : "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+    "commitTime" : 1434580812,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(package)unacknowledgedBytesRead:long(104)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection@(package)unacknowledgedBytesRead:long(104)",
+    "comment" : "Move And Rename Class com.squareup.okhttp.internal.spdy.SpdyConnection moved and renamed to com.squareup.okhttp.internal.framed.FramedConnection"
+  }, {
+    "parentCommitId" : "d5cbd0aebe090d956f54b6697068fcbff6d668e7",
+    "commitId" : "110a4fac4257fe2df0e23149fbef76e750604cf4",
+    "commitTime" : 1393561720,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameBefore" : "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(package)unacknowledgedBytesRead:long(95)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(package)unacknowledgedBytesRead:long(95)",
+    "comment" : "Move Source Folder okhttp-protocols to okhttp"
+  }, {
+    "parentCommitId" : "3cf454698b15dd64907524b2ef74fd38d5d9686a",
+    "commitId" : "358169b89f32c00bf229b4e42ccef756588da71f",
+    "commitTime" : 1390802065,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameBefore" : "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(package)unacknowledgedBytesRead:long(92)",
+    "elementFileAfter" : "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameAfter" : "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(package)unacknowledgedBytesRead:long(92)",
+    "comment" : "new attribute"
+  } ]
+}

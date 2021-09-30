@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "javaparser",
+  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
+  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
+  "filePath" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
+  "attributeName" : "typeSolver",
+  "attributeKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade@typeSolver:TypeSolver(66)",
+  "attributeDeclarationLine" : 66,
+  "expectedChanges" : [ {
+    "parentCommitId" : "30c04db173cc439556df2a238c99cd81ada320ff",
+    "commitId" : "09232ff6b0ea19e850482f3a87ac6ef1c063c759",
+    "commitTime" : 1515588739,
+    "changeType" : "container change",
+    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade@(private)typeSolver:TypeSolver(65)",
+    "elementFileAfter" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameAfter" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade@(private)typeSolver:TypeSolver(65)",
+    "comment" : "Move Source Folder java-symbol-solver-core to javaparser-symbol-solver-core"
+  }, {
+    "parentCommitId" : "b1da215b407e8cfc2c77182f0ab3e67e0ab16ef3",
+    "commitId" : "9c53c2cbc607ea694438ade8630be0c155a33162",
+    "commitTime" : 1476945549,
+    "changeType" : "container change",
+    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade@(private)typeSolver:TypeSolver(70)",
+    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade@(private)typeSolver:TypeSolver(66)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade moved to com.github.javaparser.symbolsolver.javaparsermodel.JavaParserFacade"
+  }, {
+    "parentCommitId" : "68d87977d826a8c48711297732b7ae10f3dc1f1f",
+    "commitId" : "8e655d386a595ea1927ebeded58939d7b8a7ce0c",
+    "commitTime" : 1448189105,
+    "changeType" : "container change",
+    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
+    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade@(private)typeSolver:TypeSolver(43)",
+    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/JavaParserFacade.java",
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade@(private)typeSolver:TypeSolver(43)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade moved to me.tomassetti.symbolsolver.javaparsermodel.JavaParserFacade"
+  }, {
+    "parentCommitId" : "d96a8ff67d857a2988488f1fc31202f0e2ed8061",
+    "commitId" : "f4b07b1a2deac6d1b562424ac2380b92cec77a90",
+    "commitTime" : 1447405972,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
+    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade@(private)typeSolver:TypeSolver(35)",
+    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
+    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade@(private)typeSolver:TypeSolver(35)",
+    "comment" : "Move Source Folder src to java-symbol-solver-core/src"
+  }, {
+    "parentCommitId" : "b2bf624be5d1ef59480250e66224aeaa1886df36",
+    "commitId" : "fb388c36c0045c50744cf215521e5c280036aa70",
+    "commitTime" : 1446289861,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
+    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade@(private)typeSolver:TypeSolver(35)",
+    "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/JavaParserFacade.java",
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade@(private)typeSolver:TypeSolver(33)",
+    "comment" : "Move Class me.tomassetti.symbolsolver.JavaParserFacade moved to me.tomassetti.symbolsolver.resolution.javaparser.JavaParserFacade"
+  }, {
+    "parentCommitId" : "b931fdff234a0313a34e920059c1f5135fdd5204",
+    "commitId" : "800e6463b347876c1151ad4771284af82a68a4cf",
+    "commitTime" : 1438331179,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
+    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade@(private)typeSolver:TypeSolver(11)",
+    "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/JavaParserFacade.java",
+    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.JavaParserFacade@(private)typeSolver:TypeSolver(11)",
+    "comment" : "added with new class"
+  } ]
+}

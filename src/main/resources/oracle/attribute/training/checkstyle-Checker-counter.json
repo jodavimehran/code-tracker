@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "attributeName" : "counter",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@counter:SeverityLevelCounter(76)",
+  "attributeDeclarationLine" : 76,
+  "expectedChanges" : [ {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:SeverityLevelCounter(60)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)counter:SeverityLevelCounter(60)",
+    "comment" : "Rename Attribute mCounter : SeverityLevelCounter to counter : SeverityLevelCounter in class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:SeverityLevelCounter(60)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:SeverityLevelCounter(60)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "e5f09c7fd2b5115bd164a5ed4f0a5e376c2dc2d7",
+    "commitId" : "c1a79b112296dac813d0b4326043590f2eb2c378",
+    "commitTime" : 1081767267,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:ErrorCounter(105)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:SeverityLevelCounter(54)",
+    "comment" : "Change Attribute Type mCounter : ErrorCounter to mCounter : SeverityLevelCounter in class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
+    "commitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
+    "commitTime" : 1037733445,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:ErrorCounter(97)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCounter:ErrorCounter(97)",
+    "comment" : "new attribute"
+  } ]
+}

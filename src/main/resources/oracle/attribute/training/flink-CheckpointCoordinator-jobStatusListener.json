@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName" : "jobStatusListener",
+  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@jobStatusListener:JobStatusListener(151)",
+  "attributeDeclarationLine" : 151,
+  "expectedChanges" : [ {
+    "parentCommitId" : "4e9d1775b5514c87981c78d55323cc2b17361867",
+    "commitId" : "635c869326cc77e4199e4d8ee597aed69ed16cd2",
+    "commitTime" : 1472066344,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:ActorGateway(140)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:JobStatusListener(135)",
+    "comment" : "Change Attribute Type jobStatusListener : ActorGateway to jobStatusListener : JobStatusListener in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "fa78be6df45213406cb9b8a6299ca1f4bc085191",
+    "commitId" : "222245428518d0e1b843947a6184b4a803a78ad5",
+    "commitTime" : 1437665997,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:ActorRef(97)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:ActorGateway(100)",
+    "comment" : "Change Attribute Type jobStatusListener : ActorRef to jobStatusListener : ActorGateway in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "ff750e61a556a96f0cc55997706a0fac7f764dca",
+    "commitId" : "9b7f8aa121e4a231632296d0809029aca9ebde6a",
+    "commitTime" : 1431459357,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:ActorRef(98)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)jobStatusListener:ActorRef(98)",
+    "comment" : "new attribute"
+  } ]
+}

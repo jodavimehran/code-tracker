@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "attributeName" : "cacheFile",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@cacheFile:PropertyCacheFile(132)",
+  "attributeDeclarationLine" : 132,
+  "expectedChanges" : [ {
+    "parentCommitId" : "e82d6989e05d57d7fee2062ea621f9cedf490db4",
+    "commitId" : "327c0bc843612486ab4ded32a2f01038e1271fd0",
+    "commitTime" : 1515029424,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)cache:PropertyCacheFile(131)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)cacheFile:PropertyCacheFile(131)",
+    "comment" : "Rename Attribute cache : PropertyCacheFile to cacheFile : PropertyCacheFile in class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "3c2c3f7f59671fc9d03cd7b9fea7a9bbf389dff6",
+    "commitId" : "d46c2cf0e9df06bb5f424dbd7645574f082f7609",
+    "commitTime" : 1455040202,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)cache:PropertyCacheFile(88)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)cache:PropertyCacheFile(116)",
+    "comment" : "Move Attribute private cache : PropertyCacheFile from class com.puppycrawl.tools.checkstyle.TreeWalker to private cache : PropertyCacheFile from class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mCache:PropertyCacheFile(105)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)cache:PropertyCacheFile(105)",
+    "comment" : "Rename Attribute mCache : PropertyCacheFile to cache : PropertyCacheFile in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mCache:PropertyCacheFile(72)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mCache:PropertyCacheFile(72)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "65ca7775ba7d0b649c16cfdc8a1447f41867c870",
+    "commitId" : "6ffc8dd26075456b055ffcd35d3915c23049bfbb",
+    "commitTime" : 1038680984,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mCache:PropertyCacheFile(111)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mCache:PropertyCacheFile(112)",
+    "comment" : "Remove Attribute Modifier final in attribute private mCache : PropertyCacheFile from class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
+    "commitId" : "abff1a2489ea8af10e1bc0a335551262d22f44e7",
+    "commitTime" : 1037737306,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCache:PropertyCacheFile(103)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mCache:PropertyCacheFile(112)",
+    "comment" : "Move Attribute private mCache : PropertyCacheFile from class com.puppycrawl.tools.checkstyle.Checker to private mCache : PropertyCacheFile from class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "b3373646ee85fc7905c3e4f41a0f3929f0e0e822",
+    "commitId" : "6c304950f62f06cb3c72e46869c3fa3fbdc1e7d7",
+    "commitTime" : 997020777,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCache:PropertyCacheFile(45)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mCache:PropertyCacheFile(45)",
+    "comment" : "new attribute"
+  } ]
+}

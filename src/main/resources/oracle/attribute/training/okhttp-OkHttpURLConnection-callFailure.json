@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+  "attributeName" : "callFailure",
+  "attributeKey" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@callFailure:Throwable(105)",
+  "attributeDeclarationLine" : 105,
+  "expectedChanges" : [ {
+    "parentCommitId" : "89dc6d0c3d6a48eaa4eda2a635a0735f9e134fa8",
+    "commitId" : "2843933b4b4778451d1d43822db1a148bf2aa7ea",
+    "commitTime" : 1466892242,
+    "changeType" : "type change",
+    "elementFileBefore" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+    "elementNameBefore" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@(private)callFailure:IOException(103)",
+    "elementFileAfter" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+    "elementNameAfter" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@(private)callFailure:Throwable(103)",
+    "comment" : "Change Attribute Type callFailure : IOException to callFailure : Throwable in class okhttp3.internal.huc.OkHttpURLConnection"
+  }, {
+    "parentCommitId" : "3f282e8bf0b8af519cbf35833fdcf69d824661fc",
+    "commitId" : "ec39c462324c0a54e6abf06cbf8079298056b7d5",
+    "commitTime" : 1466883984,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+    "elementNameBefore" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(private)callFailure:IOException(96)",
+    "elementFileAfter" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+    "elementNameAfter" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@(private)callFailure:IOException(103)",
+    "comment" : "Rename Class okhttp3.internal.huc.HttpURLConnectionImpl renamed to okhttp3.internal.huc.OkHttpURLConnection"
+  }, {
+    "parentCommitId" : "e444deddd9683fc2fd586c889d9352c35089504d",
+    "commitId" : "084b06b48bae2b566bb1be3415b6c847d8ea3682",
+    "commitTime" : 1466533800,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+    "elementNameBefore" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(private)callFailure:IOException(96)",
+    "elementFileAfter" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+    "elementNameAfter" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(private)callFailure:IOException(96)",
+    "comment" : "new attribute"
+  } ]
+}

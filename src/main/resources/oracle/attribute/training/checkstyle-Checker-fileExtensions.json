@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "attributeName" : "fileExtensions",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@fileExtensions:String[](114)",
+  "attributeDeclarationLine" : 114,
+  "expectedChanges" : [ {
+    "parentCommitId" : "bac672f756acb6603e127a1c2ef84474b0db2ccd",
+    "commitId" : "204c073294cdca6756bcd546d6af85a797ad7d79",
+    "commitTime" : 1422178221,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)fileExtensions:String[](39)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)fileExtensions:String[](96)",
+    "comment" : "Move Attribute private fileExtensions : String[] from class com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck to private fileExtensions : String[] from class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "abe8ae60eefcc58483df0957b27c2b5fa5e92fd5",
+    "commitId" : "b94bac0719851b65b59b4aafc5bd3ef029321ed7",
+    "commitTime" : 1421677181,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)mFileExtensions:String[](39)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)fileExtensions:String[](39)",
+    "comment" : "Rename Attribute mFileExtensions : String[] to fileExtensions : String[] in class com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)mFileExtensions:String[](39)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)mFileExtensions:String[](39)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "a1706551793b62548d9dcc93731b656f07b125a4",
+    "commitId" : "00fb7f0c1852eb015933c7c121284597de29caad",
+    "commitTime" : 1045311212,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)mFileExtensions:String[](37)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/AbstractFileSetCheck.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck@(private)mFileExtensions:String[](37)",
+    "comment" : "new attribute"
+  } ]
+}

@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+  "attributeName" : "autoGrowCollectionLimit",
+  "attributeKey" : "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor@autoGrowCollectionLimit:int(79)",
+  "attributeDeclarationLine" : 79,
+  "expectedChanges" : [ {
+    "parentCommitId" : "27c435c4eae6502ba068a5da8c19d626c28316c3",
+    "commitId" : "2dc674f356fbe941b98301f89494767f80d55e6a",
+    "commitTime" : 1432283608,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
+    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor@(private)autoGrowCollectionLimit:int(96)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor@(private)autoGrowCollectionLimit:int(90)",
+    "comment" : "Push Down Attribute private autoGrowCollectionLimit : int from class org.springframework.beans.AbstractPropertyAccessor to private autoGrowCollectionLimit : int from class org.springframework.beans.AbstractNestablePropertyAccessor"
+  }, {
+    "parentCommitId" : "ad4c8795ae13c94f942526765b5cf36ac6c3ae9b",
+    "commitId" : "3d86f15a847d4567c3b08b21a21500398a394e31",
+    "commitTime" : 1432208995,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(private)autoGrowCollectionLimit:int(135)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor@(private)autoGrowCollectionLimit:int(95)",
+    "comment" : "Pull Up Attribute private autoGrowCollectionLimit : int from class org.springframework.beans.BeanWrapperImpl to private autoGrowCollectionLimit : int from class org.springframework.beans.AbstractPropertyAccessor"
+  }, {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(private)autoGrowCollectionLimit:int(123)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(private)autoGrowCollectionLimit:int(123)",
+    "comment" : "Move Source Folder org.springframework.beans to spring-beans"
+  }, {
+    "parentCommitId" : "022ac3166c7f2922c027e570d46c2eab38de6f16",
+    "commitId" : "4c75054f9041279423f31754aa23f9ca781e9d43",
+    "commitTime" : 1309721209,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(private)autoGrowCollectionLimit:int(123)",
+    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(private)autoGrowCollectionLimit:int(123)",
+    "comment" : "new attribute"
+  } ]
+}

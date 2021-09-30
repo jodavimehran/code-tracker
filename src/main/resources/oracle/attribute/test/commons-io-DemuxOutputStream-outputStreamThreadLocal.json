@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "commons-io",
+  "repositoryWebURL" : "https://github.com/apache/commons-io.git",
+  "startCommitId" : "559de2c461e94ab636c959149c775bb27111fb48",
+  "filePath" : "src/main/java/org/apache/commons/io/output/DemuxOutputStream.java",
+  "attributeName" : "outputStreamThreadLocal",
+  "attributeKey" : "src/main/java/org.apache.commons.io.output.DemuxOutputStream@outputStreamThreadLocal:InheritableThreadLocal<OutputStream>(27)",
+  "attributeDeclarationLine" : 27,
+  "expectedChanges" : [ {
+    "parentCommitId" : "8f06c0ddc6fb9d17075e688265ac3767259bc5e4",
+    "commitId" : "1d031d6eb6e6861f38e228bd587ff74e7f6fcce8",
+    "commitTime" : 1459902185,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal<OutputStream>(28)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)outputStreamThreadLocal:InheritableThreadLocal<OutputStream>(28)",
+    "comment" : "Rename Attribute m_streams : InheritableThreadLocal<OutputStream> to outputStreamThreadLocal : InheritableThreadLocal<OutputStream> in class org.apache.commons.io.output.DemuxOutputStream"
+  }, {
+    "parentCommitId" : "19f48eb1711427a43a5e10c84bbbf1218a08bdd2",
+    "commitId" : "83f7246c3e9fe1d3f1ad6cf7ea0715a573fe2f2a",
+    "commitTime" : 1286218476,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal<OutputStream>(32)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal<OutputStream>(32)",
+    "comment" : "Move Source Folder src to src/main"
+  }, {
+    "parentCommitId" : "e702b9fa057131e21bff06a6a01809379b02a9a6",
+    "commitId" : "d4c5044c7b7697d944a444470a296dcd15911595",
+    "commitTime" : 1232676142,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(private)m_streams:InheritableThreadLocal<OutputStream>(32)",
+    "elementFileAfter" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal<OutputStream>(32)",
+    "comment" : "Add Attribute Modifier final in attribute private m_streams : InheritableThreadLocal<OutputStream> from class org.apache.commons.io.output.DemuxOutputStream"
+  }, {
+    "parentCommitId" : "a7628b03ac47459a47f2c340bb474afe50ea0a31",
+    "commitId" : "a74a5a0c6ff41a4ca0a08caf740ebce1dc3c6d10",
+    "commitTime" : 1202324477,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(private)m_streams:InheritableThreadLocal(32)",
+    "elementFileAfter" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(private)m_streams:InheritableThreadLocal<OutputStream>(32)",
+    "comment" : "Change Attribute Type m_streams : InheritableThreadLocal to m_streams : InheritableThreadLocal<OutputStream> in class org.apache.commons.io.output.DemuxOutputStream"
+  }, {
+    "parentCommitId" : "d5e24a4f1a2ff0e5c565f5b78fc0691e639b876e",
+    "commitId" : "c77a476ee86b107745267bdfc9fc210201e6d414",
+    "commitTime" : 1072767359,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal(69)",
+    "elementFileAfter" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(private)m_streams:InheritableThreadLocal(69)",
+    "comment" : "Remove Attribute Modifier final in attribute private m_streams : InheritableThreadLocal from class org.apache.commons.io.output.DemuxOutputStream"
+  }, {
+    "parentCommitId" : "d3d4c5940a05ec914f5d0256483e0d643af7ea0c",
+    "commitId" : "1be498782acbf507108e14f75034b242833e8bdc",
+    "commitTime" : 1037043242,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/io/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal(70)",
+    "elementFileAfter" : "src/java/org/apache/commons/io/output/DemuxOutputStream.java",
+    "elementNameAfter" : "src/java/org.apache.commons.io.output.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal(70)",
+    "comment" : "Move Class org.apache.commons.io.DemuxOutputStream moved to org.apache.commons.io.output.DemuxOutputStream"
+  }, {
+    "parentCommitId" : "c358911580db423133c958f8c68207a184137400",
+    "commitId" : "c360a10db25701f682849e5913d150f13a09f3bb",
+    "commitTime" : 1026166486,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/java/org/apache/commons/io/DemuxOutputStream.java",
+    "elementNameBefore" : "src/java/org.apache.commons.io.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal(70)",
+    "elementFileAfter" : "src/java/org/apache/commons/io/DemuxOutputStream.java",
+    "elementNameAfter" : "src/java/org.apache.commons.io.DemuxOutputStream@(final)(private)m_streams:InheritableThreadLocal(70)",
+    "comment" : "added with new class"
+  } ]
+}

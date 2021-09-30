@@ -1,0 +1,120 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+  "attributeName" : "configurationClasses",
+  "attributeKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@configurationClasses:Map<ConfigurationClass,ConfigurationClass>(132)",
+  "attributeDeclarationLine" : 132,
+  "expectedChanges" : [ {
+    "parentCommitId" : "be0b69cbf1377e3fa8d8abc94f24274f4d0945b2",
+    "commitId" : "52f44b340e03de4fa092f543346c1eb384e78e8d",
+    "commitTime" : 1400245582,
+    "changeType" : "type change",
+    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)configurationClasses:Set<ConfigurationClass>(115)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)configurationClasses:Map<ConfigurationClass,ConfigurationClass>(116)",
+    "comment" : "Change Attribute Type configurationClasses : Set<ConfigurationClass> to configurationClasses : Map<ConfigurationClass,ConfigurationClass> in class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)configurationClasses:Set<ConfigurationClass>(76)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)configurationClasses:Set<ConfigurationClass>(76)",
+    "comment" : "Move Source Folder org.springframework.context to spring-context"
+  }, {
+    "parentCommitId" : "20ec13ded5f35460c7a75b15abeb34d8e587c3f9",
+    "commitId" : "0a4463fb71e6901a943a5bafc9d1957da2229333",
+    "commitTime" : 1257553960,
+    "changeType" : "rename",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)model:Set<ConfigurationClass>(58)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)configurationClasses:Set<ConfigurationClass>(64)",
+    "comment" : "Rename Attribute model : Set<ConfigurationClass> to configurationClasses : Set<ConfigurationClass> in class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+    "commitId" : "14bd47551900ced88eeacf2a5f63c187ff72028c",
+    "commitTime" : 1240184731,
+    "changeType" : "type change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)model:ConfigurationModel(45)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)model:Set<ConfigurationClass>(44)",
+    "comment" : "Change Attribute Type model : ConfigurationModel to model : Set<ConfigurationClass> in class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "24e8dccd44182a8f043511a9109608f4c4d02f61",
+    "commitId" : "cc713ad5241a90bc66b96364b91e5439f1ae6cb6",
+    "commitTime" : 1238426781,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationParser@(final)(private)model:ConfigurationModel(46)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)model:ConfigurationModel(45)",
+    "comment" : "Rename Class org.springframework.context.annotation.ConfigurationParser renamed to org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "2c0c523d7099ed1ad77864242f25d30e218b2a95",
+    "commitId" : "1697932c57af5389fe07971e91866980e966403f",
+    "commitTime" : 1238129833,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/support/ConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.support.ConfigurationParser@(final)(private)model:ConfigurationModel(47)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationParser@(final)(private)model:ConfigurationModel(46)",
+    "comment" : "Move Class org.springframework.context.annotation.support.ConfigurationParser moved to org.springframework.context.annotation.ConfigurationParser"
+  }, {
+    "parentCommitId" : "63b5c48461f69cc611f4378d52f46197998334db",
+    "commitId" : "cd50e456457ecac48f61e2da991b6fd5dc0c6ee7",
+    "commitTime" : 1237783684,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/ConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.ConfigurationParser@(final)(private)model:ConfigurationModel(44)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/support/ConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.support.ConfigurationParser@(final)(private)model:ConfigurationModel(44)",
+    "comment" : "Move Source Folder org.springframework.config.java to org.springframework.context"
+  }, {
+    "parentCommitId" : "3f196517f99b7a7148e68531d1fa1b475ff81939",
+    "commitId" : "ef02c61e581dcd1f3cf110608da72ed133777d62",
+    "commitTime" : 1237782205,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationParser@(final)(private)model:ConfigurationModel(44)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/ConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.ConfigurationParser@(final)(private)model:ConfigurationModel(44)",
+    "comment" : "Move Class org.springframework.config.java.support.ConfigurationParser moved to org.springframework.context.annotation.support.ConfigurationParser"
+  }, {
+    "parentCommitId" : "faffd98621611cea8fd58ca813452a80689f0970",
+    "commitId" : "5de6e2c3953ab594fd04c4f2e59a102633a0a64f",
+    "commitTime" : 1236406486,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/parsing/ConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.parsing.ConfigurationParser@(final)(private)model:ConfigurationModel(46)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationParser@(final)(private)model:ConfigurationModel(43)",
+    "comment" : "Move Class org.springframework.config.java.internal.parsing.ConfigurationParser moved to org.springframework.config.java.support.ConfigurationParser"
+  }, {
+    "parentCommitId" : "d4fdad2202a16e2df11aefa2632b781ecef020ea",
+    "commitId" : "6deb1acab435d18f024e07a564ac77147729e0ec",
+    "commitTime" : 1235790486,
+    "changeType" : "moved",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/parsing/asm/AsmConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.parsing.asm.AsmConfigurationParser@(final)(private)model:ConfigurationModel(41)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/parsing/ConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.parsing.ConfigurationParser@(final)(private)model:ConfigurationModel(48)",
+    "comment" : "Pull Up Attribute private model : ConfigurationModel from class org.springframework.config.java.internal.parsing.asm.AsmConfigurationParser to private model : ConfigurationModel from class org.springframework.config.java.internal.parsing.ConfigurationParser"
+  }, {
+    "parentCommitId" : "e8b353e703c2c8a19bed6d8990615ca0d72545f0",
+    "commitId" : "e48fe0d89271113bcac4e7c41e86cb1d8230594e",
+    "commitTime" : 1235698544,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/parsing/asm/AsmConfigurationParser.java",
+    "elementNameBefore" : "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.parsing.asm.AsmConfigurationParser@(final)(private)model:ConfigurationModel(41)",
+    "elementFileAfter" : "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/parsing/asm/AsmConfigurationParser.java",
+    "elementNameAfter" : "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.parsing.asm.AsmConfigurationParser@(final)(private)model:ConfigurationModel(41)",
+    "comment" : "added with new class"
+  } ]
+}

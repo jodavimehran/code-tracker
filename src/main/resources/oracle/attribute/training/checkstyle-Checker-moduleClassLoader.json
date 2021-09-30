@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "attributeName" : "moduleClassLoader",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@moduleClassLoader:ClassLoader(108)",
+  "attributeDeclarationLine" : 108,
+  "expectedChanges" : [ {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)mModuleClassLoader:ClassLoader(85)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)moduleClassLoader:ClassLoader(85)",
+    "comment" : "Rename Attribute mModuleClassLoader : ClassLoader to moduleClassLoader : ClassLoader in class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mModuleClassLoader:ClassLoader(85)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(private)mModuleClassLoader:ClassLoader(85)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "79404974eff1458f4243f8acd6a08b6a8b869342",
+    "commitId" : "fe9057366308642868c25d427c3ee94411b37170",
+    "commitTime" : 1207618517,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mModuleClassLoader:ClassLoader(80)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mModuleClassLoader:ClassLoader(80)",
+    "comment" : "new attribute"
+  } ]
+}

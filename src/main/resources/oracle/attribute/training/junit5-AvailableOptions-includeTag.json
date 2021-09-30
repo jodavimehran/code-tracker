@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "junit5",
+  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
+  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+  "attributeName" : "includeTag",
+  "attributeKey" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@includeTag:OptionSpec<String>(69)",
+  "attributeDeclarationLine" : 69,
+  "expectedChanges" : [ {
+    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+    "commitTime" : 1466413192,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)includeTag:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)includeTag:OptionSpec<String>(32)",
+    "comment" : "Move Source Folder junit-console to junit-platform-console"
+  }, {
+    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
+    "commitTime" : 1466356953,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)includeTag:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)includeTag:OptionSpec<String>(32)",
+    "comment" : "Move Class org.junit.gen5.console.options.AvailableOptions moved to org.junit.platform.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "5251d0a4c092ffe5ba3cf4ad4c69714a36d8dfe3",
+    "commitId" : "85f3156214f0ee205b6caaaef87bd291700188ff",
+    "commitTime" : 1465668765,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requireTag:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)includeTag:OptionSpec<String>(32)",
+    "comment" : "Rename Attribute requireTag : OptionSpec<String> to includeTag : OptionSpec<String> in class org.junit.gen5.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "cee27602f5f4411a3969f78a055b67ecb2c20092",
+    "commitId" : "5707c028b2183766383c8fe83b0b662495cba59d",
+    "commitTime" : 1465660441,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requiredTags:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requireTag:OptionSpec<String>(32)",
+    "comment" : "Rename Attribute requiredTags : OptionSpec<String> to requireTag : OptionSpec<String> in class org.junit.gen5.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "4baa42a2a1702a250070ebb6587f9b36cdd58990",
+    "commitId" : "ea2127a5cfc44f137902241203b444dcd23c5051",
+    "commitTime" : 1465585195,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requiredTagsFilter:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requiredTags:OptionSpec<String>(32)",
+    "comment" : "Rename Attribute requiredTagsFilter : OptionSpec<String> to requiredTags : OptionSpec<String> in class org.junit.gen5.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "59904872de1a37ea828517f95f66c6e809b53690",
+    "commitId" : "48dd35c9002c80eeb666f56489785d1bf47f9aa4",
+    "commitTime" : 1454325577,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)excludeTags:OptionSpec<String>(30)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)requiredTagsFilter:OptionSpec<String>(29)",
+    "comment" : "Rename Attribute excludeTags : OptionSpec<String> to requiredTagsFilter : OptionSpec<String> in class org.junit.gen5.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "80362fe2fb42cc7200d470688fbee810e8bcab42",
+    "commitId" : "591eab7207b37451a23c89cb7746ad80344a9078",
+    "commitTime" : 1450893403,
+    "changeType" : "introduced",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)excludeTags:OptionSpec<String>(30)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)excludeTags:OptionSpec<String>(30)",
+    "comment" : "new attribute"
+  } ]
+}

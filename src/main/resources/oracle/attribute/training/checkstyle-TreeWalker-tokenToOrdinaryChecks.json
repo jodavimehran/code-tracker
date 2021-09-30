@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+  "attributeName" : "tokenToOrdinaryChecks",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@tokenToOrdinaryChecks:Multimap<String,AbstractCheck>(59)",
+  "attributeDeclarationLine" : 59,
+  "expectedChanges" : [ {
+    "parentCommitId" : "f6685bca1e8a6853e6192e2a3f71f1f365496eee",
+    "commitId" : "cf96dd9adcf0c3c8f8f05a9ffdcb765cafe17479",
+    "commitTime" : 1454680863,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToOrdinaryChecks:Multimap<String,Check>(71)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToOrdinaryChecks:Multimap<String,AbstractCheck>(71)",
+    "comment" : "Change Attribute Type tokenToOrdinaryChecks : Multimap<String,Check> to tokenToOrdinaryChecks : Multimap<String,AbstractCheck> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToOrdinaryChecks:Multimap<String,Check>(88)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToOrdinaryChecks:Multimap<String,Check>(88)",
+    "comment" : "Rename Attribute mTokenToOrdinaryChecks : Multimap<String,Check> to tokenToOrdinaryChecks : Multimap<String,Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "59aa66c3cc43db0a7cd8bb0ea3a39b6f4339fe88",
+    "commitId" : "a24df47cafeab03fd65cf72b460aad3d2fafce3d",
+    "commitTime" : 1413609550,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToOrdinaryChecks:Multimap<String,Check>(88)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToOrdinaryChecks:Multimap<String,Check>(88)",
+    "comment" : "new attribute"
+  } ]
+}

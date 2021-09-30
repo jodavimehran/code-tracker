@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+  "attributeName" : "idleAtNanos",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@idleAtNanos:long(115)",
+  "attributeDeclarationLine" : 115,
+  "expectedChanges" : [ {
+    "parentCommitId" : "81b3a99aea8571942e5fb18b5c189c4596087076",
+    "commitId" : "c5187583bbfe93fe58db80f95b5b478c84180c29",
+    "commitTime" : 1466996670,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)idleAtNanos:long(86)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(public)idleAtNanos:long(83)",
+    "comment" : "Move Class okhttp3.internal.io.RealConnection moved to okhttp3.internal.connection.RealConnection"
+  }, {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)idleAtNanos:long(82)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)idleAtNanos:long(82)",
+    "comment" : "Move Class com.squareup.okhttp.internal.io.RealConnection moved to okhttp3.internal.io.RealConnection"
+  }, {
+    "parentCommitId" : "068156ba1bdadb239623915586f935f7cb093461",
+    "commitId" : "f212b6780e95bb84b387d3edaa9128c56f2f65b4",
+    "commitTime" : 1449420743,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)idleAtNanos:long(79)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)idleAtNanos:long(79)",
+    "comment" : "new attribute"
+  } ]
+}

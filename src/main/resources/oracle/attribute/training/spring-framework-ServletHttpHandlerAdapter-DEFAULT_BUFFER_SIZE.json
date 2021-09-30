@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+  "attributeName" : "DEFAULT_BUFFER_SIZE",
+  "attributeKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@DEFAULT_BUFFER_SIZE:int(62)",
+  "attributeDeclarationLine" : 62,
+  "expectedChanges" : [ {
+    "parentCommitId" : "2e8326220b3929534e6621acf0ba0e4ac0bd910c",
+    "commitId" : "5d1b5426982332cbbd5671b00fbc4ded5d69a656",
+    "commitTime" : 1468513835,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)DEFAULT_BUFFER_SIZE:int(44)",
+    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)DEFAULT_BUFFER_SIZE:int(44)",
+    "comment" : "Move Source Folder spring-web-reactive to spring-web"
+  }, {
+    "parentCommitId" : "2fcbeb659515dc9b650aa2f0ba09ab2348e67a1d",
+    "commitId" : "361707c448f41612b018f2e50452dfb185fbbd5e",
+    "commitTime" : 1456234549,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@BUFFER_SIZE:int(54)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@DEFAULT_BUFFER_SIZE:int(44)",
+    "comment" : "Rename Attribute BUFFER_SIZE : int to DEFAULT_BUFFER_SIZE : int in class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "869f6bef4086fe66d642a7e4f841c5716e6e45a3",
+    "commitId" : "0aade73c88d5bbde5e6f7383560eeae017045bae",
+    "commitTime" : 1451584509,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletServerHttpRequest.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletServerHttpRequest@BUFFER_SIZE:int(52)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@BUFFER_SIZE:int(50)",
+    "comment" : "Move Attribute private BUFFER_SIZE : int from class org.springframework.http.server.reactive.ServletServerHttpRequest to private BUFFER_SIZE : int from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "382c98f9680fab9a0c2ad50de18e3385f9cba5c1",
+    "commitId" : "da98becf72fbeef836dba366431be2a652e5e001",
+    "commitTime" : 1449096367,
+    "changeType" : "introduced",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletServerHttpRequest.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletServerHttpRequest@BUFFER_SIZE:int(50)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletServerHttpRequest.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletServerHttpRequest@BUFFER_SIZE:int(50)",
+    "comment" : "new attribute"
+  } ]
+}

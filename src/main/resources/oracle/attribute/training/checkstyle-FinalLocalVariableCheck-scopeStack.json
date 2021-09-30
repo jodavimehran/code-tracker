@@ -1,0 +1,90 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+  "attributeName" : "scopeStack",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@scopeStack:Deque<ScopeData>(119)",
+  "attributeDeclarationLine" : 119,
+  "expectedChanges" : [ {
+    "parentCommitId" : "da2d75a1780c1691dc4aa45489f9e9674b1c652e",
+    "commitId" : "36b91a59d62c9505b835717f00f470c499cf9b30",
+    "commitTime" : 1446385289,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)scopeStack:Deque<Map<String,DetailAST>>(106)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)scopeStack:Deque<ScopeData>(116)",
+    "comment" : "Change Attribute Type scopeStack : Deque<Map<String,DetailAST>> to scopeStack : Deque<ScopeData> in class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "fe345d3db74d3913996973ad47c60abec196eb10",
+    "commitId" : "53eddca5d166d828a4835fc3000a97a97ddd5efe",
+    "commitTime" : 1430004930,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)scopeStack:FastStack<Map<String,DetailAST>>(80)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)scopeStack:Deque<Map<String,DetailAST>>(83)",
+    "comment" : "Change Attribute Type scopeStack : FastStack<Map<String,DetailAST>> to scopeStack : Deque<Map<String,DetailAST>> in class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "b94bac0719851b65b59b4aafc5bd3ef029321ed7",
+    "commitId" : "bb1b29851f14bf7eaf5656e01c285c0f5f3b9000",
+    "commitTime" : 1421677214,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:FastStack<Map<String,DetailAST>>(47)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)scopeStack:FastStack<Map<String,DetailAST>>(47)",
+    "comment" : "Rename Attribute mScopeStack : FastStack<Map<String,DetailAST>> to scopeStack : FastStack<Map<String,DetailAST>> in class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:FastStack<Map<String,DetailAST>>(47)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:FastStack<Map<String,DetailAST>>(47)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "be9f461d577983e7deeed909852cee3fb5d784f6",
+    "commitId" : "06e8a4eaa00e548f52b2483864a31ba9defd0989",
+    "commitTime" : 1209024589,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:Stack<Map<String,DetailAST>>(47)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:FastStack<Map<String,DetailAST>>(47)",
+    "comment" : "Change Attribute Type mScopeStack : Stack<Map<String,DetailAST>> to mScopeStack : FastStack<Map<String,DetailAST>> in class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "262209477f39964a63103613f3e2c985da083371",
+    "commitId" : "08638b5f739d9929698860048c052da2d5f80209",
+    "commitTime" : 1197700618,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:Stack(48)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:Stack<Map<String,DetailAST>>(47)",
+    "comment" : "Change Attribute Type mScopeStack : Stack to mScopeStack : Stack<Map<String,DetailAST>> in class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "c2d3932843e70e4bb5df7161800aca248f9af778",
+    "commitId" : "f4a92dad02a3a36b5e2e988bba04debb1e2c9db9",
+    "commitTime" : 1152243235,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(private)mScopeStack:Stack(48)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(final)(private)mScopeStack:Stack(48)",
+    "comment" : "Add Attribute Modifier final in attribute private mScopeStack : Stack from class com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck"
+  }, {
+    "parentCommitId" : "753a3a0c9708a7c050efd1dad93c37b424cf5c73",
+    "commitId" : "0c717ef2abd068366612d44280633a1c7ac9efac",
+    "commitTime" : 1063281707,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(private)mScopeStack:Stack(47)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.coding.FinalLocalVariableCheck@(private)mScopeStack:Stack(47)",
+    "comment" : "added with new class"
+  } ]
+}

@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+  "attributeName" : "componentScanParser",
+  "attributeKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@componentScanParser:ComponentScanAnnotationParser(128)",
+  "attributeDeclarationLine" : 128,
+  "expectedChanges" : [ {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)componentScanParser:ComponentScanAnnotationParser(88)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)componentScanParser:ComponentScanAnnotationParser(88)",
+    "comment" : "Move Source Folder org.springframework.context to spring-context"
+  }, {
+    "parentCommitId" : "c2b030a50dd62f3f1614e8a19ba9658d0fe0abdb",
+    "commitId" : "d0c31ad84cffd7af718a45d679483a1c51f9e552",
+    "commitTime" : 1304862575,
+    "changeType" : "moved",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)componentScanParser:ComponentScanAnnotationParser(98)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)componentScanParser:ComponentScanAnnotationParser(80)",
+    "comment" : "Move Attribute private componentScanParser : ComponentScanAnnotationParser from class org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader to private componentScanParser : ComponentScanAnnotationParser from class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "cd4fb665d9d15ef7966ca1fcbedf9e8e1d9946a2",
+    "commitId" : "856da7edb984cd8ad5643a376e536f40e06d8faa",
+    "commitTime" : 1304708675,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)componentScanParser:ComponentScanAnnotationParser(98)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)componentScanParser:ComponentScanAnnotationParser(98)",
+    "comment" : "new attribute"
+  } ]
+}

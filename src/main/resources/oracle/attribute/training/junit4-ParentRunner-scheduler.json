@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "junit4",
+  "repositoryWebURL" : "https://github.com/junit-team/junit4.git",
+  "startCommitId" : "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "filePath" : "src/main/java/org/junit/runners/ParentRunner.java",
+  "attributeName" : "scheduler",
+  "attributeKey" : "src/main/java/org.junit.runners.ParentRunner@scheduler:RunnerScheduler(77)",
+  "attributeDeclarationLine" : 77,
+  "expectedChanges" : [ {
+    "parentCommitId" : "63b1950468b19d91e368caa6ae804b2c4fefc6a8",
+    "commitId" : "df00d5eced3a7737b88de0f6f9e3673f0cf88f88",
+    "commitTime" : 1403073740,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.runners.ParentRunner@(volatile)(private)fScheduler:RunnerScheduler(69)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.ParentRunner@(volatile)(private)scheduler:RunnerScheduler(69)",
+    "comment" : "Rename Attribute fScheduler : RunnerScheduler to scheduler : RunnerScheduler in class org.junit.runners.ParentRunner"
+  }, {
+    "parentCommitId" : "beb1f4a80f7fa20523d40535fb81c1b8a7a9e638",
+    "commitId" : "83a25d440d118b7d10779a884d35f31045949e27",
+    "commitTime" : 1365721904,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.runners.ParentRunner@(private)fScheduler:RunnerScheduler(61)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.ParentRunner@(volatile)(private)fScheduler:RunnerScheduler(61)",
+    "comment" : "Add Attribute Modifier volatile in attribute private fScheduler : RunnerScheduler from class org.junit.runners.ParentRunner"
+  }, {
+    "parentCommitId" : "a1813f62876a6c7227ec5c866b621e01cda79664",
+    "commitId" : "97afc5e205e1c6ac0f5a9aefabed92d58d88ab81",
+    "commitTime" : 1247710352,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.runners.ParentRunner@(private)fRunnerInterceptor:RunnerInterceptor(50)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.ParentRunner@(private)fScheduler:RunnerScheduler(50)",
+    "comment" : "Rename Attribute fRunnerInterceptor : RunnerInterceptor to fScheduler : RunnerScheduler in class org.junit.runners.ParentRunner"
+  }, {
+    "parentCommitId" : "a1813f62876a6c7227ec5c866b621e01cda79664",
+    "commitId" : "97afc5e205e1c6ac0f5a9aefabed92d58d88ab81",
+    "commitTime" : 1247710352,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.runners.ParentRunner@(private)fRunnerInterceptor:RunnerInterceptor(50)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.ParentRunner@(private)fScheduler:RunnerScheduler(50)",
+    "comment" : "Change Attribute Type fRunnerInterceptor : RunnerInterceptor to fScheduler : RunnerScheduler in class org.junit.runners.ParentRunner"
+  }, {
+    "parentCommitId" : "4d6f0702dae590809b808230f027a60aa0a4a345",
+    "commitId" : "b737131b847c53bb4f1cf6dbf86f586008550eba",
+    "commitTime" : 1242096881,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.runners.ParentRunner@(private)fRunnerInterceptor:RunnerInterceptor(50)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.ParentRunner@(private)fRunnerInterceptor:RunnerInterceptor(50)",
+    "comment" : "new attribute"
+  } ]
+}

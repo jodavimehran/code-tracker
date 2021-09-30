@@ -1,0 +1,30 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName" : "minPauseBetweenCheckpointsNanos",
+  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@minPauseBetweenCheckpointsNanos:long(139)",
+  "attributeDeclarationLine" : 139,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d66aaeb0fb52c5cd258e8b32ba8394eedd5d4ca",
+    "commitId" : "b181662be378652d6c4405841ccda6145968d145",
+    "commitTime" : 1480604127,
+    "changeType" : "rename",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)minPauseBetweenCheckpoints:long(120)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)minPauseBetweenCheckpointsNanos:long(120)",
+    "comment" : "Rename Attribute minPauseBetweenCheckpoints : long to minPauseBetweenCheckpointsNanos : long in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "4097666ef3bf595e20fef206e07aa0251fe7eb35",
+    "commitId" : "55fd5f32d7ef0292a01192ab08456fae49b91791",
+    "commitTime" : 1448554589,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)minPauseBetweenCheckpoints:long(114)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)minPauseBetweenCheckpoints:long(114)",
+    "comment" : "new attribute"
+  } ]
+}

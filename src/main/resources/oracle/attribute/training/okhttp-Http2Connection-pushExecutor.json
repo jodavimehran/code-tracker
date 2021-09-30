@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "attributeName" : "pushExecutor",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@pushExecutor:ExecutorService(102)",
+  "attributeDeclarationLine" : 102,
+  "expectedChanges" : [ {
+    "parentCommitId" : "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+    "commitId" : "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+    "commitTime" : 1468102159,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(final)(private)pushExecutor:ExecutorService(88)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@(final)(private)pushExecutor:ExecutorService(88)",
+    "comment" : "Move And Rename Class okhttp3.internal.framed.FramedConnection moved and renamed to okhttp3.internal.http2.Http2Connection"
+  }, {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection@(final)(private)pushExecutor:ExecutorService(92)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(final)(private)pushExecutor:ExecutorService(92)",
+    "comment" : "Move Class com.squareup.okhttp.internal.framed.FramedConnection moved to okhttp3.internal.framed.FramedConnection"
+  }, {
+    "parentCommitId" : "b262f2a03001cd990568b929b2739dd3c7adb75f",
+    "commitId" : "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+    "commitTime" : 1434580812,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)pushExecutor:ExecutorService(91)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection@(final)(private)pushExecutor:ExecutorService(91)",
+    "comment" : "Move And Rename Class com.squareup.okhttp.internal.spdy.SpdyConnection moved and renamed to com.squareup.okhttp.internal.framed.FramedConnection"
+  }, {
+    "parentCommitId" : "f63a8d7de09bd4cacf5d58e97e3390c34a81bf55",
+    "commitId" : "c85153e6a6a2fd93d17dcb18352b42698cf7d814",
+    "commitTime" : 1399303158,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)pushExecutor:ExecutorService(90)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)pushExecutor:ExecutorService(90)",
+    "comment" : "new attribute"
+  } ]
+}

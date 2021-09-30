@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "hibernate-orm",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
+  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "filePath" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+  "attributeName" : "globalCfg",
+  "attributeKey" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration@globalCfg:GlobalConfiguration(56)",
+  "attributeDeclarationLine" : 56,
+  "expectedChanges" : [ {
+    "parentCommitId" : "2b2f333593c1989624d332d47b1358afd1999a91",
+    "commitId" : "5cc051e1dfeb5664d8d1eb9a289097d7f9bfb0e2",
+    "commitTime" : 1365425009,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)globalCfg:GlobalConfiguration(73)",
+    "elementFileAfter" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration@(private)globalCfg:GlobalConfiguration(73)",
+    "comment" : "Move Class org.hibernate.envers.configuration.RevisionInfoConfiguration moved to org.hibernate.envers.configuration.internal.RevisionInfoConfiguration"
+  }, {
+    "parentCommitId" : "ac49a906e8566f29767927a0dd8dc6b9328115ab",
+    "commitId" : "86c15fd21234381e2cc713d07e9652f01078613d",
+    "commitTime" : 1303233540,
+    "changeType" : "moved",
+    "elementFileBefore" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/AuditConfiguration.java",
+    "elementNameBefore" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.AuditConfiguration@(final)(private)globalCfg:GlobalConfiguration(46)",
+    "elementFileAfter" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)globalCfg:GlobalConfiguration(62)",
+    "comment" : "Move Attribute private globalCfg : GlobalConfiguration from class org.hibernate.envers.configuration.AuditConfiguration to private globalCfg : GlobalConfiguration from class org.hibernate.envers.configuration.RevisionInfoConfiguration"
+  }, {
+    "parentCommitId" : "89298608b0ba18049272fc0f2784fb3d251da905",
+    "commitId" : "e21fed8304935dc8a1efeee115a4e720b9d2667b",
+    "commitTime" : 1286826108,
+    "changeType" : "container change",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/AuditConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.AuditConfiguration@(final)(private)globalCfg:GlobalConfiguration(48)",
+    "elementFileAfter" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/AuditConfiguration.java",
+    "elementNameAfter" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.AuditConfiguration@(final)(private)globalCfg:GlobalConfiguration(48)",
+    "comment" : "Move Source Folder envers to hibernate-envers"
+  }, {
+    "parentCommitId" : "90f70231c682e22693f85977497d2dc429ef29da",
+    "commitId" : "9fc49bf328cebc0a612e0ef5d8425a08d16f1842",
+    "commitTime" : 1225454018,
+    "changeType" : "introduced",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/AuditConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.AuditConfiguration@(final)(private)globalCfg:GlobalConfiguration(42)",
+    "elementFileAfter" : "envers/src/main/java/org/hibernate/envers/configuration/AuditConfiguration.java",
+    "elementNameAfter" : "envers/src/main/java/org.hibernate.envers.configuration.AuditConfiguration@(final)(private)globalCfg:GlobalConfiguration(42)",
+    "comment" : "added with new class"
+  } ]
+}

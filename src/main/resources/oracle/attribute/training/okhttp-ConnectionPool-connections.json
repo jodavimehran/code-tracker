@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+  "attributeName" : "connections",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.ConnectionPool@connections:Deque<RealConnection>(76)",
+  "attributeDeclarationLine" : 76,
+  "expectedChanges" : [ {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:Deque<RealConnection>(110)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.ConnectionPool@(final)(private)connections:Deque<RealConnection>(110)",
+    "comment" : "Move Class com.squareup.okhttp.ConnectionPool moved to okhttp3.ConnectionPool"
+  }, {
+    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
+    "commitTime" : 1448721366,
+    "changeType" : "type change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:Deque<Connection>(79)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:Deque<RealConnection>(75)",
+    "comment" : "Change Attribute Type connections : Deque<Connection> to connections : Deque<RealConnection> in class com.squareup.okhttp.ConnectionPool"
+  }, {
+    "parentCommitId" : "4330e459981491414ad86ca7c0cb7f8d08a47a29",
+    "commitId" : "49a331385343f3ca49d26c4ddd947546867bcd3b",
+    "commitTime" : 1447074774,
+    "changeType" : "type change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:LinkedList<Connection>(78)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:Deque<Connection>(79)",
+    "comment" : "Change Attribute Type connections : LinkedList<Connection> to connections : Deque<Connection> in class com.squareup.okhttp.ConnectionPool"
+  }, {
+    "parentCommitId" : "ba2b7432cb9fabfc725b09a9f14878cb128ef208",
+    "commitId" : "7ccbf48838b7cfe42759c67790636d442ea5daa3",
+    "commitTime" : 1364267091,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:LinkedList<Connection>(64)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:LinkedList<Connection>(64)",
+    "comment" : "Move Source Folder src to okhttp/src"
+  }, {
+    "parentCommitId" : "83de4eb552994d30451f8a3481b5a00d6b457a2e",
+    "commitId" : "6f6d959fdae64065521990413f86bc7ab038d7c1",
+    "commitTime" : 1359670986,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:LinkedList<Connection>(60)",
+    "elementFileAfter" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)connections:LinkedList<Connection>(60)",
+    "comment" : "new attribute"
+  } ]
+}

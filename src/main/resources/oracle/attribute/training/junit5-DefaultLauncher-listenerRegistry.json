@@ -1,0 +1,120 @@
+{
+  "repositoryName" : "junit5",
+  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
+  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "attributeName" : "listenerRegistry",
+  "attributeKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@listenerRegistry:TestExecutionListenerRegistry(47)",
+  "attributeDeclarationLine" : 47,
+  "expectedChanges" : [ {
+    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+    "commitTime" : 1466413192,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "comment" : "Move Source Folder junit-launcher to junit-platform-launcher"
+  }, {
+    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
+    "commitTime" : 1466356953,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "comment" : "Move Class org.junit.gen5.launcher.core.DefaultLauncher moved to org.junit.platform.launcher.core.DefaultLauncher"
+  }, {
+    "parentCommitId" : "d4fca2b705b1f05312a59e71d37853e15632c437",
+    "commitId" : "e273d6681b96509b0bd35916a82fcfada21f18c6",
+    "commitTime" : 1466285196,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(43)",
+    "comment" : "Move Class org.junit.gen5.launcher.main.DefaultLauncher moved to org.junit.gen5.launcher.core.DefaultLauncher"
+  }, {
+    "parentCommitId" : "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
+    "commitId" : "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
+    "commitTime" : 1453458759,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(42)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(41)",
+    "comment" : "Rename Attribute testExecutionListenerRegistry : TestExecutionListenerRegistry to listenerRegistry : TestExecutionListenerRegistry in class org.junit.gen5.launcher.main.DefaultLauncher"
+  }, {
+    "parentCommitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+    "commitId" : "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
+    "commitTime" : 1453312358,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(41)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(41)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.JUnit5Launcher renamed to org.junit.gen5.launcher.main.DefaultLauncher"
+  }, {
+    "parentCommitId" : "027bc980ad0a17a6130013aeec068296606bbfef",
+    "commitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+    "commitTime" : 1453312065,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(55)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(41)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.Launcher renamed to org.junit.gen5.launcher.main.JUnit5Launcher"
+  }, {
+    "parentCommitId" : "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+    "commitId" : "961fd47344c55d21907607ec9672df6d4f3d2362",
+    "commitTime" : 1453134880,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(51)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(57)",
+    "comment" : "Move Class org.junit.gen5.launcher.Launcher moved to org.junit.gen5.launcher.main.Launcher"
+  }, {
+    "parentCommitId" : "ab12dc85ce90a941531d666e658dfaa0834fda31",
+    "commitId" : "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+    "commitTime" : 1453132610,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(56)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testExecutionListenerRegistry:TestExecutionListenerRegistry(51)",
+    "comment" : "Rename Attribute listenerRegistry : TestExecutionListenerRegistry to testExecutionListenerRegistry : TestExecutionListenerRegistry in class org.junit.gen5.launcher.Launcher"
+  }, {
+    "parentCommitId" : "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+    "commitId" : "e4c640078022076935caef8edd312ea547f3b9d1",
+    "commitTime" : 1449569937,
+    "changeType" : "type change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)listenerRegistry:TestListenerRegistry(33)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)listenerRegistry:TestExecutionListenerRegistry(33)",
+    "comment" : "Change Attribute Type listenerRegistry : TestListenerRegistry to listenerRegistry : TestExecutionListenerRegistry in class org.junit.gen5.launcher.Launcher"
+  }, {
+    "parentCommitId" : "989a1fc59562f5719aad0f4c41ecbd0f23a0cb8f",
+    "commitId" : "8305748e531406589d5313ff19cb7032196deba3",
+    "commitTime" : 1446056185,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(private)listenerRegistry:TestListenerRegistry(16)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)listenerRegistry:TestListenerRegistry(15)",
+    "comment" : "Add Attribute Modifier final in attribute private listenerRegistry : TestListenerRegistry from class org.junit.gen5.launcher.Launcher"
+  }, {
+    "parentCommitId" : "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
+    "commitId" : "a52d04ff1b9a42899242b1b9cc7a8147bb2f3776",
+    "commitTime" : 1446039799,
+    "changeType" : "introduced",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(private)listenerRegistry:TestListenerRegistry(17)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(private)listenerRegistry:TestListenerRegistry(17)",
+    "comment" : "new attribute"
+  } ]
+}

@@ -1,0 +1,110 @@
+{
+  "repositoryName" : "commons-lang",
+  "repositoryWebURL" : "https://github.com/apache/commons-lang.git",
+  "startCommitId" : "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "filePath" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+  "attributeName" : "cTimeZoneDisplayCache",
+  "attributeKey" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(1306)",
+  "attributeDeclarationLine" : 1306,
+  "expectedChanges" : [ {
+    "parentCommitId" : "efa688d1f691fbb08b75513875380d4e85f63bb6",
+    "commitId" : "5932b497702149879135420df83ea701e2ea1718",
+    "commitTime" : 1392247177,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@(static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(1088)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@(final,static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(1088)",
+    "comment" : "Add Attribute Modifier final in attribute private cTimeZoneDisplayCache : ConcurrentMap<TimeZoneDisplayKey,String> from class org.apache.commons.lang3.time.FastDatePrinter"
+  }, {
+    "parentCommitId" : "dfa6882a3b9ae6d17c386312ad5e5902d852fb4e",
+    "commitId" : "cc340ad2eb6a783f6abe8d02f2c32bb02b01505c",
+    "commitTime" : 1327561226,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(114)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@(static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(1037)",
+    "comment" : "Move Attribute private cTimeZoneDisplayCache : ConcurrentMap<TimeZoneDisplayKey,String> from class org.apache.commons.lang3.time.FastDateFormat to private cTimeZoneDisplayCache : ConcurrentMap<TimeZoneDisplayKey,String> from class org.apache.commons.lang3.time.FastDatePrinter"
+  }, {
+    "parentCommitId" : "5a7a09256e67ae8fde1a407d51fae326b973af9c",
+    "commitId" : "9ef322c33c465d8ae9a1d854dfa977f47f629009",
+    "commitTime" : 1303282276,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(110)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(107)",
+    "comment" : "Remove Attribute Modifier final in attribute private cTimeZoneDisplayCache : Map<Object,String> from class org.apache.commons.lang3.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "5a7a09256e67ae8fde1a407d51fae326b973af9c",
+    "commitId" : "9ef322c33c465d8ae9a1d854dfa977f47f629009",
+    "commitTime" : 1303282276,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(110)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:ConcurrentMap<TimeZoneDisplayKey,String>(107)",
+    "comment" : "Change Attribute Type cTimeZoneDisplayCache : Map<Object,String> to cTimeZoneDisplayCache : ConcurrentMap<TimeZoneDisplayKey,String> in class org.apache.commons.lang3.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "6b32246f5f9f77c74b32a5290cdbdd4e0f5c71c6",
+    "commitId" : "fc5c081e22a61bb5a6810af302be3f22f7966df4",
+    "commitTime" : 1262484686,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang3.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "comment" : "Move Source Folder src to src/main"
+  }, {
+    "parentCommitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitId" : "c6e8f706dc7a236cc2a49f979d857ee92d0abd7c",
+    "commitTime" : 1260446198,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang3.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "comment" : "Move Class org.apache.commons.lang.time.FastDateFormat moved to org.apache.commons.lang3.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "375d7d0954cae60c4c7292cc65abbc972178857c",
+    "commitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitTime" : 1260444831,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "comment" : "Move Source Folder src/java/org/apache/commons/lang to src/java/org/apache/commons/lang3"
+  }, {
+    "parentCommitId" : "950def5b6f5fa146ea6035229f3751f224981f5e",
+    "commitId" : "654fb75d80a63fa551ced73c3b652f4120573590",
+    "commitTime" : 1237174520,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map(115)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map<Object,String>(115)",
+    "comment" : "Change Attribute Type cTimeZoneDisplayCache : Map to cTimeZoneDisplayCache : Map<Object,String> in class org.apache.commons.lang.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "127e6e338f088b82eea1967d31c1abf8d51a364f",
+    "commitId" : "72f88548f894fc941bc847a27a4b451c6d97b255",
+    "commitTime" : 1193803472,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:Map(114)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final,static)(private)cTimeZoneDisplayCache:Map(114)",
+    "comment" : "Add Attribute Modifier final in attribute private cTimeZoneDisplayCache : Map from class org.apache.commons.lang.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "2f50297e5eb582ed50e87e6801917abe5a30b3c1",
+    "commitId" : "a99f7965b34b8dd0532c8d6f5e592d990ca220fc",
+    "commitTime" : 1041969355,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:Map(93)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(static)(private)cTimeZoneDisplayCache:Map(93)",
+    "comment" : "added with new class"
+  } ]
+}

@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+  "attributeName" : "childContext",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@childContext:Context(85)",
+  "attributeDeclarationLine" : 85,
+  "expectedChanges" : [ {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mChildContext:Context(111)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)childContext:Context(111)",
+    "comment" : "Rename Attribute mChildContext : Context to childContext : Context in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mChildContext:Context(78)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mChildContext:Context(78)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "987da3a4c5fac3476a4461892c919c0f6d9248bd",
+    "commitId" : "08d6efe49d2960d9bd61bfb9cca65910f0c19b58",
+    "commitTime" : 1039547615,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mChildContext:Context(119)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mChildContext:Context(119)",
+    "comment" : "new attribute"
+  } ]
+}

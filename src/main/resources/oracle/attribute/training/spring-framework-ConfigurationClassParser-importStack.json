@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+  "attributeName" : "importStack",
+  "attributeKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@importStack:ImportStack(138)",
+  "attributeDeclarationLine" : 138,
+  "expectedChanges" : [ {
+    "parentCommitId" : "460ed307ed4177834db1c81647ccf63430955a65",
+    "commitId" : "d96a66ae8fc01cb480132e909b320a6c6addbfde",
+    "commitTime" : 1469657173,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(private)importStack:ImportStack(142)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:ImportStack(142)",
+    "comment" : "Add Attribute Modifier final in attribute private importStack : ImportStack from class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "fd9e88d37275ee450086e3e97426a91969cc2c10",
+    "commitId" : "316244d2bdcb288ef4e6ff58daef6da0511fe765",
+    "commitTime" : 1469629308,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:ImportStack(142)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(private)importStack:ImportStack(142)",
+    "comment" : "Remove Attribute Modifier final in attribute private importStack : ImportStack from class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:ImportStack(74)",
+    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:ImportStack(74)",
+    "comment" : "Move Source Folder org.springframework.context to spring-context"
+  }, {
+    "parentCommitId" : "89005a5b7034cc1c2f702eac4bd36836b99f3765",
+    "commitId" : "cdb01cbd3795f273b751d0f0a45caa22d07c62da",
+    "commitTime" : 1304708742,
+    "changeType" : "type change",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:Stack<ConfigurationClass>(65)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:ImportStack(66)",
+    "comment" : "Change Attribute Type importStack : Stack<ConfigurationClass> to importStack : ImportStack in class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "37e1333a41adb6b36952e475cf84b1a24d7a8ed9",
+    "commitId" : "b5d21108da24f8344be3bc708c7afdfca9a1d089",
+    "commitTime" : 1240571806,
+    "changeType" : "moved",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassVisitor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassVisitor@(final)(private)importStack:Stack<ConfigurationClass>(73)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser@(final)(private)importStack:Stack<ConfigurationClass>(60)",
+    "comment" : "Move Attribute private importStack : Stack<ConfigurationClass> from class org.springframework.context.annotation.ConfigurationClassVisitor to private importStack : Stack<ConfigurationClass> from class org.springframework.context.annotation.ConfigurationClassParser"
+  }, {
+    "parentCommitId" : "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+    "commitId" : "14bd47551900ced88eeacf2a5f63c187ff72028c",
+    "commitTime" : 1240184731,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassVisitor.java",
+    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassVisitor@(final)(private)importStack:Stack<ConfigurationClass>(69)",
+    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassVisitor.java",
+    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassVisitor@(final)(private)importStack:Stack<ConfigurationClass>(69)",
+    "comment" : "new attribute"
+  } ]
+}

@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "hibernate-orm",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
+  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "filePath" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+  "attributeName" : "buildingContext",
+  "attributeKey" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@buildingContext:MetadataBuildingContext(72)",
+  "attributeDeclarationLine" : 72,
+  "expectedChanges" : [ {
+    "parentCommitId" : "1a75fb3bbbe1db67237a6f0d6efe604ab8a01be2",
+    "commitId" : "8f889e95d76f47945c9ec072fd08cb045767578c",
+    "commitTime" : 1522277028,
+    "changeType" : "rename",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)metadata:MetadataImplementor(70)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)buildingContext:MetadataBuildingContext(70)",
+    "comment" : "Rename Attribute metadata : MetadataImplementor to buildingContext : MetadataBuildingContext in class org.hibernate.mapping.SimpleValue"
+  }, {
+    "parentCommitId" : "1a75fb3bbbe1db67237a6f0d6efe604ab8a01be2",
+    "commitId" : "8f889e95d76f47945c9ec072fd08cb045767578c",
+    "commitTime" : 1522277028,
+    "changeType" : "type change",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)metadata:MetadataImplementor(70)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)buildingContext:MetadataBuildingContext(70)",
+    "comment" : "Change Attribute Type metadata : MetadataImplementor to buildingContext : MetadataBuildingContext in class org.hibernate.mapping.SimpleValue"
+  }, {
+    "parentCommitId" : "55e73c7202da1155754bc12edb41121d0330b303",
+    "commitId" : "9229514ed407b1610a52ab7ba97806c435352ad2",
+    "commitTime" : 1522277028,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)buildingContext:MetadataBuildingContext(70)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(private)buildingContext:MetadataBuildingContext(71)",
+    "comment" : "Remove Attribute Modifier final in attribute private buildingContext : MetadataBuildingContext from class org.hibernate.mapping.SimpleValue"
+  }, {
+    "parentCommitId" : "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+    "commitId" : "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+    "commitTime" : 1426024431,
+    "changeType" : "rename",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(67)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)metadata:MetadataImplementor(69)",
+    "comment" : "Rename Attribute mappings : Mappings to metadata : MetadataImplementor in class org.hibernate.mapping.SimpleValue"
+  }, {
+    "parentCommitId" : "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+    "commitId" : "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+    "commitTime" : 1426024431,
+    "changeType" : "type change",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(67)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)metadata:MetadataImplementor(69)",
+    "comment" : "Change Attribute Type mappings : Mappings to metadata : MetadataImplementor in class org.hibernate.mapping.SimpleValue"
+  }, {
+    "parentCommitId" : "0bfe7869e41076fd0846ca7592740710876f2427",
+    "commitId" : "34c2839dccef33a8f3abb4eaf3192c1e1d9e1814",
+    "commitTime" : 1286826107,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(52)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(52)",
+    "comment" : "Move Source Folder core to hibernate-core"
+  }, {
+    "parentCommitId" : "4c764f0294c41df649000c4220bf56ceb077b206",
+    "commitId" : "421789ddcd906e806bf901fea9d9e713daebd51a",
+    "commitTime" : 1272738026,
+    "changeType" : "introduced",
+    "elementFileBefore" : "core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameBefore" : "core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(51)",
+    "elementFileAfter" : "core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+    "elementNameAfter" : "core/src/main/java/org.hibernate.mapping.SimpleValue@(final)(private)mappings:Mappings(51)",
+    "comment" : "new attribute"
+  } ]
+}

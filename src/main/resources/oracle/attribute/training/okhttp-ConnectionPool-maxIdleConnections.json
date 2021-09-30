@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+  "attributeName" : "maxIdleConnections",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.ConnectionPool@maxIdleConnections:int(55)",
+  "attributeDeclarationLine" : 55,
+  "expectedChanges" : [ {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)maxIdleConnections:int(89)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.ConnectionPool@(final)(private)maxIdleConnections:int(89)",
+    "comment" : "Move Class com.squareup.okhttp.ConnectionPool moved to okhttp3.ConnectionPool"
+  }, {
+    "parentCommitId" : "ba2b7432cb9fabfc725b09a9f14878cb128ef208",
+    "commitId" : "7ccbf48838b7cfe42759c67790636d442ea5daa3",
+    "commitTime" : 1364267091,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)maxIdleConnections:int(61)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)maxIdleConnections:int(61)",
+    "comment" : "Move Source Folder src to okhttp/src"
+  }, {
+    "parentCommitId" : "83de4eb552994d30451f8a3481b5a00d6b457a2e",
+    "commitId" : "6f6d959fdae64065521990413f86bc7ab038d7c1",
+    "commitTime" : 1359670986,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)maxIdleConnections:int(57)",
+    "elementFileAfter" : "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "src/main/java/com.squareup.okhttp.ConnectionPool@(final)(private)maxIdleConnections:int(57)",
+    "comment" : "new attribute"
+  } ]
+}

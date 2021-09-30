@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "hibernate-orm",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
+  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "filePath" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+  "attributeName" : "deprecatedSort",
+  "attributeKey" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@deprecatedSort:Sort(157)",
+  "attributeDeclarationLine" : 157,
+  "expectedChanges" : [ {
+    "parentCommitId" : "9c3bad3b2dd443b71d8b323918c4396e46d37126",
+    "commitId" : "33640ae2bdd37a0102e21f5a3ff8a47f0d6361b5",
+    "commitTime" : 1365629112,
+    "changeType" : "rename",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(143)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)deprecatedSort:Sort(166)",
+    "comment" : "Rename Attribute isSorted : boolean to deprecatedSort : Sort in class org.hibernate.cfg.annotations.CollectionBinder"
+  }, {
+    "parentCommitId" : "9c3bad3b2dd443b71d8b323918c4396e46d37126",
+    "commitId" : "33640ae2bdd37a0102e21f5a3ff8a47f0d6361b5",
+    "commitTime" : 1365629112,
+    "changeType" : "type change",
+    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(143)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)deprecatedSort:Sort(166)",
+    "comment" : "Change Attribute Type isSorted : boolean to deprecatedSort : Sort in class org.hibernate.cfg.annotations.CollectionBinder"
+  }, {
+    "parentCommitId" : "0bfe7869e41076fd0846ca7592740710876f2427",
+    "commitId" : "34c2839dccef33a8f3abb4eaf3192c1e1d9e1814",
+    "commitTime" : 1286826107,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(142)",
+    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(142)",
+    "comment" : "Move Source Folder core to hibernate-core"
+  }, {
+    "parentCommitId" : "cc3b41a09c983913594b16d6c909be0bfd41bd7a",
+    "commitId" : "1ca2bc19a5f667e10f9a2c2b10320b9c40921563",
+    "commitTime" : 1278632483,
+    "changeType" : "container change",
+    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(143)",
+    "elementFileAfter" : "core/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "core/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(143)",
+    "comment" : "Move Source Folder annotations to core"
+  }, {
+    "parentCommitId" : "c457f2b3258fc48ef4010a9e58cd2fc3baaca6cc",
+    "commitId" : "9d7a03a5f7f03bc803d897baa590861154b39f5e",
+    "commitTime" : 1225219993,
+    "changeType" : "container change",
+    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(113)",
+    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(113)",
+    "comment" : "Move Source Folder annotations/src to annotations/src/main"
+  }, {
+    "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
+    "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
+    "commitTime" : 1225219270,
+    "changeType" : "introduced",
+    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(113)",
+    "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)isSorted:boolean(113)",
+    "comment" : "added with new class"
+  } ]
+}

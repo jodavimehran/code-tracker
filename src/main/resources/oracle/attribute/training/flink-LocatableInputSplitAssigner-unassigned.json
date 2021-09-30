@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+  "attributeName" : "unassigned",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner@unassigned:Set<LocatableInputSplitWithCount>(45)",
+  "attributeDeclarationLine" : 45,
+  "expectedChanges" : [ {
+    "parentCommitId" : "3799560e1c5bca07fef165fb4b05ddd7a1a937b7",
+    "commitId" : "e0a4ee07084bc6ab56a20fbc4a18863462da93eb",
+    "commitTime" : 1418395997,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplit>(46)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplitWithCount>(43)",
+    "comment" : "Change Attribute Type unassigned : Set<LocatableInputSplit> to unassigned : Set<LocatableInputSplitWithCount> in class org.apache.flink.api.common.io.LocatableInputSplitAssigner"
+  }, {
+    "parentCommitId" : "c16f6d816899d8db7ff7c809d0c26be611b4d561",
+    "commitId" : "b32e77a2d8be76aeafa28b94fd7cfbb8de80f4cb",
+    "commitTime" : 1411236168,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplit>(45)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplit>(45)",
+    "comment" : "Move Class org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner moved to org.apache.flink.api.common.io.LocatableInputSplitAssigner"
+  }, {
+    "parentCommitId" : "028fcf55c41f4b2a7677eb31d0ead3973e457efc",
+    "commitId" : "c32569aed12ffa968e2c2289c2d56db262c0eba4",
+    "commitTime" : 1411236168,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplit>(45)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner@(final)(private)unassigned:Set<LocatableInputSplit>(45)",
+    "comment" : "new attribute"
+  } ]
+}

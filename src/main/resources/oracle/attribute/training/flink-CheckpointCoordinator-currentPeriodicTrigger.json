@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName" : "currentPeriodicTrigger",
+  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@currentPeriodicTrigger:ScheduledFuture<?>(157)",
+  "attributeDeclarationLine" : 157,
+  "expectedChanges" : [ {
+    "parentCommitId" : "afd36f9814ee282df8e3a58e846911f6efa54c61",
+    "commitId" : "70252f3468916758e8bc456bbf482549c38ad7ff",
+    "commitTime" : 1489671806,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)currentPeriodicTrigger:ScheduledTrigger(145)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)currentPeriodicTrigger:ScheduledFuture<?>(148)",
+    "comment" : "Change Attribute Type currentPeriodicTrigger : ScheduledTrigger to currentPeriodicTrigger : ScheduledFuture<?> in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "4097666ef3bf595e20fef206e07aa0251fe7eb35",
+    "commitId" : "55fd5f32d7ef0292a01192ab08456fae49b91791",
+    "commitTime" : 1448554589,
+    "changeType" : "rename",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)periodicScheduler:TimerTask(109)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)currentPeriodicTrigger:ScheduledTrigger(129)",
+    "comment" : "Rename Attribute periodicScheduler : TimerTask to currentPeriodicTrigger : ScheduledTrigger in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "4097666ef3bf595e20fef206e07aa0251fe7eb35",
+    "commitId" : "55fd5f32d7ef0292a01192ab08456fae49b91791",
+    "commitTime" : 1448554589,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)periodicScheduler:TimerTask(109)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)currentPeriodicTrigger:ScheduledTrigger(129)",
+    "comment" : "Change Attribute Type periodicScheduler : TimerTask to currentPeriodicTrigger : ScheduledTrigger in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "ff750e61a556a96f0cc55997706a0fac7f764dca",
+    "commitId" : "9b7f8aa121e4a231632296d0809029aca9ebde6a",
+    "commitTime" : 1431459357,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)periodicScheduler:TimerTask(96)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)periodicScheduler:TimerTask(96)",
+    "comment" : "new attribute"
+  } ]
+}

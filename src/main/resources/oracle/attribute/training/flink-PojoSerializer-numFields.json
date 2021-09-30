@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+  "attributeName" : "numFields",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@numFields:int(84)",
+  "attributeDeclarationLine" : 84,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7081836e0d640ee640687606bd73b6673d3f2a07",
+    "commitId" : "21a715867d655bb61df9a9f7eef37e42b99e206a",
+    "commitTime" : 1454428544,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(58)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(58)",
+    "comment" : "Move Source Folder flink-java to flink-core"
+  }, {
+    "parentCommitId" : "2c9e2c8bbe1547709d820949d1739f7ea2ce89cf",
+    "commitId" : "8ca853e0f6c18be8e6b066c6ec0f23badb797323",
+    "commitTime" : 1442481573,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(private)numFields:int(59)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(58)",
+    "comment" : "Add Attribute Modifier final in attribute private numFields : int from class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "6b402f43d01495fd9a6bea1c80b2b2b50393b92d",
+    "commitId" : "7407076d3990752eb5fa4072cd036efd2f656cbc",
+    "commitTime" : 1423570503,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(43)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(private)numFields:int(59)",
+    "comment" : "Remove Attribute Modifier final in attribute private numFields : int from class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "5f011547378ad03c033770503c6dcfd6b64e9647",
+    "commitId" : "8563d511da8ab8ac0e1362775f11aef7b67375be",
+    "commitTime" : 1405024514,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "comment" : "Move Source Folder stratosphere-java to flink-java"
+  }, {
+    "parentCommitId" : "6d9a40d83c3e339c4e820a6b3632fc85ebcbc3de",
+    "commitId" : "24eb47ac86299920aa137d5b6394a248ff58d19e",
+    "commitTime" : 1404926060,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "elementFileAfter" : "stratosphere-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "stratosphere-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "comment" : "Move Class eu.stratosphere.api.java.typeutils.runtime.PojoSerializer moved to org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "5f0a3d4d3424392aef87291b2840b86e30eb0ace",
+    "commitId" : "3f87fc9f1cc2f0e18552e6ec5e9449228a942726",
+    "commitTime" : 1403776510,
+    "changeType" : "introduced",
+    "elementFileBefore" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "elementFileAfter" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.PojoSerializer@(final)(private)numFields:int(39)",
+    "comment" : "added with new class"
+  } ]
+}

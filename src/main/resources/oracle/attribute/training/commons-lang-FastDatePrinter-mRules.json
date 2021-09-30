@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "commons-lang",
+  "repositoryWebURL" : "https://github.com/apache/commons-lang.git",
+  "startCommitId" : "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "filePath" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+  "attributeName" : "mRules",
+  "attributeKey" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@mRules:Rule[](132)",
+  "attributeDeclarationLine" : 132,
+  "expectedChanges" : [ {
+    "parentCommitId" : "dfa6882a3b9ae6d17c386312ad5e5902d852fb4e",
+    "commitId" : "cc340ad2eb6a783f6abe8d02f2c32bb02b01505c",
+    "commitTime" : 1327561226,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(transient)(private)mRules:Rule[](132)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDatePrinter.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDatePrinter@(transient)(private)mRules:Rule[](120)",
+    "comment" : "Move Attribute private mRules : Rule[] from class org.apache.commons.lang3.time.FastDateFormat to private mRules : Rule[] from class org.apache.commons.lang3.time.FastDatePrinter"
+  }, {
+    "parentCommitId" : "6b32246f5f9f77c74b32a5290cdbdd4e0f5c71c6",
+    "commitId" : "fc5c081e22a61bb5a6810af302be3f22f7966df4",
+    "commitTime" : 1262484686,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang3.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "comment" : "Move Source Folder src to src/main"
+  }, {
+    "parentCommitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitId" : "c6e8f706dc7a236cc2a49f979d857ee92d0abd7c",
+    "commitTime" : 1260446198,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang3.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "comment" : "Move Class org.apache.commons.lang.time.FastDateFormat moved to org.apache.commons.lang3.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "375d7d0954cae60c4c7292cc65abbc972178857c",
+    "commitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitTime" : 1260444831,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "comment" : "Move Source Folder src/java/org/apache/commons/lang to src/java/org/apache/commons/lang3"
+  }, {
+    "parentCommitId" : "c47d6ce5343fbe1807c2c927bfb10a4792a43ff9",
+    "commitId" : "e9e167f9ebc7a73c5847745688ae127ecff6e2b1",
+    "commitTime" : 1167170747,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(private)mRules:Rule[](137)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(transient)(private)mRules:Rule[](140)",
+    "comment" : "Add Attribute Modifier transient in attribute private mRules : Rule[] from class org.apache.commons.lang.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "9bb3f9b9a3e513cbac7f02d6ee97995d741d09de",
+    "commitId" : "73ee6c3d270a91bd447f732b24c4d65169b0c8d6",
+    "commitTime" : 1055114063,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final)(private)mRules:Rule[](119)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(private)mRules:Rule[](139)",
+    "comment" : "Remove Attribute Modifier final in attribute private mRules : Rule[] from class org.apache.commons.lang.time.FastDateFormat"
+  }, {
+    "parentCommitId" : "2f50297e5eb582ed50e87e6801917abe5a30b3c1",
+    "commitId" : "a99f7965b34b8dd0532c8d6f5e592d990ca220fc",
+    "commitTime" : 1041969355,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final)(private)mRules:Rule[](569)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/time/FastDateFormat.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.time.FastDateFormat@(final)(private)mRules:Rule[](569)",
+    "comment" : "added with new class"
+  } ]
+}

@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "hibernate-orm",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
+  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "filePath" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+  "attributeName" : "revisionPropSqlType",
+  "attributeKey" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration@revisionPropSqlType:String(59)",
+  "attributeDeclarationLine" : 59,
+  "expectedChanges" : [ {
+    "parentCommitId" : "2b2f333593c1989624d332d47b1358afd1999a91",
+    "commitId" : "5cc051e1dfeb5664d8d1eb9a289097d7f9bfb0e2",
+    "commitTime" : 1365425009,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropSqlType:String(76)",
+    "elementFileAfter" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration@(private)revisionPropSqlType:String(76)",
+    "comment" : "Move Class org.hibernate.envers.configuration.RevisionInfoConfiguration moved to org.hibernate.envers.configuration.internal.RevisionInfoConfiguration"
+  }, {
+    "parentCommitId" : "89298608b0ba18049272fc0f2784fb3d251da905",
+    "commitId" : "e21fed8304935dc8a1efeee115a4e720b9d2667b",
+    "commitTime" : 1286826108,
+    "changeType" : "container change",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropSqlType:String(63)",
+    "elementFileAfter" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropSqlType:String(63)",
+    "comment" : "Move Source Folder envers to hibernate-envers"
+  }, {
+    "parentCommitId" : "9dbb880df6561f779cace9a49c0e59934425695b",
+    "commitId" : "e9ff8cf3b6b7d10c13ad76de574047935373d38f",
+    "commitTime" : 1260175009,
+    "changeType" : "rename",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropColumn:Column(64)",
+    "elementFileAfter" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropSqlType:String(64)",
+    "comment" : "Rename Attribute revisionPropColumn : Column to revisionPropSqlType : String in class org.hibernate.envers.configuration.RevisionInfoConfiguration"
+  }, {
+    "parentCommitId" : "9dbb880df6561f779cace9a49c0e59934425695b",
+    "commitId" : "e9ff8cf3b6b7d10c13ad76de574047935373d38f",
+    "commitTime" : 1260175009,
+    "changeType" : "type change",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropColumn:Column(64)",
+    "elementFileAfter" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropSqlType:String(64)",
+    "comment" : "Change Attribute Type revisionPropColumn : Column to revisionPropSqlType : String in class org.hibernate.envers.configuration.RevisionInfoConfiguration"
+  }, {
+    "parentCommitId" : "096437dec2b81b2434435c602427d8ed2ffc60e5",
+    "commitId" : "393f09eeba623ef9c3e0706137c8e70cc867e087",
+    "commitTime" : 1259166725,
+    "changeType" : "introduced",
+    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropColumn:Column(64)",
+    "elementFileAfter" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+    "elementNameAfter" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration@(private)revisionPropColumn:Column(64)",
+    "comment" : "new attribute"
+  } ]
+}

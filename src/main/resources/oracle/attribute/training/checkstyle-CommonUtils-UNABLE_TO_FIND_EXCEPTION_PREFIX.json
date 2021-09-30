@@ -1,0 +1,30 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtils.java",
+  "attributeName" : "UNABLE_TO_FIND_EXCEPTION_PREFIX",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.utils.CommonUtils@UNABLE_TO_FIND_EXCEPTION_PREFIX:String(67)",
+  "attributeDeclarationLine" : 67,
+  "expectedChanges" : [ {
+    "parentCommitId" : "0cf971e37bc86697dbb3e38bfc18b3b55d5aa8e7",
+    "commitId" : "526c9d0cbabd8ed8f3a26c45a7a6bc0a5c158c0c",
+    "commitTime" : 1441931158,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.ConfigurationLoader@(final,static)(private)UNABLE_TO_FIND_EXCEPTION_PREFIX:String(93)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/utils/CommonUtils.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.utils.CommonUtils@(final,static)(private)UNABLE_TO_FIND_EXCEPTION_PREFIX:String(48)",
+    "comment" : "Move Attribute private UNABLE_TO_FIND_EXCEPTION_PREFIX : String from class com.puppycrawl.tools.checkstyle.ConfigurationLoader to private UNABLE_TO_FIND_EXCEPTION_PREFIX : String from class com.puppycrawl.tools.checkstyle.utils.CommonUtils"
+  }, {
+    "parentCommitId" : "655a496c88fb075c62147484be2baa4e4c7e3f4d",
+    "commitId" : "8c3e4a50749044ae3177fc4c84db9c4fd93abca2",
+    "commitTime" : 1440504773,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.ConfigurationLoader@(final,static)(private)UNABLE_TO_FIND_EXCEPTION_PREFIX:String(93)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.ConfigurationLoader@(final,static)(private)UNABLE_TO_FIND_EXCEPTION_PREFIX:String(93)",
+    "comment" : "Extract Attribute private UNABLE_TO_FIND_EXCEPTION_PREFIX : String in class com.puppycrawl.tools.checkstyle.ConfigurationLoader"
+  } ]
+}

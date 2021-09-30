@@ -1,0 +1,30 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName" : "shutdown",
+  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@shutdown:boolean(171)",
+  "attributeDeclarationLine" : 171,
+  "expectedChanges" : [ {
+    "parentCommitId" : "4a5fe4e631d53c0c940c2899978ee72e23690c86",
+    "commitId" : "366d937a4599e5546052c74c595cad417ae69588",
+    "commitTime" : 1440611860,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)shutdown:boolean(105)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(volatile)(private)shutdown:boolean(105)",
+    "comment" : "Add Attribute Modifier volatile in attribute private shutdown : boolean from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "b1af2df81f2685ada49eada19b342306306c5e3a",
+    "commitId" : "7f0ce1428bc32181d6d79ca6f1226b9e2e3d93be",
+    "commitTime" : 1430297241,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)shutdown:boolean(86)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)shutdown:boolean(86)",
+    "comment" : "added with new class"
+  } ]
+}

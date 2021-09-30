@@ -1,0 +1,90 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+  "attributeName" : "FS_FACTORIES",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@FS_FACTORIES:HashMap<String,FileSystemFactory>(225)",
+  "attributeDeclarationLine" : 225,
+  "expectedChanges" : [ {
+    "parentCommitId" : "bad3df54d20677157f48c3ee1f3251d2c4bce8ba",
+    "commitId" : "77e3701ca1f8bfab33a07f11992955eb131126c3",
+    "commitTime" : 1507304713,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FS_FACTORIES:Map<String,FileSystemFactory>(212)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FS_FACTORIES:HashMap<String,FileSystemFactory>(218)",
+    "comment" : "Change Attribute Type FS_FACTORIES : Map<String,FileSystemFactory> to FS_FACTORIES : HashMap<String,FileSystemFactory> in class org.apache.flink.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
+    "commitId" : "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
+    "commitTime" : 1507281370,
+    "changeType" : "rename",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(219)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FS_FACTORIES:Map<String,FileSystemFactory>(212)",
+    "comment" : "Rename Attribute FSDIRECTORY : Map<String,String> to FS_FACTORIES : Map<String,FileSystemFactory> in class org.apache.flink.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
+    "commitId" : "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
+    "commitTime" : 1507281370,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(219)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FS_FACTORIES:Map<String,FileSystemFactory>(212)",
+    "comment" : "Change Attribute Type FSDIRECTORY : Map<String,String> to FS_FACTORIES : Map<String,FileSystemFactory> in class org.apache.flink.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "5f011547378ad03c033770503c6dcfd6b64e9647",
+    "commitId" : "8563d511da8ab8ac0e1362775f11aef7b67375be",
+    "commitTime" : 1405024514,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameBefore" : "stratosphere-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(150)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(150)",
+    "comment" : "Move Source Folder stratosphere-core to flink-core"
+  }, {
+    "parentCommitId" : "6d9a40d83c3e339c4e820a6b3632fc85ebcbc3de",
+    "commitId" : "24eb47ac86299920aa137d5b6394a248ff58d19e",
+    "commitTime" : 1404926060,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+    "elementNameBefore" : "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(150)",
+    "elementFileAfter" : "stratosphere-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+    "elementNameAfter" : "stratosphere-core/src/main/java/org.apache.flink.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(150)",
+    "comment" : "Move Class eu.stratosphere.core.fs.FileSystem moved to org.apache.flink.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "eb8c49ebdff229c711cbd1e6be549d69667961a5",
+    "commitId" : "fc6b5168684ca298d8b025c839d9a4e48e470790",
+    "commitTime" : 1386986970,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-core/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+    "elementNameBefore" : "stratosphere-core/src/main/java/eu.stratosphere.nephele.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(146)",
+    "elementFileAfter" : "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+    "elementNameAfter" : "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(143)",
+    "comment" : "Move Class eu.stratosphere.nephele.fs.FileSystem moved to eu.stratosphere.core.fs.FileSystem"
+  }, {
+    "parentCommitId" : "0ad1dcc7dbd432d01d3cb4ed2db86b79534c68ad",
+    "commitId" : "33cb2ca9898809d2fc90765996ea56bbea458e59",
+    "commitTime" : 1386964352,
+    "changeType" : "container change",
+    "elementFileBefore" : "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+    "elementNameBefore" : "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(146)",
+    "elementFileAfter" : "stratosphere-core/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+    "elementNameAfter" : "stratosphere-core/src/main/java/eu.stratosphere.nephele.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(146)",
+    "comment" : "Move Source Folder nephele/nephele-common to stratosphere-core"
+  }, {
+    "parentCommitId" : "c6033261fa6619effbc4843c7cbcf3fc88738d54",
+    "commitId" : "75e67a701cbabe5577967037c0e865d1c2e9a25b",
+    "commitTime" : 1292522996,
+    "changeType" : "introduced",
+    "elementFileBefore" : "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+    "elementNameBefore" : "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(117)",
+    "elementFileAfter" : "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+    "elementNameAfter" : "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem@(final,static)(private)FSDIRECTORY:Map<String,String>(117)",
+    "comment" : "added with new class"
+  } ]
+}

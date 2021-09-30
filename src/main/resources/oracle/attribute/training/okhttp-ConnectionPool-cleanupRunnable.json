@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+  "attributeName" : "cleanupRunnable",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.ConnectionPool@cleanupRunnable:Runnable(57)",
+  "attributeDeclarationLine" : 57,
+  "expectedChanges" : [ {
+    "parentCommitId" : "41fa9a4a954bc8abf43628ceb7d4eeb701ed991a",
+    "commitId" : "e6dd58a886f989fc3f60d2466117ec14b0f7d5b4",
+    "commitTime" : 1451429365,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.ConnectionPool@(private)cleanupRunnable:Runnable(91)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.ConnectionPool@(final)(private)cleanupRunnable:Runnable(55)",
+    "comment" : "Add Attribute Modifier final in attribute private cleanupRunnable : Runnable from class okhttp3.ConnectionPool"
+  }, {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(private)cleanupRunnable:Runnable(91)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.ConnectionPool@(private)cleanupRunnable:Runnable(91)",
+    "comment" : "Move Class com.squareup.okhttp.ConnectionPool moved to okhttp3.ConnectionPool"
+  }, {
+    "parentCommitId" : "068156ba1bdadb239623915586f935f7cb093461",
+    "commitId" : "f212b6780e95bb84b387d3edaa9128c56f2f65b4",
+    "commitTime" : 1449420743,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(private)cleanupRunnable:Runnable(88)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool@(private)cleanupRunnable:Runnable(88)",
+    "comment" : "new attribute"
+  } ]
+}

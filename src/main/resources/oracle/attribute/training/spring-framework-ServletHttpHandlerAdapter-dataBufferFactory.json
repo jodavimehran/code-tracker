@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+  "attributeName" : "dataBufferFactory",
+  "attributeKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@dataBufferFactory:DataBufferFactory(74)",
+  "attributeDeclarationLine" : 74,
+  "expectedChanges" : [ {
+    "parentCommitId" : "2e8326220b3929534e6621acf0ba0e4ac0bd910c",
+    "commitId" : "5d1b5426982332cbbd5671b00fbc4ded5d69a656",
+    "commitTime" : 1468513835,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)dataBufferFactory:DataBufferFactory(52)",
+    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)dataBufferFactory:DataBufferFactory(52)",
+    "comment" : "Move Source Folder spring-web-reactive to spring-web"
+  }, {
+    "parentCommitId" : "6f461647274eb58781c4434d59668e111d0fbf6c",
+    "commitId" : "d36286c7d1b5ffd13d847e3b97f4da2d8df66d74",
+    "commitTime" : 1464335502,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)allocator:DataBufferAllocator(62)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)dataBufferFactory:DataBufferFactory(62)",
+    "comment" : "Rename Attribute allocator : DataBufferAllocator to dataBufferFactory : DataBufferFactory in class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "6f461647274eb58781c4434d59668e111d0fbf6c",
+    "commitId" : "d36286c7d1b5ffd13d847e3b97f4da2d8df66d74",
+    "commitTime" : 1464335502,
+    "changeType" : "type change",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)allocator:DataBufferAllocator(62)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)dataBufferFactory:DataBufferFactory(62)",
+    "comment" : "Change Attribute Type allocator : DataBufferAllocator to dataBufferFactory : DataBufferFactory in class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "2981b5e6e88b25a4f9b743e34e815e2bac6cfc37",
+    "commitId" : "225179bc6f0b4c705a869a03b81df5f41345b6f7",
+    "commitTime" : 1453907043,
+    "changeType" : "introduced",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)allocator:DataBufferAllocator(59)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(private)allocator:DataBufferAllocator(59)",
+    "comment" : "new attribute"
+  } ]
+}

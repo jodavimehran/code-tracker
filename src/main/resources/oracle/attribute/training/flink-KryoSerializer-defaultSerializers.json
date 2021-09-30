@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+  "attributeName" : "defaultSerializers",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@defaultSerializers:LinkedHashMap<Class<?>,ExecutionConfig.SerializableSerializer<?>>(89)",
+  "attributeDeclarationLine" : 89,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7081836e0d640ee640687606bd73b6673d3f2a07",
+    "commitId" : "21a715867d655bb61df9a9f7eef37e42b99e206a",
+    "commitTime" : 1454428544,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:LinkedHashMap<Class<?>,ExecutionConfig.SerializableSerializer<?>>(74)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:LinkedHashMap<Class<?>,ExecutionConfig.SerializableSerializer<?>>(74)",
+    "comment" : "Move Source Folder flink-java to flink-core"
+  }, {
+    "parentCommitId" : "c923fb3c1c1d61462e1079198ae9fb735bb0acf2",
+    "commitId" : "2cc5d98c690c1b1b1ff1f48628ca58b1b4f0c932",
+    "commitTime" : 1442313211,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:List<ExecutionConfig.Entry<Class<?>,Serializer<?>>>(65)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:LinkedHashMap<Class<?>,ExecutionConfig.SerializableSerializer<?>>(66)",
+    "comment" : "Change Attribute Type defaultSerializers : List<ExecutionConfig.Entry<Class<?>,Serializer<?>>> to defaultSerializers : LinkedHashMap<Class<?>,ExecutionConfig.SerializableSerializer<?>> in class org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer"
+  }, {
+    "parentCommitId" : "5015ab490f89d384ac93752c22caf201ceb43776",
+    "commitId" : "354efec0f9da0fa03ea9b337b02a1a2a03a9ac16",
+    "commitTime" : 1424271128,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:List<ExecutionConfig.Entry<Class<?>,Serializer<?>>>(64)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/kryo/KryoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.kryo.KryoSerializer@(final)(private)defaultSerializers:List<ExecutionConfig.Entry<Class<?>,Serializer<?>>>(64)",
+    "comment" : "new attribute"
+  } ]
+}

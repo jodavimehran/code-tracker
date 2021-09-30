@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "junit5",
+  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
+  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+  "attributeName" : "reportsDir",
+  "attributeKey" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@reportsDir:OptionSpec<Path>(48)",
+  "attributeDeclarationLine" : 48,
+  "expectedChanges" : [ {
+    "parentCommitId" : "cbfdd3039a91578a09290d895621defc263bbbba",
+    "commitId" : "755fbf21a01ddd0ff92f291c0b473731da213f39",
+    "commitTime" : 1472409211,
+    "changeType" : "type change",
+    "elementFileBefore" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)reportsDir:OptionSpec<File>(35)",
+    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)reportsDir:OptionSpec<Path>(37)",
+    "comment" : "Change Attribute Type reportsDir : OptionSpec<File> to reportsDir : OptionSpec<Path> in class org.junit.platform.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "6ffd52f817490d5b4fb54ae53c25e2bbed3befda",
+    "commitId" : "f2e6ef078a40e97ee16aebbf262c0ed4a4a0b01b",
+    "commitTime" : 1471623133,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<File>(36)",
+    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)reportsDir:OptionSpec<File>(36)",
+    "comment" : "Rename Attribute xmlReportsDir : OptionSpec<File> to reportsDir : OptionSpec<File> in class org.junit.platform.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "737ede87696ca167b14a617550b6c50fbced7c72",
+    "commitId" : "f54fb46aba2edb2b4b4202475823ddb06ab098f5",
+    "commitTime" : 1471251042,
+    "changeType" : "type change",
+    "elementFileBefore" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(36)",
+    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<File>(36)",
+    "comment" : "Change Attribute Type xmlReportsDir : OptionSpec<String> to xmlReportsDir : OptionSpec<File> in class org.junit.platform.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+    "commitTime" : 1466413192,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(37)",
+    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(37)",
+    "comment" : "Move Source Folder junit-console to junit-platform-console"
+  }, {
+    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
+    "commitTime" : 1466356953,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(37)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(37)",
+    "comment" : "Move Class org.junit.gen5.console.options.AvailableOptions moved to org.junit.platform.console.options.AvailableOptions"
+  }, {
+    "parentCommitId" : "0684c9c573dbce934837465e6c4cc431b7cf6326",
+    "commitId" : "69b0a0138e4c3158504f7b382cdf05cc1e05b92e",
+    "commitTime" : 1453820770,
+    "changeType" : "introduced",
+    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(32)",
+    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)xmlReportsDir:OptionSpec<String>(32)",
+    "comment" : "new attribute"
+  } ]
+}

@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+  "attributeName" : "logger",
+  "attributeKey" : "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor@logger:Log(77)",
+  "attributeDeclarationLine" : 77,
+  "expectedChanges" : [ {
+    "parentCommitId" : "27c435c4eae6502ba068a5da8c19d626c28316c3",
+    "commitId" : "2dc674f356fbe941b98301f89494767f80d55e6a",
+    "commitTime" : 1432283608,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
+    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor@(final,static)(private)logger:Log(78)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor@(final,static)(private)logger:Log(76)",
+    "comment" : "Push Down Attribute private logger : Log from class org.springframework.beans.AbstractPropertyAccessor to private logger : Log from class org.springframework.beans.AbstractNestablePropertyAccessor"
+  }, {
+    "parentCommitId" : "ad4c8795ae13c94f942526765b5cf36ac6c3ae9b",
+    "commitId" : "3d86f15a847d4567c3b08b21a21500398a394e31",
+    "commitTime" : 1432208995,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(final,static)(private)logger:Log(97)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor@(final,static)(private)logger:Log(77)",
+    "comment" : "Pull Up Attribute private logger : Log from class org.springframework.beans.BeanWrapperImpl to private logger : Log from class org.springframework.beans.AbstractPropertyAccessor"
+  }, {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(final,static)(private)logger:Log(93)",
+    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(final,static)(private)logger:Log(93)",
+    "comment" : "Move Source Folder org.springframework.beans to spring-beans"
+  }, {
+    "parentCommitId" : "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
+    "commitId" : "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
+    "commitTime" : 1224692017,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(final,static)(private)logger:Log(83)",
+    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
+    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl@(final,static)(private)logger:Log(83)",
+    "comment" : "added with new class"
+  } ]
+}

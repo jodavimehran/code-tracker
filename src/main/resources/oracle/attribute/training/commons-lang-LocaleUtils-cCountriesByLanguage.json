@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "commons-lang",
+  "repositoryWebURL" : "https://github.com/apache/commons-lang.git",
+  "startCommitId" : "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "filePath" : "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+  "attributeName" : "cCountriesByLanguage",
+  "attributeKey" : "src/main/java/org.apache.commons.lang3.LocaleUtils@cCountriesByLanguage:ConcurrentMap<String,List<Locale>>(45)",
+  "attributeDeclarationLine" : 45,
+  "expectedChanges" : [ {
+    "parentCommitId" : "1e2b9eb078efbe3de0ca29ff2f0b3e2a625cbfaf",
+    "commitId" : "c21a7a26c00fd93d4f8092ee914c06d4c323cc75",
+    "commitTime" : 1299250762,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(55)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.LocaleUtils@(final,static)(private)cCountriesByLanguage:ConcurrentMap<String,List<Locale>>(47)",
+    "comment" : "Change Attribute Type cCountriesByLanguage : Map<String,List<Locale>> to cCountriesByLanguage : ConcurrentMap<String,List<Locale>> in class org.apache.commons.lang3.LocaleUtils"
+  }, {
+    "parentCommitId" : "6b32246f5f9f77c74b32a5290cdbdd4e0f5c71c6",
+    "commitId" : "fc5c081e22a61bb5a6810af302be3f22f7966df4",
+    "commitTime" : 1262484686,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang3.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "comment" : "Move Source Folder src to src/main"
+  }, {
+    "parentCommitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitId" : "c6e8f706dc7a236cc2a49f979d857ee92d0abd7c",
+    "commitTime" : 1260446198,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang3.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "comment" : "Move Class org.apache.commons.lang.LocaleUtils moved to org.apache.commons.lang3.LocaleUtils"
+  }, {
+    "parentCommitId" : "375d7d0954cae60c4c7292cc65abbc972178857c",
+    "commitId" : "debc02c6d9b94c717b4182ae4dd7a97d47293a52",
+    "commitTime" : 1260444831,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang3/LocaleUtils.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(54)",
+    "comment" : "Move Source Folder src/java/org/apache/commons/lang to src/java/org/apache/commons/lang3"
+  }, {
+    "parentCommitId" : "856a80b60889fa06bd9ee3e0c1d8ffc575b51e11",
+    "commitId" : "8a51b943005d9009223aaae3a32df482aa000c62",
+    "commitTime" : 1237085418,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map(50)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map<String,List<Locale>>(50)",
+    "comment" : "Change Attribute Type cCountriesByLanguage : Map to cCountriesByLanguage : Map<String,List<Locale>> in class org.apache.commons.lang.LocaleUtils"
+  }, {
+    "parentCommitId" : "b2da02296f79e4119b749522a1912f5be5ea4f8c",
+    "commitId" : "d1f5ebf4122aaf0675ef5547c2a6733f52a892d4",
+    "commitTime" : 1127517451,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "elementNameBefore" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map(48)",
+    "elementFileAfter" : "src/java/org/apache/commons/lang/LocaleUtils.java",
+    "elementNameAfter" : "src/java/org.apache.commons.lang.LocaleUtils@(final,static)(private)cCountriesByLanguage:Map(48)",
+    "comment" : "new attribute"
+  } ]
+}

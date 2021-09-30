@@ -1,0 +1,30 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName" : "lastCheckpointCompletionNanos",
+  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@lastCheckpointCompletionNanos:long(160)",
+  "attributeDeclarationLine" : 160,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d66aaeb0fb52c5cd258e8b32ba8394eedd5d4ca",
+    "commitId" : "b181662be378652d6c4405841ccda6145968d145",
+    "commitTime" : 1480604127,
+    "changeType" : "rename",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)lastTriggeredCheckpoint:long(136)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)lastCheckpointCompletionNanos:long(137)",
+    "comment" : "Rename Attribute lastTriggeredCheckpoint : long to lastCheckpointCompletionNanos : long in class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+  }, {
+    "parentCommitId" : "ef7f9ac9a2b73d0cde5d961ae13f5737473e27bf",
+    "commitId" : "2e63d1afb2358760109ba0c90011ef565eaae0ff",
+    "commitTime" : 1460392581,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)lastTriggeredCheckpoint:long(130)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)lastTriggeredCheckpoint:long(130)",
+    "comment" : "new attribute"
+  } ]
+}

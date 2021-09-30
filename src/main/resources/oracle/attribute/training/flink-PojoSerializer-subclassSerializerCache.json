@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+  "attributeName" : "subclassSerializerCache",
+  "attributeKey" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@subclassSerializerCache:HashMap<Class<?>,TypeSerializer<?>>(101)",
+  "attributeDeclarationLine" : 101,
+  "expectedChanges" : [ {
+    "parentCommitId" : "409319a065407f8ed6ae3f43c06b327adfd2501c",
+    "commitId" : "8aa5e05733655e7b3d1f11ed15f61672d61e5cb5",
+    "commitTime" : 1494180263,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer<?>>(68)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:HashMap<Class<?>,TypeSerializer<?>>(94)",
+    "comment" : "Change Attribute Type subclassSerializerCache : Map<Class<?>,TypeSerializer<?>> to subclassSerializerCache : HashMap<Class<?>,TypeSerializer<?>> in class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "7081836e0d640ee640687606bd73b6673d3f2a07",
+    "commitId" : "21a715867d655bb61df9a9f7eef37e42b99e206a",
+    "commitTime" : 1454428544,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer<?>>(66)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer<?>>(66)",
+    "comment" : "Move Source Folder flink-java to flink-core"
+  }, {
+    "parentCommitId" : "2dcff4c122f37ca58a485e886fec9295fef0c832",
+    "commitId" : "6ba5fcdf85f802748fd47218ce8c41a617d224c9",
+    "commitTime" : 1424115592,
+    "changeType" : "type change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer>(61)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer<?>>(61)",
+    "comment" : "Change Attribute Type subclassSerializerCache : Map<Class<?>,TypeSerializer> to subclassSerializerCache : Map<Class<?>,TypeSerializer<?>> in class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "6b402f43d01495fd9a6bea1c80b2b2b50393b92d",
+    "commitId" : "7407076d3990752eb5fa4072cd036efd2f656cbc",
+    "commitTime" : 1423570503,
+    "changeType" : "introduced",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer>(61)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.PojoSerializer@(transient)(private)subclassSerializerCache:Map<Class<?>,TypeSerializer>(61)",
+    "comment" : "new attribute"
+  } ]
+}

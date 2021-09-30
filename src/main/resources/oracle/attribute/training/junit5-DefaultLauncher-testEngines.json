@@ -1,0 +1,100 @@
+{
+  "repositoryName" : "junit5",
+  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
+  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "attributeName" : "testEngines",
+  "attributeKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@testEngines:Iterable<TestEngine>(49)",
+  "attributeDeclarationLine" : 49,
+  "expectedChanges" : [ {
+    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+    "commitTime" : 1466413192,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "comment" : "Move Source Folder junit-launcher to junit-platform-launcher"
+  }, {
+    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
+    "commitTime" : 1466356953,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "comment" : "Move Class org.junit.gen5.launcher.core.DefaultLauncher moved to org.junit.platform.launcher.core.DefaultLauncher"
+  }, {
+    "parentCommitId" : "d4fca2b705b1f05312a59e71d37853e15632c437",
+    "commitId" : "e273d6681b96509b0bd35916a82fcfada21f18c6",
+    "commitTime" : 1466285196,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(44)",
+    "comment" : "Move Class org.junit.gen5.launcher.main.DefaultLauncher moved to org.junit.gen5.launcher.core.DefaultLauncher"
+  }, {
+    "parentCommitId" : "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
+    "commitId" : "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
+    "commitTime" : 1453458759,
+    "changeType" : "rename",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(41)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(42)",
+    "comment" : "Rename Attribute testEngineRegistry : TestEngineRegistry to testEngines : Iterable<TestEngine> in class org.junit.gen5.launcher.main.DefaultLauncher"
+  }, {
+    "parentCommitId" : "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
+    "commitId" : "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
+    "commitTime" : 1453458759,
+    "changeType" : "type change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(41)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(42)",
+    "comment" : "Change Attribute Type testEngineRegistry : TestEngineRegistry to testEngines : Iterable<TestEngine> in class org.junit.gen5.launcher.main.DefaultLauncher"
+  }, {
+    "parentCommitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+    "commitId" : "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
+    "commitTime" : 1453312358,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.JUnit5Launcher renamed to org.junit.gen5.launcher.main.DefaultLauncher"
+  }, {
+    "parentCommitId" : "027bc980ad0a17a6130013aeec068296606bbfef",
+    "commitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+    "commitTime" : 1453312065,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(54)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
+    "comment" : "Rename Class org.junit.gen5.launcher.main.Launcher renamed to org.junit.gen5.launcher.main.JUnit5Launcher"
+  }, {
+    "parentCommitId" : "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+    "commitId" : "961fd47344c55d21907607ec9672df6d4f3d2362",
+    "commitTime" : 1453134880,
+    "changeType" : "container change",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(50)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(56)",
+    "comment" : "Move Class org.junit.gen5.launcher.Launcher moved to org.junit.gen5.launcher.main.Launcher"
+  }, {
+    "parentCommitId" : "e74f44734fa1099bc1d9fc2d60838d7b1f64de46",
+    "commitId" : "7dc017fd9255ba302736d9ad1ce778f93e77b573",
+    "commitTime" : 1449405027,
+    "changeType" : "introduced",
+    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(34)",
+    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(34)",
+    "comment" : "new attribute"
+  } ]
+}

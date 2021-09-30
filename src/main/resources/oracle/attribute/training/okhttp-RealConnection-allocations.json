@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "okhttp",
+  "repositoryWebURL" : "https://github.com/square/okhttp.git",
+  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+  "attributeName" : "allocations",
+  "attributeKey" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@allocations:List<Reference<StreamAllocation>>(112)",
+  "attributeDeclarationLine" : 112,
+  "expectedChanges" : [ {
+    "parentCommitId" : "81b3a99aea8571942e5fb18b5c189c4596087076",
+    "commitId" : "c5187583bbfe93fe58db80f95b5b478c84180c29",
+    "commitTime" : 1466996670,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(84)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(81)",
+    "comment" : "Move Class okhttp3.internal.io.RealConnection moved to okhttp3.internal.connection.RealConnection"
+  }, {
+    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
+    "commitTime" : 1450247699,
+    "changeType" : "container change",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(80)",
+    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(80)",
+    "comment" : "Move Class com.squareup.okhttp.internal.io.RealConnection moved to okhttp3.internal.io.RealConnection"
+  }, {
+    "parentCommitId" : "308df8295ccf872ceb273874edb3831218348434",
+    "commitId" : "4ae314a1f21d07ee5dbad024bc098182219e9e07",
+    "commitTime" : 1449630306,
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(80)",
+    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(final)(public)allocations:List<Reference<StreamAllocation>>(80)",
+    "comment" : "new attribute"
+  } ]
+}

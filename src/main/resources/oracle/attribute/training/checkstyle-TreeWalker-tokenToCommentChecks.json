@@ -1,0 +1,90 @@
+{
+  "repositoryName" : "checkstyle",
+  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+  "attributeName" : "tokenToCommentChecks",
+  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@tokenToCommentChecks:Multimap<String,AbstractCheck>(63)",
+  "attributeDeclarationLine" : 63,
+  "expectedChanges" : [ {
+    "parentCommitId" : "f6685bca1e8a6853e6192e2a3f71f1f365496eee",
+    "commitId" : "cf96dd9adcf0c3c8f8f05a9ffdcb765cafe17479",
+    "commitTime" : 1454680863,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToCommentChecks:Multimap<String,Check>(75)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToCommentChecks:Multimap<String,AbstractCheck>(75)",
+    "comment" : "Change Attribute Type tokenToCommentChecks : Multimap<String,Check> to tokenToCommentChecks : Multimap<String,AbstractCheck> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+    "commitTime" : 1421678312,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToCommentChecks:Multimap<String,Check>(92)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)tokenToCommentChecks:Multimap<String,Check>(92)",
+    "comment" : "Rename Attribute mTokenToCommentChecks : Multimap<String,Check> to tokenToCommentChecks : Multimap<String,Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "59aa66c3cc43db0a7cd8bb0ea3a39b6f4339fe88",
+    "commitId" : "a24df47cafeab03fd65cf72b460aad3d2fafce3d",
+    "commitTime" : 1413609550,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Multimap<String,Check>(68)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToCommentChecks:Multimap<String,Check>(92)",
+    "comment" : "Rename Attribute mTokenToChecks : Multimap<String,Check> to mTokenToCommentChecks : Multimap<String,Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+    "commitTime" : 1393953491,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Multimap<String,Check>(65)",
+    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Multimap<String,Check>(65)",
+    "comment" : "Move Source Folder src/checkstyle to src/main/java"
+  }, {
+    "parentCommitId" : "098124a60184d272c580db0dbeb71a8181cf4127",
+    "commitId" : "7552a0b72e07c9a0070e84789b5abe6d293de6e0",
+    "commitTime" : 1208867287,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Map<String,List<Check>>(64)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Multimap<String,Check>(65)",
+    "comment" : "Change Attribute Type mTokenToChecks : Map<String,List<Check>> to mTokenToChecks : Multimap<String,Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "08638b5f739d9929698860048c052da2d5f80209",
+    "commitId" : "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+    "commitTime" : 1197706480,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Map(114)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Map<String,List<Check>>(114)",
+    "comment" : "Change Attribute Type mTokenToChecks : Map to mTokenToChecks : Map<String,List<Check>> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "ffb17cde0f6351bdf2f2e8cf655fa7f7a3cae827",
+    "commitId" : "672b27dd5551de63a1fb08d8ea80376d70f2aa60",
+    "commitTime" : 1032266010,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mTokenToChecks:Map(49)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mTokenToChecks:Map(50)",
+    "comment" : "Add Attribute Modifier final in attribute private mTokenToChecks : Map from class com.puppycrawl.tools.checkstyle.TreeWalker"
+  }, {
+    "parentCommitId" : "c266dfbc64543c428d550a478f851c959493b0f5",
+    "commitId" : "19257b2cdb950aac0b729ee8a3a979e5605163f9",
+    "commitTime" : 1032093857,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mTokenToChecks:Map(49)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mTokenToChecks:Map(49)",
+    "comment" : "added with new class"
+  } ]
+}
