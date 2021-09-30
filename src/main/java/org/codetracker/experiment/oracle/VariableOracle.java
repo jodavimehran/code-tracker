@@ -1,16 +1,16 @@
 package org.codetracker.experiment.oracle;
 
-import java.io.File;
+import org.codetracker.experiment.oracle.history.ChangeHistory;
+import org.codetracker.experiment.oracle.history.VariableHistoryInfo;
+
 import java.io.IOException;
 import java.util.*;
 
-public class VariableOracle extends Oracle {
+public class VariableOracle extends AbstractOracle<VariableHistoryInfo> {
     protected static final String HISTORY_VARIABLE_ORACLE = "oracle/variable/";
-    private final Map<String, VariableHistoryInfo> oracle = new TreeMap<>();
 
-    public VariableOracle(String name) throws IOException {
-        super(name);
-        readVariableOracle();
+    private VariableOracle(String name) throws IOException {
+        super(name, VariableHistoryInfo.class);
     }
 
     public static VariableOracle test() throws IOException {
@@ -28,20 +28,9 @@ public class VariableOracle extends Oracle {
         return variableOracles;
     }
 
-    private void readVariableOracle() throws IOException {
-        File oracleFolder = new File(Oracle.class.getClassLoader().getResource(HISTORY_VARIABLE_ORACLE + name).getFile());
-        for (File file : oracleFolder.listFiles()) {
-            try {
-                oracle.put(file.getName(), mapper.readValue(file, VariableHistoryInfo.class));
-            } catch (Exception exception) {
-                System.out.println(file.getName());
-                throw exception;
-            }
-        }
-    }
-
-    public Map<String, VariableHistoryInfo> getOracle() {
-        return oracle;
+    @Override
+    protected String getOraclePath() {
+        return HISTORY_VARIABLE_ORACLE;
     }
 
     public Map<String, Integer> getNumberOfInstancePerChangeKind() {
@@ -52,7 +41,7 @@ public class VariableOracle extends Oracle {
             for (ChangeHistory expectedChanges : entry.getValue().getExpectedChanges()) {
                 changeType.merge(expectedChanges.getChangeType(), 1, Integer::sum);
                 String changeCommit = String.format("%s-%s", expectedChanges.getCommitId(), expectedChanges.getChangeType());
-                if(changeCommitSet.contains(changeCommit)){
+                if (changeCommitSet.contains(changeCommit)) {
                     System.out.println(entry.getKey());
                 }
                 changeCommitSet.add(changeCommit);
@@ -65,7 +54,7 @@ public class VariableOracle extends Oracle {
 
                 }
             }
-            if(!flag){
+            if (!flag) {
                 System.out.println(entry.getKey());
             }
         }

@@ -1,39 +1,32 @@
 package org.codetracker.element;
 
-import gr.uom.java.xmi.UMLAnnotation;
-import gr.uom.java.xmi.UMLAnonymousClass;
-import gr.uom.java.xmi.UMLOperation;
-import gr.uom.java.xmi.UMLParameter;
+import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
 
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class Method extends BaseCodeElement {
     private final UMLOperation umlOperation;
     private final String documentsHashCode;
     private final String identifierIgnoringVersionAndDocumentationAndBody;
-    private final String identifierIgnoringVersionAndDocumentation;
 
-    private Method(UMLOperation umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentation, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
+    private Method(UMLOperation umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.umlOperation = umlOperation;
-        this.documentsHashCode = Util.getDocumentsSha512(umlOperation);
-        this.identifierIgnoringVersionAndDocumentation = identifierIgnoringVersionAndDocumentation;
+        this.documentsHashCode = getDocumentsSha512(umlOperation);
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
     }
 
     public static Method of(UMLOperation umlOperation, Version version) {
         String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
-        String identifierIgnoringVersion = Util.getIdentifierExcludeVersion(umlOperation, true, true);
-        String identifierIgnoringVersionAndDocumentation = Util.getIdentifierExcludeVersion(umlOperation, true, false);
-        String identifierIgnoringVersionAndDocumentationAndBody = Util.getIdentifierExcludeVersion(umlOperation, false, false);
+        String identifierIgnoringVersion = getIdentifierExcludeVersion(umlOperation, true, true);
+        String identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion(umlOperation, false, false);
         String name = String.format("%s%s", sourceFolder, umlOperation.getKey());
-        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentation, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
+        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
     public Variable findVariable(Predicate<Variable> equalOperator) {
@@ -82,8 +75,59 @@ public class Method extends BaseCodeElement {
         return this.umlOperation.getBody().getBodyHashCode() == method.umlOperation.getBody().getBodyHashCode();
     }
 
-    public boolean equalSignature(Method method) {
-        return this.umlOperation.equalSignature(method.umlOperation);
+    public static String getIdentifierExcludeVersion(UMLOperation info, boolean containsBody, boolean containsDocumentation) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
+        sb.append(info.getClassName());
+        sb.append(String.format("#(%s)", info.getVisibility()));
+
+        List<String> modifiers = new ArrayList<>();
+        if (info.isStatic())
+            modifiers.add("static");
+        if (info.isAbstract())
+            modifiers.add("abstract");
+        if (info.isFinal())
+            modifiers.add("final");
+
+        if (info.isSynchronized())
+            modifiers.add("synchronized");
+
+        if (!modifiers.isEmpty()) {
+            modifiers.sort(String::compareTo);
+            sb.append(String.format("(%s)", String.join(",", modifiers)));
+        }
+
+        sb.append(info.getName());
+        sb.append("(");
+        sb.append(info.getParametersWithoutReturnType().stream().map(Method.MethodParameter::new).map(Objects::toString).collect(Collectors.joining(",")));
+        sb.append(")");
+        if (info.getReturnParameter() != null) {
+            sb.append(":");
+            sb.append(info.getReturnParameter());
+        }
+        if (!info.getThrownExceptionTypes().isEmpty()) {
+            sb.append("[");
+            sb.append(info.getThrownExceptionTypes().stream().map(Object::toString).collect(Collectors.joining(",")));
+            sb.append("]");
+        }
+        if (containsBody && info.getBody() != null) {
+            sb.append("{");
+            sb.append(info.getBody().getBodyHashCode());
+            sb.append("}");
+        }
+        if (containsDocumentation && !info.getComments().isEmpty()) {
+            sb.append("{");
+            sb.append(getDocumentsSha512(info));
+            sb.append("}");
+        }
+        sb.append(Util.annotationsToString(info.getAnnotations()));
+        return sb.toString();
+    }
+
+    public static String getDocumentsSha512(UMLOperation info) {
+        if (info.getComments().isEmpty())
+            return null;
+        return Util.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
     }
 
     public static class MethodParameter {
@@ -115,7 +159,6 @@ public class Method extends BaseCodeElement {
         public String toString() {
             return (this.info.getVariableDeclaration().isFinal() ? "(final)" : "") + info.toString().replace(" ", ":") + Util.annotationsToString(info.getAnnotations());
         }
-
 
     }
 }

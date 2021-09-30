@@ -1,18 +1,17 @@
-package org.codetracker.experiment.oracle;
+package org.codetracker.experiment.oracle.history;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MethodHistoryInfo {
+public abstract class AbstractHistoryInfo {
+    private final List<ChangeHistory> expectedChanges = new ArrayList<>();
     private String repositoryName;
     private String repositoryWebURL;
     private String startCommitId;
     private String filePath;
-    private String functionName;
-    private String functionKey;
-    private int functionStartLine;
-
-    private final List<ChangeHistory> expectedChanges = new ArrayList<>();
+    private String branchName;
 
     public String getRepositoryWebURL() {
         return repositoryWebURL;
@@ -30,36 +29,12 @@ public class MethodHistoryInfo {
         this.filePath = filePath;
     }
 
-    public String getFunctionName() {
-        return functionName;
-    }
-
-    public void setFunctionName(String functionName) {
-        this.functionName = functionName;
-    }
-
-    public String getFunctionKey() {
-        return functionKey;
-    }
-
-    public void setFunctionKey(String functionKey) {
-        this.functionKey = functionKey;
-    }
-
     public String getStartCommitId() {
         return startCommitId;
     }
 
     public void setStartCommitId(String startCommitId) {
         this.startCommitId = startCommitId;
-    }
-
-    public int getFunctionStartLine() {
-        return functionStartLine;
-    }
-
-    public void setFunctionStartLine(int functionStartLine) {
-        this.functionStartLine = functionStartLine;
     }
 
     public List<ChangeHistory> getExpectedChanges() {
@@ -73,4 +48,15 @@ public class MethodHistoryInfo {
     public void setRepositoryName(String repositoryName) {
         this.repositoryName = repositoryName;
     }
+
+    public String getBranchName() {
+        return branchName;
+    }
+
+    public void setBranchName(String branchName) {
+        this.branchName = branchName;
+    }
+
+    @JsonIgnore
+    public abstract String getElementKey();
 }

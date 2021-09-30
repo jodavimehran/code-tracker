@@ -1,4 +1,4 @@
-package org.codetracker.experiment.oracle;
+package org.codetracker.experiment.oracle.history;
 
 public class ChangeHistory {
     private String parentCommitId;

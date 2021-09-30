@@ -8,4 +8,12 @@ public interface CodeTracker {
     static MethodTracker.Builder methodTracker() {
         return new MethodTracker.Builder();
     }
+
+    static AttributeTracker.Builder attributeTracker() {
+        return new AttributeTracker.Builder();
+    }
+
+    static ClassTracker.Builder classTracker() {
+        return new ClassTracker.Builder();
+    }
 }

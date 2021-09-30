@@ -59,7 +59,7 @@ public class ChangeHistory<T extends BaseCodeElement> {
                 addCodeElementToMap(node.getIdentifierIgnoringVersion(), node, rootElementByIdentifier);
                 addCodeElementToMap(node.getName(), node, rootElementByName);
             }
-            if (changeHistoryGraph.successors(node).isEmpty() && !node.isRemoved()) {
+            if (changeHistoryGraph.successors(node).isEmpty() && !node.isRemoved() && !node.isStart()) {
                 addCodeElementToMap(node.getIdentifierIgnoringVersion(), node, leafElementsByIdentifier);
                 addCodeElementToMap(node.getName(), node, leafElementsByName);
             }

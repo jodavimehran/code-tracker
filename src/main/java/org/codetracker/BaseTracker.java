@@ -2,8 +2,14 @@ package org.codetracker;
 
 import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
-import gr.uom.java.xmi.diff.*;
+import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
+import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLClassRenameDiff;
+import gr.uom.java.xmi.diff.UMLModelDiff;
 import org.apache.commons.lang3.tuple.Pair;
+import org.codetracker.api.Version;
+import org.codetracker.element.Method;
+import org.codetracker.util.GitRepository;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -13,9 +19,6 @@ import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.revwalk.filter.RevFilter;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.refactoringminer.util.GitServiceImpl;
-import org.codetracker.api.Version;
-import org.codetracker.element.Method;
-import org.codetracker.util.GitRepository;
 
 import java.io.IOException;
 import java.util.*;
@@ -109,11 +112,23 @@ public abstract class BaseTracker {
     }
 
     protected static Set<String> getRightSideFileNames(Method currentMethod, CommitModel commitModel, UMLModelDiff umlModelDiff) {
+        String currentFilePath = currentMethod.getFilePath();
+        String currentClassName = currentMethod.getUmlOperation().getClassName();
+        Set<String> toBeAddedFileNamesIfTheyAreNewFiles = new HashSet<>();
+        for (UMLParameter parameter : currentMethod.getUmlOperation().getParameters()) {
+            String parameterType = parameter.getType().getClassType();
+            if ("void".equals(parameterType))
+                continue;
+            toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
+        }
+        return getRightSideFileNames(currentFilePath, currentClassName, toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff);
+    }
+
+    protected static Set<String> getRightSideFileNames(String currentFilePath, String currentClassName, Set<String> toBeAddedFileNamesIfTheyAreNewFiles, CommitModel commitModel, UMLModelDiff umlModelDiff) {
         Set<String> fileNames = new HashSet<>();
-        String currentMethodFilePath = currentMethod.getFilePath();
-        fileNames.add(currentMethodFilePath);
-        UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentMethod.getUmlOperation().getClassName());
-        boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentMethodFilePath);
+        fileNames.add(currentFilePath);
+        UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentClassName);
+        boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentFilePath);
         if (classInChildModel instanceof UMLClass) {
             UMLClass umlClass = (UMLClass) classInChildModel;
 
@@ -189,13 +204,7 @@ public abstract class BaseTracker {
             }
         }
 
-        Set<String> toBeAddedFileNamesIfTheyAreNewFiles = new HashSet<>();
-        for (UMLParameter parameter : currentMethod.getUmlOperation().getParameters()) {
-            String parameterType = parameter.getType().getClassType();
-            if ("void".equals(parameterType))
-                continue;
-            toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
-        }
+
         fileNames.addAll(
                 commitModel.fileContentsCurrentTrimmed.keySet().stream()
                         .filter(filePath -> toBeAddedFileNamesIfTheyAreNewFiles.stream().anyMatch(filePath::endsWith))
@@ -204,7 +213,7 @@ public abstract class BaseTracker {
         );
 
         if (newlyAddedFile) {
-            final String currentMethodFileName = currentMethodFilePath.substring(currentMethodFilePath.lastIndexOf("/"));
+            final String currentMethodFileName = currentFilePath.substring(currentFilePath.lastIndexOf("/"));
             fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
         }
         return fileNames;

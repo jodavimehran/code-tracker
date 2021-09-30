@@ -213,26 +213,6 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         }
     }
 
-    private boolean checkInnerClassMoveDiffList(List<UMLClassMoveDiff> innerClassMoveDiffList, ArrayDeque<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
-        Set<Method> leftMethodSet = new HashSet<>();
-        for (UMLClassMoveDiff umlClassMoveDiff : innerClassMoveDiffList) {
-            for (UMLOperationBodyMapper umlOperationBodyMapper : umlClassMoveDiff.getOperationBodyMapperList()) {
-                UMLOperation leftOperation = umlOperationBodyMapper.getOperation1();
-                UMLOperation rightOperation = umlOperationBodyMapper.getOperation2();
-                if (addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, leftOperation, rightOperation, Change.Type.CONTAINER_CHANGE)) {
-                    leftMethodSet.forEach(methods::addFirst);
-                    methodChangeHistory.connectRelatedNodes();
-                    return true;
-                }
-            }
-            for (UMLOperation addedOperations : umlClassMoveDiff.getAddedOperations()) {
-                if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, addedOperations, "new method"))
-                    return true;
-            }
-        }
-        return false;
-    }
-
     public Set<Method> analyseMethodRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
         Set<Method> leftMethodSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
@@ -245,21 +225,21 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     PullUpOperationRefactoring pullUpOperationRefactoring = (PullUpOperationRefactoring) refactoring;
                     operationBefore = pullUpOperationRefactoring.getOriginalOperation();
                     operationAfter = pullUpOperationRefactoring.getMovedOperation();
-                    changeType = Change.Type.METHOD_MOVE;
+                    changeType = Change.Type.MOVED;
                     break;
                 }
                 case PUSH_DOWN_OPERATION: {
                     PushDownOperationRefactoring pushDownOperationRefactoring = (PushDownOperationRefactoring) refactoring;
                     operationBefore = pushDownOperationRefactoring.getOriginalOperation();
                     operationAfter = pushDownOperationRefactoring.getMovedOperation();
-                    changeType = Change.Type.METHOD_MOVE;
+                    changeType = Change.Type.MOVED;
                     break;
                 }
                 case MOVE_AND_RENAME_OPERATION: {
                     MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
                     operationBefore = moveOperationRefactoring.getOriginalOperation();
                     operationAfter = moveOperationRefactoring.getMovedOperation();
-                    changeType = Change.Type.METHOD_MOVE;
+                    changeType = Change.Type.MOVED;
                     addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, refactoring, operationBefore, operationAfter, Change.Type.RENAME);
                     break;
                 }
@@ -267,7 +247,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
                     operationBefore = moveOperationRefactoring.getOriginalOperation();
                     operationAfter = moveOperationRefactoring.getMovedOperation();
-                    changeType = Change.Type.METHOD_MOVE;
+                    changeType = Change.Type.MOVED;
                     break;
                 }
                 case RENAME_METHOD: {
@@ -441,7 +421,6 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 case MOVE_AND_INLINE_OPERATION:
                 case INLINE_OPERATION: {
                     InlineOperationRefactoring inlineOperationRefactoring = (InlineOperationRefactoring) refactoring;
-                    UMLOperation inlinedOperation = inlineOperationRefactoring.getInlinedOperation();
                     operationBefore = inlineOperationRefactoring.getTargetOperationBeforeInline();
                     operationAfter = inlineOperationRefactoring.getTargetOperationAfterInline();
                     changeType = Change.Type.BODY_CHANGE;

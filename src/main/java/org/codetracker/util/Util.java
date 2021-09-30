@@ -1,17 +1,11 @@
 package org.codetracker.util;
 
 import gr.uom.java.xmi.UMLAnnotation;
-import gr.uom.java.xmi.UMLComment;
-import gr.uom.java.xmi.UMLOperation;
-import org.codetracker.element.Method;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.util.List;
-import java.util.Objects;
-import java.util.Set;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 public class Util {
@@ -19,15 +13,14 @@ public class Util {
     }
 
     public static String getPath(String filePath, String className) {
-        try {
-            CharSequence charSequence = longestSubstring(filePath.substring(0, filePath.lastIndexOf("/")), className.replace(".", "/"));
-            String srcFile = filePath.toLowerCase().replace(charSequence, "$");
+        String srcFile = filePath.substring(0, filePath.lastIndexOf("/") + 1);
+        CharSequence charSequence = longestSubstring(srcFile, className.replace(".", "/"));
+        if (className.startsWith(charSequence.toString().replace("/", "."))) {
+            srcFile = filePath.toLowerCase().replace(charSequence, "$");
             srcFile = srcFile.substring(0, srcFile.lastIndexOf("$"));
             return srcFile;
-        } catch (Exception ex) {
-            ex.printStackTrace();
         }
-        return "";
+        return srcFile;
     }
 
     public static String longestSubstring(String str1, String str2) {
@@ -92,63 +85,6 @@ public class Util {
                 : "";
     }
 
-    public static String getIdentifierExcludeVersion(UMLOperation info, boolean containsBody, boolean containsDocumentation) {
-        StringBuilder sb = new StringBuilder();
-        sb.append(getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
-        sb.append(info.getClassName());
-        sb.append(String.format("#(%s)", info.getVisibility()));
-
-        Set<String> modifiers = new TreeSet<>();
-        if (info.isStatic())
-            modifiers.add("static");
-        if (info.isAbstract())
-            modifiers.add("abstract");
-        if (info.isFinal())
-            modifiers.add("final");
-
-        if (info.isSynchronized())
-            modifiers.add("synchronized");
-
-        if (!modifiers.isEmpty()) {
-            sb.append(String.format("(%s)", String.join(",", modifiers)));
-        }
-
-        sb.append(info.getName());
-        sb.append("(");
-        sb.append(info.getParametersWithoutReturnType().stream().map(Method.MethodParameter::new).map(Objects::toString).collect(Collectors.joining(",")));
-        sb.append(")");
-        if (info.getReturnParameter() != null) {
-            sb.append(":");
-            sb.append(info.getReturnParameter());
-        }
-        if (!info.getThrownExceptionTypes().isEmpty()) {
-            sb.append("[");
-            sb.append(info.getThrownExceptionTypes().stream().map(Object::toString).collect(Collectors.joining(",")));
-            sb.append("]");
-        }
-        if (containsBody && info.getBody() != null) {
-            sb.append("{");
-            sb.append(info.getBody().getBodyHashCode());
-            sb.append("}");
-        }
-        if (containsDocumentation && !info.getComments().isEmpty()) {
-            sb.append("{");
-            sb.append(getDocumentsSha512(info));
-            sb.append("}");
-        }
-        sb.append(annotationsToString(info.getAnnotations()));
-        return sb.toString();
-    }
-
-    public static String getDocumentsSha512(UMLOperation info) {
-        if (info.getComments().isEmpty())
-            return null;
-        return getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
-    }
-
-    public static String getRepositoryNameFromRepositoryWebUrl(String repositoryWebURL) {
-        return repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-    }
 
     public static String getSHA512(String input) {
         String toReturn = null;
