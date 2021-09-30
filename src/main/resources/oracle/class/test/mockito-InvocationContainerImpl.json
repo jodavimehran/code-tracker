@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "mockito",
+  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
+  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "filePath" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+  "className" : "InvocationContainerImpl",
+  "classKey" : "src/main/java/org.mockito.internal.stubbing.(public)InvocationContainerImpl(28)",
+  "classDeclarationLine" : 28,
+  "expectedChanges" : [ {
+    "parentCommitId" : "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+    "commitId" : "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+    "commitTime" : 1436416970,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+    "elementNameBefore" : "src/org.mockito.internal.stubbing.(public)InvocationContainerImpl(23)",
+    "elementFileAfter" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+    "elementNameAfter" : "src/main/java/org.mockito.internal.stubbing.(public)InvocationContainerImpl(23)",
+    "comment" : "Move Source Folder src to src/main/java"
+  }, {
+    "parentCommitId" : "ec9ca3637db4f353fb8aaf89e0abc235a8bc558e",
+    "commitId" : "501e8f84361af21ce23d506e3c5b284375908bdd",
+    "commitTime" : 1258316396,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/org/mockito/internal/stubbing/MockitoStubber.java",
+    "elementNameBefore" : "src/org.mockito.internal.stubbing.(public)MockitoStubber(20)",
+    "elementFileAfter" : "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+    "elementNameAfter" : "src/org.mockito.internal.stubbing.(public)InvocationContainerImpl(20)",
+    "comment" : "Rename Class org.mockito.internal.stubbing.MockitoStubber renamed to org.mockito.internal.stubbing.InvocationContainerImpl"
+  }, {
+    "parentCommitId" : "816c0325d9b1e7d51d42bd0ce5f918b60f46f04f",
+    "commitId" : "183167dbd20a85fa1106c300b304684ddec5f3d8",
+    "commitTime" : 1216239299,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/org/mockito/internal/stubbing/Stubber.java",
+    "elementNameBefore" : "src/org.mockito.internal.stubbing.(public)Stubber(16)",
+    "elementFileAfter" : "src/org/mockito/internal/stubbing/MockitoStubber.java",
+    "elementNameAfter" : "src/org.mockito.internal.stubbing.(public)MockitoStubber(16)",
+    "comment" : "Rename Class org.mockito.internal.stubbing.Stubber renamed to org.mockito.internal.stubbing.MockitoStubber"
+  }, {
+    "parentCommitId" : "d0a7f348af20d2b5bc9d370e4c2f21f8458cb3fb",
+    "commitId" : "c764d2272d622434f3a753fc16ac98d3a78ea4ba",
+    "commitTime" : 1209065304,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "src/org/mockito/internal/stubbing/Stubber.java",
+    "elementNameBefore" : "src/org.mockito.internal.stubbing.(public)Stubber(16)",
+    "elementFileAfter" : "src/org/mockito/internal/stubbing/Stubber.java",
+    "elementNameAfter" : "src/org.mockito.internal.stubbing.(public)Stubber(16)",
+    "comment" : "Add Class Annotation @SuppressWarnings(\"unchecked\") in class org.mockito.internal.stubbing.Stubber"
+  }, {
+    "parentCommitId" : "2f7bf91d24a85ab28749e80effeb1252d8442ff9",
+    "commitId" : "9952454f4efc6a8734149b5e81e4f66c0349dcbb",
+    "commitTime" : 1197406924,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/org/mockito/internal/Stubber.java",
+    "elementNameBefore" : "src/org.mockito.internal.(public)Stubber(7)",
+    "elementFileAfter" : "src/org/mockito/internal/stubbing/Stubber.java",
+    "elementNameAfter" : "src/org.mockito.internal.stubbing.(public)Stubber(10)",
+    "comment" : "Move Class org.mockito.internal.Stubber moved to org.mockito.internal.stubbing.Stubber"
+  }, {
+    "parentCommitId" : "b874832634a8a31693dbce7ccec9390bb2bf7dce",
+    "commitId" : "15f3bb0ac999bbb5c3e8b28e332c02113d2534d5",
+    "commitTime" : 1197244391,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/org/mockito/internal/Stubber.java",
+    "elementNameBefore" : "src/org.mockito.internal.(public)Stubber(7)",
+    "elementFileAfter" : "src/org/mockito/internal/Stubber.java",
+    "elementNameAfter" : "src/org.mockito.internal.(public)Stubber(7)",
+    "comment" : "Extract Class org.mockito.internal.Stubber from class org.mockito.internal.MockControl"
+  } ]
+}

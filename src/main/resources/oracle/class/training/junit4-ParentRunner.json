@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "junit4",
+  "repositoryWebURL" : "https://github.com/junit-team/junit4.git",
+  "startCommitId" : "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "filePath" : "src/main/java/org/junit/runners/ParentRunner.java",
+  "className" : "ParentRunner",
+  "classKey" : "src/main/java/org.junit.runners.(public)(abstract)ParentRunner(53)",
+  "classDeclarationLine" : 53,
+  "expectedChanges" : [ {
+    "parentCommitId" : "6aea93112f3508c955b1ccf8f8909fc375caab3d",
+    "commitId" : "123432f737b8d6e54937cf9f2e939b1e8f882e76",
+    "commitTime" : 1216845582,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/main/java/org/junit/internal/runners/ParentRunner.java",
+    "elementNameBefore" : "src/main/java/org.junit.internal.runners.(public)(abstract)ParentRunner(26)",
+    "elementFileAfter" : "src/main/java/org/junit/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.runners.(public)(abstract)ParentRunner(29)",
+    "comment" : "Move Class org.junit.internal.runners.ParentRunner moved to org.junit.runners.ParentRunner"
+  }, {
+    "parentCommitId" : "804f76fdf00c9f9fcbef58f03bbeda1f80b3ad8e",
+    "commitId" : "8226e3e64a7d4ace29eb08ab6c9fc9d4055f20c9",
+    "commitTime" : 1197042183,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/org/junit/internal/runners/ParentRunner.java",
+    "elementNameBefore" : "src/org.junit.internal.runners.(public)(abstract)ParentRunner(22)",
+    "elementFileAfter" : "src/main/java/org/junit/internal/runners/ParentRunner.java",
+    "elementNameAfter" : "src/main/java/org.junit.internal.runners.(public)(abstract)ParentRunner(26)",
+    "comment" : "Move Source Folder src to src/main/java"
+  }, {
+    "parentCommitId" : "1d982e5310d57fe0ea4b63e05f20215ee3add1fe",
+    "commitId" : "24a5aad1f49b4decf946f1df701e354a18544132",
+    "commitTime" : 1193839032,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/org/junit/internal/runners/ParentRunner.java",
+    "elementNameBefore" : "src/org.junit.internal.runners.(public)(abstract)ParentRunner(17)",
+    "elementFileAfter" : "src/org/junit/internal/runners/ParentRunner.java",
+    "elementNameAfter" : "src/org.junit.internal.runners.(public)(abstract)ParentRunner(17)",
+    "comment" : "Extract Superclass org.junit.internal.runners.ParentRunner from classes [org.junit.runners.Suite, org.junit.runners.Parameterized, org.junit.internal.runners.JUnit4ClassRunner]"
+  } ]
+}

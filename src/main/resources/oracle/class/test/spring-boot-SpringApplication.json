@@ -1,0 +1,100 @@
+{
+  "repositoryName" : "spring-boot",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-boot.git",
+  "startCommitId" : "5cfe8dbee950dbf3a8de3ece2f6f3363f13d904a",
+  "filePath" : "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+  "className" : "SpringApplication",
+  "classKey" : "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.(public)SpringApplication(82)",
+  "classDeclarationLine" : 82,
+  "expectedChanges" : [ {
+    "parentCommitId" : "0419d42b7ca37611955bc0211359c215e5477fa4",
+    "commitId" : "0ba4830b4fb20deea040ca5e1c9a34651708b222",
+    "commitTime" : 1507160063,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+    "elementNameBefore" : "spring-boot/src/main/java/org.springframework.boot.(public)SpringApplication(80)",
+    "elementFileAfter" : "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+    "elementNameAfter" : "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.(public)SpringApplication(80)",
+    "comment" : "Move Source Folder spring-boot to spring-boot-project/spring-boot"
+  }, {
+    "parentCommitId" : "3f2bb03fb8ebc6a44a7ca3add21b53b906e74424",
+    "commitId" : "b665a2bb1d898f251da348beba8b71b3ac34497f",
+    "commitTime" : 1374873064,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-boot/src/main/java/org/springframework/boot/strap/SpringApplication.java",
+    "elementNameBefore" : "spring-boot/src/main/java/org.springframework.boot.strap.(public)SpringApplication(57)",
+    "elementFileAfter" : "spring-boot/src/main/java/org/springframework/boot/SpringApplication.java",
+    "elementNameAfter" : "spring-boot/src/main/java/org.springframework.boot.(public)SpringApplication(57)",
+    "comment" : "Move Class org.springframework.boot.strap.SpringApplication moved to org.springframework.boot.SpringApplication"
+  }, {
+    "parentCommitId" : "06ddd92438d7d2e64f2c54da5932efbd4b47f1b9",
+    "commitId" : "3f2bb03fb8ebc6a44a7ca3add21b53b906e74424",
+    "commitTime" : 1374867097,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-boot-strap/src/main/java/org/springframework/boot/strap/SpringApplication.java",
+    "elementNameBefore" : "spring-boot-strap/src/main/java/org.springframework.boot.strap.(public)SpringApplication(57)",
+    "elementFileAfter" : "spring-boot/src/main/java/org/springframework/boot/strap/SpringApplication.java",
+    "elementNameAfter" : "spring-boot/src/main/java/org.springframework.boot.strap.(public)SpringApplication(57)",
+    "comment" : "Move Source Folder spring-boot-strap to spring-boot"
+  }, {
+    "parentCommitId" : "b2873fbc2d55c007d7fbc882bbcff701173b1887",
+    "commitId" : "2098e23fca3858e218f055373665fb1cf2188fdc",
+    "commitTime" : 1374844421,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-bootstrap/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameBefore" : "spring-bootstrap/src/main/java/org.springframework.bootstrap.(public)SpringApplication(57)",
+    "elementFileAfter" : "spring-boot-strap/src/main/java/org/springframework/boot/strap/SpringApplication.java",
+    "elementNameAfter" : "spring-boot-strap/src/main/java/org.springframework.boot.strap.(public)SpringApplication(57)",
+    "comment" : "Move Class org.springframework.bootstrap.SpringApplication moved to org.springframework.boot.strap.SpringApplication"
+  }, {
+    "parentCommitId" : "cd51f357a3cfae04954ac6dce5134c3e2a6ad241",
+    "commitId" : "0b863611d9563d6a41ebe219925e68be407e501a",
+    "commitTime" : 1373316166,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-bootstrap/src/main/java/org/springframework/zero/SpringApplication.java",
+    "elementNameBefore" : "spring-bootstrap/src/main/java/org.springframework.zero.(public)SpringApplication(53)",
+    "elementFileAfter" : "spring-bootstrap/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameAfter" : "spring-bootstrap/src/main/java/org.springframework.bootstrap.(public)SpringApplication(53)",
+    "comment" : "Move Class org.springframework.zero.SpringApplication moved to org.springframework.bootstrap.SpringApplication"
+  }, {
+    "parentCommitId" : "9fde0a3715d00c1a3fc968b856db036ca4a8845c",
+    "commitId" : "cd51f357a3cfae04954ac6dce5134c3e2a6ad241",
+    "commitTime" : 1373316164,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-zero-core/src/main/java/org/springframework/zero/SpringApplication.java",
+    "elementNameBefore" : "spring-zero-core/src/main/java/org.springframework.zero.(public)SpringApplication(53)",
+    "elementFileAfter" : "spring-bootstrap/src/main/java/org/springframework/zero/SpringApplication.java",
+    "elementNameAfter" : "spring-bootstrap/src/main/java/org.springframework.zero.(public)SpringApplication(53)",
+    "comment" : "Move Source Folder spring-zero-core to spring-bootstrap"
+  }, {
+    "parentCommitId" : "d039822064b3ed1c16973428fc4b477f8b86048e",
+    "commitId" : "261955c50b8fb44311324d2188bf6e3f92237e0c",
+    "commitTime" : 1373316161,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-zero-core/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameBefore" : "spring-zero-core/src/main/java/org.springframework.bootstrap.(public)SpringApplication(53)",
+    "elementFileAfter" : "spring-zero-core/src/main/java/org/springframework/zero/SpringApplication.java",
+    "elementNameAfter" : "spring-zero-core/src/main/java/org.springframework.zero.(public)SpringApplication(53)",
+    "comment" : "Move Class org.springframework.bootstrap.SpringApplication moved to org.springframework.zero.SpringApplication"
+  }, {
+    "parentCommitId" : "3996353e3513c86ca74f983f09c8491712ca48cf",
+    "commitId" : "40bf33487177a26e578486942218449658c5e715",
+    "commitTime" : 1373316159,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-bootstrap/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameBefore" : "spring-bootstrap/src/main/java/org.springframework.bootstrap.(public)SpringApplication(53)",
+    "elementFileAfter" : "spring-zero-core/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameAfter" : "spring-zero-core/src/main/java/org.springframework.bootstrap.(public)SpringApplication(53)",
+    "comment" : "Move Source Folder spring-bootstrap to spring-zero-core"
+  }, {
+    "parentCommitId" : "80b151e2b37a66a8fe7eb2d5bac2f7aa766d4ead",
+    "commitId" : "fb6b2244707dd5dfad12d62cb6a3c396555270d1",
+    "commitTime" : 1366794127,
+    "changeType" : "introduced",
+    "elementFileBefore" : "spring-bootstrap/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameBefore" : "spring-bootstrap/src/main/java/org.springframework.bootstrap.(public)SpringApplication(54)",
+    "elementFileAfter" : "spring-bootstrap/src/main/java/org/springframework/bootstrap/SpringApplication.java",
+    "elementNameAfter" : "spring-bootstrap/src/main/java/org.springframework.bootstrap.(public)SpringApplication(54)",
+    "comment" : "new class"
+  } ]
+}

@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "hibernate-search",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath" : "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+  "className" : "ClassLoaderHelper",
+  "classKey" : "engine/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(25)",
+  "classDeclarationLine" : 25,
+  "expectedChanges" : [ {
+    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "commitTime" : 1366736556,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(40)",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(40)",
+    "comment" : "Move Source Folder hibernate-search-engine to engine"
+  }, {
+    "parentCommitId" : "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
+    "commitId" : "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+    "commitTime" : 1317161019,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(38)",
+    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(38)",
+    "comment" : "Move Source Folder hibernate-search to hibernate-search-engine"
+  }, {
+    "parentCommitId" : "d1abf63a08a8e4e854ba56ecc5ad9001dfea97c8",
+    "commitId" : "f773e0a267fc94b9d46928241ca210e0998f0030",
+    "commitTime" : 1309798174,
+    "changeType" : "moved",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/util/ClassLoaderHelper.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.util.(public)ClassLoaderHelper(38)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.util.impl.(public)ClassLoaderHelper(38)",
+    "comment" : "Move Class org.hibernate.search.util.ClassLoaderHelper moved to org.hibernate.search.util.impl.ClassLoaderHelper"
+  }, {
+    "parentCommitId" : "12d659a4f896b90586a63a15e3648f5ee2a640b3",
+    "commitId" : "783e20fb66ee4cd410ab86d29cfcc4121563341c",
+    "commitTime" : 1285083762,
+    "changeType" : "rename",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/util/PluginLoader.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.util.(public)PluginLoader(35)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/util/ClassLoaderHelper.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.util.(public)ClassLoaderHelper(35)",
+    "comment" : "Rename Class org.hibernate.search.util.PluginLoader renamed to org.hibernate.search.util.ClassLoaderHelper"
+  }, {
+    "parentCommitId" : "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
+    "commitId" : "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
+    "commitTime" : 1268702887,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/util/PluginLoader.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.util.(public)PluginLoader(30)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/util/PluginLoader.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.util.(public)PluginLoader(30)",
+    "comment" : "Move Source Folder src to hibernate-search/src"
+  }, {
+    "parentCommitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
+    "commitId" : "dfc8c23684ab4e6769f9b566e1f97101166ba7d8",
+    "commitTime" : 1246487910,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/util/PluginLoader.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.util.(public)PluginLoader(6)",
+    "elementFileAfter" : "src/main/java/org/hibernate/search/util/PluginLoader.java",
+    "elementNameAfter" : "src/main/java/org.hibernate.search.util.(public)PluginLoader(6)",
+    "comment" : "new class"
+  } ]
+}

@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "hibernate-search",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+  "className" : "FullTextQueryImpl",
+  "classKey" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(61)",
+  "classDeclarationLine" : 61,
+  "expectedChanges" : [ {
+    "parentCommitId" : "1d43814dd942481bb147ebe9b37203115d124210",
+    "commitId" : "02f801bccd18a8a1c1457f8238d8d281125b24f8",
+    "commitTime" : 1487598784,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameBefore" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(47)",
+    "elementFileAfter" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameAfter" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(47)",
+    "comment" : "Add Class Annotation @SuppressWarnings(\"rawtypes\") in class org.hibernate.search.query.hibernate.impl.FullTextQueryImpl"
+  }, {
+    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "commitTime" : 1366736556,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameBefore" : "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(66)",
+    "elementFileAfter" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameAfter" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(66)",
+    "comment" : "Move Source Folder hibernate-search-orm to orm"
+  }, {
+    "parentCommitId" : "33627c651cc0081b02c8c66031ebfc27cc228809",
+    "commitId" : "46186ad2bdda3c84dd58a641ed93e1b1203bdc89",
+    "commitTime" : 1317026455,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(65)",
+    "elementFileAfter" : "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameAfter" : "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(65)",
+    "comment" : "Move Source Folder hibernate-search to hibernate-search-orm"
+  }, {
+    "parentCommitId" : "ce58bb10a58aa3bed46d4a53e7ad58880d444ceb",
+    "commitId" : "dc3a4d26f215331ac43e3bf779a25b8476e42c59",
+    "commitTime" : 1299177574,
+    "changeType" : "moved",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.(public)FullTextQueryImpl(62)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.(public)FullTextQueryImpl(63)",
+    "comment" : "Move Class org.hibernate.search.query.FullTextQueryImpl moved to org.hibernate.search.query.hibernate.impl.FullTextQueryImpl"
+  }, {
+    "parentCommitId" : "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
+    "commitId" : "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
+    "commitTime" : 1268702887,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.query.(public)FullTextQueryImpl(98)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.(public)FullTextQueryImpl(98)",
+    "comment" : "Move Source Folder src to hibernate-search/src"
+  }, {
+    "parentCommitId" : "619d7677da623ae0c6d3c29d090325e4751f634a",
+    "commitId" : "f4ae5f166be051a2156e1ee0bd12b888e487a9c5",
+    "commitTime" : 1237975667,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameBefore" : "src/java/org.hibernate.search.query.(public)FullTextQueryImpl(66)",
+    "elementFileAfter" : "src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameAfter" : "src/main/java/org.hibernate.search.query.(public)FullTextQueryImpl(66)",
+    "comment" : "Move Source Folder src to src/main"
+  }, {
+    "parentCommitId" : "d5cc99c367169f7897bf3c2cbac08307c962526b",
+    "commitId" : "804c5de76bfcb5e1145f7f0272c7843d561a53f9",
+    "commitTime" : 1187222299,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameBefore" : "src/java/org.hibernate.search.query.(public)FullTextQueryImpl(55)",
+    "elementFileAfter" : "src/java/org/hibernate/search/query/FullTextQueryImpl.java",
+    "elementNameAfter" : "src/java/org.hibernate.search.query.(public)FullTextQueryImpl(55)",
+    "comment" : "new class"
+  } ]
+}

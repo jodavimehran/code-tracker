@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "hibernate-search",
+  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+  "className" : "DefaultBatchBackend",
+  "classKey" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(28)",
+  "classDeclarationLine" : 28,
+  "expectedChanges" : [ {
+    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+    "commitTime" : 1366736556,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(42)",
+    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(42)",
+    "comment" : "Move Source Folder hibernate-search-engine to engine"
+  }, {
+    "parentCommitId" : "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
+    "commitId" : "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+    "commitTime" : 1317161019,
+    "changeType" : "container change",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(35)",
+    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(35)",
+    "comment" : "Move Source Folder hibernate-search to hibernate-search-engine"
+  }, {
+    "parentCommitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+    "commitId" : "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
+    "commitTime" : 1311863821,
+    "changeType" : "moved",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(36)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(36)",
+    "comment" : "Move And Rename Class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend moved and renamed to org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
+  }, {
+    "parentCommitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+    "commitId" : "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
+    "commitTime" : 1311863821,
+    "changeType" : "rename",
+    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(36)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.(public)DefaultBatchBackend(36)",
+    "comment" : "Move And Rename Class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend moved and renamed to org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
+  }, {
+    "parentCommitId" : "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
+    "commitId" : "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
+    "commitTime" : 1268702887,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(44)",
+    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(44)",
+    "comment" : "Move Source Folder src to hibernate-search/src"
+  }, {
+    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
+    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
+    "commitTime" : 1246314343,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(20)",
+    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.(public)LuceneBatchBackend(20)",
+    "comment" : "new class"
+  } ]
+}

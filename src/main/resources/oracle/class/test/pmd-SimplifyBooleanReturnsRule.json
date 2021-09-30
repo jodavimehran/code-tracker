@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "pmd",
+  "repositoryWebURL" : "https://github.com/pmd/pmd.git",
+  "startCommitId" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "filePath" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+  "className" : "SimplifyBooleanReturnsRule",
+  "classKey" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(18)",
+  "classDeclarationLine" : 18,
+  "expectedChanges" : [ {
+    "parentCommitId" : "fa950a82960993c7a7d70e276553b85174eec8b2",
+    "commitId" : "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "commitTime" : 1412437001,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+    "elementNameBefore" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(22)",
+    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(22)",
+    "comment" : "Move Source Folder pmd to pmd-java"
+  }, {
+    "parentCommitId" : "821f452f692c1497e2849302b5d9417c90edc054",
+    "commitId" : "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "commitTime" : 1321908307,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(22)",
+    "elementFileAfter" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+    "elementNameAfter" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(22)",
+    "comment" : "Move Source Folder pmd/src to pmd/src/main/java"
+  }, {
+    "parentCommitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
+    "commitId" : "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
+    "commitTime" : 1207345139,
+    "changeType" : "rename",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturns(22)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturnsRule(22)",
+    "comment" : "Rename Class net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns renamed to net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule"
+  }, {
+    "parentCommitId" : "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+    "commitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
+    "commitTime" : 1207337229,
+    "changeType" : "moved",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.(public)SimplifyBooleanReturns(22)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.(public)SimplifyBooleanReturns(22)",
+    "comment" : "Move Class net.sourceforge.pmd.rules.SimplifyBooleanReturns moved to net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns"
+  }, {
+    "parentCommitId" : "357f6f57e8587be5b6d97a3d012b35766e513a5f",
+    "commitId" : "ccaf1594a4a23743e2049009001d8d6d82de3b7c",
+    "commitTime" : 1103053995,
+    "changeType" : "rename",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.(public)SimplifyBooleanReturnsRule(16)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.(public)SimplifyBooleanReturns(16)",
+    "comment" : "Rename Class net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule renamed to net.sourceforge.pmd.rules.SimplifyBooleanReturns"
+  }, {
+    "parentCommitId" : "a8b3c474104d0f947434dae5787ba9aab631922e",
+    "commitId" : "bd57e8010dbdcfe2fc434083512f77419c5fde2d",
+    "commitTime" : 1029339266,
+    "changeType" : "introduced",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.(public)SimplifyBooleanReturnsRule(15)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.(public)SimplifyBooleanReturnsRule(15)",
+    "comment" : "new class"
+  } ]
+}

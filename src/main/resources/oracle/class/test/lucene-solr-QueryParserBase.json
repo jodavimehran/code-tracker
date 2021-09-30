@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "lucene-solr",
+  "repositoryWebURL" : "https://github.com/apache/lucene-solr.git",
+  "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath" : "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "className" : "QueryParserBase",
+  "classKey" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.(public)(abstract)QueryParserBase(40)",
+  "classDeclarationLine" : 40,
+  "expectedChanges" : [ {
+    "parentCommitId" : "0daa4b0aac1748bbb2c56547626e9f49e7fb4ed6",
+    "commitId" : "e8e4245d9b36123446546ff15967ac95429ea2b0",
+    "commitTime" : 1334669779,
+    "changeType" : "container change",
+    "elementFileBefore" : "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+    "elementNameBefore" : "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.(public)(abstract)QueryParserBase(37)",
+    "elementFileAfter" : "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+    "elementNameAfter" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.(public)(abstract)QueryParserBase(37)",
+    "comment" : "Move Source Folder modules to lucene"
+  }, {
+    "parentCommitId" : "ef25bf2d31a5e462ad6a752919481e2a7d1e2bd2",
+    "commitId" : "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
+    "commitTime" : 1310355420,
+    "changeType" : "moved",
+    "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+    "elementNameBefore" : "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.(public)(abstract)QueryParserBase(38)",
+    "elementFileAfter" : "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+    "elementNameAfter" : "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.(public)(abstract)QueryParserBase(38)",
+    "comment" : "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
+  }, {
+    "parentCommitId" : "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
+    "commitId" : "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+    "commitTime" : 1287756261,
+    "changeType" : "introduced",
+    "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+    "elementNameBefore" : "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.(public)(abstract)QueryParserBase(40)",
+    "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+    "elementNameAfter" : "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.(public)(abstract)QueryParserBase(40)",
+    "comment" : "Extract Superclass org.apache.lucene.queryParser.QueryParserBase from classes [org.apache.lucene.queryParser.QueryParser]"
+  } ]
+}

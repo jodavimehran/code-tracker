@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+  "className" : "PojoSerializer",
+  "classKey" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(55)",
+  "classDeclarationLine" : 55,
+  "expectedChanges" : [ {
+    "parentCommitId" : "0aa9918cc5b56682087c2c19eb31d9b321c97875",
+    "commitId" : "082d40fdc415952737a109c913a86d009ed234c1",
+    "commitTime" : 1487548884,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(44)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(45)",
+    "comment" : "Add Class Annotation @Internal in class org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "7081836e0d640ee640687606bd73b6673d3f2a07",
+    "commitId" : "21a715867d655bb61df9a9f7eef37e42b99e206a",
+    "commitTime" : 1454428544,
+    "changeType" : "container change",
+    "elementFileBefore" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(44)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(44)",
+    "comment" : "Move Source Folder flink-java to flink-core"
+  }, {
+    "parentCommitId" : "5f011547378ad03c033770503c6dcfd6b64e9647",
+    "commitId" : "8563d511da8ab8ac0e1362775f11aef7b67375be",
+    "commitTime" : 1405024514,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "elementFileAfter" : "flink-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "flink-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "comment" : "Move Source Folder stratosphere-java to flink-java"
+  }, {
+    "parentCommitId" : "6d9a40d83c3e339c4e820a6b3632fc85ebcbc3de",
+    "commitId" : "24eb47ac86299920aa137d5b6394a248ff58d19e",
+    "commitTime" : 1404926060,
+    "changeType" : "moved",
+    "elementFileBefore" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "elementFileAfter" : "stratosphere-java/src/main/java/org/apache/flink/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "stratosphere-java/src/main/java/org.apache.flink.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "comment" : "Move Class eu.stratosphere.api.java.typeutils.runtime.PojoSerializer moved to org.apache.flink.api.java.typeutils.runtime.PojoSerializer"
+  }, {
+    "parentCommitId" : "5f0a3d4d3424392aef87291b2840b86e30eb0ace",
+    "commitId" : "3f87fc9f1cc2f0e18552e6ec5e9449228a942726",
+    "commitTime" : 1403776510,
+    "changeType" : "introduced",
+    "elementFileBefore" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameBefore" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "elementFileAfter" : "stratosphere-java/src/main/java/eu/stratosphere/api/java/typeutils/runtime/PojoSerializer.java",
+    "elementNameAfter" : "stratosphere-java/src/main/java/eu.stratosphere.api.java.typeutils.runtime.(public)(final)PojoSerializer(28)",
+    "comment" : "new class"
+  } ]
+}

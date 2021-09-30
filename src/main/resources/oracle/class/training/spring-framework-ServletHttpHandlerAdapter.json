@@ -1,0 +1,130 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+  "className" : "ServletHttpHandlerAdapter",
+  "classKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(48)",
+  "classDeclarationLine" : 48,
+  "expectedChanges" : [ {
+    "parentCommitId" : "72bbb2619dcd2d71f4333fb501a7495ef34eec53",
+    "commitId" : "7de2650a7070af4db25ef9b5d87528a679302120",
+    "commitTime" : 1521173694,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(48)",
+    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(47)",
+    "comment" : "Remove Class Annotation @WebServlet(asyncSupported = true) in class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "2e8326220b3929534e6621acf0ba0e4ac0bd910c",
+    "commitId" : "5d1b5426982332cbbd5671b00fbc4ded5d69a656",
+    "commitTime" : 1468513835,
+    "changeType" : "container change",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(36)",
+    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(36)",
+    "comment" : "Move Source Folder spring-web-reactive to spring-web"
+  }, {
+    "parentCommitId" : "cb798726bd03df7b6da6d57f94bac9ea1c84230c",
+    "commitId" : "1022683d1c122de07816346c980b25e174564c5a",
+    "commitTime" : 1468513127,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(36)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(36)",
+    "comment" : "Add Class Annotation @SuppressWarnings(\"serial\") in class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "382c98f9680fab9a0c2ad50de18e3385f9cba5c1",
+    "commitId" : "da98becf72fbeef836dba366431be2a652e5e001",
+    "commitTime" : 1449096367,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)HttpHandlerServlet(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(34)",
+    "comment" : "Move And Rename Class org.springframework.http.server.servlet31.HttpHandlerServlet moved and renamed to org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "382c98f9680fab9a0c2ad50de18e3385f9cba5c1",
+    "commitId" : "da98becf72fbeef836dba366431be2a652e5e001",
+    "commitTime" : 1449096367,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)HttpHandlerServlet(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.(public)ServletHttpHandlerAdapter(34)",
+    "comment" : "Move And Rename Class org.springframework.http.server.servlet31.HttpHandlerServlet moved and renamed to org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "b9a52d5f7c454ab7de0bc9eddc8e35c7c1f51906",
+    "commitId" : "df80ffbf2814c8f0a95bce9095921d53f2786a11",
+    "commitTime" : 1449011393,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/Servlet31HttpHandlerAdapter.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)Servlet31HttpHandlerAdapter(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)HttpHandlerServlet(35)",
+    "comment" : "Rename Class org.springframework.http.server.servlet31.Servlet31HttpHandlerAdapter renamed to org.springframework.http.server.servlet31.HttpHandlerServlet"
+  }, {
+    "parentCommitId" : "81867fa4237643ca3eae24a8f085bc4b5f9443b3",
+    "commitId" : "e9e4bcdc599634ae8879815a33a8b4e41b909f61",
+    "commitTime" : 1448043044,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/server/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.server.servlet.(public)HttpHandlerServlet(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/Servlet31HttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)Servlet31HttpHandlerAdapter(35)",
+    "comment" : "Move And Rename Class org.springframework.web.reactive.server.servlet.HttpHandlerServlet moved and renamed to org.springframework.http.server.servlet31.Servlet31HttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "81867fa4237643ca3eae24a8f085bc4b5f9443b3",
+    "commitId" : "e9e4bcdc599634ae8879815a33a8b4e41b909f61",
+    "commitTime" : 1448043044,
+    "changeType" : "rename",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/server/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.server.servlet.(public)HttpHandlerServlet(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/http/server/servlet31/Servlet31HttpHandlerAdapter.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.http.server.servlet31.(public)Servlet31HttpHandlerAdapter(35)",
+    "comment" : "Move And Rename Class org.springframework.web.reactive.server.servlet.HttpHandlerServlet moved and renamed to org.springframework.http.server.servlet31.Servlet31HttpHandlerAdapter"
+  }, {
+    "parentCommitId" : "54ce20a5e04275835b40f2cd1453db778264191e",
+    "commitId" : "81867fa4237643ca3eae24a8f085bc4b5f9443b3",
+    "commitTime" : 1447454971,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/http/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.http.servlet.(public)HttpHandlerServlet(35)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/server/servlet/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.server.servlet.(public)HttpHandlerServlet(35)",
+    "comment" : "Move Class org.springframework.reactive.web.http.servlet.HttpHandlerServlet moved to org.springframework.web.reactive.server.servlet.HttpHandlerServlet"
+  }, {
+    "parentCommitId" : "56d69404858d2170e2e177ce9a3fd453b70f2d67",
+    "commitId" : "f020a1add19b3761f2fd8e01fe5e96ce1b8d45c7",
+    "commitTime" : 1440441718,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.servlet.(public)HttpHandlerServlet(34)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/http/servlet/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.http.servlet.(public)HttpHandlerServlet(34)",
+    "comment" : "Move Class org.springframework.reactive.web.servlet.HttpHandlerServlet moved to org.springframework.reactive.web.http.servlet.HttpHandlerServlet"
+  }, {
+    "parentCommitId" : "f518d76a771def7289ac4f85ddc66812f428a16f",
+    "commitId" : "74a29ac146280a399d88680d187c8dbeb2b85328",
+    "commitTime" : 1436442168,
+    "changeType" : "moved",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/rx/web/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.rx.web.servlet.(public)HttpHandlerServlet(29)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/servlet/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.servlet.(public)HttpHandlerServlet(31)",
+    "comment" : "Move Class org.springframework.rx.web.servlet.HttpHandlerServlet moved to org.springframework.reactive.web.servlet.HttpHandlerServlet"
+  }, {
+    "parentCommitId" : "3b45087c87a3386f74be88cb918a4d2055ae5400",
+    "commitId" : "f518d76a771def7289ac4f85ddc66812f428a16f",
+    "commitTime" : 1436266425,
+    "changeType" : "introduced",
+    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/rx/web/servlet/HttpHandlerServlet.java",
+    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.rx.web.servlet.(public)HttpHandlerServlet(29)",
+    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/rx/web/servlet/HttpHandlerServlet.java",
+    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.rx.web.servlet.(public)HttpHandlerServlet(29)",
+    "comment" : "new class"
+  } ]
+}

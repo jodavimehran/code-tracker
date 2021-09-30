@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "pmd",
+  "repositoryWebURL" : "https://github.com/pmd/pmd.git",
+  "startCommitId" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "filePath" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+  "className" : "SourceFileScope",
+  "classKey" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(21)",
+  "classDeclarationLine" : 21,
+  "expectedChanges" : [ {
+    "parentCommitId" : "fa950a82960993c7a7d70e276553b85174eec8b2",
+    "commitId" : "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "commitTime" : 1412437001,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+    "elementNameBefore" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(14)",
+    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(14)",
+    "comment" : "Move Source Folder pmd to pmd-java"
+  }, {
+    "parentCommitId" : "821f452f692c1497e2849302b5d9417c90edc054",
+    "commitId" : "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "commitTime" : 1321908307,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(9)",
+    "elementFileAfter" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+    "elementNameAfter" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(9)",
+    "comment" : "Move Source Folder pmd/src to pmd/src/main/java"
+  }, {
+    "parentCommitId" : "ca6eda7e61fe4daf90682014e11fe1507fd331ed",
+    "commitId" : "f1d5f356ffec6e0df3834dcce9a722778d9d63ca",
+    "commitTime" : 1211527433,
+    "changeType" : "moved",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/symboltable/SourceFileScope.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.symboltable.(public)SourceFileScope(10)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/symboltable/SourceFileScope.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.symboltable.(public)SourceFileScope(10)",
+    "comment" : "Move Class net.sourceforge.pmd.symboltable.SourceFileScope moved to net.sourceforge.pmd.lang.java.symboltable.SourceFileScope"
+  }, {
+    "parentCommitId" : "2383390cbff567bb3cb6eb95fba31ccabed81ae7",
+    "commitId" : "d2e32f7d3c977884d249c88ff190aa2f8babcd92",
+    "commitTime" : 1118276800,
+    "changeType" : "rename",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/symboltable/GlobalScope.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.symboltable.(public)GlobalScope(12)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/symboltable/SourceFileScope.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.symboltable.(public)SourceFileScope(9)",
+    "comment" : "Rename Class net.sourceforge.pmd.symboltable.GlobalScope renamed to net.sourceforge.pmd.symboltable.SourceFileScope"
+  }, {
+    "parentCommitId" : "7684cad4b48b9a2796bfbc90eb32b54296911738",
+    "commitId" : "09d4ca25512bf75f47496b8b8232361a8bb410d7",
+    "commitTime" : 1033658764,
+    "changeType" : "introduced",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/symboltable/GlobalScope.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.symboltable.(public)GlobalScope(11)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/symboltable/GlobalScope.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.symboltable.(public)GlobalScope(11)",
+    "comment" : "new class"
+  } ]
+}

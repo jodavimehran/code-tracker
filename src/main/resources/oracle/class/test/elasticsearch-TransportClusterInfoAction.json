@@ -1,0 +1,40 @@
+{
+  "repositoryName" : "elasticsearch",
+  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
+  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath" : "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+  "className" : "TransportClusterInfoAction",
+  "classKey" : "server/src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(34)",
+  "classDeclarationLine" : 34,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "commitTime" : 1515695443,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(35)",
+    "elementFileAfter" : "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameAfter" : "server/src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(35)",
+    "comment" : "Move Source Folder core to server"
+  }, {
+    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "commitTime" : 1433502723,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(31)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(31)",
+    "comment" : "Move Source Folder src to core/src"
+  }, {
+    "parentCommitId" : "8e33e0e69d73f14cc02abd286d767ba83e171cee",
+    "commitId" : "dc0d81b8aac03af962e895381406f312565fd358",
+    "commitTime" : 1371063827,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(30)",
+    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.(public)(abstract)TransportClusterInfoAction(30)",
+    "comment" : "new class"
+  } ]
+}

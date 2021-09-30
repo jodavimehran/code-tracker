@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "mockito",
+  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
+  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "filePath" : "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
+  "className" : "MatchersBinder",
+  "classKey" : "src/main/java/org.mockito.internal.invocation.(public)MatchersBinder(20)",
+  "classDeclarationLine" : 20,
+  "expectedChanges" : [ {
+    "parentCommitId" : "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+    "commitId" : "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+    "commitTime" : 1436416970,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
+    "elementNameBefore" : "src/org.mockito.internal.invocation.(public)MatchersBinder(18)",
+    "elementFileAfter" : "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
+    "elementNameAfter" : "src/main/java/org.mockito.internal.invocation.(public)MatchersBinder(18)",
+    "comment" : "Move Source Folder src to src/main/java"
+  }, {
+    "parentCommitId" : "c3a163007bba5815157555ef8c5ed1ad83c71a04",
+    "commitId" : "e79f9c7472235eadc992250683423737f31683e3",
+    "commitTime" : 1199565394,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
+    "elementNameBefore" : "src/org.mockito.internal.invocation.(public)MatchersBinder(15)",
+    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
+    "elementNameAfter" : "src/org.mockito.internal.invocation.(public)MatchersBinder(15)",
+    "comment" : "Add Class Annotation @SuppressWarnings(\"unchecked\") in class org.mockito.internal.invocation.MatchersBinder"
+  }, {
+    "parentCommitId" : "2f7bf91d24a85ab28749e80effeb1252d8442ff9",
+    "commitId" : "9952454f4efc6a8734149b5e81e4f66c0349dcbb",
+    "commitTime" : 1197406924,
+    "changeType" : "moved",
+    "elementFileBefore" : "src/org/mockito/internal/MatchersBinder.java",
+    "elementNameBefore" : "src/org.mockito.internal.(public)MatchersBinder(8)",
+    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
+    "elementNameAfter" : "src/org.mockito.internal.invocation.(public)MatchersBinder(11)",
+    "comment" : "Move Class org.mockito.internal.MatchersBinder moved to org.mockito.internal.invocation.MatchersBinder"
+  }, {
+    "parentCommitId" : "a925c010179fde193723dacebbd59c8896785325",
+    "commitId" : "110e46a16b4fa91c1856958e78cc45fe70fff9d2",
+    "commitTime" : 1197331062,
+    "changeType" : "rename",
+    "elementFileBefore" : "src/org/mockito/internal/InvocationMatcherFactory.java",
+    "elementNameBefore" : "src/org.mockito.internal.(public)InvocationMatcherFactory(9)",
+    "elementFileAfter" : "src/org/mockito/internal/MatchersBinder.java",
+    "elementNameAfter" : "src/org.mockito.internal.(public)MatchersBinder(8)",
+    "comment" : "Rename Class org.mockito.internal.InvocationMatcherFactory renamed to org.mockito.internal.MatchersBinder"
+  }, {
+    "parentCommitId" : "5ca1475ffd380d1747170f2aefde8fe8bc57ad9f",
+    "commitId" : "363dce3b88179bb7b5ae6bd0580b19e1d0c15481",
+    "commitTime" : 1197324407,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/org/mockito/internal/InvocationMatcherFactory.java",
+    "elementNameBefore" : "src/org.mockito.internal.(public)InvocationMatcherFactory(9)",
+    "elementFileAfter" : "src/org/mockito/internal/InvocationMatcherFactory.java",
+    "elementNameAfter" : "src/org.mockito.internal.(public)InvocationMatcherFactory(9)",
+    "comment" : "Extract Class org.mockito.internal.InvocationMatcherFactory from class org.mockito.internal.MockControl"
+  } ]
+}

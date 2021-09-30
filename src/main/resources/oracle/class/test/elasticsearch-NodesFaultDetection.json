@@ -1,0 +1,60 @@
+{
+  "repositoryName" : "elasticsearch",
+  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
+  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath" : "server/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
+  "className" : "NodesFaultDetection",
+  "classKey" : "server/src/main/java/org.elasticsearch.discovery.zen.(public)NodesFaultDetection(52)",
+  "classDeclarationLine" : 52,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "commitTime" : 1515695443,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.discovery.zen.(public)NodesFaultDetection(51)",
+    "elementFileAfter" : "server/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
+    "elementNameAfter" : "server/src/main/java/org.elasticsearch.discovery.zen.(public)NodesFaultDetection(51)",
+    "comment" : "Move Source Folder core to server"
+  }, {
+    "parentCommitId" : "95b6f85c87d301f2038711d094752c1c5dac443f",
+    "commitId" : "53cff0f00ff767d028d654ec75c12bc8ff16206b",
+    "commitTime" : 1476949488,
+    "changeType" : "moved",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(51)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.discovery.zen.(public)NodesFaultDetection(51)",
+    "comment" : "Move Class org.elasticsearch.discovery.zen.fd.NodesFaultDetection moved to org.elasticsearch.discovery.zen.NodesFaultDetection"
+  }, {
+    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "commitTime" : 1433502723,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(39)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(39)",
+    "comment" : "Move Source Folder src to core/src"
+  }, {
+    "parentCommitId" : "473b0f4dff504690754acc0f00967c275bf322a8",
+    "commitId" : "a8fd2d48b8f3f17d68ed27c3104e2c9e2eb6cc9c",
+    "commitTime" : 1323125963,
+    "changeType" : "container change",
+    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(43)",
+    "elementFileAfter" : "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameAfter" : "src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(43)",
+    "comment" : "Move Source Folder modules/elasticsearch/src to src"
+  }, {
+    "parentCommitId" : "609af0da60012080fbf796efd5912a58545d8e49",
+    "commitId" : "cb0d7d4735665fa8ca1b59555a06354859c0045a",
+    "commitTime" : 1272142125,
+    "changeType" : "introduced",
+    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(41)",
+    "elementFileAfter" : "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+    "elementNameAfter" : "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.(public)NodesFaultDetection(41)",
+    "comment" : "new class"
+  } ]
+}

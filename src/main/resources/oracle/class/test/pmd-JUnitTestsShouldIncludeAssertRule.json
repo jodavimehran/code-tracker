@@ -1,0 +1,80 @@
+{
+  "repositoryName" : "pmd",
+  "repositoryWebURL" : "https://github.com/pmd/pmd.git",
+  "startCommitId" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "filePath" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/bestpractices/JUnitTestsShouldIncludeAssertRule.java",
+  "className" : "JUnitTestsShouldIncludeAssertRule",
+  "classKey" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.bestpractices.(public)JUnitTestsShouldIncludeAssertRule(28)",
+  "classDeclarationLine" : 28,
+  "expectedChanges" : [ {
+    "parentCommitId" : "696c1cb651f7e4394bd33122db4ed20e5ab9caea",
+    "commitId" : "238494b09253575f341ebaef34aebdca6f1020fc",
+    "commitTime" : 1509706474,
+    "changeType" : "moved",
+    "elementFileBefore" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameBefore" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(26)",
+    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/bestpractices/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.bestpractices.(public)JUnitTestsShouldIncludeAssertRule(27)",
+    "comment" : "Move Class net.sourceforge.pmd.lang.java.rule.junit.JUnitTestsShouldIncludeAssertRule moved to net.sourceforge.pmd.lang.java.rule.bestpractices.JUnitTestsShouldIncludeAssertRule"
+  }, {
+    "parentCommitId" : "fa950a82960993c7a7d70e276553b85174eec8b2",
+    "commitId" : "ad88b4784d78bf1698fac72cad3825144caf6863",
+    "commitTime" : 1412437001,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameBefore" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(18)",
+    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(18)",
+    "comment" : "Move Source Folder pmd to pmd-java"
+  }, {
+    "parentCommitId" : "821f452f692c1497e2849302b5d9417c90edc054",
+    "commitId" : "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+    "commitTime" : 1321908307,
+    "changeType" : "container change",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(14)",
+    "elementFileAfter" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameAfter" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(14)",
+    "comment" : "Move Source Folder pmd/src to pmd/src/main/java"
+  }, {
+    "parentCommitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
+    "commitId" : "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
+    "commitTime" : 1207345139,
+    "changeType" : "rename",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldContainAsserts.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldContainAsserts(14)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldIncludeAssertRule.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldIncludeAssertRule(14)",
+    "comment" : "Rename Class net.sourceforge.pmd.lang.java.rule.junit.JUnitTestsShouldContainAsserts renamed to net.sourceforge.pmd.lang.java.rule.junit.JUnitTestsShouldIncludeAssertRule"
+  }, {
+    "parentCommitId" : "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+    "commitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
+    "commitTime" : 1207337229,
+    "changeType" : "moved",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.junit.(public)JUnitTestsShouldContainAsserts(14)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/junit/JUnitTestsShouldContainAsserts.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.junit.(public)JUnitTestsShouldContainAsserts(14)",
+    "comment" : "Move Class net.sourceforge.pmd.rules.junit.JUnitTestsShouldContainAsserts moved to net.sourceforge.pmd.lang.java.rule.junit.JUnitTestsShouldContainAsserts"
+  }, {
+    "parentCommitId" : "ccaf1594a4a23743e2049009001d8d6d82de3b7c",
+    "commitId" : "bf657e51f1c5b9275dc19a750eeb55bddb2665bb",
+    "commitTime" : 1103054568,
+    "changeType" : "rename",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAssertsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.junit.(public)JUnitTestsShouldContainAssertsRule(19)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAsserts.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.junit.(public)JUnitTestsShouldContainAsserts(19)",
+    "comment" : "Rename Class net.sourceforge.pmd.rules.junit.JUnitTestsShouldContainAssertsRule renamed to net.sourceforge.pmd.rules.junit.JUnitTestsShouldContainAsserts"
+  }, {
+    "parentCommitId" : "9b49ec6f6cab5b83f11109b213c81e60802357ce",
+    "commitId" : "6e88e663d787095d958012a47304307be48e2ed8",
+    "commitTime" : 1097266905,
+    "changeType" : "introduced",
+    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAssertsRule.java",
+    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.junit.(public)JUnitTestsShouldContainAssertsRule(20)",
+    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/junit/JUnitTestsShouldContainAssertsRule.java",
+    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.junit.(public)JUnitTestsShouldContainAssertsRule(20)",
+    "comment" : "new class"
+  } ]
+}

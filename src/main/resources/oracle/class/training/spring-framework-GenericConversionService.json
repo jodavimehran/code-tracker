@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "spring-framework",
+  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath" : "spring-core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+  "className" : "GenericConversionService",
+  "classKey" : "spring-core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(51)",
+  "classDeclarationLine" : 51,
+  "expectedChanges" : [ {
+    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+    "commitTime" : 1328017030,
+    "changeType" : "container change",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(46)",
+    "elementFileAfter" : "spring-core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameAfter" : "spring-core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(46)",
+    "comment" : "Move Source Folder org.springframework.core to spring-core"
+  }, {
+    "parentCommitId" : "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
+    "commitId" : "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
+    "commitTime" : 1249778809,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericTypeConverter.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericTypeConverter(38)",
+    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(39)",
+    "comment" : "Remove Class Annotation @SuppressWarnings(\"unchecked\") in class org.springframework.core.convert.support.GenericTypeConverter"
+  }, {
+    "parentCommitId" : "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
+    "commitId" : "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
+    "commitTime" : 1249778809,
+    "changeType" : "rename",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericTypeConverter.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericTypeConverter(38)",
+    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(39)",
+    "comment" : "Rename Class org.springframework.core.convert.support.GenericTypeConverter renamed to org.springframework.core.convert.support.GenericConversionService"
+  }, {
+    "parentCommitId" : "acf17381b9d37de98619f54ea1e150e76d6e15aa",
+    "commitId" : "6f74369cb34910de299a84ad7272e4fe3f527d4e",
+    "commitTime" : 1242408535,
+    "changeType" : "rename",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(36)",
+    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericTypeConverter.java",
+    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericTypeConverter(38)",
+    "comment" : "Rename Class org.springframework.core.convert.support.GenericConversionService renamed to org.springframework.core.convert.support.GenericTypeConverter"
+  }, {
+    "parentCommitId" : "a1793457b212bae29cf521661d26cc3155e30d94",
+    "commitId" : "9a261470ade2f556b4c36c7feca69c50216ebfed",
+    "commitTime" : 1242337009,
+    "changeType" : "moved",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.(public)GenericConversionService(39)",
+    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.(public)GenericConversionService(36)",
+    "comment" : "Move Class org.springframework.core.convert.service.GenericConversionService moved to org.springframework.core.convert.support.GenericConversionService"
+  }, {
+    "parentCommitId" : "c1f3ec0c5bee9d8f577a599fcfa4f3f9937f7646",
+    "commitId" : "3a7b4bf1b0d671a1d00f3dee3df301d621e7ad98",
+    "commitTime" : 1236383297,
+    "changeType" : "introduced",
+    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.(public)GenericConversionService(39)",
+    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.(public)GenericConversionService(39)",
+    "comment" : "new class"
+  } ]
+}

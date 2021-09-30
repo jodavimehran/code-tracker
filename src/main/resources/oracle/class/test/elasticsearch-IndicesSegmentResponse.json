@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "elasticsearch",
+  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
+  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath" : "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+  "className" : "IndicesSegmentResponse",
+  "classKey" : "server/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(45)",
+  "classDeclarationLine" : 45,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "commitTime" : 1515695443,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(46)",
+    "elementFileAfter" : "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameAfter" : "server/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(46)",
+    "comment" : "Move Source Folder core to server"
+  }, {
+    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "commitTime" : 1433502723,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(43)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(43)",
+    "comment" : "Move Source Folder src to core/src"
+  }, {
+    "parentCommitId" : "473b0f4dff504690754acc0f00967c275bf322a8",
+    "commitId" : "a8fd2d48b8f3f17d68ed27c3104e2c9e2eb6cc9c",
+    "commitTime" : 1323125963,
+    "changeType" : "container change",
+    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(40)",
+    "elementFileAfter" : "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameAfter" : "src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(40)",
+    "comment" : "Move Source Folder modules/elasticsearch/src to src"
+  }, {
+    "parentCommitId" : "7acdda74f4a448adad22f51c31739bda57b182b9",
+    "commitId" : "b670a7f2a345aa2507714c1e8b61906c679c1107",
+    "commitTime" : 1309036850,
+    "changeType" : "introduced",
+    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(40)",
+    "elementFileAfter" : "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+    "elementNameAfter" : "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.(public)IndicesSegmentResponse(40)",
+    "comment" : "new class"
+  } ]
+}

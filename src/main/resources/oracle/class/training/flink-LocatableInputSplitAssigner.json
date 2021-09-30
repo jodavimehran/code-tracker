@@ -1,0 +1,70 @@
+{
+  "repositoryName" : "flink",
+  "repositoryWebURL" : "https://github.com/apache/flink.git",
+  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+  "className" : "LocatableInputSplitAssigner",
+  "classKey" : "flink-core/src/main/java/org.apache.flink.api.common.io.(public)(final)LocatableInputSplitAssigner(35)",
+  "classDeclarationLine" : 35,
+  "expectedChanges" : [ {
+    "parentCommitId" : "dcf86c27b91170f99c4d575950c72db8d14617dc",
+    "commitId" : "c674a6558e07f1d918961a21ddaad4a6148698a0",
+    "commitTime" : 1452178883,
+    "changeType" : "annotation change",
+    "elementFileBefore" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "flink-core/src/main/java/org.apache.flink.api.common.io.(public)(final)LocatableInputSplitAssigner(34)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.(public)(final)LocatableInputSplitAssigner(35)",
+    "comment" : "Add Class Annotation @Public in class org.apache.flink.api.common.io.LocatableInputSplitAssigner"
+  }, {
+    "parentCommitId" : "c16f6d816899d8db7ff7c809d0c26be611b4d561",
+    "commitId" : "b32e77a2d8be76aeafa28b94fd7cfbb8de80f4cb",
+    "commitTime" : 1411236168,
+    "changeType" : "moved",
+    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(36)",
+    "elementFileAfter" : "flink-core/src/main/java/org/apache/flink/api/common/io/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-core/src/main/java/org.apache.flink.api.common.io.(public)(final)LocatableInputSplitAssigner(36)",
+    "comment" : "Move Class org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner moved to org.apache.flink.api.common.io.LocatableInputSplitAssigner"
+  }, {
+    "parentCommitId" : "5f011547378ad03c033770503c6dcfd6b64e9647",
+    "commitId" : "8563d511da8ab8ac0e1362775f11aef7b67375be",
+    "commitTime" : 1405024514,
+    "changeType" : "container change",
+    "elementFileBefore" : "stratosphere-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "stratosphere-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(27)",
+    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(27)",
+    "comment" : "Move Source Folder stratosphere-runtime to flink-runtime"
+  }, {
+    "parentCommitId" : "24eb47ac86299920aa137d5b6394a248ff58d19e",
+    "commitId" : "e73296f3e3fad9bb715edd0ff7a0eb10ce1226b9",
+    "commitTime" : 1404930327,
+    "changeType" : "moved",
+    "elementFileBefore" : "stratosphere-runtime/src/main/java/eu/stratosphere/nephele/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "stratosphere-runtime/src/main/java/eu.stratosphere.nephele.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(29)",
+    "elementFileAfter" : "stratosphere-runtime/src/main/java/org/apache/flink/runtime/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "stratosphere-runtime/src/main/java/org.apache.flink.runtime.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(27)",
+    "comment" : "Move Class eu.stratosphere.nephele.jobmanager.splitassigner.LocatableInputSplitAssigner moved to org.apache.flink.runtime.jobmanager.splitassigner.LocatableInputSplitAssigner"
+  }, {
+    "parentCommitId" : "0ad1dcc7dbd432d01d3cb4ed2db86b79534c68ad",
+    "commitId" : "33cb2ca9898809d2fc90765996ea56bbea458e59",
+    "commitTime" : 1386964352,
+    "changeType" : "container change",
+    "elementFileBefore" : "nephele/nephele-server/src/main/java/eu/stratosphere/nephele/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "nephele/nephele-server/src/main/java/eu.stratosphere.nephele.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(32)",
+    "elementFileAfter" : "stratosphere-runtime/src/main/java/eu/stratosphere/nephele/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "stratosphere-runtime/src/main/java/eu.stratosphere.nephele.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(32)",
+    "comment" : "Move Source Folder nephele/nephele-server to stratosphere-runtime"
+  }, {
+    "parentCommitId" : "261baf17c20e8d2ce06dcf06fca743e5aa5a6f5d",
+    "commitId" : "8f7484000ae40ae1b5c68e2d21b9e5a44d984234",
+    "commitTime" : 1377153410,
+    "changeType" : "introduced",
+    "elementFileBefore" : "nephele/nephele-server/src/main/java/eu/stratosphere/nephele/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameBefore" : "nephele/nephele-server/src/main/java/eu.stratosphere.nephele.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(32)",
+    "elementFileAfter" : "nephele/nephele-server/src/main/java/eu/stratosphere/nephele/jobmanager/splitassigner/LocatableInputSplitAssigner.java",
+    "elementNameAfter" : "nephele/nephele-server/src/main/java/eu.stratosphere.nephele.jobmanager.splitassigner.(public)(final)LocatableInputSplitAssigner(32)",
+    "comment" : "new class"
+  } ]
+}

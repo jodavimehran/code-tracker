@@ -1,0 +1,30 @@
+{
+  "repositoryName" : "hadoop",
+  "repositoryWebURL" : "https://github.com/apache/hadoop.git",
+  "startCommitId" : "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "filePath" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+  "className" : "SchedulerApplicationAttempt",
+  "classKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.(public)SchedulerApplicationAttempt(94)",
+  "classDeclarationLine" : 94,
+  "expectedChanges" : [ {
+    "parentCommitId" : "067d52b98c1d17a73b142bb53acc8aaa9c041f38",
+    "commitId" : "981679e6d7650141fc8737c7e13b16d8b795b408",
+    "commitTime" : 1391127287,
+    "changeType" : "modifier change",
+    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.(public)(abstract)SchedulerApplicationAttempt(53)",
+    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.(public)SchedulerApplicationAttempt(53)",
+    "comment" : "Remove Class Modifier abstract in class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+  }, {
+    "parentCommitId" : "b4eb963c3c3e0b123003d7b32cdf7c9202cfb441",
+    "commitId" : "a45017a5f17ec11814db7e206d1e80aaa4dd8d8f",
+    "commitTime" : 1388693985,
+    "changeType" : "introduced",
+    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.(public)(abstract)SchedulerApplicationAttempt(53)",
+    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.(public)(abstract)SchedulerApplicationAttempt(53)",
+    "comment" : "Extract Superclass org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt from classes [org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp, org.apache.hadoop.yarn.server.resourcemanager.scheduler.common.fica.FiCaSchedulerApp]"
+  } ]
+}

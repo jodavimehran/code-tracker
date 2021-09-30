@@ -1,0 +1,50 @@
+{
+  "repositoryName" : "elasticsearch",
+  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
+  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath" : "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+  "className" : "RestTable",
+  "classKey" : "server/src/main/java/org.elasticsearch.rest.action.cat.(public)RestTable(50)",
+  "classDeclarationLine" : 50,
+  "expectedChanges" : [ {
+    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+    "commitTime" : 1515695443,
+    "changeType" : "container change",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.action.cat.(public)RestTable(50)",
+    "elementFileAfter" : "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+    "elementNameAfter" : "server/src/main/java/org.elasticsearch.rest.action.cat.(public)RestTable(50)",
+    "comment" : "Move Source Folder core to server"
+  }, {
+    "parentCommitId" : "2adc2a19719eeb5781a49e00fbc23f86128103bf",
+    "commitId" : "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
+    "commitTime" : 1471309592,
+    "changeType" : "moved",
+    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.action.support.(public)RestTable(45)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.action.cat.(public)RestTable(45)",
+    "comment" : "Move Class org.elasticsearch.rest.action.support.RestTable moved to org.elasticsearch.rest.action.cat.RestTable"
+  }, {
+    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+    "commitTime" : 1433502723,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.action.support.(public)RestTable(38)",
+    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.action.support.(public)RestTable(38)",
+    "comment" : "Move Source Folder src to core/src"
+  }, {
+    "parentCommitId" : "0c2d12bda34fbbe0ffd3cef5140f5d5a3919b080",
+    "commitId" : "ceb7d55857b25eebac461dcba4f0dc4a028c60b9",
+    "commitTime" : 1372878320,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.action.support.(public)RestTable(36)",
+    "elementFileAfter" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+    "elementNameAfter" : "src/main/java/org.elasticsearch.rest.action.support.(public)RestTable(36)",
+    "comment" : "new class"
+  } ]
+}
