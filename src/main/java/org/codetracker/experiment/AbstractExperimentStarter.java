@@ -263,42 +263,6 @@ public abstract class AbstractExperimentStarter {
                 HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
                 HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<R>) history);
 
-                //TEMPv
-                {
-                    if(historyInfo instanceof AttributeHistoryInfo) {
-                        AttributeHistoryInfo attributeHistoryInfo = (AttributeHistoryInfo) historyInfo;
-                        ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
-                        AttributeHistoryInfo historyInfo2 = new AttributeHistoryInfo();
-                        historyInfo2.setRepositoryName(attributeHistoryInfo.getRepositoryName());
-                        historyInfo2.setRepositoryWebURL(attributeHistoryInfo.getRepositoryWebURL());
-                        historyInfo2.setFilePath(attributeHistoryInfo.getFilePath());
-                        historyInfo2.setAttributeName(attributeHistoryInfo.getAttributeName());
-                        historyInfo2.setAttributeKey(attributeHistoryInfo.getAttributeKey());
-                        historyInfo2.setAttributeDeclarationLine(attributeHistoryInfo.getAttributeDeclarationLine());
-                        historyInfo2.setStartCommitId(attributeHistoryInfo.getStartCommitId());
-                        historyInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
-                        historyInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType));
-                        File newFile = new File(String.format("E:\\Data\\History\\attribute\\oracle\\%s\\%s", oracleName, fileName));
-                        writer.writeValue(newFile, historyInfo2);
-                    }else if (historyInfo instanceof ClassHistoryInfo){
-                        ClassHistoryInfo classHistoryInfo = (ClassHistoryInfo) historyInfo;
-                        ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
-                        ClassHistoryInfo historyInfo2 = new ClassHistoryInfo();
-                        historyInfo2.setRepositoryName(classHistoryInfo.getRepositoryName());
-                        historyInfo2.setRepositoryWebURL(classHistoryInfo.getRepositoryWebURL());
-                        historyInfo2.setFilePath(classHistoryInfo.getFilePath());
-                        historyInfo2.setClassName(classHistoryInfo.getClassName());
-                        historyInfo2.setClassKey(classHistoryInfo.getClassKey());
-                        historyInfo2.setClassDeclarationLine(classHistoryInfo.getClassDeclarationLine());
-                        historyInfo2.setStartCommitId(classHistoryInfo.getStartCommitId());
-                        historyInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
-                        historyInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType));
-                        File newFile = new File(String.format("E:\\Data\\History\\class\\oracle\\%s\\%s", oracleName, fileName));
-                        writer.writeValue(newFile, historyInfo2);
-                    }
-                }
-                //TEMP^
-
                 for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
                     String changeKey = oracleChangeEntry.getKey();
                     if (falseDetectedChanges.containsKey(changeKey)) {
