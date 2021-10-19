@@ -2,7 +2,7 @@ package org.codetracker.change.variable;
 
 import org.refactoringminer.api.Refactoring;
 
-public class VariableContainerChange extends VariableChange {
+public class VariableContainerChange extends VariableCrossFileChange {
     private final Refactoring refactoring;
 
     public VariableContainerChange(Refactoring refactoring) {

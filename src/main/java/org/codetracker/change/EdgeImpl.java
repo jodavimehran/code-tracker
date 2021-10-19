@@ -1,9 +1,7 @@
 package org.codetracker.change;
 
 import org.apache.commons.collections4.SetUtils;
-import org.codetracker.api.Change;
 import org.codetracker.api.Edge;
-import org.codetracker.change.AbstractChange;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -49,7 +47,6 @@ public class EdgeImpl implements Edge {
         return changeList.stream().map(Objects::toString).collect(Collectors.joining(","));
     }
 
-    @Override
     public String toSummary() {
         return changeList.stream().map(Change::getType).map(Objects::toString).collect(Collectors.joining(","));
     }

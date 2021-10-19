@@ -4,7 +4,7 @@ import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
-import org.codetracker.api.Change;
+import org.codetracker.change.Change;
 import org.codetracker.api.ClassTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
@@ -39,9 +39,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
     }
 
     private boolean isStartClass(Class clazz) {
-        return clazz.getUmlClass().getNonQualifiedName().equals(className) &&
-                clazz.getUmlClass().getLocationInfo().getStartLine() <= classDeclarationLineNumber &&
-                clazz.getUmlClass().getLocationInfo().getEndLine() >= classDeclarationLineNumber;
+        return clazz.getUmlClass().getNonQualifiedName().equals(className);
     }
 
     @Override

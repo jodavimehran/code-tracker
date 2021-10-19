@@ -1,6 +1,6 @@
 package org.codetracker.change.method;
 
-import org.codetracker.api.Change;
+import org.codetracker.change.Change;
 
 public class DocumentationChange extends MethodChange {
     public DocumentationChange() {

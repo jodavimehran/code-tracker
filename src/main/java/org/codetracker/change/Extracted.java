@@ -3,7 +3,7 @@ package org.codetracker.change;
 import org.refactoringminer.api.Refactoring;
 import org.codetracker.api.CodeElement;
 
-public class Extracted extends Added {
+public class Extracted extends Introduced {
 
 
     public Extracted(Refactoring extractRefactoring, CodeElement addedElement) {

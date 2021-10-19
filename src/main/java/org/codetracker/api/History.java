@@ -1,7 +1,7 @@
 package org.codetracker.api;
 
-public interface History<N extends CodeElement> {
-    Graph<N, Edge> getGraph();
+public interface History<C extends CodeElement> {
+    Graph<C, Edge> getGraph();
 
     HistoryReport getHistoryReport();
 

@@ -7,7 +7,7 @@ import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.AttributeTracker;
-import org.codetracker.api.Change;
+import org.codetracker.change.Change;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.change.ChangeFactory;

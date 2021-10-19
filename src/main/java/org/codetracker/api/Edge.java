@@ -1,5 +1,7 @@
 package org.codetracker.api;
 
+import org.codetracker.change.Change;
+
 import java.util.Set;
 
 public interface Edge {
@@ -7,5 +9,4 @@ public interface Edge {
 
     Change.Type getType();
 
-    String toSummary();
 }

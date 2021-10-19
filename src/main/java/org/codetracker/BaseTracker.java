@@ -281,12 +281,7 @@ public abstract class BaseTracker {
     }
 
     protected UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
-        if (fileNames == null || fileNames.isEmpty())
-            return null;
-        try (RevWalk walk = new RevWalk(repository)) {
-            RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-            return GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
-        }
+        return GitHistoryRefactoringMinerImpl.getUMLModel(repository, commitId, fileNames);
     }
 
     public CommitModel getCommitModel(String commitId) throws Exception {

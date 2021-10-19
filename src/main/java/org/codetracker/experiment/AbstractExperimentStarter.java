@@ -9,7 +9,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.CSVReaderBuilder;
 import com.opencsv.exceptions.CsvException;
 import org.codetracker.HistoryImpl;
-import org.codetracker.api.Change;
+import org.codetracker.change.Change;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.History;
@@ -237,15 +237,15 @@ public abstract class AbstractExperimentStarter {
                 resultType, comment);
     }
 
-    protected <T extends AbstractHistoryInfo, R extends CodeElement> void codeTracker(AbstractOracle<T> oracle, CheckedBiFunction<T, Repository, History<R>> tracker) throws IOException {
+    protected <H extends AbstractHistoryInfo, E extends CodeElement> void codeTracker(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker) throws IOException {
         String oracleName = oracle.getName();
         GitService gitService = new GitServiceImpl();
         Set<String> processedFiles = getAllProcessedSamples(oracleName);
-        for (Map.Entry<String, T> oracleInstance : oracle.getOracle().entrySet()) {
+        for (Map.Entry<String, H> oracleInstance : oracle.getOracle().entrySet()) {
             String fileName = oracleInstance.getKey();
             if (processedFiles.contains(fileName))
                 continue;
-            T historyInfo = oracleInstance.getValue();
+            H historyInfo = oracleInstance.getValue();
             String repositoryWebURL = historyInfo.getRepositoryWebURL();
             String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
             String projectDirectory = FOLDER_TO_CLONE + repositoryName;
@@ -255,13 +255,49 @@ public abstract class AbstractExperimentStarter {
 
                 long startTime = System.nanoTime();
 
-                History<R> history = tracker.apply(historyInfo, repository);
+                History<E> history = tracker.apply(historyInfo, repository);
 
                 long refactoringMinerProcessingTime = (System.nanoTime() - startTime) / 1000000;
 
                 HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
                 HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
-                HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<R>) history);
+                HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
+
+                //TEMPv
+                {
+                    if(historyInfo instanceof AttributeHistoryInfo) {
+                        AttributeHistoryInfo attributeHistoryInfo = (AttributeHistoryInfo) historyInfo;
+                        ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
+                        AttributeHistoryInfo historyInfo2 = new AttributeHistoryInfo();
+                        historyInfo2.setRepositoryName(attributeHistoryInfo.getRepositoryName());
+                        historyInfo2.setRepositoryWebURL(attributeHistoryInfo.getRepositoryWebURL());
+                        historyInfo2.setFilePath(attributeHistoryInfo.getFilePath());
+                        historyInfo2.setAttributeName(attributeHistoryInfo.getAttributeName());
+                        historyInfo2.setAttributeKey(attributeHistoryInfo.getAttributeKey());
+                        historyInfo2.setAttributeDeclarationLine(attributeHistoryInfo.getAttributeDeclarationLine());
+                        historyInfo2.setStartCommitId(attributeHistoryInfo.getStartCommitId());
+                        historyInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
+                        historyInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType));
+                        File newFile = new File(String.format("E:\\Data\\History\\attribute\\oracle\\%s\\%s", oracleName, fileName));
+                        writer.writeValue(newFile, historyInfo2);
+                    }else if (historyInfo instanceof ClassHistoryInfo){
+                        ClassHistoryInfo classHistoryInfo = (ClassHistoryInfo) historyInfo;
+                        ObjectWriter writer = MAPPER.writer(new DefaultPrettyPrinter());
+                        ClassHistoryInfo historyInfo2 = new ClassHistoryInfo();
+                        historyInfo2.setRepositoryName(classHistoryInfo.getRepositoryName());
+                        historyInfo2.setRepositoryWebURL(classHistoryInfo.getRepositoryWebURL());
+                        historyInfo2.setFilePath(classHistoryInfo.getFilePath());
+                        historyInfo2.setClassName(classHistoryInfo.getClassName());
+                        historyInfo2.setClassKey(classHistoryInfo.getClassKey());
+                        historyInfo2.setClassDeclarationLine(classHistoryInfo.getClassDeclarationLine());
+                        historyInfo2.setStartCommitId(classHistoryInfo.getStartCommitId());
+                        historyInfo2.getExpectedChanges().addAll(falseDetectedChanges.values());
+                        historyInfo2.getExpectedChanges().sort(Comparator.comparing(ChangeHistory::getCommitTime).reversed().thenComparing(ChangeHistory::getCommitId).thenComparing(ChangeHistory::getChangeType));
+                        File newFile = new File(String.format("E:\\Data\\History\\class\\oracle\\%s\\%s", oracleName, fileName));
+                        writer.writeValue(newFile, historyInfo2);
+                    }
+                }
+                //TEMP^
 
                 for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
                     String changeKey = oracleChangeEntry.getKey();

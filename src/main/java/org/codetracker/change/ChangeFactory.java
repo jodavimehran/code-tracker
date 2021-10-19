@@ -1,6 +1,5 @@
 package org.codetracker.change;
 
-import org.codetracker.api.Change;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.change.attribute.*;
@@ -97,7 +96,7 @@ public final class ChangeFactory {
                 if (refactoring != null && isMethod())
                     change = new Extracted(refactoring, codeElement);
                 else
-                    change = new Added(codeElement, comment, refactoring);
+                    change = new Introduced(codeElement, comment, refactoring);
                 break;
             }
             case REMOVED: {

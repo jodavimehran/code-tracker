@@ -1,7 +1,5 @@
 package org.codetracker.change;
 
-import org.codetracker.api.Change;
-
 public abstract class AbstractChange implements Change {
     protected final Type type;
 
