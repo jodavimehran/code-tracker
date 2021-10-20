@@ -33,7 +33,7 @@ public class VariableExperimentStarter extends AbstractExperimentStarter {
     }
 
     public void start() throws IOException {
-        createDirectory(new String[]{"experiments", "experiments/tracking-accuracy", "experiments/tracking-accuracy/variable", "experiments/tracking-accuracy/variable/tracker"});
+        createDirectory("experiments", "experiments/tracking-accuracy", "experiments/tracking-accuracy/variable", "experiments/tracking-accuracy/variable/tracker");
         List<VariableOracle> oracles = VariableOracle.all();
 
         for (VariableOracle oracle : oracles) {

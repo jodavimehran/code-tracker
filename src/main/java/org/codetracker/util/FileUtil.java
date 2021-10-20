@@ -10,7 +10,7 @@ public class FileUtil {
     private FileUtil() {
     }
 
-    public static void createDirectory(String[] neededDirectories) throws IOException {
+    public static void createDirectory(String... neededDirectories) throws IOException {
         for (String directoryName : neededDirectories) {
             Path directoryPath = Paths.get(directoryName);
             if (!directoryPath.toFile().exists())

@@ -22,7 +22,7 @@ public class MethodExperimentStarter extends AbstractExperimentStarter {
     }
 
     public void start() throws IOException {
-        createDirectory(new String[]{"experiments", "experiments/tracking-accuracy", "experiments/tracking-accuracy/method", "experiments/tracking-accuracy/method/tracker"});
+        createDirectory("experiments", "experiments/tracking-accuracy", "experiments/tracking-accuracy/method", "experiments/tracking-accuracy/method/tracker");
         List<MethodOracle> oracles = MethodOracle.all();
         for (MethodOracle oracle : oracles) {
             codeTracker(oracle);
