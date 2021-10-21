@@ -24,9 +24,9 @@ public class Class extends BaseCodeElement {
                 .isAbstract(umlClass.isAbstract())
                 .build();
         String visibility = umlClass.getVisibility();
-        String identifierExcludeVersion = String.format("%s%s.(%s)%s%s%s", sourceFolder, packageName, visibility, modifiersString, name, annotationsToString(umlClass.getAnnotations()));
-
-        return new Class(umlClass, identifierExcludeVersion, String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine()), umlClass.getLocationInfo().getFilePath(), version);
+        String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
+        String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
+        return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
     public UMLClass getUmlClass() {

@@ -202,6 +202,8 @@ public final class ChangeFactory {
                     change = new VariableTypeChange(refactoring);
                 } else if (isAttribute()) {
                     change = new AttributeTypeChange(refactoring);
+                } else if (isClass()) {
+                    change = new ClassDeclarationKindChange(refactoring);
                 }
                 break;
             }

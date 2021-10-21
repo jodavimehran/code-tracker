@@ -266,6 +266,13 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     changeType = Change.Type.INTRODUCED;
                     break;
                 }
+                case CHANGE_TYPE_DECLARATION_KIND: {
+                    ChangeTypeDeclarationKindRefactoring changeTypeDeclarationKindRefactoring = (ChangeTypeDeclarationKindRefactoring)refactoring;
+                    leftUMLClass = changeTypeDeclarationKindRefactoring.getClassBefore();
+                    rightUMLClass = changeTypeDeclarationKindRefactoring.getClassAfter();
+                    changeType = Change.Type.TYPE_CHANGE;
+                    break;
+                }
             }
 
             if (rightUMLClass != null) {
