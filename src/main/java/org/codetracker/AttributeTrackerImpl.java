@@ -12,6 +12,7 @@ import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Attribute;
+import org.codetracker.element.Method;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
@@ -174,6 +175,23 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
+                            boolean flag = false;
+                            for (Refactoring refactoring : refactorings) {
+                                if (RefactoringType.MOVE_ATTRIBUTE.equals(refactoring.getRefactoringType())) {
+                                    MoveAttributeRefactoring moveAttributeRefactoring = (MoveAttributeRefactoring) refactoring;
+                                    Attribute movedAttribute = Attribute.of(moveAttributeRefactoring.getMovedAttribute(), currentVersion);
+                                    if (rightAttribute.equalIdentifierIgnoringVersion(movedAttribute)) {
+                                        fileNames.add(moveAttributeRefactoring.getOriginalAttribute().getLocationInfo().getFilePath());
+                                        umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
+                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                                        flag = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (flag) {
+                                refactorings = umlModelDiffAll.getRefactorings();
+                            }
 
                             Set<Attribute> attributeContainerChanged = isAttributeContainerChanged(umlModelDiffAll, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             boolean containerChanged = !attributeContainerChanged.isEmpty();
@@ -292,7 +310,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     ChangeAttributeAccessModifierRefactoring changeAttributeAccessModifierRefactoring = (ChangeAttributeAccessModifierRefactoring) refactoring;
                     attributeBefore = changeAttributeAccessModifierRefactoring.getAttributeBefore();
                     attributeAfter = changeAttributeAccessModifierRefactoring.getAttributeAfter();
-                    changeType = Change.Type.MODIFIER_CHANGE;
+                    changeType = Change.Type.ACCESS_MODIFIER_CHANGE;
                     break;
                 }
                 case EXTRACT_ATTRIBUTE: {
