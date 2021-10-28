@@ -10,51 +10,11 @@
     "parentCommitId" : "5c7257d8d1c07b66cb7b14832bc0d16b88abcfb5",
     "commitId" : "8331b2d75a51631bee622daf2175854fe49ce29a",
     "commitTime" : 1483378611,
-    "changeType" : "moved",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/connection/StreamAllocation.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.connection.StreamAllocation@(final)(private)connectionPool:ConnectionPool(76)",
+    "changeType" : "introduced",
+    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(final)(private)connectionPool:ConnectionPool(70)",
     "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
     "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(final)(private)connectionPool:ConnectionPool(70)",
-    "comment" : "Move Attribute private connectionPool : ConnectionPool from class okhttp3.internal.connection.StreamAllocation to private connectionPool : ConnectionPool from class okhttp3.internal.connection.RealConnection"
-  }, {
-    "parentCommitId" : "81b3a99aea8571942e5fb18b5c189c4596087076",
-    "commitId" : "c5187583bbfe93fe58db80f95b5b478c84180c29",
-    "commitTime" : 1466996670,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/http/StreamAllocation.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.http.StreamAllocation@(final)(private)connectionPool:ConnectionPool(74)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/StreamAllocation.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.StreamAllocation@(final)(private)connectionPool:ConnectionPool(75)",
-    "comment" : "Move Class okhttp3.internal.http.StreamAllocation moved to okhttp3.internal.connection.StreamAllocation"
-  }, {
-    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
-    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
-    "commitTime" : 1450247699,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/StreamAllocation.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.StreamAllocation@(final)(private)connectionPool:ConnectionPool(77)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http/StreamAllocation.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http.StreamAllocation@(final)(private)connectionPool:ConnectionPool(77)",
-    "comment" : "Move Class com.squareup.okhttp.internal.http.StreamAllocation moved to okhttp3.internal.http.StreamAllocation"
-  }, {
-    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
-    "commitTime" : 1448721366,
-    "changeType" : "rename",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)pool:ConnectionPool(77)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/StreamAllocation.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.StreamAllocation@(final)(private)connectionPool:ConnectionPool(75)",
-    "comment" : "Rename Attribute pool : ConnectionPool to connectionPool : ConnectionPool in class com.squareup.okhttp.internal.http.StreamAllocation"
-  }, {
-    "parentCommitId" : "ce76caedda03789463439f8f798528cd15db5a52",
-    "commitId" : "dac5aed3d5f9307b9d1ab0a8c7840b232d053ef3",
-    "commitTime" : 1392507883,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)pool:ConnectionPool(68)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)pool:ConnectionPool(68)",
     "comment" : "new attribute"
   } ]
 }

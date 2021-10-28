@@ -40,11 +40,21 @@
     "parentCommitId" : "d4cee632835a462da2dc6794b059fb0d6b1c9bc2",
     "commitId" : "d216ec75255a120ce7c24e51da7df63a2b9864de",
     "commitTime" : 1048708350,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mSeverityLevel:SeverityLevel(133)",
+    "changeType" : "moved",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/Check.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.Check@(private)mSeverityLevel:SeverityLevel(51)",
     "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mSeverityLevel:SeverityLevel(133)",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mSeverityLevel:SeverityLevel(133)",
+    "comment" : "Move Attribute private mSeverityLevel : SeverityLevel from class com.puppycrawl.tools.checkstyle.api.Check to private mSeverityLevel : SeverityLevel from class com.puppycrawl.tools.checkstyle.Checker"
+  }, {
+    "parentCommitId" : "5d4dd44322aac232442d224ee28d4b6d7ab17d76",
+    "commitId" : "53197d9be9366ccf9ebccc1e6e31270c1dff8e95",
+    "commitTime" : 1047365805,
+    "changeType" : "introduced",
+    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/Check.java",
+    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.Check@(private)mSeverityLevel:SeverityLevel(51)",
+    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/api/Check.java",
+    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.api.Check@(private)mSeverityLevel:SeverityLevel(51)",
     "comment" : "new attribute"
   } ]
 }
