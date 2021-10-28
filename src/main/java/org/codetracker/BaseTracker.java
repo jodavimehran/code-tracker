@@ -303,8 +303,8 @@ public abstract class BaseTracker {
             }
             RevCommit parentCommit2 = null;
             if (currentCommit.getParentCount() == 2) {
-                walk.parseCommit(currentCommit.getParent(1));
-                parentCommit2 = currentCommit.getParent(1);
+//                walk.parseCommit(currentCommit.getParent(1));
+//                parentCommit2 = currentCommit.getParent(1);
 
             }
             CommitModel commitModel = getCommitModel(parentCommit1, parentCommit2, currentCommit);
