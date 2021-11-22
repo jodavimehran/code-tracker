@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>org.codetracker.change.variable</OriginalElement>
+  <nodes>
+    <node x="271.20967741935476" y="376.30769230769226">org.codetracker.change.variable.VariableAnnotationChange</node>
+    <node x="662.25" y="206.0">org.codetracker.change.variable.VariableCrossFileChange</node>
+    <node x="489.9999999999999" y="246.83064516129036">org.codetracker.change.variable.VariableSignatureChange</node>
+    <node x="242.5" y="305.66129032258067">org.codetracker.change.variable.ExtractedToMethod</node>
+    <node x="653.25" y="287.66129032258067">org.codetracker.change.variable.VariableContainerChange</node>
+    <node x="476.25" y="162.0">org.codetracker.change.variable.VariableChange</node>
+    <node x="250.25" y="206.0">org.codetracker.change.variable.VariableInFileChange</node>
+    <node x="767.25" y="162.0">org.codetracker.change.NoChange</node>
+    <node x="725.25" y="336.5">org.codetracker.change.variable.VariableRename</node>
+    <node x="475.75" y="99.59999999999998">org.codetracker.change.AbstractChange</node>
+    <node x="479.6346153846158" y="334.1483870967742">org.codetracker.change.variable.VariableTypeChange</node>
+    <node x="242.0" y="162.0">org.codetracker.change.Introduced</node>
+    <node x="553.6184210526321" y="376.30769230769226">org.codetracker.change.variable.VariableModifierChange</node>
+    <node x="242.0" y="263.2">org.codetracker.change.variable.InlinedFromMethod</node>
+    <node x="507.25" y="45.59999999999999">org.codetracker.change.Change</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="org.codetracker.change.variable.VariableModifierChange" target="org.codetracker.change.variable.VariableSignatureChange" relationship="GENERALIZATION">
+      <point x="33.17359932088175" y="-17.00284817952729" />
+      <point x="711.2920203735139" y="328.1982009925558" />
+      <point x="619.4999999999999" y="328.1982009925558" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.InlinedFromMethod" target="org.codetracker.change.variable.VariableInFileChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="350.0" y="276.0" />
+      <point x="363.25" y="276.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableCrossFileChange" target="org.codetracker.change.variable.VariableChange" relationship="GENERALIZATION">
+      <point x="-124.93696820420973" y="2.7212270488133186" />
+      <point x="569.25" y="226.72122704881332" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableSignatureChange" target="org.codetracker.change.variable.VariableChange" relationship="GENERALIZATION">
+      <point x="-50.10000000000025" y="-15.216935483871055" />
+      <point x="569.3999999999996" y="227.1818181818182" />
+      <point x="569.25" y="227.1818181818182" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableInFileChange" target="org.codetracker.change.variable.VariableChange" relationship="GENERALIZATION">
+      <point x="113.0" y="3.0" />
+      <point x="569.25" y="227.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.ExtractedToMethod" target="org.codetracker.change.variable.VariableInFileChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="445.083653846154" y="305.66129032258067" />
+      <point x="445.083653846154" y="302.43064516129033" />
+      <point x="464.16730769230793" y="302.43064516129033" />
+      <point x="464.16730769230793" y="259.4" />
+      <point x="363.25" y="259.4" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableRename" target="org.codetracker.change.variable.VariableSignatureChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="819.75" y="327.75" />
+      <point x="619.4999999999999" y="327.75" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.Introduced" target="org.codetracker.change.AbstractChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="316.5" y="155.79999999999998" />
+      <point x="569.25" y="155.79999999999998" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableChange" target="org.codetracker.change.AbstractChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableContainerChange" target="org.codetracker.change.variable.VariableCrossFileChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="880.0549450549447" y="287.66129032258067" />
+      <point x="91.80494505494471" y="19.6340075641632" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableAnnotationChange" target="org.codetracker.change.variable.VariableSignatureChange" relationship="GENERALIZATION">
+      <point x="59.790322580645125" y="-13.493982630273024" />
+      <point x="466.9999999999999" y="353.0725806451612" />
+      <point x="467.5371816638366" y="353.0725806451612" />
+      <point x="467.5371816638366" y="327.5" />
+      <point x="619.4999999999999" y="327.5" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.NoChange" target="org.codetracker.change.AbstractChange" relationship="GENERALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="840.75" y="155.79999999999998" />
+      <point x="569.25" y="155.79999999999998" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.AbstractChange" target="org.codetracker.change.Change" relationship="REALIZATION">
+      <point x="0.0" y="-18.0" />
+      <point x="0.0" y="18.0" />
+    </edge>
+    <edge source="org.codetracker.change.variable.VariableTypeChange" target="org.codetracker.change.variable.VariableSignatureChange" relationship="GENERALIZATION">
+      <point x="28.653372730834008" y="-13.334677419354875" />
+      <point x="619.2879881154498" y="319.0" />
+      <point x="619.6879881154498" y="319.0" />
+      <point x="0.18798811544991167" y="17.563709677419297" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="2.200000000000002" showDependencies="false" x="643.9909090909091" y="206.7228005865103" />
+  <SelectedNodes />
+  <Categories />
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
