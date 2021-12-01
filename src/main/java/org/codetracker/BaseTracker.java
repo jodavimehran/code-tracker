@@ -147,9 +147,12 @@ public abstract class BaseTracker {
                 }
             }
 
-            for (UMLType implementedInterfaces : umlClass.getImplementedInterfaces()) {
-                regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterfaces).append("\\s*");
+            for (UMLType implementedInterface : umlClass.getImplementedInterfaces()) {
+                regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterface).append("\\s*");
                 orChar = "|";
+                if (newlyAddedFile) {
+                    regxSb.append(orChar).append("\\s*interface\\s*").append(implementedInterface.getClassType()).append("\\s*\\{");
+                }
             }
 
             //newly added file
@@ -198,6 +201,10 @@ public abstract class BaseTracker {
                                 fileNames.add(filePath);
                             }
                         } else if (matcherGroup.startsWith("@deprecated")) {
+                            if (isAnExistingFile) {
+                                fileNames.add(filePath);
+                            }
+                        } else if(matcherGroup.startsWith("interface")){
                             if (isAnExistingFile) {
                                 fileNames.add(filePath);
                             }
