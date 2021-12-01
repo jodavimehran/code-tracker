@@ -98,10 +98,14 @@ public abstract class BaseTracker {
             final String leftSideFileNameFinal = leftSideFileName;
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            leftSideUMLModel.setPartial(true);
+            rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            leftSideUMLModel.setPartial(true);
+            rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         }
 
@@ -285,7 +289,9 @@ public abstract class BaseTracker {
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-            return GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
+            UMLModel umlModel = GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
+            umlModel.setPartial(true);
+            return umlModel;
         }
     }
 
