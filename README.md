@@ -13,11 +13,9 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
 
 
 # How to Build
-To build this project you need to have Gradle and Maven.
+To build this project you need to have Maven.
 
-Download CodeTracker and RefactoringMiner from [here](https://drive.google.com/file/d/1XzrvwVXA-Agy66JoviFqpkoCJBkcSDtt/view?usp=sharing).
-1. **Build RefactoringMiner**: Run `gradle publishToMavenLocal` in the root folder of RefactoringMiner.
-2. **Build CodeTracker**: Run `mvn install` int the root folder of CodeTracker.
+Run `mvn install` in the root folder of CodeTracker.
 
 # How to add as a Maven dependency
 
@@ -26,7 +24,7 @@ To add code-tracker as a maven dependency in your project, add the following dep
     <dependency>
       <groupId>org.codetracker</groupId>
       <artifactId>code-tracker</artifactId>
-      <version>1.0-SNAPSHOT</version>
+      <version>1.1-SNAPSHOT</version>
     </dependency>
 
 # How to Track Methods
@@ -147,4 +145,4 @@ To avoid unnecessary processing and speed up the tracking process, CodeTracker e
   All data we collect to compute the precision and recall of CodeTracker and CodeShovel at commit level and change level are available in the following links:
 * [Method](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/method)
 * [Variable](https://github.com/jodavimehran/refactoring-refiner/tree/master/experiments/tracking-accuracy/variable)
- 
+  

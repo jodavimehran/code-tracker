@@ -2,14 +2,12 @@ package org.codetracker;
 
 import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
-import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
-import gr.uom.java.xmi.diff.UMLClassRenameDiff;
-import gr.uom.java.xmi.diff.UMLModelDiff;
+import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
 import org.codetracker.element.Method;
 import org.codetracker.util.GitRepository;
+import org.codetracker.util.IRepository;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.LogCommand;
 import org.eclipse.jgit.api.errors.GitAPIException;
@@ -30,9 +28,10 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 public abstract class BaseTracker {
+    private static final Pattern CAMEL_CASE_SPLIT_PATTERN = Pattern.compile("(?<!(^|[A-Z]))(?=[A-Z])|(?<!^)(?=[A-Z][a-z])");
     protected final GitServiceImpl gitService = new GitServiceImpl();
     protected final Repository repository;
-    protected final GitRepository gitRepository;
+    protected final IRepository gitRepository;
     protected final String startCommitId;
     protected final String filePath;
 
@@ -67,7 +66,7 @@ public abstract class BaseTracker {
     }
 
     protected static UMLClassBaseDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
-        for (UMLClassBaseDiff classDiff : umlModelDiff.getAllClassesDiff()) {
+        for (UMLClassBaseDiff classDiff : getAllClassesDiff(umlModelDiff)) {
             if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className))
                 return classDiff;
         }
@@ -184,7 +183,7 @@ public abstract class BaseTracker {
                                 if (className.contains(".")) {
                                     className = className.substring(0, className.indexOf("."));
                                 }
-                                String[] tokens = LeafType.CAMEL_CASE_SPLIT_PATTERN.split(className);
+                                String[] tokens = CAMEL_CASE_SPLIT_PATTERN.split(className);
                                 final String fileName = className + ".java";
                                 if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName) || s.endsWith(tokens[tokens.length - 1] + ".java"))) {
                                     fileNames.add(filePath);
@@ -204,7 +203,7 @@ public abstract class BaseTracker {
                             if (isAnExistingFile) {
                                 fileNames.add(filePath);
                             }
-                        } else if(matcherGroup.startsWith("interface")){
+                        } else if (matcherGroup.startsWith("interface")) {
                             if (isAnExistingFile) {
                                 fileNames.add(filePath);
                             }
@@ -212,6 +211,9 @@ public abstract class BaseTracker {
 
                     }
                 }
+            }
+            if (!umlClass.isTopLevel()) {
+                fileNames.addAll(getRightSideFileNames(currentFilePath, umlClass.getPackageName(), toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff));
             }
         }
 
@@ -227,11 +229,12 @@ public abstract class BaseTracker {
             final String currentMethodFileName = currentFilePath.substring(currentFilePath.lastIndexOf("/"));
             fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
         }
+
         return fileNames;
     }
 
     protected static boolean isMethodAdded(UMLModelDiff modelDiff, String className, Predicate<Method> equalOperator, Consumer<Method> addedMethodHandler, Version currentVersion) {
-        List<UMLOperation> addedOperations = modelDiff.getAllClassesDiff()
+        List<UMLOperation> addedOperations = getAllClassesDiff(modelDiff)
                 .stream()
                 .map(UMLClassBaseDiff::getAddedOperations)
                 .flatMap(List::stream)
@@ -296,10 +299,33 @@ public abstract class BaseTracker {
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit revCommit = walk.parseCommit(repository.resolve(commitId));
-            UMLModel umlModel = GitHistoryRefactoringMinerImpl.getUmlModel(repository, revCommit, fileNames);
+            UMLModel umlModel = getUmlModel(repository, revCommit, fileNames);
             umlModel.setPartial(true);
             return umlModel;
         }
+    }
+
+    public static UMLModel getUmlModel(Repository repository, RevCommit commit, List<String> filePaths) throws Exception {
+        Set<String> repositoryDirectories = new LinkedHashSet<>();
+        Map<String, String> fileContents = new LinkedHashMap<>();
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, commit, filePaths, fileContents, repositoryDirectories);
+        return GitHistoryRefactoringMinerImpl.createModel(fileContents, repositoryDirectories);
+    }
+
+    public static List<UMLClassBaseDiff> getAllClassesDiff(UMLModelDiff modelDiff) {
+        List<UMLClassBaseDiff> allClassesDiff = new ArrayList<>();
+        allClassesDiff.addAll(modelDiff.getCommonClassDiffList());
+        allClassesDiff.addAll(modelDiff.getClassMoveDiffList());
+        allClassesDiff.addAll(modelDiff.getInnerClassMoveDiffList());
+        allClassesDiff.addAll(modelDiff.getClassRenameDiffList());
+        return allClassesDiff;
+    }
+
+    public List<UMLClassMoveDiff> getClassMoveDiffList(UMLModelDiff umlModelDiff) {
+        List<UMLClassMoveDiff> allMoveClassesDiff = new ArrayList<>();
+        allMoveClassesDiff.addAll(umlModelDiff.getClassMoveDiffList());
+        allMoveClassesDiff.addAll(umlModelDiff.getInnerClassMoveDiffList());
+        return allMoveClassesDiff;
     }
 
     protected UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
@@ -330,13 +356,13 @@ public abstract class BaseTracker {
         List<String> filePathsBefore1 = new ArrayList<>();
         List<String> filePathsCurrent1 = new ArrayList<>();
         if (parentCommit1 != null) {
-            gitService.fileTreeDiff(repository, parentCommit1, currentCommit, filePathsBefore1, filePathsCurrent1, renamedFilesHint);
+            gitService.fileTreeDiff(repository, currentCommit, filePathsBefore1, filePathsCurrent1, renamedFilesHint);
         }
 
         List<String> filePathsBefore2 = new ArrayList<>();
         List<String> filePathsCurrent2 = new ArrayList<>();
         if (parentCommit2 != null) {
-            gitService.fileTreeDiff(repository, parentCommit2, currentCommit, filePathsBefore2, filePathsCurrent2, renamedFilesHint);
+            gitService.fileTreeDiff(repository, currentCommit, filePathsBefore2, filePathsCurrent2, renamedFilesHint);
         }
 
         Set<String> repositoryDirectoriesBefore = new LinkedHashSet<String>();

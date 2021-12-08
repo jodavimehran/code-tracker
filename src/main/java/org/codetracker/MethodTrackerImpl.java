@@ -5,15 +5,17 @@ import gr.uom.java.xmi.decomposition.OperationBody;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
+import org.codetracker.api.History;
+import org.codetracker.api.MethodTracker;
+import org.codetracker.api.Version;
 import org.codetracker.change.Change;
+import org.codetracker.change.ChangeFactory;
+import org.codetracker.element.Method;
+import org.codetracker.util.Util;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
-import org.codetracker.api.*;
-import org.codetracker.change.ChangeFactory;
-import org.codetracker.element.Method;
-import org.codetracker.util.Util;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -474,7 +476,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
     }
 
     private boolean isMethodAdded(UMLModelDiff modelDiff, ArrayDeque<Method> methods, String className, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
-        List<UMLOperation> addedOperations = modelDiff.getAllClassesDiff()
+        List<UMLOperation> addedOperations = getAllClassesDiff(modelDiff)
                 .stream()
                 .map(UMLClassBaseDiff::getAddedOperations)
                 .flatMap(List::stream)
@@ -560,6 +562,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 }
             }
         }
+
         for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
             if (found)
                 break;
@@ -569,7 +572,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     break;
             }
         }
-        for (UMLClassMoveDiff classMoveDiff : umlModelDiffAll.getClassMoveDiffList()) {
+        for (UMLClassMoveDiff classMoveDiff : getClassMoveDiffList(umlModelDiffAll)) {
             if (found)
                 break;
             for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
@@ -584,6 +587,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         }
         return Collections.emptySet();
     }
+
 
     private boolean isMethodMatched(List<UMLOperation> leftSide, List<UMLOperation> rightSide, Set<Method> leftMethodSet, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, Refactoring refactoring, Change.Type changeType) {
         Set<UMLOperation> leftMatched = new HashSet<>();

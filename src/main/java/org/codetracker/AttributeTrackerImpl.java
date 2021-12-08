@@ -348,7 +348,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
     }
 
     private boolean isAttributeAdded(UMLModelDiff modelDiff, ArrayDeque<Attribute> attributes, String className, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator) {
-        List<UMLAttribute> addedAttributes = modelDiff.getAllClassesDiff()
+        List<UMLAttribute> addedAttributes = getAllClassesDiff(modelDiff)
                 .stream()
                 .map(UMLClassBaseDiff::getAddedAttributes)
                 .flatMap(List::stream)
@@ -394,7 +394,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
         boolean found = false;
         Change.Type changeType = Change.Type.CONTAINER_CHANGE;
 
-        for (UMLClassMoveDiff umlClassMoveDiff : umlModelDiffAll.getClassMoveDiffList()) {
+        for (UMLClassMoveDiff umlClassMoveDiff : getClassMoveDiffList(umlModelDiffAll)) {
             umlClassMoveDiff.process();
             for (UMLAttributeDiff attributeDiff : umlClassMoveDiff.getAttributeDiffList()) {
                 if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass()), attributeDiff.getRemovedAttribute(), attributeDiff.getAddedAttribute(), changeType)) {
