@@ -10,14 +10,14 @@
   "variableStartLine" : 375,
   "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
   "expectedChanges" : [ {
-    "parentCommitId" : "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
-    "commitId" : "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
-    "commitTime" : 1287756261,
+    "parentCommitId" : "6242cb3322d921bc76506a1c0fad665a141f0f07",
+    "commitId" : "d5a40278bc39ec0c4f300d68c9f5bd4be0fea85b",
+    "commitTime" : 1220815360,
     "changeType" : "introduced",
-    "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-    "elementNameBefore" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)$prohibited:boolean(439)",
-    "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)$prohibited:boolean(439)",
-    "comment" : "added with method"
+    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameBefore" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$prohibited:boolean(422)",
+    "elementFileAfter" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameAfter" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$prohibited:boolean(422)",
+    "comment" : "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
   } ]
 }

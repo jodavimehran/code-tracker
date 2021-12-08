@@ -10,14 +10,24 @@
   "variableStartLine" : 374,
   "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
   "expectedChanges" : [ {
-    "parentCommitId" : "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
-    "commitId" : "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
-    "commitTime" : 1287756261,
+    "parentCommitId" : "5ceb81834df7a389dae70bfac3463493de99d41c",
+    "commitId" : "649a0e83a47185fd5771e7d7492462d646789a80",
+    "commitTime" : 1256054789,
+    "changeType" : "type change",
+    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameBefore" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(483)",
+    "elementFileAfter" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameAfter" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List<BooleanClause>(453)",
+    "comment" : "Change Parameter Type clauses : List to clauses : List<BooleanClause> in method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser"
+  }, {
+    "parentCommitId" : "6242cb3322d921bc76506a1c0fad665a141f0f07",
+    "commitId" : "d5a40278bc39ec0c4f300d68c9f5bd4be0fea85b",
+    "commitTime" : 1220815360,
     "changeType" : "introduced",
-    "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-    "elementNameBefore" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)$clauses:List<BooleanClause>(438)",
-    "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)$clauses:List<BooleanClause>(438)",
-    "comment" : "added with method"
+    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameBefore" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
+    "elementFileAfter" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameAfter" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
+    "comment" : "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
   } ]
 }
