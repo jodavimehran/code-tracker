@@ -1,5 +1,7 @@
 package org.codetracker.api;
 
+import gr.uom.java.xmi.LocationInfo;
+
 public interface CodeElement extends Comparable<CodeElement> {
 
     String getIdentifier();
@@ -16,4 +18,5 @@ public interface CodeElement extends Comparable<CodeElement> {
 
     String getFilePath();
 
+    LocationInfo getLocation();
 }

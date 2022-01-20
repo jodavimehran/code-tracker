@@ -130,6 +130,11 @@ public class Method extends BaseCodeElement {
         return Util.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
     }
 
+    @Override
+    public LocationInfo getLocation() {
+        return umlOperation.getLocationInfo();
+    }
+
     public static class MethodParameter {
         private final UMLParameter info;
         private final Set<UMLAnnotation> annotations;

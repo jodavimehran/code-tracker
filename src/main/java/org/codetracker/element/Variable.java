@@ -1,5 +1,6 @@
 package org.codetracker.element;
 
+import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
@@ -47,4 +48,8 @@ public class Variable extends BaseCodeElement {
         return operation;
     }
 
+    @Override
+    public LocationInfo getLocation() {
+        return variableDeclaration.getLocationInfo();
+    }
 }

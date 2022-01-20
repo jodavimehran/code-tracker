@@ -1,5 +1,6 @@
 package org.codetracker.element;
 
+import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLClass;
 import org.codetracker.api.Version;
 
@@ -31,5 +32,10 @@ public class Class extends BaseCodeElement {
 
     public UMLClass getUmlClass() {
         return umlClass;
+    }
+
+    @Override
+    public LocationInfo getLocation() {
+        return umlClass.getLocationInfo();
     }
 }
