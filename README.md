@@ -46,17 +46,16 @@ In the code snippet below we demonstrate how to print all changes performed in t
      
         History<Method> methodHistory = methodTracker.track();
 
-        for (EndpointPair<Method> edge : methodHistory.getGraph().getEdges()) {
-            Edge edgeValue = methodHistory.getGraph().getEdgeValue(edge).get();
-            for (Change change : edgeValue.getChangeList()) {
-                if (Change.Type.NO_CHANGE.equals(change.getType()))
-                    continue;
-                String commitId = edge.target().getVersion().getId();
-                String changeType = change.getType().getTitle();
-                String changeDescription = change.toString();
-                System.out.printf("%s,%s,%s%n", commitId, changeType, change);
+        for (History.HistoryInfo<Method> historyInfo : methodHistory.getHistoryInfoList()) {
+            System.out.println("======================================================");
+            System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Before: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementBefore().getName());
+            for (Change change : historyInfo.getChangeList()) {
+                System.out.println(change.getType().getTitle() + ": " + change);
             }
         }
+        System.out.println("======================================================");
     }
 ```
 
@@ -79,18 +78,18 @@ In the code snippet below we demonstrate how to print all changes performed in t
             .variableDeclarationLineNumber(385)
             .build();
         History<Variable> variableHistory = variableTracker.track();
-     
-        for (EndpointPair<Variable> edge : variableHistory.getGraph().getEdges()) {
-            Edge edgeValue = variableHistory.getGraph().getEdgeValue(edge).get();
-            for (Change change : edgeValue.getChangeList()) {
-                if (Change.Type.NO_CHANGE.equals(change.getType()))
-                    continue;
-                String commitId = edge.target().getVersion().getId();
-                String changeType = change.getType().getTitle();
-                String changeDescription = change.toString();
-                System.out.printf("%s,%s,%s%n", commitId, changeType, change);
+
+        for (History.HistoryInfo<Variable> historyInfo : variableHistory.getHistoryInfoList()) {
+            System.out.println("======================================================");
+            System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Before: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementBefore().getName());
+            
+            for (Change change : historyInfo.getChangeList()) {
+                System.out.println(change.getType().getTitle() + ": " + change);
             }
         }
+        System.out.println("======================================================");
     }
 ```
 

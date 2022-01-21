@@ -1,17 +1,42 @@
 package org.codetracker;
 
+import com.google.common.graph.EndpointPair;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.Graph;
 import org.codetracker.api.History;
+import org.codetracker.change.Change;
+
+import java.util.*;
 
 public class HistoryImpl<N extends CodeElement> implements History<N> {
     private final Graph<N, Edge> graph;
     private final HistoryReportImpl historyReport;
+    private final List<HistoryInfo<N>> historyInfoList;
 
     public HistoryImpl(Graph<N, Edge> graph, HistoryReportImpl historyReport) {
         this.graph = graph;
         this.historyReport = historyReport;
+        this.historyInfoList = processHistory(graph);
+    }
+
+    private static <T extends CodeElement> List<HistoryInfo<T>> processHistory(Graph<T, Edge> graph) {
+        List<HistoryInfo<T>> historyInfoList = new ArrayList<>();
+        if (graph == null)
+            return historyInfoList;
+
+        Set<EndpointPair<T>> edges = graph.getEdges();
+
+        for (EndpointPair<T> edge : edges) {
+            Edge edgeValue = graph.getEdgeValue(edge).get();
+            if (Change.Type.NO_CHANGE.equals(edgeValue.getType()))
+                continue;
+            HistoryInfoImpl<T> historyInfoImpl = new HistoryInfoImpl<>(edge.source(), edge.target(),
+                    edgeValue.getChangeList(), edge.target().getVersion().getId(), edge.target().getVersion().getTime());
+            historyInfoList.add(historyInfoImpl);
+        }
+        Collections.sort(historyInfoList);
+        return historyInfoList;
     }
 
     @Override
@@ -22,6 +47,64 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     @Override
     public HistoryReport getHistoryReport() {
         return historyReport;
+    }
+
+    @Override
+    public List<HistoryInfo<N>> getHistoryInfoList() {
+        return historyInfoList;
+    }
+
+    public static class HistoryInfoImpl<C extends CodeElement> implements HistoryInfo<C> {
+        private final C elementBefore;
+        private final C elementAfter;
+        private final Set<Change> changeList = new HashSet<>();
+        private final String commitId;
+        private final long commitTime;
+
+        /**
+         * @param elementBefore Element Before
+         * @param elementAfter  Element After
+         * @param changeList    Change List
+         * @param commitId      Commit ID
+         * @param commitTime    Commit Time
+         */
+        public HistoryInfoImpl(C elementBefore, C elementAfter, Set<Change> changeList, String commitId, long commitTime) {
+            this.elementBefore = elementBefore;
+            this.elementAfter = elementAfter;
+            this.changeList.addAll(changeList);
+            this.commitId = commitId;
+            this.commitTime = commitTime;
+        }
+
+        @Override
+        public C getElementBefore() {
+            return elementBefore;
+        }
+
+        @Override
+        public C getElementAfter() {
+            return elementAfter;
+        }
+
+        @Override
+        public Set<Change> getChangeList() {
+            return changeList;
+        }
+
+        @Override
+        public String getCommitId() {
+            return commitId;
+        }
+
+        @Override
+        public long getCommitTime() {
+            return commitTime;
+        }
+
+        @Override
+        public int compareTo(HistoryInfo<C> toCompare) {
+            return Long.compare(this.commitTime, toCompare.getCommitTime());
+        }
     }
 
     public static class HistoryReportImpl implements HistoryReport {
