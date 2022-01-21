@@ -50,7 +50,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
-            System.out.println("After: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementAfter().getName());
             for (Change change : historyInfo.getChangeList()) {
                 System.out.println(change.getType().getTitle() + ": " + change);
             }
@@ -83,7 +83,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
-            System.out.println("After: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementAfter().getName());
             
             for (Change change : historyInfo.getChangeList()) {
                 System.out.println(change.getType().getTitle() + ": " + change);
