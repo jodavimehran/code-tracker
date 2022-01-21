@@ -49,6 +49,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
         for (History.HistoryInfo<Method> historyInfo : methodHistory.getHistoryInfoList()) {
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Commit Time: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
             for (Change change : historyInfo.getChangeList()) {
@@ -82,6 +83,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
         for (History.HistoryInfo<Variable> historyInfo : variableHistory.getHistoryInfoList()) {
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Commit Time: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
             
