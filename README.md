@@ -8,8 +8,9 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
+  * [How to Track Attributes](#how-to-track-attributes)
   * [Oracle](#oracle)
-  * [Execution Time Experiment](#execution-time-experiment)
+  * [Experiments](#experiments)
 
 
 # How to Build
@@ -28,7 +29,7 @@ To add code-tracker as a maven dependency in your project, add the following dep
     </dependency>
 
 # How to Track Methods
-CodeTracker can track the history of methods in the git repositories.
+CodeTracker can track the history of methods in git repositories.
 
 In the code snippet below we demonstrate how to print all changes performed in the history of [`public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors)`](https://github.com/checkstyle/checkstyle/blob/119fd4fb33bef9f5c66fc950396669af842c21a3/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java#L384).
 
@@ -52,6 +53,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
             System.out.println("Commit Time: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
+            
             for (Change change : historyInfo.getChangeList()) {
                 System.out.println(change.getType().getTitle() + ": " + change);
             }
@@ -61,7 +63,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # How to Track Variables
-CodeTracker can track the history of variables in the git repositories.
+CodeTracker can track the history of variables in git repositories.
 
 In the code snippet below we demonstrate how to print all changes performed in the history of [`final String stripped`](https://github.com/checkstyle/checkstyle/blob/119fd4fb33bef9f5c66fc950396669af842c21a3/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java#L385).
 
@@ -78,6 +80,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
             .variableName("stripped")
             .variableDeclarationLineNumber(385)
             .build();
+
         History<Variable> variableHistory = variableTracker.track();
 
         for (History.HistoryInfo<Variable> historyInfo : variableHistory.getHistoryInfoList()) {
@@ -87,6 +90,40 @@ In the code snippet below we demonstrate how to print all changes performed in t
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
             
+            for (Change change : historyInfo.getChangeList()) {
+                System.out.println(change.getType().getTitle() + ": " + change);
+            }
+        }
+        System.out.println("======================================================");
+    }
+```
+# How to Track Attributes
+CodeTracker can track the history of attributes in git repositories.
+
+In the code snippet below we demonstrate how to print all changes performed in the history of [`private PropertyCacheFile cacheFile`](https://github.com/checkstyle/checkstyle/blob/119fd4fb33bef9f5c66fc950396669af842c21a3/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java#L132).
+
+```java
+    GitService gitService = new GitServiceImpl();
+    try (Repository repository = gitService.cloneIfNotExists("/home/tsantalis/clonedProjects/checkstyle\\checkstyle",
+            "https://github.com/checkstyle/checkstyle.git")) {
+
+        AttributeTracker attributeTracker = CodeTracker.attributeTracker()
+                .repository(repository)
+                .filePath("src/main/java/com/puppycrawl/tools/checkstyle/Checker.java")
+                .startCommitId("119fd4fb33bef9f5c66fc950396669af842c21a3")
+                .attributeName("cacheFile")
+                .attributeDeclarationLineNumber(132)
+                .build();
+
+        History<Attribute> attributeHistory = attributeTracker.track();
+
+        for (History.HistoryInfo<Attribute> historyInfo : attributeHistory.getHistoryInfoList()) {
+            System.out.println("======================================================");
+            System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Date: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Before: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementAfter().getName());
+
             for (Change change : historyInfo.getChangeList()) {
                 System.out.println(change.getType().getTitle() + ": " + change);
             }
