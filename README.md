@@ -35,7 +35,8 @@ In the code snippet below we demonstrate how to print all changes performed in t
 
 ```java
     GitService gitService = new GitServiceImpl();
-    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle", "https://github.com/checkstyle/checkstyle.git")){
+    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle",
+            "https://github.com/checkstyle/checkstyle.git")){
 
         MethodTracker methodTracker = CodeTracker.methodTracker()
             .repository(repository)
@@ -50,7 +51,8 @@ In the code snippet below we demonstrate how to print all changes performed in t
         for (History.HistoryInfo<Method> historyInfo : methodHistory.getHistoryInfoList()) {
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
-            System.out.println("Date: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Date: " + 
+                LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
             
@@ -69,7 +71,8 @@ In the code snippet below we demonstrate how to print all changes performed in t
 
 ```java
     GitService gitService = new GitServiceImpl();
-    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle", "https://github.com/checkstyle/checkstyle.git")){
+    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle",
+            "https://github.com/checkstyle/checkstyle.git")){
 
         VariableTracker variableTracker = CodeTracker.variableTracker()
             .repository(repository)
@@ -86,7 +89,8 @@ In the code snippet below we demonstrate how to print all changes performed in t
         for (History.HistoryInfo<Variable> historyInfo : variableHistory.getHistoryInfoList()) {
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
-            System.out.println("Date: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Date: " + 
+                LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
             
@@ -104,7 +108,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
 
 ```java
     GitService gitService = new GitServiceImpl();
-    try (Repository repository = gitService.cloneIfNotExists("/home/tsantalis/clonedProjects/checkstyle\\checkstyle",
+    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle",
             "https://github.com/checkstyle/checkstyle.git")) {
 
         AttributeTracker attributeTracker = CodeTracker.attributeTracker()
@@ -120,7 +124,8 @@ In the code snippet below we demonstrate how to print all changes performed in t
         for (History.HistoryInfo<Attribute> historyInfo : attributeHistory.getHistoryInfoList()) {
             System.out.println("======================================================");
             System.out.println("Commit ID: " + historyInfo.getCommitId());
-            System.out.println("Date: " + LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Date: " + 
+                LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
             System.out.println("Before: " + historyInfo.getElementBefore().getName());
             System.out.println("After: " + historyInfo.getElementAfter().getName());
 
