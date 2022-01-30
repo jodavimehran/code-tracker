@@ -7,6 +7,16 @@
   "functionKey" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
   "functionStartLine" : 374,
   "expectedChanges" : [ {
+    "parentCommitId" : "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+    "commitId" : "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+    "commitTime" : 1453508333,
+    "changeType" : "container change",
+    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameBefore" : "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+    "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+    "comment" : "Move Source Folder src to lucene/src"
+  }, {
     "parentCommitId" : "2b96b2504677c0673bbf8300d2217205684056c6",
     "commitId" : "4aafacfbef423a25a349dd8c6e5e6178ac1ba334",
     "commitTime" : 1434611645,
@@ -23,7 +33,8 @@
     "elementFileBefore" : "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
     "elementNameBefore" : "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
     "elementFileAfter" : "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
-    "elementNameAfter" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)"
+    "elementNameAfter" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
+    "comment" : "Move Source Folder modules to lucene"
   }, {
     "parentCommitId" : "ef25bf2d31a5e462ad6a752919481e2a7d1e2bd2",
     "commitId" : "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
@@ -32,7 +43,8 @@
     "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
     "elementNameBefore" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
     "elementFileAfter" : "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
-    "elementNameAfter" : "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)"
+    "elementNameAfter" : "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
+    "comment" : "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
   }, {
     "parentCommitId" : "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
     "commitId" : "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
@@ -41,16 +53,8 @@
     "elementFileBefore" : "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
     "elementNameBefore" : "lucene/src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
     "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)"
-  }, {
-    "parentCommitId" : "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
-    "commitId" : "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
-    "commitTime" : 1453508333,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameBefore" : "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
-    "elementFileAfter" : "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)"
+    "elementNameAfter" : "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
+    "comment" : "Pull Up Method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser to protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParserBase"
   }, {
     "parentCommitId" : "5ceb81834df7a389dae70bfac3463493de99d41c",
     "commitId" : "649a0e83a47185fd5771e7d7492462d646789a80",
