@@ -67,7 +67,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
         HistoryImpl.HistoryReportImpl historyReport = new HistoryImpl.HistoryReportImpl();
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
-            UMLModel umlModel = getUMLModel(startCommitId, Collections.singletonList(filePath));
+            UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
             Attribute start = getAttribute(umlModel, startVersion, this::isStartAttribute);
             if (start == null) {
                 return null;
@@ -105,7 +105,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     Version parentVersion = gitRepository.getVersion(parentCommitId);
 
 
-                    UMLModel rightModel = getUMLModel(commitId, Collections.singletonList(currentAttribute.getFilePath()));
+                    UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentAttribute.getFilePath()));
                     Attribute rightAttribute = getAttribute(rightModel, currentVersion, currentAttribute::equalIdentifierIgnoringVersion);
                     if (rightAttribute == null) {
                         continue;
@@ -118,7 +118,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         attributes.add(leftAttribute);
                         break;
                     }
-                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singletonList(rightAttribute.getFilePath()));
+                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightAttribute.getFilePath()));
 
                     //NO CHANGE
                     Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
@@ -128,7 +128,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     }
 
                     //Local Refactoring
-                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
+                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
                         Set<Attribute> attributeContainerChanged = isAttributeContainerChanged(umlModelDiffLocal, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
@@ -151,7 +151,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         CommitModel commitModel = getCommitModel(commitId);
                         if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, currentAttribute.getFilePath(), s -> true, true);
-                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                             List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
                             Set<Attribute> attributeContainerChanged = isAttributeContainerChanged(umlModelDiffPartial, refactoringsPartial, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             boolean containerChanged = !attributeContainerChanged.isEmpty();
@@ -171,7 +171,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         {
                             Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
-                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
@@ -183,7 +183,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                     if (rightAttribute.equalIdentifierIgnoringVersion(movedAttribute)) {
                                         fileNames.add(moveAttributeRefactoring.getOriginalAttribute().getLocationInfo().getFilePath());
                                         umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
-                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                         flag = true;
                                         break;
                                     }

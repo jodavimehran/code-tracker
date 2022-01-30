@@ -95,14 +95,14 @@ public abstract class BaseTracker {
             }
 
             final String leftSideFileNameFinal = leftSideFileName;
-            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
             leftSideUMLModel.setPartial(true);
             rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
             leftSideUMLModel.setPartial(true);
             rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
@@ -294,7 +294,7 @@ public abstract class BaseTracker {
         return null;
     }
 
-    public static UMLModel getUMLModel(Repository repository, String commitId, List<String> fileNames) throws Exception {
+    public static UMLModel getUMLModel(Repository repository, String commitId, Set<String> fileNames) throws Exception {
         if (fileNames == null || fileNames.isEmpty())
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
@@ -305,7 +305,7 @@ public abstract class BaseTracker {
         }
     }
 
-    public static UMLModel getUmlModel(Repository repository, RevCommit commit, List<String> filePaths) throws Exception {
+    public static UMLModel getUmlModel(Repository repository, RevCommit commit, Set<String> filePaths) throws Exception {
         Set<String> repositoryDirectories = new LinkedHashSet<>();
         Map<String, String> fileContents = new LinkedHashMap<>();
         GitHistoryRefactoringMinerImpl.populateFileContents(repository, commit, filePaths, fileContents, repositoryDirectories);
@@ -328,7 +328,7 @@ public abstract class BaseTracker {
         return allMoveClassesDiff;
     }
 
-    protected UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
+    protected UMLModel getUMLModel(String commitId, Set<String> fileNames) throws Exception {
         return getUMLModel(repository, commitId, fileNames);
     }
 
@@ -353,14 +353,14 @@ public abstract class BaseTracker {
 
     private CommitModel getCommitModel(RevCommit parentCommit1, RevCommit parentCommit2, RevCommit currentCommit) throws Exception {
         Map<String, String> renamedFilesHint = new HashMap<>();
-        List<String> filePathsBefore1 = new ArrayList<>();
-        List<String> filePathsCurrent1 = new ArrayList<>();
+        Set<String> filePathsBefore1 = new HashSet<>();
+        Set<String> filePathsCurrent1 = new HashSet<>();
         if (parentCommit1 != null) {
             gitService.fileTreeDiff(repository, currentCommit, filePathsBefore1, filePathsCurrent1, renamedFilesHint);
         }
 
-        List<String> filePathsBefore2 = new ArrayList<>();
-        List<String> filePathsCurrent2 = new ArrayList<>();
+        Set<String> filePathsBefore2 = new HashSet<>();
+        Set<String> filePathsCurrent2 = new HashSet<>();
         if (parentCommit2 != null) {
             gitService.fileTreeDiff(repository, currentCommit, filePathsBefore2, filePathsCurrent2, renamedFilesHint);
         }
@@ -380,11 +380,11 @@ public abstract class BaseTracker {
         Set<String> filePathsCurrent = new HashSet<>();
         filePathsCurrent.addAll(filePathsCurrent1);
         filePathsCurrent.addAll(filePathsCurrent2);
-        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, new ArrayList<>(filePathsCurrent), fileContentsCurrent, repositoryDirectoriesCurrent);
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, filePathsCurrent, fileContentsCurrent, repositoryDirectoriesCurrent);
 
         Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(fileContentsBefore);
         Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
-        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed, renamedFilesHint);
+        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed);
 
         return new CommitModel(repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
     }

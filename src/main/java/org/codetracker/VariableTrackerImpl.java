@@ -56,7 +56,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
             Version startVersion = gitRepository.getVersion(startCommitId);
 
-            UMLModel umlModel = getUMLModel(startCommitId, Collections.singletonList(filePath));
+            UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
 
             Method startMethod = getMethod(umlModel, startVersion, this::isStartMethod);
             if (startMethod == null) {
@@ -100,7 +100,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
                     Method currentMethod = Method.of(currentVariable.getOperation(), currentVersion);
 
-                    UMLModel rightModel = getUMLModel(commitId, Collections.singletonList(currentMethod.getFilePath()));
+                    UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentMethod.getFilePath()));
                     Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                     if (rightMethod == null) {
                         continue;
@@ -122,7 +122,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         variables.add(leftVariable);
                         break;
                     }
-                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singletonList(currentMethod.getFilePath()));
+                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethod.getFilePath()));
 
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
@@ -131,7 +131,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         continue;
                     }
 
-                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
+                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
@@ -174,7 +174,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         CommitModel commitModel = getCommitModel(commitId);
                         if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, currentMethod.getFilePath(), s -> true, true);
-                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                             List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
 
                             boolean found;
@@ -187,7 +187,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         {
                             Set<String> fileNames = getRightSideFileNames(currentMethod, commitModel, umlModelDiffLocal);
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
-                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
                             boolean flag = false;
@@ -198,7 +198,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                                     if (rightMethod.equalIdentifierIgnoringVersion(movedOperation)) {
                                         fileNames.add(moveOperationRefactoring.getOriginalOperation().getLocationInfo().getFilePath());
                                         umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
-                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                         flag = true;
                                         break;
                                     }
@@ -529,6 +529,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     operationBefore = pushDownOperationRefactoring.getOriginalOperation();
                     operationAfter = pushDownOperationRefactoring.getMovedOperation();
                     umlOperationBodyMapper = pushDownOperationRefactoring.getBodyMapper();
+                    if(umlOperationBodyMapper == null){
+                        UMLOperationBodyMapper operationBodyMapper = new UMLOperationBodyMapper(operationBefore, operationAfter, null);
+                    }
                     break;
                 }
                 case MOVE_AND_RENAME_OPERATION:

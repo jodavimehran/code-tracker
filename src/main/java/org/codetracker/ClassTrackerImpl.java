@@ -47,7 +47,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
         HistoryImpl.HistoryReportImpl historyReport = new HistoryImpl.HistoryReportImpl();
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
-            UMLModel umlModel = getUMLModel(startCommitId, Collections.singletonList(filePath));
+            UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
             Class start = getClass(umlModel, startVersion, this::isStartClass);
             if (start == null) {
                 return null;
@@ -85,7 +85,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     Version parentVersion = gitRepository.getVersion(parentCommitId);
 
 
-                    UMLModel rightModel = getUMLModel(commitId, Collections.singletonList(currentClass.getFilePath()));
+                    UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentClass.getFilePath()));
                     Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
                     if (rightClass == null) {
                         continue;
@@ -98,7 +98,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         classes.add(leftClass);
                         break;
                     }
-                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singletonList(rightClass.getFilePath()));
+                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
 
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
@@ -126,7 +126,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         CommitModel commitModel = getCommitModel(commitId);
                         if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
-                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                             List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
                             Set<Class> classRefactored = analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                             boolean refactored = !classRefactored.isEmpty();
@@ -140,7 +140,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         {
 //                            Set<String> fileNames = getRightSideFileNames(rightClass.getFilePath(), rightClass.getUmlClass().getName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
-                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
