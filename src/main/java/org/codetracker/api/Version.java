@@ -2,7 +2,12 @@ package org.codetracker.api;
 
 public interface Version {
 
-    String getId();
+  /** @return commit ID */
+  String getId();
 
-    long getTime();
+  /** @return commit time */
+  long getTime();
+
+  /** @return name of the committer */
+  String getAuthorName();
 }

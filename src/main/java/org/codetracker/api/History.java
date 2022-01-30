@@ -6,35 +6,37 @@ import java.util.List;
 import java.util.Set;
 
 public interface History<C extends CodeElement> {
-    Graph<C, Edge> getGraph();
+  Graph<C, Edge> getGraph();
 
-    HistoryReport getHistoryReport();
+  HistoryReport getHistoryReport();
 
-    List<HistoryInfo<C>> getHistoryInfoList();
+  List<HistoryInfo<C>> getHistoryInfoList();
 
-    interface HistoryReport {
-        int getAnalysedCommits();
+  interface HistoryReport {
+    int getAnalysedCommits();
 
-        int getGitLogCommandCalls();
+    int getGitLogCommandCalls();
 
-        int getStep2();
+    int getStep2();
 
-        int getStep3();
+    int getStep3();
 
-        int getStep4();
+    int getStep4();
 
-        int getStep5();
-    }
+    int getStep5();
+  }
 
-    interface HistoryInfo<C extends CodeElement> extends Comparable<HistoryInfo<C>> {
-        C getElementBefore();
+  interface HistoryInfo<C extends CodeElement> extends Comparable<HistoryInfo<C>> {
+    C getElementBefore();
 
-        C getElementAfter();
+    C getElementAfter();
 
-        Set<Change> getChangeList();
+    Set<Change> getChangeList();
 
-        String getCommitId();
+    String getCommitId();
 
-        long getCommitTime();
-    }
+    long getCommitTime();
+
+    String getCommitterName();
+  }
 }
