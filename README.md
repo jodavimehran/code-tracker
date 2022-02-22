@@ -139,53 +139,53 @@ In the code snippet below we demonstrate how to print all changes performed in t
 
 # Oracle
 The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available [here](https://drive.google.com/file/d/1l7VwdIE85Bh6zGpLSiavhmZxhdqtL4NI/view?usp=sharing) or in the following links:
-* [Method](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method)
-  * [Training](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training)
-  * [Test](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test)
-* [Variable](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/variable)
-  * [Training](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/variable/training)
-  * [Test](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/variable/test)
+* [Method](src/main/resources/oracle/method)
+  * [Training](src/main/resources/oracle/method/training)
+  * [Test](src/main/resources/oracle/method/test)
+* [Variable](src/main/resources/oracle/variable)
+  * [Training](src/main/resources/oracle/variable/training)
+  * [Test](src/main/resources/oracle/variable/test)
 
 ### Some Samples of CodeShovel's false cases
 In the extended oracle we fixed all inaccuracies that we found in the original oracle. For example, the following methods in the original oracle are erroneously matched with another method which is extracted from their body. In fact, these methods are *introduced* as a result of an Extract Method refactoring.
 * Training
-  * [checkstyle-CommonUtils-createPattern](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/checkstyle-CommonUtils-createPattern.json)
-  * [checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken.json)
-  * [checkstyle-WhitespaceAroundCheck-isNotRelevantSituation](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/checkstyle-WhitespaceAroundCheck-isNotRelevantSituation.json)
-  * [commons-lang-EqualsBuilder-reflectionAppend](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/commons-lang-EqualsBuilder-reflectionAppend.json)
-  * [commons-lang-RandomStringUtils-random](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/commons-lang-RandomStringUtils-random.json)
-  * [commons-lang-NumberUtils-isCreatable](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/commons-lang-NumberUtils-isCreatable.json)
-  * [flink-FileSystem-getUnguardedFileSystem](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/flink-FileSystem-getUnguardedFileSystem.json)
-  * [flink-RemoteStreamEnvironment-executeRemotely](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/flink-RemoteStreamEnvironment-executeRemotely.json)
-  * [hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter.json)
-  * [javaparser-MethodResolutionLogic-isApplicable](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/javaparser-MethodResolutionLogic-isApplicable.json)
-  * [javaparser-Difference-applyRemovedDiffElement](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/javaparser-Difference-applyRemovedDiffElement.json)
-  * [javaparser-JavaParserFacade-getTypeConcrete](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/javaparser-JavaParserFacade-getTypeConcrete.json)
-  * [jgit-IndexDiff-diff](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/jgit-IndexDiff-diff.json)
-  * [jgit-UploadPack-sendPack](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/jgit-UploadPack-sendPack.json)
-  * [junit4-ParentRunner-applyValidators](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/junit4-ParentRunner-applyValidators.json)
-  * [junit5-TestMethodTestDescriptor-invokeTestMethod](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/junit5-TestMethodTestDescriptor-invokeTestMethod.json)
-  * [junit5-DefaultLauncher-discoverRoot](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/junit5-DefaultLauncher-discoverRoot.json)
-  * [okhttp-Http2Connection-newStream](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/training/okhttp-Http2Connection-newStream.json)
+  * [checkstyle-CommonUtils-createPattern](src/main/resources/oracle/method/training/checkstyle-CommonUtils-createPattern.json)
+  * [checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken](src/main/resources/oracle/method/training/checkstyle-WhitespaceAroundCheck-shouldCheckSeparationFromNextToken.json)
+  * [checkstyle-WhitespaceAroundCheck-isNotRelevantSituation](src/main/resources/oracle/method/training/checkstyle-WhitespaceAroundCheck-isNotRelevantSituation.json)
+  * [commons-lang-EqualsBuilder-reflectionAppend](src/main/resources/oracle/method/training/commons-lang-EqualsBuilder-reflectionAppend.json)
+  * [commons-lang-RandomStringUtils-random](src/main/resources/oracle/method/training/commons-lang-RandomStringUtils-random.json)
+  * [commons-lang-NumberUtils-isCreatable](src/main/resources/oracle/method/training/commons-lang-NumberUtils-isCreatable.json)
+  * [flink-FileSystem-getUnguardedFileSystem](src/main/resources/oracle/method/training/flink-FileSystem-getUnguardedFileSystem.json)
+  * [flink-RemoteStreamEnvironment-executeRemotely](src/main/resources/oracle/method/training/flink-RemoteStreamEnvironment-executeRemotely.json)
+  * [hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter](src/main/resources/oracle/method/training/hibernate-orm-SimpleValue-buildAttributeConverterTypeAdapter.json)
+  * [javaparser-MethodResolutionLogic-isApplicable](src/main/resources/oracle/method/training/javaparser-MethodResolutionLogic-isApplicable.json)
+  * [javaparser-Difference-applyRemovedDiffElement](src/main/resources/oracle/method/training/javaparser-Difference-applyRemovedDiffElement.json)
+  * [javaparser-JavaParserFacade-getTypeConcrete](src/main/resources/oracle/method/training/javaparser-JavaParserFacade-getTypeConcrete.json)
+  * [jgit-IndexDiff-diff](src/main/resources/oracle/method/training/jgit-IndexDiff-diff.json)
+  * [jgit-UploadPack-sendPack](src/main/resources/oracle/method/training/jgit-UploadPack-sendPack.json)
+  * [junit4-ParentRunner-applyValidators](src/main/resources/oracle/method/training/junit4-ParentRunner-applyValidators.json)
+  * [junit5-TestMethodTestDescriptor-invokeTestMethod](src/main/resources/oracle/method/training/junit5-TestMethodTestDescriptor-invokeTestMethod.json)
+  * [junit5-DefaultLauncher-discoverRoot](src/main/resources/oracle/method/training/junit5-DefaultLauncher-discoverRoot.json)
+  * [okhttp-Http2Connection-newStream](src/main/resources/oracle/method/training/okhttp-Http2Connection-newStream.json)
 * Test
-  * [commons-io-IOUtils-toInputStream](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/commons-io-IOUtils-toInputStream.json)
-  * [commons-io-FilenameUtils-wildcardMatch](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/commons-io-FilenameUtils-wildcardMatch.json)
-  * [hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities.json)
-  * [hibernate-search-ClassLoaderHelper-instanceFromName](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/hibernate-search-ClassLoaderHelper-instanceFromName.json)
-  * [spring-boot-DefaultErrorAttributes-addErrorMessage](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/spring-boot-DefaultErrorAttributes-addErrorMessage.json)
-  * [lucene-solr-QueryParserBase-addClause](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/lucene-solr-QueryParserBase-addClause.json)
-  * [intellij-community-ModuleCompileScope-isUrlUnderRoot](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/intellij-community-ModuleCompileScope-isUrlUnderRoot.json)
-  * [intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject.json)
-  * [mockito-MatchersBinder-bindMatchers](https://github.com/jodavimehran/code-tracker/tree/master/src/main/resources/oracle/method/test/mockito-MatchersBinder-bindMatchers.json)
+  * [commons-io-IOUtils-toInputStream](src/main/resources/oracle/method/test/commons-io-IOUtils-toInputStream.json)
+  * [commons-io-FilenameUtils-wildcardMatch](src/main/resources/oracle/method/test/commons-io-FilenameUtils-wildcardMatch.json)
+  * [hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities](src/main/resources/oracle/method/test/hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities.json)
+  * [hibernate-search-ClassLoaderHelper-instanceFromName](src/main/resources/oracle/method/test/hibernate-search-ClassLoaderHelper-instanceFromName.json)
+  * [spring-boot-DefaultErrorAttributes-addErrorMessage](src/main/resources/oracle/method/test/spring-boot-DefaultErrorAttributes-addErrorMessage.json)
+  * [lucene-solr-QueryParserBase-addClause](src/main/resources/oracle/method/test/lucene-solr-QueryParserBase-addClause.json)
+  * [intellij-community-ModuleCompileScope-isUrlUnderRoot](src/main/resources/oracle/method/test/intellij-community-ModuleCompileScope-isUrlUnderRoot.json)
+  * [intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject](src/main/resources/oracle/method/test/intellij-community-TranslatingCompilerFilesMonitor-isInContentOfOpenedProject.json)
+  * [mockito-MatchersBinder-bindMatchers](src/main/resources/oracle/method/test/mockito-MatchersBinder-bindMatchers.json)
 
 ### CodeTracker's misreporting samples
 To avoid unnecessary processing and speed up the tracking process, CodeTracker excludes some files from the source code model. The excluding action may cause misreporting of change type in some special scenarios. Although CodeTracker supports three scenarios in which additional files need to be included in the source code model, it may misreport MoveMethod changes as FileMove because the child commit model did not include the origin file of the method. In the test oracle, there are three such cases: [case 1](https://github.com/jodavimehran/code-tracker/blob/master/src/main/resources/oracle/method/test/hadoop-SchedulerApplicationAttempt-resetSchedulingOpportunities.json), [case 2](https://github.com/jodavimehran/code-tracker/blob/master/src/main/resources/oracle/method/test/mockito-AdditionalMatchers-geq.json) and [case 3](https://github.com/jodavimehran/code-tracker/blob/master/src/main/resources/oracle/method/test/mockito-AdditionalMatchers-gt.json). 
 
 # Experiments
 ### Execution Time:
-  As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](https://github.com/jodavimehran/code-tracker/tree/master/experiments/execution-time).
+  As part of our experiments, we measured the execution time of CodeTracker and CodeShovel to track each method's change history in the training and testing sets. All data we recorded for this experiment and the script for generating the execution time plots are available [here](experiments/execution-time).
 ### Tracking Accuracy
   All data we collect to compute the precision and recall of CodeTracker and CodeShovel at commit level and change level are available in the following links:
-* [Method](https://github.com/jodavimehran/code-tracker/tree/master/experiments/tracking-accuracy/method)
-* [Variable](https://github.com/jodavimehran/code-tracker/tree/master/experiments/tracking-accuracy/variable)
+* [Method](experiments/tracking-accuracy/method)
+* [Variable](experiments/tracking-accuracy/variable)
   
