@@ -3,7 +3,7 @@
 This project aims to introduce CodeTracker, a refactoring-aware tool that can generate the commit change history for method and variable declarations in a Java project with a very high accuracy.
 
 **Note for reviewers:**
-Due to some issues with anonymous.4open.science not being able to index all files in our repository, we make the oracle available in a [zip file](https://drive.google.com/file/d/1zWjUQ3h1nf9KQ68obpk-hMtCigOiOrgm/view?usp=sharing). Some links in the README of our project might not be accessible in anonymous.4open.science, and thus we recommend using the [zip file](https://drive.google.com/file/d/1zWjUQ3h1nf9KQ68obpk-hMtCigOiOrgm/view?usp=sharing) to access the oracle information.
+Due to some issues with anonymous.4open.science not being able to index all files in our repository, we make the oracle available in a [zip file](https://drive.google.com/file/d/17C_B7rlCiIYD8p-S_rpjRqku4o-SKeHe/view?usp=sharing). Some links in the README of our project might not be accessible in anonymous.4open.science, and thus we recommend using the [zip file](https://drive.google.com/file/d/17C_B7rlCiIYD8p-S_rpjRqku4o-SKeHe/view?usp=sharing) to access the oracle information.
 
 # Table of Contents
 
