@@ -21,12 +21,16 @@ public class Method extends BaseCodeElement {
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
     }
 
-    public static Method of(UMLOperation umlOperation, Version version) {
+    public static Method of(VariableDeclarationContainer umlOperation, Version version) {
         String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
-        String identifierIgnoringVersion = getIdentifierExcludeVersion(umlOperation, true, true);
-        String identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion(umlOperation, false, false);
-        String name = String.format("%s%s", sourceFolder, umlOperation.getKey());
-        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
+        if(umlOperation instanceof UMLOperation) {
+            String identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true);
+            String identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false);
+            String name = String.format("%s%s", sourceFolder, ((UMLOperation) umlOperation).getKey());
+            return new Method((UMLOperation) umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
+        }
+        //TODO support UMLAttribute in the future
+        return null;
     }
 
     public Variable findVariable(Predicate<Variable> equalOperator) {

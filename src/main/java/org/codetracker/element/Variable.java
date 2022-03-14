@@ -2,6 +2,7 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
@@ -19,7 +20,7 @@ public class Variable extends BaseCodeElement {
         this.operation = operation;
     }
 
-    public static Variable of(VariableDeclaration variableDeclaration, UMLOperation operation, Version version) {
+    public static Variable of(VariableDeclaration variableDeclaration, VariableDeclarationContainer operation, Version version) {
         Method method = Method.of(operation, version);
         return of(variableDeclaration, method);
     }

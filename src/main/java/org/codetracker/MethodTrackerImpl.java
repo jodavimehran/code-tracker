@@ -243,8 +243,8 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
     public Set<Method> analyseMethodRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
         Set<Method> leftMethodSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
+            VariableDeclarationContainer operationBefore = null;
+            VariableDeclarationContainer operationAfter = null;
             Change.Type changeType = null;
 
             switch (refactoring.getRefactoringType()) {
@@ -267,6 +267,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     operationBefore = moveOperationRefactoring.getOriginalOperation();
                     operationAfter = moveOperationRefactoring.getMovedOperation();
                     changeType = Change.Type.MOVED;
+                    //TODO this is the only case that calls addMethodChange() Is this needed? It seems it is called twice for this case
                     addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, refactoring, operationBefore, operationAfter, Change.Type.RENAME);
                     break;
                 }
@@ -480,7 +481,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         return leftMethodSet;
     }
 
-    public boolean addMethodChange(Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, Set<Method> leftMethodSet, Refactoring refactoring, UMLOperation operationBefore, UMLOperation operationAfter, Change.Type changeType) {
+    public boolean addMethodChange(Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, Set<Method> leftMethodSet, Refactoring refactoring, VariableDeclarationContainer operationBefore, VariableDeclarationContainer operationAfter, Change.Type changeType) {
         if (operationAfter != null) {
             Method methodAfter = Method.of(operationAfter, currentVersion);
             if (equalOperator.test(methodAfter)) {

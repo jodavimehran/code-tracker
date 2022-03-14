@@ -384,7 +384,7 @@ public abstract class BaseTracker {
 
         Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(fileContentsBefore);
         Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
-        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed);
+        List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed, renamedFilesHint);
 
         return new CommitModel(repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
     }
