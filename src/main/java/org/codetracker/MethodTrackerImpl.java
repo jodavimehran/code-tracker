@@ -267,7 +267,6 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     operationBefore = moveOperationRefactoring.getOriginalOperation();
                     operationAfter = moveOperationRefactoring.getMovedOperation();
                     changeType = Change.Type.MOVED;
-                    //TODO this is the only case that calls addMethodChange() Is this needed? It seems it is called twice for this case
                     addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, refactoring, operationBefore, operationAfter, Change.Type.RENAME);
                     break;
                 }
