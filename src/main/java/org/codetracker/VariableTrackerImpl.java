@@ -256,7 +256,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
     private boolean checkClassDiffForVariableChange(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
-            Method method2 = Method.of(operationBodyMapper.getOperation2(), currentVersion);
+            Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
                 if (isVariableRefactored(operationBodyMapper.getRefactorings(), variables, currentVersion, parentVersion, equalVariable))
                     return true;

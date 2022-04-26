@@ -42,7 +42,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         return body1.getBodyHashCode() != body2.getBodyHashCode();
     }
 
-    public static boolean checkOperationDocumentationChanged(UMLOperation operation1, UMLOperation operation2) {
+    public static boolean checkOperationDocumentationChanged(VariableDeclarationContainer operation1, VariableDeclarationContainer operation2) {
         String comments1 = Util.getSHA512(operation1.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
         String comments2 = Util.getSHA512(operation2.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
         return !comments1.equals(comments2);

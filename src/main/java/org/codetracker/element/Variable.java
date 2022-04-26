@@ -12,9 +12,9 @@ import java.util.stream.Collectors;
 
 public class Variable extends BaseCodeElement {
     private final VariableDeclaration variableDeclaration;
-    private final UMLOperation operation;
+    private final VariableDeclarationContainer operation;
 
-    private Variable(VariableDeclaration variableDeclaration, UMLOperation operation, String identifierExcludeVersion, String name, String filePath, Version version) {
+    private Variable(VariableDeclaration variableDeclaration, VariableDeclarationContainer operation, String identifierExcludeVersion, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.variableDeclaration = variableDeclaration;
         this.operation = operation;
@@ -45,7 +45,7 @@ public class Variable extends BaseCodeElement {
         return variableDeclaration;
     }
 
-    public UMLOperation getOperation() {
+    public VariableDeclarationContainer getOperation() {
         return operation;
     }
 

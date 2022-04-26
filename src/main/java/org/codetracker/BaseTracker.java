@@ -52,11 +52,11 @@ public abstract class BaseTracker {
         UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
         if (umlClassDiff != null) {
             for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
-                Method methodLeft = Method.of(operationBodyMapper.getOperation1(), parentVersion);
+                Method methodLeft = Method.of(operationBodyMapper.getContainer1(), parentVersion);
                 if (method.equalIdentifierIgnoringVersion(methodLeft)) {
                     return operationBodyMapper;
                 }
-                Method methodRight = Method.of(operationBodyMapper.getOperation2(), currentVersion);
+                Method methodRight = Method.of(operationBodyMapper.getContainer2(), currentVersion);
                 if (method.equalIdentifierIgnoringVersion(methodRight)) {
                     return operationBodyMapper;
                 }
@@ -118,8 +118,18 @@ public abstract class BaseTracker {
         String currentFilePath = currentMethod.getFilePath();
         String currentClassName = currentMethod.getUmlOperation().getClassName();
         Set<String> toBeAddedFileNamesIfTheyAreNewFiles = new HashSet<>();
-        for (UMLParameter parameter : currentMethod.getUmlOperation().getParameters()) {
-            String parameterType = parameter.getType().getClassType();
+        if (currentMethod.getUmlOperation() instanceof UMLOperation) {
+            UMLOperation operation = (UMLOperation) currentMethod.getUmlOperation();
+            UMLParameter returnParameter = operation.getReturnParameter();
+            if (returnParameter != null) {
+                String parameterType = returnParameter.getType().getClassType();
+                if (!"void".equals(parameterType)) {
+                    toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
+                }
+            }
+        }
+        for (UMLType parameter : currentMethod.getUmlOperation().getParameterTypeList()) {
+            String parameterType = parameter.getClassType();
             if ("void".equals(parameterType))
                 continue;
             toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");

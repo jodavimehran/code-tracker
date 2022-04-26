@@ -1,5 +1,6 @@
 package org.codetracker;
 
+import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
@@ -168,8 +169,8 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
     public Set<Class> analyseClassRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator) {
         Set<Class> leftClassSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
-            UMLClass leftUMLClass = null;
-            UMLClass rightUMLClass = null;
+            UMLAbstractClass leftUMLClass = null;
+            UMLAbstractClass rightUMLClass = null;
             Change.Type changeType = null;
             Change.Type changeType2 = null;
             switch (refactoring.getRefactoringType()) {
