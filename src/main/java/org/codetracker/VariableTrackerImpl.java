@@ -1,7 +1,10 @@
 package org.codetracker;
 
+import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.VariableDeclarationContainer;
+import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.*;
@@ -173,15 +176,53 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     {
                         CommitModel commitModel = getCommitModel(commitId);
                         if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
+                            String leftFilePath = null;
+                            for (MoveSourceFolderRefactoring ref : commitModel.moveSourceFolderRefactorings) {
+                                if (ref.getIdenticalFilePaths().containsValue(currentVariable.getFilePath())) {
+                                    for (Map.Entry<String, String> entry : ref.getIdenticalFilePaths().entrySet()) {
+                                        if (entry.getValue().equals(currentVariable.getFilePath())) {
+                                            leftFilePath = entry.getKey();
+                                            break;
+                                        }
+                                    }
+                                    if (leftFilePath != null) {
+                                        break;
+                                    }
+                                }
+                            }
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, currentMethod.getFilePath(), s -> true, true);
-                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
-                            List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
+                            if (leftFilePath != null) {
+                                boolean found = false;
+                                for (UMLClass umlClass : umlModelPairPartial.getLeft().getClassList()) {
+                                    if (umlClass.getSourceFile().equals(leftFilePath)) {
+                                        for (UMLOperation operation : umlClass.getOperations()) {
+                                            if (operation.equals(rightMethod.getUmlOperation())) {
+                                                found = isMatched(operation, rightVariable, variables, parentVersion);
+                                                if (found) {
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (found) {
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+                            }
+                            else {
+                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
+                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
 
-                            boolean found;
-                            found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion));
-                            if (found) {
-                                historyReport.step5PlusPlus();
-                                break;
+                                boolean found;
+                                found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion));
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
                             }
                         }
                         {
@@ -297,9 +338,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     if (equalMethod.test(targetOperationAfterInline)) {
                         UMLOperationBodyMapper bodyMapper = inlineOperationRefactoring.getBodyMapper();
                         for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
-                            Variable matchedVariableInsideInlinedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getOperation2(), currentVersion);
+                            Variable matchedVariableInsideInlinedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
                             if (matchedVariableInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), bodyMapper.getOperation1(), parentVersion);
+                                Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), bodyMapper.getContainer1(), parentVersion);
                                 variableChangeHistory.handleAdd(variableBefore, matchedVariableInsideInlinedMethodBody, inlineOperationRefactoring.toString());
                                 variables.add(variableBefore);
                                 variableChangeHistory.connectRelatedNodes();
@@ -341,9 +382,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
     private boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : umlOperationBodyMapper.getMatchedVariables()) {
-            Variable variableAfter = Variable.of(matchedVariablePair.getRight(), umlOperationBodyMapper.getOperation2(), currentVersion);
+            Variable variableAfter = Variable.of(matchedVariablePair.getRight(), umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(variableAfter)) {
-                Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), umlOperationBodyMapper.getOperation1(), parentVersion);
+                Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), umlOperationBodyMapper.getContainer1(), parentVersion);
                 variableChangeHistory.addChange(variableBefore, variableAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 variables.add(variableBefore);
                 variableChangeHistory.connectRelatedNodes();
@@ -353,11 +394,40 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         return false;
     }
 
+    private boolean isMatched(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion) {
+        for (VariableDeclaration leftVariable : leftMethod.getAllVariableDeclarations()) {
+            if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
+                List<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
+                List<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
+                boolean identicalStatementsInScope = false;
+                if (leftStatementsInScope.size() == rightStatementsInScope.size()) {
+                    int identicalStatementCount = 0;
+                    for (int i=0; i<leftStatementsInScope.size(); i++) {
+                        AbstractCodeFragment leftFragment = leftStatementsInScope.get(i);
+                        AbstractCodeFragment rightFragment = rightStatementsInScope.get(i);
+                        if (leftFragment.getString().equals(rightFragment.getString())) {
+                            identicalStatementCount++;
+                        }
+                    }
+                    identicalStatementsInScope = identicalStatementCount == leftStatementsInScope.size();
+                }
+                if (identicalStatementsInScope) {
+                    Variable variableBefore = Variable.of(leftVariable, leftMethod, parentVersion);
+                    variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    variables.add(variableBefore);
+                    variableChangeHistory.connectRelatedNodes();
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         for (VariableDeclaration addedVariable : umlOperationBodyMapper.getAddedVariables()) {
-            Variable variableAfter = Variable.of(addedVariable, umlOperationBodyMapper.getOperation2(), currentVersion);
+            Variable variableAfter = Variable.of(addedVariable, umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(variableAfter)) {
-                Variable variableBefore = Variable.of(addedVariable, umlOperationBodyMapper.getOperation2(), parentVersion);
+                Variable variableBefore = Variable.of(addedVariable, umlOperationBodyMapper.getContainer2(), parentVersion);
                 variableChangeHistory.handleAdd(variableBefore, variableAfter, "new variable");
                 variables.add(variableBefore);
                 variableChangeHistory.connectRelatedNodes();

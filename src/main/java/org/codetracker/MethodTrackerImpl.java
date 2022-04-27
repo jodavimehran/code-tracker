@@ -591,7 +591,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 if (found)
                     break;
                 for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
-                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
                     if (found)
                         break;
                 }
@@ -600,7 +600,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 if (found)
                     break;
                 for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
-                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
                     if (found)
                         break;
                 }
