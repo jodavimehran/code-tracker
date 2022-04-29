@@ -66,11 +66,33 @@ public abstract class BaseTracker {
     }
 
     protected static UMLClassBaseDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
+        int maxMatchedMembers = 0;
+        UMLClassBaseDiff maxRenameDiff = null;
+        UMLClassBaseDiff sameNameDiff = null;
         for (UMLClassBaseDiff classDiff : getAllClassesDiff(umlModelDiff)) {
-            if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className))
-                return classDiff;
+            if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className)) {
+                if (classDiff instanceof UMLClassRenameDiff) {
+                    UMLClassMatcher.MatchResult matchResult = ((UMLClassRenameDiff) classDiff).getMatchResult();
+                    int matchedMembers = matchResult.getMatchedOperations() + matchResult.getMatchedAttributes();
+                    if (matchedMembers > maxMatchedMembers) {
+                        maxMatchedMembers = matchedMembers;
+                        maxRenameDiff = classDiff;
+                    }
+                }
+                else if (classDiff instanceof UMLClassMoveDiff) {
+                    UMLClassMatcher.MatchResult matchResult = ((UMLClassMoveDiff) classDiff).getMatchResult();
+                    int matchedMembers = matchResult.getMatchedOperations() + matchResult.getMatchedAttributes();
+                    if (matchedMembers > maxMatchedMembers) {
+                        maxMatchedMembers = matchedMembers;
+                        maxRenameDiff = classDiff;
+                    }
+                }
+                else {
+                    sameNameDiff = classDiff;
+                }
+            }
         }
-        return null;
+        return sameNameDiff != null ? sameNameDiff : maxRenameDiff;
     }
 
     protected static Pair<UMLModel, UMLModel> getUMLModelPair(final CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate, final boolean filterLeftSide) throws Exception {
