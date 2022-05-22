@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
-  "functionName" : "invokeBeforeAllMethods",
-  "functionKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)",
-  "functionStartLine" : 365,
-  "variableName" : "throwableCollector",
-  "variableKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)$throwableCollector(368)",
-  "variableStartLine" : 368,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "62c433c14ce9d70fa5b82ef385a6e15c22cc0003",
-    "commitId" : "3e3b402131a99f01480c57dd82c2e81ad6d9a4ea",
-    "commitTime" : 1466884969,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)$throwableCollector:ThrowableCollector(213)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)$throwableCollector:ThrowableCollector(213)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+  "functionName": "invokeBeforeAllMethods",
+  "functionKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)",
+  "functionStartLine": 365,
+  "variableName": "throwableCollector",
+  "variableKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)$throwableCollector(368)",
+  "variableStartLine": 368,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "d565f81ce504834b2f8ecbf6a27956f94d723afd",
+      "commitId": "62c433c14ce9d70fa5b82ef385a6e15c22cc0003",
+      "commitTime": 1466882960,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(ExtensionRegistry, ContainerExtensionContext, ThrowableCollector)$throwableCollector:ThrowableCollector(215)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(ExtensionRegistry, ContainerExtensionContext, ThrowableCollector)$throwableCollector:ThrowableCollector(215)",
+      "comment": "Add Parameter throwableCollector : ThrowableCollector in method private invokeBeforeAllMethods(registry ExtensionRegistry, context ContainerExtensionContext, throwableCollector ThrowableCollector) : void from class org.junit.jupiter.engine.descriptor.ClassTestDescriptor"
+    }
+  ]
 }
