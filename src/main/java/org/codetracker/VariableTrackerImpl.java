@@ -531,9 +531,18 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                 case MERGE_PARAMETER:
                 case MERGE_VARIABLE: {
                     MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) refactoring;
-                    Variable addedVariableAfter = Variable.of(mergeVariableRefactoring.getNewVariable(), mergeVariableRefactoring.getOperationAfter(), currentVersion);
-                    if (equalOperator.test(addedVariableAfter)) {
-                        Variable addedVariableBefore = Variable.of(mergeVariableRefactoring.getNewVariable(), mergeVariableRefactoring.getOperationAfter(), parentVersion);
+                    VariableDeclaration newVariable = mergeVariableRefactoring.getNewVariable();
+                    Variable addedVariableAfter = Variable.of(newVariable, mergeVariableRefactoring.getOperationAfter(), currentVersion);
+                    for (VariableDeclaration originalVariableDeclaration : mergeVariableRefactoring.getOperationBefore().getAllVariableDeclarations()) {
+                        if (originalVariableDeclaration.getVariableName().equals(newVariable.getVariableName()) && originalVariableDeclaration.getType().equals(newVariable.getType()) && originalVariableDeclaration.isParameter() == newVariable.isParameter()) {
+                            variableBefore = Variable.of(originalVariableDeclaration, mergeVariableRefactoring.getOperationBefore(), parentVersion);
+                            variableAfter = addedVariableAfter;
+                            changeType = Change.Type.NO_CHANGE;
+                            break;
+                        }
+                    }
+                    if (equalOperator.test(addedVariableAfter) && variableBefore == null) {
+                        Variable addedVariableBefore = Variable.of(newVariable, mergeVariableRefactoring.getOperationAfter(), parentVersion);
                         addedVariableBefore.setAdded(true);
                         variableChangeHistory.addChange(addedVariableBefore, addedVariableAfter, ChangeFactory.forVariable(Change.Type.INTRODUCED).comment(mergeVariableRefactoring.toString()).refactoring(mergeVariableRefactoring).codeElement(addedVariableBefore));
                         leftVariableSet.add(addedVariableBefore);
