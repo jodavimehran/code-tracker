@@ -534,11 +534,28 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     VariableDeclaration newVariable = mergeVariableRefactoring.getNewVariable();
                     Variable addedVariableAfter = Variable.of(newVariable, mergeVariableRefactoring.getOperationAfter(), currentVersion);
                     for (VariableDeclaration originalVariableDeclaration : mergeVariableRefactoring.getOperationBefore().getAllVariableDeclarations()) {
-                        if (originalVariableDeclaration.getVariableName().equals(newVariable.getVariableName()) && originalVariableDeclaration.getType().equals(newVariable.getType()) && originalVariableDeclaration.isParameter() == newVariable.isParameter()) {
-                            variableBefore = Variable.of(originalVariableDeclaration, mergeVariableRefactoring.getOperationBefore(), parentVersion);
-                            variableAfter = addedVariableAfter;
-                            changeType = Change.Type.NO_CHANGE;
-                            break;
+                        if (originalVariableDeclaration.getVariableName().equals(newVariable.getVariableName()) && originalVariableDeclaration.isParameter() == newVariable.isParameter()) {
+                            if (originalVariableDeclaration.getType().equals(newVariable.getType())) {
+                                variableBefore = Variable.of(originalVariableDeclaration, mergeVariableRefactoring.getOperationBefore(), parentVersion);
+                                variableAfter = addedVariableAfter;
+                                changeType = Change.Type.NO_CHANGE;
+                                break;
+                            }
+                            else {
+                                boolean sameNameAsNewVariableInMergedVariables = false;
+                                for (VariableDeclaration mergedVariable : mergeVariableRefactoring.getMergedVariables()) {
+                                    if (mergedVariable.getVariableName().equals(newVariable.getVariableName())) {
+                                        sameNameAsNewVariableInMergedVariables = true;
+                                        break;
+                                    }
+                                }
+                                if (sameNameAsNewVariableInMergedVariables) {
+                                    variableBefore = Variable.of(originalVariableDeclaration, mergeVariableRefactoring.getOperationBefore(), parentVersion);
+                                    variableAfter = addedVariableAfter;
+                                    changeType = Change.Type.TYPE_CHANGE;
+                                    break;
+                                }
+                            }
                         }
                     }
                     if (equalOperator.test(addedVariableAfter) && variableBefore == null) {
