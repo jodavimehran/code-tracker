@@ -33,7 +33,8 @@ public class Variable extends BaseCodeElement {
                 method.getIdentifierIgnoringVersion(),
                 variableDeclaration.isFinal() ? "(final)" : "",
                 variableDeclaration.getVariableName(),
-                variableDeclaration.getType().toQualifiedString(),
+                //variableDeclaration.getType().toQualifiedString(),
+                variableDeclaration.getType() != null ? variableDeclaration.getType().toQualifiedString() : "",
                 Util.annotationsToString(variableDeclaration.getAnnotations()),
                 sha512,
                 variableDeclaration.getScope().getParentSignature()
