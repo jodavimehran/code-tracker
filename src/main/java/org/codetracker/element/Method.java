@@ -1,6 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
@@ -54,6 +55,14 @@ public class Method extends BaseCodeElement {
                     if (equalOperator.test(variable)) {
                         return variable;
                     }
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            for (VariableDeclaration parameter : lambda.getParameters()) {
+                Variable variable = Variable.of(parameter, this);
+                if (equalOperator.test(variable)) {
+                    return variable;
                 }
             }
         }

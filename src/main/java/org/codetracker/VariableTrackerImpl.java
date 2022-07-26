@@ -1,10 +1,8 @@
 package org.codetracker;
 
-import gr.uom.java.xmi.UMLClass;
-import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
-import gr.uom.java.xmi.VariableDeclarationContainer;
+import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
+import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.*;
@@ -396,28 +394,45 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
     private boolean isMatched(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion) {
         for (VariableDeclaration leftVariable : leftMethod.getAllVariableDeclarations()) {
-            if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
-                List<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
-                List<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
-                boolean identicalStatementsInScope = false;
-                if (leftStatementsInScope.size() == rightStatementsInScope.size()) {
-                    int identicalStatementCount = 0;
-                    for (int i=0; i<leftStatementsInScope.size(); i++) {
-                        AbstractCodeFragment leftFragment = leftStatementsInScope.get(i);
-                        AbstractCodeFragment rightFragment = rightStatementsInScope.get(i);
-                        if (leftFragment.getString().equals(rightFragment.getString())) {
-                            identicalStatementCount++;
-                        }
+            if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+        }
+        for (UMLAnonymousClass anonymousClass : leftMethod.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                for (VariableDeclaration leftVariable : operation.getAllVariableDeclarations()) {
+                    if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : leftMethod.getAllLambdas()) {
+            for (VariableDeclaration leftVariable : lambda.getParameters()) {
+                if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean matchingVariables(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion, VariableDeclaration leftVariable) {
+        if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
+            List<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
+            List<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
+            boolean identicalStatementsInScope = false;
+            if (leftStatementsInScope.size() == rightStatementsInScope.size()) {
+                int identicalStatementCount = 0;
+                for (int i=0; i<leftStatementsInScope.size(); i++) {
+                    AbstractCodeFragment leftFragment = leftStatementsInScope.get(i);
+                    AbstractCodeFragment rightFragment = rightStatementsInScope.get(i);
+                    if (leftFragment.getString().equals(rightFragment.getString())) {
+                        identicalStatementCount++;
                     }
-                    identicalStatementsInScope = identicalStatementCount == leftStatementsInScope.size();
                 }
-                if (identicalStatementsInScope) {
-                    Variable variableBefore = Variable.of(leftVariable, leftMethod, parentVersion);
-                    variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                    variables.add(variableBefore);
-                    variableChangeHistory.connectRelatedNodes();
-                    return true;
-                }
+                identicalStatementsInScope = identicalStatementCount == leftStatementsInScope.size();
+            }
+            if (identicalStatementsInScope) {
+                Variable variableBefore = Variable.of(leftVariable, leftMethod, parentVersion);
+                variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                variables.add(variableBefore);
+                variableChangeHistory.connectRelatedNodes();
+                return true;
             }
         }
         return false;

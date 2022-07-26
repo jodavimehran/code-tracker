@@ -34,7 +34,7 @@ public class Variable extends BaseCodeElement {
                 variableDeclaration.isFinal() ? "(final)" : "",
                 variableDeclaration.getVariableName(),
                 //variableDeclaration.getType().toQualifiedString(),
-                variableDeclaration.getType() != null ? variableDeclaration.getType().toQualifiedString() : "",
+                variableDeclaration.getType() != null ? variableDeclaration.getType().toQualifiedString() : null,
                 Util.annotationsToString(variableDeclaration.getAnnotations()),
                 sha512,
                 variableDeclaration.getScope().getParentSignature()
