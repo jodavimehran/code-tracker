@@ -32,7 +32,7 @@ import java.util.stream.Collectors;
 import static org.codetracker.util.FileUtil.writeToFile;
 
 public abstract class AbstractExperimentStarter {
-    protected final static String FOLDER_TO_CLONE = "H:\\Projects\\";
+    protected final static String FOLDER_TO_CLONE = "tmp/";
     protected static final String SUMMARY_RESULT_FILE_NAME_FORMAT = "experiments/tracking-accuracy/%s/%s/summary-%s-%s.csv";
     protected final static String SUMMARY_RESULT_HEADER;
     protected static final String DETAILED_RESULT_HEADER = "file_name, repository,element_key,parent_commit_id,commit_id,commit_time, change_type,element_file_before,element_file_after,element_name_before,element_name_after,result,comment" + System.lineSeparator();
