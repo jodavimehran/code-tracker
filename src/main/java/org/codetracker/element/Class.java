@@ -1,21 +1,21 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
-import gr.uom.java.xmi.UMLClass;
+import gr.uom.java.xmi.UMLAbstractClass;
 import org.codetracker.api.Version;
 
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
 
 public class Class extends BaseCodeElement {
-    private final UMLClass umlClass;
+    private final UMLAbstractClass umlClass;
 
-    private Class(UMLClass umlClass, String identifierExcludeVersion, String name, String filePath, Version version) {
+    private Class(UMLAbstractClass umlClass, String identifierExcludeVersion, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.umlClass = umlClass;
     }
 
-    public static Class of(UMLClass umlClass, Version version) {
+    public static Class of(UMLAbstractClass umlClass, Version version) {
         String sourceFolder = getPath(umlClass.getLocationInfo().getFilePath(), umlClass.getName());
         String packageName = umlClass.getPackageName();
         String name = umlClass.getName().replace(umlClass.getPackageName(), "").replace(".", "");
@@ -30,7 +30,7 @@ public class Class extends BaseCodeElement {
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
-    public UMLClass getUmlClass() {
+    public UMLAbstractClass getUmlClass() {
         return umlClass;
     }
 

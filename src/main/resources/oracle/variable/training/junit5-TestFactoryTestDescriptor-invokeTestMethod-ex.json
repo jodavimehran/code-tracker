@@ -1,23 +1,36 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-  "functionName" : "invokeTestMethod",
-  "functionKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)",
-  "functionStartLine" : 81,
-  "variableName" : "ex",
-  "variableKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$ex(100)",
-  "variableStartLine" : 100,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "abfdc052a981595c074308dc1dcd571e2c1c59d2",
-    "commitId" : "1a57e4f386a9f8cd6be0a08a4d914349d32a7f01",
-    "commitTime" : 1493811550,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$ex:ClassCastException(82)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$ex:ClassCastException(82)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+  "functionName": "invokeTestMethod",
+  "functionKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)",
+  "functionStartLine": 81,
+  "variableName": "ex",
+  "variableKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$ex(100)",
+  "variableStartLine": 100,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "86810b1b4def9b02d204dc7d9c54baa08ecfd242",
+      "commitId": "502a023f5c878321f08ab83bfe9e9395599cbb4e",
+      "commitTime": 1464783130,
+      "changeType": "rename",
+      "elementFileBefore": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$cce:ClassCastException(90)",
+      "elementFileAfter": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$ex:ClassCastException(82)",
+      "comment": "Rename Variable cce : ClassCastException to ex : ClassCastException in method protected invokeTestMethod(context JUnit5EngineExecutionContext, testExtensionContext TestExtensionContext, throwableCollector ThrowableCollector) : void from class org.junit.gen5.engine.junit5.descriptor.TestFactoryTestDescriptor"
+    },
+    {
+      "parentCommitId": "11850fce68fddb5fdcf6ae67a0474fb827710918",
+      "commitId": "abcdd7d3b4e072923ac92a2ed99dbc6ce0954319",
+      "commitTime": 1464034599,
+      "changeType": "introduced",
+      "elementFileBefore": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$cce:ClassCastException(75)",
+      "elementFileAfter": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameAfter": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$cce:ClassCastException(75)",
+      "comment": "new variable"
+    }
+  ]
 }

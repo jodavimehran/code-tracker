@@ -2,6 +2,7 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
@@ -11,15 +12,15 @@ import java.util.stream.Collectors;
 
 public class Variable extends BaseCodeElement {
     private final VariableDeclaration variableDeclaration;
-    private final UMLOperation operation;
+    private final VariableDeclarationContainer operation;
 
-    private Variable(VariableDeclaration variableDeclaration, UMLOperation operation, String identifierExcludeVersion, String name, String filePath, Version version) {
+    private Variable(VariableDeclaration variableDeclaration, VariableDeclarationContainer operation, String identifierExcludeVersion, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.variableDeclaration = variableDeclaration;
         this.operation = operation;
     }
 
-    public static Variable of(VariableDeclaration variableDeclaration, UMLOperation operation, Version version) {
+    public static Variable of(VariableDeclaration variableDeclaration, VariableDeclarationContainer operation, Version version) {
         Method method = Method.of(operation, version);
         return of(variableDeclaration, method);
     }
@@ -32,7 +33,8 @@ public class Variable extends BaseCodeElement {
                 method.getIdentifierIgnoringVersion(),
                 variableDeclaration.isFinal() ? "(final)" : "",
                 variableDeclaration.getVariableName(),
-                variableDeclaration.getType().toQualifiedString(),
+                //variableDeclaration.getType().toQualifiedString(),
+                variableDeclaration.getType() != null ? variableDeclaration.getType().toQualifiedString() : null,
                 Util.annotationsToString(variableDeclaration.getAnnotations()),
                 sha512,
                 variableDeclaration.getScope().getParentSignature()
@@ -44,7 +46,7 @@ public class Variable extends BaseCodeElement {
         return variableDeclaration;
     }
 
-    public UMLOperation getOperation() {
+    public VariableDeclarationContainer getOperation() {
         return operation;
     }
 

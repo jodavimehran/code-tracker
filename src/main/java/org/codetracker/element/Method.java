@@ -1,6 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
@@ -10,22 +11,33 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Method extends BaseCodeElement {
-    private final UMLOperation umlOperation;
+    private final VariableDeclarationContainer umlOperation;
     private final String documentsHashCode;
     private final String identifierIgnoringVersionAndDocumentationAndBody;
 
-    private Method(UMLOperation umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
+    private Method(VariableDeclarationContainer umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.umlOperation = umlOperation;
         this.documentsHashCode = getDocumentsSha512(umlOperation);
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
     }
 
-    public static Method of(UMLOperation umlOperation, Version version) {
+    public static Method of(VariableDeclarationContainer umlOperation, Version version) {
         String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
-        String identifierIgnoringVersion = getIdentifierExcludeVersion(umlOperation, true, true);
-        String identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion(umlOperation, false, false);
-        String name = String.format("%s%s", sourceFolder, umlOperation.getKey());
+        String identifierIgnoringVersion = null;
+        String identifierIgnoringVersionAndDocumentationAndBody = null;
+        String name = null;
+        if (umlOperation instanceof UMLOperation) {
+            identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true);
+            identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false);
+            name = String.format("%s%s", sourceFolder, ((UMLOperation) umlOperation).getKey());
+        }
+        else if (umlOperation instanceof UMLInitializer) {
+            identifierIgnoringVersion = getIdentifierExcludeVersion((UMLInitializer) umlOperation, true, true);
+            identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLInitializer) umlOperation, false, false);
+            name = String.format("%s%s", sourceFolder, umlOperation.getName());
+        }
+        //TODO support UMLAttribute in the future
         return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
@@ -46,10 +58,18 @@ public class Method extends BaseCodeElement {
                 }
             }
         }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            for (VariableDeclaration parameter : lambda.getParameters()) {
+                Variable variable = Variable.of(parameter, this);
+                if (equalOperator.test(variable)) {
+                    return variable;
+                }
+            }
+        }
         return null;
     }
 
-    public UMLOperation getUmlOperation() {
+    public VariableDeclarationContainer getUmlOperation() {
         return umlOperation;
     }
 
@@ -124,7 +144,37 @@ public class Method extends BaseCodeElement {
         return sb.toString();
     }
 
-    public static String getDocumentsSha512(UMLOperation info) {
+    public static String getIdentifierExcludeVersion(UMLInitializer info, boolean containsBody, boolean containsDocumentation) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
+        sb.append(info.getClassName());
+        sb.append("#");
+
+        List<String> modifiers = new ArrayList<>();
+        if (info.isStatic())
+            modifiers.add("static");
+
+        if (!modifiers.isEmpty()) {
+            modifiers.sort(String::compareTo);
+            sb.append(String.format("(%s)", String.join(",", modifiers)));
+        }
+
+        sb.append(info.getName());
+
+        if (containsBody && info.getBody() != null) {
+            sb.append("{");
+            sb.append(info.getBody().getBodyHashCode());
+            sb.append("}");
+        }
+        if (containsDocumentation && !info.getComments().isEmpty()) {
+            sb.append("{");
+            sb.append(getDocumentsSha512(info));
+            sb.append("}");
+        }
+        return sb.toString();
+    }
+
+    public static String getDocumentsSha512(VariableDeclarationContainer info) {
         if (info.getComments().isEmpty())
             return null;
         return Util.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));

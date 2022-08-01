@@ -16,6 +16,7 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
+import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -41,7 +42,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         return body1.getBodyHashCode() != body2.getBodyHashCode();
     }
 
-    public static boolean checkOperationDocumentationChanged(UMLOperation operation1, UMLOperation operation2) {
+    public static boolean checkOperationDocumentationChanged(VariableDeclarationContainer operation1, VariableDeclarationContainer operation2) {
         String comments1 = Util.getSHA512(operation1.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
         String comments2 = Util.getSHA512(operation2.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
         return !comments1.equals(comments2);
@@ -58,7 +59,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         HistoryImpl.HistoryReportImpl historyReport = new HistoryImpl.HistoryReportImpl();
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
-            UMLModel umlModel = getUMLModel(startCommitId, Collections.singletonList(filePath));
+            UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
             Method start = getMethod(umlModel, startVersion, this::isStartMethod);
             if (start == null) {
                 return null;
@@ -76,8 +77,9 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     commits = null;
                     continue;
                 }
-                if (commits == null || !currentMethod.getFilePath().equals(lastFileName)) {
-                    lastFileName = currentMethod.getFilePath();
+                final String currentMethodFilePath = currentMethod.getFilePath();
+                if (commits == null || !currentMethodFilePath.equals(lastFileName)) {
+                    lastFileName = currentMethodFilePath;
                     commits = getCommits(repository, currentMethod.getVersion().getId(), lastFileName, git);
                     historyReport.gitLogCommandCallsPlusPlus();
                     analysedCommits.clear();
@@ -95,7 +97,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     Version parentVersion = gitRepository.getVersion(parentCommitId);
 
 
-                    UMLModel rightModel = getUMLModel(commitId, Collections.singletonList(currentMethod.getFilePath()));
+                    UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentMethodFilePath));
                     Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                     if (rightMethod == null) {
                         continue;
@@ -108,7 +110,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         methods.add(leftMethod);
                         break;
                     }
-                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singletonList(currentMethod.getFilePath()));
+                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethodFilePath));
 
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
@@ -132,7 +134,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     }
 
                     //Local Refactoring
-                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
+                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
                         Set<Method> leftSideMethods = analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
@@ -147,28 +149,50 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     {
                         CommitModel commitModel = getCommitModel(commitId);
                         if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
-                            Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, currentMethod.getFilePath(), s -> true, true);
-                            UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight(), commitModel.renamedFilesHint);
-                            List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-                            Set<Method> methodContainerChanged = isMethodContainerChanged(umlModelDiffPartial, refactoringsPartial, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
-                            boolean containerChanged = !methodContainerChanged.isEmpty();
+                            Set<Method> methodContainerChanged = null;
+                            boolean containerChanged = false;
+                            boolean found = false;
+                            for (MoveSourceFolderRefactoring moveSourceFolderRefactoring : commitModel.moveSourceFolderRefactorings) {
+                                if (found)
+                                    break;
+                                for (Map.Entry<String, String> identicalPath : moveSourceFolderRefactoring.getIdenticalFilePaths().entrySet()) {
+                                    if (identicalPath.getValue().equals(currentMethodFilePath)) {
+                                        String leftSideFileName = identicalPath.getKey();
 
-                            Set<Method> methodRefactored = analyseMethodRefactorings(refactoringsPartial, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
-                            boolean refactored = !methodRefactored.isEmpty();
-
-                            if (containerChanged || refactored) {
-                                Set<Method> leftSideMethods = new HashSet<>();
-                                leftSideMethods.addAll(methodContainerChanged);
-                                leftSideMethods.addAll(methodRefactored);
-                                leftSideMethods.forEach(methods::addFirst);
+                                        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
+                                        UMLClass originalClass = null;
+                                        for(UMLClass leftSideClass : leftSideUMLModel.getClassList()){
+                                            if(leftSideClass.getName().equals(currentMethod.getUmlOperation().getClassName())){
+                                                originalClass = leftSideClass;
+                                                break;
+                                            }
+                                        }
+                                        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(currentMethodFilePath)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
+                                        UMLClass movedClass = null;
+                                        for(UMLClass rightSideClass : rightSideUMLModel.getClassList()){
+                                            if(rightSideClass.getName().equals(currentMethod.getUmlOperation().getClassName())){
+                                                movedClass = rightSideClass;
+                                                break;
+                                            }
+                                        }
+                                        moveSourceFolderRefactoring.getMovedClassesToAnotherSourceFolder().add(new MovedClassToAnotherSourceFolder(originalClass, movedClass, identicalPath.getKey(), identicalPath.getValue()));
+                                        methodContainerChanged = isMethodContainerChanged(null, Collections.singletonList(moveSourceFolderRefactoring), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                        containerChanged = !methodContainerChanged.isEmpty();
+                                        found = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (containerChanged) {
+                                methodContainerChanged.forEach(methods::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
                         }
                         {
                             Set<String> fileNames = getRightSideFileNames(currentMethod, commitModel, umlModelDiffLocal);
-                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
-                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethodFilePath, fileNames::contains, false);
+                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
                             boolean flag = false;
@@ -178,8 +202,8 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                     Method movedOperation = Method.of(moveOperationRefactoring.getMovedOperation(), currentVersion);
                                     if (rightMethod.equalIdentifierIgnoringVersion(movedOperation)) {
                                         fileNames.add(moveOperationRefactoring.getOriginalOperation().getLocationInfo().getFilePath());
-                                        umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
-                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight(), commitModel.renamedFilesHint);
+                                        umlModelPairAll = getUMLModelPair(commitModel, currentMethodFilePath, fileNames::contains, false);
+                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                         flag = true;
                                         break;
                                     }
@@ -219,8 +243,8 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
     public Set<Method> analyseMethodRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator) {
         Set<Method> leftMethodSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
+            VariableDeclarationContainer operationBefore = null;
+            VariableDeclarationContainer operationAfter = null;
             Change.Type changeType = null;
 
             switch (refactoring.getRefactoringType()) {
@@ -456,7 +480,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         return leftMethodSet;
     }
 
-    public boolean addMethodChange(Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, Set<Method> leftMethodSet, Refactoring refactoring, UMLOperation operationBefore, UMLOperation operationAfter, Change.Type changeType) {
+    public boolean addMethodChange(Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, Set<Method> leftMethodSet, Refactoring refactoring, VariableDeclarationContainer operationBefore, VariableDeclarationContainer operationAfter, Change.Type changeType) {
         if (operationAfter != null) {
             Method methodAfter = Method.of(operationAfter, currentVersion);
             if (equalOperator.test(methodAfter)) {
@@ -562,23 +586,24 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 }
             }
         }
-
-        for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
-            if (found)
-                break;
-            for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
-                found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+        if (umlModelDiffAll != null) {
+            for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
                 if (found)
                     break;
+                for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
+                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
+                    if (found)
+                        break;
+                }
             }
-        }
-        for (UMLClassMoveDiff classMoveDiff : getClassMoveDiffList(umlModelDiffAll)) {
-            if (found)
-                break;
-            for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
-                found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getOperation1(), umlOperationBodyMapper.getOperation2(), changeType);
+            for (UMLClassMoveDiff classMoveDiff : getClassMoveDiffList(umlModelDiffAll)) {
                 if (found)
                     break;
+                for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
+                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
+                    if (found)
+                        break;
+                }
             }
         }
         if (found) {

@@ -52,11 +52,11 @@ public abstract class BaseTracker {
         UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
         if (umlClassDiff != null) {
             for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
-                Method methodLeft = Method.of(operationBodyMapper.getOperation1(), parentVersion);
+                Method methodLeft = Method.of(operationBodyMapper.getContainer1(), parentVersion);
                 if (method.equalIdentifierIgnoringVersion(methodLeft)) {
                     return operationBodyMapper;
                 }
-                Method methodRight = Method.of(operationBodyMapper.getOperation2(), currentVersion);
+                Method methodRight = Method.of(operationBodyMapper.getContainer2(), currentVersion);
                 if (method.equalIdentifierIgnoringVersion(methodRight)) {
                     return operationBodyMapper;
                 }
@@ -66,11 +66,33 @@ public abstract class BaseTracker {
     }
 
     protected static UMLClassBaseDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
+        int maxMatchedMembers = 0;
+        UMLClassBaseDiff maxRenameDiff = null;
+        UMLClassBaseDiff sameNameDiff = null;
         for (UMLClassBaseDiff classDiff : getAllClassesDiff(umlModelDiff)) {
-            if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className))
-                return classDiff;
+            if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className)) {
+                if (classDiff instanceof UMLClassRenameDiff) {
+                    UMLClassMatcher.MatchResult matchResult = ((UMLClassRenameDiff) classDiff).getMatchResult();
+                    int matchedMembers = matchResult.getMatchedOperations() + matchResult.getMatchedAttributes();
+                    if (matchedMembers > maxMatchedMembers) {
+                        maxMatchedMembers = matchedMembers;
+                        maxRenameDiff = classDiff;
+                    }
+                }
+                else if (classDiff instanceof UMLClassMoveDiff) {
+                    UMLClassMatcher.MatchResult matchResult = ((UMLClassMoveDiff) classDiff).getMatchResult();
+                    int matchedMembers = matchResult.getMatchedOperations() + matchResult.getMatchedAttributes();
+                    if (matchedMembers > maxMatchedMembers) {
+                        maxMatchedMembers = matchedMembers;
+                        maxRenameDiff = classDiff;
+                    }
+                }
+                else {
+                    sameNameDiff = classDiff;
+                }
+            }
         }
-        return null;
+        return sameNameDiff != null ? sameNameDiff : maxRenameDiff;
     }
 
     protected static Pair<UMLModel, UMLModel> getUMLModelPair(final CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate, final boolean filterLeftSide) throws Exception {
@@ -95,14 +117,14 @@ public abstract class BaseTracker {
             }
 
             final String leftSideFileNameFinal = leftSideFileName;
-            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
             leftSideUMLModel.setPartial(true);
             rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(map -> map.getKey(), map -> map.getValue())), commitModel.repositoryDirectoriesCurrent);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
             leftSideUMLModel.setPartial(true);
             rightSideUMLModel.setPartial(true);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
@@ -118,8 +140,18 @@ public abstract class BaseTracker {
         String currentFilePath = currentMethod.getFilePath();
         String currentClassName = currentMethod.getUmlOperation().getClassName();
         Set<String> toBeAddedFileNamesIfTheyAreNewFiles = new HashSet<>();
-        for (UMLParameter parameter : currentMethod.getUmlOperation().getParameters()) {
-            String parameterType = parameter.getType().getClassType();
+        if (currentMethod.getUmlOperation() instanceof UMLOperation) {
+            UMLOperation operation = (UMLOperation) currentMethod.getUmlOperation();
+            UMLParameter returnParameter = operation.getReturnParameter();
+            if (returnParameter != null) {
+                String parameterType = returnParameter.getType().getClassType();
+                if (!"void".equals(parameterType)) {
+                    toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
+                }
+            }
+        }
+        for (UMLType parameter : currentMethod.getUmlOperation().getParameterTypeList()) {
+            String parameterType = parameter.getClassType();
             if ("void".equals(parameterType))
                 continue;
             toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
@@ -294,7 +326,7 @@ public abstract class BaseTracker {
         return null;
     }
 
-    public static UMLModel getUMLModel(Repository repository, String commitId, List<String> fileNames) throws Exception {
+    public static UMLModel getUMLModel(Repository repository, String commitId, Set<String> fileNames) throws Exception {
         if (fileNames == null || fileNames.isEmpty())
             return null;
         try (RevWalk walk = new RevWalk(repository)) {
@@ -305,7 +337,7 @@ public abstract class BaseTracker {
         }
     }
 
-    public static UMLModel getUmlModel(Repository repository, RevCommit commit, List<String> filePaths) throws Exception {
+    public static UMLModel getUmlModel(Repository repository, RevCommit commit, Set<String> filePaths) throws Exception {
         Set<String> repositoryDirectories = new LinkedHashSet<>();
         Map<String, String> fileContents = new LinkedHashMap<>();
         GitHistoryRefactoringMinerImpl.populateFileContents(repository, commit, filePaths, fileContents, repositoryDirectories);
@@ -328,7 +360,7 @@ public abstract class BaseTracker {
         return allMoveClassesDiff;
     }
 
-    protected UMLModel getUMLModel(String commitId, List<String> fileNames) throws Exception {
+    protected UMLModel getUMLModel(String commitId, Set<String> fileNames) throws Exception {
         return getUMLModel(repository, commitId, fileNames);
     }
 
@@ -353,14 +385,14 @@ public abstract class BaseTracker {
 
     private CommitModel getCommitModel(RevCommit parentCommit1, RevCommit parentCommit2, RevCommit currentCommit) throws Exception {
         Map<String, String> renamedFilesHint = new HashMap<>();
-        List<String> filePathsBefore1 = new ArrayList<>();
-        List<String> filePathsCurrent1 = new ArrayList<>();
+        Set<String> filePathsBefore1 = new HashSet<>();
+        Set<String> filePathsCurrent1 = new HashSet<>();
         if (parentCommit1 != null) {
             gitService.fileTreeDiff(repository, currentCommit, filePathsBefore1, filePathsCurrent1, renamedFilesHint);
         }
 
-        List<String> filePathsBefore2 = new ArrayList<>();
-        List<String> filePathsCurrent2 = new ArrayList<>();
+        Set<String> filePathsBefore2 = new HashSet<>();
+        Set<String> filePathsCurrent2 = new HashSet<>();
         if (parentCommit2 != null) {
             gitService.fileTreeDiff(repository, currentCommit, filePathsBefore2, filePathsCurrent2, renamedFilesHint);
         }
@@ -380,7 +412,7 @@ public abstract class BaseTracker {
         Set<String> filePathsCurrent = new HashSet<>();
         filePathsCurrent.addAll(filePathsCurrent1);
         filePathsCurrent.addAll(filePathsCurrent2);
-        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, new ArrayList<>(filePathsCurrent), fileContentsCurrent, repositoryDirectoriesCurrent);
+        GitHistoryRefactoringMinerImpl.populateFileContents(repository, currentCommit, filePathsCurrent, fileContentsCurrent, repositoryDirectoriesCurrent);
 
         Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(fileContentsBefore);
         Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
