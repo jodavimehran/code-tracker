@@ -457,7 +457,16 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                 case EXTRACT_OPERATION: {
                     ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
                     operationBefore = extractOperationRefactoring.getSourceOperationBeforeExtraction();
-                    operationAfter = extractOperationRefactoring.getSourceOperationAfterExtraction();
+                    if (extractOperationRefactoring.getBodyMapper().isNested()) {
+                        UMLOperationBodyMapper parentMapper = extractOperationRefactoring.getBodyMapper().getParentMapper();
+                        while (parentMapper.getParentMapper() != null) {
+                            parentMapper = parentMapper.getParentMapper();
+                        }
+                        operationAfter = parentMapper.getContainer2();
+                    }
+                    else {
+                        operationAfter = extractOperationRefactoring.getSourceOperationAfterExtraction();
+                    }
                     changeType = Change.Type.BODY_CHANGE;
 
                     UMLOperation extractedOperation = extractOperationRefactoring.getExtractedOperation();
