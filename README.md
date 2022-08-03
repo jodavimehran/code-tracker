@@ -42,11 +42,11 @@ Note: by default the repository https://github.com/checkstyle/checkstyle.git wil
 If you want to change folder where the repository will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.Main`
 and execute `mvn install` again
 
-5. **Run the method tracking experiment**
+5. **Run the method tracking experiment** (takes around 20 minutes for 200 tracked methods)
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.MethodExperimentStarter"`
 
-6. **Run the variable tracking experiment**
+6. **Run the variable tracking experiment** (takes around 2 hours for 1345 tracked variables)
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.VariableExperimentStarter"`
 
@@ -75,13 +75,13 @@ From the Package Explorer navigate to `org.codetracker.Main`
 
 Right-click on the file and select *Run as* -> *Java Application*
 
-4. **Run the method tracking experiment**
+4. **Run the method tracking experiment** (takes around 20 minutes for 200 tracked methods)
 
 From the Package Explorer navigate to `org.codetracker.experiment.MethodExperimentStarter`
 
 Right-click on the file and select *Run as* -> *Java Application*
 
-5. **Run the variable tracking experiment**
+5. **Run the variable tracking experiment** (takes around 2 hours for 1345 tracked variables)
 
 From the Package Explorer navigate to `org.codetracker.experiment.VariableExperimentStarter`
 
@@ -108,13 +108,13 @@ From the Project tab navigate to `org.codetracker.Main`
 
 Right-click on the file and select *Run Main.main()*
 
-4. **Run the method tracking experiment**
+4. **Run the method tracking experiment** (takes around 20 minutes for 200 tracked methods)
 
 From the Project tab navigate to `org.codetracker.experiment.MethodExperimentStarter`
 
 Right-click on the file and select *Run MethodExperimentStarter.main()*
 
-5. **Run the variable tracking experiment**
+5. **Run the variable tracking experiment** (takes around 2 hours for 1345 tracked variables)
 
 From the Project tab navigate to `org.codetracker.experiment.VariableExperimentStarter`
 
@@ -243,7 +243,7 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # Oracle
-The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1346 variables declared in these methods, is available in the following links:
+The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1345 variables declared in these methods, is available in the following links:
 * [Method](src/main/resources/oracle/method)
   * [Training](src/main/resources/oracle/method/training)
   * [Test](src/main/resources/oracle/method/test)
