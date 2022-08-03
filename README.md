@@ -5,6 +5,8 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
 # Table of Contents
 
   * [How to Build and Run](#how-to-build-and-run)
+      * [Command line](#command-line)
+      * [Eclipse IDE](#eclipse-ide)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
@@ -14,20 +16,20 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
 
 
 # How to Build and Run
-## Command line:
-1. Clone repository
+## Command line
+1. **Clone repository**
 
 `git clone https://github.com/jodavimehran/code-tracker.git`
 
-2. Cd in the clone repo
+2. **Cd in the locally cloned repository folder**
 
 `cd code-tracker`
 
-3. Build code-tracker
+3. **Build code-tracker**
 
 `mvn install`
 
-4. Run the API usage examples shown in README
+4. **Run the API usage examples shown in README**
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.Main"`
 
@@ -35,17 +37,50 @@ Note: by default the repository https://github.com/checkstyle/checkstyle.git wil
 If you want to change folder where the repository will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.Main`
 and execute `mvn install` again
 
-5. Run the method tracking experiment
+5. **Run the method tracking experiment**
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.MethodExperimentStarter"`
 
-6. Run the variable tracking experiment
+6. **Run the variable tracking experiment**
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.VariableExperimentStarter"`
 
 Note: by default the analyzed repositories will be cloned in folder "code-tracker/tmp".
 If you want to change folder where the repositories will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.experiment.AbstractExperimentStarter`
 and execute `mvn install` again 
+
+## Eclipse IDE
+1. **Clone repository**
+
+`git clone https://github.com/jodavimehran/code-tracker.git`
+
+2. **Import project**
+
+Go to *File* -> *Import...* -> *Maven* -> *Existing Maven Projects*
+
+*Browse* to the root directory of project code-tracker
+
+Click *Finish*
+
+The project will be built automatically.
+
+3. **Run the API usage examples shown in README**
+
+From the Package Explorer navigate to `org.codetracker.Main`
+
+Right-click on the file and select *Run as* -> *Java Application*
+
+4. **Run the method tracking experiment**
+
+From the Package Explorer navigate to `org.codetracker.experiment.MethodExperimentStarter`
+
+Right-click on the file and select *Run as* -> *Java Application*
+
+5. **Run the variable tracking experiment**
+
+From the Package Explorer navigate to `org.codetracker.experiment.VariableExperimentStarter`
+
+Right-click on the File and select *Run as* -> *Java Application*
 
 # How to add as a Maven dependency
 
