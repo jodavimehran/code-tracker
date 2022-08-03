@@ -4,7 +4,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
 
 # Table of Contents
 
-  * [How to Build](#how-to-build)
+  * [How to Build and Run](#how-to-build-and-run)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
@@ -13,10 +13,39 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [Experiments](#experiments)
 
 
-# How to Build
-To build this project you need to have Maven.
+# How to Build and Run
+## Command line:
+1. Clone repository
 
-Run `mvn install` in the root folder of CodeTracker.
+`git clone https://github.com/jodavimehran/code-tracker.git`
+
+2. Cd in the clone repo
+
+`cd code-tracker`
+
+3. Build code-tracker
+
+`mvn install`
+
+4. Run the API usage examples shown in README
+
+`mvn compile exec:java -Dexec.mainClass="org.codetracker.Main"`
+
+Note: by default the repository https://github.com/checkstyle/checkstyle.git will be cloned in folder "code-tracker/tmp".
+If you want to change folder where the repository will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.Main`
+and execute `mvn install` again
+
+5. Run the method tracking experiment
+
+`mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.MethodExperimentStarter"`
+
+6. Run the variable tracking experiment
+
+`mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.VariableExperimentStarter"`
+
+Note: by default the analyzed repositories will be cloned in folder "code-tracker/tmp".
+If you want to change folder where the repositories will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.experiment.AbstractExperimentStarter`
+and execute `mvn install` again 
 
 # How to add as a Maven dependency
 
