@@ -84,12 +84,14 @@ Right-click on the File and select *Run as* -> *Java Application*
 
 # How to add as a Maven dependency
 
-To add code-tracker as a maven dependency in your project, add the following dependency:
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker)
+
+To add code-tracker as a maven dependency in your project, add the following dependency in your project's pox.xml:
 
     <dependency>
-      <groupId>org.codetracker</groupId>
+      <groupId>io.github.jodavimehran</groupId>
       <artifactId>code-tracker</artifactId>
-      <version>1.1-SNAPSHOT</version>
+      <version>1.0</version>
     </dependency>
 
 # How to Track Methods
