@@ -7,6 +7,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to Build and Run](#how-to-build-and-run)
       * [Command line](#command-line)
       * [Eclipse IDE](#eclipse-ide)
+      * [IntelliJ IDEA](#intellij-idea)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
@@ -84,7 +85,41 @@ Right-click on the file and select *Run as* -> *Java Application*
 
 From the Package Explorer navigate to `org.codetracker.experiment.VariableExperimentStarter`
 
-Right-click on the File and select *Run as* -> *Java Application*
+Right-click on the file and select *Run as* -> *Java Application*
+
+## IntelliJ IDEA
+1. **Clone repository**
+
+`git clone https://github.com/jodavimehran/code-tracker.git`
+
+2. **Import project**
+
+Go to *File* -> *Open...*
+
+Browse to the root directory of project code-tracker
+
+Click *OK*
+
+The project will be built automatically.
+
+3. **Run the API usage examples shown in README**
+
+From the Project tab navigate to `org.codetracker.Main`
+
+Right-click on the file and select *Run Main.main()*
+
+4. **Run the method tracking experiment**
+
+From the Project tab navigate to `org.codetracker.experiment.MethodExperimentStarter`
+
+Right-click on the file and select *Run MethodExperimentStarter.main()*
+
+5. **Run the variable tracking experiment**
+
+From the Project tab navigate to `org.codetracker.experiment.VariableExperimentStarter`
+
+Right-click on the file and select *Run VariableExperimentStarter.main()*
+
 
 # How to add as a Maven dependency
 
