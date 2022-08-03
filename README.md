@@ -3,7 +3,7 @@
 This project aims to introduce CodeTracker, a refactoring-aware tool that can generate the commit change history for method and variable declarations in a Java project with a very high accuracy.
 
 # Table of Contents
-
+  * [Requirements](#requirements)
   * [How to Build and Run](#how-to-build-and-run)
       * [Command line](#command-line)
       * [Eclipse IDE](#eclipse-ide)
@@ -14,6 +14,10 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [Oracle](#oracle)
   * [Experiments](#experiments)
 
+# Requirements
+Java 11.0.15 or newer
+
+Apache Maven 3.6.3 or newer
 
 # How to Build and Run
 ## Command line
@@ -86,7 +90,7 @@ Right-click on the File and select *Run as* -> *Java Application*
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker)
 
-To add code-tracker as a maven dependency in your project, add the following dependency in your project's pox.xml:
+To add code-tracker as a maven dependency in your project, add the following dependency in your project's pom.xml:
 
     <dependency>
       <groupId>io.github.jodavimehran</groupId>
