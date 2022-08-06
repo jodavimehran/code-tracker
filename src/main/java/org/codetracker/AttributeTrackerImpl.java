@@ -39,15 +39,19 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             for (UMLClass umlClass : umlModel.getClassList()) {
                 Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
                 if (attribute != null) return attribute;
+                attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
+                if (attribute != null) return attribute;
                 for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
                     attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
+                    if (attribute != null) return attribute;
+                    attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
                     if (attribute != null) return attribute;
                 }
             }
         return null;
     }
 
-    private static Attribute getAttribute(Version version, Predicate<Attribute> predicate, List<UMLAttribute> attributes) {
+    private static Attribute getAttribute(Version version, Predicate<Attribute> predicate, List<? extends UMLAttribute> attributes) {
         for (UMLAttribute umlAttribute : attributes) {
             Attribute attribute = Attribute.of(umlAttribute, version);
             if (predicate.test(attribute))
