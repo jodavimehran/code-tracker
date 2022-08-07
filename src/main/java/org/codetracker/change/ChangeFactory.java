@@ -2,6 +2,7 @@ package org.codetracker.change;
 
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
+import org.codetracker.api.Version;
 import org.codetracker.change.attribute.*;
 import org.codetracker.change.clazz.*;
 import org.codetracker.change.method.*;
@@ -14,6 +15,8 @@ public final class ChangeFactory {
     private Refactoring refactoring;
     private CodeElement codeElement;
     private String comment;
+    private Version parentVersion;
+    private Version childVersion;
 
     private ChangeFactory(Change.Type type, String elementType) {
         this.type = type;
@@ -52,6 +55,16 @@ public final class ChangeFactory {
 
     public ChangeFactory codeElement(CodeElement codeElement) {
         this.codeElement = codeElement;
+        return this;
+    }
+
+    public ChangeFactory parentVersion(Version version) {
+        this.parentVersion = version;
+        return this;
+    }
+
+    public ChangeFactory childVersion(Version version) {
+        this.childVersion = version;
         return this;
     }
 
@@ -94,7 +107,7 @@ public final class ChangeFactory {
                 if (codeElement == null)
                     throw new NullPointerException();
                 if (refactoring != null && isMethod())
-                    change = new Extracted(refactoring, codeElement);
+                    change = new Extracted(refactoring, codeElement, parentVersion, childVersion);
                 else
                     change = new Introduced(codeElement, comment, refactoring);
                 break;

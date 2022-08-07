@@ -1,5 +1,7 @@
 package org.codetracker.change;
 
+import java.util.Optional;
+
 public abstract class AbstractChange implements Change {
     protected final Type type;
 
@@ -15,4 +17,6 @@ public abstract class AbstractChange implements Change {
     public String toString() {
         return type.toString();
     }
+
+    public Optional<EvolutionHook> getEvolutionHook() { return Optional.empty(); }
 }

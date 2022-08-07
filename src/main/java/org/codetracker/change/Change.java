@@ -2,10 +2,13 @@ package org.codetracker.change;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 public interface Change {
 
     Type getType();
+
+    Optional<EvolutionHook> getEvolutionHook();
 
     enum Type {
         NO_CHANGE("not changed"),

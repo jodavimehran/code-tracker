@@ -30,6 +30,7 @@ public class ChangeHistory<T extends BaseCodeElement> {
             return;
         if (leftSide.equals(rightSide))
             return;
+        changeFactory.parentVersion(leftSide.getVersion()).childVersion(rightSide.getVersion());
         Optional<Edge> edgeValue = changeHistoryGraph.edgeValue(leftSide, rightSide);
         if (edgeValue.isPresent()) {
             EdgeImpl edge = (EdgeImpl) edgeValue.get();
