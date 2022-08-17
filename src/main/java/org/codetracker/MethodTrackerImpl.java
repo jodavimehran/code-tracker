@@ -527,8 +527,26 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             }
         }
 
-        for (UMLClassRenameDiff classRenameDiffList : modelDiff.getClassRenameDiffList()) {
-            for (UMLAnonymousClass addedAnonymousClasses : classRenameDiffList.getAddedAnonymousClasses()) {
+        for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
+                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+                    if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                        return true;
+                }
+            }
+        }
+
+        for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
+                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+                    if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                        return true;
+                }
+            }
+        }
+
+        for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
                 for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
                     if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
