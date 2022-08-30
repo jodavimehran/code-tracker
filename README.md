@@ -251,6 +251,28 @@ The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle
   * [Training](src/main/resources/oracle/variable/training)
   * [Test](src/main/resources/oracle/variable/test)
 
+### JSON property descriptions
+**repositoryName**: folder in which the repository is cloned  
+**repositoryWebURL**: Git repository URL  
+**filePath**: file path in the start commit  
+**functionName**: method declaration name in the start commit  
+**functionKey**: unique string key of the method declaration in the start commit  
+**functionStartLine**: method declaration start line in the start commit  
+**variableName**: variable declaration name in the start commit  
+**variableKey**: unique string key of the variable declaration in the start commit  
+**variableStartLine**: variable declaration start line in the start commit  
+**startCommitId**: start commit SHA-1  
+**expectedChanges**: list of changes on the tracked program element in the commit history of the project  
+**parentCommitId**: parent commit SHA-1  
+**commitId**: child commit SHA-1  
+**commitTime**: commit time in Unix epoch (or Unix time or POSIX time or Unix timestamp) format  
+**changeType**: type change  
+**elementFileBefore**: file path in the parent commit  
+**elementNameBefore**: unique string key of the program element in the parent commit  
+**elementFileAfter**: file path in the child commit  
+**elementNameAfter**: unique string key of the program element in the child commit  
+**comment**: Refactoring or change description
+
 ### Some Samples of CodeShovel's false cases
 In the extended oracle we fixed all inaccuracies that we found in the original oracle. For example, the following methods in the original oracle are erroneously matched with another method which is extracted from their body. In fact, these methods are *introduced* as a result of an Extract Method refactoring.
 * Training
