@@ -294,3 +294,18 @@ To avoid unnecessary processing and speed up the tracking process, CodeTracker e
 * [Method](experiments/tracking-accuracy/method)
 * [Variable](experiments/tracking-accuracy/variable)
   
+### CSV column descriptions
+`detailed-tracker-training.csv` `detailed-tracker-test.csv`  
+**file_name**: corresponding JSON file name in the oracle  
+**repository**: Git repository URL  
+**element_key**: unique string key of the program element in the start commit  
+**parent_commit_id**: parent commit SHA-1  
+**commit_id**: child commit SHA-1  
+**commit_time**: commit time in Unix epoch (or Unix time or POSIX time or Unix timestamp) format  
+**change_type**: type of change  
+**element_file_before**: file path in the parent commit  
+**element_file_after**: file path in the child commit  
+**element_name_before**: unique string key of the program element in the parent commit  
+**element_name_after**: unique string key of the program element in the child commit  
+**result**: True Positive (TP), False Positive (FP) or False Negative (FN)  
+**comment**: Refactoring or change description  
