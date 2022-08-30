@@ -335,5 +335,5 @@ To avoid unnecessary processing and speed up the tracking process, CodeTracker e
 **tp**: total number of True Positives (TP)  
 **fp**: total number of False Positives (FP)  
 **fn**: total number of False Negatives (FN)  
-**precision**: precision percentage
-**recall**: recall percentage
+**precision**: precision percentage  
+**recall**: recall percentage  
