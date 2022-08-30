@@ -309,3 +309,31 @@ To avoid unnecessary processing and speed up the tracking process, CodeTracker e
 **element_name_after**: unique string key of the program element in the child commit  
 **result**: True Positive (TP), False Positive (FP) or False Negative (FN)  
 **comment**: Refactoring or change description  
+
+`summary-tracker-training.csv` `summary-tracker-test.csv`  
+**instance**: unique string key of the program element in the start commit  
+**processing_time**: total execution time in milliseconds  
+**analysed_commits**: total number of processed commits  
+**git_log_command_calls**: number of times git log command was executed (step 1 of our approach)  
+**step2**: number of times step 2 of our approach was executed  
+**step3**: number of times step 3 of our approach was executed  
+**step4**: number of times step 4 of our approach was executed  
+**step5**: number of times step 5 of our approach was executed  
+**tp_change_type**: number of True Positives (TP) for this specific `change_type`  
+**fp_change_type**: number of False Positives (FP) for this specific `change_type`  
+**fn_change_type**: number of False Negatives (FN) for this specific `change_type`  
+**tp_all**: total number of True Positives (TP)  
+**fp_all**: total number of False Positives (FP)  
+**fn_all**: total number of False Negatives (FN)  
+
+`final.csv`  
+**tool**: tool name (tracker or shovel)  
+**oracle**: oracle name (training or test)  
+**level**: change report level (commit or change)  
+**processing_time_avg**: average processing time  
+**processing_time_median**: median processing time  
+**tp**: total number of True Positives (TP)  
+**fp**: total number of False Positives (FP)  
+**fn**: total number of False Negatives (FN)  
+**precision**: precision percentage
+**recall**: recall percentage
