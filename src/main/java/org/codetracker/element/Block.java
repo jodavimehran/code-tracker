@@ -32,7 +32,7 @@ public class Block extends BaseCodeElement {
         String identifierExcludeVersion = String.format(
                 "%s$%s:{%s,%s}",
                 method.getIdentifierIgnoringVersion(),
-                compositeLocationInfo.getCodeElementType().getName(),
+                statementType,
                 sha512,
                 composite.getSignature()
         );
