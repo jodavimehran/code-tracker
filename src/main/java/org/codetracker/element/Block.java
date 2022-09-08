@@ -28,7 +28,7 @@ public class Block extends BaseCodeElement {
         LocationInfo compositeLocationInfo = composite.getLocationInfo();
         String statementType = compositeLocationInfo.getCodeElementType().getName() != null ? compositeLocationInfo.getCodeElementType().getName() : composite.toString();
         String name = String.format("%s$%s(%d-%d)", method.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
-        String sha512 = Util.getSHA512(composite.getStatements().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
+        String sha512 = Util.getSHA512(composite.getAllStatements().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
         String identifierExcludeVersion = String.format(
                 "%s$%s:{%s,%s}",
                 method.getIdentifierIgnoringVersion(),
