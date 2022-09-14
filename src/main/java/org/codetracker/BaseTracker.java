@@ -1,10 +1,12 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
+import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.codetracker.util.GitRepository;
 import org.codetracker.util.IRepository;
@@ -303,6 +305,10 @@ public abstract class BaseTracker {
         }
         return false;
     }
+
+    protected static Block getBlock(CompositeStatementObject composite, Method method) {
+        return Block.of(composite, method);
+    }    
 
     protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
         if (umlModel != null)
