@@ -11,7 +11,6 @@ import org.codetracker.change.Change;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.api.RefactoringType;
 import org.codetracker.api.*;
 import org.codetracker.change.AbstractChange;
@@ -313,7 +312,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
     }
 
 
-    private boolean checkForExtractionOrInline(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    private boolean checkForExtractionOrInline(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
                 case EXTRACT_AND_MOVE_OPERATION:
@@ -621,8 +620,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         return leftVariableSet;
     }
 
-    private boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
-
+    private boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
@@ -640,9 +638,6 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     operationBefore = pushDownOperationRefactoring.getOriginalOperation();
                     operationAfter = pushDownOperationRefactoring.getMovedOperation();
                     umlOperationBodyMapper = pushDownOperationRefactoring.getBodyMapper();
-                    if(umlOperationBodyMapper == null){
-                        UMLOperationBodyMapper operationBodyMapper = new UMLOperationBodyMapper(operationBefore, operationAfter, null);
-                    }
                     break;
                 }
                 case MOVE_AND_RENAME_OPERATION:

@@ -23,6 +23,10 @@ public class Block extends BaseCodeElement {
         return composite;
     }
 
+    public VariableDeclarationContainer getOperation() {
+        return operation;
+    }
+
     public static Block of(CompositeStatementObject composite, VariableDeclarationContainer operation, Version version) {
         Method method = Method.of(operation, version);
         return of(composite, method);
