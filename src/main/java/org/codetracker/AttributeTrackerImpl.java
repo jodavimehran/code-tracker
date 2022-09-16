@@ -12,11 +12,9 @@ import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Attribute;
-import org.codetracker.element.Method;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.api.RefactoringType;
 
 import java.util.*;
@@ -393,13 +391,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
         return false;
     }
 
-    private Set<Attribute> isAttributeContainerChanged(UMLModelDiff umlModelDiffAll, Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator) throws RefactoringMinerTimedOutException {
+    private Set<Attribute> isAttributeContainerChanged(UMLModelDiff umlModelDiffAll, Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator) {
         Set<Attribute> leftAttributeSet = new HashSet<>();
         boolean found = false;
         Change.Type changeType = Change.Type.CONTAINER_CHANGE;
 
         for (UMLClassMoveDiff umlClassMoveDiff : getClassMoveDiffList(umlModelDiffAll)) {
-            umlClassMoveDiff.process();
             for (UMLAttributeDiff attributeDiff : umlClassMoveDiff.getAttributeDiffList()) {
                 if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass()), attributeDiff.getRemovedAttribute(), attributeDiff.getAddedAttribute(), changeType)) {
                     attributeChangeHistory.connectRelatedNodes();
