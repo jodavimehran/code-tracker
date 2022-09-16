@@ -13,6 +13,10 @@ public interface CodeTracker {
         return new AttributeTracker.Builder();
     }
 
+    static BlockTracker.Builder blockTracker() {
+        return new BlockTracker.Builder();
+    }
+
     static ClassTracker.Builder classTracker() {
         return new ClassTracker.Builder();
     }

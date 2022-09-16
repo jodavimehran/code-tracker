@@ -5,6 +5,7 @@ import gr.uom.java.xmi.decomposition.OperationBody;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
+import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.MethodTracker;
 import org.codetracker.api.Version;
@@ -62,7 +63,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
             Method start = getMethod(umlModel, startVersion, this::isStartMethod);
             if (start == null) {
-                return null;
+                throw new CodeElementNotFoundException(filePath, methodName, methodDeclarationLineNumber);
             }
             methodChangeHistory.addNode(start);
 
