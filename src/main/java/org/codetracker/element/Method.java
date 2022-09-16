@@ -1,6 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
@@ -63,6 +64,40 @@ public class Method extends BaseCodeElement {
                 Variable variable = Variable.of(parameter, this);
                 if (equalOperator.test(variable)) {
                     return variable;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Block findBlock(Predicate<Block> equalOperator) {
+        if (umlOperation.getBody() != null) {
+            for (CompositeStatementObject composite : umlOperation.getBody().getCompositeStatement().getInnerNodes()) {
+                Block block = Block.of(composite, this);
+                if (equalOperator.test(block)) {
+                    return block;
+                }
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                if (operation.getBody() != null) {
+                    for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
+                        Block block = Block.of(composite, this);
+                        if (equalOperator.test(block)) {
+                            return block;
+                        }
+                    }
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            if (lambda.getBody() != null) {
+                for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
+                    Block block = Block.of(composite, this);
+                    if (equalOperator.test(block)) {
+                        return block;
+                    }
                 }
             }
         }
