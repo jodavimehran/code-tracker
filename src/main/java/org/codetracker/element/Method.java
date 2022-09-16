@@ -28,8 +28,8 @@ public class Method extends BaseCodeElement {
         String identifierIgnoringVersionAndDocumentationAndBody = null;
         String name = null;
         if (umlOperation instanceof UMLOperation) {
-            identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true);
-            identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false);
+            identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true, true);
+            identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false, true);
             name = String.format("%s%s", sourceFolder, ((UMLOperation) umlOperation).getKey());
         }
         else if (umlOperation instanceof UMLInitializer) {
@@ -95,7 +95,7 @@ public class Method extends BaseCodeElement {
         return this.umlOperation.getBody().getBodyHashCode() == method.umlOperation.getBody().getBodyHashCode();
     }
 
-    public static String getIdentifierExcludeVersion(UMLOperation info, boolean containsBody, boolean containsDocumentation) {
+    public static String getIdentifierExcludeVersion(UMLOperation info, boolean containsBody, boolean containsDocumentation, boolean containsAnnotations) {
         StringBuilder sb = new StringBuilder();
         sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
         sb.append(info.getClassName());
@@ -140,7 +140,9 @@ public class Method extends BaseCodeElement {
             sb.append(getDocumentsSha512(info));
             sb.append("}");
         }
-        sb.append(Util.annotationsToString(info.getAnnotations()));
+        if (containsAnnotations) {
+            sb.append(Util.annotationsToString(info.getAnnotations()));
+        }
         return sb.toString();
     }
 
