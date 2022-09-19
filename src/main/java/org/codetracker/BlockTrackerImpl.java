@@ -1,12 +1,10 @@
 package org.codetracker;
 
+import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
-import gr.uom.java.xmi.UMLInitializer;
-import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
-import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.*;
 import gr.uom.java.xmi.diff.*;
+import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.BlockTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
@@ -19,6 +17,7 @@ import org.codetracker.element.Method;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
+import org.refactoringminer.api.RefactoringType;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -171,10 +170,148 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             break;
                         }
                     }
+                    //All refactorings
+                    {
+                        CommitModel commitModel = getCommitModel(commitId);
+                        if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
+                            String leftFilePath = null;
+                            for (MoveSourceFolderRefactoring ref : commitModel.moveSourceFolderRefactorings) {
+                                if (ref.getIdenticalFilePaths().containsValue(currentBlock.getFilePath())) {
+                                    for (Map.Entry<String, String> entry : ref.getIdenticalFilePaths().entrySet()) {
+                                        if (entry.getValue().equals(currentBlock.getFilePath())) {
+                                            leftFilePath = entry.getKey();
+                                            break;
+                                        }
+                                    }
+                                    if (leftFilePath != null) {
+                                        break;
+                                    }
+                                }
+                            }
+                            Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, currentMethod.getFilePath(), s -> true, true);
+                            if (leftFilePath != null) {
+                                boolean found = false;
+                                for (UMLClass umlClass : umlModelPairPartial.getLeft().getClassList()) {
+                                    if (umlClass.getSourceFile().equals(leftFilePath)) {
+                                        for (UMLOperation operation : umlClass.getOperations()) {
+                                            if (operation.equals(rightMethod.getUmlOperation())) {
+                                                VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
+                                                UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlModelPairPartial.getLeft(), umlModelPairPartial.getRight(), operation, rightOperation);
+                                                UMLOperationBodyMapper bodyMapper = new UMLOperationBodyMapper(operation, (UMLOperation) rightOperation, lightweightClassDiff);
+                                                found = isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                                                if (found) {
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                        if (found) {
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+                            }
+                            else {
+                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
+                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
+
+                                boolean found;
+                                UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
+                                found = checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper);
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+                            }
+                        }
+                        {
+                            Set<String> fileNames = getRightSideFileNames(currentMethod, commitModel, umlModelDiffLocal);
+                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
+                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
+
+                            List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
+                            boolean flag = false;
+                            for (Refactoring refactoring : refactorings) {
+                                if (RefactoringType.MOVE_AND_RENAME_OPERATION.equals(refactoring.getRefactoringType())) {
+                                    MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
+                                    Method movedOperation = Method.of(moveOperationRefactoring.getMovedOperation(), currentVersion);
+                                    if (rightMethod.equalIdentifierIgnoringVersion(movedOperation)) {
+                                        fileNames.add(moveOperationRefactoring.getOriginalOperation().getLocationInfo().getFilePath());
+                                        umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
+                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
+                                        flag = true;
+                                        break;
+                                    }
+                                }
+                            }
+                            if (flag) {
+                                refactorings = umlModelDiffAll.getRefactorings();
+                            }
+
+                            boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                            if (found) {
+                                historyReport.step5PlusPlus();
+                                break;
+                            }
+
+                            found = isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                            if (found) {
+                                historyReport.step5PlusPlus();
+                                break;
+                            }
+
+                            found = checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                            if (found) {
+                                historyReport.step5PlusPlus();
+                                break;
+                            }
+
+
+                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            if (umlClassDiff != null) {
+                                found = checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
+
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+                            }
+
+                            if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
+                            }, currentVersion)) {
+                                Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
+                                blockChangeHistory.handleAdd(blockBefore, rightBlock, "added with method");
+                                blocks.add(blockBefore);
+                                blockChangeHistory.connectRelatedNodes();
+                                historyReport.step5PlusPlus();
+                                break;
+                            }
+                        }
+                    }
                 }
             }
             return new HistoryImpl<>(blockChangeHistory.findSubGraph(startBlock), historyReport);
         }
+    }
+
+    private boolean checkClassDiffForBlockChange(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLClassBaseDiff umlClassDiff) {
+        for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
+            Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
+            if (equalMethod.test(method2)) {
+                if (isBlockRefactored(operationBodyMapper.getRefactorings(), blocks, currentVersion, parentVersion, equalBlock))
+                    return true;
+                // check if it is in the matched
+                if (isMatched(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
+                    return true;
+                //Check if is added
+                if (isAdded(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
+                    return true;
+            }
+        }
+        return false;
     }
 
     private boolean checkForExtractionOrInline(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
