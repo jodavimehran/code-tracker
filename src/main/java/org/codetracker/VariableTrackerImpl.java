@@ -1,10 +1,7 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.*;
-import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
-import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
-import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
-import gr.uom.java.xmi.decomposition.VariableDeclaration;
+import gr.uom.java.xmi.decomposition.*;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.change.Change;
@@ -130,28 +127,39 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         historyReport.step2PlusPlus();
                         continue;
                     }
-
+                    //CHANGE BODY OR DOCUMENT
+                    leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+                    if (leftMethod != null) {
+                        VariableDeclarationContainer leftOperation = leftMethod.getUmlOperation();
+                        VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
+                        UMLOperationBodyMapper bodyMapper = null;
+                        Set<Refactoring> refactorings = Collections.emptySet();
+                        if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
+                            UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+                            bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+                            refactorings = bodyMapper.getRefactorings();
+                            if (involvedInVariableRefactoring(refactorings, rightVariable) && containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
+                                bodyMapper = null;
+                            }
+                        }
+                        else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
+                            UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+                            bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
+                            refactorings = bodyMapper.getRefactorings();
+                            if (involvedInVariableRefactoring(refactorings, rightVariable) && containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
+                                bodyMapper = null;
+                            }
+                        }
+                        if (checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, refactorings)) {
+                            historyReport.step3PlusPlus();
+                            break;
+                        }
+                    }
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                        //CHANGE BODY OR DOCUMENT
-                        leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
-                        if (leftMethod != null) {
-                            if (checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, leftMethod, currentVersion, parentVersion))) {
-                                historyReport.step3PlusPlus();
-                                break;
-                            }
-                        }
-
                         boolean found = checkForExtractionOrInline(variables, currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
-                        if (found) {
-                            historyReport.step4PlusPlus();
-                            break;
-                        }
-
-                        //Check if refactored
-                        found = isVariableRefactored(refactorings, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
@@ -162,7 +170,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                             historyReport.step4PlusPlus();
                             break;
                         }
-                        found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
+                        UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
+                        Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactorings() : Collections.emptySet();
+                        found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
@@ -215,7 +225,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                                 //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
 
                                 boolean found;
-                                found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion));
+                                UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
+                                Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactorings() : Collections.emptySet();
+                                found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -352,11 +364,9 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         return false;
     }
 
-    private boolean checkBodyOfMatchedOperations(Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) {
+    private boolean checkBodyOfMatchedOperations(Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper, Set<Refactoring> refactorings) {
         if (umlOperationBodyMapper == null)
             return false;
-        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactorings();
-
         //Check if refactored
         if (isVariableRefactored(refactorings, variables, currentVersion, parentVersion, equalOperator))
             return true;
@@ -530,7 +540,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                 case SPLIT_VARIABLE: {
                     SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) refactoring;
                     for (VariableDeclaration splitVariable : splitVariableRefactoring.getSplitVariables()) {
-                        Variable addedVariableAfter = Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), parentVersion);
+                        Variable addedVariableAfter = Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), currentVersion);
                         if (equalOperator.test(addedVariableAfter)) {
                             Variable addedVariableBefore = Variable.of(splitVariable, splitVariableRefactoring.getOperationAfter(), parentVersion);
                             addedVariableBefore.setAdded(true);
@@ -622,20 +632,17 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
     private boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
             switch (refactoring.getRefactoringType()) {
                 case PULL_UP_OPERATION: {
                     PullUpOperationRefactoring pullUpOperationRefactoring = (PullUpOperationRefactoring) refactoring;
-                    operationBefore = pullUpOperationRefactoring.getOriginalOperation();
                     operationAfter = pullUpOperationRefactoring.getMovedOperation();
                     umlOperationBodyMapper = pullUpOperationRefactoring.getBodyMapper();
                     break;
                 }
                 case PUSH_DOWN_OPERATION: {
                     PushDownOperationRefactoring pushDownOperationRefactoring = (PushDownOperationRefactoring) refactoring;
-                    operationBefore = pushDownOperationRefactoring.getOriginalOperation();
                     operationAfter = pushDownOperationRefactoring.getMovedOperation();
                     umlOperationBodyMapper = pushDownOperationRefactoring.getBodyMapper();
                     break;
@@ -643,14 +650,12 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                 case MOVE_AND_RENAME_OPERATION:
                 case MOVE_OPERATION: {
                     MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
-                    operationBefore = moveOperationRefactoring.getOriginalOperation();
                     operationAfter = moveOperationRefactoring.getMovedOperation();
                     umlOperationBodyMapper = moveOperationRefactoring.getBodyMapper();
                     break;
                 }
                 case RENAME_METHOD: {
                     RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) refactoring;
-                    operationBefore = renameOperationRefactoring.getOriginalOperation();
                     operationAfter = renameOperationRefactoring.getRenamedOperation();
                     umlOperationBodyMapper = renameOperationRefactoring.getBodyMapper();
                     break;
@@ -659,10 +664,93 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
             if (operationAfter != null) {
                 Method methodAfter = Method.of(operationAfter, currentVersion);
                 if (equalMethod.test(methodAfter)) {
-                    boolean found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
+                    Set<Refactoring> bodyMapperRefactorings = umlOperationBodyMapper != null ? umlOperationBodyMapper.getRefactorings() : Collections.emptySet();
+                    boolean found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, umlOperationBodyMapper, bodyMapperRefactorings);
                     if (found)
                         return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    private static boolean involvedInVariableRefactoring(Collection<Refactoring> refactorings, Variable rightVariable) {
+        for (Refactoring refactoring : refactorings) {
+            VariableDeclaration variableAfter = null;
+            switch (refactoring.getRefactoringType()) {
+                case RENAME_VARIABLE:
+                case RENAME_PARAMETER:
+                case PARAMETERIZE_VARIABLE:
+                case LOCALIZE_PARAMETER: {
+                    RenameVariableRefactoring renameVariableRefactoring = (RenameVariableRefactoring) refactoring;
+                    variableAfter = renameVariableRefactoring.getRenamedVariable();
+                    break;
+                }
+                case CHANGE_VARIABLE_TYPE:
+                case CHANGE_PARAMETER_TYPE: {
+                    ChangeVariableTypeRefactoring changeVariableTypeRefactoring = (ChangeVariableTypeRefactoring) refactoring;
+                    variableAfter = changeVariableTypeRefactoring.getChangedTypeVariable();
+                    break;
+                }
+                case ADD_VARIABLE_MODIFIER:
+                case ADD_PARAMETER_MODIFIER: {
+                    AddVariableModifierRefactoring addVariableModifierRefactoring = (AddVariableModifierRefactoring) refactoring;
+                    variableAfter = addVariableModifierRefactoring.getVariableAfter();
+                    break;
+                }
+                case REMOVE_VARIABLE_MODIFIER:
+                case REMOVE_PARAMETER_MODIFIER: {
+                    RemoveVariableModifierRefactoring removeVariableModifierRefactoring = (RemoveVariableModifierRefactoring) refactoring;
+                    variableAfter = removeVariableModifierRefactoring.getVariableAfter();
+                    break;
+                }
+                case ADD_VARIABLE_ANNOTATION:
+                case ADD_PARAMETER_ANNOTATION: {
+                    AddVariableAnnotationRefactoring addVariableAnnotationRefactoring = (AddVariableAnnotationRefactoring) refactoring;
+                    variableAfter = addVariableAnnotationRefactoring.getVariableAfter();
+                    break;
+                }
+                case MODIFY_VARIABLE_ANNOTATION:
+                case MODIFY_PARAMETER_ANNOTATION: {
+                    ModifyVariableAnnotationRefactoring modifyVariableAnnotationRefactoring = (ModifyVariableAnnotationRefactoring) refactoring;
+                    variableAfter = modifyVariableAnnotationRefactoring.getVariableAfter();
+                    break;
+                }
+                case REMOVE_VARIABLE_ANNOTATION:
+                case REMOVE_PARAMETER_ANNOTATION: {
+                    RemoveVariableAnnotationRefactoring removeVariableAnnotationRefactoring = (RemoveVariableAnnotationRefactoring) refactoring;
+                    variableAfter = removeVariableAnnotationRefactoring.getVariableAfter();
+                    break;
+                }
+                case SPLIT_PARAMETER:
+                case SPLIT_VARIABLE: {
+                    SplitVariableRefactoring splitVariableRefactoring = (SplitVariableRefactoring) refactoring;
+                    for (VariableDeclaration splitVariable : splitVariableRefactoring.getSplitVariables()) {
+                        if (splitVariable.equals(rightVariable.getVariableDeclaration())) {
+                            return true;
+                        }
+                    }
+                    break;
+                }
+                case MERGE_PARAMETER:
+                case MERGE_VARIABLE: {
+                    MergeVariableRefactoring mergeVariableRefactoring = (MergeVariableRefactoring) refactoring;
+                    variableAfter = mergeVariableRefactoring.getNewVariable();
+                    break;
+                }
+                case ADD_PARAMETER: {
+                    AddParameterRefactoring addParameterRefactoring = (AddParameterRefactoring) refactoring;
+                    variableAfter = addParameterRefactoring.getParameter().getVariableDeclaration();
+                    break;
+                }
+                case EXTRACT_VARIABLE: {
+                    ExtractVariableRefactoring extractVariableRefactoring = (ExtractVariableRefactoring) refactoring;
+                    variableAfter = extractVariableRefactoring.getVariableDeclaration();
+                    break;
+                }
+            }
+            if (rightVariable.getVariableDeclaration().equals(variableAfter)) {
+                return true;
             }
         }
         return false;
