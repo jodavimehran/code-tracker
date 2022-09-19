@@ -1,12 +1,11 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
-import gr.uom.java.xmi.decomposition.AbstractCodeMapping;
-import gr.uom.java.xmi.decomposition.CompositeStatementObject;
-import gr.uom.java.xmi.decomposition.CompositeStatementObjectMapping;
-import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.VariableDeclarationContainer;
+import gr.uom.java.xmi.decomposition.*;
 import gr.uom.java.xmi.diff.*;
 import org.codetracker.api.BlockTracker;
 import org.codetracker.api.CodeElementNotFoundException;
@@ -127,20 +126,36 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         historyReport.step2PlusPlus();
                         continue;
                     }
+                    //CHANGE BODY OR DOCUMENT
+                    leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+                    if (leftMethod != null) {
+                        VariableDeclarationContainer leftOperation = leftMethod.getUmlOperation();
+                        VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
+                        UMLOperationBodyMapper bodyMapper = null;
+                        if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
+                            UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+                            bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+                            if (containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
+                                bodyMapper = null;
+                            }
+                        }
+                        else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
+                            UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+                            bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
+                            if (containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
+                                bodyMapper = null;
+                            }
+                        }
+                        if (checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+                            historyReport.step3PlusPlus();
+                            break;
+                        }
+                    }
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                        //CHANGE BODY OR DOCUMENT
-                        leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
-                        if (leftMethod != null) {
-                            if (checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, leftMethod, currentVersion, parentVersion))) {
-                                historyReport.step3PlusPlus();
-                                break;
-                            }
-                        }
-                        //Check if refactored
-                        boolean found = isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                        boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
@@ -160,6 +175,48 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             }
             return new HistoryImpl<>(blockChangeHistory.findSubGraph(startBlock), historyReport);
         }
+    }
+
+    private boolean checkForExtractionOrInline(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
+        for (Refactoring refactoring : refactorings) {
+            switch (refactoring.getRefactoringType()) {
+                case EXTRACT_AND_MOVE_OPERATION:
+                case EXTRACT_OPERATION: {
+                    ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
+                    Method extractedMethod = Method.of(extractOperationRefactoring.getExtractedOperation(), currentVersion);
+                    if (equalMethod.test(extractedMethod)) {
+                        Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
+                        blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
+                        blocks.add(blockBefore);
+                        blockChangeHistory.connectRelatedNodes();
+                        return true;
+                    }
+                    break;
+                }
+                case MOVE_AND_INLINE_OPERATION:
+                case INLINE_OPERATION: {
+                    InlineOperationRefactoring inlineOperationRefactoring = (InlineOperationRefactoring) refactoring;
+                    Method targetOperationAfterInline = Method.of(inlineOperationRefactoring.getTargetOperationAfterInline(), currentVersion);
+                    if (equalMethod.test(targetOperationAfterInline)) {
+                        UMLOperationBodyMapper bodyMapper = inlineOperationRefactoring.getBodyMapper();
+                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                            if (mapping instanceof CompositeStatementObjectMapping) {
+                                Block matchedBlockInsideInlinedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideInlinedMethodBody, inlineOperationRefactoring.toString());
+                                    blocks.add(blockBefore);
+                                    blockChangeHistory.connectRelatedNodes();
+                                    return true;
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+            }
+        }
+        return false;
     }
 
     private boolean checkBodyOfMatchedOperations(Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) {
