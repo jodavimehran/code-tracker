@@ -276,7 +276,14 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                 Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
                 if (equalOperator.test(blockAfter)) {
                     Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
-                    blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                    List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
+                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                    }
+                    else {
+                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    }
                     blocks.add(blockBefore);
                     blockChangeHistory.connectRelatedNodes();
                     return true;
