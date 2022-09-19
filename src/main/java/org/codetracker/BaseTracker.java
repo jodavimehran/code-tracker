@@ -1,6 +1,8 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.AbstractCall;
+import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
@@ -40,6 +42,92 @@ public abstract class BaseTracker {
         this.gitRepository = new GitRepository(repository);
         this.startCommitId = startCommitId;
         this.filePath = filePath;
+    }
+
+    protected static UMLClassBaseDiff lightweightClassDiff(UMLModel leftModel, UMLModel rightModel, VariableDeclarationContainer leftOperation, VariableDeclarationContainer rightOperation) {
+        UMLClass leftClass = null;
+        for (UMLClass clazz : leftModel.getClassList()) {
+            if (clazz.getName().equals(leftOperation.getClassName())) {
+                leftClass = clazz;
+                break;
+            }
+        }
+        UMLClass rightClass = null;
+        for (UMLClass clazz : rightModel.getClassList()) {
+            if (clazz.getName().equals(rightOperation.getClassName())) {
+                rightClass = clazz;
+                break;
+            }
+        }
+        if (leftClass != null && rightClass != null) {
+            UMLClassDiff classDiff = new UMLClassDiff(leftClass, rightClass, null);
+            for (UMLOperation operation : leftClass.getOperations()) {
+                int index = rightClass.getOperations().indexOf(operation);
+                UMLOperation operation2 = null;
+                if (index != -1) {
+                    operation2 = rightClass.getOperations().get(index);
+                }
+                if (index == -1 || differentParameterNames(leftClass, rightClass, operation, operation2))
+                    classDiff.getRemovedOperations().add(operation);
+            }
+            for (UMLOperation operation : rightClass.getOperations()) {
+                int index = leftClass.getOperations().indexOf(operation);
+                UMLOperation operation1 = null;
+                if (index != -1) {
+                    operation1 = leftClass.getOperations().get(index);
+                }
+                if (index == -1 || differentParameterNames(leftClass, rightClass, operation1, operation))
+                    classDiff.getAddedOperations().add(operation);
+            }
+            return classDiff;
+        }
+        return null;
+    }
+
+    private static boolean differentParameterNames(UMLClass leftClass, UMLClass rightClass, UMLOperation operation1, UMLOperation operation2) {
+        if (operation1 != null && operation2 != null && !operation1.getParameterNameList().equals(operation2.getParameterNameList())) {
+            int methodsWithIdenticalName1 = 0;
+            for (UMLOperation operation : leftClass.getOperations()) {
+                if (operation != operation1 && operation.getName().equals(operation1.getName()) && !operation.hasVarargsParameter()) {
+                    methodsWithIdenticalName1++;
+                }
+            }
+            int methodsWithIdenticalName2 = 0;
+            for (UMLOperation operation : rightClass.getOperations()) {
+                if (operation != operation2 && operation.getName().equals(operation2.getName()) && !operation.hasVarargsParameter()) {
+                    methodsWithIdenticalName2++;
+                }
+            }
+            if (methodsWithIdenticalName1 > 0 && methodsWithIdenticalName2 > 0) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    protected static boolean containsCallToExtractedMethod(UMLOperationBodyMapper bodyMapper, UMLAbstractClassDiff classDiff) {
+        if(classDiff != null) {
+            List<UMLOperation> addedOperations = classDiff.getAddedOperations();
+            for(AbstractCodeFragment leaf2 : bodyMapper.getNonMappedLeavesT2()) {
+                AbstractCall invocation = leaf2.invocationCoveringEntireFragment();
+                if(invocation == null) {
+                    invocation = leaf2.assignmentInvocationCoveringEntireStatement();
+                }
+                UMLOperation matchingOperation = null;
+                if(invocation != null && (matchingOperation = matchesOperation(invocation, addedOperations, bodyMapper.getContainer2())) != null && matchingOperation.getBody() != null) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private static UMLOperation matchesOperation(AbstractCall invocation, List<UMLOperation> operations, VariableDeclarationContainer callerOperation) {
+        for(UMLOperation operation : operations) {
+            if(invocation.matchesOperation(operation, callerOperation, null))
+                return operation;
+        }
+        return null;
     }
 
     protected static List<String> getCommits(Repository repository, String startCommitId, String filePath, Git git) throws IOException, GitAPIException {
