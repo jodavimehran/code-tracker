@@ -4,6 +4,7 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.Version;
 import org.codetracker.change.attribute.*;
+import org.codetracker.change.block.CatchBodyChange;
 import org.codetracker.change.clazz.*;
 import org.codetracker.change.method.*;
 import org.codetracker.change.variable.*;
@@ -126,6 +127,10 @@ public final class ChangeFactory {
             }
             case BODY_CHANGE: {
                 change = new BodyChange();
+                break;
+            }
+            case CATCH_BODY_CHANGE: {
+                change = new CatchBodyChange();
                 break;
             }
             case RETURN_TYPE_CHANGE: {
