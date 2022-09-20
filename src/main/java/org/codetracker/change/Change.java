@@ -17,6 +17,8 @@ public interface Change {
         CONTAINER_CHANGE("container change"),
         MULTI_CHANGE("changed multiple times"),
         BODY_CHANGE("body change"),
+        CATCH_BODY_CHANGE("catch body change"),
+        FINALLY_BODY_CHANGE("finally body change"),
         DOCUMENTATION_CHANGE("documentation change"),
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
