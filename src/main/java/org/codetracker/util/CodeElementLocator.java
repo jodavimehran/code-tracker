@@ -4,10 +4,8 @@ import gr.uom.java.xmi.*;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.Version;
-import org.codetracker.element.Attribute;
+import org.codetracker.element.*;
 import org.codetracker.element.Class;
-import org.codetracker.element.Method;
-import org.codetracker.element.Variable;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
@@ -21,8 +19,8 @@ public class CodeElementLocator {
     private final IRepository gitRepository;
     private final String commitId;
     private final String filePath;
-    private String name;
-    private int lineNumber;
+    private final String name;
+    private final int lineNumber;
 
     public CodeElementLocator(Repository repository, String commitId, String filePath, String name, int lineNumber) {
         this.repository = repository;
@@ -60,6 +58,12 @@ public class CodeElementLocator {
                 attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
     }
 
+    private boolean blockPredicate(Block block) {
+        return block.getComposite().getLocationInfo().getCodeElementType().getName().equals(name) &&
+                block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
+                block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
+    }
+
     public CodeElement locate() throws Exception {
         Version version = gitRepository.getVersion(commitId);
         UMLModel umlModel = getUMLModel(repository, commitId, Collections.singleton(filePath));
@@ -81,6 +85,10 @@ public class CodeElementLocator {
                 Variable variable = method.findVariable(this::variablePredicate);
                 if (variable != null) {
                     return variable;
+                }
+                Block block = method.findBlock(this::blockPredicate);
+                if (block != null) {
+                    return block;
                 }
             }
         }
