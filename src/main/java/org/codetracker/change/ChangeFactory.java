@@ -4,7 +4,9 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.Version;
 import org.codetracker.change.attribute.*;
+import org.codetracker.change.block.CatchBlockAdded;
 import org.codetracker.change.block.CatchBlockChange;
+import org.codetracker.change.block.CatchBlockRemoved;
 import org.codetracker.change.block.FinallyBlockChange;
 import org.codetracker.change.clazz.*;
 import org.codetracker.change.method.*;
@@ -132,6 +134,14 @@ public final class ChangeFactory {
             }
             case CATCH_BLOCK_CHANGE: {
                 change = new CatchBlockChange();
+                break;
+            }
+            case CATCH_BLOCK_ADDED: {
+                change = new CatchBlockAdded();
+                break;
+            }
+            case CATCH_BLOCK_REMOVED: {
+                change = new CatchBlockRemoved();
                 break;
             }
             case FINALLY_BLOCK_CHANGE: {
