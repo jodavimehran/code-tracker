@@ -424,20 +424,34 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     if (blockBefore.getComposite() instanceof TryStatementObject && blockAfter.getComposite() instanceof TryStatementObject) {
                         TryStatementObject tryBefore = (TryStatementObject) blockBefore.getComposite();
                         TryStatementObject tryAfter = (TryStatementObject) blockAfter.getComposite();
+                        List<CompositeStatementObject> catchBlocksBefore = new ArrayList<>(tryBefore.getCatchClauses());
+                        List<CompositeStatementObject> catchBlocksAfter = new ArrayList<>(tryAfter.getCatchClauses());
                         for (AbstractCodeMapping m : umlOperationBodyMapper.getMappings()) {
                             if (m instanceof CompositeStatementObjectMapping) {
+                                CompositeStatementObject fragment1 = (CompositeStatementObject) m.getFragment1();
+                                CompositeStatementObject fragment2 = (CompositeStatementObject) m.getFragment2();
                                 if (m.getFragment1().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
                                         m.getFragment2().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
-                                        tryBefore.getCatchClauses().contains((CompositeStatementObject) m.getFragment1()) &&
-                                        tryAfter.getCatchClauses().contains((CompositeStatementObject) m.getFragment2())) {
-                                    List<String> catchStringRepresentationBefore = ((CompositeStatementObject) m.getFragment1()).stringRepresentation();
-                                    List<String> catchStringRepresentationAfter = ((CompositeStatementObject) m.getFragment2()).stringRepresentation();
+                                        tryBefore.getCatchClauses().contains(fragment1) &&
+                                        tryAfter.getCatchClauses().contains(fragment2)) {
+                                    List<String> catchStringRepresentationBefore = (fragment1).stringRepresentation();
+                                    List<String> catchStringRepresentationAfter = (fragment2).stringRepresentation();
+                                    catchBlocksBefore.remove(fragment1);
+                                    catchBlocksAfter.remove(fragment2);
                                     if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
                                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
                                         catchBodyChange = true;
                                     }
                                 }
                             }
+                        }
+                        for (CompositeStatementObject catchBlockBefore : catchBlocksBefore) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_REMOVED));
+                            catchBodyChange = true;
+                        }
+                        for (CompositeStatementObject catchBlockAfter : catchBlocksAfter) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_ADDED));
+                            catchBodyChange = true;
                         }
                         if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() != null) {
                             List<String> finallyStringRepresentationBefore = tryBefore.getFinallyClause().stringRepresentation();

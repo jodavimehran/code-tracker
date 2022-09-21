@@ -18,6 +18,8 @@ public interface Change {
         MULTI_CHANGE("changed multiple times"),
         BODY_CHANGE("body change"),
         CATCH_BLOCK_CHANGE("catch block change"),
+        CATCH_BLOCK_ADDED("catch block added"),
+        CATCH_BLOCK_REMOVED("catch block removed"),
         FINALLY_BLOCK_CHANGE("finally block change"),
         DOCUMENTATION_CHANGE("documentation change"),
         RENAME("rename"),
