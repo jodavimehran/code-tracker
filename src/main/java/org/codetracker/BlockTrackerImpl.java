@@ -413,7 +413,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                 Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
                 if (equalOperator.test(blockAfter)) {
                     boolean bodyChange = false;
-                    boolean catchBodyChange = false;
+                    boolean catchOrFinallyChange = false;
                     Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                     List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
@@ -440,29 +440,37 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                     catchBlocksAfter.remove(fragment2);
                                     if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
                                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
-                                        catchBodyChange = true;
+                                        catchOrFinallyChange = true;
                                     }
                                 }
                             }
                         }
                         for (CompositeStatementObject catchBlockBefore : catchBlocksBefore) {
                             blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_REMOVED));
-                            catchBodyChange = true;
+                            catchOrFinallyChange = true;
                         }
                         for (CompositeStatementObject catchBlockAfter : catchBlocksAfter) {
                             blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_ADDED));
-                            catchBodyChange = true;
+                            catchOrFinallyChange = true;
                         }
                         if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() != null) {
                             List<String> finallyStringRepresentationBefore = tryBefore.getFinallyClause().stringRepresentation();
                             List<String> finallyStringRepresentationAfter = tryAfter.getFinallyClause().stringRepresentation();
                             if (!finallyStringRepresentationBefore.equals(finallyStringRepresentationAfter)) {
                                 blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_CHANGE));
-                                catchBodyChange = true;
+                                catchOrFinallyChange = true;
                             }
                         }
+                        else if (tryBefore.getFinallyClause() == null && tryAfter.getFinallyClause() != null) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_ADDED));
+                            catchOrFinallyChange = true;
+                        }
+                        else if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() == null) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_REMOVED));
+                            catchOrFinallyChange = true;
+                        }
                     }
-                    if (!bodyChange && !catchBodyChange) {
+                    if (!bodyChange && !catchOrFinallyChange) {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
                     blocks.add(blockBefore);
