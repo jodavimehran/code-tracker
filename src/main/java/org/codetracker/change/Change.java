@@ -21,6 +21,8 @@ public interface Change {
         CATCH_BLOCK_ADDED("catch block added"),
         CATCH_BLOCK_REMOVED("catch block removed"),
         FINALLY_BLOCK_CHANGE("finally block change"),
+        FINALLY_BLOCK_ADDED("finally block added"),
+        FINALLY_BLOCK_REMOVED("finally block removed"),
         DOCUMENTATION_CHANGE("documentation change"),
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
