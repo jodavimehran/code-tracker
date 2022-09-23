@@ -29,7 +29,6 @@ public class Extracted extends Introduced {
     @Override
     public Optional<EvolutionHook<? extends CodeElement>> getEvolutionHook() {
         if (refactoring != null) {
-            ExtractOperationRefactoring extractRefactoring = (ExtractOperationRefactoring) getExtractRefactoring();
             if (addedElement instanceof Method && hookedElement instanceof Method) {
                 EvolutionHook<Method> hook = new EvolutionHook<>((Method) hookedElement, (Method) addedElement);
                 return Optional.of(hook);
