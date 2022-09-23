@@ -332,8 +332,26 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
                     Method extractedMethod = Method.of(extractOperationRefactoring.getExtractedOperation(), currentVersion);
                     if (equalMethod.test(extractedMethod)) {
+                        VariableDeclaration matchedVariableFromSourceMethod = null;
+                        UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
+                        for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
+                            Variable matchedVariableInsideExtractedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
+                            if (matchedVariableInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                matchedVariableFromSourceMethod = matchedVariablePair.getLeft();
+                                break;
+                            }
+                        }
                         Variable variableBefore = Variable.of(rightVariable.getVariableDeclaration(), rightVariable.getOperation(), parentVersion);
-                        variableChangeHistory.handleAdd(variableBefore, rightVariable, extractOperationRefactoring.toString());
+                        if (matchedVariableFromSourceMethod == null) {
+                            variableChangeHistory.handleAdd(variableBefore, rightVariable, extractOperationRefactoring.toString());
+                        }
+                        else {
+                            VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
+                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                            variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.forVariable(Change.Type.INTRODUCED)
+                                    .refactoring(extractOperationRefactoring).codeElement(rightVariable).hookedElement(Variable.of(matchedVariableFromSourceMethod, sourceMethod)));
+                            variableBefore.setAdded(true);
+                        }
                         variables.add(variableBefore);
                         variableChangeHistory.connectRelatedNodes();
                         return true;

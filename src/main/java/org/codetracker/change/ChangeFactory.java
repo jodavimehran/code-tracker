@@ -15,6 +15,7 @@ public final class ChangeFactory {
     private final String elementType;
     private Refactoring refactoring;
     private CodeElement codeElement;
+    private CodeElement hookedElement;
     private String comment;
     private Version parentVersion;
     private Version childVersion;
@@ -63,13 +64,8 @@ public final class ChangeFactory {
         return this;
     }
 
-    public ChangeFactory parentVersion(Version version) {
-        this.parentVersion = version;
-        return this;
-    }
-
-    public ChangeFactory childVersion(Version version) {
-        this.childVersion = version;
+    public ChangeFactory hookedElement(CodeElement hookedElement) {
+        this.hookedElement = hookedElement;
         return this;
     }
 
@@ -111,8 +107,8 @@ public final class ChangeFactory {
             case INTRODUCED: {
                 if (codeElement == null)
                     throw new NullPointerException();
-                if (refactoring != null && isMethod())
-                    change = new Extracted(refactoring, codeElement, parentVersion, childVersion);
+                if (refactoring != null)
+                    change = new Extracted(refactoring, codeElement, hookedElement);
                 else
                     change = new Introduced(codeElement, comment, refactoring);
                 break;

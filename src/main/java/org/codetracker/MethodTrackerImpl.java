@@ -475,7 +475,8 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     if (equalOperator.test(extractedOperationAfter)) {
                         Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
                         extractedOperationBefore.setAdded(true);
-                        methodChangeHistory.addChange(extractedOperationBefore, extractedOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED).refactoring(extractOperationRefactoring).codeElement(extractedOperationAfter));
+                        methodChangeHistory.addChange(extractedOperationBefore, extractedOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED)
+                                .refactoring(extractOperationRefactoring).codeElement(extractedOperationAfter).hookedElement(Method.of(operationBefore, parentVersion)));
                         methodChangeHistory.connectRelatedNodes();
                         leftMethodSet.add(extractedOperationBefore);
                         return leftMethodSet;
