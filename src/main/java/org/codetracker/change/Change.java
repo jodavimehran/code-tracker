@@ -1,5 +1,7 @@
 package org.codetracker.change;
 
+import org.codetracker.api.CodeElement;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -8,7 +10,7 @@ public interface Change {
 
     Type getType();
 
-    Optional<EvolutionHook> getEvolutionHook();
+    Optional<EvolutionHook<? extends CodeElement>> getEvolutionHook();
 
     enum Type {
         NO_CHANGE("not changed"),

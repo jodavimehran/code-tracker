@@ -1,5 +1,7 @@
 package org.codetracker.change;
 
+import org.codetracker.api.CodeElement;
+
 import java.util.Optional;
 
 public abstract class AbstractChange implements Change {
@@ -18,5 +20,5 @@ public abstract class AbstractChange implements Change {
         return type.toString();
     }
 
-    public Optional<EvolutionHook> getEvolutionHook() { return Optional.empty(); }
+    public Optional<EvolutionHook<? extends CodeElement>> getEvolutionHook() { return Optional.empty(); }
 }

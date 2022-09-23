@@ -322,8 +322,28 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
                     Method extractedMethod = Method.of(extractOperationRefactoring.getExtractedOperation(), currentVersion);
                     if (equalMethod.test(extractedMethod)) {
+                        CompositeStatementObject matchedBlockFromSourceMethod = null;
+                        UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
+                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                            if (mapping instanceof CompositeStatementObjectMapping) {
+                                Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
+                                    break;
+                                }
+                            }
+                        }
                         Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
-                        blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
+                        if (matchedBlockFromSourceMethod == null) {
+                            blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
+                        }
+                        else {
+                            VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
+                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                            blockChangeHistory.addChange(blockBefore, rightBlock, ChangeFactory.forBlock(Change.Type.INTRODUCED)
+                                    .refactoring(extractOperationRefactoring).codeElement(rightBlock).hookedElement(Block.of(matchedBlockFromSourceMethod, sourceMethod)));
+                            blockBefore.setAdded(true);
+                        }
                         blocks.add(blockBefore);
                         blockChangeHistory.connectRelatedNodes();
                         return true;
