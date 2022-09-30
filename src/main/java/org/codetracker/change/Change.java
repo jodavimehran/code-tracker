@@ -34,7 +34,8 @@ public interface Change {
         EXCEPTION_CHANGE("exception change"),
         PARAMETER_CHANGE("parameter change"),
         ANNOTATION_CHANGE("annotation change"),
-        MOVED("moved");
+        MOVED("moved"),
+        EXPRESSION_CHANGE("expression change");
 
         private static final Map<String, Type> lookup = new HashMap<>();
 

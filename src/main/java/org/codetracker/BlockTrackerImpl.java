@@ -438,7 +438,14 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                     List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
                     if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                        if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+                        }
+                        List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+                        List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+                        if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                        }
                         bodyChange = true;
                     }
                     if (blockBefore.getComposite() instanceof TryStatementObject && blockAfter.getComposite() instanceof TryStatementObject) {
