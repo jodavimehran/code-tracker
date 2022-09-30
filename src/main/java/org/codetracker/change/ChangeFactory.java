@@ -149,6 +149,10 @@ public final class ChangeFactory {
                 change = new FinallyBlockRemoved();
                 break;
             }
+            case EXPRESSION_CHANGE: {
+                change = new ExpressionChange();
+                break;
+            }
             case RETURN_TYPE_CHANGE: {
                 if (refactoring == null)
                     throw new NullPointerException();
