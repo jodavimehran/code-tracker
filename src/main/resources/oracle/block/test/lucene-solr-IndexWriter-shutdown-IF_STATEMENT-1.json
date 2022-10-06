@@ -1,0 +1,26 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "functionName": "shutdown",
+  "functionKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()",
+  "functionStartLine": 1007,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$if(1021-1023)",
+  "blockStartLine": 1021,
+  "blockEndLine": 1023,
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9938a39a872d4f232f718b2672d0245cae658e0b",
+      "commitId": "872bd9145cd9504fc16b318f7ea0a666d9429103",
+      "commitTime": 1407610475,
+      "changeType": "introduced",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown(boolean)$if(922-924)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$if(900-902)",
+      "comment": "Inline Method public shutdown(waitForMerges boolean) : void inlined to private shutdown() : void in class org.apache.lucene.index.IndexWriter"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "repositoryName": "hadoop",
+  "repositoryWebURL": "https://github.com/apache/hadoop.git",
+  "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/common/fica/FiCaSchedulerNode.java",
+  "functionName": "unreserveResource",
+  "functionKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.common.fica.FiCaSchedulerNode#unreserveResource(SchedulerApplicationAttempt)",
+  "functionStartLine": 101,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.common.fica.FiCaSchedulerNode#unreserveResource(SchedulerApplicationAttempt)$if(115-122)",
+  "blockStartLine": 115,
+  "blockEndLine": 122,
+  "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "expectedChanges": [
+    {
+      "parentCommitId": "30099efb3525265f8b9fccd2709d45327f5b6724",
+      "commitId": "7f2b1eadc1b0807ec1302a0c3488bf6e7a59bc76",
+      "commitTime": 1342489383,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerNode.java",
+      "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerNode#unreserveResource(SchedulerApp)$if(225-232)",
+      "elementFileAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/common/fica/FiCaSchedulerNode.java",
+      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.common.fica.FiCaSchedulerNode#unreserveResource(SchedulerApplication)$if(233-240)"
+    },
+    {
+      "parentCommitId": "dd86860633d2ed64705b669a75bf318442ed6225",
+      "commitId": "dbecbe5dfe50f834fc3b8401709079e9470cc517",
+      "commitTime": 1313665630,
+      "changeType": "introduced",
+      "elementFileBefore": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerNode.java",
+      "elementNameBefore": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerNode#unreserveResource(SchedulerApp)$if(207-214)",
+      "elementFileAfter": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerNode.java",
+      "elementNameAfter": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerNode#unreserveResource(SchedulerApp)$if(207-214)",
+      "comment": "added with method"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "repositoryName": "javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+  "functionName": "isApplicable",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(ResolvedMethodDeclaration, String, List, TypeSolver, boolean)",
+  "functionStartLine": 71,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(ResolvedMethodDeclaration, String, List, TypeSolver, boolean)$if(101-103)",
+  "blockStartLine": 101,
+  "blockEndLine": 103,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9dcca18c3d890a97c9bb69bb8046d65bdcf771e9",
+      "commitId": "b32947e8c85bc21fe533173f50d4a0a91036fdaf",
+      "commitTime": 1477032911,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(94-96)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(94-96)"
+    },
+    {
+      "parentCommitId": "1cc78a37dbd0df4ce02c984766764b009f8a9a74",
+      "commitId": "88db8b2a8b93bcc692cb8fd5085ba68b8bcf1968",
+      "commitTime": 1476725156,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(78-80)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(78-80)"
+    },
+    {
+      "parentCommitId": "407c343559d9633054c6d07b649f8b08e5eba8a3",
+      "commitId": "c48864ccaea00039c2f6a8390d21cffd3fbde054",
+      "commitTime": 1476372360,
+      "changeType": "introduced",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(65-67)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(65-67)",
+      "comment": "Extract Method private isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean extracted from public isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver) : boolean in class me.tomassetti.symbolsolver.resolution.MethodResolutionLogic"
+    }
+  ]
+}
