@@ -6,7 +6,7 @@ public class CodeElementNotFoundException extends Exception {
     private final int declarationLine;
 
     public CodeElementNotFoundException(String filePath, String name, int declarationLine) {
-        super(String.format("Element %s is not found in file '%s' at line %d!", filePath, name, declarationLine));
+        super(String.format("Element %s is not found in file '%s' at line %d!", name, filePath, declarationLine));
         this.filePath = filePath;
         this.name = name;
         this.declarationLine = declarationLine;
