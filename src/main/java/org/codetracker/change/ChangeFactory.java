@@ -149,6 +149,17 @@ public final class ChangeFactory {
                 change = new FinallyBlockRemoved();
                 break;
             }
+            case BLOCK_SPLIT: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                if (hookedElement != null && codeElement != null) {
+                    change = new SplitBlockWithEvolutionHook(refactoring, codeElement, hookedElement);
+                }
+                else {
+                    change = new SplitBlock(refactoring);
+                }
+                break;
+            }
             case EXPRESSION_CHANGE: {
                 change = new ExpressionChange();
                 break;

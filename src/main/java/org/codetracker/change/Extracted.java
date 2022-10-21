@@ -10,7 +10,7 @@ import org.codetracker.api.CodeElement;
 import java.util.Optional;
 
 public class Extracted extends Introduced {
-    private CodeElement hookedElement;
+    private final CodeElement hookedElement;
 
     public Extracted(Refactoring extractRefactoring, CodeElement addedElement, CodeElement hookedElement) {
         super(Type.INTRODUCED, addedElement, extractRefactoring);
