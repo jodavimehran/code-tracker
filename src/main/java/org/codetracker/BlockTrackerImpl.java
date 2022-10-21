@@ -415,6 +415,38 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     ReplacePipelineWithLoopRefactoring pipelineWithLoopRefactoring = (ReplacePipelineWithLoopRefactoring) refactoring;
                     break;
                 }
+                case SPLIT_CONDITIONAL: {
+                    SplitConditionalRefactoring splitConditionalRefactoring = (SplitConditionalRefactoring) refactoring;
+                    for (AbstractCodeFragment splitConditional : splitConditionalRefactoring.getSplitConditionals()) {
+                        if (splitConditional instanceof CompositeStatementObject) {
+                            Block addedBlockAfter = Block.of((CompositeStatementObject) splitConditional, splitConditionalRefactoring.getOperationAfter(), currentVersion);
+                            if (equalOperator.test(addedBlockAfter)) {
+                                // implementation with evolution hook
+                                /*
+                                Block addedBlockBefore = Block.of((CompositeStatementObject) splitConditional, splitConditionalRefactoring.getOperationAfter(), parentVersion);
+                                addedBlockBefore.setAdded(true);
+                                ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.BLOCK_SPLIT)
+                                        .comment(splitConditionalRefactoring.toString()).refactoring(splitConditionalRefactoring).codeElement(addedBlockAfter);
+                                if (splitConditionalRefactoring.getOriginalConditional() instanceof CompositeStatementObject) {
+                                    blockBefore = Block.of((CompositeStatementObject) splitConditionalRefactoring.getOriginalConditional(), splitConditionalRefactoring.getOperationBefore(), parentVersion);
+                                    changeFactory.hookedElement(blockBefore);
+                                }
+                                blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
+                                leftBlockSet.add(addedBlockBefore);
+                                blockChangeHistory.connectRelatedNodes();
+                                return leftBlockSet;
+                                 */
+                                // implementation without evolution hook
+                                if (splitConditionalRefactoring.getOriginalConditional() instanceof CompositeStatementObject) {
+                                    blockBefore = Block.of((CompositeStatementObject) splitConditionalRefactoring.getOriginalConditional(), splitConditionalRefactoring.getOperationBefore(), parentVersion);
+                                }
+                                blockAfter = addedBlockAfter;
+                                changeType = Change.Type.BLOCK_SPLIT;
+                            }
+                        }
+                    }
+                    break;
+                }
             }
             if (changeType != null) {
                 if (equalOperator.test(blockAfter)) {

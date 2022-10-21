@@ -25,6 +25,7 @@ public interface Change {
         FINALLY_BLOCK_CHANGE("finally block change"),
         FINALLY_BLOCK_ADDED("finally block added"),
         FINALLY_BLOCK_REMOVED("finally block removed"),
+        BLOCK_SPLIT("block split"),
         DOCUMENTATION_CHANGE("documentation change"),
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
