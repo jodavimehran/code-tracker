@@ -30,7 +30,7 @@ public class GitHubRepository implements IRepository {
     if ("0".equals(commitId)) return commitTime;
     try {
       GHCommit currentCommit = repository.getCommit(commitId);
-      commitTime = currentCommit.getCommitDate().getTime();
+      commitTime = currentCommit.getAuthoredDate().getTime();
     } catch (IOException e) {
       e.printStackTrace();
     }
