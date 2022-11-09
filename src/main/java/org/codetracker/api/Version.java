@@ -8,6 +8,9 @@ public interface Version {
   /** @return commit time */
   long getTime();
 
+  /** @return authored time  */
+  long getAuthoredTime();
+
   /** @return name of the committer */
   String getAuthorName();
 }

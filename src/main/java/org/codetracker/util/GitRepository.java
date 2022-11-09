@@ -36,6 +36,12 @@ public class GitRepository implements IRepository {
   @Override
   public long getCommitTime(String commitId) {
     if ("0".equals(commitId)) return 0;
+    return getRevCommit(commitId).getCommitTime();
+  }
+
+  @Override
+  public long getAuthoredTime(String commitId) {
+    if ("0".equals(commitId)) return 0;
     // convert time to Unix epoch
     return getRevCommit(commitId).getAuthorIdent().getWhen().getTime() / 1000L;
   }
