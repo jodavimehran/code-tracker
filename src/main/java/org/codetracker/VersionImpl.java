@@ -7,11 +7,13 @@ import java.util.Objects;
 public class VersionImpl implements Version {
   private final String id;
   private final long time;
+  private final long authoredTime;
   private final String authorName;
 
-  public VersionImpl(String id, long time, String authorName) {
+  public VersionImpl(String id, long time, long authoredTime, String authorName) {
     this.id = id;
     this.time = time;
+    this.authoredTime = authoredTime;
     this.authorName = authorName;
   }
 
@@ -23,6 +25,11 @@ public class VersionImpl implements Version {
   @Override
   public long getTime() {
     return this.time;
+  }
+
+  @Override
+  public long getAuthoredTime() {
+    return this.authoredTime;
   }
 
   @Override

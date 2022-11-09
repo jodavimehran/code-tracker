@@ -30,6 +30,19 @@ public class GitHubRepository implements IRepository {
     if ("0".equals(commitId)) return commitTime;
     try {
       GHCommit currentCommit = repository.getCommit(commitId);
+      commitTime = currentCommit.getCommitDate().getTime();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    return commitTime;
+  }
+
+  @Override
+  public long getAuthoredTime(String commitId) {
+    long commitTime = 0;
+    if ("0".equals(commitId)) return commitTime;
+    try {
+      GHCommit currentCommit = repository.getCommit(commitId);
       commitTime = currentCommit.getAuthoredDate().getTime();
     } catch (IOException e) {
       e.printStackTrace();

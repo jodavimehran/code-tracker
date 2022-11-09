@@ -21,6 +21,12 @@ public interface IRepository {
   long getCommitTime(String commitId);
 
   /**
+   * @param commitId the commit ID for which to find the authored time
+   * @return authored time
+   */
+  long getAuthoredTime(String commitId);
+
+  /**
    * @param commitId the commit ID that you wanted to find its author name
    * @return name of the committer
    */
@@ -31,6 +37,6 @@ public interface IRepository {
    * @return Version instance of the provided commit ID
    */
   default Version getVersion(String commitId) {
-    return new VersionImpl(commitId, getCommitTime(commitId), getCommitAuthorName(commitId));
+    return new VersionImpl(commitId, getCommitTime(commitId), getAuthoredTime(commitId), getCommitAuthorName(commitId));
   }
 }
