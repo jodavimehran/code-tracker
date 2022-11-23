@@ -195,6 +195,21 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethodFilePath, fileNames::contains, false);
                             UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
+                            Set<Refactoring> moveRenameClassRefactorings = umlModelDiffAll.getMoveRenameClassRefactorings();
+                            Set<Method> methodContainerChanged = isMethodContainerChanged(umlModelDiffAll, moveRenameClassRefactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                            if (!methodContainerChanged.isEmpty()) {
+                                UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethod.getUmlOperation().getClassName());
+                                if (classDiff != null) {
+                                    List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
+                                    analyseMethodRefactorings(classLevelRefactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                                }
+                                Set<Method> leftMethods = new HashSet<>();
+                                leftMethods.addAll(methodContainerChanged);
+                                leftMethods.forEach(methods::addFirst);
+                                historyReport.step5PlusPlus();
+                                break;
+                            }
+
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
                             boolean flag = false;
                             for (Refactoring refactoring : refactorings) {
@@ -214,17 +229,17 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 refactorings = umlModelDiffAll.getRefactorings();
                             }
 
-                            Set<Method> methodContainerChanged = isMethodContainerChanged(umlModelDiffAll, refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                            methodContainerChanged = isMethodContainerChanged(umlModelDiffAll, refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             boolean containerChanged = !methodContainerChanged.isEmpty();
 
                             Set<Method> methodRefactored = analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             boolean refactored = !methodRefactored.isEmpty();
 
                             if (containerChanged || refactored) {
-                                Set<Method> lefMethods = new HashSet<>();
-                                lefMethods.addAll(methodContainerChanged);
-                                lefMethods.addAll(methodRefactored);
-                                lefMethods.forEach(methods::addFirst);
+                                Set<Method> leftMethods = new HashSet<>();
+                                leftMethods.addAll(methodContainerChanged);
+                                leftMethods.addAll(methodRefactored);
+                                leftMethods.forEach(methods::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
