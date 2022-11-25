@@ -1,7 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
-import gr.uom.java.xmi.decomposition.CompositeStatementObject;
+import gr.uom.java.xmi.decomposition.AbstractStatement;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
@@ -72,7 +72,7 @@ public class Method extends BaseCodeElement {
 
     public Block findBlock(Predicate<Block> equalOperator) {
         if (umlOperation.getBody() != null) {
-            for (CompositeStatementObject composite : umlOperation.getBody().getCompositeStatement().getInnerNodes()) {
+            for (AbstractStatement composite : umlOperation.getBody().getCompositeStatement().getAllStatements()) {
                 Block block = Block.of(composite, this);
                 if (equalOperator.test(block)) {
                     return block;
@@ -82,7 +82,7 @@ public class Method extends BaseCodeElement {
         for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
             for (UMLOperation operation : anonymousClass.getOperations()) {
                 if (operation.getBody() != null) {
-                    for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
+                    for (AbstractStatement composite : operation.getBody().getCompositeStatement().getAllStatements()) {
                         Block block = Block.of(composite, this);
                         if (equalOperator.test(block)) {
                             return block;
@@ -93,7 +93,7 @@ public class Method extends BaseCodeElement {
         }
         for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
             if (lambda.getBody() != null) {
-                for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
+                for (AbstractStatement composite : lambda.getBody().getCompositeStatement().getAllStatements()) {
                     Block block = Block.of(composite, this);
                     if (equalOperator.test(block)) {
                         return block;
