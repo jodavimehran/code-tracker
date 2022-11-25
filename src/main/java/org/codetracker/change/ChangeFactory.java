@@ -160,6 +160,18 @@ public final class ChangeFactory {
                 }
                 break;
             }
+            case REPLACE_PIPELINE_WITH_LOOP: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                change = new ReplacePipelineWithLoop(refactoring);
+                break;
+            }
+            case REPLACE_LOOP_WITH_PIPELINE: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                change = new ReplaceLoopWithPipeline(refactoring);
+                break;
+            }
             case EXPRESSION_CHANGE: {
                 change = new ExpressionChange();
                 break;

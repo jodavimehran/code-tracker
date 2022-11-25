@@ -409,6 +409,27 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             switch (refactoring.getRefactoringType()) {
                 case REPLACE_LOOP_WITH_PIPELINE: {
                     ReplaceLoopWithPipelineRefactoring loopWithPipelineRefactoring = (ReplaceLoopWithPipelineRefactoring) refactoring;
+                    for (AbstractCodeFragment fragment : loopWithPipelineRefactoring.getCodeFragmentsAfter()) {
+                        if (fragment instanceof StatementObject) {
+                            StatementObject statement = (StatementObject) fragment;
+                            Block addedBlockAfter = Block.of(statement, loopWithPipelineRefactoring.getOperationAfter(), currentVersion);
+                            if (equalOperator.test(addedBlockAfter)) {
+                                Set<AbstractCodeFragment> fragmentsBefore = loopWithPipelineRefactoring.getCodeFragmentsBefore();
+                                for (AbstractCodeFragment fragmentBefore : fragmentsBefore) {
+                                    if (fragmentBefore instanceof CompositeStatementObject) {
+                                        if (fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.ENHANCED_FOR_STATEMENT) ||
+                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.FOR_STATEMENT) ||
+                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.WHILE_STATEMENT) ||
+                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.DO_STATEMENT)) {
+                                            blockBefore = Block.of((CompositeStatementObject) fragmentBefore, loopWithPipelineRefactoring.getOperationBefore(), parentVersion);
+                                            blockAfter = addedBlockAfter;
+                                            changeType = Change.Type.REPLACE_LOOP_WITH_PIPELINE;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                     break;
                 }
                 case REPLACE_PIPELINE_WITH_LOOP: {
@@ -418,6 +439,8 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             CompositeStatementObject composite = (CompositeStatementObject) fragment;
                             Block addedBlockAfter = Block.of(composite, pipelineWithLoopRefactoring.getOperationAfter(), currentVersion);
                             if (equalOperator.test(addedBlockAfter)) {
+                                // implementation for introduced
+                                /*
                                 Block addedBlockBefore = Block.of(composite, pipelineWithLoopRefactoring.getOperationAfter(), parentVersion);
                                 addedBlockBefore.setAdded(true);
                                 ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.INTRODUCED)
@@ -426,20 +449,30 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 leftBlockSet.add(addedBlockBefore);
                                 blockChangeHistory.connectRelatedNodes();
                                 return leftBlockSet;
+                                 */
+                                Set<AbstractCodeFragment> fragmentsBefore = pipelineWithLoopRefactoring.getCodeFragmentsBefore();
+                                if (fragmentsBefore.size() == 1 && fragmentsBefore.iterator().next() instanceof StatementObject) {
+                                    StatementObject streamStatement = (StatementObject) fragmentsBefore.iterator().next();
+                                    blockBefore = Block.of(streamStatement, pipelineWithLoopRefactoring.getOperationBefore(), parentVersion);
+                                    blockAfter = addedBlockAfter;
+                                    changeType = Change.Type.REPLACE_PIPELINE_WITH_LOOP;
+                                }
                             }
-                            //check if a nested composite statement matches
-                            List<CompositeStatementObject> innerNodes = composite.getInnerNodes();
-                            for (CompositeStatementObject innerNode : innerNodes) {
-                                addedBlockAfter = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), currentVersion);
-                                if (equalOperator.test(addedBlockAfter)) {
-                                    Block addedBlockBefore = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), parentVersion);
-                                    addedBlockBefore.setAdded(true);
-                                    ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.INTRODUCED)
-                                            .comment(pipelineWithLoopRefactoring.toString()).refactoring(pipelineWithLoopRefactoring).codeElement(addedBlockAfter);
-                                    blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
-                                    leftBlockSet.add(addedBlockBefore);
-                                    blockChangeHistory.connectRelatedNodes();
-                                    return leftBlockSet;
+                            else {
+                                //check if a nested composite statement matches
+                                List<CompositeStatementObject> innerNodes = composite.getInnerNodes();
+                                for (CompositeStatementObject innerNode : innerNodes) {
+                                    addedBlockAfter = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), currentVersion);
+                                    if (equalOperator.test(addedBlockAfter)) {
+                                        Block addedBlockBefore = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), parentVersion);
+                                        addedBlockBefore.setAdded(true);
+                                        ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.INTRODUCED)
+                                                .comment(pipelineWithLoopRefactoring.toString()).refactoring(pipelineWithLoopRefactoring).codeElement(addedBlockAfter);
+                                        blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
+                                        leftBlockSet.add(addedBlockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return leftBlockSet;
+                                    }
                                 }
                             }
                         }
@@ -561,6 +594,21 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         }
                     }
                     if (!bodyChange && !catchOrFinallyChange) {
+                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    }
+                    blocks.add(blockBefore);
+                    blockChangeHistory.connectRelatedNodes();
+                    return true;
+                }
+            }
+            else if (mapping instanceof LeafMapping && mapping.getFragment2() instanceof StatementObject) {
+                Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
+                if (equalOperator.test(blockAfter)) {
+                    Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
+                    if (!blockBefore.getComposite().toString().equals(blockAfter.getComposite().toString())) {
+                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                    }
+                    else {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
                     blocks.add(blockBefore);

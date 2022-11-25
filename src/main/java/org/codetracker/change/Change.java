@@ -26,6 +26,8 @@ public interface Change {
         FINALLY_BLOCK_ADDED("finally block added"),
         FINALLY_BLOCK_REMOVED("finally block removed"),
         BLOCK_SPLIT("block split"),
+        REPLACE_PIPELINE_WITH_LOOP("pipeline replaced with loop"),
+        REPLACE_LOOP_WITH_PIPELINE("loop replaced with pipeline"),
         DOCUMENTATION_CHANGE("documentation change"),
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
