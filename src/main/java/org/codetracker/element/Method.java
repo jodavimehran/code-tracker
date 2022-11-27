@@ -74,7 +74,7 @@ public class Method extends BaseCodeElement {
         if (umlOperation.getBody() != null) {
             for (AbstractStatement composite : umlOperation.getBody().getCompositeStatement().getAllStatements()) {
                 Block block = Block.of(composite, this);
-                if (equalOperator.test(block)) {
+                if (block != null && equalOperator.test(block)) {
                     return block;
                 }
             }
@@ -84,7 +84,7 @@ public class Method extends BaseCodeElement {
                 if (operation.getBody() != null) {
                     for (AbstractStatement composite : operation.getBody().getCompositeStatement().getAllStatements()) {
                         Block block = Block.of(composite, this);
-                        if (equalOperator.test(block)) {
+                        if (block != null && equalOperator.test(block)) {
                             return block;
                         }
                     }
@@ -95,7 +95,7 @@ public class Method extends BaseCodeElement {
             if (lambda.getBody() != null) {
                 for (AbstractStatement composite : lambda.getBody().getCompositeStatement().getAllStatements()) {
                     Block block = Block.of(composite, this);
-                    if (equalOperator.test(block)) {
+                    if (block != null && equalOperator.test(block)) {
                         return block;
                     }
                 }
