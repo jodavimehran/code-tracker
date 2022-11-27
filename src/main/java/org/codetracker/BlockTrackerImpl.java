@@ -603,7 +603,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             }
             else if (mapping instanceof LeafMapping && mapping.getFragment2() instanceof StatementObject) {
                 Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
-                if (equalOperator.test(blockAfter)) {
+                if (blockAfter != null && equalOperator.test(blockAfter)) {
                     Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
                     if (!blockBefore.getComposite().toString().equals(blockAfter.getComposite().toString())) {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
