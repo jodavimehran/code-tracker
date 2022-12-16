@@ -27,7 +27,7 @@ public class Variable extends BaseCodeElement {
 
     public static Variable of(VariableDeclaration variableDeclaration, Method method) {
         String name = String.format("%s$%s(%d)", method.getName(), variableDeclaration.toString().replace(" ", ""), variableDeclaration.getLocationInfo().getStartLine());
-        String sha512 = Util.getSHA512(variableDeclaration.getScope().getStatementsInScope().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
+        String sha512 = Util.getSHA512(variableDeclaration.getScope().getStatementsInScopeUsingVariable().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
         String identifierExcludeVersion = String.format(
                 "%s$%s%s:%s%s{%s,%s}",
                 method.getIdentifierIgnoringVersion(),
