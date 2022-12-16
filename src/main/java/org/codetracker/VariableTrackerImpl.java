@@ -468,14 +468,16 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
     private boolean matchingVariables(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion, VariableDeclaration leftVariable) {
         if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
-            List<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
-            List<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
+            Set<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
+            Set<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
             boolean identicalStatementsInScope = false;
             if (leftStatementsInScope.size() == rightStatementsInScope.size()) {
                 int identicalStatementCount = 0;
-                for (int i=0; i<leftStatementsInScope.size(); i++) {
-                    AbstractCodeFragment leftFragment = leftStatementsInScope.get(i);
-                    AbstractCodeFragment rightFragment = rightStatementsInScope.get(i);
+                Iterator<AbstractCodeFragment> leftStatementIterator = leftStatementsInScope.iterator();
+                Iterator<AbstractCodeFragment> rightStatementIterator = rightStatementsInScope.iterator();
+                while (leftStatementIterator.hasNext() && rightStatementIterator.hasNext()) {
+                    AbstractCodeFragment leftFragment = leftStatementIterator.next();
+                    AbstractCodeFragment rightFragment = rightStatementIterator.next();
                     if (leftFragment.getString().equals(rightFragment.getString())) {
                         identicalStatementCount++;
                     }
