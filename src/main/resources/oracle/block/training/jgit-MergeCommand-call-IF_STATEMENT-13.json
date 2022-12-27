@@ -1,0 +1,67 @@
+{
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+  "functionName": "call",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()",
+  "functionStartLine": 225,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(393-402)",
+  "blockStartLine": 393,
+  "blockEndLine": 402,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "cbb2e65dbcf4c4cf9751184f07d5bc4e58bf17e5",
+      "commitId": "42e69409d796421bb1353279cfae463b19a43fe9",
+      "commitTime": 1524087217,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(391-399)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(393-402)"
+    },
+    {
+      "parentCommitId": "03046d0f60810ec01d830e6efb3291e4a161512a",
+      "commitId": "64a404803eaccc88d7d57567c5cd86b88c342bec",
+      "commitTime": 1477179271,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(377-384)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(377-385)"
+    },
+    {
+      "parentCommitId": "6424dcd6943ce4cad362bff6afad56e849ddbe54",
+      "commitId": "0e73d395061d1bfee365acaa2f79c392175d13bf",
+      "commitTime": 1432159296,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(371-376)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(371-378)"
+    },
+    {
+      "parentCommitId": "81b601de53125bbcd30620b58168154d7541d8ad",
+      "commitId": "545358577376bec8fc140a76ce0f72bf81cc0a94",
+      "commitTime": 1365081109,
+      "changeType": "block split",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(355-363)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(363-368)",
+      "comment": "Split Conditional if(!squash) to [if(commit && !squash), if(commit && squash)] in method public call() : MergeResult from class org.eclipse.jgit.api.MergeCommand"
+    },
+    {
+      "parentCommitId": "c4087af65ddfd976f2a2513a773f50b1fd790336",
+      "commitId": "2656ac1b5acb9b73c6b47e2cf8830a0a0b2cc214",
+      "commitTime": 1339743581,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(256-264)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$if(256-264)",
+      "comment": "new block"
+    }
+  ]
+}
