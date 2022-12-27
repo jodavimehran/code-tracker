@@ -1,0 +1,46 @@
+{
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+  "functionName": "sendPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)",
+  "functionStartLine": 1965,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)$if(2112-2116)",
+  "blockStartLine": 2112,
+  "blockEndLine": 2116,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
+      "commitId": "557471da2eee6752ad4305a883843bcdc8d66536",
+      "commitTime": 1369339623,
+      "changeType": "expression change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(1212-1216)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(1214-1218)"
+    },
+    {
+      "parentCommitId": "3e58471ee3b671b9b9ebdb7c909a8e7a4647a688",
+      "commitId": "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
+      "commitTime": 1369250048,
+      "changeType": "expression change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(1184-1188)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(1212-1216)"
+    },
+    {
+      "parentCommitId": "1a87a725be28cb33f370bb62db69ae672a64c56b",
+      "commitId": "7ff6eb584cf8b83f83a3b5edf897feb53dbf42c0",
+      "commitTime": 1307665786,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(931-935)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(931-935)",
+      "comment": "Extract Method private sendPack(sideband boolean) : void extracted from private sendPack() : void in class org.eclipse.jgit.transport.UploadPack"
+    }
+  ]
+}

@@ -1,0 +1,386 @@
+{
+  "repositoryName": "javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+  "functionName": "solveMethodAsUsage",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)",
+  "functionStartLine": 75,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(77-120)",
+  "blockStartLine": 77,
+  "blockEndLine": 120,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "bd4cfc212e3833fd0d6080b3a67f29c0d8164f7d",
+      "commitId": "791449a6ab0696f4c0109908a4a0925e514b10d9",
+      "commitTime": 1528293168,
+      "changeType": "body change",
+      "elementFileBefore": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-119)",
+      "elementFileAfter": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(77-120)"
+    },
+    {
+      "parentCommitId": "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
+      "commitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitTime": 1506630980,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(80-123)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(74-117)"
+    },
+    {
+      "parentCommitId": "af01f706cf31cd1e2f903a6c3786a50916924a11",
+      "commitId": "dd5c0a00fb9cbd9995d9141907848ec5a3342760",
+      "commitTime": 1492464511,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(80-123)"
+    },
+    {
+      "parentCommitId": "5ea0249ec0806f73f6c26d2460d343bbb2f42da0",
+      "commitId": "acdac6790f4424f8097b3aa6c888e825cac485f9",
+      "commitTime": 1489108943,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)"
+    },
+    {
+      "parentCommitId": "e5fe2b597be66d230f8824277c1d4167fa2bb609",
+      "commitId": "17ac5ada0476c72aa79a2e0c39311e90bfa0fe60",
+      "commitTime": 1489030303,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)"
+    },
+    {
+      "parentCommitId": "2b60ba79b29908e6db077f5f1bee5ea5f9fb9f7a",
+      "commitId": "065875981b4d1ffa4bf3535d7c89319a4a3345f1",
+      "commitTime": 1484181926,
+      "changeType": "expression change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(71-113)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)"
+    },
+    {
+      "parentCommitId": "2b60ba79b29908e6db077f5f1bee5ea5f9fb9f7a",
+      "commitId": "065875981b4d1ffa4bf3535d7c89319a4a3345f1",
+      "commitTime": 1484181926,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(71-113)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(76-118)"
+    },
+    {
+      "parentCommitId": "07c91d28ca0e1be515299e0a322191a197b66f12",
+      "commitId": "6e1380f412d334f1c887d15edf0b4610c3cf0da2",
+      "commitTime": 1479754732,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)"
+    },
+    {
+      "parentCommitId": "5e0a0d025cd298f2aef46354b6773a46ad25adc8",
+      "commitId": "ca3e3a946698cf3a4f93e6fb7b4d2b16ee2e3ed5",
+      "commitTime": 1478711700,
+      "changeType": "expression change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)"
+    },
+    {
+      "parentCommitId": "5e0a0d025cd298f2aef46354b6773a46ad25adc8",
+      "commitId": "ca3e3a946698cf3a4f93e6fb7b4d2b16ee2e3ed5",
+      "commitTime": 1478711700,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(67-109)"
+    },
+    {
+      "parentCommitId": "6df1aa26f75ff0d716a1290007e2b63cc05001ae",
+      "commitId": "a1c7c58143a592965f8378767adc69709e4c0043",
+      "commitTime": 1478359356,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(258-298)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(258-298)"
+    },
+    {
+      "parentCommitId": "f93a05f9cd65e67ad0edc33d4e26b107ae792e14",
+      "commitId": "6df1aa26f75ff0d716a1290007e2b63cc05001ae",
+      "commitTime": 1478358517,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(261-301)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(258-298)"
+    },
+    {
+      "parentCommitId": "6a58d3aa0ef665a38c08ce26db0d311ee97243bf",
+      "commitId": "d017fb8caf6ccb3343da0062eb2c85262712772c",
+      "commitTime": 1477589481,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(261-298)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(261-301)"
+    },
+    {
+      "parentCommitId": "cf0045ad73d15502e16c6de02334d39383dfee78",
+      "commitId": "2082034e8c3eb434e3df25dd420c98cae5a6d518",
+      "commitTime": 1477329545,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(210-241)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(266-303)"
+    },
+    {
+      "parentCommitId": "660a7e41830d81150ae70ac4bcb1b8ba09bd8500",
+      "commitId": "13d789de30e6c3d29efb17a2acdff443f8c48db1",
+      "commitTime": 1477213096,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(191-228)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(191-222)"
+    },
+    {
+      "parentCommitId": "4b857a4f148b5f516074cea439db813c48a07aff",
+      "commitId": "03e407957d600a18ef0a4a83224c17d155ef8645",
+      "commitTime": 1476898462,
+      "changeType": "expression change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(193-230)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(193-230)"
+    },
+    {
+      "parentCommitId": "3c22c2a4c3801572795c139deedd806643783afe",
+      "commitId": "341e081a5f8909a3a467671befcca2941b786d3d",
+      "commitTime": 1476898421,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(193-230)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(193-230)"
+    },
+    {
+      "parentCommitId": "1cc78a37dbd0df4ce02c984766764b009f8a9a74",
+      "commitId": "88db8b2a8b93bcc692cb8fd5085ba68b8bcf1968",
+      "commitTime": 1476725156,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(177-214)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(177-214)"
+    },
+    {
+      "parentCommitId": "2326216453cb064c9e94ee35452b4b3a8c4fb537",
+      "commitId": "656bb37a1dba87d61d24e69f2346f35dbc73d81d",
+      "commitTime": 1476634428,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(185-222)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(185-222)"
+    },
+    {
+      "parentCommitId": "6b50c90daa764492e074198460c807d83d52325e",
+      "commitId": "8d234965b572759181da7787fead07b225e9e5ca",
+      "commitTime": 1476426972,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(184-221)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(184-221)"
+    },
+    {
+      "parentCommitId": "b75d0c51157475833e5364ec6df88b2b6fe0db79",
+      "commitId": "82eb44707b620803d424188a1eb8708fcaf093cb",
+      "commitTime": 1476389491,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(182-219)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(183-220)"
+    },
+    {
+      "parentCommitId": "37576d078d11264fec1a28bbffea400003160b6b",
+      "commitId": "38d780df85a22c9baffb1f772a45b063cad73aab",
+      "commitTime": 1476305619,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(168-199)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(182-219)"
+    },
+    {
+      "parentCommitId": "30ae58ba33671d5a66b7f72fc1f64ce279ebbc15",
+      "commitId": "d36b028172c0a183a0f32f66d2c5dff6f4b1dd76",
+      "commitTime": 1474910120,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(156-191)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(156-187)"
+    },
+    {
+      "parentCommitId": "605f06d2742d3818a35e13ee6970faa547f62018",
+      "commitId": "ead147279ca0b84d2f479a714943b20cd689e7c7",
+      "commitTime": 1448035478,
+      "changeType": "body change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(88-120)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(141-176)"
+    },
+    {
+      "parentCommitId": "9506a1844d5076b4edcc2b9a5bc375acf7e95c35",
+      "commitId": "e21fca16e413a8bf31d613aa97a744d075c374dd",
+      "commitTime": 1446495067,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(82-114)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(82-114)"
+    },
+    {
+      "parentCommitId": "647b3846abe3f7acebb4efb6d163eb2fefe600d8",
+      "commitId": "0e81f51c40996b42cb262dc2397126cee8f60965",
+      "commitTime": 1446244665,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-71)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/resolution/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.resolution.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(79-111)"
+    },
+    {
+      "parentCommitId": "ee58eb8363ecd8fad15a63eb2fdc94a387b58807",
+      "commitId": "f821be8dfe72fcd3f4e14f75420617b87ddb8689",
+      "commitTime": 1440448941,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-77)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(42-77)"
+    },
+    {
+      "parentCommitId": "283204dd5840cb11dd6c73dbbb196e80db79c9a4",
+      "commitId": "1ae290f6f5e0c7ba62eab797aba22308957b9257",
+      "commitTime": 1440445074,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-77)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-77)"
+    },
+    {
+      "parentCommitId": "d0348de241a6cf6be9c51500870ee1fb26172101",
+      "commitId": "c08a0391fd27b2ecc75a264cce9eb4606d0f7b30",
+      "commitTime": 1440442594,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-74)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-77)"
+    },
+    {
+      "parentCommitId": "ee35b15a04539af508d29081ac5c7f8f6fadba4a",
+      "commitId": "6a15cd55028fc9b7c73158d05f5ee335cab1f481",
+      "commitTime": 1440433744,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-69)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-74)"
+    },
+    {
+      "parentCommitId": "6c297529e31036058837adbaa57cee652d4cc918",
+      "commitId": "46aefdd68f2f2597a19b72da36681123cb3090e6",
+      "commitTime": 1440326040,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-61)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-69)"
+    },
+    {
+      "parentCommitId": "7b2a0b366461674aa6320b11a38a17909d8a74a3",
+      "commitId": "6c297529e31036058837adbaa57cee652d4cc918",
+      "commitTime": 1440322720,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-60)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-61)"
+    },
+    {
+      "parentCommitId": "be64d2e61b56eafd01abc7236a7a0dcd6ce6dafd",
+      "commitId": "7b2a0b366461674aa6320b11a38a17909d8a74a3",
+      "commitTime": 1440318263,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(37-43)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(39-60)"
+    },
+    {
+      "parentCommitId": "d393205e2ee874242b73e4fe819d1bc874587d8a",
+      "commitId": "850c0caa4c64df32d5fc44a5512d6d41f4534a08",
+      "commitTime": 1439829810,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(36-42)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(36-42)"
+    },
+    {
+      "parentCommitId": "b5373f8b169b794f2f1e7938379b9e9988c9a441",
+      "commitId": "df3e1a46a12fcc1ecafc00e59e7b7481c28ce731",
+      "commitTime": 1439565412,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)"
+    },
+    {
+      "parentCommitId": "c1925c6f5ee7fc63f43ae51aedc174a991db503a",
+      "commitId": "627b56302d259409e9bc50b20d77803484f18b5c",
+      "commitTime": 1438784743,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)"
+    },
+    {
+      "parentCommitId": "eae2cd895cfd52c09d22d5e8decbd3c81eca1cbc",
+      "commitId": "fd2e083224d3ee0e9ccca4431d63a84601e0d606",
+      "commitTime": 1438781426,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$if(27-33)",
+      "comment": "added with method"
+    }
+  ]
+}

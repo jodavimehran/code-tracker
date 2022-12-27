@@ -1,0 +1,87 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+  "functionName": "connect",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)",
+  "functionStartLine": 130,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)$if(139-154)",
+  "blockStartLine": 139,
+  "blockEndLine": 154,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "fa994f54e41ab67dc407d37a72f4faa4a5245d1f",
+      "commitId": "db18f0e404ab35c7b23e8ecc27913d717e96eb84",
+      "commitTime": 1526113761,
+      "changeType": "body change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)$if(139-149)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)$if(139-154)"
+    },
+    {
+      "parentCommitId": "f98ff257ceb949b404ec5d6cb1fece0e22e53264",
+      "commitId": "738f7fa4def3bc9da39c8b815fe0905a6e6505fa",
+      "commitTime": 1467514724,
+      "changeType": "block split",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, List, boolean)$if(96-100)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, List, boolean)$if(96-106)",
+      "comment": "Split Conditional if(route.address().sslSocketFactory() == null && !connectionSpecs.contains(ConnectionSpec.CLEARTEXT)) to [if(!connectionSpecs.contains(ConnectionSpec.CLEARTEXT)), if(route.address().sslSocketFactory() == null)] in method public connect(connectTimeout int, readTimeout int, writeTimeout int, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class okhttp3.internal.connection.RealConnection"
+    },
+    {
+      "parentCommitId": "992dd934f061a21f8a802ed8fd8d99b75047dba8",
+      "commitId": "b63841d3a3922440c258098190371f1e17d977c1",
+      "commitTime": 1450159069,
+      "changeType": "expression change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)$if(97-101)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)$if(97-101)"
+    },
+    {
+      "parentCommitId": "828206ccc34d547ba75ee7e26143d76c4329a643",
+      "commitId": "71ae4df298f42039579fd6e3c6d9d9060ac91214",
+      "commitTime": 1450158314,
+      "changeType": "expression change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)$if(97-101)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)$if(97-101)"
+    },
+    {
+      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "commitTime": 1448721366,
+      "changeType": "expression change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, List, boolean)$if(161-165)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection#connect(int, int, int, List, boolean)$if(87-91)"
+    },
+    {
+      "parentCommitId": "1e5f3a967977db513585ed8f350a65ab3175e9ce",
+      "commitId": "b42e73f497eafe147667117202267ec756adff26",
+      "commitTime": 1438473253,
+      "changeType": "expression change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(147-151)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(162-166)"
+    },
+    {
+      "parentCommitId": "0237d3c3f29b004f4313b2b9fd58830b29cc6311",
+      "commitId": "60f5406dcc094d0431420139bd002e8bdd4ea5d5",
+      "commitTime": 1426694377,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(145-149)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(145-149)",
+      "comment": "new block"
+    }
+  ]
+}

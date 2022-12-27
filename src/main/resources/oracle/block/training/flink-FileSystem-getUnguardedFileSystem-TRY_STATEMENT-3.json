@@ -1,0 +1,66 @@
+{
+  "repositoryName": "flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "filePath": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+  "functionName": "getUnguardedFileSystem",
+  "functionKey": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)",
+  "functionStartLine": 321,
+  "blockType": "TRY_STATEMENT",
+  "blockKey": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(326-414)",
+  "blockStartLine": 326,
+  "blockEndLine": 414,
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "f04b32b02900181db82c6c518ffbd6430a0a369a",
+      "commitId": "d7c2c417213502130b1aeab1868313df178555cc",
+      "commitTime": 1511520068,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(314-395)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(326-414)"
+    },
+    {
+      "parentCommitId": "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
+      "commitId": "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
+      "commitTime": 1507281370,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(304-391)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(313-394)"
+    },
+    {
+      "parentCommitId": "84a07a34ac22af14f2dd0319447ca5f45de6d0bb",
+      "commitId": "3b786844dd9c0ce176eac98c8a05ebe50cb1ebe7",
+      "commitTime": 1507223685,
+      "changeType": "expression change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(291-372)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(304-391)"
+    },
+    {
+      "parentCommitId": "84a07a34ac22af14f2dd0319447ca5f45de6d0bb",
+      "commitId": "3b786844dd9c0ce176eac98c8a05ebe50cb1ebe7",
+      "commitTime": 1507223685,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(291-372)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(304-391)"
+    },
+    {
+      "parentCommitId": "c590912c93a4059b40452dfa6cffbdd4d58cac13",
+      "commitId": "ba8ed263695d16eacb4bdfdf195dd22c83bb53ed",
+      "commitTime": 1479853012,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(259-340)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(259-340)",
+      "comment": "Extract Method public getUnguardedFileSystem(uri URI) : FileSystem extracted from public get(uri URI) : FileSystem in class org.apache.flink.core.fs.FileSystem"
+    }
+  ]
+}

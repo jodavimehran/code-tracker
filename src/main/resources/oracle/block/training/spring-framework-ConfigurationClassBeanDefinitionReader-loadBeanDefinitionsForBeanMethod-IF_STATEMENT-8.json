@@ -1,0 +1,26 @@
+{
+  "repositoryName": "spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+  "functionName": "loadBeanDefinitionsForBeanMethod",
+  "functionKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(BeanMethod)",
+  "functionStartLine": 169,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForBeanMethod(BeanMethod)$if(254-256)",
+  "blockStartLine": 254,
+  "blockEndLine": 256,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+      "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
+      "commitTime": 1240184731,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader#getBeanDefinitionIncludingAncestry(String, BeanDefinitionRegistry)$if(236-245)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader#loadBeanDefinitionsForModelMethod(ConfigurationClassMethod)$if(176-178)",
+      "comment": "Inline Method private getBeanDefinitionIncludingAncestry(beanName String, registry BeanDefinitionRegistry) : BeanDefinition inlined to private loadBeanDefinitionsForModelMethod(method ConfigurationClassMethod) : void in class org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
+    }
+  ]
+}

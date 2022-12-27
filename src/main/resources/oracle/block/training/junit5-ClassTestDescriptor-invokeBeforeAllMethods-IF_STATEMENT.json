@@ -1,0 +1,26 @@
+{
+  "repositoryName": "junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+  "functionName": "invokeBeforeAllMethods",
+  "functionKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)",
+  "functionStartLine": 365,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(JupiterEngineExecutionContext)$if(374-376)",
+  "blockStartLine": 374,
+  "blockEndLine": 376,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "d565f81ce504834b2f8ecbf6a27956f94d723afd",
+      "commitId": "62c433c14ce9d70fa5b82ef385a6e15c22cc0003",
+      "commitTime": 1466882960,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(ExtensionRegistry, ContainerExtensionContext, ThrowableCollector)$if(219-221)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.ClassTestDescriptor#invokeBeforeAllMethods(ExtensionRegistry, ContainerExtensionContext, ThrowableCollector)$if(219-221)",
+      "comment": "Replace Pipeline With Loop this.beforeAllMethods.forEach(method -> executeAndMaskThrowable(() -> executableInvoker.invoke(method,context,registry))); with for(method: this.beforeAllMethods) in method private invokeBeforeAllMethods(registry ExtensionRegistry, context ContainerExtensionContext, throwableCollector ThrowableCollector) : void from class org.junit.jupiter.engine.descriptor.ClassTestDescriptor"
+    }
+  ]
+}
