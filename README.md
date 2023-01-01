@@ -3,6 +3,7 @@
 This project aims to introduce CodeTracker, a refactoring-aware tool that can generate the commit change history for method and variable declarations in a Java project with a very high accuracy.
 
 # Table of Contents
+  * [How to cite CodeTracker](#how-to-cite-codetracker)
   * [Requirements](#requirements)
   * [How to Build and Run](#how-to-build-and-run)
       * [Command line](#command-line)
@@ -14,6 +15,29 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to Track Attributes](#how-to-track-attributes)
   * [Oracle](#oracle)
   * [Experiments](#experiments)
+
+# How to cite CodeTracker
+If you are using CodeTracker in your research, please cite the following paper:
+
+Mehran Jodavi and Nikolaos Tsantalis, "[Accurate Method and Variable Tracking in Commit History](https://users.encs.concordia.ca/~nikolaos/publications/FSE_2022.pdf)," pp. 183-195, *30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering* (ESEC/FSE'2022), Singapore, Singapore, November 14–18, 2022.
+
+    @inproceedings{10.1145/3540250.3549079,
+       author = {Jodavi, Mehran and Tsantalis, Nikolaos},
+	   title = {Accurate Method and Variable Tracking in Commit History},
+	   year = {2022},
+	   isbn = {9781450394130},
+	   publisher = {Association for Computing Machinery},
+	   address = {New York, NY, USA},
+	   url = {https://doi.org/10.1145/3540250.3549079},
+	   doi = {10.1145/3540250.3549079},
+	   booktitle = {Proceedings of the 30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering},
+	   pages = {183–195},
+	   numpages = {13},
+	   keywords = {commit change history, refactoring-aware source code tracking},
+	   location = {Singapore, Singapore},
+	   series = {ESEC/FSE 2022}
+    }
+
 
 # Requirements
 Java 11.0.15 or newer
