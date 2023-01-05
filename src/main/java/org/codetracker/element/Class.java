@@ -2,6 +2,8 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
+import gr.uom.java.xmi.Visibility;
+
 import org.codetracker.api.Version;
 
 import static org.codetracker.util.Util.annotationsToString;
@@ -24,7 +26,7 @@ public class Class extends BaseCodeElement {
                 .isStatic(umlClass.isStatic())
                 .isAbstract(umlClass.isAbstract())
                 .build();
-        String visibility = umlClass.getVisibility();
+        Visibility visibility = umlClass.getVisibility();
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);

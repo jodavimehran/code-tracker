@@ -2,6 +2,8 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.Visibility;
+
 import org.codetracker.api.Version;
 
 import static org.codetracker.util.Util.annotationsToString;
@@ -19,7 +21,7 @@ public class Attribute extends BaseCodeElement {
         String sourceFolder = getPath(umlAttribute.getLocationInfo().getFilePath(), umlAttribute.getClassName());
         String name = umlAttribute.getName();
         String className = umlAttribute.getClassName();
-        String visibility = umlAttribute.getVisibility();
+        Visibility visibility = umlAttribute.getVisibility();
         String type = umlAttribute.getType().toString();
         int startLine = umlAttribute.getLocationInfo().getStartLine();
 
