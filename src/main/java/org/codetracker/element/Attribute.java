@@ -19,7 +19,7 @@ public class Attribute extends BaseCodeElement {
         String sourceFolder = getPath(umlAttribute.getLocationInfo().getFilePath(), umlAttribute.getClassName());
         String name = umlAttribute.getName();
         String className = umlAttribute.getClassName();
-        String visibility = umlAttribute.getVisibility();
+        String visibility = umlAttribute.getVisibility().toString();
         String type = umlAttribute.getType().toString();
         int startLine = umlAttribute.getLocationInfo().getStartLine();
 

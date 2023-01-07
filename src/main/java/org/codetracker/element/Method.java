@@ -134,7 +134,7 @@ public class Method extends BaseCodeElement {
         StringBuilder sb = new StringBuilder();
         sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
         sb.append(info.getClassName());
-        sb.append(String.format("#(%s)", info.getVisibility()));
+        sb.append(String.format("#(%s)", info.getVisibility().toString()));
 
         List<String> modifiers = new ArrayList<>();
         if (info.isStatic())
