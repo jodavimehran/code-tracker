@@ -97,13 +97,9 @@ public class Block extends BaseCodeElement {
         }
         if(invocation != null && (invocation.actualString().contains(" -> ") ||
                 invocation.actualString().contains("::"))) {
-            Map<String, List<AbstractCall>> methodInvocationMap = statement.getMethodInvocationMap();
-            for(String key : methodInvocationMap.keySet()) {
-                List<AbstractCall> invocations = methodInvocationMap.get(key);
-                for(AbstractCall inv : invocations) {
-                    if(streamAPIName(inv.getName())) {
-                        streamAPICalls.add(inv);
-                    }
+            for(AbstractCall inv : statement.getMethodInvocations()) {
+                if(streamAPIName(inv.getName())) {
+                    streamAPICalls.add(inv);
                 }
             }
         }
