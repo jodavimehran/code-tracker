@@ -1,0 +1,66 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+  "attributeName": "doAutoIOThrottle",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@doAutoIOThrottle:boolean(120)",
+  "attributeDeclarationLine": 120,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "749d0ccff08fbd86bd7b91b53a55747b2eae3de5",
+      "commitId": "41fcc722ff07393586f7758d8a733c7e2e59bebc",
+      "commitTime": 1420468108,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(67)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)doAutoIOThrottle:boolean(102)",
+      "comment": "Change Attribute Type mergeThreadPriority : int to doAutoIOThrottle : boolean in class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "749d0ccff08fbd86bd7b91b53a55747b2eae3de5",
+      "commitId": "41fcc722ff07393586f7758d8a733c7e2e59bebc",
+      "commitTime": 1420468108,
+      "changeType": "rename",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(67)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)doAutoIOThrottle:boolean(102)",
+      "comment": "Rename Attribute mergeThreadPriority : int to doAutoIOThrottle : boolean in class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "40f0adb507c266dc950ac9697b2408c1b1e15107",
+      "commitId": "299d6357dd296f87a099fadd0764292b28dbde47",
+      "commitTime": 1190107634,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(39)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(39)",
+      "comment": "added with new class"
+    }
+  ]
+}

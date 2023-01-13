@@ -1,0 +1,88 @@
+{
+  "repositoryName": "mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "filePath": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+  "attributeName": "stubbed",
+  "attributeKey": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl@stubbed:LinkedList<StubbedInvocationMatcher>(32)",
+  "attributeDeclarationLine": 32,
+  "expectedChanges": [
+    {
+      "parentCommitId": "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+      "commitId": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "commitTime": 1436416970,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.InvocationContainerImpl@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(27)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(27)",
+      "comment": "Move Source Folder src to src/main/java"
+    },
+    {
+      "parentCommitId": "ec9ca3637db4f353fb8aaf89e0abc235a8bc558e",
+      "commitId": "501e8f84361af21ce23d506e3c5b284375908bdd",
+      "commitTime": 1258316396,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.MockitoStubber@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(24)",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.InvocationContainerImpl@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(24)",
+      "comment": "Rename Class org.mockito.internal.stubbing.MockitoStubber renamed to org.mockito.internal.stubbing.InvocationContainerImpl"
+    },
+    {
+      "parentCommitId": "816c0325d9b1e7d51d42bd0ce5f918b60f46f04f",
+      "commitId": "183167dbd20a85fa1106c300b304684ddec5f3d8",
+      "commitTime": 1216239299,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/Stubber.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.Stubber@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(19)",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.MockitoStubber@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(19)",
+      "comment": "Rename Class org.mockito.internal.stubbing.Stubber renamed to org.mockito.internal.stubbing.MockitoStubber"
+    },
+    {
+      "parentCommitId": "f6d3fdae07e95483f6969ae04dc2c1925d4b53c0",
+      "commitId": "bcc618a8f221d05abc745e60f5098786d84bfc72",
+      "commitTime": 1197642734,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/Stubber.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.Stubber@(private)stubbed:LinkedList<StubbedInvocationMatcher>(17)",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/Stubber.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.Stubber@(final)(private)stubbed:LinkedList<StubbedInvocationMatcher>(16)",
+      "comment": "Add Attribute Modifier final in attribute private stubbed : LinkedList<StubbedInvocationMatcher> from class org.mockito.internal.stubbing.Stubber"
+    },
+    {
+      "parentCommitId": "2f7bf91d24a85ab28749e80effeb1252d8442ff9",
+      "commitId": "9952454f4efc6a8734149b5e81e4f66c0349dcbb",
+      "commitTime": 1197406924,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/Stubber.java",
+      "elementNameBefore": "src/org.mockito.internal.Stubber@(private)stubbed:LinkedList<StubbedInvocationMatcher>(10)",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/Stubber.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.Stubber@(private)stubbed:LinkedList<StubbedInvocationMatcher>(13)",
+      "comment": "Move Class org.mockito.internal.Stubber moved to org.mockito.internal.stubbing.Stubber"
+    },
+    {
+      "parentCommitId": "363dce3b88179bb7b5ae6bd0580b19e1d0c15481",
+      "commitId": "554224f9cc39c4cbbcdaa0ff7e183a1cc416ce8e",
+      "commitTime": 1197326252,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/Stubber.java",
+      "elementNameBefore": "src/org.mockito.internal.Stubber@(private)stubbed:LinkedList<StubbedInvocation>(10)",
+      "elementFileAfter": "src/org/mockito/internal/Stubber.java",
+      "elementNameAfter": "src/org.mockito.internal.Stubber@(private)stubbed:LinkedList<StubbedInvocationMatcher>(10)",
+      "comment": "Change Attribute Type stubbed : LinkedList<StubbedInvocation> to stubbed : LinkedList<StubbedInvocationMatcher> in class org.mockito.internal.Stubber"
+    },
+    {
+      "parentCommitId": "b874832634a8a31693dbce7ccec9390bb2bf7dce",
+      "commitId": "15f3bb0ac999bbb5c3e8b28e332c02113d2534d5",
+      "commitTime": 1197244391,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/mockito/internal/Stubber.java",
+      "elementNameBefore": "src/org.mockito.internal.Stubber@(private)stubbed:LinkedList<StubbedInvocation>(10)",
+      "elementFileAfter": "src/org/mockito/internal/Stubber.java",
+      "elementNameAfter": "src/org.mockito.internal.Stubber@(private)stubbed:LinkedList<StubbedInvocation>(10)",
+      "comment": "added with new class"
+    }
+  ]
+}

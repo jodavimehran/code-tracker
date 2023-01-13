@@ -1,0 +1,77 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "attributeName": "CONJ_AND",
+  "attributeKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@CONJ_AND:int(46)",
+  "attributeDeclarationLine": 46,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(115)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(115)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "0daa4b0aac1748bbb2c56547626e9f49e7fb4ed6",
+      "commitId": "e8e4245d9b36123446546ff15967ac95429ea2b0",
+      "commitTime": 1334669779,
+      "changeType": "container change",
+      "elementFileBefore": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameBefore": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(final,static)(package)CONJ_AND:int(46)",
+      "elementFileAfter": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(final,static)(package)CONJ_AND:int(46)",
+      "comment": "Move Source Folder modules to lucene"
+    },
+    {
+      "parentCommitId": "ef25bf2d31a5e462ad6a752919481e2a7d1e2bd2",
+      "commitId": "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
+      "commitTime": 1310355420,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(final,static)(package)CONJ_AND:int(47)",
+      "elementFileAfter": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(final,static)(package)CONJ_AND:int(47)",
+      "comment": "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
+    },
+    {
+      "parentCommitId": "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
+      "commitId": "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+      "commitTime": 1287756261,
+      "changeType": "moved",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(120)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(final,static)(package)CONJ_AND:int(46)",
+      "comment": "Pull Up Attribute private CONJ_AND : int from class org.apache.lucene.queryParser.QueryParser to package CONJ_AND : int from class org.apache.lucene.queryParser.QueryParserBase"
+    },
+    {
+      "parentCommitId": "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
+      "commitId": "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+      "commitTime": 1287756261,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(120)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(final,static)(package)CONJ_AND:int(46)",
+      "comment": "Change Attribute Access Modifier private to package in attribute package CONJ_AND : int from class org.apache.lucene.queryParser.QueryParserBase"
+    },
+    {
+      "parentCommitId": "798fc0f0ef9ae13a29f3271f49522a5e4ef23acf",
+      "commitId": "2af2d858774f7391f13341b8f588e75287868237",
+      "commitTime": 1063245093,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(54)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(final,static)(private)CONJ_AND:int(54)",
+      "comment": "added with new class"
+    }
+  ]
+}

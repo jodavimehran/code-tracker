@@ -1,0 +1,44 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "attributeName": "globalFieldNumberMap",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@globalFieldNumberMap:FieldNumbers(295)",
+  "attributeDeclarationLine": 295,
+  "expectedChanges": [
+    {
+      "parentCommitId": "4a4c56b99d1ab8066d1f3408edff90a30cabf7bd",
+      "commitId": "a98c8126db69eb42249dfd6024a389be063daed0",
+      "commitTime": 1337729749,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumberBiMap(217)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumbers(217)",
+      "comment": "Change Attribute Type globalFieldNumberMap : FieldNumberBiMap to globalFieldNumberMap : FieldNumbers in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumberBiMap(216)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumberBiMap(216)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "c5694b06b4a6b93b5b90f84e964e476601c067c8",
+      "commitId": "98dffb255d5b5342d51917d4d6c6f778e8a8d2ec",
+      "commitTime": 1301476645,
+      "changeType": "introduced",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumberBiMap(226)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)globalFieldNumberMap:FieldNumberBiMap(226)",
+      "comment": "new attribute"
+    }
+  ]
+}
