@@ -371,6 +371,27 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     }
                     break;
                 }
+                case MERGE_OPERATION: {
+                    MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
+                    Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
+                    if (equalMethod.test(methodAfter)) {
+                        for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
+                            for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                if (mapping instanceof CompositeStatementObjectMapping) {
+                                    Block matchedBlockInsideMergedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
             }
         }
         return false;
