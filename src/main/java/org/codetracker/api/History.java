@@ -31,7 +31,7 @@ public interface History<C extends CodeElement> {
 
     C getElementAfter();
 
-    Set<Change> getChangeList();
+    List<Change> getChangeList();
 
     String getCommitId();
 

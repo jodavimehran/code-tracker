@@ -38,8 +38,10 @@ public class EdgeImpl implements Edge {
     }
 
     @Override
-    public Set<Change> getChangeList() {
-        return changeList;
+    public List<Change> getChangeList() {
+        List<Change> changeListArray = new ArrayList<Change>(changeList);
+        changeListArray.sort(Comparator.comparing(Change::getType));
+        return changeListArray;
     }
 
     @Override
