@@ -380,11 +380,54 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 if (mapping instanceof CompositeStatementObjectMapping) {
                                     Block matchedBlockInsideMergedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
                                         Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
                                         blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
                                         blocks.add(blockBefore);
                                         blockChangeHistory.connectRelatedNodes();
                                         return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case SPLIT_OPERATION: {
+                    SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
+                    for (VariableDeclarationContainer splitMethod : splitOperationRefactoring.getSplitMethods()) {
+                        Method methodAfter = Method.of(splitMethod, currentVersion);
+                        if (equalMethod.test(methodAfter)) {
+                            for (UMLOperationBodyMapper bodyMapper : splitOperationRefactoring.getMappers()) {
+                                for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                    if (mapping instanceof CompositeStatementObjectMapping) {
+                                        Block matchedBlockInsideSplitMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                        if (matchedBlockInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
+                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        }
                                     }
                                 }
                             }
