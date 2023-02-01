@@ -34,6 +34,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
               edge.source(),
               edge.target(),
               edgeValue.getChangeList(),
+              edgeValue.getType(),
               edge.target().getVersion().getId(),
               edge.target().getVersion().getTime(),
               edge.target().getVersion().getAuthoredTime(),
@@ -63,6 +64,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     private final C elementBefore;
     private final C elementAfter;
     private final LinkedHashSet<Change> changeList;
+    private final Change.Type changeType;
     private final String commitId;
     private final long commitTime;
     private final long authoredTime;
@@ -81,6 +83,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
         C elementBefore,
         C elementAfter,
         LinkedHashSet<Change> changeList,
+        Change.Type changeType,
         String commitId,
         long commitTime,
         long authoredTime,
@@ -88,6 +91,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
       this.elementBefore = elementBefore;
       this.elementAfter = elementAfter;
       this.changeList = changeList;
+      this.changeType = changeType;
       this.commitId = commitId;
       this.commitTime = commitTime;
       this.authoredTime = authoredTime;
@@ -110,6 +114,11 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     }
 
     @Override
+    public Change.Type getChangeType() {
+      return changeType;
+    }
+    
+    @Override
     public String getCommitId() {
       return commitId;
     }
@@ -131,7 +140,9 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
 
     @Override
     public int compareTo(HistoryInfo<C> toCompare) {
-      return Long.compare(this.commitTime, toCompare.getCommitTime());
+      return Comparator.comparing(HistoryInfo<C>::getCommitTime)
+        .thenComparing(HistoryInfo<C>::getChangeType)
+        .compare(this, toCompare);
     }
   }
 

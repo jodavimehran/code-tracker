@@ -33,6 +33,8 @@ public interface History<C extends CodeElement> {
 
     LinkedHashSet<Change> getChangeList();
 
+    Change.Type getChangeType();
+
     String getCommitId();
 
     long getCommitTime();
