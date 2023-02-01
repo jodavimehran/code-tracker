@@ -62,7 +62,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
   public static class HistoryInfoImpl<C extends CodeElement> implements HistoryInfo<C> {
     private final C elementBefore;
     private final C elementAfter;
-    private final List<Change> changeList;
+    private final LinkedHashSet<Change> changeList;
     private final String commitId;
     private final long commitTime;
     private final long authoredTime;
@@ -80,7 +80,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     public HistoryInfoImpl(
         C elementBefore,
         C elementAfter,
-        List<Change> changeList,
+        LinkedHashSet<Change> changeList,
         String commitId,
         long commitTime,
         long authoredTime,
@@ -105,7 +105,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     }
 
     @Override
-    public List<Change> getChangeList() {
+    public LinkedHashSet<Change> getChangeList() {
       return changeList;
     }
 
