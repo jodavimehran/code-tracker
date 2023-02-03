@@ -114,7 +114,7 @@ public abstract class BaseTracker {
                     invocation = leaf2.assignmentInvocationCoveringEntireStatement();
                 }
                 UMLOperation matchingOperation = null;
-                if(invocation != null && (matchingOperation = matchesOperation(invocation, addedOperations, bodyMapper.getContainer2())) != null && matchingOperation.getBody() != null) {
+                if(invocation != null && (matchingOperation = matchesOperation(invocation, addedOperations, bodyMapper.getContainer2(), classDiff)) != null && matchingOperation.getBody() != null) {
                     return true;
                 }
             }
@@ -122,9 +122,9 @@ public abstract class BaseTracker {
         return false;
     }
 
-    private static UMLOperation matchesOperation(AbstractCall invocation, List<UMLOperation> operations, VariableDeclarationContainer callerOperation) {
+    private static UMLOperation matchesOperation(AbstractCall invocation, List<UMLOperation> operations, VariableDeclarationContainer callerOperation, UMLAbstractClassDiff classDiff) {
         for(UMLOperation operation : operations) {
-            if(invocation.matchesOperation(operation, callerOperation, null))
+            if(invocation.matchesOperation(operation, callerOperation, classDiff,null))
                 return operation;
         }
         return null;
