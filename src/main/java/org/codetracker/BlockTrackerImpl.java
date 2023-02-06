@@ -371,6 +371,70 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     }
                     break;
                 }
+                case MERGE_OPERATION: {
+                    MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
+                    Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
+                    if (equalMethod.test(methodAfter)) {
+                        for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
+                            for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                if (mapping instanceof CompositeStatementObjectMapping) {
+                                    Block matchedBlockInsideMergedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
+                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case SPLIT_OPERATION: {
+                    SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
+                    for (VariableDeclarationContainer splitMethod : splitOperationRefactoring.getSplitMethods()) {
+                        Method methodAfter = Method.of(splitMethod, currentVersion);
+                        if (equalMethod.test(methodAfter)) {
+                            for (UMLOperationBodyMapper bodyMapper : splitOperationRefactoring.getMappers()) {
+                                for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                    if (mapping instanceof CompositeStatementObjectMapping) {
+                                        Block matchedBlockInsideSplitMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                        if (matchedBlockInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
+                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
             }
         }
         return false;
@@ -557,8 +621,8 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                         m.getFragment2().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
                                         tryBefore.getCatchClauses().contains(fragment1) &&
                                         tryAfter.getCatchClauses().contains(fragment2)) {
-                                    List<String> catchStringRepresentationBefore = (fragment1).stringRepresentation();
-                                    List<String> catchStringRepresentationAfter = (fragment2).stringRepresentation();
+                                    List<String> catchStringRepresentationBefore = fragment1.stringRepresentation();
+                                    List<String> catchStringRepresentationAfter = fragment2.stringRepresentation();
                                     catchBlocksBefore.remove(fragment1);
                                     catchBlocksAfter.remove(fragment2);
                                     if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
@@ -568,6 +632,30 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 }
                             }
                         }
+                        Set<CompositeStatementObject> catchBlocksBeforeToRemove = new LinkedHashSet<>();
+                        Set<CompositeStatementObject> catchBlocksAfterToRemove = new LinkedHashSet<>();
+                        for (int i=0; i<Math.min(catchBlocksBefore.size(), catchBlocksAfter.size()); i++) {
+                            List<UMLType> typesBefore = new ArrayList<>();
+                            for (VariableDeclaration variableDeclaration : catchBlocksBefore.get(i).getVariableDeclarations()) {
+                                typesBefore.add(variableDeclaration.getType());
+                            }
+                            List<UMLType> typesAfter = new ArrayList<>();
+                            for (VariableDeclaration variableDeclaration : catchBlocksAfter.get(i).getVariableDeclarations()) {
+                                typesAfter.add(variableDeclaration.getType());
+                            }
+                            if (typesBefore.equals(typesAfter)) {
+                                List<String> catchStringRepresentationBefore = catchBlocksBefore.get(i).stringRepresentation();
+                                List<String> catchStringRepresentationAfter = catchBlocksAfter.get(i).stringRepresentation();
+                                catchBlocksBeforeToRemove.add(catchBlocksBefore.get(i));
+                                catchBlocksAfterToRemove.add(catchBlocksAfter.get(i));
+                                if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
+                                    blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
+                                    catchOrFinallyChange = true;
+                                }
+                            }
+                        }
+                        catchBlocksBefore.removeAll(catchBlocksBeforeToRemove);
+                        catchBlocksAfter.removeAll(catchBlocksAfterToRemove);
                         for (CompositeStatementObject catchBlockBefore : catchBlocksBefore) {
                             blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_REMOVED));
                             catchOrFinallyChange = true;
