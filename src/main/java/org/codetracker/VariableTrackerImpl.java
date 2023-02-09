@@ -8,6 +8,7 @@ import org.codetracker.change.Change;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
+import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.api.RefactoringType;
 import org.codetracker.api.*;
 import org.codetracker.change.AbstractChange;
@@ -332,7 +333,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         }
     }
 
-    private boolean checkClassDiffForVariableChange(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) {
+    private boolean checkClassDiffForVariableChange(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
@@ -678,7 +679,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         return leftVariableSet;
     }
 
-    private boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
+    private boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
