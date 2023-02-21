@@ -74,7 +74,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             String lastFileName = null;
             while (!methods.isEmpty()) {
                 Method currentMethod = methods.poll();
-                if (currentMethod.isAdded()) {
+                if (currentMethod.isAdded() || currentMethod.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
                 }
@@ -467,6 +467,38 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     operationBefore = inlineOperationRefactoring.getTargetOperationBeforeInline();
                     operationAfter = inlineOperationRefactoring.getTargetOperationAfterInline();
                     changeType = Change.Type.BODY_CHANGE;
+                    break;
+                }
+                case SPLIT_OPERATION: {
+                    SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
+                    operationBefore = splitOperationRefactoring.getOriginalMethodBeforeSplit();
+                    Method originalOperationBefore = Method.of(operationBefore, parentVersion);
+                    for (VariableDeclarationContainer container : splitOperationRefactoring.getSplitMethods()) {
+                        Method splitOperationAfter = Method.of(container, currentVersion);
+                        if (equalOperator.test(splitOperationAfter)) {
+                            leftMethodSet.add(originalOperationBefore);
+                            changeType = Change.Type.METHOD_SPLIT;
+                            methodChangeHistory.addChange(originalOperationBefore, splitOperationAfter, ChangeFactory.forMethod(changeType).refactoring(refactoring));
+                            methodChangeHistory.connectRelatedNodes();
+                            return leftMethodSet;
+                        }
+                    }
+                    break;
+                }
+                case MERGE_OPERATION: {
+                    MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
+                    operationAfter = mergeOperationRefactoring.getNewMethodAfterMerge();
+                    Method newOperationAfter = Method.of(operationAfter, currentVersion);
+                    if (equalOperator.test(newOperationAfter)) {
+                        for (VariableDeclarationContainer container : mergeOperationRefactoring.getMergedMethods()) {
+                            Method mergedOperationBefore = Method.of(container, parentVersion);
+                            leftMethodSet.add(mergedOperationBefore);
+                            changeType = Change.Type.METHOD_MERGE;
+                            methodChangeHistory.addChange(mergedOperationBefore, newOperationAfter, ChangeFactory.forMethod(changeType).refactoring(refactoring));
+                        }
+                        methodChangeHistory.connectRelatedNodes();
+                        return leftMethodSet;
+                    }
                     break;
                 }
                 case EXTRACT_AND_MOVE_OPERATION:

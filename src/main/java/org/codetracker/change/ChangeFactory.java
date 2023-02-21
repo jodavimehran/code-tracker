@@ -160,6 +160,18 @@ public final class ChangeFactory {
                 }
                 break;
             }
+            case METHOD_SPLIT: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                change = new MethodSplit(refactoring);
+                break;
+            }
+            case METHOD_MERGE: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                change = new MethodMerge(refactoring);
+                break;
+            }
             case REPLACE_PIPELINE_WITH_LOOP: {
                 if (refactoring == null)
                     throw new NullPointerException();
