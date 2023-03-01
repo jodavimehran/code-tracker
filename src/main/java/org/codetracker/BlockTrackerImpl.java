@@ -302,7 +302,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
-                if (isBlockRefactored(operationBodyMapper.getRefactorings(), blocks, currentVersion, parentVersion, equalBlock))
+                if (isBlockRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), blocks, currentVersion, parentVersion, equalBlock))
                     return true;
                 // check if it is in the matched
                 if (isMatched(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
@@ -389,7 +389,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                         blockChangeHistory.connectRelatedNodes();
                                         return true;
                                         */
-                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
                                         if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
@@ -421,7 +421,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                         blockChangeHistory.connectRelatedNodes();
                                         return true;
                                         */
-                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactorings();
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
                                         if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
@@ -444,7 +444,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
     private boolean checkBodyOfMatchedOperations(Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
         if (umlOperationBodyMapper == null)
             return false;
-        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactorings();
+        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactoringsAfterPostProcessing();
         //Check if refactored
         if (isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, equalOperator))
             return true;
