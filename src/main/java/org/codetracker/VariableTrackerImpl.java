@@ -420,6 +420,14 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                                         return true;
                                 }
                             }
+                            for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
+                                Variable matchedVariableInsideMergedMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
+                                if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                    if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                        return true;
+                                    }
+                                }
+                            }
                         }
                     }
                     break;
@@ -437,6 +445,14 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                                             return true;
                                         if (isMatched(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                             return true;
+                                    }
+                                }
+                                for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
+                                    Variable matchedVariableInsideSplitMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedVariableInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                        if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                            return true;
+                                        }
                                     }
                                 }
                             }
