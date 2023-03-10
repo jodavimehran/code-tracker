@@ -172,7 +172,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                             break;
                         }
                         UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
-                        Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactorings() : Collections.emptySet();
+                        Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
                         found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                         if (found) {
                             historyReport.step4PlusPlus();
@@ -227,7 +227,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
 
                                 boolean found;
                                 UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
-                                Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactorings() : Collections.emptySet();
+                                Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
                                 found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                                 if (found) {
                                     historyReport.step5PlusPlus();
@@ -337,7 +337,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
-                if (isVariableRefactored(operationBodyMapper.getRefactorings(), variables, currentVersion, parentVersion, equalVariable))
+                if (isVariableRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, equalVariable))
                     return true;
 
                 // check if it is in the matched
@@ -401,6 +401,60 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                                 variables.add(variableBefore);
                                 variableChangeHistory.connectRelatedNodes();
                                 return true;
+                            }
+                        }
+                    }
+                    break;
+                }
+                case MERGE_OPERATION: {
+                    MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
+                    Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
+                    if (equalMethod.test(methodAfter)) {
+                        for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
+                            for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
+                                Variable matchedVariableInsideMergedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                    if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                        return true;
+                                    if (isMatched(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                        return true;
+                                }
+                            }
+                            for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
+                                Variable matchedVariableInsideMergedMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
+                                if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                    if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    break;
+                }
+                case SPLIT_OPERATION: {
+                    SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
+                    for (VariableDeclarationContainer splitMethod : splitOperationRefactoring.getSplitMethods()) {
+                        Method methodAfter = Method.of(splitMethod, currentVersion);
+                        if (equalMethod.test(methodAfter)) {
+                            for (UMLOperationBodyMapper bodyMapper : splitOperationRefactoring.getMappers()) {
+                                for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
+                                    Variable matchedVariableInsideSplitMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedVariableInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                        if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        if (isMatched(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                            return true;
+                                    }
+                                }
+                                for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
+                                    Variable matchedVariableInsideSplitMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedVariableInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                        if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                            return true;
+                                        }
+                                    }
+                                }
                             }
                         }
                     }
@@ -713,7 +767,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
             if (operationAfter != null) {
                 Method methodAfter = Method.of(operationAfter, currentVersion);
                 if (equalMethod.test(methodAfter)) {
-                    Set<Refactoring> bodyMapperRefactorings = umlOperationBodyMapper != null ? umlOperationBodyMapper.getRefactorings() : Collections.emptySet();
+                    Set<Refactoring> bodyMapperRefactorings = umlOperationBodyMapper != null ? umlOperationBodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
                     boolean found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, umlOperationBodyMapper, bodyMapperRefactorings);
                     if (found)
                         return true;

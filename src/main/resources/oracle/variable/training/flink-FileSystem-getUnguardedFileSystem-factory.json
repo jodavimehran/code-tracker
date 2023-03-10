@@ -14,12 +14,45 @@
       "parentCommitId": "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
       "commitId": "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
       "commitTime": 1507281370,
-      "changeType": "introduced",
+      "changeType": "type change",
       "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$factory:FileSystemFactory(372)",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsClass:String(374)",
       "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
       "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$factory:FileSystemFactory(372)",
-      "comment": "new variable"
+      "comment": "Change Variable Type fsClass : String to factory : FileSystemFactory in method public getUnguardedFileSystem(fsUri URI) : FileSystem from class org.apache.flink.core.fs.FileSystem"
+    },
+    {
+      "parentCommitId": "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
+      "commitId": "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
+      "commitTime": 1507281370,
+      "changeType": "modifier change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsClass:String(374)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$factory:FileSystemFactory(372)",
+      "comment": "Add Variable Modifier final in variable factory : FileSystemFactory in method public getUnguardedFileSystem(fsUri URI) : FileSystem from class org.apache.flink.core.fs.FileSystem"
+    },
+    {
+      "parentCommitId": "a5ef09bb601cdd77fcb94e9ce633fdf979031aaf",
+      "commitId": "536675b03a5050fda9c3e1fd403818cb50dcc6ff",
+      "commitTime": 1507281370,
+      "changeType": "rename",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsClass:String(374)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$factory:FileSystemFactory(372)",
+      "comment": "Rename Variable fsClass : String to factory : FileSystemFactory in method public getUnguardedFileSystem(fsUri URI) : FileSystem from class org.apache.flink.core.fs.FileSystem"
+    },
+    {
+      "parentCommitId": "c590912c93a4059b40452dfa6cffbdd4d58cac13",
+      "commitId": "ba8ed263695d16eacb4bdfdf195dd22c83bb53ed",
+      "commitTime": 1479853012,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsClass:String(328)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$fsClass:String(328)",
+      "comment": "Extract Method public getUnguardedFileSystem(uri URI) : FileSystem extracted from public get(uri URI) : FileSystem in class org.apache.flink.core.fs.FileSystem"
     }
   ]
 }
