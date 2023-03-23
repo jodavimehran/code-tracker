@@ -52,15 +52,145 @@
       "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$try(304-391)"
     },
     {
-      "parentCommitId": "c590912c93a4059b40452dfa6cffbdd4d58cac13",
-      "commitId": "ba8ed263695d16eacb4bdfdf195dd22c83bb53ed",
-      "commitTime": 1479853012,
-      "changeType": "introduced",
+      "parentCommitId": "647b4c57781ed33467cd0946a34d63be737d66e8",
+      "commitId": "a3d1a17406749e41185a77a64c23fc1cb3eabc76",
+      "commitTime": 1467707997,
+      "changeType": "body change",
       "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(259-340)",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(232-313)",
       "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
-      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$synchronized(259-340)",
-      "comment": "Extract Method public getUnguardedFileSystem(uri URI) : FileSystem extracted from public get(uri URI) : FileSystem in class org.apache.flink.core.fs.FileSystem"
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(232-313)"
+    },
+    {
+      "parentCommitId": "c658763d42d072073cc846f1814aa3cc5c42e05c",
+      "commitId": "76d3a6353a0a3f8960dc2b49d9eac6a4a279ea9e",
+      "commitTime": 1455632624,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(191-258)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(232-313)"
+    },
+    {
+      "parentCommitId": "5fc77d611b47967dfbe97867d2b703f3767652c9",
+      "commitId": "2af658673f877a7e0fd73fdd2907f88824d793a5",
+      "commitTime": 1422034750,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(199-267)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(199-266)"
+    },
+    {
+      "parentCommitId": "c024d819cfd37e05a8bac9db8082c1ef03d3f3bb",
+      "commitId": "39fb7c945359465ce5241539559daac416e210b8",
+      "commitTime": 1420731728,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(199-268)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(199-267)"
+    },
+    {
+      "parentCommitId": "d8dbaeeb4df4524e136423425edc9d87d1f25897",
+      "commitId": "f2909293cbb37cc4b4516e3bef4db66376159e52",
+      "commitTime": 1420731347,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(194-252)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(199-268)"
+    },
+    {
+      "parentCommitId": "3d242fd7aea6add18465d628a258be11def2d0af",
+      "commitId": "bbe54ac09154dd3e60870b0d26085e2e2ee564af",
+      "commitTime": 1417108705,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(193-248)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(194-252)"
+    },
+    {
+      "parentCommitId": "5c3dceb9c87f8c53c88f489992da2c801288ad42",
+      "commitId": "4203bf99ddd009b72681ba0dc554cabd47e1c85c",
+      "commitTime": 1416482279,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(204-259)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(193-248)"
+    },
+    {
+      "parentCommitId": "f0fd8823ee8d157f9a5a00b2687827b94206d7b7",
+      "commitId": "8b39ba9e45145a30c2b95c47d7b03bc3ed2a8a3a",
+      "commitTime": 1415031057,
+      "changeType": "body change",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(204-252)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#get(URI)$synchronized(204-259)"
+    },
+    {
+      "parentCommitId": "a83683a00f8d27988653e6eb0966a682ddefe498",
+      "commitId": "d784bf9467bbaf8ffb37621c13fa30dfbb98e4d8",
+      "commitTime": 1402607238,
+      "changeType": "body change",
+      "elementFileBefore": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameBefore": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-241)",
+      "elementFileAfter": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameAfter": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-243)"
+    },
+    {
+      "parentCommitId": "ddc1dc9da5b2cf6b0b54b943510d6ddb35fa4657",
+      "commitId": "0038c9d0773e90676b1ee2a8a94dcf764f023e22",
+      "commitTime": 1394145952,
+      "changeType": "body change",
+      "elementFileBefore": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameBefore": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-235)",
+      "elementFileAfter": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameAfter": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-241)"
+    },
+    {
+      "parentCommitId": "6c261d3aca66be8fdba17662719c75fc69b073e8",
+      "commitId": "3a6344356a185be43f9be4b33702f97827f9ff96",
+      "commitTime": 1393811564,
+      "changeType": "body change",
+      "elementFileBefore": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameBefore": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-233)",
+      "elementFileAfter": "stratosphere-core/src/main/java/eu/stratosphere/core/fs/FileSystem.java",
+      "elementNameAfter": "stratosphere-core/src/main/java/eu.stratosphere.core.fs.FileSystem#get(URI)$synchronized(195-235)"
+    },
+    {
+      "parentCommitId": "d5f86db20220e7491c69202c0ba7fb3660629db9",
+      "commitId": "88d7305a5267aac598949519275123208195daf7",
+      "commitTime": 1376627580,
+      "changeType": "body change",
+      "elementFileBefore": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameBefore": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(190-228)",
+      "elementFileAfter": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameAfter": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(190-228)"
+    },
+    {
+      "parentCommitId": "51ca409cdaf02d095cd2a214e13e1c65186120ef",
+      "commitId": "d0c21f4c470812d699ec141210ad5119b3450de3",
+      "commitTime": 1313591199,
+      "changeType": "expression change",
+      "elementFileBefore": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameBefore": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(190-228)",
+      "elementFileAfter": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameAfter": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(190-228)"
+    },
+    {
+      "parentCommitId": "c6033261fa6619effbc4843c7cbcf3fc88738d54",
+      "commitId": "75e67a701cbabe5577967037c0e865d1c2e9a25b",
+      "commitTime": 1292522996,
+      "changeType": "introduced",
+      "elementFileBefore": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameBefore": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(162-200)",
+      "elementFileAfter": "nephele/nephele-common/src/main/java/eu/stratosphere/nephele/fs/FileSystem.java",
+      "elementNameAfter": "nephele/nephele-common/src/main/java/eu.stratosphere.nephele.fs.FileSystem#get(URI)$synchronized(162-200)",
+      "comment": "added with method"
     }
   ]
 }

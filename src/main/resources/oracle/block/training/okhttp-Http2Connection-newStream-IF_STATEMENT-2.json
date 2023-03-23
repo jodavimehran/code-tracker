@@ -22,15 +22,25 @@
       "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(int, List, boolean, boolean)$if(244-246)"
     },
     {
-      "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
-      "commitId": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
-      "commitTime": 1393204561,
+      "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
+      "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
+      "commitTime": 1359670986,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(170-172)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(193-196)"
+    },
+    {
+      "parentCommitId": "a52eaa4ee650728e4fb59f48c59a3572ef4ddb5a",
+      "commitId": "7f4249625960b7f10dc61aae4d1896c2e126f538",
+      "commitTime": 1357005343,
       "changeType": "introduced",
-      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$if(245-248)",
-      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$if(245-248)",
-      "comment": "Extract Method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : SpdyStream extracted from public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream in class com.squareup.okhttp.internal.spdy.SpdyConnection"
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(164-166)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$if(164-166)",
+      "comment": "new block"
     }
   ]
 }
