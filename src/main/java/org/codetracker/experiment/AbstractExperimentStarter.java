@@ -101,7 +101,7 @@ public abstract class AbstractExperimentStarter {
 
         for (EndpointPair<T> edge : edges) {
             Edge edgeValue = historyImpl.getGraph().getEdgeValue(edge).get();
-            LinkedHashSet<Change> changeList = edgeValue.getChangeList();
+            Set<Change> changeList = edgeValue.getChangeList();
             for (Change change : changeList) {
                 if (Change.Type.NO_CHANGE.equals(change.getType()))
                     continue;

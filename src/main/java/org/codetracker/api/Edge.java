@@ -2,10 +2,10 @@ package org.codetracker.api;
 
 import org.codetracker.change.Change;
 
-import java.util.LinkedHashSet;
+import java.util.Set;
 
 public interface Edge {
-    LinkedHashSet<Change> getChangeList();
+    Set<Change> getChangeList();
 
     Change.Type getType();
 
