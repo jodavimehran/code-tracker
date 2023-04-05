@@ -39,7 +39,10 @@ public class EdgeImpl implements Edge {
 
     @Override
     public Set<Change> getChangeList() {
-        return changeList;
+        List<Change> changeListArray = new ArrayList<Change>(changeList);
+        changeListArray.sort(Comparator.comparing(Change::getType));
+        Set<Change> changeHashSet = new LinkedHashSet<Change>(changeListArray);
+        return changeHashSet;
     }
 
     @Override
