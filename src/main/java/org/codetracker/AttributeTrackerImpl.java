@@ -218,7 +218,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     }
                 }
             }
-            return new HistoryImpl<>(attributeChangeHistory.findSubGraph(start), historyReport);
+            return new HistoryImpl<>(attributeChangeHistory.getCompleteGraph(), historyReport);
         }
     }
 

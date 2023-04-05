@@ -329,7 +329,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                     }
                 }
             }
-            return new HistoryImpl<>(variableChangeHistory.findSubGraph(startVariable), historyReport);
+            return new HistoryImpl<>(variableChangeHistory.getCompleteGraph(), historyReport);
         }
     }
 
