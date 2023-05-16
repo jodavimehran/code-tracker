@@ -1,40 +1,44 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-  "attributeName" : "waitForActiveShards",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@waitForActiveShards:ActiveShardCount(91)",
-  "attributeDeclarationLine" : 91,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(95)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(95)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "25d8eca62d4a01d7fa870c54fd684e8bf615db38",
-    "commitId" : "d93f7d60850f23f0f19457bf3488249db57a5c81",
-    "commitTime" : 1470072929,
-    "changeType" : "rename",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(72)",
-    "comment" : "Rename Attribute activeShardCount : ActiveShardCount to waitForActiveShards : ActiveShardCount in class org.elasticsearch.action.bulk.BulkRequest"
-  }, {
-    "parentCommitId" : "9f88a8194adeaaa4ab1d66c1707ab702dbbaa9ef",
-    "commitId" : "25d8eca62d4a01d7fa870c54fd684e8bf615db38",
-    "commitTime" : 1470072929,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+  "attributeName": "waitForActiveShards",
+  "attributeKey": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@waitForActiveShards:ActiveShardCount(91)",
+  "attributeDeclarationLine": 91,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(95)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(95)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "25d8eca62d4a01d7fa870c54fd684e8bf615db38",
+      "commitId": "d93f7d60850f23f0f19457bf3488249db57a5c81",
+      "commitTime": 1470072929,
+      "changeType": "rename",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)waitForActiveShards:ActiveShardCount(72)",
+      "comment": "Rename Attribute activeShardCount : ActiveShardCount to waitForActiveShards : ActiveShardCount in class org.elasticsearch.action.bulk.BulkRequest"
+    },
+    {
+      "parentCommitId": "9f88a8194adeaaa4ab1d66c1707ab702dbbaa9ef",
+      "commitId": "25d8eca62d4a01d7fa870c54fd684e8bf615db38",
+      "commitTime": 1470072929,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(private)activeShardCount:ActiveShardCount(72)",
+      "comment": "new attribute"
+    }
+  ]
 }

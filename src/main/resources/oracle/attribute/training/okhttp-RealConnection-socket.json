@@ -1,60 +1,66 @@
 {
-  "repositoryName" : "okhttp",
-  "repositoryWebURL" : "https://github.com/square/okhttp.git",
-  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
-  "filePath" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-  "attributeName" : "socket",
-  "attributeKey" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@socket:Socket(91)",
-  "attributeDeclarationLine" : 91,
-  "expectedChanges" : [ {
-    "parentCommitId" : "5c7257d8d1c07b66cb7b14832bc0d16b88abcfb5",
-    "commitId" : "8331b2d75a51631bee622daf2175854fe49ce29a",
-    "commitTime" : 1483378611,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(public)socket:Socket(73)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(private)socket:Socket(82)",
-    "comment" : "Change Attribute Access Modifier public to private in attribute private socket : Socket from class okhttp3.internal.connection.RealConnection"
-  }, {
-    "parentCommitId" : "81b3a99aea8571942e5fb18b5c189c4596087076",
-    "commitId" : "c5187583bbfe93fe58db80f95b5b478c84180c29",
-    "commitTime" : 1466996670,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)socket:Socket(76)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(public)socket:Socket(73)",
-    "comment" : "Move Class okhttp3.internal.io.RealConnection moved to okhttp3.internal.connection.RealConnection"
-  }, {
-    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
-    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
-    "commitTime" : 1450247699,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)socket:Socket(73)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)socket:Socket(73)",
-    "comment" : "Move Class com.squareup.okhttp.internal.io.RealConnection moved to okhttp3.internal.io.RealConnection"
-  }, {
-    "parentCommitId" : "068156ba1bdadb239623915586f935f7cb093461",
-    "commitId" : "f212b6780e95bb84b387d3edaa9128c56f2f65b4",
-    "commitTime" : 1449420743,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(70)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)socket:Socket(70)",
-    "comment" : "Change Attribute Access Modifier private to public in attribute public socket : Socket from class com.squareup.okhttp.internal.io.RealConnection"
-  }, {
-    "parentCommitId" : "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-    "commitId" : "c358656c8799d30fd422448153e99a5dd37e298a",
-    "commitTime" : 1448721366,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(62)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(62)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+  "attributeName": "socket",
+  "attributeKey": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@socket:Socket(91)",
+  "attributeDeclarationLine": 91,
+  "expectedChanges": [
+    {
+      "parentCommitId": "5c7257d8d1c07b66cb7b14832bc0d16b88abcfb5",
+      "commitId": "8331b2d75a51631bee622daf2175854fe49ce29a",
+      "commitTime": 1483378611,
+      "changeType": "access modifier change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(public)socket:Socket(73)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(private)socket:Socket(82)",
+      "comment": "Change Attribute Access Modifier public to private in attribute private socket : Socket from class okhttp3.internal.connection.RealConnection"
+    },
+    {
+      "parentCommitId": "81b3a99aea8571942e5fb18b5c189c4596087076",
+      "commitId": "c5187583bbfe93fe58db80f95b5b478c84180c29",
+      "commitTime": 1466996670,
+      "changeType": "container change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)socket:Socket(76)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection@(public)socket:Socket(73)",
+      "comment": "Move Class okhttp3.internal.io.RealConnection moved to okhttp3.internal.connection.RealConnection"
+    },
+    {
+      "parentCommitId": "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+      "commitId": "c9a89876de476983f273edbf108c365127c18c5e",
+      "commitTime": 1450247699,
+      "changeType": "container change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)socket:Socket(73)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.io.RealConnection@(public)socket:Socket(73)",
+      "comment": "Move Class com.squareup.okhttp.internal.io.RealConnection moved to okhttp3.internal.io.RealConnection"
+    },
+    {
+      "parentCommitId": "068156ba1bdadb239623915586f935f7cb093461",
+      "commitId": "f212b6780e95bb84b387d3edaa9128c56f2f65b4",
+      "commitTime": 1449420743,
+      "changeType": "access modifier change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(70)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(public)socket:Socket(70)",
+      "comment": "Change Attribute Access Modifier private to public in attribute public socket : Socket from class com.squareup.okhttp.internal.io.RealConnection"
+    },
+    {
+      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "commitTime": 1448721366,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(62)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(private)socket:Socket(62)",
+      "comment": "added with new class"
+    }
+  ]
 }

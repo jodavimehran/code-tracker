@@ -1,70 +1,77 @@
 {
-  "repositoryName" : "junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "filePath" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-  "attributeName" : "additionalClasspathEntries",
-  "attributeKey" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@additionalClasspathEntries:OptionSpec<Path>(44)",
-  "attributeDeclarationLine" : 44,
-  "expectedChanges" : [ {
-    "parentCommitId" : "cbfdd3039a91578a09290d895621defc263bbbba",
-    "commitId" : "755fbf21a01ddd0ff92f291c0b473731da213f39",
-    "commitTime" : 1472409211,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<File>(32)",
-    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<Path>(34)",
-    "comment" : "Change Attribute Type additionalClasspathEntries : OptionSpec<File> to additionalClasspathEntries : OptionSpec<Path> in class org.junit.platform.console.options.AvailableOptions"
-  }, {
-    "parentCommitId" : "f61b787bc6d969cd0de1a9aa44d8268fc5863cfa",
-    "commitId" : "737ede87696ca167b14a617550b6c50fbced7c72",
-    "commitTime" : 1471249982,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(31)",
-    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<File>(33)",
-    "comment" : "Change Attribute Type additionalClasspathEntries : OptionSpec<String> to additionalClasspathEntries : OptionSpec<File> in class org.junit.platform.console.options.AvailableOptions"
-  }, {
-    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
-    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
-    "commitTime" : 1466413192,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
-    "elementFileAfter" : "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
-    "comment" : "Move Source Folder junit-console to junit-platform-console"
-  }, {
-    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
-    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
-    "commitTime" : 1466356953,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
-    "elementFileAfter" : "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
-    "comment" : "Move Class org.junit.gen5.console.options.AvailableOptions moved to org.junit.platform.console.options.AvailableOptions"
-  }, {
-    "parentCommitId" : "dadf4482250f33170c0fe246a8f354c9c7615c68",
-    "commitId" : "e9b1bd435dc182d13f610948024659a99bd727da",
-    "commitTime" : 1449429405,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
-    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(30)",
-    "comment" : "Change Attribute Access Modifier package to private in attribute private additionalClasspathEntries : OptionSpec<String> from class org.junit.gen5.console.options.AvailableOptions"
-  }, {
-    "parentCommitId" : "eb1f9f492fa8a88cc4999904476f830cdc4dedb5",
-    "commitId" : "37ba9a2c3b8d3b1229073b7cb9fd714d3bb14e40",
-    "commitTime" : 1449234848,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
-    "elementNameBefore" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
-    "elementFileAfter" : "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
-    "elementNameAfter" : "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+  "attributeName": "additionalClasspathEntries",
+  "attributeKey": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@additionalClasspathEntries:OptionSpec<Path>(44)",
+  "attributeDeclarationLine": 44,
+  "expectedChanges": [
+    {
+      "parentCommitId": "cbfdd3039a91578a09290d895621defc263bbbba",
+      "commitId": "755fbf21a01ddd0ff92f291c0b473731da213f39",
+      "commitTime": 1472409211,
+      "changeType": "type change",
+      "elementFileBefore": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<File>(32)",
+      "elementFileAfter": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<Path>(34)",
+      "comment": "Change Attribute Type additionalClasspathEntries : OptionSpec<File> to additionalClasspathEntries : OptionSpec<Path> in class org.junit.platform.console.options.AvailableOptions"
+    },
+    {
+      "parentCommitId": "f61b787bc6d969cd0de1a9aa44d8268fc5863cfa",
+      "commitId": "737ede87696ca167b14a617550b6c50fbced7c72",
+      "commitTime": 1471249982,
+      "changeType": "type change",
+      "elementFileBefore": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(31)",
+      "elementFileAfter": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<File>(33)",
+      "comment": "Change Attribute Type additionalClasspathEntries : OptionSpec<String> to additionalClasspathEntries : OptionSpec<File> in class org.junit.platform.console.options.AvailableOptions"
+    },
+    {
+      "parentCommitId": "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+      "commitId": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "commitTime": 1466413192,
+      "changeType": "container change",
+      "elementFileBefore": "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
+      "elementFileAfter": "junit-platform-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-platform-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
+      "comment": "Move Source Folder junit-console to junit-platform-console"
+    },
+    {
+      "parentCommitId": "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+      "commitId": "4537bec58804c392a8bce296dced0337c8ec1a8d",
+      "commitTime": 1466356953,
+      "changeType": "container change",
+      "elementFileBefore": "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
+      "elementFileAfter": "junit-console/src/main/java/org/junit/platform/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-console/src/main/java/org.junit.platform.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(36)",
+      "comment": "Move Class org.junit.gen5.console.options.AvailableOptions moved to org.junit.platform.console.options.AvailableOptions"
+    },
+    {
+      "parentCommitId": "dadf4482250f33170c0fe246a8f354c9c7615c68",
+      "commitId": "e9b1bd435dc182d13f610948024659a99bd727da",
+      "commitTime": 1449429405,
+      "changeType": "access modifier change",
+      "elementFileBefore": "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
+      "elementFileAfter": "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(private)additionalClasspathEntries:OptionSpec<String>(30)",
+      "comment": "Change Attribute Access Modifier package to private in attribute private additionalClasspathEntries : OptionSpec<String> from class org.junit.gen5.console.options.AvailableOptions"
+    },
+    {
+      "parentCommitId": "eb1f9f492fa8a88cc4999904476f830cdc4dedb5",
+      "commitId": "37ba9a2c3b8d3b1229073b7cb9fd714d3bb14e40",
+      "commitTime": 1449234848,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+      "elementNameBefore": "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
+      "elementFileAfter": "junit-console/src/main/java/org/junit/gen5/console/options/AvailableOptions.java",
+      "elementNameAfter": "junit-console/src/main/java/org.junit.gen5.console.options.AvailableOptions@(final)(package)additionalClasspathEntries:OptionSpec<String>(29)",
+      "comment": "new attribute"
+    }
+  ]
 }

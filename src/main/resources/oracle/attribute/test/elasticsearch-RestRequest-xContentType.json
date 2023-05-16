@@ -1,30 +1,33 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-  "attributeName" : "xContentType",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.rest.RestRequest@xContentType:SetOnce<XContentType>(65)",
-  "attributeDeclarationLine" : 65,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(62)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(62)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "b41d5747f0bd67dad05c8168312ba456bcdaebda",
-    "commitId" : "7520a107bee67099338813728147d2aee25ed240",
-    "commitTime" : 1486062433,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(66)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(66)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+  "attributeName": "xContentType",
+  "attributeKey": "server/src/main/java/org.elasticsearch.rest.RestRequest@xContentType:SetOnce<XContentType>(65)",
+  "attributeDeclarationLine": 65,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(62)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(62)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "b41d5747f0bd67dad05c8168312ba456bcdaebda",
+      "commitId": "7520a107bee67099338813728147d2aee25ed240",
+      "commitTime": 1486062433,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(66)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.RestRequest@(final)(private)xContentType:SetOnce<XContentType>(66)",
+      "comment": "new attribute"
+    }
+  ]
 }
