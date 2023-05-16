@@ -33,12 +33,23 @@
       "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
       "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
       "commitTime": 1448721366,
-      "changeType": "introduced",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(final)(private)route:Route(61)",
+      "changeType": "moved",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)route:Route(78)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/io/RealConnection.java",
       "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.io.RealConnection@(final)(private)route:Route(61)",
-      "comment": "added with new class"
+      "comment": "Push Down Attribute private route : Route from class com.squareup.okhttp.Connection to private route : Route from class com.squareup.okhttp.internal.io.RealConnection"
+    },
+    {
+      "parentCommitId": "9bed92fa2684ad124a1a7f95ab145b52993ae9e3",
+      "commitId": "1ece746c815a26782042b1fca6069eb527d1029b",
+      "commitTime": 1365632376,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)route:Route(78)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection@(final)(private)route:Route(78)",
+      "comment": "new attribute"
     }
   ]
 }
