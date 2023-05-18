@@ -1,0 +1,25 @@
+{
+  "repositoryName": "spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+  "functionName": "convertIfNecessary",
+  "functionKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+  "functionStartLine": 138,
+  "variableName": "sourceTypeDesc",
+  "variableKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$sourceTypeDesc:TypeDescriptor(163)",
+  "variableStartLine": 163,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "b2e38379566cf788421bd387d1c5ea243692f448",
+      "commitId": "45c542e51e9b01526a97a1644aebfe1e94a2342f",
+      "commitTime": 1253305961,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)$sourceTypeDesc:TypeDescriptor(169)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)$sourceTypeDesc:TypeDescriptor(169)",
+      "comment": "Extract Variable sourceTypeDesc : TypeDescriptor in method protected convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, descriptor PropertyDescriptor, methodParam MethodParameter) : T from class org.springframework.beans.TypeConverterDelegate"
+    }
+  ]
+}

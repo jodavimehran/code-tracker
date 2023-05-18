@@ -1,0 +1,36 @@
+{
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+  "functionName": "writePack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)",
+  "functionStartLine": 1079,
+  "variableName": "typeStat",
+  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)$typeStat:PackStatistics.ObjectType.Accumulator(1156)",
+  "variableStartLine": 1156,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "53fb3e3dd394a845688696bd4afa343002dc36c6",
+      "commitId": "d9bbb04c3ef28db1d2e492506a819b7ac5c5f9df",
+      "commitTime": 1434142576,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)$typeStat:Statistics.ObjectType(984)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)$typeStat:PackStatistics.ObjectType.Accumulator(985)",
+      "comment": "Change Variable Type typeStat : Statistics.ObjectType to typeStat : PackStatistics.ObjectType.Accumulator in method public writePack(compressMonitor ProgressMonitor, writeMonitor ProgressMonitor, packStream OutputStream) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "62fe7c7313e4e7a4339fe9df3a9dc2335461df29",
+      "commitId": "bb1956e647d2f48ef36ef98a7f22120fdad0b37c",
+      "commitTime": 1300473072,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)$typeStat:Statistics.ObjectType(660)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)$typeStat:Statistics.ObjectType(660)",
+      "comment": "new variable"
+    }
+  ]
+}

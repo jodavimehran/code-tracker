@@ -1,0 +1,36 @@
+{
+  "repositoryName": "junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "functionName": "execute",
+  "functionKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])",
+  "functionStartLine": 142,
+  "variableName": "testExecutionListener",
+  "variableKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])$testExecutionListener:null(145)",
+  "variableStartLine": 145,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
+      "commitId": "5b99f734253c15189a88cd5704ec30ded2f24694",
+      "commitTime": 1446199734,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$compositeListener:TestExecutionListener(54)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testExecutionListener:TestExecutionListener(52)",
+      "comment": "Rename Variable compositeListener : TestExecutionListener to testExecutionListener : TestExecutionListener in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "8af7d2c4a2dfa5695ed76c4ca01e05596006432c",
+      "commitId": "cdc709cdb2651a16725ba16eb9c2470d617b5b85",
+      "commitTime": 1446041474,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$compositeListener:TestExecutionListener(41)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$compositeListener:TestExecutionListener(41)",
+      "comment": "new variable"
+    }
+  ]
+}

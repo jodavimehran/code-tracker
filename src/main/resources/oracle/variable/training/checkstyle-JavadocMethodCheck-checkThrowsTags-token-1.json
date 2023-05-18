@@ -1,0 +1,47 @@
+{
+  "repositoryName": "checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+  "functionName": "checkThrowsTags",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)",
+  "functionStartLine": 867,
+  "variableName": "token",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$token:Token(917)",
+  "variableStartLine": 917,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ca7f7f855630cbc816e47637ef36ae433d0e745f",
+      "commitId": "5f5142b2325051f9ed31130167c73d154d547211",
+      "commitTime": 1444185186,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$fi:Token(916)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$token:Token(916)",
+      "comment": "Rename Variable fi : Token to token : Token in method private checkThrowsTags(tags List<JavadocTag>, throwsList List<ExceptionInfo>, reportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    },
+    {
+      "parentCommitId": "b95ced53e3c47c9a9db5022767a18e714fc3bebd",
+      "commitId": "cbe38280adb03f058f89e8ea81bc0e3be2fc5b94",
+      "commitTime": 1123248811,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$fi:FullIdent(724)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$fi:Token(732)",
+      "comment": "Change Variable Type fi : FullIdent to fi : Token in method private checkThrowsTags(aTags List, aThrows List, aReportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    },
+    {
+      "parentCommitId": "f42953e35be5c7dc3831bdf6dbbfca7f7ccd7b97",
+      "commitId": "c75f97dbc2123f550a1acc64886a8bebf4b888cf",
+      "commitTime": 1036501994,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocMethodCheck.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck#checkThrowsTags(List, List)$fi:FullIdent(494)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocMethodCheck.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck#checkThrowsTags(List, List)$fi:FullIdent(494)",
+      "comment": "added with method"
+    }
+  ]
+}
