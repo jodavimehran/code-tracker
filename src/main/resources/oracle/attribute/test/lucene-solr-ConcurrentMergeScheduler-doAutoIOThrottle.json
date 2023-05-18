@@ -1,0 +1,33 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+  "attributeName": "doAutoIOThrottle",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@doAutoIOThrottle:boolean(120)",
+  "attributeDeclarationLine": 120,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreadPriority:int(48)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "749d0ccff08fbd86bd7b91b53a55747b2eae3de5",
+      "commitId": "41fcc722ff07393586f7758d8a733c7e2e59bebc",
+      "commitTime": 1420468108,
+      "changeType": "introduced",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)doAutoIOThrottle:boolean(102)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)doAutoIOThrottle:boolean(102)",
+      "comment": "new attribute"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "repositoryName": "hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
+  "attributeName": "center",
+  "attributeKey": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery@center:Point(42)",
+  "attributeDeclarationLine": 42,
+  "expectedChanges": [
+    {
+      "parentCommitId": "dd37a364be0b83899bbbd56c74356af5ecee983a",
+      "commitId": "61540cce72db5ca2f6243a58494075af0f393370",
+      "commitTime": 1494342537,
+      "changeType": "modifier change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery@(private)center:Point(42)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery@(final)(private)center:Point(42)",
+      "comment": "Add Attribute Modifier final in attribute private center : Point from class org.hibernate.search.spatial.impl.DistanceQuery"
+    },
+    {
+      "parentCommitId": "08413b5986ba2e7291426fa68906c222e4c731bc",
+      "commitId": "991b9e7244fd848ab1806d42fd511e5e27d4ea29",
+      "commitTime": 1494329543,
+      "changeType": "container change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter@(private)center:Point(38)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery@(private)center:Point(42)",
+      "comment": "Rename Class org.hibernate.search.spatial.impl.DistanceFilter renamed to org.hibernate.search.spatial.impl.DistanceQuery"
+    },
+    {
+      "parentCommitId": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitId": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitTime": 1366736556,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter@(private)center:Point(45)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter@(private)center:Point(45)",
+      "comment": "Move Source Folder hibernate-search-engine to engine"
+    },
+    {
+      "parentCommitId": "b84beccaa4d29c276f5386a966e37e9ea9ec2254",
+      "commitId": "c45fbb6b6cfa5ac5bfb995267761aedff19d4b9b",
+      "commitTime": 1340280556,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/spatial/DistanceFilter.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.spatial.DistanceFilter@(private)center:Point(44)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter@(private)center:Point(44)",
+      "comment": "Move Class org.hibernate.search.spatial.DistanceFilter moved to org.hibernate.search.spatial.impl.DistanceFilter"
+    },
+    {
+      "parentCommitId": "b2f51e8de0a8730c51317a4263d2bd578941e0aa",
+      "commitId": "b569d66ddca5855b5ee9811171ed34a48544cad6",
+      "commitTime": 1340280556,
+      "changeType": "introduced",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/spatial/DistanceFilter.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.spatial.DistanceFilter@(private)center:Point(44)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/spatial/DistanceFilter.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.spatial.DistanceFilter@(private)center:Point(44)",
+      "comment": "added with new class"
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "attributeName": "directory",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@directory:Directory(280)",
+  "attributeDeclarationLine": 280,
+  "expectedChanges": [
+    {
+      "parentCommitId": "d702dc6133bbb7a4a20b9cbec97ccd48df12c8f0",
+      "commitId": "d32ce90924146a047e1e6f86dc95e23f639d5ac4",
+      "commitTime": 1524577248,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)directory:Directory(277)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(277)",
+      "comment": "Change Attribute Access Modifier package to private in attribute private directory : Directory from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "1737fce5df106847fb5d93eb46ba7b062072c589",
+      "commitId": "58105a203a19d18a56e09cf69dc0083c1b890315",
+      "commitTime": 1498067235,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(275)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)directory:Directory(276)",
+      "comment": "Change Attribute Access Modifier private to package in attribute package directory : Directory from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(256)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(256)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(202)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(202)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "da284a7a325aeed3814b02471aff4df865c534cd",
+      "commitId": "53c19d660aad6db9c5d62272d65c38a53a728325",
+      "commitTime": 1268494368,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(private)directory:Directory(247)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(256)",
+      "comment": "Add Attribute Modifier final in attribute private directory : Directory from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "099ba4e9eaf95c157d6c2f4a5938c5c2cca27c62",
+      "commitId": "b51587f72d25a57dde0fcc65638e449b44f9740e",
+      "commitTime": 1268250331,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(256)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(private)directory:Directory(247)",
+      "comment": "Remove Attribute Modifier final in attribute private directory : Directory from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "8c0dcbb8c3a53eea473e5e8966ac047abbaeb413",
+      "commitId": "7641c23cefccfa957186f3dbd2056efe3e5ebf50",
+      "commitTime": 1268243626,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(private)directory:Directory(247)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(final)(private)directory:Directory(256)",
+      "comment": "Add Attribute Modifier final in attribute private directory : Directory from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "749b4aaf7e922884dba4d01223742f83ecfe57fe",
+      "commitId": "bd3948c539ec1065db8b05b433ea55dbf844ff27",
+      "commitTime": 1000830588,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(private)directory:Directory(87)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(private)directory:Directory(87)",
+      "comment": "added with new class"
+    }
+  ]
+}
