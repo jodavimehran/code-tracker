@@ -241,14 +241,13 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                     Method movedOperation = Method.of(moveOperationRefactoring.getMovedOperation(), currentVersion);
                                     if (rightMethod.equalIdentifierIgnoringVersion(movedOperation)) {
                                         fileNames.add(moveOperationRefactoring.getOriginalOperation().getLocationInfo().getFilePath());
-                                        umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
-                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                         flag = true;
-                                        break;
                                     }
                                 }
                             }
                             if (flag) {
+                                umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
+                                umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                 refactorings = umlModelDiffAll.getRefactorings();
                             }
 
