@@ -30,6 +30,17 @@
       "comment": "Move Attribute private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.index.NodeServicesProvider to private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.indices.IndicesService"
     },
     {
+      "parentCommitId": "4d0feff2efc358914f2d29634eafdb4dec1e5c0f",
+      "commitId": "4bb5b4100d0687f29d758ce5a329c831c563ebe5",
+      "commitTime": 1455288811,
+      "changeType": "moved",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesQueryCache:IndicesQueryCache(168)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indicesQueryCache:IndicesQueryCache(139)",
+      "comment": "Move Attribute private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.index.shard.IndexShard to private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.indices.IndicesService"
+    },
+    {
       "parentCommitId": "45f7844948d0a639b28fff08ddf1ede5637c0a49",
       "commitId": "487af301ea4fc11d635fa9fa993be8b9aa261466",
       "commitTime": 1446718691,
@@ -50,6 +61,39 @@
       "elementFileAfter": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
       "elementNameAfter": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(54)",
       "comment": "added with new class"
+    },
+    {
+      "parentCommitId": "80d0f1e5ea68300d4273393752589f4bfc27bff5",
+      "commitId": "21ffd931ec9f6a1fd2e4c93550d3d6ff40b39cf0",
+      "commitTime": 1435574830,
+      "changeType": "rename",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesFilterCache:IndicesQueryCache(158)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesQueryCache:IndicesQueryCache(158)",
+      "comment": "Rename Attribute indicesFilterCache : IndicesQueryCache to indicesQueryCache : IndicesQueryCache in class org.elasticsearch.index.shard.IndexShard"
+    },
+    {
+      "parentCommitId": "f5f73259e4d98fa1d0ad6e441e3af3f0d7381cb9",
+      "commitId": "38f5cc236ac6d06556d25eab81f7b05854b326ca",
+      "commitTime": 1435565727,
+      "changeType": "type change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesFilterCache:IndicesFilterCache(157)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesFilterCache:IndicesQueryCache(158)",
+      "comment": "Change Attribute Type indicesFilterCache : IndicesFilterCache to indicesFilterCache : IndicesQueryCache in class org.elasticsearch.index.shard.IndexShard"
+    },
+    {
+      "parentCommitId": "573c85251efbfbbf17413fd55786099b29b79253",
+      "commitId": "791d111cc0cc021e7bb28c5a8a3add26c834b6e4",
+      "commitTime": 1435158317,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesFilterCache:IndicesFilterCache(157)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/shard/IndexShard.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.shard.IndexShard@(final)(private)indicesFilterCache:IndicesFilterCache(157)",
+      "comment": "new attribute"
     }
   ]
 }
