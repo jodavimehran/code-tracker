@@ -184,14 +184,13 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                     Attribute movedAttribute = Attribute.of(moveAttributeRefactoring.getMovedAttribute(), currentVersion);
                                     if (rightAttribute.equalIdentifierIgnoringVersion(movedAttribute)) {
                                         fileNames.add(moveAttributeRefactoring.getOriginalAttribute().getLocationInfo().getFilePath());
-                                        umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
-                                        umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                         flag = true;
-                                        break;
                                     }
                                 }
                             }
                             if (flag) {
+                                umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
+                                umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                 refactorings = umlModelDiffAll.getRefactorings();
                             }
 
@@ -202,10 +201,10 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             boolean refactored = !attributeRefactored.isEmpty();
 
                             if (containerChanged || refactored) {
-                                Set<Attribute> lefAttributes = new HashSet<>();
-                                lefAttributes.addAll(attributeContainerChanged);
-                                lefAttributes.addAll(attributeRefactored);
-                                lefAttributes.forEach(attributes::addFirst);
+                                Set<Attribute> leftAttributes = new HashSet<>();
+                                leftAttributes.addAll(attributeContainerChanged);
+                                leftAttributes.addAll(attributeRefactored);
+                                leftAttributes.forEach(attributes::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
