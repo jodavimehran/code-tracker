@@ -213,7 +213,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
                             boolean flag = false;
                             for (Refactoring refactoring : refactorings) {
-                                if (RefactoringType.MOVE_AND_RENAME_OPERATION.equals(refactoring.getRefactoringType())) {
+                                if (RefactoringType.MOVE_AND_RENAME_OPERATION.equals(refactoring.getRefactoringType()) || RefactoringType.MOVE_OPERATION.equals(refactoring.getRefactoringType())) {
                                     MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
                                     Method movedOperation = Method.of(moveOperationRefactoring.getMovedOperation(), currentVersion);
                                     if (rightMethod.equalIdentifierIgnoringVersion(movedOperation)) {
