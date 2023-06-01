@@ -1,50 +1,55 @@
 {
-  "repositoryName" : "jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-  "attributeName" : "reportStatus",
-  "attributeKey" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@reportStatus:boolean(77)",
-  "attributeDeclarationLine" : 77,
-  "expectedChanges" : [ {
-    "parentCommitId" : "9638e0aa87614a6fb4f109bbeac0cde3462b9769",
-    "commitId" : "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
-    "commitTime" : 1346858412,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(228)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(69)",
-    "comment" : "Change Attribute Access Modifier protected to private in attribute private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack"
-  }, {
-    "parentCommitId" : "9638e0aa87614a6fb4f109bbeac0cde3462b9769",
-    "commitId" : "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
-    "commitTime" : 1346858412,
-    "changeType" : "moved",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(228)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(69)",
-    "comment" : "Push Down Attribute protected reportStatus : boolean from class org.eclipse.jgit.transport.BaseReceivePack to private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack"
-  }, {
-    "parentCommitId" : "94285e691a914ab5fe2f1a161fbce0f0fd539058",
-    "commitId" : "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
-    "commitTime" : 1337020885,
-    "changeType" : "moved",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(224)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(224)",
-    "comment" : "Pull Up Attribute private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack to protected reportStatus : boolean from class org.eclipse.jgit.transport.BaseReceivePack"
-  }, {
-    "parentCommitId" : "0",
-    "commitId" : "1a6964c8274c50f0253db75f010d78ef0e739343",
-    "commitTime" : 1254268023,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(153)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(153)",
-    "comment" : "Initial commit!"
-  } ]
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+  "attributeName": "reportStatus",
+  "attributeKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@reportStatus:boolean(77)",
+  "attributeDeclarationLine": 77,
+  "expectedChanges": [
+    {
+      "parentCommitId": "9638e0aa87614a6fb4f109bbeac0cde3462b9769",
+      "commitId": "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
+      "commitTime": 1346858412,
+      "changeType": "access modifier change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(228)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(69)",
+      "comment": "Change Attribute Access Modifier protected to private in attribute private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack"
+    },
+    {
+      "parentCommitId": "9638e0aa87614a6fb4f109bbeac0cde3462b9769",
+      "commitId": "e63f1c94f8f9a5b10da6c1e5932da33eb805230a",
+      "commitTime": 1346858412,
+      "changeType": "moved",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(228)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(69)",
+      "comment": "Push Down Attribute protected reportStatus : boolean from class org.eclipse.jgit.transport.BaseReceivePack to private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack"
+    },
+    {
+      "parentCommitId": "94285e691a914ab5fe2f1a161fbce0f0fd539058",
+      "commitId": "cc37cb777e57f6a5a8e0068945d322ac0f6834e2",
+      "commitTime": 1337020885,
+      "changeType": "moved",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(224)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/BaseReceivePack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.BaseReceivePack@(protected)reportStatus:boolean(224)",
+      "comment": "Pull Up Attribute private reportStatus : boolean from class org.eclipse.jgit.transport.ReceivePack to protected reportStatus : boolean from class org.eclipse.jgit.transport.BaseReceivePack"
+    },
+    {
+      "parentCommitId": "0",
+      "commitId": "1a6964c8274c50f0253db75f010d78ef0e739343",
+      "commitTime": 1254268023,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(153)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/ReceivePack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.ReceivePack@(private)reportStatus:boolean(153)",
+      "comment": "Initial commit!"
+    }
+  ]
 }

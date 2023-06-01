@@ -1,50 +1,55 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-  "attributeName" : "INDICES_CACHE_CLEAN_INTERVAL_SETTING",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService@INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(157)",
-  "attributeDeclarationLine" : 157,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(147)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(147)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "46cab6d2ec35e4270025a94a2aadcf38f89a0423",
-    "commitId" : "d538dd64c28c39a7eace380b50e999d116984152",
-    "commitTime" : 1455205904,
-    "changeType" : "rename",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(109)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(118)",
-    "comment" : "Rename Attribute INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> to INDICES_CACHE_CLEAN_INTERVAL_SETTING : Setting<TimeValue> in class org.elasticsearch.indices.IndicesService"
-  }, {
-    "parentCommitId" : "608f4f8b6ed2b4321fd2c78992e4828fb6c49e20",
-    "commitId" : "00be9e58f27a025adbb3c28e692e5e8032271666",
-    "commitTime" : 1454661813,
-    "changeType" : "moved",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(58)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(107)",
-    "comment" : "Move Attribute public INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> from class org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache to public INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> from class org.elasticsearch.indices.IndicesService"
-  }, {
-    "parentCommitId" : "20c3cbf98d68d3a2004a74e7f45bb627e0bc5dd5",
-    "commitId" : "9c286b601e8d08a7177b8f989ad959374373d034",
-    "commitTime" : 1453467066,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(57)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(57)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+  "attributeName": "INDICES_CACHE_CLEAN_INTERVAL_SETTING",
+  "attributeKey": "server/src/main/java/org.elasticsearch.indices.IndicesService@INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(157)",
+  "attributeDeclarationLine": 157,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(147)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(147)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "46cab6d2ec35e4270025a94a2aadcf38f89a0423",
+      "commitId": "d538dd64c28c39a7eace380b50e999d116984152",
+      "commitTime": 1455205904,
+      "changeType": "rename",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(109)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_CACHE_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(118)",
+      "comment": "Rename Attribute INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> to INDICES_CACHE_CLEAN_INTERVAL_SETTING : Setting<TimeValue> in class org.elasticsearch.indices.IndicesService"
+    },
+    {
+      "parentCommitId": "608f4f8b6ed2b4321fd2c78992e4828fb6c49e20",
+      "commitId": "00be9e58f27a025adbb3c28e692e5e8032271666",
+      "commitTime": 1454661813,
+      "changeType": "moved",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(58)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(107)",
+      "comment": "Move Attribute public INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> from class org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache to public INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING : Setting<TimeValue> from class org.elasticsearch.indices.IndicesService"
+    },
+    {
+      "parentCommitId": "20c3cbf98d68d3a2004a74e7f45bb627e0bc5dd5",
+      "commitId": "9c286b601e8d08a7177b8f989ad959374373d034",
+      "commitTime": 1453467066,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(57)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/fielddata/cache/IndicesFieldDataCache.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.fielddata.cache.IndicesFieldDataCache@(final,static)(public)INDICES_FIELDDATA_CLEAN_INTERVAL_SETTING:Setting<TimeValue>(57)",
+      "comment": "new attribute"
+    }
+  ]
 }

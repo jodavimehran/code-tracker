@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "apache\\hadoop",
-  "repositoryWebURL" : "https://github.com/apache/hadoop.git",
-  "filePath" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-  "functionName" : "getRunningAggregateAppResourceUsage",
-  "functionKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()",
-  "functionStartLine" : 1080,
-  "variableName" : "entry",
-  "variableKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry(1090)",
-  "variableStartLine" : 1090,
-  "startCommitId" : "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
-  "expectedChanges" : [ {
-    "parentCommitId" : "7805deed4896e470ebd2f6bbd1ba9962947c63cd",
-    "commitId" : "dae65f3bef8ffa34d02a37041f1dfdfeeee91845",
-    "commitTime" : 1505233151,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
-    "comment" : "new variable"
-  }, {
-    "parentCommitId" : "4e5632d28eb8f6b1b8830c2aa89ec6321d477977",
-    "commitId" : "3aeaafecb823ef6c175ea5d0d9cb726faacaf32d",
-    "commitTime" : 1505233151,
-    "changeType" : "type change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:ResourceInformation(1009)",
-    "comment" : "Change Variable Type entry : Map.Entry<String,ResourceInformation> to entry : ResourceInformation in method private getRunningAggregateAppResourceUsage() : AggregateAppResourceUsage from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
-  } ]
+  "repositoryName": "apache\\hadoop",
+  "repositoryWebURL": "https://github.com/apache/hadoop.git",
+  "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+  "functionName": "getRunningAggregateAppResourceUsage",
+  "functionKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()",
+  "functionStartLine": 1080,
+  "variableName": "entry",
+  "variableKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry(1090)",
+  "variableStartLine": 1090,
+  "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "expectedChanges": [
+    {
+      "parentCommitId": "7805deed4896e470ebd2f6bbd1ba9962947c63cd",
+      "commitId": "dae65f3bef8ffa34d02a37041f1dfdfeeee91845",
+      "commitTime": 1505233151,
+      "changeType": "introduced",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
+      "comment": "new variable"
+    },
+    {
+      "parentCommitId": "4e5632d28eb8f6b1b8830c2aa89ec6321d477977",
+      "commitId": "3aeaafecb823ef6c175ea5d0d9cb726faacaf32d",
+      "commitTime": 1505233151,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:Map.Entry<String,ResourceInformation>(1009)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$entry:ResourceInformation(1009)",
+      "comment": "Change Variable Type entry : Map.Entry<String,ResourceInformation> to entry : ResourceInformation in method private getRunningAggregateAppResourceUsage() : AggregateAppResourceUsage from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    }
+  ]
 }

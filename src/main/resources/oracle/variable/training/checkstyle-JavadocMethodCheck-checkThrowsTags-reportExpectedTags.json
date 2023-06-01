@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
-  "functionName" : "checkThrowsTags",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)",
-  "functionStartLine" : 875,
-  "variableName" : "reportExpectedTags",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$reportExpectedTags(876)",
-  "variableStartLine" : 876,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "d97a2df674716efb7deda50180ae933bdc46d68a",
-    "commitId" : "89a51ba032fd9126651fa9efad31baf10c006ddf",
-    "commitTime" : 1421677262,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(836)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$reportExpectedTags:boolean(836)",
-    "comment" : "Rename Parameter aReportExpectedTags : boolean to reportExpectedTags : boolean in method private checkThrowsTags(tags List<JavadocTag>, throwsList List<ExceptionInfo>, reportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
-  }, {
-    "parentCommitId" : "42d34c7e16ebc69b0a33febb73c9fa318351e212",
-    "commitId" : "72be23f288369fdd9e562999bb9b0e2ff646c897",
-    "commitTime" : 1070909885,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(578)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(578)",
-    "comment" : "Add Parameter aReportExpectedTags : boolean in method private checkThrowsTags(aTags List, aThrows List, aReportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+  "functionName": "checkThrowsTags",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)",
+  "functionStartLine": 875,
+  "variableName": "reportExpectedTags",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$reportExpectedTags(876)",
+  "variableStartLine": 876,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "d97a2df674716efb7deda50180ae933bdc46d68a",
+      "commitId": "89a51ba032fd9126651fa9efad31baf10c006ddf",
+      "commitTime": 1421677262,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(836)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$reportExpectedTags:boolean(836)",
+      "comment": "Rename Parameter aReportExpectedTags : boolean to reportExpectedTags : boolean in method private checkThrowsTags(tags List<JavadocTag>, throwsList List<ExceptionInfo>, reportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    },
+    {
+      "parentCommitId": "42d34c7e16ebc69b0a33febb73c9fa318351e212",
+      "commitId": "72be23f288369fdd9e562999bb9b0e2ff646c897",
+      "commitTime": 1070909885,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(578)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$aReportExpectedTags:boolean(578)",
+      "comment": "Add Parameter aReportExpectedTags : boolean in method private checkThrowsTags(aTags List, aThrows List, aReportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    }
+  ]
 }

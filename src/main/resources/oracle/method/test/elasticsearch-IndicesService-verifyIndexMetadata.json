@@ -1,114 +1,126 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-  "functionName" : "verifyIndexMetadata",
-  "functionKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-  "functionStartLine" : 550,
-  "expectedChanges" : [ {
-    "parentCommitId" : "119b1b5c2b26a6adc2df7a95396da7b2411b5f09",
-    "commitId" : "700d9ecc953fa30df0d12d086f0e9d9322446459",
-    "commitTime" : 1516618987,
-    "changeType" : "body change",
-    "elementFileBefore" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "bb06d8ec4f3290c05ca50e19649e5ebd1f8840fa",
-    "commitId" : "8f873620ee5a22008a97d29ca4fa448790cf8f0d",
-    "commitTime" : 1494356891,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "1cabf66bd50004255a4fc727ce3437fa80f3f87d",
-    "commitId" : "63af03a1042a6ae1ed333aaabcd9cfc3a9fc3fec",
-    "commitTime" : 1482154790,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "1cabf66bd50004255a4fc727ce3437fa80f3f87d",
-    "commitId" : "63af03a1042a6ae1ed333aaabcd9cfc3a9fc3fec",
-    "commitTime" : 1482154790,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "9ceb0f2cb4d49a090706d4f1e8a223b19ee0e064",
-    "commitId" : "d3417fb02291f26964d77767020ef345d18c148f",
-    "altCommitId" : "6418f89feb55970c04474e3cced6ff1031725e39",
-    "commitTime" : 1478839233,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "9ceb0f2cb4d49a090706d4f1e8a223b19ee0e064",
-    "commitId" : "d3417fb02291f26964d77767020ef345d18c148f",
-    "altCommitId" : "6418f89feb55970c04474e3cced6ff1031725e39",
-    "commitTime" : 1478839233,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "9884b7dc71b06c472922438d3513a5b1102992eb",
-    "commitId" : "d0765d07619e644679fe426580229608eaabeeb3",
-    "altCommitId" : "ef0e3db0de6928ddca70d18e929223980f283fe1",
-    "commitTime" : 1467770467,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "9884b7dc71b06c472922438d3513a5b1102992eb",
-    "commitId" : "d0765d07619e644679fe426580229608eaabeeb3",
-    "altCommitId" : "ef0e3db0de6928ddca70d18e929223980f283fe1",
-    "commitTime" : 1467770467,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)"
-  }, {
-    "parentCommitId" : "6eb96e5fd8613e0350453044301d8ead51b76cb9",
-    "commitId" : "48443259217e431146c8d3b13c01cdd5ecd7a637",
-    "commitTime" : 1465210384,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)"
-  }, {
-    "parentCommitId" : "858610d0d10cd9ac33f3e460528a1f9f80863257",
-    "commitId" : "39ae16bc4c1e45ddd5da1065b122082e74ca0bf2",
-    "altCommitId" : "8127a06b2ec40fd5f31a6915143386dd853abc2b",
-    "commitTime" : 1458643586,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+  "functionName": "verifyIndexMetadata",
+  "functionKey": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+  "functionStartLine": 550,
+  "expectedChanges": [
+    {
+      "parentCommitId": "119b1b5c2b26a6adc2df7a95396da7b2411b5f09",
+      "commitId": "700d9ecc953fa30df0d12d086f0e9d9322446459",
+      "commitTime": 1516618987,
+      "changeType": "body change",
+      "elementFileBefore": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "bb06d8ec4f3290c05ca50e19649e5ebd1f8840fa",
+      "commitId": "8f873620ee5a22008a97d29ca4fa448790cf8f0d",
+      "commitTime": 1494356891,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "1cabf66bd50004255a4fc727ce3437fa80f3f87d",
+      "commitId": "63af03a1042a6ae1ed333aaabcd9cfc3a9fc3fec",
+      "commitTime": 1482154790,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "1cabf66bd50004255a4fc727ce3437fa80f3f87d",
+      "commitId": "63af03a1042a6ae1ed333aaabcd9cfc3a9fc3fec",
+      "commitTime": 1482154790,
+      "changeType": "documentation change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "9ceb0f2cb4d49a090706d4f1e8a223b19ee0e064",
+      "commitId": "d3417fb02291f26964d77767020ef345d18c148f",
+      "altCommitId": "6418f89feb55970c04474e3cced6ff1031725e39",
+      "commitTime": 1478839233,
+      "changeType": "parameter change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "9ceb0f2cb4d49a090706d4f1e8a223b19ee0e064",
+      "commitId": "d3417fb02291f26964d77767020ef345d18c148f",
+      "altCommitId": "6418f89feb55970c04474e3cced6ff1031725e39",
+      "commitTime": 1478839233,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "9884b7dc71b06c472922438d3513a5b1102992eb",
+      "commitId": "d0765d07619e644679fe426580229608eaabeeb3",
+      "altCommitId": "ef0e3db0de6928ddca70d18e929223980f283fe1",
+      "commitTime": 1467770467,
+      "changeType": "parameter change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "9884b7dc71b06c472922438d3513a5b1102992eb",
+      "commitId": "d0765d07619e644679fe426580229608eaabeeb3",
+      "altCommitId": "ef0e3db0de6928ddca70d18e929223980f283fe1",
+      "commitTime": 1467770467,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "6eb96e5fd8613e0350453044301d8ead51b76cb9",
+      "commitId": "48443259217e431146c8d3b13c01cdd5ecd7a637",
+      "commitTime": 1465210384,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)"
+    },
+    {
+      "parentCommitId": "858610d0d10cd9ac33f3e460528a1f9f80863257",
+      "commitId": "39ae16bc4c1e45ddd5da1065b122082e74ca0bf2",
+      "altCommitId": "8127a06b2ec40fd5f31a6915143386dd853abc2b",
+      "commitTime": 1458643586,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData)"
+    }
+  ]
 }

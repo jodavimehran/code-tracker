@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "junit-team\\junit4",
-  "repositoryWebURL" : "https://github.com/junit-team/junit4.git",
-  "filePath" : "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-  "functionName" : "methodBlock",
-  "functionKey" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
-  "functionStartLine" : 303,
-  "variableName" : "statement",
-  "variableKey" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)$statement(316)",
-  "variableStartLine" : 316,
-  "startCommitId" : "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
-  "expectedChanges" : [ {
-    "parentCommitId" : "979e8abbe974e8847668f5887403da78a6165ebc",
-    "commitId" : "1fcd990f60518c941a44bae2596392021614a20b",
-    "commitTime" : 1217357758,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-    "elementNameBefore" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)$link:Statement(173)",
-    "elementFileAfter" : "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-    "elementNameAfter" : "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)$statement:Statement(169)",
-    "comment" : "Rename Variable link : Statement to statement : Statement in method protected methodBlock(method FrameworkMethod) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
-  }, {
-    "parentCommitId" : "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
-    "commitId" : "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
-    "commitTime" : 1192208299,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)$link:Link(120)",
-    "elementFileAfter" : "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)$link:Statement(120)",
-    "comment" : "Change Variable Type link : Link to link : Statement in method protected chain(method TestMethod, test Object) : Notifier from class org.junit.internal.runners.JUnit4ClassRunner"
-  }, {
-    "parentCommitId" : "4081076e513e84bb2376f889d4108e64e9a18653",
-    "commitId" : "a58514aec7e843339be24980e92aeeb759327ffb",
-    "commitTime" : 1191603275,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-    "elementNameBefore" : "src/org.junit.internal.runners.JUnit4MethodRunner#chain()$link:Link(211)",
-    "elementFileAfter" : "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-    "elementNameAfter" : "src/org.junit.internal.runners.JUnit4MethodRunner#chain()$link:Link(211)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "junit-team\\junit4",
+  "repositoryWebURL": "https://github.com/junit-team/junit4.git",
+  "filePath": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
+  "functionName": "methodBlock",
+  "functionKey": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
+  "functionStartLine": 303,
+  "variableName": "statement",
+  "variableKey": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)$statement(316)",
+  "variableStartLine": 316,
+  "startCommitId": "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "expectedChanges": [
+    {
+      "parentCommitId": "979e8abbe974e8847668f5887403da78a6165ebc",
+      "commitId": "1fcd990f60518c941a44bae2596392021614a20b",
+      "commitTime": 1217357758,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
+      "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)$link:Statement(173)",
+      "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)$statement:Statement(169)",
+      "comment": "Rename Variable link : Statement to statement : Statement in method protected methodBlock(method FrameworkMethod) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
+      "commitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
+      "commitTime": 1192208299,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)$link:Link(120)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)$link:Statement(120)",
+      "comment": "Change Variable Type link : Link to link : Statement in method protected chain(method TestMethod, test Object) : Notifier from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "4081076e513e84bb2376f889d4108e64e9a18653",
+      "commitId": "a58514aec7e843339be24980e92aeeb759327ffb",
+      "commitTime": 1191603275,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()$link:Link(211)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()$link:Link(211)",
+      "comment": "new variable"
+    }
+  ]
 }

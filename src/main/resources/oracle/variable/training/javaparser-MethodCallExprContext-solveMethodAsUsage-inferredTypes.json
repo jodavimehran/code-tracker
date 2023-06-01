@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "javaparser\\javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "filePath" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-  "functionName" : "solveMethodAsUsage",
-  "functionKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)",
-  "functionStartLine" : 76,
-  "variableName" : "inferredTypes",
-  "variableKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes(100)",
-  "variableStartLine" : 100,
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "expectedChanges" : [ {
-    "parentCommitId" : "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
-    "commitId" : "5d8d0cb7947efcf2282f7d056302dd905f348532",
-    "commitTime" : 1506630980,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(103)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<ResolvedTypeParameterDeclaration,ResolvedType>(97)",
-    "comment" : "Change Variable Type inferredTypes : Map<TypeParameterDeclaration,Type> to inferredTypes : Map<ResolvedTypeParameterDeclaration,ResolvedType> in method public solveMethodAsUsage(name String, argumentsTypes List<ResolvedType>, typeSolver TypeSolver) : Optional<MethodUsage> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "cf0045ad73d15502e16c6de02334d39383dfee78",
-    "commitId" : "2082034e8c3eb434e3df25dd420c98cae5a6d518",
-    "commitTime" : 1477329545,
-    "changeType" : "introduced",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(286)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(286)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "javaparser\\javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+  "functionName": "solveMethodAsUsage",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)",
+  "functionStartLine": 76,
+  "variableName": "inferredTypes",
+  "variableKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes(100)",
+  "variableStartLine": 100,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
+      "commitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitTime": 1506630980,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(103)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<ResolvedTypeParameterDeclaration,ResolvedType>(97)",
+      "comment": "Change Variable Type inferredTypes : Map<TypeParameterDeclaration,Type> to inferredTypes : Map<ResolvedTypeParameterDeclaration,ResolvedType> in method public solveMethodAsUsage(name String, argumentsTypes List<ResolvedType>, typeSolver TypeSolver) : Optional<MethodUsage> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "cf0045ad73d15502e16c6de02334d39383dfee78",
+      "commitId": "2082034e8c3eb434e3df25dd420c98cae5a6d518",
+      "commitTime": 1477329545,
+      "changeType": "introduced",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(286)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$inferredTypes:Map<TypeParameterDeclaration,Type>(286)",
+      "comment": "new variable"
+    }
+  ]
 }

@@ -1,40 +1,44 @@
 {
-  "repositoryName" : "spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "filePath" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-  "attributeName" : "logger",
-  "attributeKey" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@logger:Log(60)",
-  "attributeDeclarationLine" : 60,
-  "expectedChanges" : [ {
-    "parentCommitId" : "170057005e4960035e2b8fc2d0f11ac63295473b",
-    "commitId" : "57d2fcef557882097e7fea4b603c437488546988",
-    "commitTime" : 1489611920,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
-    "elementNameBefore" : "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(44)",
-    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)logger:Log(51)",
-    "comment" : "Change Attribute Access Modifier protected to private in attribute private logger : Log from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
-  }, {
-    "parentCommitId" : "170057005e4960035e2b8fc2d0f11ac63295473b",
-    "commitId" : "57d2fcef557882097e7fea4b603c437488546988",
-    "commitTime" : 1489611920,
-    "changeType" : "moved",
-    "elementFileBefore" : "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
-    "elementNameBefore" : "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(44)",
-    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)logger:Log(51)",
-    "comment" : "Move Attribute protected logger : Log from class org.springframework.http.server.reactive.HttpHandlerAdapterSupport to private logger : Log from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
-  }, {
-    "parentCommitId" : "c2fdc9103b828fed387aa28ed39f13de906f1daf",
-    "commitId" : "b92d541ba0934052769d0bcf08fec7d8c44d2c2d",
-    "commitTime" : 1476999758,
-    "changeType" : "introduced",
-    "elementFileBefore" : "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
-    "elementNameBefore" : "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(43)",
-    "elementFileAfter" : "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
-    "elementNameAfter" : "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(43)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+  "attributeName": "logger",
+  "attributeKey": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@logger:Log(60)",
+  "attributeDeclarationLine": 60,
+  "expectedChanges": [
+    {
+      "parentCommitId": "170057005e4960035e2b8fc2d0f11ac63295473b",
+      "commitId": "57d2fcef557882097e7fea4b603c437488546988",
+      "commitTime": 1489611920,
+      "changeType": "access modifier change",
+      "elementFileBefore": "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
+      "elementNameBefore": "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(44)",
+      "elementFileAfter": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)logger:Log(51)",
+      "comment": "Change Attribute Access Modifier protected to private in attribute private logger : Log from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+    },
+    {
+      "parentCommitId": "170057005e4960035e2b8fc2d0f11ac63295473b",
+      "commitId": "57d2fcef557882097e7fea4b603c437488546988",
+      "commitTime": 1489611920,
+      "changeType": "moved",
+      "elementFileBefore": "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
+      "elementNameBefore": "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(44)",
+      "elementFileAfter": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
+      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter@(final,static)(private)logger:Log(51)",
+      "comment": "Move Attribute protected logger : Log from class org.springframework.http.server.reactive.HttpHandlerAdapterSupport to private logger : Log from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
+    },
+    {
+      "parentCommitId": "c2fdc9103b828fed387aa28ed39f13de906f1daf",
+      "commitId": "b92d541ba0934052769d0bcf08fec7d8c44d2c2d",
+      "commitTime": 1476999758,
+      "changeType": "introduced",
+      "elementFileBefore": "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
+      "elementNameBefore": "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(43)",
+      "elementFileAfter": "spring-web/src/main/java/org/springframework/http/server/reactive/HttpHandlerAdapterSupport.java",
+      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.HttpHandlerAdapterSupport@(final)(protected)logger:Log(43)",
+      "comment": "added with new class"
+    }
+  ]
 }

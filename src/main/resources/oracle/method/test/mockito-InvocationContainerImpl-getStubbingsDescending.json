@@ -1,64 +1,71 @@
 {
-  "repositoryName" : "mockito",
-  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
-  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
-  "filePath" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-  "functionName" : "getStubbingsDescending",
-  "functionKey" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbingsDescending()",
-  "functionStartLine" : 143,
-  "expectedChanges" : [ {
-    "parentCommitId" : "bef4d861da694e39ed4040152bcd94d184476a41",
-    "commitId" : "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c",
-    "commitTime" : 1532405479,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbingsDescending()"
-  }, {
-    "parentCommitId" : "de5f5483b1ae3e8c1a175479f49f1dda3aba1f51",
-    "commitId" : "a5ec3322be0d02f5a44b4580064cb96797332ed8",
-    "commitTime" : 1503864044,
-    "changeType" : "return type change",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
-  }, {
-    "parentCommitId" : "de5f5483b1ae3e8c1a175479f49f1dda3aba1f51",
-    "commitId" : "a5ec3322be0d02f5a44b4580064cb96797332ed8",
-    "commitTime" : 1503864044,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
-  }, {
-    "parentCommitId" : "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
-    "commitId" : "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
-    "commitTime" : 1436416970,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameBefore" : "src/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
-  }, {
-    "parentCommitId" : "ec9ca3637db4f353fb8aaf89e0abc235a8bc558e",
-    "commitId" : "501e8f84361af21ce23d506e3c5b284375908bdd",
-    "commitTime" : 1258316396,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/org/mockito/internal/stubbing/MockitoStubber.java",
-    "elementNameBefore" : "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()",
-    "elementFileAfter" : "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
-    "elementNameAfter" : "src/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
-  }, {
-    "parentCommitId" : "10eb44f6495c872b9012a4ba31b976e6382c82a1",
-    "commitId" : "d78fdd1cde2a224f0a70e15e8e61de3176e74625",
-    "commitTime" : 1258316294,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/org/mockito/internal/stubbing/MockitoStubber.java",
-    "elementNameBefore" : "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()",
-    "elementFileAfter" : "src/org/mockito/internal/stubbing/MockitoStubber.java",
-    "elementNameAfter" : "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()"
-  } ]
+  "repositoryName": "mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "filePath": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+  "functionName": "getStubbingsDescending",
+  "functionKey": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbingsDescending()",
+  "functionStartLine": 143,
+  "expectedChanges": [
+    {
+      "parentCommitId": "bef4d861da694e39ed4040152bcd94d184476a41",
+      "commitId": "f30ec35385ea24fbe35517b79dc3ec47ebc89b7c",
+      "commitTime": 1532405479,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
+      "elementFileAfter": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbingsDescending()"
+    },
+    {
+      "parentCommitId": "de5f5483b1ae3e8c1a175479f49f1dda3aba1f51",
+      "commitId": "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+      "commitTime": 1503864044,
+      "changeType": "return type change",
+      "elementFileBefore": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
+      "elementFileAfter": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
+    },
+    {
+      "parentCommitId": "de5f5483b1ae3e8c1a175479f49f1dda3aba1f51",
+      "commitId": "a5ec3322be0d02f5a44b4580064cb96797332ed8",
+      "commitTime": 1503864044,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
+      "elementFileAfter": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
+    },
+    {
+      "parentCommitId": "9d3124ae8768ec9fb60ff5b8a176b060491f9770",
+      "commitId": "fe7bbabb82ce3d1000c13d39d6355c134e94ac27",
+      "commitTime": 1436416970,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()",
+      "elementFileAfter": "src/main/java/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
+    },
+    {
+      "parentCommitId": "ec9ca3637db4f353fb8aaf89e0abc235a8bc558e",
+      "commitId": "501e8f84361af21ce23d506e3c5b284375908bdd",
+      "commitTime": 1258316396,
+      "changeType": "container change",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/InvocationContainerImpl.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.InvocationContainerImpl#getStubbedInvocations()"
+    },
+    {
+      "parentCommitId": "10eb44f6495c872b9012a4ba31b976e6382c82a1",
+      "commitId": "d78fdd1cde2a224f0a70e15e8e61de3176e74625",
+      "commitTime": 1258316294,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "elementNameBefore": "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()",
+      "elementFileAfter": "src/org/mockito/internal/stubbing/MockitoStubber.java",
+      "elementNameAfter": "src/org.mockito.internal.stubbing.MockitoStubber#getStubbedInvocations()"
+    }
+  ]
 }

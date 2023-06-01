@@ -1,61 +1,67 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-  "functionName" : "invokeTestMethod",
-  "functionKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)",
-  "functionStartLine" : 81,
-  "variableName" : "dynamicNodeStream",
-  "variableKey" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream(90)",
-  "variableStartLine" : 90,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "66cfa8aecb6dcadacd4c2c09eaa3f1f3855db080",
-    "commitId" : "afcec01a9c1c8302a81785dc2ad22e01ddb249b7",
-    "commitTime" : 1494427220,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:BaseStream<DynamicNode,?>(73)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)",
-    "comment" : "Change Variable Type dynamicNodeStream : BaseStream<DynamicNode,?> to dynamicNodeStream : Stream<DynamicNode> in method protected invokeTestMethod(context JupiterEngineExecutionContext, dynamicTestExecutor DynamicTestExecutor) : void from class org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor"
-  }, {
-    "parentCommitId" : "febcfe98f5294fd146327ea64163ec4a6465702e",
-    "commitId" : "66cfa8aecb6dcadacd4c2c09eaa3f1f3855db080",
-    "commitTime" : 1494426855,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:BaseStream<DynamicNode,?>(73)",
-    "comment" : "Change Variable Type dynamicNodeStream : Stream<DynamicNode> to dynamicNodeStream : BaseStream<DynamicNode,?> in method protected invokeTestMethod(context JupiterEngineExecutionContext, dynamicTestExecutor DynamicTestExecutor) : void from class org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor"
-  }, {
-    "parentCommitId" : "abfdc052a981595c074308dc1dcd571e2c1c59d2",
-    "commitId" : "1a57e4f386a9f8cd6be0a08a4d914349d32a7f01",
-    "commitTime" : 1493811550,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(70)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)"
-  }, {
-    "parentCommitId" : "abfdc052a981595c074308dc1dcd571e2c1c59d2",
-    "commitId" : "1a57e4f386a9f8cd6be0a08a4d914349d32a7f01",
-    "commitTime" : 1493811550,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(70)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)"
-  }, {
-    "parentCommitId" : "0a4da4fd576705a9f6b3c1b748b09b9a1dfb7d32",
-    "commitId" : "21b61f5b1b5337625a505cd28dd2761f09a35536",
-    "commitTime" : 1488135451,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameBefore" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(84)",
-    "elementFileAfter" : "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
-    "elementNameAfter" : "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(84)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+  "functionName": "invokeTestMethod",
+  "functionKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)",
+  "functionStartLine": 81,
+  "variableName": "dynamicNodeStream",
+  "variableKey": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream(90)",
+  "variableStartLine": 90,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "66cfa8aecb6dcadacd4c2c09eaa3f1f3855db080",
+      "commitId": "afcec01a9c1c8302a81785dc2ad22e01ddb249b7",
+      "commitTime": 1494427220,
+      "changeType": "type change",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:BaseStream<DynamicNode,?>(73)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)",
+      "comment": "Change Variable Type dynamicNodeStream : BaseStream<DynamicNode,?> to dynamicNodeStream : Stream<DynamicNode> in method protected invokeTestMethod(context JupiterEngineExecutionContext, dynamicTestExecutor DynamicTestExecutor) : void from class org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor"
+    },
+    {
+      "parentCommitId": "febcfe98f5294fd146327ea64163ec4a6465702e",
+      "commitId": "66cfa8aecb6dcadacd4c2c09eaa3f1f3855db080",
+      "commitTime": 1494426855,
+      "changeType": "type change",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:BaseStream<DynamicNode,?>(73)",
+      "comment": "Change Variable Type dynamicNodeStream : Stream<DynamicNode> to dynamicNodeStream : BaseStream<DynamicNode,?> in method protected invokeTestMethod(context JupiterEngineExecutionContext, dynamicTestExecutor DynamicTestExecutor) : void from class org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor"
+    },
+    {
+      "parentCommitId": "abfdc052a981595c074308dc1dcd571e2c1c59d2",
+      "commitId": "1a57e4f386a9f8cd6be0a08a4d914349d32a7f01",
+      "commitTime": 1493811550,
+      "changeType": "rename",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(70)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)"
+    },
+    {
+      "parentCommitId": "abfdc052a981595c074308dc1dcd571e2c1c59d2",
+      "commitId": "1a57e4f386a9f8cd6be0a08a4d914349d32a7f01",
+      "commitTime": 1493811550,
+      "changeType": "type change",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(70)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicNodeStream:Stream<DynamicNode>(73)"
+    },
+    {
+      "parentCommitId": "0a4da4fd576705a9f6b3c1b748b09b9a1dfb7d32",
+      "commitId": "21b61f5b1b5337625a505cd28dd2761f09a35536",
+      "commitTime": 1488135451,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameBefore": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(84)",
+      "elementFileAfter": "junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/TestFactoryTestDescriptor.java",
+      "elementNameAfter": "junit-jupiter-engine/src/main/java/org.junit.jupiter.engine.descriptor.TestFactoryTestDescriptor#invokeTestMethod(JupiterEngineExecutionContext, DynamicTestExecutor)$dynamicTestStream:Stream<DynamicTest>(84)",
+      "comment": "new variable"
+    }
+  ]
 }

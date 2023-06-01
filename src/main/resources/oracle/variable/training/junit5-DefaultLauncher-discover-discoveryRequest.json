@@ -1,83 +1,91 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-  "functionName" : "discover",
-  "functionKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)",
-  "functionStartLine" : 82,
-  "variableName" : "discoveryRequest",
-  "variableKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)$discoveryRequest(82)",
-  "variableStartLine" : 82,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "27a7928a6ced05237be4a1223e528aab8d96bfba",
-    "commitId" : "402c756a056e13f5f49634616d87b1333e3c211e",
-    "commitTime" : 1467316432,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameBefore" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)$discoveryRequest:TestDiscoveryRequest(76)",
-    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)$discoveryRequest:LauncherDiscoveryRequest(76)",
-    "comment" : "Change Parameter Type discoveryRequest : TestDiscoveryRequest to discoveryRequest : LauncherDiscoveryRequest in method public discover(discoveryRequest LauncherDiscoveryRequest) : TestPlan from class org.junit.platform.launcher.core.DefaultLauncher"
-  }, {
-    "parentCommitId" : "2e70f575f1e3803fc3d934de6932524efca4fe8a",
-    "commitId" : "57b07e0594875902399805d6e41514f03a4b2f31",
-    "commitTime" : 1453195956,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)$discoveryRequest:DiscoveryRequest(92)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)$discoveryRequest:TestDiscoveryRequest(89)",
-    "comment" : "Change Parameter Type discoveryRequest : DiscoveryRequest to discoveryRequest : TestDiscoveryRequest in method public discover(discoveryRequest TestDiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.main.Launcher"
-  }, {
-    "parentCommitId" : "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
-    "commitId" : "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
-    "commitTime" : 1453090240,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$specification:DiscoveryRequest(82)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$discoveryRequest:DiscoveryRequest(82)",
-    "comment" : "Rename Parameter specification : DiscoveryRequest to discoveryRequest : DiscoveryRequest in method public discover(discoveryRequest DiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "d35b6c097deae4347abc54a431ed712e4b0818f1",
-    "commitId" : "ad553b10b4b2b1a78c9a0c91a6d50ebb1421ff3f",
-    "commitTime" : 1452867306,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)$specification:TestPlanSpecification(83)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$specification:DiscoveryRequest(83)",
-    "comment" : "Change Parameter Type specification : TestPlanSpecification to specification : DiscoveryRequest in method public discover(specification DiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "db7c029008a0fab7fb6770078c1b54a175c35c6c",
-    "commitId" : "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
-    "commitTime" : 1446027542,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(17)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)$specification:TestPlanSpecification(17)",
-    "comment" : "Change Parameter Type configuration : TestPlanConfiguration to specification : TestPlanSpecification in method public createTestPlanWithConfiguration(specification TestPlanSpecification) : TestPlan from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "db7c029008a0fab7fb6770078c1b54a175c35c6c",
-    "commitId" : "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
-    "commitTime" : 1446027542,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(17)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)$specification:TestPlanSpecification(17)",
-    "comment" : "Rename Parameter configuration : TestPlanConfiguration to specification : TestPlanSpecification in method public createTestPlanWithConfiguration(specification TestPlanSpecification) : TestPlan from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "4ed7da080632a120397988eb5adf898c2b7508bd",
-    "commitId" : "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-    "commitTime" : 1446024196,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(13)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(13)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "functionName": "discover",
+  "functionKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)",
+  "functionStartLine": 82,
+  "variableName": "discoveryRequest",
+  "variableKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)$discoveryRequest(82)",
+  "variableStartLine": 82,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "27a7928a6ced05237be4a1223e528aab8d96bfba",
+      "commitId": "402c756a056e13f5f49634616d87b1333e3c211e",
+      "commitTime": 1467316432,
+      "changeType": "type change",
+      "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)$discoveryRequest:TestDiscoveryRequest(76)",
+      "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)$discoveryRequest:LauncherDiscoveryRequest(76)",
+      "comment": "Change Parameter Type discoveryRequest : TestDiscoveryRequest to discoveryRequest : LauncherDiscoveryRequest in method public discover(discoveryRequest LauncherDiscoveryRequest) : TestPlan from class org.junit.platform.launcher.core.DefaultLauncher"
+    },
+    {
+      "parentCommitId": "2e70f575f1e3803fc3d934de6932524efca4fe8a",
+      "commitId": "57b07e0594875902399805d6e41514f03a4b2f31",
+      "commitTime": 1453195956,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)$discoveryRequest:DiscoveryRequest(92)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)$discoveryRequest:TestDiscoveryRequest(89)",
+      "comment": "Change Parameter Type discoveryRequest : DiscoveryRequest to discoveryRequest : TestDiscoveryRequest in method public discover(discoveryRequest TestDiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.main.Launcher"
+    },
+    {
+      "parentCommitId": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
+      "commitId": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
+      "commitTime": 1453090240,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$specification:DiscoveryRequest(82)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$discoveryRequest:DiscoveryRequest(82)",
+      "comment": "Rename Parameter specification : DiscoveryRequest to discoveryRequest : DiscoveryRequest in method public discover(discoveryRequest DiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "d35b6c097deae4347abc54a431ed712e4b0818f1",
+      "commitId": "ad553b10b4b2b1a78c9a0c91a6d50ebb1421ff3f",
+      "commitTime": 1452867306,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)$specification:TestPlanSpecification(83)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)$specification:DiscoveryRequest(83)",
+      "comment": "Change Parameter Type specification : TestPlanSpecification to specification : DiscoveryRequest in method public discover(specification DiscoveryRequest) : TestPlan from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "db7c029008a0fab7fb6770078c1b54a175c35c6c",
+      "commitId": "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
+      "commitTime": 1446027542,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(17)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)$specification:TestPlanSpecification(17)",
+      "comment": "Change Parameter Type configuration : TestPlanConfiguration to specification : TestPlanSpecification in method public createTestPlanWithConfiguration(specification TestPlanSpecification) : TestPlan from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "db7c029008a0fab7fb6770078c1b54a175c35c6c",
+      "commitId": "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
+      "commitTime": 1446027542,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(17)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)$specification:TestPlanSpecification(17)",
+      "comment": "Rename Parameter configuration : TestPlanConfiguration to specification : TestPlanSpecification in method public createTestPlanWithConfiguration(specification TestPlanSpecification) : TestPlan from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
+      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitTime": 1446024196,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(13)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)$configuration:TestPlanConfiguration(13)",
+      "comment": "added with method"
+    }
+  ]
 }

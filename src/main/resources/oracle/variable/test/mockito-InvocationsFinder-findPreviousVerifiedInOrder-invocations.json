@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "mockito\\mockito",
-  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
-  "filePath" : "src/main/java/org/mockito/internal/invocation/InvocationsFinder.java",
-  "functionName" : "findPreviousVerifiedInOrder",
-  "functionKey" : "src/main/java/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)",
-  "functionStartLine" : 119,
-  "variableName" : "invocations",
-  "variableKey" : "src/main/java/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations(119)",
-  "variableStartLine" : 119,
-  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
-  "expectedChanges" : [ {
-    "parentCommitId" : "756e46adf9246b0c2b3015441650d83b475ebfd0",
-    "commitId" : "60f0c0c767879989d40d7846054cfc1df64e76af",
-    "commitTime" : 1333231930,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<InvocationImpl>(114)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<Invocation>(115)",
-    "comment" : "Change Parameter Type invocations : List<InvocationImpl> to invocations : List<Invocation> in method public findPreviousVerifiedInOrder(invocations List<Invocation>, context InOrderContext) : InvocationImpl from class org.mockito.internal.invocation.InvocationsFinder"
-  }, {
-    "parentCommitId" : "82a1c42f1e83016618996bd4ea4448d7a7a54168",
-    "commitId" : "a99d63b477bac80720fa25214ef7c3eb73576627",
-    "commitTime" : 1333231806,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<Invocation>(114)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<InvocationImpl>(114)",
-    "comment" : "Change Parameter Type invocations : List<Invocation> to invocations : List<InvocationImpl> in method public findPreviousVerifiedInOrder(invocations List<InvocationImpl>, context InOrderContext) : InvocationImpl from class org.mockito.internal.invocation.InvocationsFinder"
-  }, {
-    "parentCommitId" : "d75b3e9327bacd7e9e1fc81f53dcdc4449239560",
-    "commitId" : "1f1d4d0e734713c3f09313465ed1800b8fb50069",
-    "commitTime" : 1200945753,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousInOrder(List, InvocationMatcher)$invocations:List<Invocation>(136)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/InvocationsFinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousInOrder(List, InvocationMatcher)$invocations:List<Invocation>(136)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "mockito\\mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "filePath": "src/main/java/org/mockito/internal/invocation/InvocationsFinder.java",
+  "functionName": "findPreviousVerifiedInOrder",
+  "functionKey": "src/main/java/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)",
+  "functionStartLine": 119,
+  "variableName": "invocations",
+  "variableKey": "src/main/java/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations(119)",
+  "variableStartLine": 119,
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "expectedChanges": [
+    {
+      "parentCommitId": "756e46adf9246b0c2b3015441650d83b475ebfd0",
+      "commitId": "60f0c0c767879989d40d7846054cfc1df64e76af",
+      "commitTime": 1333231930,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<InvocationImpl>(114)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<Invocation>(115)",
+      "comment": "Change Parameter Type invocations : List<InvocationImpl> to invocations : List<Invocation> in method public findPreviousVerifiedInOrder(invocations List<Invocation>, context InOrderContext) : InvocationImpl from class org.mockito.internal.invocation.InvocationsFinder"
+    },
+    {
+      "parentCommitId": "82a1c42f1e83016618996bd4ea4448d7a7a54168",
+      "commitId": "a99d63b477bac80720fa25214ef7c3eb73576627",
+      "commitTime": 1333231806,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<Invocation>(114)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousVerifiedInOrder(List, InOrderContext)$invocations:List<InvocationImpl>(114)",
+      "comment": "Change Parameter Type invocations : List<Invocation> to invocations : List<InvocationImpl> in method public findPreviousVerifiedInOrder(invocations List<InvocationImpl>, context InOrderContext) : InvocationImpl from class org.mockito.internal.invocation.InvocationsFinder"
+    },
+    {
+      "parentCommitId": "d75b3e9327bacd7e9e1fc81f53dcdc4449239560",
+      "commitId": "1f1d4d0e734713c3f09313465ed1800b8fb50069",
+      "commitTime": 1200945753,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousInOrder(List, InvocationMatcher)$invocations:List<Invocation>(136)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/InvocationsFinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.InvocationsFinder#findPreviousInOrder(List, InvocationMatcher)$invocations:List<Invocation>(136)",
+      "comment": "added with method"
+    }
+  ]
 }

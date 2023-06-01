@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-  "functionName" : "fireErrors",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
-  "functionStartLine" : 384,
-  "variableName" : "errors",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$errors(384)",
-  "variableStartLine" : 384,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$aErrors:SortedSet<LocalizedMessage>(515)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$errors:SortedSet<LocalizedMessage>(515)",
-    "comment" : "Rename Parameter aErrors : SortedSet<LocalizedMessage> to errors : SortedSet<LocalizedMessage> in method public fireErrors(fileName String, errors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "5ce771ac776af4197ce832792a049e9357ca90b8",
-    "commitId" : "1d614c3a7ecf8a3ede4df8a50da46e71792d0025",
-    "commitTime" : 1386263571,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$aErrors:TreeSet<LocalizedMessage>(504)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$aErrors:SortedSet<LocalizedMessage>(506)",
-    "comment" : "Change Parameter Type aErrors : TreeSet<LocalizedMessage> to aErrors : SortedSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$aErrors:LocalizedMessage[](472)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$aErrors:TreeSet<LocalizedMessage>(500)",
-    "comment" : "Change Parameter Type aErrors : LocalizedMessage[] to aErrors : TreeSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors TreeSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "d499f72239cec254d620ab1619ac936e233e2033",
-    "commitId" : "c682b5725d22afc38bf19d9667b23a7deab6d8c3",
-    "commitTime" : 1028988900,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](362)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$aErrors:LocalizedMessage[](364)",
-    "comment" : "Change Parameter Type aErrors : LineText[] to aErrors : LocalizedMessage[] in method protected fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
-    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
-    "commitTime" : 999188004,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](309)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](309)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "functionName": "fireErrors",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+  "functionStartLine": 384,
+  "variableName": "errors",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$errors(384)",
+  "variableStartLine": 384,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$aErrors:SortedSet<LocalizedMessage>(515)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$errors:SortedSet<LocalizedMessage>(515)",
+      "comment": "Rename Parameter aErrors : SortedSet<LocalizedMessage> to errors : SortedSet<LocalizedMessage> in method public fireErrors(fileName String, errors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "5ce771ac776af4197ce832792a049e9357ca90b8",
+      "commitId": "1d614c3a7ecf8a3ede4df8a50da46e71792d0025",
+      "commitTime": 1386263571,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$aErrors:TreeSet<LocalizedMessage>(504)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$aErrors:SortedSet<LocalizedMessage>(506)",
+      "comment": "Change Parameter Type aErrors : TreeSet<LocalizedMessage> to aErrors : SortedSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$aErrors:LocalizedMessage[](472)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$aErrors:TreeSet<LocalizedMessage>(500)",
+      "comment": "Change Parameter Type aErrors : LocalizedMessage[] to aErrors : TreeSet<LocalizedMessage> in method public fireErrors(aFileName String, aErrors TreeSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "d499f72239cec254d620ab1619ac936e233e2033",
+      "commitId": "c682b5725d22afc38bf19d9667b23a7deab6d8c3",
+      "commitTime": 1028988900,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](362)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$aErrors:LocalizedMessage[](364)",
+      "comment": "Change Parameter Type aErrors : LineText[] to aErrors : LocalizedMessage[] in method protected fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](309)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$aErrors:LineText[](309)",
+      "comment": "added with method"
+    }
+  ]
 }
