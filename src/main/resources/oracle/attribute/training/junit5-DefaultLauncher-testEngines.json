@@ -44,67 +44,78 @@
       "parentCommitId": "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
       "commitId": "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
       "commitTime": 1453458759,
-      "changeType": "rename",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(41)",
+      "changeType": "moved",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/ServiceLoaderTestEngineRegistry.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(29)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(42)",
-      "comment": "Rename Attribute testEngineRegistry : TestEngineRegistry to testEngines : Iterable<TestEngine> in class org.junit.gen5.launcher.main.DefaultLauncher"
+      "comment": "Move Attribute private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry to private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.main.DefaultLauncher"
     },
     {
       "parentCommitId": "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
       "commitId": "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
       "commitTime": 1453458759,
-      "changeType": "type change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(41)",
+      "changeType": "modifier change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/ServiceLoaderTestEngineRegistry.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(29)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(42)",
-      "comment": "Change Attribute Type testEngineRegistry : TestEngineRegistry to testEngines : Iterable<TestEngine> in class org.junit.gen5.launcher.main.DefaultLauncher"
+      "comment": "Add Attribute Modifier final in attribute private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.main.DefaultLauncher"
     },
     {
-      "parentCommitId": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
-      "commitId": "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
-      "commitTime": 1453312358,
-      "changeType": "container change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
+      "parentCommitId": "1f209b6b9e9c66c4931f34a5d83df8e11c1d6dea",
+      "commitId": "9c963d4a51e6d0fa8ecddb6c6f9f72f25e06dcd0",
+      "commitTime": 1453458759,
+      "changeType": "modifier change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/ServiceLoaderTestEngineRegistry.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(29)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
-      "comment": "Rename Class org.junit.gen5.launcher.main.JUnit5Launcher renamed to org.junit.gen5.launcher.main.DefaultLauncher"
-    },
-    {
-      "parentCommitId": "027bc980ad0a17a6130013aeec068296606bbfef",
-      "commitId": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
-      "commitTime": 1453312065,
-      "changeType": "container change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(54)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(40)",
-      "comment": "Rename Class org.junit.gen5.launcher.main.Launcher renamed to org.junit.gen5.launcher.main.JUnit5Launcher"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher@(final)(private)testEngines:Iterable<TestEngine>(42)",
+      "comment": "Remove Attribute Modifier static in attribute private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry"
     },
     {
       "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
       "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
       "commitTime": 1453134880,
       "changeType": "container change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(50)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(56)",
-      "comment": "Move Class org.junit.gen5.launcher.Launcher moved to org.junit.gen5.launcher.main.Launcher"
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/ServiceLoaderTestEngineRegistry.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(29)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/ServiceLoaderTestEngineRegistry.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(29)",
+      "comment": "Move Class org.junit.gen5.launcher.ServiceLoaderTestEngineRegistry moved to org.junit.gen5.launcher.main.ServiceLoaderTestEngineRegistry"
     },
     {
       "parentCommitId": "e74f44734fa1099bc1d9fc2d60838d7b1f64de46",
       "commitId": "7dc017fd9255ba302736d9ad1ce778f93e77b573",
       "commitTime": 1449405027,
+      "changeType": "moved",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/TestEngineRegistry.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.TestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(26)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/ServiceLoaderTestEngineRegistry.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.ServiceLoaderTestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(26)",
+      "comment": "Push Down Attribute private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.TestEngineRegistry to private testEngines : Iterable<TestEngine> from class org.junit.gen5.launcher.ServiceLoaderTestEngineRegistry"
+    },
+    {
+      "parentCommitId": "b5da37de2756fff650f02a9b93d7c2cf9e2d53d2",
+      "commitId": "0f960f597c4d3909797a94e92f03ab52d346d318",
+      "commitTime": 1446029901,
+      "changeType": "container change",
+      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TestEngineRegistry.java",
+      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(10)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/TestEngineRegistry.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.TestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(12)",
+      "comment": "Move Class org.junit.gen5.engine.TestEngineRegistry moved to org.junit.gen5.launcher.TestEngineRegistry"
+    },
+    {
+      "parentCommitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitId": "36f0d62665a55a1250823ea1b7a7d9148efb27a8",
+      "commitTime": 1446024196,
       "changeType": "introduced",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(34)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher@(final)(private)testEngineRegistry:TestEngineRegistry(34)",
-      "comment": "new attribute"
+      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TestEngineRegistry.java",
+      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(11)",
+      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/TestEngineRegistry.java",
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.TestEngineRegistry@(static)(private)testEngines:Iterable<TestEngine>(11)",
+      "comment": "added with new class"
     }
   ]
 }

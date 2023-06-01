@@ -33,12 +33,56 @@
       "parentCommitId": "59aa66c3cc43db0a7cd8bb0ea3a39b6f4339fe88",
       "commitId": "a24df47cafeab03fd65cf72b460aad3d2fafce3d",
       "commitTime": 1413609550,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mOrdinaryChecks:Set<Check>(96)",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set<Check>(71)",
       "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
       "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mOrdinaryChecks:Set<Check>(96)",
-      "comment": "new attribute"
+      "comment": "Rename Attribute mAllChecks : Set<Check> to mOrdinaryChecks : Set<Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+    },
+    {
+      "parentCommitId": "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+      "commitId": "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+      "commitTime": 1393953491,
+      "changeType": "container change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set<Check>(68)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set<Check>(68)",
+      "comment": "Move Source Folder src/checkstyle to src/main/java"
+    },
+    {
+      "parentCommitId": "08638b5f739d9929698860048c052da2d5f80209",
+      "commitId": "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+      "commitTime": 1197706480,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set(116)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set<Check>(117)",
+      "comment": "Change Attribute Type mAllChecks : Set to mAllChecks : Set<Check> in class com.puppycrawl.tools.checkstyle.TreeWalker"
+    },
+    {
+      "parentCommitId": "ffb17cde0f6351bdf2f2e8cf655fa7f7a3cae827",
+      "commitId": "672b27dd5551de63a1fb08d8ea80376d70f2aa60",
+      "commitTime": 1032266010,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mAllChecks:Set(51)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(final)(private)mAllChecks:Set(52)",
+      "comment": "Add Attribute Modifier final in attribute private mAllChecks : Set from class com.puppycrawl.tools.checkstyle.TreeWalker"
+    },
+    {
+      "parentCommitId": "c266dfbc64543c428d550a478f851c959493b0f5",
+      "commitId": "19257b2cdb950aac0b729ee8a3a979e5605163f9",
+      "commitTime": 1032093857,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mAllChecks:Set(51)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker@(private)mAllChecks:Set(51)",
+      "comment": "added with new class"
     }
   ]
 }
