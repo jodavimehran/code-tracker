@@ -1,0 +1,77 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "attributeName": "field",
+  "attributeKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@field:String(66)",
+  "attributeDeclarationLine": 66,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)field:String(138)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)field:String(138)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "e3779cf420e5fcdbdeef5683e13660dae5da9ec7",
+      "commitId": "bcedf1bba16c12470e1616eefb229b4f2af8c6d2",
+      "commitTime": 1394999319,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameBefore": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)field:String(68)",
+      "elementFileAfter": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(protected)field:String(68)",
+      "comment": "Change Attribute Access Modifier package to protected in attribute protected field : String from class org.apache.lucene.queryparser.classic.QueryParserBase"
+    },
+    {
+      "parentCommitId": "0daa4b0aac1748bbb2c56547626e9f49e7fb4ed6",
+      "commitId": "e8e4245d9b36123446546ff15967ac95429ea2b0",
+      "commitTime": 1334669779,
+      "changeType": "container change",
+      "elementFileBefore": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameBefore": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)field:String(69)",
+      "elementFileAfter": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)field:String(69)",
+      "comment": "Move Source Folder modules to lucene"
+    },
+    {
+      "parentCommitId": "ef25bf2d31a5e462ad6a752919481e2a7d1e2bd2",
+      "commitId": "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
+      "commitTime": 1310355420,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(package)field:String(70)",
+      "elementFileAfter": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)field:String(70)",
+      "comment": "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
+    },
+    {
+      "parentCommitId": "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
+      "commitId": "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+      "commitTime": 1287756261,
+      "changeType": "moved",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)field:String(143)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(package)field:String(69)",
+      "comment": "Pull Up Attribute package field : String from class org.apache.lucene.queryParser.QueryParser to package field : String from class org.apache.lucene.queryParser.QueryParserBase"
+    },
+    {
+      "parentCommitId": "798fc0f0ef9ae13a29f3271f49522a5e4ef23acf",
+      "commitId": "2af2d858774f7391f13341b8f588e75287868237",
+      "commitTime": 1063245093,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)field:String(74)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)field:String(74)",
+      "comment": "added with new class"
+    }
+  ]
+}

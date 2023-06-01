@@ -1,0 +1,77 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+  "attributeName": "mergeThreads",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@mergeThreads:List<MergeThread>(86)",
+  "attributeDeclarationLine": 86,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(50)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(50)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "add1e44fd7ce1921119f8873f1452cffce653fae",
+      "commitId": "43be0a77b5efbd69c06eb7e692a257163a98c9b8",
+      "commitTime": 1401437797,
+      "changeType": "modifier change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(50)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(final)(protected)mergeThreads:List<MergeThread>(50)",
+      "comment": "Add Attribute Modifier final in attribute protected mergeThreads : List<MergeThread> from class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(50)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(50)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "975ce67fb522b181e5737e60fb5e85a91b4571fe",
+      "commitId": "b22932be70380aaa85eb436c96b5908c0276618f",
+      "commitTime": 1255806907,
+      "changeType": "type change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List(39)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List<MergeThread>(39)",
+      "comment": "Change Attribute Type mergeThreads : List to mergeThreads : List<MergeThread> in class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "3a24900ef522c28aff22990bab943e97167c70c1",
+      "commitId": "115faf7b5d169a353cd1bba6825624e5a3c06bb4",
+      "commitTime": 1201897345,
+      "changeType": "access modifier change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreads:List(38)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(protected)mergeThreads:List(38)",
+      "comment": "Change Attribute Access Modifier private to protected in attribute protected mergeThreads : List from class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "40f0adb507c266dc950ac9697b2408c1b1e15107",
+      "commitId": "299d6357dd296f87a099fadd0764292b28dbde47",
+      "commitTime": 1190107634,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreads:List(41)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler@(private)mergeThreads:List(41)",
+      "comment": "added with new class"
+    }
+  ]
+}

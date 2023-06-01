@@ -1,0 +1,88 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "attributeName": "infoStream",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@infoStream:InfoStream(1882)",
+  "attributeDeclarationLine": 1882,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(2261)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(2261)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)infoStream:InfoStream(1601)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)infoStream:InfoStream(1601)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "b6bdf5bc344cd084da9ec7de6356aba845c23174",
+      "commitId": "7877d1ff072f45f965d7283af0e51cc01f00d4cf",
+      "commitTime": 1320850353,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(1622)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)infoStream:InfoStream(1565)",
+      "comment": "Change Attribute Type infoStream : PrintStream to infoStream : InfoStream in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "b6bdf5bc344cd084da9ec7de6356aba845c23174",
+      "commitId": "7877d1ff072f45f965d7283af0e51cc01f00d4cf",
+      "commitTime": 1320850353,
+      "changeType": "modifier change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(1622)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)infoStream:InfoStream(1565)",
+      "comment": "Add Attribute Modifier final in attribute package infoStream : InfoStream from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "b6bdf5bc344cd084da9ec7de6356aba845c23174",
+      "commitId": "7877d1ff072f45f965d7283af0e51cc01f00d4cf",
+      "commitTime": 1320850353,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(1622)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)infoStream:InfoStream(1565)",
+      "comment": "Change Attribute Access Modifier private to package in attribute package infoStream : InfoStream from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "4630f116630d7e1e4222520a95247f430fa2e011",
+      "commitId": "3666a166a13fbda656d01fe8b42de50e8873e301",
+      "commitTime": 1142955392,
+      "changeType": "access modifier change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(public)infoStream:PrintStream(535)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(private)infoStream:PrintStream(529)",
+      "comment": "Change Attribute Access Modifier public to private in attribute private infoStream : PrintStream from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "749b4aaf7e922884dba4d01223742f83ecfe57fe",
+      "commitId": "bd3948c539ec1065db8b05b433ea55dbf844ff27",
+      "commitTime": 1000830588,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(public)infoStream:PrintStream(190)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(public)infoStream:PrintStream(190)",
+      "comment": "added with new class"
+    }
+  ]
+}
