@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-  "functionName" : "writeWithMessageConverters",
-  "functionKey" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)",
-  "functionStartLine" : 179,
-  "variableName" : "acceptableTypes",
-  "variableKey" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableTypes(227)",
-  "variableStartLine" : 227,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "36a07aa89747bb5942bd4a1bf7f5192a2c48c5ef",
-    "commitId" : "0be8c20fca26357aa61c28dec2f3720f1d7488be",
-    "commitTime" : 1532479646,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$requestedMediaTypes:List<MediaType>(229)",
-    "elementFileAfter" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableTypes:List<MediaType>(227)",
-    "comment" : "Rename Variable requestedMediaTypes : List<MediaType> to acceptableTypes : List<MediaType> in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
-  }, {
-    "parentCommitId" : "35055fd866baadefeec2e2f47d1d94454763b452",
-    "commitId" : "f05e2bc56f8e03466977d73a5e99c37651248803",
-    "commitTime" : 1340380546,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:List<MediaType>(103)",
-    "elementFileAfter" : "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$requestedMediaTypes:List<MediaType>(114)",
-    "comment" : "Rename Variable acceptableMediaTypes : List<MediaType> to requestedMediaTypes : List<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
-  }, {
-    "parentCommitId" : "c481d2e9fb200175eff3593f31fb02b3decd0a4d",
-    "commitId" : "5fa7f24794cc23cd0a803d8d49024d34f7df328b",
-    "commitTime" : 1305910940,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
-    "elementFileAfter" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:List<MediaType>(167)",
-    "comment" : "Change Variable Type acceptableMediaTypes : Set<MediaType> to acceptableMediaTypes : List<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor"
-  }, {
-    "parentCommitId" : "a618bcc8cde89b7c7cc6e9fbc4348465387a8e99",
-    "commitId" : "1eaca6572091c014379e453299773e880a7766b9",
-    "commitTime" : 1305718487,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
-    "elementNameBefore" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
-    "elementFileAfter" : "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
-    "elementNameAfter" : "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
-    "comment" : "Extract Variable acceptableMediaTypes : Set<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
+  "functionName": "writeWithMessageConverters",
+  "functionKey": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)",
+  "functionStartLine": 179,
+  "variableName": "acceptableTypes",
+  "variableKey": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableTypes(227)",
+  "variableStartLine": 227,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "36a07aa89747bb5942bd4a1bf7f5192a2c48c5ef",
+      "commitId": "0be8c20fca26357aa61c28dec2f3720f1d7488be",
+      "commitTime": 1532479646,
+      "changeType": "rename",
+      "elementFileBefore": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
+      "elementNameBefore": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$requestedMediaTypes:List<MediaType>(229)",
+      "elementFileAfter": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
+      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableTypes:List<MediaType>(227)",
+      "comment": "Rename Variable requestedMediaTypes : List<MediaType> to acceptableTypes : List<MediaType> in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
+    },
+    {
+      "parentCommitId": "35055fd866baadefeec2e2f47d1d94454763b452",
+      "commitId": "f05e2bc56f8e03466977d73a5e99c37651248803",
+      "commitTime": 1340380546,
+      "changeType": "rename",
+      "elementFileBefore": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
+      "elementNameBefore": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:List<MediaType>(103)",
+      "elementFileAfter": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
+      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$requestedMediaTypes:List<MediaType>(114)",
+      "comment": "Rename Variable acceptableMediaTypes : List<MediaType> to requestedMediaTypes : List<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
+    },
+    {
+      "parentCommitId": "c481d2e9fb200175eff3593f31fb02b3decd0a4d",
+      "commitId": "5fa7f24794cc23cd0a803d8d49024d34f7df328b",
+      "commitTime": 1305910940,
+      "changeType": "type change",
+      "elementFileBefore": "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+      "elementNameBefore": "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
+      "elementFileAfter": "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+      "elementNameAfter": "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:List<MediaType>(167)",
+      "comment": "Change Variable Type acceptableMediaTypes : Set<MediaType> to acceptableMediaTypes : List<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor"
+    },
+    {
+      "parentCommitId": "a618bcc8cde89b7c7cc6e9fbc4348465387a8e99",
+      "commitId": "1eaca6572091c014379e453299773e880a7766b9",
+      "commitTime": 1305718487,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+      "elementNameBefore": "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
+      "elementFileAfter": "org.springframework.web.servlet/src/main/java/org/springframework/web/servlet/mvc/method/annotation/support/AbstractMessageConverterMethodProcessor.java",
+      "elementNameAfter": "org.springframework.web.servlet/src/main/java/org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$acceptableMediaTypes:Set<MediaType>(163)",
+      "comment": "Extract Variable acceptableMediaTypes : Set<MediaType> in method protected writeWithMessageConverters(returnValue T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.support.AbstractMessageConverterMethodProcessor"
+    }
+  ]
 }

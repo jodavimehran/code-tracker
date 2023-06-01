@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-  "functionName" : "doProcessConfigurationClass",
-  "functionKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)",
-  "functionStartLine" : 261,
-  "variableName" : "propertySource",
-  "variableKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)$propertySource(268)",
-  "variableStartLine" : 268,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "3eff36452908c06774eb4e40e4943cb794674c05",
-    "commitId" : "ee36c80ca961a5b2af233cd26a5483d57939c0af",
-    "commitTime" : 1329142650,
-    "changeType" : "type change",
-    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(175)",
-    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySource:AnnotationAttributes(179)",
-    "comment" : "Change Variable Type propertySourceAttributes : Map<String,Object> to propertySource : AnnotationAttributes in method protected doProcessConfigurationClass(configClass ConfigurationClass, metadata AnnotationMetadata) : void from class org.springframework.context.annotation.ConfigurationClassParser"
-  }, {
-    "parentCommitId" : "3eff36452908c06774eb4e40e4943cb794674c05",
-    "commitId" : "ee36c80ca961a5b2af233cd26a5483d57939c0af",
-    "commitTime" : 1329142650,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(175)",
-    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySource:AnnotationAttributes(179)",
-    "comment" : "Rename Variable propertySourceAttributes : Map<String,Object> to propertySource : AnnotationAttributes in method protected doProcessConfigurationClass(configClass ConfigurationClass, metadata AnnotationMetadata) : void from class org.springframework.context.annotation.ConfigurationClassParser"
-  }, {
-    "parentCommitId" : "314a054a9baf2cc13dc0c64d3b388164e5f5346e",
-    "commitId" : "c8bc54e0ccad49f0785856f911349283619eb8ba",
-    "commitTime" : 1305120513,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(166)",
-    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(166)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+  "functionName": "doProcessConfigurationClass",
+  "functionKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)",
+  "functionStartLine": 261,
+  "variableName": "propertySource",
+  "variableKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)$propertySource(268)",
+  "variableStartLine": 268,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "3eff36452908c06774eb4e40e4943cb794674c05",
+      "commitId": "ee36c80ca961a5b2af233cd26a5483d57939c0af",
+      "commitTime": 1329142650,
+      "changeType": "type change",
+      "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(175)",
+      "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySource:AnnotationAttributes(179)",
+      "comment": "Change Variable Type propertySourceAttributes : Map<String,Object> to propertySource : AnnotationAttributes in method protected doProcessConfigurationClass(configClass ConfigurationClass, metadata AnnotationMetadata) : void from class org.springframework.context.annotation.ConfigurationClassParser"
+    },
+    {
+      "parentCommitId": "3eff36452908c06774eb4e40e4943cb794674c05",
+      "commitId": "ee36c80ca961a5b2af233cd26a5483d57939c0af",
+      "commitTime": 1329142650,
+      "changeType": "rename",
+      "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(175)",
+      "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySource:AnnotationAttributes(179)",
+      "comment": "Rename Variable propertySourceAttributes : Map<String,Object> to propertySource : AnnotationAttributes in method protected doProcessConfigurationClass(configClass ConfigurationClass, metadata AnnotationMetadata) : void from class org.springframework.context.annotation.ConfigurationClassParser"
+    },
+    {
+      "parentCommitId": "314a054a9baf2cc13dc0c64d3b388164e5f5346e",
+      "commitId": "c8bc54e0ccad49f0785856f911349283619eb8ba",
+      "commitTime": 1305120513,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(166)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$propertySourceAttributes:Map<String,Object>(166)",
+      "comment": "new variable"
+    }
+  ]
 }

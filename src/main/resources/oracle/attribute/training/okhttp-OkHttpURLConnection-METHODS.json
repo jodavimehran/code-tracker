@@ -1,60 +1,66 @@
 {
-  "repositoryName" : "okhttp",
-  "repositoryWebURL" : "https://github.com/square/okhttp.git",
-  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
-  "filePath" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
-  "attributeName" : "METHODS",
-  "attributeKey" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@METHODS:Set<String>(84)",
-  "attributeDeclarationLine" : 84,
-  "expectedChanges" : [ {
-    "parentCommitId" : "3f282e8bf0b8af519cbf35833fdcf69d824661fc",
-    "commitId" : "ec39c462324c0a54e6abf06cbf8079298056b7d5",
-    "commitTime" : 1466883984,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-    "elementNameBefore" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(75)",
-    "elementFileAfter" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
-    "elementNameAfter" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@(final,static)(private)METHODS:Set<String>(82)",
-    "comment" : "Rename Class okhttp3.internal.huc.HttpURLConnectionImpl renamed to okhttp3.internal.huc.OkHttpURLConnection"
-  }, {
-    "parentCommitId" : "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
-    "commitId" : "c9a89876de476983f273edbf108c365127c18c5e",
-    "commitTime" : 1450247699,
-    "changeType" : "container change",
-    "elementFileBefore" : "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-    "elementNameBefore" : "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(82)",
-    "elementFileAfter" : "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-    "elementNameAfter" : "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(82)",
-    "comment" : "Move Class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl moved to okhttp3.internal.huc.HttpURLConnectionImpl"
-  }, {
-    "parentCommitId" : "16bc428e2607717a08ce84263b6912e408a78ae8",
-    "commitId" : "5e62ed01a7e3e04e5411cee897815e7231335619",
-    "commitTime" : 1419293712,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
-    "elementFileAfter" : "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-    "elementNameAfter" : "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(74)",
-    "comment" : "Change Attribute Access Modifier public to private in attribute private METHODS : Set<String> from class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl"
-  }, {
-    "parentCommitId" : "16bc428e2607717a08ce84263b6912e408a78ae8",
-    "commitId" : "5e62ed01a7e3e04e5411cee897815e7231335619",
-    "commitTime" : 1419293712,
-    "changeType" : "moved",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
-    "elementFileAfter" : "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-    "elementNameAfter" : "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(74)",
-    "comment" : "Move Attribute public METHODS : Set<String> from class com.squareup.okhttp.internal.http.HttpMethod to private METHODS : Set<String> from class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl"
-  }, {
-    "parentCommitId" : "f0602129f253a1e5c1f40a4f802a4109cecc605f",
-    "commitId" : "c6316bfa4c592c436c948251fc71ea910437168f",
-    "commitTime" : 1393687352,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "filePath": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+  "attributeName": "METHODS",
+  "attributeKey": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@METHODS:Set<String>(84)",
+  "attributeDeclarationLine": 84,
+  "expectedChanges": [
+    {
+      "parentCommitId": "3f282e8bf0b8af519cbf35833fdcf69d824661fc",
+      "commitId": "ec39c462324c0a54e6abf06cbf8079298056b7d5",
+      "commitTime": 1466883984,
+      "changeType": "container change",
+      "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(75)",
+      "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection@(final,static)(private)METHODS:Set<String>(82)",
+      "comment": "Rename Class okhttp3.internal.huc.HttpURLConnectionImpl renamed to okhttp3.internal.huc.OkHttpURLConnection"
+    },
+    {
+      "parentCommitId": "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
+      "commitId": "c9a89876de476983f273edbf108c365127c18c5e",
+      "commitTime": 1450247699,
+      "changeType": "container change",
+      "elementFileBefore": "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameBefore": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(82)",
+      "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(82)",
+      "comment": "Move Class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl moved to okhttp3.internal.huc.HttpURLConnectionImpl"
+    },
+    {
+      "parentCommitId": "16bc428e2607717a08ce84263b6912e408a78ae8",
+      "commitId": "5e62ed01a7e3e04e5411cee897815e7231335619",
+      "commitTime": 1419293712,
+      "changeType": "access modifier change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
+      "elementFileAfter": "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(74)",
+      "comment": "Change Attribute Access Modifier public to private in attribute private METHODS : Set<String> from class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl"
+    },
+    {
+      "parentCommitId": "16bc428e2607717a08ce84263b6912e408a78ae8",
+      "commitId": "5e62ed01a7e3e04e5411cee897815e7231335619",
+      "commitTime": 1419293712,
+      "changeType": "moved",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
+      "elementFileAfter": "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl@(final,static)(private)METHODS:Set<String>(74)",
+      "comment": "Move Attribute public METHODS : Set<String> from class com.squareup.okhttp.internal.http.HttpMethod to private METHODS : Set<String> from class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl"
+    },
+    {
+      "parentCommitId": "f0602129f253a1e5c1f40a4f802a4109cecc605f",
+      "commitId": "c6316bfa4c592c436c948251fc71ea910437168f",
+      "commitTime": 1393687352,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpMethod.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpMethod@(final,static)(public)METHODS:Set<String>(23)",
+      "comment": "added with new class"
+    }
+  ]
 }

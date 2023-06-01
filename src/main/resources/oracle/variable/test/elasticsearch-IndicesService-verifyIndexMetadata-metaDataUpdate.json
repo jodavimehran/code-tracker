@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "elastic\\elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "filePath" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-  "functionName" : "verifyIndexMetadata",
-  "functionKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
-  "functionStartLine" : 550,
-  "variableName" : "metaDataUpdate",
-  "variableKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)$metaDataUpdate(550)",
-  "variableStartLine" : 550,
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "expectedChanges" : [ {
-    "parentCommitId" : "9884b7dc71b06c472922438d3513a5b1102992eb",
-    "commitId" : "d0765d07619e644679fe426580229608eaabeeb3",
-    "commitTime" : 1467770467,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)$metaDataUpdate:IndexMetaData(434)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)$metaDataUpdate:IndexMetaData(434)",
-    "comment" : "Add Parameter metaDataUpdate : IndexMetaData in method public verifyIndexMetadata(nodeServicesProvider NodeServicesProvider, metaData IndexMetaData, metaDataUpdate IndexMetaData) : void from class org.elasticsearch.indices.IndicesService"
-  } ]
+  "repositoryName": "elastic\\elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "filePath": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+  "functionName": "verifyIndexMetadata",
+  "functionKey": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)",
+  "functionStartLine": 550,
+  "variableName": "metaDataUpdate",
+  "variableKey": "server/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(IndexMetaData, IndexMetaData)$metaDataUpdate(550)",
+  "variableStartLine": 550,
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9884b7dc71b06c472922438d3513a5b1102992eb",
+      "commitId": "d0765d07619e644679fe426580229608eaabeeb3",
+      "commitTime": 1467770467,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)$metaDataUpdate:IndexMetaData(434)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService#verifyIndexMetadata(NodeServicesProvider, IndexMetaData, IndexMetaData)$metaDataUpdate:IndexMetaData(434)",
+      "comment": "Add Parameter metaDataUpdate : IndexMetaData in method public verifyIndexMetadata(nodeServicesProvider NodeServicesProvider, metaData IndexMetaData, metaDataUpdate IndexMetaData) : void from class org.elasticsearch.indices.IndicesService"
+    }
+  ]
 }

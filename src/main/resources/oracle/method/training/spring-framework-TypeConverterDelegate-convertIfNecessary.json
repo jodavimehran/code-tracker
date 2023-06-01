@@ -1,577 +1,641 @@
 {
-  "repositoryName" : "spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "filePath" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-  "functionName" : "convertIfNecessary",
-  "functionKey" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-  "functionStartLine" : 152,
-  "expectedChanges" : [ {
-    "parentCommitId" : "ffc3f6d87d640631c997fc9566679d094cdda267",
-    "commitId" : "f813712f5b413b354560cd7cc006352e9defa9a3",
-    "commitTime" : 1496837955,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "ffc3f6d87d640631c997fc9566679d094cdda267",
-    "commitId" : "f813712f5b413b354560cd7cc006352e9defa9a3",
-    "commitTime" : 1496837955,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "ffc3f6d87d640631c997fc9566679d094cdda267",
-    "commitId" : "f813712f5b413b354560cd7cc006352e9defa9a3",
-    "commitTime" : 1496837955,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "f9b319d3ba9d3141fd5edc4fde558daebd2c596f",
-    "commitId" : "1f28825f9da63a13aaf8940aadedcf81358dc506",
-    "commitTime" : 1496259743,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "2d37c966b2831add8fd0e01efa9c1eb8240fbdd3",
-    "commitId" : "87598f48e41d483745aba56cbf4e998c6f6d680c",
-    "commitTime" : 1495868221,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "36332441aeb588a52272805493bafd74dee6a468",
-    "commitId" : "dc080cb1be4c35398d1d995c3bb8025ccfde6dea",
-    "commitTime" : 1477690745,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "adb935db795070e96a703fe8bb3f579f5a26df9e",
-    "commitId" : "51252ebbcaa9e65aee83311aec25ca3c7c6d7d37",
-    "commitTime" : 1467677340,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "89396ff01ff159aa7df18e332f3888cf9ce3dc20",
-    "commitId" : "c4c941c43fc23f58503c7b687fd1469d4a27c777",
-    "commitTime" : 1467288171,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "57e0c789a81bb68410bd2ef9e824d81b76b05909",
-    "commitId" : "b4095c3e1d61fc7279e6b2ca105ec60c3cd7128c",
-    "commitTime" : 1432125256,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "6468aa775ca34cd3b052b9b78562ce0db951a1e4",
-    "commitId" : "6418b54f81a9e56242fb78fda4bf95e7b3d4c572",
-    "commitTime" : 1431986019,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "6468aa775ca34cd3b052b9b78562ce0db951a1e4",
-    "commitId" : "6418b54f81a9e56242fb78fda4bf95e7b3d4c572",
-    "commitTime" : 1431986019,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "49c600b23494e203c91e47b126ce3eb46103b9d8",
-    "commitId" : "02da2e85ee0e58202b90d11c126e6050abe184b4",
-    "commitTime" : 1431462798,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "cff36d68b1b34035d5103c913fd01e962023b2ab",
-    "commitId" : "bc1f19ce18e9ad35d8127048737d6e6e9c276eb3",
-    "commitTime" : 1403205283,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "cff36d68b1b34035d5103c913fd01e962023b2ab",
-    "commitId" : "bc1f19ce18e9ad35d8127048737d6e6e9c276eb3",
-    "commitTime" : 1403205283,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "c2356e57c8d9160e22d99f39279a32c5944b5b53",
-    "commitId" : "0dc6082b01606c3c996b728541467ba5104b747f",
-    "commitTime" : 1402942616,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "4de3291dc7bd6f425636b8d7ac7480d110349457",
-    "commitId" : "59002f245623d758765b72d598cd78c326c6f5fa",
-    "commitTime" : 1385412762,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "b25e91a550beaf428a6e696959b717341a04f27d",
-    "commitId" : "c9aace4da215330c1aa552fa1dcdd79748249774",
-    "commitTime" : 1382141981,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "65743936ffd87d0e621722c414692c3fe9652717",
-    "commitId" : "ff7dcec5f7d2b54324476bd617af74de9cbd56ec",
-    "commitTime" : 1350077655,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "15e384dfd3659c923be7ff6af53813e731b7fad1",
-    "commitId" : "6bce09831060430b00e6ed93785c7d40ac8529a8",
-    "commitTime" : 1346799586,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "3ba4bb31facfe3d0d309b944ab162f34d47b592c",
-    "commitId" : "8e754e9065b5703f93909f480933488a2b180429",
-    "commitTime" : 1339670428,
-    "changeType" : "body change",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
-    "commitId" : "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
-    "commitTime" : 1328017030,
-    "changeType" : "container change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "3d5e245374c997436d3802149c5ab46f4300a389",
-    "commitId" : "d331c5d1c99a2cb6d6932c98b96433e6f9c62c79",
-    "commitTime" : 1324567822,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "0053319c6279a55094a723dc5fc0955b901cfd1c",
-    "commitId" : "86bef9030fa4e026107db74cd9eef288beb1beca",
-    "commitTime" : 1324565657,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "207b2315eda924916e12cfc97c652d63a04c8053",
-    "commitId" : "84be348cb0ac99896674170dc9f99021b43ba9ee",
-    "commitTime" : 1322927839,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "ca6e1127421aa8cec34f3b556297ef89d6b173bc",
-    "commitId" : "f288060ad8f0d007f1541213130d006729b9ec40",
-    "commitTime" : 1308152412,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "a1a7c3205254216a33c7dc1c091f08afd0206b43",
-    "commitId" : "5e3a5202fbd17cd30607ca7bb5360c9db8197e75",
-    "commitTime" : 1307415104,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "5f8faa3ae74acba9cc9b398c69bcfd593f224e1a",
-    "commitId" : "8c6890605a7080e2744be3f3994757cc72e394b0",
-    "commitTime" : 1307296346,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "9ece4a88a9994ba4350a3bfe4570a5797baca6d7",
-    "commitId" : "2127b160512911e5f65a4e304f0b57826710a91d",
-    "commitTime" : 1307253889,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "9ece4a88a9994ba4350a3bfe4570a5797baca6d7",
-    "commitId" : "2127b160512911e5f65a4e304f0b57826710a91d",
-    "commitTime" : 1307253889,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "c84cccf06dad4e3f11cd529ab16a5655bf723820",
-    "commitId" : "c306afed63e439ee133872a49380d76064bd2638",
-    "commitTime" : 1307252787,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "a2a4929c147208e959a93b290e930828287833d8",
-    "commitId" : "c84cccf06dad4e3f11cd529ab16a5655bf723820",
-    "commitTime" : 1307248998,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "9d2ee7061c93453d9cac411aee6df03e34b12a88",
-    "commitId" : "6f146737f475828b6d765784017773378c2c4922",
-    "commitTime" : 1307057839,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "74b5b7b56a24104a2eb7396a33e689372aa22b1b",
-    "commitId" : "39e0c29d19fa5d1f8d2a7db57b16cc5a820db5a6",
-    "commitTime" : 1294206573,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "57a503b2744cd9c8e0d182c3ef6a38a9941b840e",
-    "commitId" : "2ad2022058d4a2e3d29ea793ede2cb8c09f9102e",
-    "commitTime" : 1274133542,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "124837e2c3ffd185a389c9c21e9a673044d22fe1",
-    "commitId" : "cbed1c1b4b5fd74c9cd201890f619a7079804d3f",
-    "commitTime" : 1269529339,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "7fb19d658b62b54bf2886325589b9b0703efc9d9",
-    "commitId" : "dc99df297274d8c1291cdaed5d9dd508910584d3",
-    "commitTime" : 1260908311,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "5f9f69958ec258cf51efe6cc024594536c8a0dcd",
-    "commitId" : "2153b2fbd5aa4bff9b233fddb6c1c50cc879dcde",
-    "commitTime" : 1260880582,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "b497f6ccad3eebcc6d475071bb7dd2741557d5e0",
-    "commitId" : "5f9b4443194d3aa3948d76956897c0a1d918d546",
-    "commitTime" : 1260710490,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "973fb6ce4096d344758b3e0988e90ab401275209",
-    "commitId" : "ac490114aee005a66eeb0fba6c3c853552fc6a94",
-    "commitTime" : 1259286194,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "973fb6ce4096d344758b3e0988e90ab401275209",
-    "commitId" : "ac490114aee005a66eeb0fba6c3c853552fc6a94",
-    "commitTime" : 1259286194,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "973fb6ce4096d344758b3e0988e90ab401275209",
-    "commitId" : "ac490114aee005a66eeb0fba6c3c853552fc6a94",
-    "commitTime" : 1259286194,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
-  }, {
-    "parentCommitId" : "a293f508519665f7ba083c6efb3992199bbcc0a6",
-    "commitId" : "84447cdf9493a5f6ead3450627d8938af1b7ac5f",
-    "commitTime" : 1255467357,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "a293f508519665f7ba083c6efb3992199bbcc0a6",
-    "commitId" : "84447cdf9493a5f6ead3450627d8938af1b7ac5f",
-    "commitTime" : 1255467357,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b2e38379566cf788421bd387d1c5ea243692f448",
-    "commitId" : "45c542e51e9b01526a97a1644aebfe1e94a2342f",
-    "commitTime" : 1253305961,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "6420fd303bdae3962d4eab6326811afbca759d05",
-    "commitId" : "d3b43ebccb923c6d5825b10d4f4f305b54ee549d",
-    "commitTime" : 1253303879,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "f7562614bc732f737ab9521976c88ae55da235d1",
-    "commitId" : "1480202aa37d7edaf7f070a2bf45cd3a1016eea7",
-    "commitTime" : 1252693911,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "f7562614bc732f737ab9521976c88ae55da235d1",
-    "commitId" : "1480202aa37d7edaf7f070a2bf45cd3a1016eea7",
-    "commitTime" : 1252693911,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "f9f9b431a697132af0e22311d74b90c3f01dccb7",
-    "commitId" : "a86a698e5b3394c9b6721a784c8fe251611ff16b",
-    "commitTime" : 1252367922,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b118aae971950df7e928366a64af4081efb2b577",
-    "commitId" : "9a48f3f3a896cad821e5847a93d91c997905e325",
-    "commitTime" : 1251206962,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "427edfe93cf1649c85ae04757bd16230262e756c",
-    "commitId" : "04b619ebfbc1e08a9e9bdc54263b3ece21f4aa7f",
-    "commitTime" : 1251121701,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "9f9f2349cd6cffc0633b83ab9ea284bd7a8ae47f",
-    "commitId" : "fee838a65e87f5da4b65b04ea5101681d6308104",
-    "commitTime" : 1251120642,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "9f9f2349cd6cffc0633b83ab9ea284bd7a8ae47f",
-    "commitId" : "fee838a65e87f5da4b65b04ea5101681d6308104",
-    "commitTime" : 1251120642,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
-    "commitId" : "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
-    "commitTime" : 1249778809,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
-    "commitId" : "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
-    "commitTime" : 1249778809,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
-    "commitId" : "0297116542a3ce33d19a6a81b8240097081376c5",
-    "commitTime" : 1242081873,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
-    "commitId" : "0297116542a3ce33d19a6a81b8240097081376c5",
-    "commitTime" : 1242081873,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
-    "commitId" : "0297116542a3ce33d19a6a81b8240097081376c5",
-    "commitTime" : 1242081873,
-    "changeType" : "return type change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
-    "commitId" : "0297116542a3ce33d19a6a81b8240097081376c5",
-    "commitTime" : 1242081873,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "800af734d9717f5908b38c13ba355b3e4eea5fb6",
-    "commitId" : "bf7a947559d8f9918cc738780bf04caf8ea46962",
-    "commitTime" : 1242053534,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "800af734d9717f5908b38c13ba355b3e4eea5fb6",
-    "commitId" : "bf7a947559d8f9918cc738780bf04caf8ea46962",
-    "commitTime" : 1242053534,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "1f9e63af490793315abcc5f655d5635fe57c7e0a",
-    "commitId" : "29657105da133995b0b2277b82c75d1df2931b64",
-    "commitTime" : 1227576594,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "369821dd66fab964df6193f8f1afe5a334a30dfc",
-    "commitId" : "347f34c68a7a5bab46cf869e762fb3cee9a1fedc",
-    "commitTime" : 1227147053,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  }, {
-    "parentCommitId" : "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
-    "commitId" : "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
-    "commitTime" : 1224692017,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
-  } ]
+  "repositoryName": "spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "filePath": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+  "functionName": "convertIfNecessary",
+  "functionKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+  "functionStartLine": 152,
+  "expectedChanges": [
+    {
+      "parentCommitId": "ffc3f6d87d640631c997fc9566679d094cdda267",
+      "commitId": "f813712f5b413b354560cd7cc006352e9defa9a3",
+      "commitTime": 1496837955,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "ffc3f6d87d640631c997fc9566679d094cdda267",
+      "commitId": "f813712f5b413b354560cd7cc006352e9defa9a3",
+      "commitTime": 1496837955,
+      "changeType": "parameter change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "ffc3f6d87d640631c997fc9566679d094cdda267",
+      "commitId": "f813712f5b413b354560cd7cc006352e9defa9a3",
+      "commitTime": 1496837955,
+      "changeType": "annotation change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "f9b319d3ba9d3141fd5edc4fde558daebd2c596f",
+      "commitId": "1f28825f9da63a13aaf8940aadedcf81358dc506",
+      "commitTime": 1496259743,
+      "changeType": "parameter change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "2d37c966b2831add8fd0e01efa9c1eb8240fbdd3",
+      "commitId": "87598f48e41d483745aba56cbf4e998c6f6d680c",
+      "commitTime": 1495868221,
+      "changeType": "parameter change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "36332441aeb588a52272805493bafd74dee6a468",
+      "commitId": "dc080cb1be4c35398d1d995c3bb8025ccfde6dea",
+      "commitTime": 1477690745,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "adb935db795070e96a703fe8bb3f579f5a26df9e",
+      "commitId": "51252ebbcaa9e65aee83311aec25ca3c7c6d7d37",
+      "commitTime": 1467677340,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "89396ff01ff159aa7df18e332f3888cf9ce3dc20",
+      "commitId": "c4c941c43fc23f58503c7b687fd1469d4a27c777",
+      "commitTime": 1467288171,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "57e0c789a81bb68410bd2ef9e824d81b76b05909",
+      "commitId": "b4095c3e1d61fc7279e6b2ca105ec60c3cd7128c",
+      "commitTime": 1432125256,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "6468aa775ca34cd3b052b9b78562ce0db951a1e4",
+      "commitId": "6418b54f81a9e56242fb78fda4bf95e7b3d4c572",
+      "commitTime": 1431986019,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "6468aa775ca34cd3b052b9b78562ce0db951a1e4",
+      "commitId": "6418b54f81a9e56242fb78fda4bf95e7b3d4c572",
+      "commitTime": 1431986019,
+      "changeType": "documentation change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "49c600b23494e203c91e47b126ce3eb46103b9d8",
+      "commitId": "02da2e85ee0e58202b90d11c126e6050abe184b4",
+      "commitTime": 1431462798,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "cff36d68b1b34035d5103c913fd01e962023b2ab",
+      "commitId": "bc1f19ce18e9ad35d8127048737d6e6e9c276eb3",
+      "commitTime": 1403205283,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "cff36d68b1b34035d5103c913fd01e962023b2ab",
+      "commitId": "bc1f19ce18e9ad35d8127048737d6e6e9c276eb3",
+      "commitTime": 1403205283,
+      "changeType": "documentation change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "c2356e57c8d9160e22d99f39279a32c5944b5b53",
+      "commitId": "0dc6082b01606c3c996b728541467ba5104b747f",
+      "commitTime": 1402942616,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "4de3291dc7bd6f425636b8d7ac7480d110349457",
+      "commitId": "59002f245623d758765b72d598cd78c326c6f5fa",
+      "commitTime": 1385412762,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "b25e91a550beaf428a6e696959b717341a04f27d",
+      "commitId": "c9aace4da215330c1aa552fa1dcdd79748249774",
+      "commitTime": 1382141981,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "65743936ffd87d0e621722c414692c3fe9652717",
+      "commitId": "ff7dcec5f7d2b54324476bd617af74de9cbd56ec",
+      "commitTime": 1350077655,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "15e384dfd3659c923be7ff6af53813e731b7fad1",
+      "commitId": "6bce09831060430b00e6ed93785c7d40ac8529a8",
+      "commitTime": 1346799586,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "3ba4bb31facfe3d0d309b944ab162f34d47b592c",
+      "commitId": "8e754e9065b5703f93909f480933488a2b180429",
+      "commitTime": 1339670428,
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+      "commitId": "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+      "commitTime": 1328017030,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "3d5e245374c997436d3802149c5ab46f4300a389",
+      "commitId": "d331c5d1c99a2cb6d6932c98b96433e6f9c62c79",
+      "commitTime": 1324567822,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "0053319c6279a55094a723dc5fc0955b901cfd1c",
+      "commitId": "86bef9030fa4e026107db74cd9eef288beb1beca",
+      "commitTime": 1324565657,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "207b2315eda924916e12cfc97c652d63a04c8053",
+      "commitId": "84be348cb0ac99896674170dc9f99021b43ba9ee",
+      "commitTime": 1322927839,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "ca6e1127421aa8cec34f3b556297ef89d6b173bc",
+      "commitId": "f288060ad8f0d007f1541213130d006729b9ec40",
+      "commitTime": 1308152412,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "a1a7c3205254216a33c7dc1c091f08afd0206b43",
+      "commitId": "5e3a5202fbd17cd30607ca7bb5360c9db8197e75",
+      "commitTime": 1307415104,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "5f8faa3ae74acba9cc9b398c69bcfd593f224e1a",
+      "commitId": "8c6890605a7080e2744be3f3994757cc72e394b0",
+      "commitTime": 1307296346,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "9ece4a88a9994ba4350a3bfe4570a5797baca6d7",
+      "commitId": "2127b160512911e5f65a4e304f0b57826710a91d",
+      "commitTime": 1307253889,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "9ece4a88a9994ba4350a3bfe4570a5797baca6d7",
+      "commitId": "2127b160512911e5f65a4e304f0b57826710a91d",
+      "commitTime": 1307253889,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "c84cccf06dad4e3f11cd529ab16a5655bf723820",
+      "commitId": "c306afed63e439ee133872a49380d76064bd2638",
+      "commitTime": 1307252787,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "a2a4929c147208e959a93b290e930828287833d8",
+      "commitId": "c84cccf06dad4e3f11cd529ab16a5655bf723820",
+      "commitTime": 1307248998,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "9d2ee7061c93453d9cac411aee6df03e34b12a88",
+      "commitId": "6f146737f475828b6d765784017773378c2c4922",
+      "commitTime": 1307057839,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "74b5b7b56a24104a2eb7396a33e689372aa22b1b",
+      "commitId": "39e0c29d19fa5d1f8d2a7db57b16cc5a820db5a6",
+      "commitTime": 1294206573,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "57a503b2744cd9c8e0d182c3ef6a38a9941b840e",
+      "commitId": "2ad2022058d4a2e3d29ea793ede2cb8c09f9102e",
+      "commitTime": 1274133542,
+      "changeType": "modifier change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "124837e2c3ffd185a389c9c21e9a673044d22fe1",
+      "commitId": "cbed1c1b4b5fd74c9cd201890f619a7079804d3f",
+      "commitTime": 1269529339,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "7fb19d658b62b54bf2886325589b9b0703efc9d9",
+      "commitId": "dc99df297274d8c1291cdaed5d9dd508910584d3",
+      "commitTime": 1260908311,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "5f9f69958ec258cf51efe6cc024594536c8a0dcd",
+      "commitId": "2153b2fbd5aa4bff9b233fddb6c1c50cc879dcde",
+      "commitTime": 1260880582,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "b497f6ccad3eebcc6d475071bb7dd2741557d5e0",
+      "commitId": "5f9b4443194d3aa3948d76956897c0a1d918d546",
+      "commitTime": 1260710490,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "973fb6ce4096d344758b3e0988e90ab401275209",
+      "commitId": "ac490114aee005a66eeb0fba6c3c853552fc6a94",
+      "commitTime": 1259286194,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "973fb6ce4096d344758b3e0988e90ab401275209",
+      "commitId": "ac490114aee005a66eeb0fba6c3c853552fc6a94",
+      "commitTime": 1259286194,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "973fb6ce4096d344758b3e0988e90ab401275209",
+      "commitId": "ac490114aee005a66eeb0fba6c3c853552fc6a94",
+      "commitTime": 1259286194,
+      "changeType": "modifier change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)"
+    },
+    {
+      "parentCommitId": "a293f508519665f7ba083c6efb3992199bbcc0a6",
+      "commitId": "84447cdf9493a5f6ead3450627d8938af1b7ac5f",
+      "commitTime": 1255467357,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "a293f508519665f7ba083c6efb3992199bbcc0a6",
+      "commitId": "84447cdf9493a5f6ead3450627d8938af1b7ac5f",
+      "commitTime": 1255467357,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b2e38379566cf788421bd387d1c5ea243692f448",
+      "commitId": "45c542e51e9b01526a97a1644aebfe1e94a2342f",
+      "commitTime": 1253305961,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "6420fd303bdae3962d4eab6326811afbca759d05",
+      "commitId": "d3b43ebccb923c6d5825b10d4f4f305b54ee549d",
+      "commitTime": 1253303879,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "f7562614bc732f737ab9521976c88ae55da235d1",
+      "commitId": "1480202aa37d7edaf7f070a2bf45cd3a1016eea7",
+      "commitTime": 1252693911,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "f7562614bc732f737ab9521976c88ae55da235d1",
+      "commitId": "1480202aa37d7edaf7f070a2bf45cd3a1016eea7",
+      "commitTime": 1252693911,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "f9f9b431a697132af0e22311d74b90c3f01dccb7",
+      "commitId": "a86a698e5b3394c9b6721a784c8fe251611ff16b",
+      "commitTime": 1252367922,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b118aae971950df7e928366a64af4081efb2b577",
+      "commitId": "9a48f3f3a896cad821e5847a93d91c997905e325",
+      "commitTime": 1251206962,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "427edfe93cf1649c85ae04757bd16230262e756c",
+      "commitId": "04b619ebfbc1e08a9e9bdc54263b3ece21f4aa7f",
+      "commitTime": 1251121701,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "9f9f2349cd6cffc0633b83ab9ea284bd7a8ae47f",
+      "commitId": "fee838a65e87f5da4b65b04ea5101681d6308104",
+      "commitTime": 1251120642,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "9f9f2349cd6cffc0633b83ab9ea284bd7a8ae47f",
+      "commitId": "fee838a65e87f5da4b65b04ea5101681d6308104",
+      "commitTime": 1251120642,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
+      "commitId": "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
+      "commitTime": 1249778809,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
+      "commitId": "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
+      "commitTime": 1249778809,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
+      "commitId": "0297116542a3ce33d19a6a81b8240097081376c5",
+      "commitTime": 1242081873,
+      "changeType": "annotation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
+      "commitId": "0297116542a3ce33d19a6a81b8240097081376c5",
+      "commitTime": 1242081873,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
+      "commitId": "0297116542a3ce33d19a6a81b8240097081376c5",
+      "commitTime": 1242081873,
+      "changeType": "return type change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "b72af54f53047c65c7e4a5094c9f2a15df1f57ef",
+      "commitId": "0297116542a3ce33d19a6a81b8240097081376c5",
+      "commitTime": 1242081873,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "800af734d9717f5908b38c13ba355b3e4eea5fb6",
+      "commitId": "bf7a947559d8f9918cc738780bf04caf8ea46962",
+      "commitTime": 1242053534,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "800af734d9717f5908b38c13ba355b3e4eea5fb6",
+      "commitId": "bf7a947559d8f9918cc738780bf04caf8ea46962",
+      "commitTime": 1242053534,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "1f9e63af490793315abcc5f655d5635fe57c7e0a",
+      "commitId": "29657105da133995b0b2277b82c75d1df2931b64",
+      "commitTime": 1227576594,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "369821dd66fab964df6193f8f1afe5a334a30dfc",
+      "commitId": "347f34c68a7a5bab46cf869e762fb3cee9a1fedc",
+      "commitTime": 1227147053,
+      "changeType": "body change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    },
+    {
+      "parentCommitId": "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
+      "commitId": "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
+      "commitTime": 1224692017,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)"
+    }
+  ]
 }

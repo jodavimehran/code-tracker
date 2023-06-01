@@ -1,47 +1,52 @@
 {
-  "repositoryName" : "commons-lang",
-  "repositoryWebURL" : "https://github.com/apache/commons-lang.git",
-  "startCommitId" : "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
-  "filePath" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-  "functionName" : "reflectionAppend",
-  "functionKey" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-  "functionStartLine" : 491,
-  "expectedChanges" : [ {
-    "parentCommitId" : "2ce40494073aa4e9bdcba4c39d24727b7141d227",
-    "commitId" : "2e9f3a80146262511ca7bcdd3411f095dff4951d",
-    "commitTime" : 1518378185,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
-  }, {
-    "parentCommitId" : "2ce40494073aa4e9bdcba4c39d24727b7141d227",
-    "commitId" : "2e9f3a80146262511ca7bcdd3411f095dff4951d",
-    "commitTime" : 1518378185,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
-  }, {
-    "parentCommitId" : "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
-    "commitId" : "0f6a292a29fedd49741310cd517ac4ba907bf8d4",
-    "commitTime" : 1479059261,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
-  }, {
-    "parentCommitId" : "9f89fd4626bbb4e34a905835e397bcffbad59307",
-    "commitId" : "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
-    "commitTime" : 1479059248,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameBefore" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-    "elementFileAfter" : "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
-    "elementNameAfter" : "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
-    "comment" : "Extract Method public reflectionAppend(lhs Object, rhs Object) : EqualsBuilder extracted from public reflectionEquals(lhs Object, rhs Object, testTransients boolean, reflectUpToClass Class<?>, excludeFields String...) : boolean in class org.apache.commons.lang3.builder.EqualsBuilder"
-  } ]
+  "repositoryName": "commons-lang",
+  "repositoryWebURL": "https://github.com/apache/commons-lang.git",
+  "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
+  "filePath": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+  "functionName": "reflectionAppend",
+  "functionKey": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+  "functionStartLine": 491,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2ce40494073aa4e9bdcba4c39d24727b7141d227",
+      "commitId": "2e9f3a80146262511ca7bcdd3411f095dff4951d",
+      "commitTime": 1518378185,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
+    },
+    {
+      "parentCommitId": "2ce40494073aa4e9bdcba4c39d24727b7141d227",
+      "commitId": "2e9f3a80146262511ca7bcdd3411f095dff4951d",
+      "commitTime": 1518378185,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
+    },
+    {
+      "parentCommitId": "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
+      "commitId": "0f6a292a29fedd49741310cd517ac4ba907bf8d4",
+      "commitTime": 1479059261,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)"
+    },
+    {
+      "parentCommitId": "9f89fd4626bbb4e34a905835e397bcffbad59307",
+      "commitId": "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
+      "commitTime": 1479059248,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)",
+      "comment": "Extract Method public reflectionAppend(lhs Object, rhs Object) : EqualsBuilder extracted from public reflectionEquals(lhs Object, rhs Object, testTransients boolean, reflectUpToClass Class<?>, excludeFields String...) : boolean in class org.apache.commons.lang3.builder.EqualsBuilder"
+    }
+  ]
 }

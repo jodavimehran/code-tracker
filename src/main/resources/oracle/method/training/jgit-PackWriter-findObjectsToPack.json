@@ -1,524 +1,581 @@
 {
-  "repositoryName" : "jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-  "functionName" : "findObjectsToPack",
-  "functionKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-  "functionStartLine" : 1775,
-  "expectedChanges" : [ {
-    "parentCommitId" : "fb9031c9566308794f888695cafd108f19d835be",
-    "commitId" : "32798dcfdb00662a640f0ff2915766591d21e287",
-    "commitTime" : 1532131745,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
-  }, {
-    "parentCommitId" : "c6a2c58624e4fe4625a0e651f4e0eb91f019b381",
-    "commitId" : "4ac32e79b751944107470d5f4cb290eacd1b7cf9",
-    "commitTime" : 1521146802,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
-  }, {
-    "parentCommitId" : "5ea57ba1b5b02dd69b7ff66a346e62c94cd277ed",
-    "commitId" : "ccf25f95411d7faae7b7aa5a75d74c62e6c47e07",
-    "commitTime" : 1510357291,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
-  }, {
-    "parentCommitId" : "69d5e89e99707119837eb1f025ee2c8d6d376996",
-    "commitId" : "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
-    "commitTime" : 1495146321,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
-  }, {
-    "parentCommitId" : "69d5e89e99707119837eb1f025ee2c8d6d376996",
-    "commitId" : "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
-    "commitTime" : 1495146321,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-    "comment" : "Add Parameter noBitmaps : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>, noBitmaps Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "43eb8511f5d8225c0b4e2f899db2126334e5facf",
-    "commitId" : "3b4448637fbb9d74e0c9d44048ba76bb7c1214ce",
-    "commitTime" : 1487627243,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "958684edef56d743293dad0436c1fb7132b12910",
-    "commitId" : "d385a7a5e5cacd875da4301ddeb46a7c56a725fa",
-    "commitTime" : 1470436656,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "9843489cb88d7c7cee09ced484c2fbc84ec1e3ef",
-    "commitId" : "7edf05530d83d7f8971db4262ea43e11124c6b63",
-    "commitTime" : 1470356423,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "9843489cb88d7c7cee09ced484c2fbc84ec1e3ef",
-    "commitId" : "7edf05530d83d7f8971db4262ea43e11124c6b63",
-    "commitTime" : 1470356423,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "40051505d7aaccfe2efaf5f3022f1d99a3976554",
-    "commitId" : "4e650c0d76b716c0e9cb3592d30def9e609066c1",
-    "commitTime" : 1452645032,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "40051505d7aaccfe2efaf5f3022f1d99a3976554",
-    "commitId" : "4e650c0d76b716c0e9cb3592d30def9e609066c1",
-    "commitTime" : 1452645032,
-    "changeType" : "exception change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "comment" : "Remove Thrown Exception Type IncorrectObjectTypeException in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "40051505d7aaccfe2efaf5f3022f1d99a3976554",
-    "commitId" : "4e650c0d76b716c0e9cb3592d30def9e609066c1",
-    "commitTime" : 1452645032,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "comment" : "Add Parameter Annotation @NonNull in parameter want : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "f9bd6c1239b9e66bfd74e5a2462621a5f5fa641c",
-    "commitId" : "1d7d0f95e0be8121ee16640fa1cd3b0805fd9092",
-    "commitTime" : 1439759416,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "a79168bcbb991c2efe40b4e041dae256b408af92",
-    "commitId" : "dd22bc831a0ec47ecc999eb19be1bd8fad899e9b",
-    "commitTime" : 1433299795,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "2ad2d85bcda42b5f2fde3c4126f07519e2c75c79",
-    "commitId" : "0e8ac496cd9bbfa3fa306ac45706f501fc24ac38",
-    "commitTime" : 1432676237,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "3d06349ff21e157fc837ef09e48a5e400afb4e6a",
-    "commitId" : "53e39094bf012a4f5b3fe5557219707cb7b0f010",
-    "commitTime" : 1431279934,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "462bbc052e766ee9ea585cd4366165a8dac86496",
-    "commitId" : "f32b8612433e499090c76ded014dd5e94322b786",
-    "commitTime" : 1363624243,
-    "changeType" : "container change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "comment" : "Move Class org.eclipse.jgit.storage.pack.PackWriter moved to org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "b2c0021b8ae7c45dfd351b127bb674d3ba20026b",
-    "commitId" : "3760e4319b02ce79ff1eeae021fd88faebf739d5",
-    "commitTime" : 1363304217,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "b2c0021b8ae7c45dfd351b127bb674d3ba20026b",
-    "commitId" : "3760e4319b02ce79ff1eeae021fd88faebf739d5",
-    "commitTime" : 1363304217,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "3b325917a5c928caadd88a0ec718b1632f088fd5",
-    "commitId" : "dafcb8f6db82b899c917832768f1c240d273190c",
-    "commitTime" : 1362510885,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "03d50dc50b584caf2826f7db8a4748435b610f63",
-    "commitId" : "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
-    "commitTime" : 1356623858,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "bc7817c9436756bec3ffe88dc0ef75881d4b9478",
-    "commitId" : "0f84b86e01da4680633c32bad101d021e0cb98ad",
-    "commitTime" : 1338821556,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "e7ec5e147357f30cfde2e6921bd1bb5913b76e3b",
-    "commitId" : "16b8ebf2d1d099ac355767b1b1853ae7bf8854f1",
-    "commitTime" : 1321295265,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
-    "commitId" : "9952223e0645fd7a8cddc6093a7f449c6390238d",
-    "commitTime" : 1313960663,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "c580c56c4def9639b603553b3d4cbc7117a30938",
-    "commitId" : "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
-    "commitTime" : 1313960366,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "100e9429b5a7eea8383c6e693d17b6233794c488",
-    "commitId" : "74333e63b60440be5ff9f591f2203b635e26e3a0",
-    "commitTime" : 1313522319,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
-  }, {
-    "parentCommitId" : "489604aaad8ef8d252bf31056db4de01e690fa0b",
-    "commitId" : "99e6cfb131bb407247acbc8c0a73e7c7cf37ebc2",
-    "commitTime" : 1312841411,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "00eae14a7f736640da0086a9a9eb73ed50963eb8",
-    "commitId" : "9f5bbb5dd41f87d6428eb49c021e00d8099d0c17",
-    "commitTime" : 1301694033,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "1f57061684c83623d7d08be9044fc9cfd7b9fb54",
-    "commitId" : "f67e5602af72b7b2238eb6f6fcdc206a47edabd5",
-    "commitTime" : 1299551019,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
-    "commitId" : "8f865bfffed575c3a4db6d7db92dc5f752f97237",
-    "commitTime" : 1298081726,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
-    "commitId" : "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
-    "commitTime" : 1298081725,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
-    "commitId" : "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
-    "commitTime" : 1298081725,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "388ba7e005fdc5b61a7a494fa44ba24489d0c6d0",
-    "commitId" : "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
-    "commitTime" : 1298079405,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "5fc0f1043b42112f1a415eb2920d7c70413aa78f",
-    "commitId" : "4275c4c1cffeffae6b12eb6aa2df957c23107b48",
-    "commitTime" : 1298079405,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "681739b1c82877424192ace581014ad09bc28acf",
-    "commitId" : "733780e8a158b7bc45b8b687ac353ecadc905a63",
-    "commitTime" : 1298007123,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "3dcbf375a804019a8918642d79ca72549f03290a",
-    "commitId" : "5664fb3bfb63e4db49dc07d13ace419e810186c2",
-    "commitTime" : 1297633391,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "3dcbf375a804019a8918642d79ca72549f03290a",
-    "commitId" : "5664fb3bfb63e4db49dc07d13ace419e810186c2",
-    "commitTime" : 1297633391,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "comment" : "Add Parameter walker : ObjectWalk in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "24c1c530db67d56cfad9713ac59354d067421231",
-    "commitId" : "c8c4524b6b36c1d97e715de9e1ff1aa18763a390",
-    "commitTime" : 1297633391,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
-  }, {
-    "parentCommitId" : "71f168fcd77ec100d68233d3d467f770304f6eb8",
-    "commitId" : "461b012e9565af8174e5b9d2b2c3a582011ce77e",
-    "commitTime" : 1296768022,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
-  }, {
-    "parentCommitId" : "71f168fcd77ec100d68233d3d467f770304f6eb8",
-    "commitId" : "461b012e9565af8174e5b9d2b2c3a582011ce77e",
-    "commitTime" : 1296768022,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
-  }, {	
-    "parentCommitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitId" : "13bcf05a9ea2d4943faef2c879aac65d37517eb6",
-    "commitTime" : 1296573126,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
-  }, {
-    "parentCommitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitId" : "13bcf05a9ea2d4943faef2c879aac65d37517eb6",
-    "commitTime" : 1296573126,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
-  }, {
-    "parentCommitId" : "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
-    "commitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitTime" : 1296572604,
-    "changeType" : "method merge",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "comment" : "Merge Method [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] to private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void in class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "c544e96a4cd027a127bc6e6ad5277091b3c0da73",
-    "commitId" : "065a0a8122be356d1f898321763d3518b504b075",
-    "commitTime" : 1296228026,
-    "changeType" : "method split",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "comment" : "Split Method private findObjectsToPack(countingMonitor ProgressMonitor, interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : void to [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] in class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "a017fdf1124144228dd0395d8a36080212644ed5",
-    "commitId" : "f5fe2dca3cb9f57891e1a4b18832fcc158d0c490",
-    "commitTime" : 1296149899,
-    "changeType" : "method merge",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
-    "comment" : "Merge Method [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] to private findObjectsToPack(countingMonitor ProgressMonitor, interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : void in class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "559c4661c358a6210c411badf54d4c6a6648b213",
-    "commitId" : "c218a0760ddcdd9a392b0ae15f99fdccf823cd42",
-    "commitTime" : 1296147524,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
-  }, {
-    "parentCommitId" : "6f385076e14effe6dcab8764b123178bd3d2c691",
-    "commitId" : "ba984ba2e0a66a82952bca31c9deb5b9053563e8",
-    "commitTime" : 1283800363,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
-  }, {
-    "parentCommitId" : "11a5bef8b1c866fadc9b340a1300c7fdd927a46b",
-    "commitId" : "f048af3fd19547d3692f5df968571ffd7556b688",
-    "commitTime" : 1282351287,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
-  }, {
-    "parentCommitId" : "396fe6da4593645e1b9bada4fe314f6169ab2d17",
-    "commitId" : "21f76c2a69836ec618c82eb9305656dcec70befb",
-    "commitTime" : 1280339428,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
-  }, {
-    "parentCommitId" : "c20daa73146a3c385f4fed237708c4a7d28d8745",
-    "commitId" : "2f93a09dd10696b6388a0fcb4099341ccef05169",
-    "commitTime" : 1278713846,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
-  }, {
-    "parentCommitId" : "06f635a4bc315a90d87ae07d0245424d62696373",
-    "commitId" : "121d009b9b7159ca0bd73a7c25b925516852a026",
-    "commitTime" : 1277776049,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
-  }, {
-    "parentCommitId" : "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
-    "commitId" : "6b62e53b607630b6c00411741972838ced552f4d",
-    "commitTime" : 1277750848,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ObjectWalk)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
-  }, {
-    "parentCommitId" : "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
-    "commitId" : "6b62e53b607630b6c00411741972838ced552f4d",
-    "commitTime" : 1277750848,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ObjectWalk)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
-    "comment" : "Parameterize Attribute initMonitor : ProgressMonitor to countingMonitor : ProgressMonitor in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "71aace52f7bfc36c65c92ab54c6f020dffc873ab",
-    "commitId" : "ea21c111cb7ac0c8dc39c4df3fe90c08ddcce066",
-    "commitTime" : 1277603472,
-    "changeType" : "container change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
-    "comment" : "Move Class org.eclipse.jgit.lib.PackWriter moved to org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "ccd0c0c911b4575539ea46a3efaf219a249ee392",
-    "commitId" : "60aae90d4d15d6b35d19941867dad966ddcbe161",
-    "commitTime" : 1277339561,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)"
-  }, {
-    "parentCommitId" : "0",
-    "commitId" : "1a6964c8274c50f0253db75f010d78ef0e739343",
-    "commitTime" : 1254268023,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)"
-  } ]
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+  "functionName": "findObjectsToPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+  "functionStartLine": 1775,
+  "expectedChanges": [
+    {
+      "parentCommitId": "fb9031c9566308794f888695cafd108f19d835be",
+      "commitId": "32798dcfdb00662a640f0ff2915766591d21e287",
+      "commitTime": 1532131745,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
+    },
+    {
+      "parentCommitId": "c6a2c58624e4fe4625a0e651f4e0eb91f019b381",
+      "commitId": "4ac32e79b751944107470d5f4cb290eacd1b7cf9",
+      "commitTime": 1521146802,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
+    },
+    {
+      "parentCommitId": "5ea57ba1b5b02dd69b7ff66a346e62c94cd277ed",
+      "commitId": "ccf25f95411d7faae7b7aa5a75d74c62e6c47e07",
+      "commitTime": 1510357291,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
+    },
+    {
+      "parentCommitId": "69d5e89e99707119837eb1f025ee2c8d6d376996",
+      "commitId": "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
+      "commitTime": 1495146321,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)"
+    },
+    {
+      "parentCommitId": "69d5e89e99707119837eb1f025ee2c8d6d376996",
+      "commitId": "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
+      "commitTime": 1495146321,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+      "comment": "Add Parameter noBitmaps : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>, noBitmaps Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "43eb8511f5d8225c0b4e2f899db2126334e5facf",
+      "commitId": "3b4448637fbb9d74e0c9d44048ba76bb7c1214ce",
+      "commitTime": 1487627243,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "958684edef56d743293dad0436c1fb7132b12910",
+      "commitId": "d385a7a5e5cacd875da4301ddeb46a7c56a725fa",
+      "commitTime": 1470436656,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "9843489cb88d7c7cee09ced484c2fbc84ec1e3ef",
+      "commitId": "7edf05530d83d7f8971db4262ea43e11124c6b63",
+      "commitTime": 1470356423,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "9843489cb88d7c7cee09ced484c2fbc84ec1e3ef",
+      "commitId": "7edf05530d83d7f8971db4262ea43e11124c6b63",
+      "commitTime": 1470356423,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
+      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
+      "commitTime": 1452645032,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
+      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
+      "commitTime": 1452645032,
+      "changeType": "exception change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "comment": "Remove Thrown Exception Type IncorrectObjectTypeException in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
+      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
+      "commitTime": 1452645032,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "comment": "Add Parameter Annotation @NonNull in parameter want : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "f9bd6c1239b9e66bfd74e5a2462621a5f5fa641c",
+      "commitId": "1d7d0f95e0be8121ee16640fa1cd3b0805fd9092",
+      "commitTime": 1439759416,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "a79168bcbb991c2efe40b4e041dae256b408af92",
+      "commitId": "dd22bc831a0ec47ecc999eb19be1bd8fad899e9b",
+      "commitTime": 1433299795,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "2ad2d85bcda42b5f2fde3c4126f07519e2c75c79",
+      "commitId": "0e8ac496cd9bbfa3fa306ac45706f501fc24ac38",
+      "commitTime": 1432676237,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "3d06349ff21e157fc837ef09e48a5e400afb4e6a",
+      "commitId": "53e39094bf012a4f5b3fe5557219707cb7b0f010",
+      "commitTime": 1431279934,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "462bbc052e766ee9ea585cd4366165a8dac86496",
+      "commitId": "f32b8612433e499090c76ded014dd5e94322b786",
+      "commitTime": 1363624243,
+      "changeType": "container change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "comment": "Move Class org.eclipse.jgit.storage.pack.PackWriter moved to org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "b2c0021b8ae7c45dfd351b127bb674d3ba20026b",
+      "commitId": "3760e4319b02ce79ff1eeae021fd88faebf739d5",
+      "commitTime": 1363304217,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "b2c0021b8ae7c45dfd351b127bb674d3ba20026b",
+      "commitId": "3760e4319b02ce79ff1eeae021fd88faebf739d5",
+      "commitTime": 1363304217,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "3b325917a5c928caadd88a0ec718b1632f088fd5",
+      "commitId": "dafcb8f6db82b899c917832768f1c240d273190c",
+      "commitTime": 1362510885,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "03d50dc50b584caf2826f7db8a4748435b610f63",
+      "commitId": "c310fa0c802f40a774edb58641de3ac5bfad0e2c",
+      "commitTime": 1356623858,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "bc7817c9436756bec3ffe88dc0ef75881d4b9478",
+      "commitId": "0f84b86e01da4680633c32bad101d021e0cb98ad",
+      "commitTime": 1338821556,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "e7ec5e147357f30cfde2e6921bd1bb5913b76e3b",
+      "commitId": "16b8ebf2d1d099ac355767b1b1853ae7bf8854f1",
+      "commitTime": 1321295265,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
+      "commitId": "9952223e0645fd7a8cddc6093a7f449c6390238d",
+      "commitTime": 1313960663,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "c580c56c4def9639b603553b3d4cbc7117a30938",
+      "commitId": "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
+      "commitTime": 1313960366,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "100e9429b5a7eea8383c6e693d17b6233794c488",
+      "commitId": "74333e63b60440be5ff9f591f2203b635e26e3a0",
+      "commitTime": 1313522319,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)"
+    },
+    {
+      "parentCommitId": "489604aaad8ef8d252bf31056db4de01e690fa0b",
+      "commitId": "99e6cfb131bb407247acbc8c0a73e7c7cf37ebc2",
+      "commitTime": 1312841411,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "00eae14a7f736640da0086a9a9eb73ed50963eb8",
+      "commitId": "9f5bbb5dd41f87d6428eb49c021e00d8099d0c17",
+      "commitTime": 1301694033,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "1f57061684c83623d7d08be9044fc9cfd7b9fb54",
+      "commitId": "f67e5602af72b7b2238eb6f6fcdc206a47edabd5",
+      "commitTime": 1299551019,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
+      "commitId": "8f865bfffed575c3a4db6d7db92dc5f752f97237",
+      "commitTime": 1298081726,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
+      "commitId": "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
+      "commitTime": 1298081725,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
+      "commitId": "19037e8cfc2d9534f79e40c898fdaeacaf499e82",
+      "commitTime": 1298081725,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "388ba7e005fdc5b61a7a494fa44ba24489d0c6d0",
+      "commitId": "3e64b928d51b3a28e89cfe2a3f0eeae35ef07839",
+      "commitTime": 1298079405,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "5fc0f1043b42112f1a415eb2920d7c70413aa78f",
+      "commitId": "4275c4c1cffeffae6b12eb6aa2df957c23107b48",
+      "commitTime": 1298079405,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "681739b1c82877424192ace581014ad09bc28acf",
+      "commitId": "733780e8a158b7bc45b8b687ac353ecadc905a63",
+      "commitTime": 1298007123,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "3dcbf375a804019a8918642d79ca72549f03290a",
+      "commitId": "5664fb3bfb63e4db49dc07d13ace419e810186c2",
+      "commitTime": 1297633391,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "3dcbf375a804019a8918642d79ca72549f03290a",
+      "commitId": "5664fb3bfb63e4db49dc07d13ace419e810186c2",
+      "commitTime": 1297633391,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "comment": "Add Parameter walker : ObjectWalk in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "24c1c530db67d56cfad9713ac59354d067421231",
+      "commitId": "c8c4524b6b36c1d97e715de9e1ff1aa18763a390",
+      "commitTime": 1297633391,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "71f168fcd77ec100d68233d3d467f770304f6eb8",
+      "commitId": "461b012e9565af8174e5b9d2b2c3a582011ce77e",
+      "commitTime": 1296768022,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "71f168fcd77ec100d68233d3d467f770304f6eb8",
+      "commitId": "461b012e9565af8174e5b9d2b2c3a582011ce77e",
+      "commitTime": 1296768022,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitId": "13bcf05a9ea2d4943faef2c879aac65d37517eb6",
+      "commitTime": 1296573126,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitId": "13bcf05a9ea2d4943faef2c879aac65d37517eb6",
+      "commitTime": 1296573126,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)"
+    },
+    {
+      "parentCommitId": "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
+      "commitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitTime": 1296572604,
+      "changeType": "method merge",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "comment": "Merge Method [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] to private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void in class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "c544e96a4cd027a127bc6e6ad5277091b3c0da73",
+      "commitId": "065a0a8122be356d1f898321763d3518b504b075",
+      "commitTime": 1296228026,
+      "changeType": "method split",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "comment": "Split Method private findObjectsToPack(countingMonitor ProgressMonitor, interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : void to [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] in class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "a017fdf1124144228dd0395d8a36080212644ed5",
+      "commitId": "f5fe2dca3cb9f57891e1a4b18832fcc158d0c490",
+      "commitTime": 1296149899,
+      "changeType": "method merge",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)",
+      "comment": "Merge Method [private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk, private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void] to private findObjectsToPack(countingMonitor ProgressMonitor, interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : void in class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "559c4661c358a6210c411badf54d4c6a6648b213",
+      "commitId": "c218a0760ddcdd9a392b0ae15f99fdccf823cd42",
+      "commitTime": 1296147524,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
+    },
+    {
+      "parentCommitId": "6f385076e14effe6dcab8764b123178bd3d2c691",
+      "commitId": "ba984ba2e0a66a82952bca31c9deb5b9053563e8",
+      "commitTime": 1283800363,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
+    },
+    {
+      "parentCommitId": "11a5bef8b1c866fadc9b340a1300c7fdd927a46b",
+      "commitId": "f048af3fd19547d3692f5df968571ffd7556b688",
+      "commitTime": 1282351287,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
+    },
+    {
+      "parentCommitId": "396fe6da4593645e1b9bada4fe314f6169ab2d17",
+      "commitId": "21f76c2a69836ec618c82eb9305656dcec70befb",
+      "commitTime": 1280339428,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
+    },
+    {
+      "parentCommitId": "c20daa73146a3c385f4fed237708c4a7d28d8745",
+      "commitId": "2f93a09dd10696b6388a0fcb4099341ccef05169",
+      "commitTime": 1278713846,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
+    },
+    {
+      "parentCommitId": "06f635a4bc315a90d87ae07d0245424d62696373",
+      "commitId": "121d009b9b7159ca0bd73a7c25b925516852a026",
+      "commitTime": 1277776049,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)"
+    },
+    {
+      "parentCommitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
+      "commitId": "6b62e53b607630b6c00411741972838ced552f4d",
+      "commitTime": 1277750848,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ObjectWalk)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)"
+    },
+    {
+      "parentCommitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
+      "commitId": "6b62e53b607630b6c00411741972838ced552f4d",
+      "commitTime": 1277750848,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ObjectWalk)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk)",
+      "comment": "Parameterize Attribute initMonitor : ProgressMonitor to countingMonitor : ProgressMonitor in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "71aace52f7bfc36c65c92ab54c6f020dffc873ab",
+      "commitId": "ea21c111cb7ac0c8dc39c4df3fe90c08ddcce066",
+      "commitTime": 1277603472,
+      "changeType": "container change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)",
+      "comment": "Move Class org.eclipse.jgit.lib.PackWriter moved to org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "ccd0c0c911b4575539ea46a3efaf219a249ee392",
+      "commitId": "60aae90d4d15d6b35d19941867dad966ddcbe161",
+      "commitTime": 1277339561,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)"
+    },
+    {
+      "parentCommitId": "0",
+      "commitId": "1a6964c8274c50f0253db75f010d78ef0e739343",
+      "commitTime": 1254268023,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#setUpWalker(Collection, Collection)"
+    }
+  ]
 }

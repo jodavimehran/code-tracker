@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-  "functionName" : "discoverRoot",
-  "functionKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)",
-  "functionStartLine" : 99,
-  "variableName" : "root",
-  "variableKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)$root(100)",
-  "variableStartLine" : 100,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "763cf502451c5053cd72248aac3561cd1530b719",
-    "commitId" : "9da25e126d174ba6e6ae02596afa538a7cafe17b",
-    "commitTime" : 1453129027,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)$root:RootTestDescriptor(99)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)$root:Root(105)",
-    "comment" : "Change Variable Type root : RootTestDescriptor to root : Root in method private discoverRoot(discoveryRequest DiscoveryRequest, phase String) : Root from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
-    "commitId" : "830b6d5976b6db01dad3866cfb3d54c6216b1252",
-    "commitTime" : 1449569937,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)$root:RootTestDescriptor(54)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)$root:RootTestDescriptor(54)",
-    "comment" : "Extract Method private discoverRootDescriptor(specification TestPlanSpecification) : RootTestDescriptor extracted from public discover(specification TestPlanSpecification) : TestPlan in class org.junit.gen5.launcher.Launcher"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "functionName": "discoverRoot",
+  "functionKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)",
+  "functionStartLine": 99,
+  "variableName": "root",
+  "variableKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)$root(100)",
+  "variableStartLine": 100,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "763cf502451c5053cd72248aac3561cd1530b719",
+      "commitId": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
+      "commitTime": 1453129027,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)$root:RootTestDescriptor(99)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)$root:Root(105)",
+      "comment": "Change Variable Type root : RootTestDescriptor to root : Root in method private discoverRoot(discoveryRequest DiscoveryRequest, phase String) : Root from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
+      "commitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+      "commitTime": 1449569937,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)$root:RootTestDescriptor(54)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)$root:RootTestDescriptor(54)",
+      "comment": "Extract Method private discoverRootDescriptor(specification TestPlanSpecification) : RootTestDescriptor extracted from public discover(specification TestPlanSpecification) : TestPlan in class org.junit.gen5.launcher.Launcher"
+    }
+  ]
 }

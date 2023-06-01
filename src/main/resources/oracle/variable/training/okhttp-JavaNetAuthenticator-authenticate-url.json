@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "square\\okhttp",
-  "repositoryWebURL" : "https://github.com/square/okhttp.git",
-  "filePath" : "okhttp-urlconnection/src/main/java/okhttp3/JavaNetAuthenticator.java",
-  "functionName" : "authenticate",
-  "functionKey" : "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)",
-  "functionStartLine" : 32,
-  "variableName" : "url",
-  "variableKey" : "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)$url(35)",
-  "variableStartLine" : 35,
-  "startCommitId" : "8e2116fddcc1f9ad2b15d03fbc8918e30831d6a2",
-  "expectedChanges" : [ {
-    "parentCommitId" : "a52c510810f896fcafa78033b29148b49c7db7ca",
-    "commitId" : "4c90a2e04a83646597a506a80b5a885d5c515bf0",
-    "commitTime" : 1438563686,
-    "changeType" : "type change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/AuthenticatorAdapter.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(64)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/http/AuthenticatorAdapter.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.http.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:HttpUrl(62)",
-    "comment" : "Change Variable Type url : URL to url : HttpUrl in method public authenticateProxy(proxy Proxy, response Response) : Request from class com.squareup.okhttp.internal.http.AuthenticatorAdapter"
-  }, {
-    "parentCommitId" : "f5111c28356431c6c5d1e71dd1bbced9a8016cd8",
-    "commitId" : "e920196fbd71822fc284ab76204bf75f95d3265a",
-    "commitTime" : 1398096023,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/huc/AuthenticatorAdapter.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.huc.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(62)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/huc/AuthenticatorAdapter.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.huc.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(62)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "square\\okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp-urlconnection/src/main/java/okhttp3/JavaNetAuthenticator.java",
+  "functionName": "authenticate",
+  "functionKey": "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)",
+  "functionStartLine": 32,
+  "variableName": "url",
+  "variableKey": "okhttp-urlconnection/src/main/java/okhttp3.JavaNetAuthenticator#authenticate(Route, Response)$url(35)",
+  "variableStartLine": 35,
+  "startCommitId": "8e2116fddcc1f9ad2b15d03fbc8918e30831d6a2",
+  "expectedChanges": [
+    {
+      "parentCommitId": "a52c510810f896fcafa78033b29148b49c7db7ca",
+      "commitId": "4c90a2e04a83646597a506a80b5a885d5c515bf0",
+      "commitTime": 1438563686,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/AuthenticatorAdapter.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(64)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/AuthenticatorAdapter.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:HttpUrl(62)",
+      "comment": "Change Variable Type url : URL to url : HttpUrl in method public authenticateProxy(proxy Proxy, response Response) : Request from class com.squareup.okhttp.internal.http.AuthenticatorAdapter"
+    },
+    {
+      "parentCommitId": "f5111c28356431c6c5d1e71dd1bbced9a8016cd8",
+      "commitId": "e920196fbd71822fc284ab76204bf75f95d3265a",
+      "commitTime": 1398096023,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/AuthenticatorAdapter.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(62)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/AuthenticatorAdapter.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.AuthenticatorAdapter#authenticateProxy(Proxy, Response)$url:URL(62)",
+      "comment": "added with method"
+    }
+  ]
 }

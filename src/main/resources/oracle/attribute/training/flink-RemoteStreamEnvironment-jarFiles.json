@@ -1,120 +1,132 @@
 {
-  "repositoryName" : "flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "filePath" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-  "attributeName" : "jarFiles",
-  "attributeKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@jarFiles:List<URL>(64)",
-  "attributeDeclarationLine" : 64,
-  "expectedChanges" : [ {
-    "parentCommitId" : "0ee7c79a32f3aa39f740bdecbf53487f39f6591f",
-    "commitId" : "7498d3e35a29449270a88a30eb32b7de74887f5b",
-    "commitTime" : 1461599432,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(protected)jarFiles:List<URL>(58)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
-    "comment" : "Change Attribute Access Modifier protected to private in attribute private jarFiles : List<URL> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "db8c5cc5c9af7f0cca931cd6020aff568d8d88f7",
-    "commitId" : "d7948fad6a73fdefae43cd42193342398a1581aa",
-    "commitTime" : 1459946352,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(protected)jarFiles:List<URL>(58)",
-    "comment" : "Change Attribute Access Modifier private to protected in attribute protected jarFiles : List<URL> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "42a3d8cfa9eacc19ac04004b256b6eb51422b523",
-    "commitId" : "06f6ac5d3edbc8dd20baf6e1b30900c189a68876",
-    "commitTime" : 1445418103,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
-    "comment" : "Move Source Folder flink-staging/flink-streaming/flink-streaming-core to flink-streaming-java"
-  }, {
-    "parentCommitId" : "fa2bb8f119f747a24bb013a4387ded5c51348ee7",
-    "commitId" : "0ee0c1f5573ad059dc6a8e4489094b7f78267306",
-    "commitTime" : 1444312509,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<File>(45)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
-    "comment" : "Change Attribute Type jarFiles : List<File> to jarFiles : List<URL> in class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "b70431239a5e18555866addb41ee6edf2b79ff60",
-    "commitId" : "2b8db40ac40d70027ce331f3a04c6ca7aa562a84",
-    "commitTime" : 1429705186,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(42)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<File>(43)",
-    "comment" : "Add Attribute Modifier final in attribute private jarFiles : List<File> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "563e546236217dace58a8031d56d08a27e08160b",
-    "commitId" : "f94112fbbaaf2ecc6a9ecb314a5565203ce779a7",
-    "commitTime" : 1422902425,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
-    "comment" : "Move Source Folder flink-addons to flink-staging"
-  }, {
-    "parentCommitId" : "c6dd9b104dad2fdf35d3bbca27779060792dc877",
-    "commitId" : "6867f9b93ec1ad9a627450c4fbd0b5ff98ef6148",
-    "commitTime" : 1415888644,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:String[](39)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
-    "comment" : "Change Attribute Type jarFiles : String[] to jarFiles : List<File> in class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](41)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:String[](41)",
-    "comment" : "Move Class org.apache.flink.streaming.api.RemoteStreamEnvironment moved to org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "b89fa9a2437a24ba311efaa8c3dac9bbf62e7a73",
-    "commitId" : "12e52f8ac430c00ed38096944e50db1e185f3567",
-    "commitTime" : 1408370235,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
-    "comment" : "Move Class eu.stratosphere.streaming.api.RemoteStreamEnvironment moved to org.apache.flink.streaming.api.RemoteStreamEnvironment"
-  }, {
-    "parentCommitId" : "12e52f8ac430c00ed38096944e50db1e185f3567",
-    "commitId" : "1e434d10ab16f0a36a9326cfdf7df416ff5b91d5",
-    "commitTime" : 1408370235,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
-    "comment" : "Move Source Folder flink-addons/flink-streaming/stratosphere-streaming-core to flink-addons/flink-streaming/flink-streaming-core"
-  }, {
-    "parentCommitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitId" : "5b05ca635d1a661bf2be3baf60159d84834a9942",
-    "commitTime" : 1408370233,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](50)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](50)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+  "attributeName": "jarFiles",
+  "attributeKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@jarFiles:List<URL>(64)",
+  "attributeDeclarationLine": 64,
+  "expectedChanges": [
+    {
+      "parentCommitId": "0ee7c79a32f3aa39f740bdecbf53487f39f6591f",
+      "commitId": "7498d3e35a29449270a88a30eb32b7de74887f5b",
+      "commitTime": 1461599432,
+      "changeType": "access modifier change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(protected)jarFiles:List<URL>(58)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
+      "comment": "Change Attribute Access Modifier protected to private in attribute private jarFiles : List<URL> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "db8c5cc5c9af7f0cca931cd6020aff568d8d88f7",
+      "commitId": "d7948fad6a73fdefae43cd42193342398a1581aa",
+      "commitTime": 1459946352,
+      "changeType": "access modifier change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(protected)jarFiles:List<URL>(58)",
+      "comment": "Change Attribute Access Modifier private to protected in attribute protected jarFiles : List<URL> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "42a3d8cfa9eacc19ac04004b256b6eb51422b523",
+      "commitId": "06f6ac5d3edbc8dd20baf6e1b30900c189a68876",
+      "commitTime": 1445418103,
+      "changeType": "container change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
+      "comment": "Move Source Folder flink-staging/flink-streaming/flink-streaming-core to flink-streaming-java"
+    },
+    {
+      "parentCommitId": "fa2bb8f119f747a24bb013a4387ded5c51348ee7",
+      "commitId": "0ee0c1f5573ad059dc6a8e4489094b7f78267306",
+      "commitTime": 1444312509,
+      "changeType": "type change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<File>(45)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<URL>(58)",
+      "comment": "Change Attribute Type jarFiles : List<File> to jarFiles : List<URL> in class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "b70431239a5e18555866addb41ee6edf2b79ff60",
+      "commitId": "2b8db40ac40d70027ce331f3a04c6ca7aa562a84",
+      "commitTime": 1429705186,
+      "changeType": "modifier change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(42)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(final)(private)jarFiles:List<File>(43)",
+      "comment": "Add Attribute Modifier final in attribute private jarFiles : List<File> from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "563e546236217dace58a8031d56d08a27e08160b",
+      "commitId": "f94112fbbaaf2ecc6a9ecb314a5565203ce779a7",
+      "commitTime": 1422902425,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
+      "comment": "Move Source Folder flink-addons to flink-staging"
+    },
+    {
+      "parentCommitId": "c6dd9b104dad2fdf35d3bbca27779060792dc877",
+      "commitId": "6867f9b93ec1ad9a627450c4fbd0b5ff98ef6148",
+      "commitTime": 1415888644,
+      "changeType": "type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:String[](39)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:List<File>(40)",
+      "comment": "Change Attribute Type jarFiles : String[] to jarFiles : List<File> in class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](41)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment@(private)jarFiles:String[](41)",
+      "comment": "Move Class org.apache.flink.streaming.api.RemoteStreamEnvironment moved to org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "b89fa9a2437a24ba311efaa8c3dac9bbf62e7a73",
+      "commitId": "12e52f8ac430c00ed38096944e50db1e185f3567",
+      "commitTime": 1408370235,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
+      "comment": "Move Class eu.stratosphere.streaming.api.RemoteStreamEnvironment moved to org.apache.flink.streaming.api.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "12e52f8ac430c00ed38096944e50db1e185f3567",
+      "commitId": "1e434d10ab16f0a36a9326cfdf7df416ff5b91d5",
+      "commitTime": 1408370235,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](36)",
+      "comment": "Move Source Folder flink-addons/flink-streaming/stratosphere-streaming-core to flink-addons/flink-streaming/flink-streaming-core"
+    },
+    {
+      "parentCommitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitId": "5b05ca635d1a661bf2be3baf60159d84834a9942",
+      "commitTime": 1408370233,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](50)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.RemoteStreamEnvironment@(private)jarFiles:String[](50)",
+      "comment": "added with new class"
+    }
+  ]
 }

@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-  "functionName" : "fireErrors",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
-  "functionStartLine" : 384,
-  "variableName" : "event",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$event(388)",
-  "variableStartLine" : 388,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "bf529ef600fa9ef2034d0412c198b2121f2b94f2",
-    "commitId" : "ce196814d857a4244a80c51d5151cc35e90b6749",
-    "commitTime" : 1445038509,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$evt:AuditEvent(359)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$event:AuditEvent(359)",
-    "comment" : "Rename Variable evt : AuditEvent to event : AuditEvent in method public fireErrors(fileName String, errors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
-    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
-    "commitTime" : 999188004,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$evt:AuditEvent(312)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$evt:AuditEvent(312)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "functionName": "fireErrors",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+  "functionStartLine": 384,
+  "variableName": "event",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$event(388)",
+  "variableStartLine": 388,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "bf529ef600fa9ef2034d0412c198b2121f2b94f2",
+      "commitId": "ce196814d857a4244a80c51d5151cc35e90b6749",
+      "commitTime": 1445038509,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$evt:AuditEvent(359)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$event:AuditEvent(359)",
+      "comment": "Rename Variable evt : AuditEvent to event : AuditEvent in method public fireErrors(fileName String, errors SortedSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$evt:AuditEvent(312)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$evt:AuditEvent(312)",
+      "comment": "added with method"
+    }
+  ]
 }

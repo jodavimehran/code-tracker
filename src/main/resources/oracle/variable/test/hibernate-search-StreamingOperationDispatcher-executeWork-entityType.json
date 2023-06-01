@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-search",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
-  "filePath" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-  "functionName" : "executeWork",
-  "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
-  "functionStartLine" : 49,
-  "variableName" : "entityType",
-  "variableKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType(50)",
-  "variableStartLine" : 50,
-  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "expectedChanges" : [ {
-    "parentCommitId" : "c02f76eeea20c5e50341dfaed53dfa38970d7e8d",
-    "commitId" : "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
-    "commitTime" : 1497310060,
-    "changeType" : "type change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType:Class<?>(49)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType:IndexedTypeIdentifier(50)",
-    "comment" : "Change Variable Type entityType : Class<?> to entityType : IndexedTypeIdentifier in method private executeWork(work LuceneWork, progressMonitor IndexingMonitor) : void from class org.hibernate.search.backend.impl.StreamingOperationDispatcher"
-  }, {
-    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
-    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
-    "commitTime" : 1246314343,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType:Class<?>(92)",
-    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType:Class<?>(92)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "filePath": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+  "functionName": "executeWork",
+  "functionKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+  "functionStartLine": 49,
+  "variableName": "entityType",
+  "variableKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType(50)",
+  "variableStartLine": 50,
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "expectedChanges": [
+    {
+      "parentCommitId": "c02f76eeea20c5e50341dfaed53dfa38970d7e8d",
+      "commitId": "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
+      "commitTime": 1497310060,
+      "changeType": "type change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType:Class<?>(49)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityType:IndexedTypeIdentifier(50)",
+      "comment": "Change Variable Type entityType : Class<?> to entityType : IndexedTypeIdentifier in method private executeWork(work LuceneWork, progressMonitor IndexingMonitor) : void from class org.hibernate.search.backend.impl.StreamingOperationDispatcher"
+    },
+    {
+      "parentCommitId": "67f507fa7bf80f8c822926380ff960b15095d10e",
+      "commitId": "f7b4e276eb754193a72fa98a8972b66da837664e",
+      "commitTime": 1246314343,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType:Class<?>(92)",
+      "elementFileAfter": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityType:Class<?>(92)",
+      "comment": "added with method"
+    }
+  ]
 }

@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
-  "functionName" : "shouldCheckSeparationFromNextToken",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)",
-  "functionStartLine" : 462,
-  "variableName" : "ast",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast(462)",
-  "variableStartLine" : 462,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "f301f420bfe3ee5c6f1c690cf0f69511ece67d6c",
-    "commitId" : "e545ce56a19877ef98f367b3aa20fd6098bbeca9",
-    "commitTime" : 1455132109,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast:DetailAST(449)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast:DetailAST(449)",
-    "comment" : "Extract Method private shouldCheckSeparationFromNextToken(ast DetailAST, nextChar char) : boolean extracted from public visitToken(ast DetailAST) : void in class com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+  "functionName": "shouldCheckSeparationFromNextToken",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)",
+  "functionStartLine": 462,
+  "variableName": "ast",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast(462)",
+  "variableStartLine": 462,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "f301f420bfe3ee5c6f1c690cf0f69511ece67d6c",
+      "commitId": "e545ce56a19877ef98f367b3aa20fd6098bbeca9",
+      "commitTime": 1455132109,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast:DetailAST(449)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/checks/whitespace/WhitespaceAroundCheck.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck#shouldCheckSeparationFromNextToken(DetailAST, char)$ast:DetailAST(449)",
+      "comment": "Extract Method private shouldCheckSeparationFromNextToken(ast DetailAST, nextChar char) : boolean extracted from public visitToken(ast DetailAST) : void in class com.puppycrawl.tools.checkstyle.checks.whitespace.WhitespaceAroundCheck"
+    }
+  ]
 }

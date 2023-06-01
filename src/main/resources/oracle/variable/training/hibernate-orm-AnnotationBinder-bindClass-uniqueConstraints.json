@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-  "functionName" : "bindClass",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
-  "functionStartLine" : 524,
-  "variableName" : "uniqueConstraints",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$uniqueConstraints(593)",
-  "variableStartLine" : 593,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "ecb103cf5512cf3f940ca3567d5414bdc0804bdd",
-    "commitId" : "a2bf14ae7c2ed7b2b0a6eb558dad08bcfc69c489",
-    "commitTime" : 1260138058,
-    "changeType" : "type change",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(488)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<UniqueConstraintHolder>(489)",
-    "comment" : "Change Variable Type uniqueConstraints : List<String[]> to uniqueConstraints : List<UniqueConstraintHolder> in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
-    "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
-    "commitTime" : 1225219270,
-    "changeType" : "introduced",
-    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(447)",
-    "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(447)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+  "functionName": "bindClass",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
+  "functionStartLine": 524,
+  "variableName": "uniqueConstraints",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$uniqueConstraints(593)",
+  "variableStartLine": 593,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ecb103cf5512cf3f940ca3567d5414bdc0804bdd",
+      "commitId": "a2bf14ae7c2ed7b2b0a6eb558dad08bcfc69c489",
+      "commitTime": 1260138058,
+      "changeType": "type change",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(488)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<UniqueConstraintHolder>(489)",
+      "comment": "Change Variable Type uniqueConstraints : List<String[]> to uniqueConstraints : List<UniqueConstraintHolder> in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(447)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$uniqueConstraints:List<String[]>(447)",
+      "comment": "added with method"
+    }
+  ]
 }

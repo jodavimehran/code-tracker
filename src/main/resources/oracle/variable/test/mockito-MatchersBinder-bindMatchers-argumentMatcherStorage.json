@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "mockito\\mockito",
-  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
-  "filePath" : "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
-  "functionName" : "bindMatchers",
-  "functionKey" : "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)",
-  "functionStartLine" : 23,
-  "variableName" : "argumentMatcherStorage",
-  "variableKey" : "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage(23)",
-  "variableStartLine" : 23,
-  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
-  "expectedChanges" : [ {
-    "parentCommitId" : "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
-    "commitId" : "6d73019b0ece43252f38e628df88689967856b09",
-    "commitTime" : 1230496306,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage:ArgumentMatcherStorage(16)",
-    "comment" : "Change Parameter Type lastArguments : LastArguments to argumentMatcherStorage : ArgumentMatcherStorage in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  }, {
-    "parentCommitId" : "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
-    "commitId" : "6d73019b0ece43252f38e628df88689967856b09",
-    "commitTime" : 1230496306,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage:ArgumentMatcherStorage(16)",
-    "comment" : "Rename Parameter lastArguments : LastArguments to argumentMatcherStorage : ArgumentMatcherStorage in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  }, {
-    "parentCommitId" : "e825562c2a6e18fdd7cd93ea30445ad0587f6227",
-    "commitId" : "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
-    "commitTime" : 1230495956,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
-    "comment" : "Add Parameter lastArguments : LastArguments in method public bindMatchers(lastArguments LastArguments, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  } ]
+  "repositoryName": "mockito\\mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "filePath": "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
+  "functionName": "bindMatchers",
+  "functionKey": "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)",
+  "functionStartLine": 23,
+  "variableName": "argumentMatcherStorage",
+  "variableKey": "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage(23)",
+  "variableStartLine": 23,
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "expectedChanges": [
+    {
+      "parentCommitId": "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
+      "commitId": "6d73019b0ece43252f38e628df88689967856b09",
+      "commitTime": 1230496306,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage:ArgumentMatcherStorage(16)",
+      "comment": "Change Parameter Type lastArguments : LastArguments to argumentMatcherStorage : ArgumentMatcherStorage in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    },
+    {
+      "parentCommitId": "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
+      "commitId": "6d73019b0ece43252f38e628df88689967856b09",
+      "commitTime": 1230496306,
+      "changeType": "rename",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$argumentMatcherStorage:ArgumentMatcherStorage(16)",
+      "comment": "Rename Parameter lastArguments : LastArguments to argumentMatcherStorage : ArgumentMatcherStorage in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    },
+    {
+      "parentCommitId": "e825562c2a6e18fdd7cd93ea30445ad0587f6227",
+      "commitId": "affa89d1e43844ba83bd152fe41c5688d6b3df3f",
+      "commitTime": 1230495956,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(LastArguments, Invocation)$lastArguments:LastArguments(16)",
+      "comment": "Add Parameter lastArguments : LastArguments in method public bindMatchers(lastArguments LastArguments, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    }
+  ]
 }
