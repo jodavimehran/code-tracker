@@ -22,23 +22,23 @@
       "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
       "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
       "commitTime": 1240184731,
-      "changeType": "container change",
-      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
-      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(private)registry:BeanDefinitionRegistry(59)",
-      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
-      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)registry:BeanDefinitionRegistry(55)",
-      "comment": "Rename Class org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader renamed to org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
-    },
-    {
-      "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
-      "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
-      "commitTime": 1240184731,
       "changeType": "modifier change",
       "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
       "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(private)registry:BeanDefinitionRegistry(59)",
       "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
       "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)registry:BeanDefinitionRegistry(55)",
       "comment": "Add Attribute Modifier final in attribute private registry : BeanDefinitionRegistry from class org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+      "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
+      "commitTime": 1240184731,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(private)registry:BeanDefinitionRegistry(59)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final)(private)registry:BeanDefinitionRegistry(55)",
+      "comment": "Rename Class org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader renamed to org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
     },
     {
       "parentCommitId": "2c0c523d7099ed1ad77864242f25d30e218b2a95",
@@ -77,12 +77,12 @@
       "parentCommitId": "61a1c4d0c6124e75af95250a15a2d74187485bb1",
       "commitId": "eaf3a7cec49e3a6e8ed828dbb69b9a9b007b0b39",
       "commitTime": 1236283695,
-      "changeType": "modifier change",
+      "changeType": "type change",
       "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
       "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(final)(private)beanFactory:DefaultListableBeanFactory(60)",
       "elementFileAfter": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
       "elementNameAfter": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(private)registry:BeanDefinitionRegistry(52)",
-      "comment": "Remove Attribute Modifier final in attribute private beanFactory : DefaultListableBeanFactory from class org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader"
+      "comment": "Change Attribute Type beanFactory : DefaultListableBeanFactory to registry : BeanDefinitionRegistry in class org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader"
     },
     {
       "parentCommitId": "61a1c4d0c6124e75af95250a15a2d74187485bb1",
@@ -99,12 +99,12 @@
       "parentCommitId": "61a1c4d0c6124e75af95250a15a2d74187485bb1",
       "commitId": "eaf3a7cec49e3a6e8ed828dbb69b9a9b007b0b39",
       "commitTime": 1236283695,
-      "changeType": "type change",
+      "changeType": "modifier change",
       "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
       "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(final)(private)beanFactory:DefaultListableBeanFactory(60)",
       "elementFileAfter": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
       "elementNameAfter": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(private)registry:BeanDefinitionRegistry(52)",
-      "comment": "Change Attribute Type beanFactory : DefaultListableBeanFactory to registry : BeanDefinitionRegistry in class org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader"
+      "comment": "Remove Attribute Modifier final in attribute private beanFactory : DefaultListableBeanFactory from class org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader"
     },
     {
       "parentCommitId": "6deb1acab435d18f024e07a564ac77147729e0ec",

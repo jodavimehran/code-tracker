@@ -11,6 +11,17 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream@(final)(private)framedConnection:FramedConnection(86)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec@(final)(private)connection:Http2Connection(87)",
+      "comment": "Change Attribute Type framedConnection : FramedConnection to connection : Http2Connection in class okhttp3.internal.http2.Http2Codec"
+    },
+    {
+      "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+      "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "commitTime": 1468102159,
       "changeType": "rename",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream@(final)(private)framedConnection:FramedConnection(86)",
@@ -22,12 +33,12 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "type change",
+      "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream@(final)(private)framedConnection:FramedConnection(86)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
       "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec@(final)(private)connection:Http2Connection(87)",
-      "comment": "Change Attribute Type framedConnection : FramedConnection to connection : Http2Connection in class okhttp3.internal.http2.Http2Codec"
+      "comment": "Rename Class okhttp3.internal.http.Http2xStream renamed to okhttp3.internal.http2.Http2Codec"
     },
     {
       "parentCommitId": "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
@@ -55,17 +66,6 @@
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
       "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
       "commitTime": 1434580812,
-      "changeType": "rename",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport@(final)(private)spdyConnection:SpdyConnection(70)",
-      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport@(final)(private)framedConnection:FramedConnection(70)",
-      "comment": "Rename Attribute spdyConnection : SpdyConnection to framedConnection : FramedConnection in class com.squareup.okhttp.internal.http.FramedTransport"
-    },
-    {
-      "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
-      "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
-      "commitTime": 1434580812,
       "changeType": "type change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport@(final)(private)spdyConnection:SpdyConnection(70)",
@@ -77,11 +77,23 @@
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
       "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
       "commitTime": 1434580812,
+      "changeType": "rename",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport@(final)(private)spdyConnection:SpdyConnection(70)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport@(final)(private)framedConnection:FramedConnection(70)",
+      "comment": "Rename Attribute spdyConnection : SpdyConnection to framedConnection : FramedConnection in class com.squareup.okhttp.internal.http.FramedTransport"
+    },
+    {
+      "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
+      "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "commitTime": 1434580812,
       "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport@spdyConnection:SpdyConnection(70)",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport@(final)(private)spdyConnection:SpdyConnection(70)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport@framedConnection:FramedConnection(70)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport@(final)(private)framedConnection:FramedConnection(70)",
+      "comment": "Rename Class com.squareup.okhttp.internal.http.SpdyTransport renamed to com.squareup.okhttp.internal.http.FramedTransport"
     },
     {
       "parentCommitId": "ba2b7432cb9fabfc725b09a9f14878cb128ef208",
