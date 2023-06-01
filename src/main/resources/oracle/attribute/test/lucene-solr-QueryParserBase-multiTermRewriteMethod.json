@@ -1,0 +1,99 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "attributeName": "multiTermRewriteMethod",
+  "attributeKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@multiTermRewriteMethod:MultiTermQuery.RewriteMethod(63)",
+  "attributeDeclarationLine": 63,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(133)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(133)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "0daa4b0aac1748bbb2c56547626e9f49e7fb4ed6",
+      "commitId": "e8e4245d9b36123446546ff15967ac95429ea2b0",
+      "commitTime": 1334669779,
+      "changeType": "container change",
+      "elementFileBefore": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameBefore": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(64)",
+      "elementFileAfter": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(64)",
+      "comment": "Move Source Folder modules to lucene"
+    },
+    {
+      "parentCommitId": "ef25bf2d31a5e462ad6a752919481e2a7d1e2bd2",
+      "commitId": "5f30bedccc3f8a2ed14df05e3207ef9ed56965b2",
+      "commitTime": 1310355420,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(65)",
+      "elementFileAfter": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+      "elementNameAfter": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(65)",
+      "comment": "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
+    },
+    {
+      "parentCommitId": "e999b25d05c8fa7403d8c9e48fb042e087f6b95e",
+      "commitId": "8b4c80f04b4255b6f1f7309ffb01ccbea6db029b",
+      "commitTime": 1287756261,
+      "changeType": "moved",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(138)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(64)",
+      "comment": "Pull Up Attribute package multiTermRewriteMethod : MultiTermQuery.RewriteMethod from class org.apache.lucene.queryParser.QueryParser to package multiTermRewriteMethod : MultiTermQuery.RewriteMethod from class org.apache.lucene.queryParser.QueryParserBase"
+    },
+    {
+      "parentCommitId": "31a5f0edcc474f739e8392eac7261b9483fc60bf",
+      "commitId": "be66120dffb677ea4ce263282d6fd35956b84e78",
+      "commitTime": 1248480213,
+      "changeType": "type change",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)constantScoreRewrite:boolean(121)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(122)",
+      "comment": "Change Attribute Type constantScoreRewrite : boolean to multiTermRewriteMethod : MultiTermQuery.RewriteMethod in class org.apache.lucene.queryParser.QueryParser"
+    },
+    {
+      "parentCommitId": "31a5f0edcc474f739e8392eac7261b9483fc60bf",
+      "commitId": "be66120dffb677ea4ce263282d6fd35956b84e78",
+      "commitTime": 1248480213,
+      "changeType": "rename",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)constantScoreRewrite:boolean(121)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)multiTermRewriteMethod:MultiTermQuery.RewriteMethod(122)",
+      "comment": "Rename Attribute constantScoreRewrite : boolean to multiTermRewriteMethod : MultiTermQuery.RewriteMethod in class org.apache.lucene.queryParser.QueryParser"
+    },
+    {
+      "parentCommitId": "66c16c196dceb7a3bb377728fd5fbcf770cff378",
+      "commitId": "abe6ea0828bdc521f77bb07da3845186669d48d5",
+      "commitTime": 1226364000,
+      "changeType": "rename",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)useOldRangeQuery:boolean(120)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)constantScoreRewrite:boolean(118)",
+      "comment": "Rename Attribute useOldRangeQuery : boolean to constantScoreRewrite : boolean in class org.apache.lucene.queryParser.QueryParser"
+    },
+    {
+      "parentCommitId": "d94dfccdbf44afdd3ed6096039f1070fc46e9673",
+      "commitId": "bb002479043e191235f0aecaeee4c5ded227ec42",
+      "commitTime": 1163625969,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)useOldRangeQuery:boolean(85)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser@(package)useOldRangeQuery:boolean(85)",
+      "comment": "new attribute"
+    }
+  ]
+}

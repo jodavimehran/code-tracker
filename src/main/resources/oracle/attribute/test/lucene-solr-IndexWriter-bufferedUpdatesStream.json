@@ -1,0 +1,77 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "attributeName": "bufferedUpdatesStream",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@bufferedUpdatesStream:BufferedUpdatesStream(331)",
+  "attributeDeclarationLine": 331,
+  "expectedChanges": [
+    {
+      "parentCommitId": "126c6429c2840d1d7521f6fa4fadaa098687cd59",
+      "commitId": "ec4720f4c29f66e5a512d7cbb43751ce5adfa830",
+      "commitTime": 1383367127,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(262)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedUpdatesStream:BufferedUpdatesStream(262)",
+      "comment": "Change Attribute Type bufferedDeletesStream : BufferedDeletesStream to bufferedUpdatesStream : BufferedUpdatesStream in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "126c6429c2840d1d7521f6fa4fadaa098687cd59",
+      "commitId": "ec4720f4c29f66e5a512d7cbb43751ce5adfa830",
+      "commitTime": 1383367127,
+      "changeType": "rename",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(262)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedUpdatesStream:BufferedUpdatesStream(262)",
+      "comment": "Rename Attribute bufferedDeletesStream : BufferedDeletesStream to bufferedUpdatesStream : BufferedUpdatesStream in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(246)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(246)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "1588c321353a6f3968156f8dbb1e5d6376b5bc07",
+      "commitId": "6b9c787a9bc1431fe0074255ab7fb168eb130650",
+      "commitTime": 1298336439,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletes:BufferedDeletes(253)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(255)",
+      "comment": "Change Attribute Type bufferedDeletes : BufferedDeletes to bufferedDeletesStream : BufferedDeletesStream in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "1588c321353a6f3968156f8dbb1e5d6376b5bc07",
+      "commitId": "6b9c787a9bc1431fe0074255ab7fb168eb130650",
+      "commitTime": 1298336439,
+      "changeType": "rename",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletes:BufferedDeletes(253)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletesStream:BufferedDeletesStream(255)",
+      "comment": "Rename Attribute bufferedDeletes : BufferedDeletes to bufferedDeletesStream : BufferedDeletesStream in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "683568df65717e2dc8d090834fed813d9c9b277b",
+      "commitId": "502e971a78dbb78a085fd0f74c1541230f19fcb8",
+      "commitTime": 1292920096,
+      "changeType": "introduced",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletes:BufferedDeletes(253)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)bufferedDeletes:BufferedDeletes(253)",
+      "comment": "new attribute"
+    }
+  ]
+}
