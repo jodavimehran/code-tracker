@@ -1,0 +1,25 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "headers",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)",
+  "functionStartLine": 644,
+  "variableName": "inFinished",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)$inFinished:boolean(644)",
+  "variableStartLine": 644,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "5b076fbe4a0d2d8f93b42a61fde0baee551086b8",
+      "commitId": "39c0d7d56397ab14892db8032464cb8a9f983ff1",
+      "commitTime": 1376479525,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#synStream(boolean, boolean, int, int, int, int, List)$inFinished:boolean(456)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#synStream(boolean, boolean, int, int, int, int, List)$inFinished:boolean(456)",
+      "comment": "Split Parameter flags : int to [outFinished : boolean, inFinished : boolean] in method public synStream(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, priority int, slot int, nameValueBlock List<String>) : void from class com.squareup.okhttp.internal.spdy.SpdyConnection.Reader"
+    }
+  ]
+}

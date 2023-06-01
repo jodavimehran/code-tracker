@@ -1,12 +1,12 @@
 {
-  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryName": "hibernate-orm",
   "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
   "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
   "functionName": "bindClass",
   "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
-  "functionStartLine": 524,
+  "functionStartLine": 516,
   "variableName": "isInheritanceRoot",
-  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$isInheritanceRoot(693)",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$isInheritanceRoot:boolean(693)",
   "variableStartLine": 693,
   "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
   "expectedChanges": [
@@ -19,7 +19,7 @@
       "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$isInheritanceRoot:boolean(707)",
       "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
       "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$isInheritanceRoot:boolean(707)",
-      "comment": "new variable"
+      "comment": "Extract Variable isInheritanceRoot : boolean in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings Mappings) : void from class org.hibernate.cfg.AnnotationBinder"
     }
   ]
 }

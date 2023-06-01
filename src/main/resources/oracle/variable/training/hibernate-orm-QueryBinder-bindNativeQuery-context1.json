@@ -1,0 +1,58 @@
+{
+  "repositoryName": "hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+  "functionName": "bindNativeQuery",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, MetadataBuildingContext, boolean)",
+  "functionStartLine": 86,
+  "variableName": "context",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, MetadataBuildingContext, boolean)$context:MetadataBuildingContext(88)",
+  "variableStartLine": 88,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+      "commitId": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "commitTime": 1426024431,
+      "changeType": "type change",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, Mappings, boolean)$mappings:Mappings(99)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, MetadataBuildingContext, boolean)$context:MetadataBuildingContext(105)",
+      "comment": "Change Parameter Type mappings : Mappings to context : MetadataBuildingContext in method public bindNativeQuery(queryAnn NamedNativeQuery, context MetadataBuildingContext, isDefault boolean) : void from class org.hibernate.cfg.annotations.QueryBinder"
+    },
+    {
+      "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+      "commitId": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "commitTime": 1426024431,
+      "changeType": "rename",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, Mappings, boolean)$mappings:Mappings(99)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, MetadataBuildingContext, boolean)$context:MetadataBuildingContext(105)",
+      "comment": "Rename Parameter mappings : Mappings to context : MetadataBuildingContext in method public bindNativeQuery(queryAnn NamedNativeQuery, context MetadataBuildingContext, isDefault boolean) : void from class org.hibernate.cfg.annotations.QueryBinder"
+    },
+    {
+      "parentCommitId": "74eb608be6e926bc77bb60b7279b08f9c67c691e",
+      "commitId": "f0f82e4f1ba7416ef010d5d71914a2bbde7fc22f",
+      "commitTime": 1281640428,
+      "changeType": "type change",
+      "elementFileBefore": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameBefore": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, ExtendedMappings, boolean)$mappings:ExtendedMappings(90)",
+      "elementFileAfter": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, Mappings, boolean)$mappings:Mappings(90)",
+      "comment": "Change Parameter Type mappings : ExtendedMappings to mappings : Mappings in method public bindNativeQuery(queryAnn NamedNativeQuery, mappings Mappings, isDefault boolean) : void from class org.hibernate.cfg.annotations.QueryBinder"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, ExtendedMappings, boolean)$mappings:ExtendedMappings(68)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindNativeQuery(NamedNativeQuery, ExtendedMappings, boolean)$mappings:ExtendedMappings(68)",
+      "comment": "added with method"
+    }
+  ]
+}

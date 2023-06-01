@@ -1,0 +1,47 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "newStream",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)",
+  "functionStartLine": 224,
+  "variableName": "requestHeaders",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)$requestHeaders:List<Header>(229)",
+  "variableStartLine": 229,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "01ac1019bb48b77ea33e998e052f916f8dd271de",
+      "commitId": "b95a0ccbcae50f92acc923d62fc6c9cecc6bbb63",
+      "commitTime": 1390156534,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<ByteString>(162)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<Header>(161)",
+      "comment": "Change Parameter Type requestHeaders : List<ByteString> to requestHeaders : List<Header> in method public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream from class com.squareup.okhttp.internal.spdy.SpdyConnection"
+    },
+    {
+      "parentCommitId": "a9157db5359e31cac13ab35c1e5e39584c3d3e17",
+      "commitId": "5c787a0b9d5c83c764880da4b1503a65ee0ff267",
+      "commitTime": 1389063071,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<String>(160)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<ByteString>(161)",
+      "comment": "Change Parameter Type requestHeaders : List<String> to requestHeaders : List<ByteString> in method public newStream(requestHeaders List<ByteString>, out boolean, in boolean) : SpdyStream from class com.squareup.okhttp.internal.spdy.SpdyConnection"
+    },
+    {
+      "parentCommitId": "063964211c05103bd10fddeda9fafe93a856506b",
+      "commitId": "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
+      "commitTime": 1343052148,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<String>(113)",
+      "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)$requestHeaders:List<String>(113)",
+      "comment": "added with method"
+    }
+  ]
+}

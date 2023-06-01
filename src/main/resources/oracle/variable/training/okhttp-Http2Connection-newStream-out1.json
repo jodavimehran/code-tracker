@@ -1,0 +1,25 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "newStream",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)",
+  "functionStartLine": 233,
+  "variableName": "out",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$out:boolean(234)",
+  "variableStartLine": 234,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
+      "commitId": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
+      "commitTime": 1393204561,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$out:boolean(227)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$out:boolean(227)",
+      "comment": "Extract Method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : SpdyStream extracted from public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream in class com.squareup.okhttp.internal.spdy.SpdyConnection"
+    }
+  ]
+}

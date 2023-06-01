@@ -1,0 +1,36 @@
+{
+  "repositoryName": "junit4",
+  "repositoryWebURL": "https://github.com/junit-team/junit4.git",
+  "filePath": "src/main/java/org/junit/runners/Parameterized.java",
+  "functionName": "createRunnersForParameters",
+  "functionKey": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+  "functionStartLine": 439,
+  "variableName": "allParameters",
+  "variableKey": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)$allParameters:Iterable<Object>(440)",
+  "variableStartLine": 440,
+  "startCommitId": "02c328028b4d32c15bbf0becc9838e54ecbafcbf",
+  "expectedChanges": [
+    {
+      "parentCommitId": "e1bf14b4d5b7aecf4611fd400417359424121544",
+      "commitId": "f6a3d7405b72966d3714355804e1b3c14b1425cb",
+      "commitTime": 1373732375,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)$allParameters:Iterable<Object[]>(311)",
+      "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)$allParameters:Iterable<Object>(353)",
+      "comment": "Change Parameter Type allParameters : Iterable<Object[]> to allParameters : Iterable<Object> in method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String) : List<Runner> from class org.junit.runners.Parameterized"
+    },
+    {
+      "parentCommitId": "982a75011a074ab25f2c96a1c2639c5b1ebb3b18",
+      "commitId": "5475e12b57f5af0140deffa7f45c75dc47803167",
+      "commitTime": 1319153357,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)$allParameters:Iterable<Object[]>(154)",
+      "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)$allParameters:Iterable<Object[]>(154)",
+      "comment": "added with method"
+    }
+  ]
+}
