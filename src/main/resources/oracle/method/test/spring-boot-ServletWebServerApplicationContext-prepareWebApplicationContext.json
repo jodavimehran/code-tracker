@@ -15,7 +15,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)",
+      "comment": "Move Source Folder spring-boot to spring-boot-project/spring-boot"
     },
     {
       "parentCommitId": "4a189bdee7d1bd7fbdbd2593a8c9b8636a90bd39",
@@ -31,21 +32,23 @@
       "parentCommitId": "7b388e5865c82701f28fb1bf126f44a29b469798",
       "commitId": "67556ba8eaf22a352b03fe197a0c452f695835a6",
       "commitTime": 1489378105,
-      "changeType": "container change",
+      "changeType": "rename",
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)",
+      "comment": "Rename Method protected prepareEmbeddedWebApplicationContext(servletContext ServletContext) : void renamed to protected prepareWebApplicationContext(servletContext ServletContext) : void in class org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext"
     },
     {
       "parentCommitId": "7b388e5865c82701f28fb1bf126f44a29b469798",
       "commitId": "67556ba8eaf22a352b03fe197a0c452f695835a6",
       "commitTime": 1489378105,
-      "changeType": "rename",
+      "changeType": "container change",
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)",
+      "comment": "Rename Class org.springframework.boot.context.embedded.EmbeddedWebApplicationContext renamed to org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext"
     },
     {
       "parentCommitId": "034ce0ad895da0f814f08327b0776f02c9d0dc83",
@@ -85,7 +88,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/strap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Class org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext moved to org.springframework.boot.context.embedded.EmbeddedWebApplicationContext"
     },
     {
       "parentCommitId": "06ddd92438d7d2e64f2c54da5932efbd4b47f1b9",
@@ -95,7 +99,8 @@
       "elementFileBefore": "spring-boot-strap/src/main/java/org/springframework/boot/strap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/strap/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Source Folder spring-boot-strap to spring-boot"
     },
     {
       "parentCommitId": "b2873fbc2d55c007d7fbc882bbcff701173b1887",
@@ -105,7 +110,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-boot-strap/src/main/java/org/springframework/boot/strap/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Class org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext moved to org.springframework.boot.strap.context.embedded.EmbeddedWebApplicationContext"
     },
     {
       "parentCommitId": "cd51f357a3cfae04954ac6dce5134c3e2a6ad241",
@@ -115,7 +121,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/zero/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Class org.springframework.zero.context.embedded.EmbeddedWebApplicationContext moved to org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext"
     },
     {
       "parentCommitId": "9fde0a3715d00c1a3fc968b856db036ca4a8845c",
@@ -125,7 +132,8 @@
       "elementFileBefore": "spring-zero-core/src/main/java/org/springframework/zero/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/zero/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Source Folder spring-zero-core to spring-bootstrap"
     },
     {
       "parentCommitId": "d039822064b3ed1c16973428fc4b477f8b86048e",
@@ -135,7 +143,8 @@
       "elementFileBefore": "spring-zero-core/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-zero-core/src/main/java/org/springframework/zero/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Class org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext moved to org.springframework.zero.context.embedded.EmbeddedWebApplicationContext"
     },
     {
       "parentCommitId": "3996353e3513c86ca74f983f09c8491712ca48cf",
@@ -145,7 +154,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-zero-core/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "Move Source Folder spring-bootstrap to spring-zero-core"
     },
     {
       "parentCommitId": "80b151e2b37a66a8fe7eb2d5bac2f7aa766d4ead",
@@ -155,7 +165,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/EmbeddedWebApplicationContext.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.EmbeddedWebApplicationContext#prepareEmbeddedWebApplicationContext(ServletContext)",
+      "comment": "added with new class"
     }
   ]
 }

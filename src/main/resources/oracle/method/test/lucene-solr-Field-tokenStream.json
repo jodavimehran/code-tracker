@@ -11,7 +11,7 @@
       "parentCommitId": "ba09fa7a4a8e481758989897ce73795c33756e3f",
       "commitId": "105c7eae87896762cbcb295c73c8e8b1fd8f71f8",
       "commitTime": 1471440525,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -21,7 +21,7 @@
       "parentCommitId": "ba09fa7a4a8e481758989897ce73795c33756e3f",
       "commitId": "105c7eae87896762cbcb295c73c8e8b1fd8f71f8",
       "commitTime": 1471440525,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -35,7 +35,8 @@
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
+      "comment": "Remove Thrown Exception Type IOException in method public tokenStream(analyzer Analyzer, reuse TokenStream) : TokenStream from class org.apache.lucene.document.Field"
     },
     {
       "parentCommitId": "671b5768a65d27f841e4767ffe76ff789338b58d",
@@ -51,7 +52,7 @@
       "parentCommitId": "09ddb7d91248c4732f8533082f0c0c7ded21db34",
       "commitId": "249d0d25fec0c8d3aeaa8991b22c96317b6db86a",
       "commitTime": 1428704686,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -61,7 +62,7 @@
       "parentCommitId": "09ddb7d91248c4732f8533082f0c0c7ded21db34",
       "commitId": "249d0d25fec0c8d3aeaa8991b22c96317b6db86a",
       "commitTime": 1428704686,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -91,7 +92,7 @@
       "parentCommitId": "58fe66dba7c4a49827bb2d20e6f9dc15dc61aff3",
       "commitId": "8f9f8a3252c73428e67bc5d390e58d1370e060ba",
       "commitTime": 1413876758,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -101,7 +102,7 @@
       "parentCommitId": "58fe66dba7c4a49827bb2d20e6f9dc15dc61aff3",
       "commitId": "8f9f8a3252c73428e67bc5d390e58d1370e060ba",
       "commitTime": 1413876758,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -111,17 +112,29 @@
       "parentCommitId": "f353c52e2539fa6f18bee84fe9051bed6150ae05",
       "commitId": "1613f1882c00f28f12570e4f75f913a663e1e2c0",
       "commitTime": 1399054058,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
+      "comment": "Parameterize Attribute internalTokenStream : TokenStream to reuse : TokenStream in method public tokenStream(analyzer Analyzer, reuse TokenStream) : TokenStream from class org.apache.lucene.document.Field"
     },
     {
       "parentCommitId": "f353c52e2539fa6f18bee84fe9051bed6150ae05",
       "commitId": "1613f1882c00f28f12570e4f75f913a663e1e2c0",
       "commitTime": 1399054058,
       "changeType": "parameter change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer, TokenStream)",
+      "comment": "Add Parameter reuse : TokenStream in method public tokenStream(analyzer Analyzer, reuse TokenStream) : TokenStream from class org.apache.lucene.document.Field"
+    },
+    {
+      "parentCommitId": "f353c52e2539fa6f18bee84fe9051bed6150ae05",
+      "commitId": "1613f1882c00f28f12570e4f75f913a663e1e2c0",
+      "commitTime": 1399054058,
+      "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -165,12 +178,12 @@
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
+      "comment": "Add Method Annotation @Override in method public tokenStream(analyzer Analyzer) : TokenStream from class org.apache.lucene.document.Field"
     },
     {
       "parentCommitId": "9e19c170943c9d088148871f2e23c07d8ea777b8",
       "commitId": "12dddf2285cc1673020aee2c918bae90197e6efd",
-      "altCommitId": "8f88aa64978a61125adafff544c8e5084d497fb5",
       "commitTime": 1346584861,
       "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/document/Field.java",
@@ -226,13 +239,14 @@
       "elementFileBefore": "lucene/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/document/Field.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
+      "comment": "Move Source Folder lucene to lucene/core"
     },
     {
       "parentCommitId": "26e37dc76d13b2de03aa6ecbe9cde78a1504a848",
       "commitId": "9de01b56ebf252ffefe05e606e330a1787b94c9d",
       "commitTime": 1326668713,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "lucene/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/src/java/org/apache/lucene/document/Field.java",
@@ -242,7 +256,7 @@
       "parentCommitId": "26e37dc76d13b2de03aa6ecbe9cde78a1504a848",
       "commitId": "9de01b56ebf252ffefe05e606e330a1787b94c9d",
       "commitTime": 1326668713,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "lucene/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/src/java/org/apache/lucene/document/Field.java",
@@ -266,7 +280,8 @@
       "elementFileBefore": "lucene/src/java/org/apache/lucene/document/Field.java",
       "elementNameBefore": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
       "elementFileAfter": "lucene/src/java/org/apache/lucene/document/Field.java",
-      "elementNameAfter": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)"
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.document.Field#tokenStream(Analyzer)",
+      "comment": "new method"
     }
   ]
 }

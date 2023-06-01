@@ -15,7 +15,19 @@
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, String, ServiceManager)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, String, ServiceManager)",
+      "comment": "Add Parameter serviceManager : ServiceManager in method public instanceFromName(targetSuperType Class<T>, classNameToLoad String, componentDescription String, serviceManager ServiceManager) : T from class org.hibernate.search.util.impl.ClassLoaderHelper"
+    },
+    {
+      "parentCommitId": "5f4eb3444328a7b79d6f41e841184515fa516206",
+      "commitId": "3db8c2dfa425219fd0d660c6c0e4194bfb818a38",
+      "commitTime": 1394461682,
+      "changeType": "parameter change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, String, ServiceManager)",
+      "comment": "Remove Parameter fallbackClassLoader : ClassLoader in method public instanceFromName(targetSuperType Class<T>, classNameToLoad String, fallbackClassLoader ClassLoader, componentDescription String) : T from class org.hibernate.search.util.impl.ClassLoaderHelper"
     },
     {
       "parentCommitId": "5f4eb3444328a7b79d6f41e841184515fa516206",
@@ -45,7 +57,8 @@
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, String, ServiceManager)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, String, ServiceManager)",
+      "comment": "Remove Method Annotation @Deprecated in method public instanceFromName(targetSuperType Class<T>, classNameToLoad String, fallbackClassLoader ClassLoader, componentDescription String) : T from class org.hibernate.search.util.impl.ClassLoaderHelper"
     },
     {
       "parentCommitId": "97f755cbb8b8e5505e085c64cb70017127529025",
@@ -65,7 +78,8 @@
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/util/impl/ClassLoaderHelper.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.util.impl.ClassLoaderHelper#instanceFromName(Class, String, ClassLoader, String)",
+      "comment": "Add Method Annotation @Deprecated in method public instanceFromName(targetSuperType Class<T>, classNameToLoad String, fallbackClassLoader ClassLoader, componentDescription String) : T from class org.hibernate.search.util.impl.ClassLoaderHelper"
     },
     {
       "parentCommitId": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",

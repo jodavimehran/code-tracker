@@ -35,7 +35,19 @@
       "elementFileBefore": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
       "elementNameBefore": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, List)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, List)",
+      "comment": "Change Parameter Type validator : Validator to validators : List<Validator> in method private getBindHandler(annotation ConfigurationProperties, validators List<Validator>) : BindHandler from class org.springframework.boot.context.properties.ConfigurationPropertiesBinder"
+    },
+    {
+      "parentCommitId": "9e75680e6f26a23494f21fb6c41b70445f58d8ea",
+      "commitId": "1d83e87bcdcd0a70680ac834900ddd3821cc65b9",
+      "commitTime": 1518833514,
+      "changeType": "parameter change",
+      "elementFileBefore": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
+      "elementNameBefore": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)",
+      "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, List)",
+      "comment": "Rename Parameter validator : Validator to validators : List<Validator> in method private getBindHandler(annotation ConfigurationProperties, validators List<Validator>) : BindHandler from class org.springframework.boot.context.properties.ConfigurationPropertiesBinder"
     },
     {
       "parentCommitId": "9e75680e6f26a23494f21fb6c41b70445f58d8ea",
@@ -55,7 +67,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)",
+      "comment": "Move Source Folder spring-boot to spring-boot-project/spring-boot"
     },
     {
       "parentCommitId": "9242def4c0753278599614d22e07c076f5e246ec",
@@ -65,7 +78,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBindingPostProcessor.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor#getBindHandler(ConfigurationProperties, Validator)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBinder.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBinder#getBindHandler(ConfigurationProperties, Validator)",
+      "comment": "Move Method private getBindHandler(annotation ConfigurationProperties, validator Validator) : BindHandler from class org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor to private getBindHandler(annotation ConfigurationProperties, validator Validator) : BindHandler from class org.springframework.boot.context.properties.ConfigurationPropertiesBinder"
     },
     {
       "parentCommitId": "b58923a42dd37ba280b78bb9601bb49d6c67f7e3",
@@ -105,7 +119,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBindingPostProcessor.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor#getBindHandler(ConfigurationProperties, Validator)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/properties/ConfigurationPropertiesBindingPostProcessor.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor#getBindHandler(ConfigurationProperties, Validator)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.properties.ConfigurationPropertiesBindingPostProcessor#getBindHandler(ConfigurationProperties, Validator)",
+      "comment": "new method"
     }
   ]
 }

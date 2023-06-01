@@ -25,17 +25,8 @@
       "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
       "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
       "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)"
-    },
-    {
-      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
-      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
-      "commitTime": 1516871772,
-      "changeType": "body change",
-      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
-      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)"
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Change Return Type TextRange to ExpressionInfo in method public getExpressionInfoAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : ExpressionInfo from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
     },
     {
       "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
@@ -45,13 +36,80 @@
       "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
       "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
       "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)"
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Rename Method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange renamed to public getExpressionInfoAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : ExpressionInfo in class com.intellij.debugger.engine.JavaDebuggerEvaluator"
     },
     {
       "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
       "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
       "commitTime": 1516871772,
       "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Remove Parameter Modifier final in parameter offset : int in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Remove Parameter Modifier final in parameter project : Project in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Remove Parameter Modifier final in parameter document : Document in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Add Parameter Annotation @NotNull in parameter document : Document in method public getExpressionInfoAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : ExpressionInfo from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Remove Parameter Modifier final in parameter sideEffectsAllowed : boolean in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "parameter change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+      "comment": "Add Parameter Annotation @NotNull in parameter project : Project in method public getExpressionInfoAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : ExpressionInfo from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "body change",
       "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
       "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
       "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
@@ -105,7 +163,8 @@
       "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
       "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
       "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)"
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)",
+      "comment": "new method"
     }
   ]
 }

@@ -15,7 +15,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()",
+      "comment": "Move Source Folder spring-boot to spring-boot-project/spring-boot"
     },
     {
       "parentCommitId": "0f99b29b1a8b8c61e9e5b0ed23bc6b42941975eb",
@@ -25,7 +26,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()",
+      "comment": "Move Class org.springframework.boot.autoconfigure.jdbc.metadata.TomcatDataSourcePoolMetadata moved to org.springframework.boot.jdbc.metadata.TomcatDataSourcePoolMetadata"
     },
     {
       "parentCommitId": "e56be6cf3d329c950bcdd2ec42dbd85dd40bdfa8",
@@ -35,7 +37,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata#getMin()",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/metadata/TomcatDataSourcePoolMetadata.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.metadata.TomcatDataSourcePoolMetadata#getMin()",
+      "comment": "Move Class org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata moved to org.springframework.boot.autoconfigure.jdbc.metadata.TomcatDataSourcePoolMetadata"
     },
     {
       "parentCommitId": "e17769fc2fb0376121043522438470eac18119c1",
@@ -45,7 +48,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata#getMin()"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata#getMin()",
+      "comment": "Rename Method public getMinPoolSize() : Integer renamed to public getMin() : Integer in class org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata"
     },
     {
       "parentCommitId": "e17769fc2fb0376121043522438470eac18119c1",
@@ -55,7 +59,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourcePoolMetadata.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata#getMin()"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata#getMin()",
+      "comment": "Rename Class org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata renamed to org.springframework.boot.autoconfigure.jdbc.TomcatDataSourcePoolMetadata"
     },
     {
       "parentCommitId": "3dc932db888d4b8da0a0c47a593e328dfbc28811",
@@ -65,7 +70,8 @@
       "elementFileBefore": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/metrics/jdbc/TomcatDataSourceMetadata.java",
       "elementNameBefore": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.metrics.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/jdbc/TomcatDataSourceMetadata.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata#getMinPoolSize()"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
+      "comment": "Move Class org.springframework.boot.actuate.metrics.jdbc.TomcatDataSourceMetadata moved to org.springframework.boot.autoconfigure.jdbc.TomcatDataSourceMetadata"
     },
     {
       "parentCommitId": "85c95744f94005a5c84c85070502714863310da4",
@@ -75,7 +81,8 @@
       "elementFileBefore": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/metrics/jdbc/TomcatDataSourceMetadata.java",
       "elementNameBefore": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.metrics.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
       "elementFileAfter": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/metrics/jdbc/TomcatDataSourceMetadata.java",
-      "elementNameAfter": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.metrics.jdbc.TomcatDataSourceMetadata#getMinPoolSize()"
+      "elementNameAfter": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.metrics.jdbc.TomcatDataSourceMetadata#getMinPoolSize()",
+      "comment": "added with new class"
     }
   ]
 }
