@@ -33,6 +33,17 @@
       "parentCommitId": "45f7844948d0a639b28fff08ddf1ede5637c0a49",
       "commitId": "487af301ea4fc11d635fa9fa993be8b9aa261466",
       "commitTime": 1446718691,
+      "changeType": "type change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indexFieldDataService:IndexFieldDataService(52)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/NodeServicesProvider.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.NodeServicesProvider@(final)(private)indicesFieldDataCache:IndicesFieldDataCache(52)",
+      "comment": "Change Attribute Type indexFieldDataService : IndexFieldDataService to indicesFieldDataCache : IndicesFieldDataCache in class org.elasticsearch.index.NodeServicesProvider"
+    },
+    {
+      "parentCommitId": "45f7844948d0a639b28fff08ddf1ede5637c0a49",
+      "commitId": "487af301ea4fc11d635fa9fa993be8b9aa261466",
+      "commitTime": 1446718691,
       "changeType": "rename",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indexFieldDataService:IndexFieldDataService(52)",
@@ -44,12 +55,12 @@
       "parentCommitId": "45f7844948d0a639b28fff08ddf1ede5637c0a49",
       "commitId": "487af301ea4fc11d635fa9fa993be8b9aa261466",
       "commitTime": 1446718691,
-      "changeType": "type change",
+      "changeType": "container change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indexFieldDataService:IndexFieldDataService(52)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/index/NodeServicesProvider.java",
       "elementNameAfter": "core/src/main/java/org.elasticsearch.index.NodeServicesProvider@(final)(private)indicesFieldDataCache:IndicesFieldDataCache(52)",
-      "comment": "Change Attribute Type indexFieldDataService : IndexFieldDataService to indicesFieldDataCache : IndicesFieldDataCache in class org.elasticsearch.index.NodeServicesProvider"
+      "comment": "Rename Class org.elasticsearch.index.IndexServicesProvider renamed to org.elasticsearch.index.NodeServicesProvider"
     },
     {
       "parentCommitId": "c5971272ee71a24f17e4958d729588c59266ab05",

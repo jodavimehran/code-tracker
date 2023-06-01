@@ -33,23 +33,23 @@
       "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
       "commitId": "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
       "commitTime": 1382656525,
-      "changeType": "modifier change",
-      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)lastScheduledContainer:Map<Priority,Long>(457)",
-      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(protected)lastScheduledContainer:Map<Priority,Long>(89)",
-      "comment": "Change Attribute Access Modifier package to protected in attribute protected lastScheduledContainer : Map<Priority,Long> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
-    },
-    {
-      "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
-      "commitId": "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
-      "commitTime": 1382656525,
       "changeType": "moved",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)lastScheduledContainer:Map<Priority,Long>(457)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
       "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(protected)lastScheduledContainer:Map<Priority,Long>(89)",
       "comment": "Pull Up Attribute package lastScheduledContainer : Map<Priority,Long> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp to protected lastScheduledContainer : Map<Priority,Long> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
+    },
+    {
+      "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
+      "commitId": "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
+      "commitTime": 1382656525,
+      "changeType": "access modifier change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)lastScheduledContainer:Map<Priority,Long>(457)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(protected)lastScheduledContainer:Map<Priority,Long>(89)",
+      "comment": "Change Attribute Access Modifier package to protected in attribute protected lastScheduledContainer : Map<Priority,Long> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
     },
     {
       "parentCommitId": "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
