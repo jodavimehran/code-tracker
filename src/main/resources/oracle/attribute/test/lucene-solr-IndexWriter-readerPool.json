@@ -1,0 +1,77 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "attributeName": "readerPool",
+  "attributeKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@readerPool:ReaderPool(330)",
+  "attributeDeclarationLine": 330,
+  "expectedChanges": [
+    {
+      "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
+      "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
+      "commitTime": 1524472150,
+      "changeType": "access modifier change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(327)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(private)readerPool:ReaderPool(326)",
+      "comment": "Change Attribute Access Modifier package to private in attribute private readerPool : ReaderPool from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "2e5c6cdadc820220f8cb86e1b6e215da941649f9",
+      "commitId": "778d96752fa94636a2136ea2b4d58a3fcbe283ec",
+      "commitTime": 1453508333,
+      "changeType": "container change",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(309)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(309)",
+      "comment": "Move Source Folder src to lucene/src"
+    },
+    {
+      "parentCommitId": "8b939cb7d20160f9f8a7baf2030613f0e1e877b4",
+      "commitId": "eb0ab3d392a42c1835f79bcd7f5404bcc50c8e4c",
+      "commitTime": 1328644745,
+      "changeType": "container change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(245)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(245)",
+      "comment": "Move Source Folder lucene to lucene/core"
+    },
+    {
+      "parentCommitId": "683568df65717e2dc8d090834fed813d9c9b277b",
+      "commitId": "502e971a78dbb78a085fd0f74c1541230f19fcb8",
+      "commitTime": 1292920096,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:IndexReaderPool(306)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(252)",
+      "comment": "Change Attribute Type readerPool : IndexReaderPool to readerPool : ReaderPool in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "4128a36c987d7f50c8fc4e8fe161fd1391c753d3",
+      "commitId": "8024f7f00a00fe4cac78f3f325532daf47cc364b",
+      "commitTime": 1280262785,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(307)",
+      "elementFileAfter": "lucene/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:IndexReaderPool(306)",
+      "comment": "Change Attribute Type readerPool : ReaderPool to readerPool : IndexReaderPool in class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "bb8b2e146291942f41ee6b6e9b91b4d1222022a1",
+      "commitId": "3c91517add263dcc2cada194f9545b573b920daf",
+      "commitTime": 1239297466,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(371)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.IndexWriter@(final)(package)readerPool:ReaderPool(371)",
+      "comment": "new attribute"
+    }
+  ]
+}
