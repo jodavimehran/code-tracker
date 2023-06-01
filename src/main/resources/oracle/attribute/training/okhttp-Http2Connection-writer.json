@@ -11,6 +11,17 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(final)(package)frameWriter:FrameWriter(120)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@(final)(package)writer:Http2Writer(120)",
+      "comment": "Change Attribute Type frameWriter : FrameWriter to writer : Http2Writer in class okhttp3.internal.http2.Http2Connection"
+    },
+    {
+      "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+      "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "commitTime": 1468102159,
       "changeType": "rename",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(final)(package)frameWriter:FrameWriter(120)",
@@ -22,12 +33,12 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "type change",
+      "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection@(final)(package)frameWriter:FrameWriter(120)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
       "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection@(final)(package)writer:Http2Writer(120)",
-      "comment": "Change Attribute Type frameWriter : FrameWriter to writer : Http2Writer in class okhttp3.internal.http2.Http2Connection"
+      "comment": "Rename Class okhttp3.internal.framed.FramedConnection renamed to okhttp3.internal.http2.Http2Connection"
     },
     {
       "parentCommitId": "54dc2df914f2aae37fb48cc2c2f7560ee664bc2b",
@@ -77,23 +88,23 @@
       "parentCommitId": "bb5d91ab4ff59092d3cb17de5388390939f200fe",
       "commitId": "2f31d7122d8806b6c32d2d1e181ca635fb80bba7",
       "commitTime": 1376540989,
-      "changeType": "rename",
-      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)spdyWriter:SpdyWriter(78)",
-      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)frameWriter:FrameWriter(78)",
-      "comment": "Rename Attribute spdyWriter : SpdyWriter to frameWriter : FrameWriter in class com.squareup.okhttp.internal.spdy.SpdyConnection"
-    },
-    {
-      "parentCommitId": "bb5d91ab4ff59092d3cb17de5388390939f200fe",
-      "commitId": "2f31d7122d8806b6c32d2d1e181ca635fb80bba7",
-      "commitTime": 1376540989,
       "changeType": "type change",
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)spdyWriter:SpdyWriter(78)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)frameWriter:FrameWriter(78)",
       "comment": "Change Attribute Type spdyWriter : SpdyWriter to frameWriter : FrameWriter in class com.squareup.okhttp.internal.spdy.SpdyConnection"
+    },
+    {
+      "parentCommitId": "bb5d91ab4ff59092d3cb17de5388390939f200fe",
+      "commitId": "2f31d7122d8806b6c32d2d1e181ca635fb80bba7",
+      "commitTime": 1376540989,
+      "changeType": "rename",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)spdyWriter:SpdyWriter(78)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection@(final)(private)frameWriter:FrameWriter(78)",
+      "comment": "Rename Attribute spdyWriter : SpdyWriter to frameWriter : FrameWriter in class com.squareup.okhttp.internal.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "cc4633943800572673c03b32d0b2bc9a08ae184d",
