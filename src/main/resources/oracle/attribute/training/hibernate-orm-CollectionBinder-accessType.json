@@ -33,12 +33,45 @@
       "parentCommitId": "fbf7b91d4de3257622c77d52879e0cf51afd934e",
       "commitId": "4a9d8dcf0b054d4dc769b463145c1fdecede6e09",
       "commitTime": 1261084447,
-      "changeType": "introduced",
+      "changeType": "type change",
       "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
-      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)accessType:AccessType(161)",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(182)",
       "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
       "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)accessType:AccessType(161)",
-      "comment": "new attribute"
+      "comment": "Change Attribute Type propertyAccessorName : String to accessType : AccessType in class org.hibernate.cfg.annotations.CollectionBinder"
+    },
+    {
+      "parentCommitId": "fbf7b91d4de3257622c77d52879e0cf51afd934e",
+      "commitId": "4a9d8dcf0b054d4dc769b463145c1fdecede6e09",
+      "commitTime": 1261084447,
+      "changeType": "rename",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(182)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)accessType:AccessType(161)",
+      "comment": "Rename Attribute propertyAccessorName : String to accessType : AccessType in class org.hibernate.cfg.annotations.CollectionBinder"
+    },
+    {
+      "parentCommitId": "c457f2b3258fc48ef4010a9e58cd2fc3baaca6cc",
+      "commitId": "9d7a03a5f7f03bc803d897baa590861154b39f5e",
+      "commitTime": 1225219993,
+      "changeType": "container change",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(148)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(148)",
+      "comment": "Move Source Folder annotations/src to annotations/src/main"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(148)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/annotations/CollectionBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.annotations.CollectionBinder@(private)propertyAccessorName:String(148)",
+      "comment": "added with new class"
     }
   ]
 }

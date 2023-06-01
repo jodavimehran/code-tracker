@@ -11,6 +11,17 @@
       "parentCommitId": "46a89d9534cbb5596a2754a7655f678b27d504da",
       "commitId": "74fcdea2d96e6c88d232c487e6e2ca6b9978773a",
       "commitTime": 1527623493,
+      "changeType": "moved",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(77)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver@(final)(private)logger:Log(83)",
+      "comment": "Move Attribute protected logger : Log from class org.springframework.beans.factory.support.DefaultSingletonBeanRegistry to private logger : Log from class org.springframework.beans.factory.support.ConstructorResolver"
+    },
+    {
+      "parentCommitId": "46a89d9534cbb5596a2754a7655f678b27d504da",
+      "commitId": "74fcdea2d96e6c88d232c487e6e2ca6b9978773a",
+      "commitTime": 1527623493,
       "changeType": "access modifier change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(77)",
@@ -19,15 +30,26 @@
       "comment": "Change Attribute Access Modifier protected to private in attribute private logger : Log from class org.springframework.beans.factory.support.ConstructorResolver"
     },
     {
-      "parentCommitId": "46a89d9534cbb5596a2754a7655f678b27d504da",
-      "commitId": "74fcdea2d96e6c88d232c487e6e2ca6b9978773a",
-      "commitTime": 1527623493,
+      "parentCommitId": "b6cb514d383dcef52ba6c609a863f19e1a4c1faf",
+      "commitId": "02a4473c62d8240837bec297f0a1f3cb67ef8a7b",
+      "commitTime": 1328017030,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(83)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(83)",
+      "comment": "Move Source Folder org.springframework.beans to spring-beans"
+    },
+    {
+      "parentCommitId": "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
+      "commitId": "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
+      "commitTime": 1224692017,
       "changeType": "introduced",
-      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver@logger:Log(83)",
-      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver@logger:Log(83)",
-      "comment": "new attribute"
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(83)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/DefaultSingletonBeanRegistry.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.DefaultSingletonBeanRegistry@(final)(protected)logger:Log(83)",
+      "comment": "added with new class"
     }
   ]
 }
