@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-webflux/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-  "functionName" : "handleResult",
-  "functionKey" : "spring-webflux/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)",
-  "functionStartLine" : 83,
-  "variableName" : "body",
-  "variableKey" : "spring-webflux/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body(84)",
-  "variableStartLine" : 84,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "59b7c25003f0fe61163d074d50be558bde6b698b",
-    "commitId" : "9aa6f5caacac316c74e374550a387f222e7e1921",
-    "commitTime" : 1466544472,
-    "changeType" : "type change",
-    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(128)",
-    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body:Object(100)",
-    "comment" : "Change Variable Type optionalValue : Optional<Object> to body : Object in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
-  }, {
-    "parentCommitId" : "59b7c25003f0fe61163d074d50be558bde6b698b",
-    "commitId" : "9aa6f5caacac316c74e374550a387f222e7e1921",
-    "commitTime" : 1466544472,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(128)",
-    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body:Object(100)",
-    "comment" : "Rename Variable optionalValue : Optional<Object> to body : Object in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
-  }, {
-    "parentCommitId" : "91d063899bd816cc57815ac0b2317b3ab674868e",
-    "commitId" : "2292e46b04c65d4f3f8193b0eab249a8058e59a8",
-    "commitTime" : 1464212158,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Optional<Object>(129)",
-    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(134)",
-    "comment" : "Rename Variable value : Optional<Object> to optionalValue : Optional<Object> in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
-  }, {
-    "parentCommitId" : "b7b423a0033f22de8ce49c09fcb39e81eaecc94c",
-    "commitId" : "e92174c772c0d787be7721ae00c7189f16b05fb5",
-    "commitTime" : 1454899856,
-    "changeType" : "type change",
-    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Object(135)",
-    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/web/reactive/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Optional<Object>(136)",
-    "comment" : "Change Variable Type value : Object to value : Optional<Object> in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler"
-  }, {
-    "parentCommitId" : "9df3dd449554f0ed4485eaed5bee1f1af66f3777",
-    "commitId" : "202825554c022e4262fe3bd20a34faf01ab9d620",
-    "commitTime" : 1440521146,
-    "changeType" : "introduced",
-    "elementFileBefore" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/dispatch/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameBefore" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.dispatch.method.annotation.ResponseBodyResultHandler#handleResult(ServerHttpRequest, ServerHttpResponse, HandlerResult)$value:Object(75)",
-    "elementFileAfter" : "spring-web-reactive/src/main/java/org/springframework/reactive/web/dispatch/method/annotation/ResponseBodyResultHandler.java",
-    "elementNameAfter" : "spring-web-reactive/src/main/java/org.springframework.reactive.web.dispatch.method.annotation.ResponseBodyResultHandler#handleResult(ServerHttpRequest, ServerHttpResponse, HandlerResult)$value:Object(75)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-webflux/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+  "functionName": "handleResult",
+  "functionKey": "spring-webflux/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)",
+  "functionStartLine": 83,
+  "variableName": "body",
+  "variableKey": "spring-webflux/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body(84)",
+  "variableStartLine": 84,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "59b7c25003f0fe61163d074d50be558bde6b698b",
+      "commitId": "9aa6f5caacac316c74e374550a387f222e7e1921",
+      "commitTime": 1466544472,
+      "changeType": "type change",
+      "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(128)",
+      "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body:Object(100)",
+      "comment": "Change Variable Type optionalValue : Optional<Object> to body : Object in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
+    },
+    {
+      "parentCommitId": "59b7c25003f0fe61163d074d50be558bde6b698b",
+      "commitId": "9aa6f5caacac316c74e374550a387f222e7e1921",
+      "commitTime": 1466544472,
+      "changeType": "rename",
+      "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(128)",
+      "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$body:Object(100)",
+      "comment": "Rename Variable optionalValue : Optional<Object> to body : Object in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
+    },
+    {
+      "parentCommitId": "91d063899bd816cc57815ac0b2317b3ab674868e",
+      "commitId": "2292e46b04c65d4f3f8193b0eab249a8058e59a8",
+      "commitTime": 1464212158,
+      "changeType": "rename",
+      "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Optional<Object>(129)",
+      "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/web/reactive/result/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$optionalValue:Optional<Object>(134)",
+      "comment": "Rename Variable value : Optional<Object> to optionalValue : Optional<Object> in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.result.method.annotation.ResponseBodyResultHandler"
+    },
+    {
+      "parentCommitId": "b7b423a0033f22de8ce49c09fcb39e81eaecc94c",
+      "commitId": "e92174c772c0d787be7721ae00c7189f16b05fb5",
+      "commitTime": 1454899856,
+      "changeType": "type change",
+      "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/web/reactive/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Object(135)",
+      "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/web/reactive/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler#handleResult(ServerWebExchange, HandlerResult)$value:Optional<Object>(136)",
+      "comment": "Change Variable Type value : Object to value : Optional<Object> in method public handleResult(exchange ServerWebExchange, result HandlerResult) : Mono<Void> from class org.springframework.web.reactive.method.annotation.ResponseBodyResultHandler"
+    },
+    {
+      "parentCommitId": "9df3dd449554f0ed4485eaed5bee1f1af66f3777",
+      "commitId": "202825554c022e4262fe3bd20a34faf01ab9d620",
+      "commitTime": 1440521146,
+      "changeType": "introduced",
+      "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/reactive/web/dispatch/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.reactive.web.dispatch.method.annotation.ResponseBodyResultHandler#handleResult(ServerHttpRequest, ServerHttpResponse, HandlerResult)$value:Object(75)",
+      "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/reactive/web/dispatch/method/annotation/ResponseBodyResultHandler.java",
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.reactive.web.dispatch.method.annotation.ResponseBodyResultHandler#handleResult(ServerHttpRequest, ServerHttpResponse, HandlerResult)$value:Object(75)",
+      "comment": "added with method"
+    }
+  ]
 }

@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "apache\\lucene-solr",
-  "repositoryWebURL" : "https://github.com/apache/lucene-solr.git",
-  "filePath" : "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
-  "functionName" : "addClause",
-  "functionKey" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
-  "functionStartLine" : 374,
-  "variableName" : "clauses",
-  "variableKey" : "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)$clauses(374)",
-  "variableStartLine" : 374,
-  "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
-  "expectedChanges" : [ {
-    "parentCommitId" : "5ceb81834df7a389dae70bfac3463493de99d41c",
-    "commitId" : "649a0e83a47185fd5771e7d7492462d646789a80",
-    "commitTime" : 1256054789,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameBefore" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(483)",
-    "elementFileAfter" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameAfter" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List<BooleanClause>(453)",
-    "comment" : "Change Parameter Type clauses : List to clauses : List<BooleanClause> in method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser"
-  }, {
-    "parentCommitId" : "6242cb3322d921bc76506a1c0fad665a141f0f07",
-    "commitId" : "d5a40278bc39ec0c4f300d68c9f5bd4be0fea85b",
-    "commitTime" : 1220815360,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameBefore" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
-    "elementFileAfter" : "src/java/org/apache/lucene/queryParser/QueryParser.java",
-    "elementNameAfter" : "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
-    "comment" : "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
-  } ]
+  "repositoryName": "apache\\lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "filePath": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "functionName": "addClause",
+  "functionKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
+  "functionStartLine": 374,
+  "variableName": "clauses",
+  "variableKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)$clauses(374)",
+  "variableStartLine": 374,
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "expectedChanges": [
+    {
+      "parentCommitId": "5ceb81834df7a389dae70bfac3463493de99d41c",
+      "commitId": "649a0e83a47185fd5771e7d7492462d646789a80",
+      "commitTime": 1256054789,
+      "changeType": "type change",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(483)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List<BooleanClause>(453)",
+      "comment": "Change Parameter Type clauses : List to clauses : List<BooleanClause> in method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser"
+    },
+    {
+      "parentCommitId": "6242cb3322d921bc76506a1c0fad665a141f0f07",
+      "commitId": "d5a40278bc39ec0c4f300d68c9f5bd4be0fea85b",
+      "commitTime": 1220815360,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$clauses:List(421)",
+      "comment": "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
+    }
+  ]
 }

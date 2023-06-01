@@ -1,336 +1,373 @@
 {
-  "repositoryName" : "jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-  "functionName" : "sendPack",
-  "functionKey" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)",
-  "functionStartLine" : 1983,
-  "expectedChanges" : [ {
-    "parentCommitId" : "f516c1df9d18ff9aaba1dd5668db1776d42dd2bb",
-    "commitId" : "cd0d69ffec9eedff24a2692d18024e752cadc7c8",
-    "commitTime" : 1528175058,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)"
-  }, {
-    "parentCommitId" : "e701c59a859e8fff46a1bc16aee7771a3a8aea8a",
-    "commitId" : "f6c4a492d06e0dd345679bfba3399dabbf778f41",
-    "commitTime" : 1526957377,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
-  }, {
-    "parentCommitId" : "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
-    "commitId" : "c79e7f1c27c73732310bc64c2071a79902447dcc",
-    "commitTime" : 1526515074,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
-  }, {
-    "parentCommitId" : "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
-    "commitId" : "c79e7f1c27c73732310bc64c2071a79902447dcc",
-    "commitTime" : 1526515074,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
-  }, {
-    "parentCommitId" : "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
-    "commitId" : "c79e7f1c27c73732310bc64c2071a79902447dcc",
-    "commitTime" : 1526515074,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
-  }, {
-    "parentCommitId" : "c6a2c58624e4fe4625a0e651f4e0eb91f019b381",
-    "commitId" : "4ac32e79b751944107470d5f4cb290eacd1b7cf9",
-    "commitTime" : 1521146802,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
-    "commitId" : "67df4986cef270144c7cae3485dc8541ca180649",
-    "commitTime" : 1520991863,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
-    "commitId" : "67df4986cef270144c7cae3485dc8541ca180649",
-    "commitTime" : 1520991863,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "f07b60239c3e3bca7c75705c678dd32a12047e09",
-    "commitId" : "d88d5b94c669b4c23af4e1de797a4d130b6612f8",
-    "commitTime" : 1520819523,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "f9a4112ecc63bc37562a36c7e06947593b90657e",
-    "commitId" : "cc19f649666704e5bf0184d3839be0c0c17439fc",
-    "commitTime" : 1520707116,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "5efc3dcc6c9f5c93ba8b1f75b7070d3eb281f08d",
-    "commitId" : "302596cc675d00e41f0ff07efef58063afe20c79",
-    "commitTime" : 1518472782,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "5efc3dcc6c9f5c93ba8b1f75b7070d3eb281f08d",
-    "commitId" : "302596cc675d00e41f0ff07efef58063afe20c79",
-    "commitTime" : 1518472782,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
-  }, {
-    "parentCommitId" : "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
-    "commitId" : "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
-    "commitTime" : 1515018065,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
-    "commitId" : "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
-    "commitTime" : 1515018065,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "69d5e89e99707119837eb1f025ee2c8d6d376996",
-    "commitId" : "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
-    "commitTime" : 1495146321,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "43eb8511f5d8225c0b4e2f899db2126334e5facf",
-    "commitId" : "3b4448637fbb9d74e0c9d44048ba76bb7c1214ce",
-    "commitTime" : 1487627243,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "d93469611f2c1e5bd232833457b2ce0b794da483",
-    "commitId" : "01935f8f50699db09e9e6f4e725913b907d7cbd5",
-    "commitTime" : 1474530385,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "b4d33382253efa42d92245d09995b093ec6089ad",
-    "commitId" : "3b0b7677fffa1fe826485f383e6b724703742d08",
-    "altCommitId" : "b16e207742beb6a82b2b74df7bb87893a38bdd04,f84370feaaf319b7fe9bd272a7ceba235cc1e86a",
-    "commitTime" : 1470689457,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "bbcbcab8d39dd4bdf194cdba02c97a9eb70b2379",
-    "commitId" : "1fa6f3a7509dc937551006e11dfd3bdaea921cd0",
-    "commitTime" : 1447204441,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "deb853cb691caf55affe1e4fbfad29b670591140",
-    "commitId" : "bbcbcab8d39dd4bdf194cdba02c97a9eb70b2379",
-    "commitTime" : 1447124118,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "ec37daeb7f593d7184d1821f06386feadc66464a",
-    "commitId" : "6a415915c2dab31f9e69b9a55dcb87c579649bf5",
-    "commitTime" : 1434404987,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "53fb3e3dd394a845688696bd4afa343002dc36c6",
-    "commitId" : "d9bbb04c3ef28db1d2e492506a819b7ac5c5f9df",
-    "commitTime" : 1434142576,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "6424dcd6943ce4cad362bff6afad56e849ddbe54",
-    "commitId" : "0e73d395061d1bfee365acaa2f79c392175d13bf",
-    "commitTime" : 1432159296,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "6be184e15ca1c3d1b50d269dd94973c24773f6ec",
-    "commitId" : "7b7d033ee1fdd8e81ae2ad7dc9e1ae12cbd9ddfa",
-    "commitTime" : 1409342177,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "ce5fd525be80d664db5f7263f8a4c961e320940e",
-    "commitId" : "b0174a089ce886d02c8d7fb80d63f0e50329bec3",
-    "commitTime" : 1390958940,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
-    "commitId" : "557471da2eee6752ad4305a883843bcdc8d66536",
-    "commitTime" : 1369339623,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "3e58471ee3b671b9b9ebdb7c909a8e7a4647a688",
-    "commitId" : "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
-    "commitTime" : 1369250048,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "d0a533762586ce331a8f967042fa209c847c3c8d",
-    "commitId" : "eb17495ca4ce95c63bacf81af16ab19ff042b65c",
-    "commitTime" : 1365623930,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "dafcb8f6db82b899c917832768f1c240d273190c",
-    "commitId" : "43ea887c8b43de26a6b7a9ea547033d3c04022e7",
-    "commitTime" : 1362510888,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "bc8794eb21319c3251cd778133541d60856eb626",
-    "commitId" : "81fa5662953c54ba07e141284d3d9a717361b17b",
-    "commitTime" : 1351203443,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "ef6aec3a04c8403037779e8122fa4c89af7d3d0b",
-    "commitId" : "9b86cf574b230a9b3a71d7cb53a4f6712bfa33eb",
-    "commitTime" : 1345211378,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "7acd333e7d2e19b48534e3e9c72b19486d6e1b9a",
-    "commitId" : "1f2022e3a7e9482caa4823e031504b6bbe8246af",
-    "commitTime" : 1330571363,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "cd958ba93cd62399da3efdd13eb9ccaa0512a452",
-    "commitId" : "d6172dc0de2cbaeb0bd38a9d30278dd5f9b140b3",
-    "commitTime" : 1323361568,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "1b6a549ff350673402f797fe7f878175e2b5ba30",
-    "commitId" : "01888db892aa9590862d886c01f3b293140db153",
-    "commitTime" : 1316039695,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
-    "commitId" : "9952223e0645fd7a8cddc6093a7f449c6390238d",
-    "commitTime" : 1313960663,
-    "changeType" : "body change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
-  }, {
-    "parentCommitId" : "1a87a725be28cb33f370bb62db69ae672a64c56b",
-    "commitId" : "7ff6eb584cf8b83f83a3b5edf897feb53dbf42c0",
-    "commitTime" : 1307665786,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
-    "comment" : "Extract Method private sendPack(sideband boolean) : void extracted from private sendPack() : void in class org.eclipse.jgit.transport.UploadPack"
-  } ]
+  "repositoryName": "jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+  "functionName": "sendPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)",
+  "functionStartLine": 1983,
+  "expectedChanges": [
+    {
+      "parentCommitId": "f516c1df9d18ff9aaba1dd5668db1776d42dd2bb",
+      "commitId": "cd0d69ffec9eedff24a2692d18024e752cadc7c8",
+      "commitTime": 1528175058,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)"
+    },
+    {
+      "parentCommitId": "e701c59a859e8fff46a1bc16aee7771a3a8aea8a",
+      "commitId": "f6c4a492d06e0dd345679bfba3399dabbf778f41",
+      "commitTime": 1526957377,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
+    },
+    {
+      "parentCommitId": "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
+      "commitId": "c79e7f1c27c73732310bc64c2071a79902447dcc",
+      "commitTime": 1526515074,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
+    },
+    {
+      "parentCommitId": "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
+      "commitId": "c79e7f1c27c73732310bc64c2071a79902447dcc",
+      "commitTime": 1526515074,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
+    },
+    {
+      "parentCommitId": "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
+      "commitId": "c79e7f1c27c73732310bc64c2071a79902447dcc",
+      "commitTime": 1526515074,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
+    },
+    {
+      "parentCommitId": "c6a2c58624e4fe4625a0e651f4e0eb91f019b381",
+      "commitId": "4ac32e79b751944107470d5f4cb290eacd1b7cf9",
+      "commitTime": 1521146802,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
+      "commitId": "67df4986cef270144c7cae3485dc8541ca180649",
+      "commitTime": 1520991863,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
+      "commitId": "67df4986cef270144c7cae3485dc8541ca180649",
+      "commitTime": 1520991863,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "f07b60239c3e3bca7c75705c678dd32a12047e09",
+      "commitId": "d88d5b94c669b4c23af4e1de797a4d130b6612f8",
+      "commitTime": 1520819523,
+      "changeType": "annotation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "f9a4112ecc63bc37562a36c7e06947593b90657e",
+      "commitId": "cc19f649666704e5bf0184d3839be0c0c17439fc",
+      "commitTime": 1520707116,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "5efc3dcc6c9f5c93ba8b1f75b7070d3eb281f08d",
+      "commitId": "302596cc675d00e41f0ff07efef58063afe20c79",
+      "commitTime": 1518472782,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "5efc3dcc6c9f5c93ba8b1f75b7070d3eb281f08d",
+      "commitId": "302596cc675d00e41f0ff07efef58063afe20c79",
+      "commitTime": 1518472782,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+    },
+    {
+      "parentCommitId": "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
+      "commitId": "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
+      "commitTime": 1515018065,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
+      "commitId": "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
+      "commitTime": 1515018065,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "69d5e89e99707119837eb1f025ee2c8d6d376996",
+      "commitId": "c46c720e99baa081bff0dd7bcc1ae8ca48b5e3d1",
+      "commitTime": 1495146321,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "43eb8511f5d8225c0b4e2f899db2126334e5facf",
+      "commitId": "3b4448637fbb9d74e0c9d44048ba76bb7c1214ce",
+      "commitTime": 1487627243,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "d93469611f2c1e5bd232833457b2ce0b794da483",
+      "commitId": "01935f8f50699db09e9e6f4e725913b907d7cbd5",
+      "commitTime": 1474530385,
+      "changeType": "annotation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "b4d33382253efa42d92245d09995b093ec6089ad",
+      "commitId": "3b0b7677fffa1fe826485f383e6b724703742d08",
+      "altCommitId": "b16e207742beb6a82b2b74df7bb87893a38bdd04,f84370feaaf319b7fe9bd272a7ceba235cc1e86a",
+      "commitTime": 1470689457,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "bbcbcab8d39dd4bdf194cdba02c97a9eb70b2379",
+      "commitId": "1fa6f3a7509dc937551006e11dfd3bdaea921cd0",
+      "commitTime": 1447204441,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "deb853cb691caf55affe1e4fbfad29b670591140",
+      "commitId": "bbcbcab8d39dd4bdf194cdba02c97a9eb70b2379",
+      "commitTime": 1447124118,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "ec37daeb7f593d7184d1821f06386feadc66464a",
+      "commitId": "6a415915c2dab31f9e69b9a55dcb87c579649bf5",
+      "commitTime": 1434404987,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "53fb3e3dd394a845688696bd4afa343002dc36c6",
+      "commitId": "d9bbb04c3ef28db1d2e492506a819b7ac5c5f9df",
+      "commitTime": 1434142576,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "6424dcd6943ce4cad362bff6afad56e849ddbe54",
+      "commitId": "0e73d395061d1bfee365acaa2f79c392175d13bf",
+      "commitTime": 1432159296,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "6be184e15ca1c3d1b50d269dd94973c24773f6ec",
+      "commitId": "7b7d033ee1fdd8e81ae2ad7dc9e1ae12cbd9ddfa",
+      "commitTime": 1409342177,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "ce5fd525be80d664db5f7263f8a4c961e320940e",
+      "commitId": "b0174a089ce886d02c8d7fb80d63f0e50329bec3",
+      "commitTime": 1390958940,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
+      "commitId": "557471da2eee6752ad4305a883843bcdc8d66536",
+      "commitTime": 1369339623,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "3e58471ee3b671b9b9ebdb7c909a8e7a4647a688",
+      "commitId": "6e896ba66ba095b97a89a622d43f05ce9ad501e7",
+      "commitTime": 1369250048,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "d0a533762586ce331a8f967042fa209c847c3c8d",
+      "commitId": "eb17495ca4ce95c63bacf81af16ab19ff042b65c",
+      "commitTime": 1365623930,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "dafcb8f6db82b899c917832768f1c240d273190c",
+      "commitId": "43ea887c8b43de26a6b7a9ea547033d3c04022e7",
+      "commitTime": 1362510888,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "bc8794eb21319c3251cd778133541d60856eb626",
+      "commitId": "81fa5662953c54ba07e141284d3d9a717361b17b",
+      "commitTime": 1351203443,
+      "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "ef6aec3a04c8403037779e8122fa4c89af7d3d0b",
+      "commitId": "9b86cf574b230a9b3a71d7cb53a4f6712bfa33eb",
+      "commitTime": 1345211378,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "7acd333e7d2e19b48534e3e9c72b19486d6e1b9a",
+      "commitId": "1f2022e3a7e9482caa4823e031504b6bbe8246af",
+      "commitTime": 1330571363,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "cd958ba93cd62399da3efdd13eb9ccaa0512a452",
+      "commitId": "d6172dc0de2cbaeb0bd38a9d30278dd5f9b140b3",
+      "commitTime": 1323361568,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "1b6a549ff350673402f797fe7f878175e2b5ba30",
+      "commitId": "01888db892aa9590862d886c01f3b293140db153",
+      "commitTime": 1316039695,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "a1a8c6d77ec5bea13c4f5ca428e425d95e14e003",
+      "commitId": "9952223e0645fd7a8cddc6093a7f449c6390238d",
+      "commitTime": 1313960663,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+    },
+    {
+      "parentCommitId": "1a87a725be28cb33f370bb62db69ae672a64c56b",
+      "commitId": "7ff6eb584cf8b83f83a3b5edf897feb53dbf42c0",
+      "commitTime": 1307665786,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "comment": "Extract Method private sendPack(sideband boolean) : void extracted from private sendPack() : void in class org.eclipse.jgit.transport.UploadPack"
+    }
+  ]
 }

@@ -1,127 +1,141 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-  "functionName" : "masterOperation",
-  "functionKey" : "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-  "functionStartLine" : 50,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "c90b4f3bae4a87c8618b91db087cd85ec2e1eab9",
-    "commitId" : "31740e279f812f27d7f064e14a361a1213b3cb0f",
-    "commitTime" : 1457950128,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "75a51ede24086378faaaf301944949b61432be22",
-    "commitId" : "52859e3a523983275cea0bbb0bd2d4f0203f69cf",
-    "commitTime" : 1436534308,
-    "changeType" : "body change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
-    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
-    "commitTime" : 1433502723,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "4f14af21c5b9213e4b1add84d6d880eb20451e7d",
-    "commitId" : "b4efb6c472715756f9920a653be70d3ce16767cc",
-    "commitTime" : 1430296951,
-    "changeType" : "exception change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "caf11ff2fbd9195cc780edb375f6a74302d906df",
-    "commitId" : "8dedbd01df14c76fc8f1ac9060facc053fa2be9b",
-    "commitTime" : 1404821906,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "1f28cd0ba832636ef4568dbcab3bb839f72ef793",
-    "commitId" : "7548b2edb782a2732aca5e9bae9016c6a01cb6e6",
-    "commitTime" : 1400179985,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "8d9af7e7a5c69205ae840a2722900dc8a1c60475",
-    "commitId" : "fa16969360ea43667ad11f827bbf86718c18fcc6",
-    "commitTime" : 1389090111,
-    "changeType" : "exception change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "040719f337d8525e2d76bd6851fb64140755ce55",
-    "commitId" : "f4bf0d5112b5c6f29b651586d72c3972db5a2834",
-    "commitTime" : 1388661585,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
-    "commitId" : "4930b93c26506e8f063a3b817f0434bd17fca14c",
-    "commitTime" : 1374530925,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
-    "commitId" : "4930b93c26506e8f063a3b817f0434bd17fca14c",
-    "commitTime" : 1374530925,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
-    "commitId" : "4930b93c26506e8f063a3b817f0434bd17fca14c",
-    "commitTime" : 1374530925,
-    "changeType" : "return type change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
-  }, {
-    "parentCommitId" : "8e33e0e69d73f14cc02abd286d767ba83e171cee",
-    "commitId" : "dc0d81b8aac03af962e895381406f312565fd358",
-    "commitTime" : 1371063827,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+  "functionName": "masterOperation",
+  "functionKey": "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+  "functionStartLine": 50,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "c90b4f3bae4a87c8618b91db087cd85ec2e1eab9",
+      "commitId": "31740e279f812f27d7f064e14a361a1213b3cb0f",
+      "commitTime": 1457950128,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "75a51ede24086378faaaf301944949b61432be22",
+      "commitId": "52859e3a523983275cea0bbb0bd2d4f0203f69cf",
+      "commitTime": 1436534308,
+      "changeType": "body change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitId": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitTime": 1433502723,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "4f14af21c5b9213e4b1add84d6d880eb20451e7d",
+      "commitId": "b4efb6c472715756f9920a653be70d3ce16767cc",
+      "commitTime": 1430296951,
+      "changeType": "exception change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "caf11ff2fbd9195cc780edb375f6a74302d906df",
+      "commitId": "8dedbd01df14c76fc8f1ac9060facc053fa2be9b",
+      "commitTime": 1404821906,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "1f28cd0ba832636ef4568dbcab3bb839f72ef793",
+      "commitId": "7548b2edb782a2732aca5e9bae9016c6a01cb6e6",
+      "commitTime": 1400179985,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "8d9af7e7a5c69205ae840a2722900dc8a1c60475",
+      "commitId": "fa16969360ea43667ad11f827bbf86718c18fcc6",
+      "commitTime": 1389090111,
+      "changeType": "exception change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "040719f337d8525e2d76bd6851fb64140755ce55",
+      "commitId": "f4bf0d5112b5c6f29b651586d72c3972db5a2834",
+      "commitTime": 1388661585,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
+      "commitId": "4930b93c26506e8f063a3b817f0434bd17fca14c",
+      "commitTime": 1374530925,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
+      "commitId": "4930b93c26506e8f063a3b817f0434bd17fca14c",
+      "commitTime": 1374530925,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
+      "commitId": "4930b93c26506e8f063a3b817f0434bd17fca14c",
+      "commitTime": 1374530925,
+      "changeType": "return type change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)"
+    },
+    {
+      "parentCommitId": "8e33e0e69d73f14cc02abd286d767ba83e171cee",
+      "commitId": "dc0d81b8aac03af962e895381406f312565fd358",
+      "commitTime": 1371063827,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)"
+    }
+  ]
 }

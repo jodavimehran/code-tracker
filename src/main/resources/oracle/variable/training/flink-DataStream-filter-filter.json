@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "apache\\flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "filePath" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-  "functionName" : "filter",
-  "functionKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-  "functionStartLine" : 685,
-  "variableName" : "filter",
-  "variableKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter(685)",
-  "variableStartLine" : 685,
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "baaa3dacabdfa87c3c11882810e05dc384f24038",
-    "commitId" : "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
-    "commitTime" : 1439999584,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<OUT>(719)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(645)",
-    "comment" : "Change Parameter Type filter : FilterFunction<OUT> to filter : FilterFunction<T> in method public filter(filter FilterFunction<T>) : SingleOutputStreamOperator<T,?> from class org.apache.flink.streaming.api.datastream.DataStream"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(440)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<OUT>(344)",
-    "comment" : "Change Parameter Type filter : FilterFunction<T> to filter : FilterFunction<OUT> in method public filter(filter FilterFunction<OUT>) : SingleOutputStreamOperator<OUT,?> from class org.apache.flink.streaming.api.datastream.DataStream"
-  }, {
-    "parentCommitId" : "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
-    "commitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitTime" : 1408371770,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)$filter:RichFilterFunction<T>(424)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(440)",
-    "comment" : "Change Parameter Type filter : RichFilterFunction<T> to filter : FilterFunction<T> in method public filter(filter FilterFunction<T>) : StreamOperator<T> from class org.apache.flink.streaming.api.DataStream"
-  }, {
-    "parentCommitId" : "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
-    "commitId" : "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
-    "commitTime" : 1408371770,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(413)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)$filter:RichFilterFunction<T>(422)",
-    "comment" : "Change Parameter Type filter : FilterFunction<T> to filter : RichFilterFunction<T> in method public filter(filter RichFilterFunction<T>) : StreamOperator<T,T> from class org.apache.flink.streaming.api.DataStream"
-  }, {
-    "parentCommitId" : "cde1d46344741ff8c87d2bad62d2f49e05fe3fe8",
-    "commitId" : "f8425f1d1e9c6846a684bd2745623b14b11ddd51",
-    "commitTime" : 1408370221,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(102)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(102)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "apache\\flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "filePath": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+  "functionName": "filter",
+  "functionKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+  "functionStartLine": 685,
+  "variableName": "filter",
+  "variableKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter(685)",
+  "variableStartLine": 685,
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "baaa3dacabdfa87c3c11882810e05dc384f24038",
+      "commitId": "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
+      "commitTime": 1439999584,
+      "changeType": "type change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<OUT>(719)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(645)",
+      "comment": "Change Parameter Type filter : FilterFunction<OUT> to filter : FilterFunction<T> in method public filter(filter FilterFunction<T>) : SingleOutputStreamOperator<T,?> from class org.apache.flink.streaming.api.datastream.DataStream"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(440)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)$filter:FilterFunction<OUT>(344)",
+      "comment": "Change Parameter Type filter : FilterFunction<T> to filter : FilterFunction<OUT> in method public filter(filter FilterFunction<OUT>) : SingleOutputStreamOperator<OUT,?> from class org.apache.flink.streaming.api.datastream.DataStream"
+    },
+    {
+      "parentCommitId": "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
+      "commitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitTime": 1408371770,
+      "changeType": "type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)$filter:RichFilterFunction<T>(424)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(440)",
+      "comment": "Change Parameter Type filter : RichFilterFunction<T> to filter : FilterFunction<T> in method public filter(filter FilterFunction<T>) : StreamOperator<T> from class org.apache.flink.streaming.api.DataStream"
+    },
+    {
+      "parentCommitId": "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
+      "commitId": "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
+      "commitTime": 1408371770,
+      "changeType": "type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(413)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)$filter:RichFilterFunction<T>(422)",
+      "comment": "Change Parameter Type filter : FilterFunction<T> to filter : RichFilterFunction<T> in method public filter(filter RichFilterFunction<T>) : StreamOperator<T,T> from class org.apache.flink.streaming.api.DataStream"
+    },
+    {
+      "parentCommitId": "cde1d46344741ff8c87d2bad62d2f49e05fe3fe8",
+      "commitId": "f8425f1d1e9c6846a684bd2745623b14b11ddd51",
+      "commitTime": 1408370221,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(102)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)$filter:FilterFunction<T>(102)",
+      "comment": "added with method"
+    }
+  ]
 }

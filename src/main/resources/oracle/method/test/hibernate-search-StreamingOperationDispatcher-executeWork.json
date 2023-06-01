@@ -1,262 +1,291 @@
 {
-  "repositoryName" : "hibernate-search",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
-  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "filePath" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-  "functionName" : "executeWork",
-  "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
-  "functionStartLine" : 49,
-  "expectedChanges" : [ {
-    "parentCommitId" : "e7d6d979caf1c0fa919765d7a25062f78171f46e",
-    "commitId" : "1cf93d1325d9c1635bf919198916f2fdf6977dd6",
-    "commitTime" : 1499100337,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "c02f76eeea20c5e50341dfaed53dfa38970d7e8d",
-    "commitId" : "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
-    "commitTime" : 1497310060,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "f39ded2527d345d6ebd192a6d492c11f30d094a6",
-    "commitId" : "bb0e67026acff2766b118ceb1fa1ed4c326a38bf",
-    "commitTime" : 1492684792,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "moved",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "rename",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-  }, {
-    "parentCommitId" : "391e37ad845d774d1e9305e91dfff5d60e37f0e2",
-    "commitId" : "db0bd844315a26b0dcac1a032f7714c7cb1963fd",
-    "commitTime" : 1463489940,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "ef140113952526f0f7f6f4271d4fb2ebfb0fbc7b",
-    "commitId" : "8767c010fd19bc441e9676ee0e5bd13e86774679",
-    "commitTime" : 1429201749,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "a484b5f87470ad684b2a6b2e87f4e425b9e878d7",
-    "commitId" : "ef140113952526f0f7f6f4271d4fb2ebfb0fbc7b",
-    "commitTime" : 1429201746,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "7bc64704b774df3ec998f99dc88a0dd55844941f",
-    "commitId" : "906098e9c0f437934a19b3a22f7ef48eb276489d",
-    "commitTime" : 1418067457,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "7009987ef42ab1bb9eb2ff07bacebc9be02e786a",
-    "commitId" : "37d9e1402cdacec47615fb86aa2d3341458b5941",
-    "commitTime" : 1372951862,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
-    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
-    "commitTime" : 1366736556,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "ecb8241a88c222d9c7094260a95361b32829ab8f",
-    "commitId" : "511646efde24ab741e21a243e3241ff628873f02",
-    "commitTime" : 1320693837,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "1b951f6ba476986761d954cd24bc70795ad67662",
-    "commitId" : "8f131200bafd1ba324d47f2b7079d69c313a8fe4",
-    "commitTime" : 1319117305,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
-    "commitId" : "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
-    "commitTime" : 1317161019,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
-    "commitId" : "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
-    "commitTime" : 1313170471,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
-    "commitId" : "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
-    "commitTime" : 1313170471,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "d46648205b811c7b3e545a9c38bd19001ef44213",
-    "commitId" : "814c399d6b23a3a1b16d3af63f2c575da50dc53f",
-    "commitTime" : 1311892976,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
-    "commitId" : "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
-    "commitTime" : 1311863821,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
-    "commitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
-    "commitTime" : 1311863120,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
-    "commitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
-    "commitTime" : 1311863120,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)"
-  }, {
-    "parentCommitId" : "78d0f8c3216697c079abdb4f83713b2379e2d6b7",
-    "commitId" : "37178e9cb682309775ea6180572db48190e426cc",
-    "commitTime" : 1311846712,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
-  }, {
-    "parentCommitId" : "fabff8b00abedf2ea4fbd87e3e553b444b975183",
-    "commitId" : "c866b2799a080b4806438f7047f30ee2c673106f",
-    "commitTime" : 1311846710,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
-  }, {
-    "parentCommitId" : "fabff8b00abedf2ea4fbd87e3e553b444b975183",
-    "commitId" : "c866b2799a080b4806438f7047f30ee2c673106f",
-    "commitTime" : 1311846710,
-    "changeType" : "exception change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
-  }, {
-    "parentCommitId" : "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
-    "commitId" : "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
-    "commitTime" : 1268702887,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
-  }, {
-    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
-    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
-    "commitTime" : 1246314343,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
-    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
-  } ]
+  "repositoryName": "hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+  "functionName": "executeWork",
+  "functionKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+  "functionStartLine": 49,
+  "expectedChanges": [
+    {
+      "parentCommitId": "e7d6d979caf1c0fa919765d7a25062f78171f46e",
+      "commitId": "1cf93d1325d9c1635bf919198916f2fdf6977dd6",
+      "commitTime": 1499100337,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "c02f76eeea20c5e50341dfaed53dfa38970d7e8d",
+      "commitId": "3c42a071e8d9b163d207e7e2e77e038341bf26e1",
+      "commitTime": 1497310060,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "f39ded2527d345d6ebd192a6d492c11f30d094a6",
+      "commitId": "bb0e67026acff2766b118ceb1fa1ed4c326a38bf",
+      "commitTime": 1492684792,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "moved",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "parameter change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "rename",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "documentation change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+    },
+    {
+      "parentCommitId": "391e37ad845d774d1e9305e91dfff5d60e37f0e2",
+      "commitId": "db0bd844315a26b0dcac1a032f7714c7cb1963fd",
+      "commitTime": 1463489940,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "ef140113952526f0f7f6f4271d4fb2ebfb0fbc7b",
+      "commitId": "8767c010fd19bc441e9676ee0e5bd13e86774679",
+      "commitTime": 1429201749,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "a484b5f87470ad684b2a6b2e87f4e425b9e878d7",
+      "commitId": "ef140113952526f0f7f6f4271d4fb2ebfb0fbc7b",
+      "commitTime": 1429201746,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "7bc64704b774df3ec998f99dc88a0dd55844941f",
+      "commitId": "906098e9c0f437934a19b3a22f7ef48eb276489d",
+      "commitTime": 1418067457,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "7009987ef42ab1bb9eb2ff07bacebc9be02e786a",
+      "commitId": "37d9e1402cdacec47615fb86aa2d3341458b5941",
+      "commitTime": 1372951862,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitId": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitTime": 1366736556,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "ecb8241a88c222d9c7094260a95361b32829ab8f",
+      "commitId": "511646efde24ab741e21a243e3241ff628873f02",
+      "commitTime": 1320693837,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "1b951f6ba476986761d954cd24bc70795ad67662",
+      "commitId": "8f131200bafd1ba324d47f2b7079d69c313a8fe4",
+      "commitTime": 1319117305,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
+      "commitId": "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+      "commitTime": 1317161019,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
+      "commitId": "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
+      "commitTime": 1313170471,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
+      "commitId": "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
+      "commitTime": 1313170471,
+      "changeType": "documentation change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "d46648205b811c7b3e545a9c38bd19001ef44213",
+      "commitId": "814c399d6b23a3a1b16d3af63f2c575da50dc53f",
+      "commitTime": 1311892976,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitId": "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
+      "commitTime": 1311863821,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
+      "commitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitTime": 1311863120,
+      "changeType": "parameter change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
+      "commitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitTime": 1311863120,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+    },
+    {
+      "parentCommitId": "78d0f8c3216697c079abdb4f83713b2379e2d6b7",
+      "commitId": "37178e9cb682309775ea6180572db48190e426cc",
+      "commitTime": 1311846712,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+    },
+    {
+      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
+      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
+      "commitTime": 1311846710,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+    },
+    {
+      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
+      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
+      "commitTime": 1311846710,
+      "changeType": "exception change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+    },
+    {
+      "parentCommitId": "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
+      "commitId": "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
+      "commitTime": 1268702887,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+    },
+    {
+      "parentCommitId": "67f507fa7bf80f8c822926380ff960b15095d10e",
+      "commitId": "f7b4e276eb754193a72fa98a8972b66da837664e",
+      "commitTime": 1246314343,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+    }
+  ]
 }

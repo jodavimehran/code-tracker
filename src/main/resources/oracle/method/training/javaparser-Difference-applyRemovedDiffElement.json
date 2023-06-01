@@ -1,47 +1,52 @@
 {
-  "repositoryName" : "javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "filePath" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-  "functionName" : "applyRemovedDiffElement",
-  "functionKey" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)",
-  "functionStartLine" : 339,
-  "expectedChanges" : [ {
-    "parentCommitId" : "aea012851b3729fbb84680de6bdb88f039b65da0",
-    "commitId" : "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
-    "commitTime" : 1528404857,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
-  }, {
-    "parentCommitId" : "aea012851b3729fbb84680de6bdb88f039b65da0",
-    "commitId" : "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
-    "commitTime" : 1528404857,
-    "changeType" : "body change",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
-  }, {
-    "parentCommitId" : "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
-    "commitId" : "4f9e0c67e6f11738be45155bd5606f18445fcec7",
-    "commitTime" : 1528404857,
-    "changeType" : "body change",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
-  }, {
-    "parentCommitId" : "c35fbac21da07f996f017169288b748764488c20",
-    "commitId" : "b7bd15d12e107c85e29912960f7b4e48aac4dc38",
-    "commitTime" : 1526693640,
-    "changeType" : "introduced",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
-    "comment" : "Extract Method private applyRemovedDiffElement(removed Removed, originalElement TextElement, originalElementIsChild boolean, originalElementIsToken boolean) : void extracted from package apply() : void in class com.github.javaparser.printer.lexicalpreservation.Difference"
-  } ]
+  "repositoryName": "javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "filePath": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+  "functionName": "applyRemovedDiffElement",
+  "functionKey": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)",
+  "functionStartLine": 339,
+  "expectedChanges": [
+    {
+      "parentCommitId": "aea012851b3729fbb84680de6bdb88f039b65da0",
+      "commitId": "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
+      "commitTime": 1528404857,
+      "changeType": "parameter change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
+    },
+    {
+      "parentCommitId": "aea012851b3729fbb84680de6bdb88f039b65da0",
+      "commitId": "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
+      "commitTime": 1528404857,
+      "changeType": "body change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
+    },
+    {
+      "parentCommitId": "2d3f5e219af9d1ba916f1dc21a6169a41a254632",
+      "commitId": "4f9e0c67e6f11738be45155bd5606f18445fcec7",
+      "commitTime": 1528404857,
+      "changeType": "body change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(RemovedGroup, Removed, TextElement, boolean, boolean)"
+    },
+    {
+      "parentCommitId": "c35fbac21da07f996f017169288b748764488c20",
+      "commitId": "b7bd15d12e107c85e29912960f7b4e48aac4dc38",
+      "commitTime": 1526693640,
+      "changeType": "introduced",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)",
+      "comment": "Extract Method private applyRemovedDiffElement(removed Removed, originalElement TextElement, originalElementIsChild boolean, originalElementIsToken boolean) : void extracted from package apply() : void in class com.github.javaparser.printer.lexicalpreservation.Difference"
+    }
+  ]
 }

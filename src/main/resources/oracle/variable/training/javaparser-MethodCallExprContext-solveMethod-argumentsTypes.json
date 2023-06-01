@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "javaparser\\javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "filePath" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-  "functionName" : "solveMethod",
-  "functionKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
-  "functionStartLine" : 153,
-  "variableName" : "argumentsTypes",
-  "variableKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes(153)",
-  "variableStartLine" : 153,
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "expectedChanges" : [ {
-    "parentCommitId" : "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
-    "commitId" : "5d8d0cb7947efcf2282f7d056302dd905f348532",
-    "commitTime" : 1506630980,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes:List<Type>(156)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes:List<ResolvedType>(150)",
-    "comment" : "Change Parameter Type argumentsTypes : List<Type> to argumentsTypes : List<ResolvedType> in method public solveMethod(name String, argumentsTypes List<ResolvedType>, staticOnly boolean, typeSolver TypeSolver) : SymbolReference<ResolvedMethodDeclaration> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "1cc78a37dbd0df4ce02c984766764b009f8a9a74",
-    "commitId" : "88db8b2a8b93bcc692cb8fd5085ba68b8bcf1968",
-    "commitTime" : 1476725156,
-    "changeType" : "rename",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<Type>(229)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$argumentsTypes:List<Type>(229)",
-    "comment" : "Rename Parameter parameterTypes : List<Type> to argumentsTypes : List<Type> in method public solveMethod(name String, argumentsTypes List<Type>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "b75d0c51157475833e5364ec6df88b2b6fe0db79",
-    "commitId" : "82eb44707b620803d424188a1eb8708fcaf093cb",
-    "commitTime" : 1476389491,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeUsage>(234)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<Type>(235)",
-    "comment" : "Change Parameter Type parameterTypes : List<TypeUsage> to parameterTypes : List<Type> in method public solveMethod(name String, parameterTypes List<Type>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "2f49331fb22511346eea8800d27907de44409d5b",
-    "commitId" : "8b8cc6cddbf5af0c93c4ceffd015f6328c932149",
-    "commitTime" : 1438368778,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
-    "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeUsage>(30)",
-    "comment" : "Change Parameter Type parameterTypes : List<TypeReference> to parameterTypes : List<TypeUsage> in method public solveMethod(name String, parameterTypes List<TypeUsage>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "d83eefd415a7c1ee4d8a105ffd5b6ac78a249f27",
-    "commitId" : "2f49331fb22511346eea8800d27907de44409d5b",
-    "commitTime" : 1438358880,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
-    "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "javaparser\\javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+  "functionName": "solveMethod",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)",
+  "functionStartLine": 153,
+  "variableName": "argumentsTypes",
+  "variableKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes(153)",
+  "variableStartLine": 153,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
+      "commitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitTime": 1506630980,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes:List<Type>(156)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, boolean, TypeSolver)$argumentsTypes:List<ResolvedType>(150)",
+      "comment": "Change Parameter Type argumentsTypes : List<Type> to argumentsTypes : List<ResolvedType> in method public solveMethod(name String, argumentsTypes List<ResolvedType>, staticOnly boolean, typeSolver TypeSolver) : SymbolReference<ResolvedMethodDeclaration> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "1cc78a37dbd0df4ce02c984766764b009f8a9a74",
+      "commitId": "88db8b2a8b93bcc692cb8fd5085ba68b8bcf1968",
+      "commitTime": 1476725156,
+      "changeType": "rename",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<Type>(229)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$argumentsTypes:List<Type>(229)",
+      "comment": "Rename Parameter parameterTypes : List<Type> to argumentsTypes : List<Type> in method public solveMethod(name String, argumentsTypes List<Type>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "b75d0c51157475833e5364ec6df88b2b6fe0db79",
+      "commitId": "82eb44707b620803d424188a1eb8708fcaf093cb",
+      "commitTime": 1476389491,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeUsage>(234)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<Type>(235)",
+      "comment": "Change Parameter Type parameterTypes : List<TypeUsage> to parameterTypes : List<Type> in method public solveMethod(name String, parameterTypes List<Type>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "2f49331fb22511346eea8800d27907de44409d5b",
+      "commitId": "8b8cc6cddbf5af0c93c4ceffd015f6328c932149",
+      "commitTime": 1438368778,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeUsage>(30)",
+      "comment": "Change Parameter Type parameterTypes : List<TypeReference> to parameterTypes : List<TypeUsage> in method public solveMethod(name String, parameterTypes List<TypeUsage>, typeSolver TypeSolver) : SymbolReference<MethodDeclaration> from class me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "d83eefd415a7c1ee4d8a105ffd5b6ac78a249f27",
+      "commitId": "2f49331fb22511346eea8800d27907de44409d5b",
+      "commitTime": 1438358880,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethod(String, List, TypeSolver)$parameterTypes:List<TypeReference>(31)",
+      "comment": "added with method"
+    }
+  ]
 }

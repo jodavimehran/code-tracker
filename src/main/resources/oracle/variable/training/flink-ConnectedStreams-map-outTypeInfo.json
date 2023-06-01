@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "apache\\flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "filePath" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
-  "functionName" : "map",
-  "functionKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)",
-  "functionStartLine" : 226,
-  "variableName" : "outTypeInfo",
-  "variableKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo(228)",
-  "variableStartLine" : 228,
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "51fc298128405d4ce0e047185ac1c6e5b1753546",
-    "commitId" : "a922473c0835a757e7108c79ad52f103ace86030",
-    "commitTime" : 1456778239,
-    "changeType" : "type change",
-    "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(202)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo:TypeInformation<R>(202)",
-    "comment" : "Change Variable Type outTypeInfo : TypeInformation<OUT> to outTypeInfo : TypeInformation<R> in method public map(coMapper CoMapFunction<IN1,IN2,R>) : SingleOutputStreamOperator<R> from class org.apache.flink.streaming.api.datastream.ConnectedStreams"
-  }, {
-    "parentCommitId" : "94c8e3fa9086d847aac0cd75fddbc3b5a797b474",
-    "commitId" : "51c1f67791307c2b9355171f7398d104befc8de5",
-    "commitTime" : 1418214458,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedDataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedDataStream#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(404)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedDataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedDataStream#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(404)",
-    "comment" : "Merge Variable [in1TypeWrapper : FunctionTypeWrapper<IN1>, in2TypeWrapper : FunctionTypeWrapper<IN2>, outTypeWrapper : FunctionTypeWrapper<OUT>] to outTypeInfo : TypeInformation<OUT> in method public map(coMapper CoMapFunction<IN1,IN2,OUT>) : SingleOutputStreamOperator<OUT,?> from class org.apache.flink.streaming.api.datastream.ConnectedDataStream"
-  } ]
+  "repositoryName": "apache\\flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "filePath": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
+  "functionName": "map",
+  "functionKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)",
+  "functionStartLine": 226,
+  "variableName": "outTypeInfo",
+  "variableKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo(228)",
+  "variableStartLine": 228,
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "51fc298128405d4ce0e047185ac1c6e5b1753546",
+      "commitId": "a922473c0835a757e7108c79ad52f103ace86030",
+      "commitTime": 1456778239,
+      "changeType": "type change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(202)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedStreams.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedStreams#map(CoMapFunction)$outTypeInfo:TypeInformation<R>(202)",
+      "comment": "Change Variable Type outTypeInfo : TypeInformation<OUT> to outTypeInfo : TypeInformation<R> in method public map(coMapper CoMapFunction<IN1,IN2,R>) : SingleOutputStreamOperator<R> from class org.apache.flink.streaming.api.datastream.ConnectedStreams"
+    },
+    {
+      "parentCommitId": "94c8e3fa9086d847aac0cd75fddbc3b5a797b474",
+      "commitId": "51c1f67791307c2b9355171f7398d104befc8de5",
+      "commitTime": 1418214458,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedDataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedDataStream#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(404)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/ConnectedDataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.ConnectedDataStream#map(CoMapFunction)$outTypeInfo:TypeInformation<OUT>(404)",
+      "comment": "Merge Variable [in1TypeWrapper : FunctionTypeWrapper<IN1>, in2TypeWrapper : FunctionTypeWrapper<IN2>, outTypeWrapper : FunctionTypeWrapper<OUT>] to outTypeInfo : TypeInformation<OUT> in method public map(coMapper CoMapFunction<IN1,IN2,OUT>) : SingleOutputStreamOperator<OUT,?> from class org.apache.flink.streaming.api.datastream.ConnectedDataStream"
+    }
+  ]
 }

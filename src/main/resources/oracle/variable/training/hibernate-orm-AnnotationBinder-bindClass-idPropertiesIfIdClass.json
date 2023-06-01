@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-  "functionName" : "bindClass",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
-  "functionStartLine" : 524,
-  "variableName" : "idPropertiesIfIdClass",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$idPropertiesIfIdClass(783)",
-  "variableStartLine" : 783,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "ccad83c774f68120a06d30c24a9ddb8c10fd18b2",
-    "commitId" : "8478d5b44b6c8d72b386d7a1a2841bfe7b37fb08",
-    "commitTime" : 1265412808,
-    "changeType" : "rename",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(687)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idPropertiesIfIdClass:Set<String>(686)",
-    "comment" : "Rename Variable idProperties : Set<String> to idPropertiesIfIdClass : Set<String> in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
-    "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
-    "commitTime" : 1225219270,
-    "changeType" : "introduced",
-    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(677)",
-    "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(677)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+  "functionName": "bindClass",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
+  "functionStartLine": 524,
+  "variableName": "idPropertiesIfIdClass",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$idPropertiesIfIdClass(783)",
+  "variableStartLine": 783,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ccad83c774f68120a06d30c24a9ddb8c10fd18b2",
+      "commitId": "8478d5b44b6c8d72b386d7a1a2841bfe7b37fb08",
+      "commitTime": 1265412808,
+      "changeType": "rename",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(687)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idPropertiesIfIdClass:Set<String>(686)",
+      "comment": "Rename Variable idProperties : Set<String> to idPropertiesIfIdClass : Set<String> in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(677)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$idProperties:Set<String>(677)",
+      "comment": "added with method"
+    }
+  ]
 }

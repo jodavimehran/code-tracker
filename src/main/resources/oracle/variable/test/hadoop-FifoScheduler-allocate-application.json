@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "apache\\hadoop",
-  "repositoryWebURL" : "https://github.com/apache/hadoop.git",
-  "filePath" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-  "functionName" : "allocate",
-  "functionKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)",
-  "functionStartLine" : 323,
-  "variableName" : "application",
-  "variableKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$application(327)",
-  "variableStartLine" : 327,
-  "startCommitId" : "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
-  "expectedChanges" : [ {
-    "parentCommitId" : "acd509dc57d6b8b3791a8332fec9bdf53a8f9d36",
-    "commitId" : "de3b4aac561258ad242a3c5ed1c919428893fd4c",
-    "commitTime" : 1478542479,
-    "changeType" : "type change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$application:FiCaSchedulerApp(331)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$application:FifoAppAttempt(330)",
-    "comment" : "Change Variable Type application : FiCaSchedulerApp to application : FifoAppAttempt in method public allocate(applicationAttemptId ApplicationAttemptId, ask List<ResourceRequest>, release List<ContainerId>, blacklistAdditions List<String>, blacklistRemovals List<String>, increaseRequests List<UpdateContainerRequest>, decreaseRequests List<UpdateContainerRequest>) : Allocation from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler"
-  }, {
-    "parentCommitId" : "30099efb3525265f8b9fccd2709d45327f5b6724",
-    "commitId" : "7f2b1eadc1b0807ec1302a0c3488bf6e7a59bc76",
-    "commitTime" : 1342489383,
-    "changeType" : "type change",
-    "elementFileBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(226)",
-    "elementFileAfter" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameAfter" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:FiCaSchedulerApp(226)",
-    "comment" : "Change Variable Type application : SchedulerApp to application : FiCaSchedulerApp in method public allocate(applicationAttemptId ApplicationAttemptId, ask List<ResourceRequest>, release List<ContainerId>) : Allocation from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler"
-  }, {
-    "parentCommitId" : "dd86860633d2ed64705b669a75bf318442ed6225",
-    "commitId" : "dbecbe5dfe50f834fc3b8401709079e9470cc517",
-    "commitTime" : 1313665630,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameBefore" : "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(216)",
-    "elementFileAfter" : "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
-    "elementNameAfter" : "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(216)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "apache\\hadoop",
+  "repositoryWebURL": "https://github.com/apache/hadoop.git",
+  "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+  "functionName": "allocate",
+  "functionKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)",
+  "functionStartLine": 323,
+  "variableName": "application",
+  "variableKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$application(327)",
+  "variableStartLine": 327,
+  "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "expectedChanges": [
+    {
+      "parentCommitId": "acd509dc57d6b8b3791a8332fec9bdf53a8f9d36",
+      "commitId": "de3b4aac561258ad242a3c5ed1c919428893fd4c",
+      "commitTime": 1478542479,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$application:FiCaSchedulerApp(331)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$application:FifoAppAttempt(330)",
+      "comment": "Change Variable Type application : FiCaSchedulerApp to application : FifoAppAttempt in method public allocate(applicationAttemptId ApplicationAttemptId, ask List<ResourceRequest>, release List<ContainerId>, blacklistAdditions List<String>, blacklistRemovals List<String>, increaseRequests List<UpdateContainerRequest>, decreaseRequests List<UpdateContainerRequest>) : Allocation from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler"
+    },
+    {
+      "parentCommitId": "30099efb3525265f8b9fccd2709d45327f5b6724",
+      "commitId": "7f2b1eadc1b0807ec1302a0c3488bf6e7a59bc76",
+      "commitTime": 1342489383,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(226)",
+      "elementFileAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:FiCaSchedulerApp(226)",
+      "comment": "Change Variable Type application : SchedulerApp to application : FiCaSchedulerApp in method public allocate(applicationAttemptId ApplicationAttemptId, ask List<ResourceRequest>, release List<ContainerId>) : Allocation from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler"
+    },
+    {
+      "parentCommitId": "dd86860633d2ed64705b669a75bf318442ed6225",
+      "commitId": "dbecbe5dfe50f834fc3b8401709079e9470cc517",
+      "commitTime": 1313665630,
+      "changeType": "introduced",
+      "elementFileBefore": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(216)",
+      "elementFileAfter": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-mapreduce/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$application:SchedulerApp(216)",
+      "comment": "added with method"
+    }
+  ]
 }

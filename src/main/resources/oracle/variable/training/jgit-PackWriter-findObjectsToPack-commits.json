@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "eclipse\\jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-  "functionName" : "findObjectsToPack",
-  "functionKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-  "functionStartLine" : 1775,
-  "variableName" : "commits",
-  "variableKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$commits(1898)",
-  "variableStartLine" : 1898,
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "expectedChanges" : [ {
-    "parentCommitId" : "1f57061684c83623d7d08be9044fc9cfd7b9fb54",
-    "commitId" : "f67e5602af72b7b2238eb6f6fcdc206a47edabd5",
-    "commitTime" : 1299551019,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1301)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:BlockList<RevCommit>(1300)",
-    "comment" : "Change Variable Type commits : List<RevCommit> to commits : BlockList<RevCommit> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "681739b1c82877424192ace581014ad09bc28acf",
-    "commitId" : "733780e8a158b7bc45b8b687ac353ecadc905a63",
-    "commitTime" : 1298007123,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1181)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1181)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "eclipse\\jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+  "functionName": "findObjectsToPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+  "functionStartLine": 1775,
+  "variableName": "commits",
+  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$commits(1898)",
+  "variableStartLine": 1898,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "1f57061684c83623d7d08be9044fc9cfd7b9fb54",
+      "commitId": "f67e5602af72b7b2238eb6f6fcdc206a47edabd5",
+      "commitTime": 1299551019,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1301)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:BlockList<RevCommit>(1300)",
+      "comment": "Change Variable Type commits : List<RevCommit> to commits : BlockList<RevCommit> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "681739b1c82877424192ace581014ad09bc28acf",
+      "commitId": "733780e8a158b7bc45b8b687ac353ecadc905a63",
+      "commitTime": 1298007123,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1181)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$commits:List<RevCommit>(1181)",
+      "comment": "new variable"
+    }
+  ]
 }

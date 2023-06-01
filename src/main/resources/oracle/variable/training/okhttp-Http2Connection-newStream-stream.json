@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "square\\okhttp",
-  "repositoryWebURL" : "https://github.com/square/okhttp.git",
-  "filePath" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-  "functionName" : "newStream",
-  "functionKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)",
-  "functionStartLine" : 233,
-  "variableName" : "stream",
-  "variableKey" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$stream(238)",
-  "variableStartLine" : 238,
-  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
-  "expectedChanges" : [ {
-    "parentCommitId" : "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
-    "commitId" : "3d43a8dba89ccd7333c3ebcf74928e441790d943",
-    "commitTime" : 1468102159,
-    "changeType" : "type change",
-    "elementFileBefore" : "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(int, List, boolean)$stream:FramedStream(213)",
-    "elementFileAfter" : "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-    "elementNameAfter" : "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$stream:Http2Stream(213)",
-    "comment" : "Change Variable Type stream : FramedStream to stream : Http2Stream in method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean) : Http2Stream from class okhttp3.internal.http2.Http2Connection"
-  }, {
-    "parentCommitId" : "b262f2a03001cd990568b929b2739dd3c7adb75f",
-    "commitId" : "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
-    "commitTime" : 1434580812,
-    "changeType" : "type change",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(252)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(int, List, boolean, boolean)$stream:FramedStream(252)",
-    "comment" : "Change Variable Type stream : SpdyStream to stream : FramedStream in method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : FramedStream from class com.squareup.okhttp.internal.framed.FramedConnection"
-  }, {
-    "parentCommitId" : "0537eedd5d0223bfa08998f85a865a22b192c61d",
-    "commitId" : "fb46f100a4d66342a0b101624fd351a51b6f14a9",
-    "commitTime" : 1393204561,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-    "elementNameBefore" : "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(234)",
-    "elementFileAfter" : "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-    "elementNameAfter" : "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(234)",
-    "comment" : "Extract Method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : SpdyStream extracted from public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream in class com.squareup.okhttp.internal.spdy.SpdyConnection"
-  } ]
+  "repositoryName": "square\\okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "newStream",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)",
+  "functionStartLine": 233,
+  "variableName": "stream",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$stream(238)",
+  "variableStartLine": 238,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+      "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "commitTime": 1468102159,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(int, List, boolean)$stream:FramedStream(213)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(int, List, boolean)$stream:Http2Stream(213)",
+      "comment": "Change Variable Type stream : FramedStream to stream : Http2Stream in method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean) : Http2Stream from class okhttp3.internal.http2.Http2Connection"
+    },
+    {
+      "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
+      "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "commitTime": 1434580812,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(252)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(int, List, boolean, boolean)$stream:FramedStream(252)",
+      "comment": "Change Variable Type stream : SpdyStream to stream : FramedStream in method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : FramedStream from class com.squareup.okhttp.internal.framed.FramedConnection"
+    },
+    {
+      "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
+      "commitId": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
+      "commitTime": 1393204561,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(234)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(int, List, boolean, boolean)$stream:SpdyStream(234)",
+      "comment": "Extract Method private newStream(associatedStreamId int, requestHeaders List<Header>, out boolean, in boolean) : SpdyStream extracted from public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream in class com.squareup.okhttp.internal.spdy.SpdyConnection"
+    }
+  ]
 }

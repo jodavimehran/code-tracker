@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-  "functionName" : "processConfigBeanDefinitions",
-  "functionKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)",
-  "functionStartLine" : 261,
-  "variableName" : "configCandidates",
-  "variableKey" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates(262)",
-  "variableStartLine" : 262,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "9d497cbd98ad400401dda1c91f46e5211b6107d9",
-    "commitId" : "f5b4e18209c45c948ab6bce6d166ef17b3f5b25d",
-    "commitTime" : 1426267101,
-    "changeType" : "type change",
-    "elementFileBefore" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameBefore" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:Set<BeanDefinitionHolder>(267)",
-    "elementFileAfter" : "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameAfter" : "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:List<BeanDefinitionHolder>(271)",
-    "comment" : "Change Variable Type configCandidates : Set<BeanDefinitionHolder> to configCandidates : List<BeanDefinitionHolder> in method public processConfigBeanDefinitions(registry BeanDefinitionRegistry) : void from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
-  }, {
-    "parentCommitId" : "37e1333a41adb6b36952e475cf84b1a24d7a8ed9",
-    "commitId" : "b5d21108da24f8344be3bc708c7afdfca9a1d089",
-    "commitTime" : 1240571806,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(125)",
-    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:Set<BeanDefinitionHolder>(125)",
-    "comment" : "Rename Variable configBeanDefs : Set<BeanDefinitionHolder> to configCandidates : Set<BeanDefinitionHolder> in method protected processConfigBeanDefinitions(registry BeanDefinitionRegistry) : void from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
-  }, {
-    "parentCommitId" : "736169aa2a46f489cd8e75cf4d61cef997fc456f",
-    "commitId" : "14bd47551900ced88eeacf2a5f63c187ff72028c",
-    "commitTime" : 1240184731,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameBefore" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(121)",
-    "elementFileAfter" : "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-    "elementNameAfter" : "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(121)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+  "functionName": "processConfigBeanDefinitions",
+  "functionKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)",
+  "functionStartLine": 261,
+  "variableName": "configCandidates",
+  "variableKey": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates(262)",
+  "variableStartLine": 262,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9d497cbd98ad400401dda1c91f46e5211b6107d9",
+      "commitId": "f5b4e18209c45c948ab6bce6d166ef17b3f5b25d",
+      "commitTime": 1426267101,
+      "changeType": "type change",
+      "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:Set<BeanDefinitionHolder>(267)",
+      "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:List<BeanDefinitionHolder>(271)",
+      "comment": "Change Variable Type configCandidates : Set<BeanDefinitionHolder> to configCandidates : List<BeanDefinitionHolder> in method public processConfigBeanDefinitions(registry BeanDefinitionRegistry) : void from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
+    },
+    {
+      "parentCommitId": "37e1333a41adb6b36952e475cf84b1a24d7a8ed9",
+      "commitId": "b5d21108da24f8344be3bc708c7afdfca9a1d089",
+      "commitTime": 1240571806,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(125)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configCandidates:Set<BeanDefinitionHolder>(125)",
+      "comment": "Rename Variable configBeanDefs : Set<BeanDefinitionHolder> to configCandidates : Set<BeanDefinitionHolder> in method protected processConfigBeanDefinitions(registry BeanDefinitionRegistry) : void from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
+    },
+    {
+      "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+      "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
+      "commitTime": 1240184731,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(121)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$configBeanDefs:Set<BeanDefinitionHolder>(121)",
+      "comment": "added with method"
+    }
+  ]
 }
