@@ -15,7 +15,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection, List)",
+      "comment": "Add Parameter unshallowCommits : List<ObjectId> in method private sendPack(sideband boolean, accumulator PackStatistics.Accumulator, allTags Collection<Ref>, unshallowCommits List<ObjectId>) : void from class org.eclipse.jgit.transport.UploadPack"
     },
     {
       "parentCommitId": "e701c59a859e8fff46a1bc16aee7771a3a8aea8a",
@@ -35,13 +36,14 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator, Collection)",
+      "comment": "Add Parameter allTags : Collection<Ref> in method private sendPack(sideband boolean, accumulator PackStatistics.Accumulator, allTags Collection<Ref>) : void from class org.eclipse.jgit.transport.UploadPack"
     },
     {
       "parentCommitId": "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
       "commitId": "c79e7f1c27c73732310bc64c2071a79902447dcc",
       "commitTime": 1526515074,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -51,7 +53,7 @@
       "parentCommitId": "1046ba12f971c0e5d527f3f4153bf2f1c85bd824",
       "commitId": "c79e7f1c27c73732310bc64c2071a79902447dcc",
       "commitTime": 1526515074,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -71,7 +73,7 @@
       "parentCommitId": "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
       "commitId": "67df4986cef270144c7cae3485dc8541ca180649",
       "commitTime": 1520991863,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -81,7 +83,7 @@
       "parentCommitId": "ed9ede3446f0c95e80eb6feb1dec5dfa698184a9",
       "commitId": "67df4986cef270144c7cae3485dc8541ca180649",
       "commitTime": 1520991863,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -95,7 +97,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "comment": "Remove Method Annotation @SuppressWarnings(\"deprecation\") in method private sendPack(sideband boolean, accumulator PackStatistics.Accumulator) : void from class org.eclipse.jgit.transport.UploadPack"
     },
     {
       "parentCommitId": "f9a4112ecc63bc37562a36c7e06947593b90657e",
@@ -115,7 +118,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean, PackStatistics.Accumulator)",
+      "comment": "Add Parameter accumulator : PackStatistics.Accumulator in method private sendPack(sideband boolean, accumulator PackStatistics.Accumulator) : void from class org.eclipse.jgit.transport.UploadPack"
     },
     {
       "parentCommitId": "5efc3dcc6c9f5c93ba8b1f75b7070d3eb281f08d",
@@ -131,7 +135,7 @@
       "parentCommitId": "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
       "commitId": "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
       "commitTime": 1515018065,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -141,7 +145,7 @@
       "parentCommitId": "5a4b6fd237ebab03001f55a06cdf2a59d4ca3566",
       "commitId": "21d22e6f63a1adcfaeaee155f1be32f8123fd789",
       "commitTime": 1515018065,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
@@ -175,7 +179,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)",
+      "comment": "Add Method Annotation @SuppressWarnings(\"deprecation\") in method private sendPack(sideband boolean) : void from class org.eclipse.jgit.transport.UploadPack"
     },
     {
       "parentCommitId": "b4d33382253efa42d92245d09995b093ec6089ad",

@@ -11,21 +11,23 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "container change",
+      "changeType": "return type change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#pushStream(int, List, boolean)",
+      "comment": "Change Return Type FramedStream to Http2Stream in method public pushStream(associatedStreamId int, requestHeaders List<Header>, out boolean) : Http2Stream from class okhttp3.internal.http2.Http2Connection"
     },
     {
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "return type change",
+      "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#pushStream(int, List, boolean)",
+      "comment": "Rename Class okhttp3.internal.framed.FramedConnection renamed to okhttp3.internal.http2.Http2Connection"
     },
     {
       "parentCommitId": "a3bcaa3b6e30409094319dfbf5010dfd2322778a",
@@ -45,7 +47,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#pushStream(int, List, boolean)",
+      "comment": "Move Class com.squareup.okhttp.internal.framed.FramedConnection moved to okhttp3.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
@@ -55,7 +58,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#pushStream(int, List, boolean)",
+      "comment": "Change Return Type SpdyStream to FramedStream in method public pushStream(associatedStreamId int, requestHeaders List<Header>, out boolean) : FramedStream from class com.squareup.okhttp.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
@@ -65,7 +69,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#pushStream(int, List, boolean)",
+      "comment": "Rename Class com.squareup.okhttp.internal.spdy.SpdyConnection renamed to com.squareup.okhttp.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "24b6957992d0051fdb88fca008028296168f26c2",
@@ -85,7 +90,8 @@
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
+      "comment": "Move Source Folder okhttp-protocols to okhttp"
     },
     {
       "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
@@ -95,7 +101,8 @@
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)"
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#pushStream(int, List, boolean)",
+      "comment": "new method"
     }
   ]
 }

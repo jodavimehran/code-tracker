@@ -81,22 +81,22 @@
       "parentCommitId": "0ee7c79a32f3aa39f740bdecbf53487f39f6591f",
       "commitId": "7498d3e35a29449270a88a30eb32b7de74887f5b",
       "commitTime": 1461599432,
-      "changeType": "body change",
-      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)",
-      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph, List)"
-    },
-    {
-      "parentCommitId": "0ee7c79a32f3aa39f740bdecbf53487f39f6591f",
-      "commitId": "7498d3e35a29449270a88a30eb32b7de74887f5b",
-      "commitTime": 1461599432,
       "changeType": "parameter change",
       "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)",
       "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph, List)",
       "comment": "Add Parameter jarFiles : List<URL> in method protected executeRemotely(streamGraph StreamGraph, jarFiles List<URL>) : JobExecutionResult from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "0ee7c79a32f3aa39f740bdecbf53487f39f6591f",
+      "commitId": "7498d3e35a29449270a88a30eb32b7de74887f5b",
+      "commitTime": 1461599432,
+      "changeType": "body change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph, List)"
     },
     {
       "parentCommitId": "db8c5cc5c9af7f0cca931cd6020aff568d8d88f7",
@@ -113,11 +113,12 @@
       "parentCommitId": "7fdaa4e2fb88169539cfe314b46e6ee7cdb108b3",
       "commitId": "bf29de981c2bcd5cb5d33c68b158c95c8820f43d",
       "commitTime": 1446400804,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
       "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)"
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)",
+      "comment": "Rename Parameter jobGraph : JobGraph to streamGraph : StreamGraph in method private executeRemotely(streamGraph StreamGraph) : JobExecutionResult from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
     },
     {
       "parentCommitId": "7fdaa4e2fb88169539cfe314b46e6ee7cdb108b3",
@@ -129,6 +130,16 @@
       "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)",
       "comment": "Change Parameter Type jobGraph : JobGraph to streamGraph : StreamGraph in method private executeRemotely(streamGraph StreamGraph) : JobExecutionResult from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "7fdaa4e2fb88169539cfe314b46e6ee7cdb108b3",
+      "commitId": "bf29de981c2bcd5cb5d33c68b158c95c8820f43d",
+      "commitTime": 1446400804,
+      "changeType": "body change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(StreamGraph)"
     },
     {
       "parentCommitId": "42a3d8cfa9eacc19ac04004b256b6eb51422b523",
@@ -185,16 +196,6 @@
       "parentCommitId": "b70431239a5e18555866addb41ee6edf2b79ff60",
       "commitId": "2b8db40ac40d70027ce331f3a04c6ca7aa562a84",
       "commitTime": 1429705186,
-      "changeType": "body change",
-      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
-      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)"
-    },
-    {
-      "parentCommitId": "b70431239a5e18555866addb41ee6edf2b79ff60",
-      "commitId": "2b8db40ac40d70027ce331f3a04c6ca7aa562a84",
-      "commitTime": 1429705186,
       "changeType": "exception change",
       "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
@@ -205,6 +206,16 @@
     {
       "parentCommitId": "df7c61e2e5e4a901470abc7b7ac72e2167045a95",
       "commitId": "b70431239a5e18555866addb41ee6edf2b79ff60",
+      "commitTime": 1429705186,
+      "changeType": "body change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)"
+    },
+    {
+      "parentCommitId": "b70431239a5e18555866addb41ee6edf2b79ff60",
+      "commitId": "2b8db40ac40d70027ce331f3a04c6ca7aa562a84",
       "commitTime": 1429705186,
       "changeType": "body change",
       "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
@@ -226,22 +237,22 @@
       "parentCommitId": "00d22c396be18db1b49b4392364caa180ce2ed9a",
       "commitId": "e83d1ec102808cb9b3ef4208335f74e6f17bbe7a",
       "commitTime": 1427111103,
-      "changeType": "body change",
-      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
-      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
-      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)"
-    },
-    {
-      "parentCommitId": "00d22c396be18db1b49b4392364caa180ce2ed9a",
-      "commitId": "e83d1ec102808cb9b3ef4208335f74e6f17bbe7a",
-      "commitTime": 1427111103,
       "changeType": "return type change",
       "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
       "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
       "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
       "comment": "Change Return Type void to JobExecutionResult in method private executeRemotely(jobGraph JobGraph) : JobExecutionResult from class org.apache.flink.streaming.api.environment.RemoteStreamEnvironment"
+    },
+    {
+      "parentCommitId": "00d22c396be18db1b49b4392364caa180ce2ed9a",
+      "commitId": "e83d1ec102808cb9b3ef4208335f74e6f17bbe7a",
+      "commitTime": 1427111103,
+      "changeType": "body change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/environment/RemoteStreamEnvironment.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.environment.RemoteStreamEnvironment#executeRemotely(JobGraph)"
     },
     {
       "parentCommitId": "563e546236217dace58a8031d56d08a27e08160b",
