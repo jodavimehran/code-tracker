@@ -1,12 +1,12 @@
 {
-  "repositoryName": "hibernate\\hibernate-search",
+  "repositoryName": "hibernate-search",
   "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
   "filePath": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
   "functionName": "executeWork",
   "functionKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
   "functionStartLine": 49,
   "variableName": "entityIndexBinding",
-  "variableKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityIndexBinding(51)",
+  "variableKey": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)$entityIndexBinding:EntityIndexBinding(51)",
   "variableStartLine": 51,
   "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
   "expectedChanges": [
@@ -58,23 +58,23 @@
       "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
       "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
       "commitTime": 1311846710,
-      "changeType": "rename",
-      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$documentBuilder:DocumentBuilderIndexedEntity<?>(118)",
-      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping:EntityIndexMapping<?>(115)",
-      "comment": "Rename Variable documentBuilder : DocumentBuilderIndexedEntity<?> to entityIndexMapping : EntityIndexMapping<?> in method private sendWorkToShards(work LuceneWork, worker PerDirectoryWorkProcessor) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
-    },
-    {
-      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
-      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
-      "commitTime": 1311846710,
       "changeType": "type change",
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$documentBuilder:DocumentBuilderIndexedEntity<?>(118)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping:EntityIndexMapping<?>(115)",
       "comment": "Change Variable Type documentBuilder : DocumentBuilderIndexedEntity<?> to entityIndexMapping : EntityIndexMapping<?> in method private sendWorkToShards(work LuceneWork, worker PerDirectoryWorkProcessor) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
+    },
+    {
+      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
+      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
+      "commitTime": 1311846710,
+      "changeType": "rename",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$documentBuilder:DocumentBuilderIndexedEntity<?>(118)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)$entityIndexMapping:EntityIndexMapping<?>(115)",
+      "comment": "Rename Variable documentBuilder : DocumentBuilderIndexedEntity<?> to entityIndexMapping : EntityIndexMapping<?> in method private sendWorkToShards(work LuceneWork, worker PerDirectoryWorkProcessor) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
     },
     {
       "parentCommitId": "67f507fa7bf80f8c822926380ff960b15095d10e",

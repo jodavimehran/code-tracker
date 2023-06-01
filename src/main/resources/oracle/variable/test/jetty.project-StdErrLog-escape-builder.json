@@ -1,0 +1,36 @@
+{
+  "repositoryName": "jetty.project",
+  "repositoryWebURL": "https://github.com/eclipse/jetty.project.git",
+  "filePath": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+  "functionName": "escape",
+  "functionKey": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)",
+  "functionStartLine": 573,
+  "variableName": "builder",
+  "variableKey": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)$builder:StringBuilder(573)",
+  "variableStartLine": 573,
+  "startCommitId": "fc5dd874f3deda71e6cd42af994a5af5cb6be4af",
+  "expectedChanges": [
+    {
+      "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
+      "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
+      "commitTime": 1272366299,
+      "changeType": "rename",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)$buffer:StringBuilder(255)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)$builder:StringBuilder(206)",
+      "comment": "Rename Parameter buffer : StringBuilder to builder : StringBuilder in method private escape(builder StringBuilder, string String) : void from class org.eclipse.jetty.util.log.StdErrLog"
+    },
+    {
+      "parentCommitId": "547b3f310ca2c0eea2ce11cf5a7dfa2776a579f6",
+      "commitId": "e0d07733bd3f03c1337f200523bf9fec220d0cad",
+      "commitTime": 1271424772,
+      "changeType": "introduced",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)$buffer:StringBuilder(255)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)$buffer:StringBuilder(255)",
+      "comment": "Add Parameter buffer : StringBuilder in method private format(buffer StringBuilder, msg String) : void from class org.eclipse.jetty.util.log.StdErrLog"
+    }
+  ]
+}

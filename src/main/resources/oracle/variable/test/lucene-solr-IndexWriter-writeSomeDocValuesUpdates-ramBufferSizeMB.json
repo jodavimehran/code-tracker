@@ -1,26 +1,15 @@
 {
-  "repositoryName": "apache\\lucene-solr",
+  "repositoryName": "lucene-solr",
   "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
   "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
   "functionName": "writeSomeDocValuesUpdates",
   "functionKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
   "functionStartLine": 579,
   "variableName": "ramBufferSizeMB",
-  "variableKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$ramBufferSizeMB(582)",
+  "variableKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$ramBufferSizeMB:double(582)",
   "variableStartLine": 582,
   "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
   "expectedChanges": [
-    {
-      "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
-      "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
-      "commitTime": 1524472150,
-      "changeType": "rename",
-      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$mb:double(678)",
-      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$ramBufferSizeMB:double(540)",
-      "comment": "Rename Variable mb : double to ramBufferSizeMB : double in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
-    },
     {
       "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
       "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
@@ -31,6 +20,17 @@
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$ramBufferSizeMB:double(540)",
       "comment": "Add Variable Modifier final in variable ramBufferSizeMB : double in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
+      "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
+      "commitTime": 1524472150,
+      "changeType": "rename",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$mb:double(678)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$ramBufferSizeMB:double(540)",
+      "comment": "Rename Variable mb : double to ramBufferSizeMB : double in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
     },
     {
       "parentCommitId": "1737fce5df106847fb5d93eb46ba7b062072c589",
