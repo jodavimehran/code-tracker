@@ -207,17 +207,38 @@ public abstract class BaseTracker {
             final String leftSideFileNameFinal = leftSideFileName;
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
-            leftSideUMLModel.setPartial(true);
-            rightSideUMLModel.setPartial(true);
-            return Pair.of(leftSideUMLModel, rightSideUMLModel);
+            return optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
-            leftSideUMLModel.setPartial(true);
-            rightSideUMLModel.setPartial(true);
-            return Pair.of(leftSideUMLModel, rightSideUMLModel);
+            return optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
         }
 
+    }
+
+    private static Pair<UMLModel, UMLModel> optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel) {
+        for (UMLClass leftClass : leftSideUMLModel.getClassList()) {
+            UMLClass rightClass = rightSideUMLModel.getClass(leftClass);
+            if (rightClass != null) {
+                List<UMLOperation> leftOperationsToBeRemoved = new ArrayList<>();
+                List<UMLOperation> rightOperationsToBeRemoved = new ArrayList<>();
+                for (UMLOperation leftOperation : leftClass.getOperations()) {
+                    int index = rightClass.getOperations().indexOf(leftOperation);
+                    if (index != -1) {
+                        UMLOperation rightOperation = rightClass.getOperations().get(index);
+                        if (leftOperation.getBodyHashCode() == rightOperation.getBodyHashCode()) {
+                            leftOperationsToBeRemoved.add(leftOperation);
+                            rightOperationsToBeRemoved.add(rightOperation);
+                        }
+                    }
+                }
+                leftClass.getOperations().removeAll(leftOperationsToBeRemoved);
+                rightClass.getOperations().removeAll(rightOperationsToBeRemoved);
+            }
+        }
+        leftSideUMLModel.setPartial(true);
+        rightSideUMLModel.setPartial(true);
+        return Pair.of(leftSideUMLModel, rightSideUMLModel);
     }
 
     protected static boolean isNewlyAddedFile(CommitModel commitModel, String currentMethodFilePath) {
