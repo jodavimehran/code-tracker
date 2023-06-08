@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "mockito\\mockito",
-  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
-  "filePath" : "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
-  "functionName" : "bindMatchers",
-  "functionKey" : "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)",
-  "functionStartLine" : 23,
-  "variableName" : "lastMatchers",
-  "variableKey" : "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers(24)",
-  "variableStartLine" : 24,
-  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
-  "expectedChanges" : [ {
-    "parentCommitId" : "6f0861dfc8b22d5819104f3a2dd53e237126e69c",
-    "commitId" : "21649c3e56387e29275d90ed9b73b58c64bb0e6d",
-    "commitTime" : 1331323615,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers:List<Matcher>(23)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers:List<LocalizedMatcher>(22)",
-    "comment" : "Change Variable Type lastMatchers : List<Matcher> to lastMatchers : List<LocalizedMatcher> in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  }, {
-    "parentCommitId" : "71450e563fb547a0c3a0fccced3f533dd994ffa8",
-    "commitId" : "bf4eec3e73c82a3eff75acce0921f766a33f535f",
-    "commitTime" : 1202659637,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<ArgumentMatcher>(19)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<Matcher>(19)",
-    "comment" : "Change Variable Type lastMatchers : List<ArgumentMatcher> to lastMatchers : List<Matcher> in method public bindMatchers(invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  }, {
-    "parentCommitId" : "e79f9c7472235eadc992250683423737f31683e3",
-    "commitId" : "e40088f906af0a00dce8720091a9391e885026f3",
-    "commitTime" : 1199566074,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameBefore" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<IArgumentMatcher>(19)",
-    "elementFileAfter" : "src/org/mockito/internal/invocation/MatchersBinder.java",
-    "elementNameAfter" : "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<ArgumentMatcher>(19)",
-    "comment" : "Change Variable Type lastMatchers : List<IArgumentMatcher> to lastMatchers : List<ArgumentMatcher> in method public bindMatchers(invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
-  }, {
-    "parentCommitId" : "b3a2e2a6814c141295d5faab7e2feff180d6502a",
-    "commitId" : "f6a503519f2f7eff22490079b8c9a70a000c4e3c",
-    "commitTime" : 1196469205,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/org/mockito/internal/MockControl.java",
-    "elementNameBefore" : "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$lastMatchers:List<IArgumentMatcher>(78)",
-    "elementFileAfter" : "src/org/mockito/internal/MockControl.java",
-    "elementNameAfter" : "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$lastMatchers:List<IArgumentMatcher>(78)",
-    "comment" : "Extract Method private expectedInvocation(invocation Invocation) : ExpectedInvocation extracted from public invoke(proxy Object, method Method, args Object[]) : Object in class org.mockito.internal.MockControl"
-  } ]
+  "repositoryName": "mockito\\mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "filePath": "src/main/java/org/mockito/internal/invocation/MatchersBinder.java",
+  "functionName": "bindMatchers",
+  "functionKey": "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)",
+  "functionStartLine": 23,
+  "variableName": "lastMatchers",
+  "variableKey": "src/main/java/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers(24)",
+  "variableStartLine": 24,
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6f0861dfc8b22d5819104f3a2dd53e237126e69c",
+      "commitId": "21649c3e56387e29275d90ed9b73b58c64bb0e6d",
+      "commitTime": 1331323615,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers:List<Matcher>(23)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(ArgumentMatcherStorage, Invocation)$lastMatchers:List<LocalizedMatcher>(22)",
+      "comment": "Change Variable Type lastMatchers : List<Matcher> to lastMatchers : List<LocalizedMatcher> in method public bindMatchers(argumentMatcherStorage ArgumentMatcherStorage, invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    },
+    {
+      "parentCommitId": "71450e563fb547a0c3a0fccced3f533dd994ffa8",
+      "commitId": "bf4eec3e73c82a3eff75acce0921f766a33f535f",
+      "commitTime": 1202659637,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<ArgumentMatcher>(19)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<Matcher>(19)",
+      "comment": "Change Variable Type lastMatchers : List<ArgumentMatcher> to lastMatchers : List<Matcher> in method public bindMatchers(invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    },
+    {
+      "parentCommitId": "e79f9c7472235eadc992250683423737f31683e3",
+      "commitId": "e40088f906af0a00dce8720091a9391e885026f3",
+      "commitTime": 1199566074,
+      "changeType": "type change",
+      "elementFileBefore": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameBefore": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<IArgumentMatcher>(19)",
+      "elementFileAfter": "src/org/mockito/internal/invocation/MatchersBinder.java",
+      "elementNameAfter": "src/org.mockito.internal.invocation.MatchersBinder#bindMatchers(Invocation)$lastMatchers:List<ArgumentMatcher>(19)",
+      "comment": "Change Variable Type lastMatchers : List<IArgumentMatcher> to lastMatchers : List<ArgumentMatcher> in method public bindMatchers(invocation Invocation) : InvocationMatcher from class org.mockito.internal.invocation.MatchersBinder"
+    },
+    {
+      "parentCommitId": "b3a2e2a6814c141295d5faab7e2feff180d6502a",
+      "commitId": "f6a503519f2f7eff22490079b8c9a70a000c4e3c",
+      "commitTime": 1196469205,
+      "changeType": "introduced",
+      "elementFileBefore": "src/org/mockito/internal/MockControl.java",
+      "elementNameBefore": "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$lastMatchers:List<IArgumentMatcher>(78)",
+      "elementFileAfter": "src/org/mockito/internal/MockControl.java",
+      "elementNameAfter": "src/org.mockito.internal.MockControl#expectedInvocation(Invocation)$lastMatchers:List<IArgumentMatcher>(78)",
+      "comment": "Extract Method private expectedInvocation(invocation Invocation) : ExpectedInvocation extracted from public invoke(proxy Object, method Method, args Object[]) : Object in class org.mockito.internal.MockControl"
+    }
+  ]
 }

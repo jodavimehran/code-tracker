@@ -1,70 +1,77 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-  "className" : "RestRequest",
-  "classKey" : "server/src/main/java/org.elasticsearch.rest.(public)RestRequest(55)",
-  "classDeclarationLine" : 55,
-  "expectedChanges" : [ {
-    "parentCommitId" : "6dd81ead74fd54247198d380b98053124a30f1ee",
-    "commitId" : "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
-    "commitTime" : 1529010602,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "server/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(54)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.rest.(public)RestRequest(55)",
-    "comment" : "Remove Class Modifier abstract in class org.elasticsearch.rest.RestRequest"
-  }, {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(52)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(52)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
-    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
-    "commitTime" : 1433502723,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
-    "comment" : "Move Source Folder src to core/src"
-  }, {
-    "parentCommitId" : "8686ffe76117aea1e9b9ffcb4f1ad455e1ae197c",
-    "commitId" : "bc0909b2325edb97ccb7254ce956469e3d678920",
-    "commitTime" : 1389222303,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.(public)RestRequest(29)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
-    "comment" : "Change Type Declaration Kind interface to class in type org.elasticsearch.rest.RestRequest"
-  }, {
-    "parentCommitId" : "473b0f4dff504690754acc0f00967c275bf322a8",
-    "commitId" : "a8fd2d48b8f3f17d68ed27c3104e2c9e2eb6cc9c",
-    "commitTime" : 1323125963,
-    "changeType" : "container change",
-    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(28)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.rest.(public)RestRequest(28)",
-    "comment" : "Move Source Folder modules/elasticsearch/src to src"
-  }, {
-    "parentCommitId" : "1299f203645d1b4b72abfedc1d65991b05042361",
-    "commitId" : "042d71073ce0c906a2dd177d414a4e904b9609fa",
-    "commitTime" : 1266391686,
-    "changeType" : "introduced",
-    "elementFileBefore" : "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameBefore" : "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(26)",
-    "elementFileAfter" : "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
-    "elementNameAfter" : "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(26)",
-    "comment" : "Extract Interface org.elasticsearch.rest.RestRequest from classes [org.elasticsearch.http.HttpRequest]"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+  "className": "RestRequest",
+  "classKey": "server/src/main/java/org.elasticsearch.rest.(public)RestRequest(55)",
+  "classDeclarationLine": 55,
+  "expectedChanges": [
+    {
+      "parentCommitId": "6dd81ead74fd54247198d380b98053124a30f1ee",
+      "commitId": "fcf1e41e429b10e03c5cf9b8551636df7519b4c5",
+      "commitTime": 1529010602,
+      "changeType": "modifier change",
+      "elementFileBefore": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "server/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(54)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.(public)RestRequest(55)",
+      "comment": "Remove Class Modifier abstract in class org.elasticsearch.rest.RestRequest"
+    },
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(52)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(52)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitId": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitTime": 1433502723,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
+      "comment": "Move Source Folder src to core/src"
+    },
+    {
+      "parentCommitId": "8686ffe76117aea1e9b9ffcb4f1ad455e1ae197c",
+      "commitId": "bc0909b2325edb97ccb7254ce956469e3d678920",
+      "commitTime": 1389222303,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.rest.(public)RestRequest(29)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.rest.(public)(abstract)RestRequest(38)",
+      "comment": "Change Type Declaration Kind interface to class in type org.elasticsearch.rest.RestRequest"
+    },
+    {
+      "parentCommitId": "473b0f4dff504690754acc0f00967c275bf322a8",
+      "commitId": "a8fd2d48b8f3f17d68ed27c3104e2c9e2eb6cc9c",
+      "commitTime": 1323125963,
+      "changeType": "container change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(28)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.rest.(public)RestRequest(28)",
+      "comment": "Move Source Folder modules/elasticsearch/src to src"
+    },
+    {
+      "parentCommitId": "1299f203645d1b4b72abfedc1d65991b05042361",
+      "commitId": "042d71073ce0c906a2dd177d414a4e904b9609fa",
+      "commitTime": 1266391686,
+      "changeType": "introduced",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(26)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/rest/RestRequest.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.rest.(public)RestRequest(26)",
+      "comment": "Extract Interface org.elasticsearch.rest.RestRequest from classes [org.elasticsearch.http.HttpRequest]"
+    }
+  ]
 }

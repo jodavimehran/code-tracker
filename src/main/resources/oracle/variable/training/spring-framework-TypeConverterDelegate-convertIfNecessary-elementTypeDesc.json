@@ -1,62 +1,68 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-  "functionName" : "convertIfNecessary",
-  "functionKey" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-  "functionStartLine" : 152,
-  "variableName" : "elementTypeDesc",
-  "variableKey" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc(181)",
-  "variableStartLine" : 181,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "89396ff01ff159aa7df18e332f3888cf9ce3dc20",
-    "commitId" : "c4c941c43fc23f58503c7b687fd1469d4a27c777",
-    "commitTime" : 1467288171,
-    "changeType" : "rename",
-    "elementFileBefore" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(187)",
-    "elementFileAfter" : "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc:TypeDescriptor(188)"
-  }, {
-    "parentCommitId" : "a2a4929c147208e959a93b290e930828287833d8",
-    "commitId" : "c84cccf06dad4e3f11cd529ab16a5655bf723820",
-    "commitTime" : 1307248998,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(144)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(144)",
-    "comment" : "Change Variable Type elemType : Class to elementType : TypeDescriptor in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
-  }, {
-    "parentCommitId" : "a2a4929c147208e959a93b290e930828287833d8",
-    "commitId" : "c84cccf06dad4e3f11cd529ab16a5655bf723820",
-    "commitTime" : 1307248998,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(144)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(144)",
-    "comment" : "Rename Variable elemType : Class to elementType : TypeDescriptor in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
-  }, {
-    "parentCommitId" : "124837e2c3ffd185a389c9c21e9a673044d22fe1",
-    "commitId" : "cbed1c1b4b5fd74c9cd201890f619a7079804d3f",
-    "commitTime" : 1269529339,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(208)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(209)",
-    "comment" : "Rename Variable elementType : Class to elemType : Class in method private convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
-  }, {
-    "parentCommitId" : "b497f6ccad3eebcc6d475071bb7dd2741557d5e0",
-    "commitId" : "5f9b4443194d3aa3948d76956897c0a1d918d546",
-    "commitTime" : 1260710490,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(207)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(207)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+  "functionName": "convertIfNecessary",
+  "functionKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
+  "functionStartLine": 152,
+  "variableName": "elementTypeDesc",
+  "variableKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc(181)",
+  "variableStartLine": 181,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "89396ff01ff159aa7df18e332f3888cf9ce3dc20",
+      "commitId": "c4c941c43fc23f58503c7b687fd1469d4a27c777",
+      "commitTime": 1467288171,
+      "changeType": "rename",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(187)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc:TypeDescriptor(188)"
+    },
+    {
+      "parentCommitId": "a2a4929c147208e959a93b290e930828287833d8",
+      "commitId": "c84cccf06dad4e3f11cd529ab16a5655bf723820",
+      "commitTime": 1307248998,
+      "changeType": "type change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(144)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(144)",
+      "comment": "Change Variable Type elemType : Class to elementType : TypeDescriptor in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
+    },
+    {
+      "parentCommitId": "a2a4929c147208e959a93b290e930828287833d8",
+      "commitId": "c84cccf06dad4e3f11cd529ab16a5655bf723820",
+      "commitTime": 1307248998,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(144)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(144)",
+      "comment": "Rename Variable elemType : Class to elementType : TypeDescriptor in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
+    },
+    {
+      "parentCommitId": "124837e2c3ffd185a389c9c21e9a673044d22fe1",
+      "commitId": "cbed1c1b4b5fd74c9cd201890f619a7079804d3f",
+      "commitTime": 1269529339,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(208)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elemType:Class(209)",
+      "comment": "Rename Variable elementType : Class to elemType : Class in method private convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
+    },
+    {
+      "parentCommitId": "b497f6ccad3eebcc6d475071bb7dd2741557d5e0",
+      "commitId": "5f9b4443194d3aa3948d76956897c0a1d918d546",
+      "commitTime": 1260710490,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(207)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:Class(207)",
+      "comment": "new variable"
+    }
+  ]
 }

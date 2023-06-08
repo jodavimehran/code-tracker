@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-  "functionName" : "onRefresh",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)",
-  "functionStartLine" : 56,
-  "variableName" : "cache",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache(155)",
-  "variableStartLine" : 155,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "24a078732c25c9dec92fe7ff3e1c40f19fb5ecfa",
-    "commitId" : "f432ecea687ce606144c8fca1f4fc7f1937e1c2a",
-    "commitTime" : 1521743112,
-    "changeType" : "type change",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(155)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityDataAccess(155)",
-    "comment" : "Change Variable Type cache : EntityRegionAccessStrategy to cache : EntityDataAccess in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
-  }, {
-    "parentCommitId" : "9ac0a343ac2799d0addbca33f9e004b705c6318b",
-    "commitId" : "16ae00a53a9c58c841eb1dea8eb36354d5f3ff0f",
-    "commitTime" : 1435779771,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(140)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(140)",
-    "comment" : "Extract Variable cache : EntityRegionAccessStrategy in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
+  "functionName": "onRefresh",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)",
+  "functionStartLine": 56,
+  "variableName": "cache",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache(155)",
+  "variableStartLine": 155,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "24a078732c25c9dec92fe7ff3e1c40f19fb5ecfa",
+      "commitId": "f432ecea687ce606144c8fca1f4fc7f1937e1c2a",
+      "commitTime": 1521743112,
+      "changeType": "type change",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(155)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityDataAccess(155)",
+      "comment": "Change Variable Type cache : EntityRegionAccessStrategy to cache : EntityDataAccess in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
+    },
+    {
+      "parentCommitId": "9ac0a343ac2799d0addbca33f9e004b705c6318b",
+      "commitId": "16ae00a53a9c58c841eb1dea8eb36354d5f3ff0f",
+      "commitTime": 1435779771,
+      "changeType": "introduced",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(140)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/event/internal/DefaultRefreshEventListener.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.event.internal.DefaultRefreshEventListener#onRefresh(RefreshEvent, Map)$cache:EntityRegionAccessStrategy(140)",
+      "comment": "Extract Variable cache : EntityRegionAccessStrategy in method public onRefresh(event RefreshEvent, refreshedAlready Map) : void from class org.hibernate.event.internal.DefaultRefreshEventListener"
+    }
+  ]
 }

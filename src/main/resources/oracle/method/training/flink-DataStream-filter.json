@@ -1,649 +1,721 @@
 {
-  "repositoryName" : "flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "filePath" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-  "functionName" : "filter",
-  "functionKey" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-  "functionStartLine" : 685,
-  "expectedChanges" : [ {
-    "parentCommitId" : "51fc298128405d4ce0e047185ac1c6e5b1753546",
-    "commitId" : "a922473c0835a757e7108c79ad52f103ace86030",
-    "commitTime" : 1456778239,
-    "changeType" : "return type change",
-    "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "8486c3c23be5158bc4b9029d6ac6e2bb5a167158",
-    "commitId" : "2714aaf3d47705401f422a09619f09d2a90bf185",
-    "commitTime" : 1455634373,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "42a3d8cfa9eacc19ac04004b256b6eb51422b523",
-    "commitId" : "06f6ac5d3edbc8dd20baf6e1b30900c189a68876",
-    "commitTime" : 1445418103,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "baaa3dacabdfa87c3c11882810e05dc384f24038",
-    "commitId" : "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
-    "commitTime" : 1439999584,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "baaa3dacabdfa87c3c11882810e05dc384f24038",
-    "commitId" : "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
-    "commitTime" : 1439999584,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "baaa3dacabdfa87c3c11882810e05dc384f24038",
-    "commitId" : "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
-    "commitTime" : 1439999584,
-    "changeType" : "return type change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "f1b445b0eb481d2f66d1a8598dd10af16c101f18",
-    "commitId" : "4754a97b19c96647886a46131750db26a0b5f618",
-    "commitTime" : 1429090512,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "563e546236217dace58a8031d56d08a27e08160b",
-    "commitId" : "f94112fbbaaf2ecc6a9ecb314a5565203ce779a7",
-    "commitTime" : 1422902425,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "b263932e2e246824fa5e7538e62f39a53b5e9c17",
-    "commitId" : "82c420022ef3ffe3d7ad2172b4338ed12baf9e0e",
-    "commitTime" : 1422397885,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "87d699d7025f6ceadeb64fe972b7185079b6ec22",
-    "commitId" : "34353f6658e9a4dd50ad860e17eee94804b76ccb",
-    "commitTime" : 1420220078,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "fbd006051aa5a72cfebda9d8dfc50dc494b4c4ac",
-    "commitId" : "5f7800702ad1762eef4d2a25b09615f65bf3761c",
-    "commitTime" : 1418844847,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "94c8e3fa9086d847aac0cd75fddbc3b5a797b474",
-    "commitId" : "51c1f67791307c2b9355171f7398d104befc8de5",
-    "commitTime" : 1418214458,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "4d407cabb636489412e256778ff34cab283fbde7",
-    "commitId" : "1b046f4e334926e560456c2b2ef3b67e635e4700",
-    "commitTime" : 1409338916,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "return type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitId" : "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
-    "commitTime" : 1408371796,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
-    "commitId" : "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
-    "commitTime" : 1408371770,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
-  }, {
-    "parentCommitId" : "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
-    "commitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitTime" : 1408371770,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
-    "commitId" : "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
-    "commitTime" : 1408371770,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
-  }, {
-    "parentCommitId" : "f932700ae4e7e6110b729afa8530ac029ed0b700",
-    "commitId" : "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
-    "commitTime" : 1408371770,
-    "changeType" : "return type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
-  }, {
-    "parentCommitId" : "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
-    "commitId" : "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
-    "commitTime" : 1408371770,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "2f704aeb3eb94a7b24641408699d54cd40a4d8cb",
-    "commitId" : "799424d1a3237a8d1b32451f4b3ad23b342cf59e",
-    "commitTime" : 1408371729,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "859983cc2652b544b9830eb07e18d3a1e78be00a",
-    "commitId" : "5d72dd496cdad903dff455bbf510cbff68e4d21f",
-    "commitTime" : 1408371252,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "b8d95bb3b717d4ed31d2a6604a9ff3966b7e8865",
-    "commitId" : "c524951f5c779d47cd3fc9d40fcc0dd4db4cdfeb",
-    "commitTime" : 1408371102,
-    "changeType" : "return type change",
-    "elementFileBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "12e52f8ac430c00ed38096944e50db1e185f3567",
-    "commitId" : "1e434d10ab16f0a36a9326cfdf7df416ff5b91d5",
-    "commitTime" : 1408370235,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "b89fa9a2437a24ba311efaa8c3dac9bbf62e7a73",
-    "commitId" : "12e52f8ac430c00ed38096944e50db1e185f3567",
-    "commitTime" : 1408370235,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "a9ed127ca76b26037c50f9899a61c10587721c39",
-    "commitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitTime" : 1408370233,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a9ed127ca76b26037c50f9899a61c10587721c39",
-    "commitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitTime" : 1408370233,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a9ed127ca76b26037c50f9899a61c10587721c39",
-    "commitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitTime" : 1408370233,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitId" : "5b05ca635d1a661bf2be3baf60159d84834a9942",
-    "commitTime" : 1408370233,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitId" : "5b05ca635d1a661bf2be3baf60159d84834a9942",
-    "commitTime" : 1408370233,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
-    "commitId" : "5b05ca635d1a661bf2be3baf60159d84834a9942",
-    "commitTime" : 1408370233,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
-    "commitId" : "e6da7089a2a5a7a8801cbf1dd1736817041ba5fd",
-    "commitTime" : 1408370232,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "90df95391049122969c39332bfd4ed852dba6ea0",
-    "commitId" : "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
-    "commitTime" : 1408370232,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e6da7089a2a5a7a8801cbf1dd1736817041ba5fd",
-    "commitId" : "3e83eb4fc853bca0daadb9f7c50ffb1670e072cc",
-    "commitTime" : 1408370232,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "2b831022d76c8a7ae9fbd96b4e4eecde9bbf311b",
-    "commitId" : "f5cda1b459bc9459df4d124d4d8c7d4072e7c528",
-    "commitTime" : 1408370232,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "6225f15bdb7c5812f09031454ef8257079c57373",
-    "commitId" : "2b831022d76c8a7ae9fbd96b4e4eecde9bbf311b",
-    "commitTime" : 1408370232,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "90df95391049122969c39332bfd4ed852dba6ea0",
-    "commitId" : "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
-    "commitTime" : 1408370232,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "90df95391049122969c39332bfd4ed852dba6ea0",
-    "commitId" : "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
-    "commitTime" : 1408370232,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "f5cda1b459bc9459df4d124d4d8c7d4072e7c528",
-    "commitId" : "90df95391049122969c39332bfd4ed852dba6ea0",
-    "commitTime" : 1408370232,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "f0c57317634a5d803e64494a5d2f4133c1cf9a3b",
-    "commitId" : "74ac9d499f72919033035f67f7b7771270a8c966",
-    "commitTime" : 1408370231,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "df9dac28eafcd92348c4ca49a649cf669110501f",
-    "commitId" : "f0c57317634a5d803e64494a5d2f4133c1cf9a3b",
-    "commitTime" : 1408370231,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "cdce868a156f9630978aedbdfc4eed582a055862",
-    "commitId" : "4363991c20959421314d1249a1e78ad764371d66",
-    "commitTime" : 1408370231,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "75d94931ef45fb95cd59195ef99578654c47c227",
-    "commitId" : "e02b72963bb57050245291ea8aaef0eedf37ffdf",
-    "commitTime" : 1408370230,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "5db9601d81d583cb7edc943786ef81ef8e32fe77",
-    "commitId" : "cdce868a156f9630978aedbdfc4eed582a055862",
-    "commitTime" : 1408370230,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "0fd098febb7c720f0ab4adeb0cc778feab8c9076",
-    "commitId" : "916b1eb94ad63be2f1b028be9f2e0fe86c17bdb3",
-    "commitTime" : 1408370230,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "916b1eb94ad63be2f1b028be9f2e0fe86c17bdb3",
-    "commitId" : "086d1a72b38a8ec0a5e4300a02daf4097e0897f3",
-    "commitTime" : 1408370230,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "75d94931ef45fb95cd59195ef99578654c47c227",
-    "commitId" : "e02b72963bb57050245291ea8aaef0eedf37ffdf",
-    "commitTime" : 1408370230,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "086d1a72b38a8ec0a5e4300a02daf4097e0897f3",
-    "commitId" : "b44650b0ed0d4e7c900a0682a4a805ed7abeca04",
-    "commitTime" : 1408370230,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "0e2008bc80e256220783e45b2e034519b8ec5a62",
-    "commitId" : "4728eb9d9cfe640495e3edea80238e2c93f11522",
-    "commitTime" : 1408370229,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "e416f39f1f78d4589badaa6d5ab6e33a5002548a",
-    "commitId" : "b2f8f6e10ad8a36a92928185b23827944990748a",
-    "commitTime" : 1408370229,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
-    "commitId" : "75d94931ef45fb95cd59195ef99578654c47c227",
-    "commitTime" : 1408370229,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "7efb84fa9353cde75e912434e21d28e9f57b1201",
-    "commitId" : "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
-    "commitTime" : 1408370229,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
-    "commitId" : "75d94931ef45fb95cd59195ef99578654c47c227",
-    "commitTime" : 1408370229,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "0e2008bc80e256220783e45b2e034519b8ec5a62",
-    "commitId" : "4728eb9d9cfe640495e3edea80238e2c93f11522",
-    "commitTime" : 1408370229,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a2cabbb7ce1d0d12218934c5c58c67f89cd0bef0",
-    "commitId" : "e416f39f1f78d4589badaa6d5ab6e33a5002548a",
-    "commitTime" : 1408370229,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "7efb84fa9353cde75e912434e21d28e9f57b1201",
-    "commitId" : "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
-    "commitTime" : 1408370229,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "23788bcdd79030d98860d5ca8d907e995397f553",
-    "commitId" : "edf3a0f49dd0b18440f1135e08c73e2f0bd49d29",
-    "commitTime" : 1408370229,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "23788bcdd79030d98860d5ca8d907e995397f553",
-    "commitId" : "edf3a0f49dd0b18440f1135e08c73e2f0bd49d29",
-    "commitTime" : 1408370229,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "a31df65316aa54662515ddf4f95de71b87c64476",
-    "commitId" : "a2cabbb7ce1d0d12218934c5c58c67f89cd0bef0",
-    "commitTime" : 1408370228,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "b0219bbaad12f00820bfbe7c16d231cb42b6eebc",
-    "commitId" : "9b49450045e4f6fc436818470f9a8b5bc95eba15",
-    "commitTime" : 1408370228,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "f054ac028d3bbdabde4946dcf18c2f04ba0dffbb",
-    "commitId" : "a31df65316aa54662515ddf4f95de71b87c64476",
-    "commitTime" : 1408370228,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "63751058f8a0643b8e9e6c18dcd44a734f93be68",
-    "commitId" : "b0219bbaad12f00820bfbe7c16d231cb42b6eebc",
-    "commitTime" : 1408370228,
-    "changeType" : "container change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "ccc1f5f246e690465099ce7a808ecfa7811ef49b",
-    "commitId" : "7b7ac3d09b7769c4c13961abb4f51c58895e8e3d",
-    "commitTime" : 1408370226,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "96434ab57c9229e535a8317d7128932006b9f3c3",
-    "commitId" : "b39305f864b40eaf52d5a799edb09c7b898095b0",
-    "commitTime" : 1408370224,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "96434ab57c9229e535a8317d7128932006b9f3c3",
-    "commitId" : "b39305f864b40eaf52d5a799edb09c7b898095b0",
-    "commitTime" : 1408370224,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
-  }, {
-    "parentCommitId" : "3e337a0435c0980d4780e706f98a92f3e12d1fd5",
-    "commitId" : "3e93ea6d5f2ac89d4df9d55642f1d0e80418d26f",
-    "commitTime" : 1408370223,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "3e93ea6d5f2ac89d4df9d55642f1d0e80418d26f",
-    "commitId" : "697eb774e84b43e9b7cfef07fe812a05e1a836ce",
-    "commitTime" : 1408370223,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "e509ba9596c3c3783da379706d9e65e02a118f64",
-    "commitId" : "3e337a0435c0980d4780e706f98a92f3e12d1fd5",
-    "commitTime" : 1408370223,
-    "changeType" : "body change",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  }, {
-    "parentCommitId" : "cde1d46344741ff8c87d2bad62d2f49e05fe3fe8",
-    "commitId" : "f8425f1d1e9c6846a684bd2745623b14b11ddd51",
-    "commitTime" : 1408370221,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameBefore" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
-    "elementFileAfter" : "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
-    "elementNameAfter" : "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
-  } ]
+  "repositoryName": "flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+  "functionName": "filter",
+  "functionKey": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+  "functionStartLine": 685,
+  "expectedChanges": [
+    {
+      "parentCommitId": "51fc298128405d4ce0e047185ac1c6e5b1753546",
+      "commitId": "a922473c0835a757e7108c79ad52f103ace86030",
+      "commitTime": 1456778239,
+      "changeType": "return type change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "8486c3c23be5158bc4b9029d6ac6e2bb5a167158",
+      "commitId": "2714aaf3d47705401f422a09619f09d2a90bf185",
+      "commitTime": 1455634373,
+      "changeType": "body change",
+      "elementFileBefore": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "42a3d8cfa9eacc19ac04004b256b6eb51422b523",
+      "commitId": "06f6ac5d3edbc8dd20baf6e1b30900c189a68876",
+      "commitTime": 1445418103,
+      "changeType": "container change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-streaming-java/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-streaming-java/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "baaa3dacabdfa87c3c11882810e05dc384f24038",
+      "commitId": "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
+      "commitTime": 1439999584,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "baaa3dacabdfa87c3c11882810e05dc384f24038",
+      "commitId": "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
+      "commitTime": 1439999584,
+      "changeType": "body change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "baaa3dacabdfa87c3c11882810e05dc384f24038",
+      "commitId": "bac21bf5d77c8e15c608ecbf006d29e7af1dd68a",
+      "commitTime": 1439999584,
+      "changeType": "return type change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "f1b445b0eb481d2f66d1a8598dd10af16c101f18",
+      "commitId": "4754a97b19c96647886a46131750db26a0b5f618",
+      "commitTime": 1429090512,
+      "changeType": "body change",
+      "elementFileBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "563e546236217dace58a8031d56d08a27e08160b",
+      "commitId": "f94112fbbaaf2ecc6a9ecb314a5565203ce779a7",
+      "commitTime": 1422902425,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-staging/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "b263932e2e246824fa5e7538e62f39a53b5e9c17",
+      "commitId": "82c420022ef3ffe3d7ad2172b4338ed12baf9e0e",
+      "commitTime": 1422397885,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "87d699d7025f6ceadeb64fe972b7185079b6ec22",
+      "commitId": "34353f6658e9a4dd50ad860e17eee94804b76ccb",
+      "commitTime": 1420220078,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "fbd006051aa5a72cfebda9d8dfc50dc494b4c4ac",
+      "commitId": "5f7800702ad1762eef4d2a25b09615f65bf3761c",
+      "commitTime": 1418844847,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "94c8e3fa9086d847aac0cd75fddbc3b5a797b474",
+      "commitId": "51c1f67791307c2b9355171f7398d104befc8de5",
+      "commitTime": 1418214458,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "4d407cabb636489412e256778ff34cab283fbde7",
+      "commitId": "1b046f4e334926e560456c2b2ef3b67e635e4700",
+      "commitTime": 1409338916,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "return type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitId": "d56d48f1a1933f138f5d97f42b71aa64fad6bc6f",
+      "commitTime": 1408371796,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/datastream/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.datastream.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
+      "commitId": "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
+      "commitTime": 1408371770,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
+    },
+    {
+      "parentCommitId": "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
+      "commitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitTime": 1408371770,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "fed03a2fe22ec33c81bcad0ad4ffb112d6277bbc",
+      "commitId": "776bd3f6dbfd85db978ff4d5785935a19f43d77b",
+      "commitTime": 1408371770,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
+    },
+    {
+      "parentCommitId": "f932700ae4e7e6110b729afa8530ac029ed0b700",
+      "commitId": "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
+      "commitTime": 1408371770,
+      "changeType": "return type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)"
+    },
+    {
+      "parentCommitId": "0465d300cbc6cf6c69dc4da2b64cecefaa2d77db",
+      "commitId": "e73ea29593cdb8b4d9a11137b2188ca72673e98c",
+      "commitTime": 1408371770,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(RichFilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "2f704aeb3eb94a7b24641408699d54cd40a4d8cb",
+      "commitId": "799424d1a3237a8d1b32451f4b3ad23b342cf59e",
+      "commitTime": 1408371729,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "859983cc2652b544b9830eb07e18d3a1e78be00a",
+      "commitId": "5d72dd496cdad903dff455bbf510cbff68e4d21f",
+      "commitTime": 1408371252,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "b8d95bb3b717d4ed31d2a6604a9ff3966b7e8865",
+      "commitId": "c524951f5c779d47cd3fc9d40fcc0dd4db4cdfeb",
+      "commitTime": 1408371102,
+      "changeType": "return type change",
+      "elementFileBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "12e52f8ac430c00ed38096944e50db1e185f3567",
+      "commitId": "1e434d10ab16f0a36a9326cfdf7df416ff5b91d5",
+      "commitTime": 1408370235,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/flink-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "b89fa9a2437a24ba311efaa8c3dac9bbf62e7a73",
+      "commitId": "12e52f8ac430c00ed38096944e50db1e185f3567",
+      "commitTime": 1408370235,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org/apache/flink/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/org.apache.flink.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "a9ed127ca76b26037c50f9899a61c10587721c39",
+      "commitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitTime": 1408370233,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a9ed127ca76b26037c50f9899a61c10587721c39",
+      "commitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitTime": 1408370233,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a9ed127ca76b26037c50f9899a61c10587721c39",
+      "commitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitTime": 1408370233,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitId": "5b05ca635d1a661bf2be3baf60159d84834a9942",
+      "commitTime": 1408370233,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitId": "5b05ca635d1a661bf2be3baf60159d84834a9942",
+      "commitTime": 1408370233,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "65d0e3245ece52c70505c40e56bd49ea93e0a15f",
+      "commitId": "5b05ca635d1a661bf2be3baf60159d84834a9942",
+      "commitTime": 1408370233,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
+      "commitId": "e6da7089a2a5a7a8801cbf1dd1736817041ba5fd",
+      "commitTime": 1408370232,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "90df95391049122969c39332bfd4ed852dba6ea0",
+      "commitId": "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
+      "commitTime": 1408370232,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e6da7089a2a5a7a8801cbf1dd1736817041ba5fd",
+      "commitId": "3e83eb4fc853bca0daadb9f7c50ffb1670e072cc",
+      "commitTime": 1408370232,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "2b831022d76c8a7ae9fbd96b4e4eecde9bbf311b",
+      "commitId": "f5cda1b459bc9459df4d124d4d8c7d4072e7c528",
+      "commitTime": 1408370232,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "6225f15bdb7c5812f09031454ef8257079c57373",
+      "commitId": "2b831022d76c8a7ae9fbd96b4e4eecde9bbf311b",
+      "commitTime": 1408370232,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "90df95391049122969c39332bfd4ed852dba6ea0",
+      "commitId": "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
+      "commitTime": 1408370232,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "90df95391049122969c39332bfd4ed852dba6ea0",
+      "commitId": "47e2c8210930a5eb57fba3eebdf9afef07772ae3",
+      "commitTime": 1408370232,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "f5cda1b459bc9459df4d124d4d8c7d4072e7c528",
+      "commitId": "90df95391049122969c39332bfd4ed852dba6ea0",
+      "commitTime": 1408370232,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "f0c57317634a5d803e64494a5d2f4133c1cf9a3b",
+      "commitId": "74ac9d499f72919033035f67f7b7771270a8c966",
+      "commitTime": 1408370231,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "df9dac28eafcd92348c4ca49a649cf669110501f",
+      "commitId": "f0c57317634a5d803e64494a5d2f4133c1cf9a3b",
+      "commitTime": 1408370231,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "cdce868a156f9630978aedbdfc4eed582a055862",
+      "commitId": "4363991c20959421314d1249a1e78ad764371d66",
+      "commitTime": 1408370231,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "75d94931ef45fb95cd59195ef99578654c47c227",
+      "commitId": "e02b72963bb57050245291ea8aaef0eedf37ffdf",
+      "commitTime": 1408370230,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "5db9601d81d583cb7edc943786ef81ef8e32fe77",
+      "commitId": "cdce868a156f9630978aedbdfc4eed582a055862",
+      "commitTime": 1408370230,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "0fd098febb7c720f0ab4adeb0cc778feab8c9076",
+      "commitId": "916b1eb94ad63be2f1b028be9f2e0fe86c17bdb3",
+      "commitTime": 1408370230,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "916b1eb94ad63be2f1b028be9f2e0fe86c17bdb3",
+      "commitId": "086d1a72b38a8ec0a5e4300a02daf4097e0897f3",
+      "commitTime": 1408370230,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "75d94931ef45fb95cd59195ef99578654c47c227",
+      "commitId": "e02b72963bb57050245291ea8aaef0eedf37ffdf",
+      "commitTime": 1408370230,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "086d1a72b38a8ec0a5e4300a02daf4097e0897f3",
+      "commitId": "b44650b0ed0d4e7c900a0682a4a805ed7abeca04",
+      "commitTime": 1408370230,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "0e2008bc80e256220783e45b2e034519b8ec5a62",
+      "commitId": "4728eb9d9cfe640495e3edea80238e2c93f11522",
+      "commitTime": 1408370229,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "e416f39f1f78d4589badaa6d5ab6e33a5002548a",
+      "commitId": "b2f8f6e10ad8a36a92928185b23827944990748a",
+      "commitTime": 1408370229,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
+      "commitId": "75d94931ef45fb95cd59195ef99578654c47c227",
+      "commitTime": 1408370229,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "7efb84fa9353cde75e912434e21d28e9f57b1201",
+      "commitId": "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
+      "commitTime": 1408370229,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
+      "commitId": "75d94931ef45fb95cd59195ef99578654c47c227",
+      "commitTime": 1408370229,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "0e2008bc80e256220783e45b2e034519b8ec5a62",
+      "commitId": "4728eb9d9cfe640495e3edea80238e2c93f11522",
+      "commitTime": 1408370229,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a2cabbb7ce1d0d12218934c5c58c67f89cd0bef0",
+      "commitId": "e416f39f1f78d4589badaa6d5ab6e33a5002548a",
+      "commitTime": 1408370229,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "7efb84fa9353cde75e912434e21d28e9f57b1201",
+      "commitId": "a3ac7af6077104dfd92a1f7acfd7e32f20bb9601",
+      "commitTime": 1408370229,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "23788bcdd79030d98860d5ca8d907e995397f553",
+      "commitId": "edf3a0f49dd0b18440f1135e08c73e2f0bd49d29",
+      "commitTime": 1408370229,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "23788bcdd79030d98860d5ca8d907e995397f553",
+      "commitId": "edf3a0f49dd0b18440f1135e08c73e2f0bd49d29",
+      "commitTime": 1408370229,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "a31df65316aa54662515ddf4f95de71b87c64476",
+      "commitId": "a2cabbb7ce1d0d12218934c5c58c67f89cd0bef0",
+      "commitTime": 1408370228,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "b0219bbaad12f00820bfbe7c16d231cb42b6eebc",
+      "commitId": "9b49450045e4f6fc436818470f9a8b5bc95eba15",
+      "commitTime": 1408370228,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "f054ac028d3bbdabde4946dcf18c2f04ba0dffbb",
+      "commitId": "a31df65316aa54662515ddf4f95de71b87c64476",
+      "commitTime": 1408370228,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "63751058f8a0643b8e9e6c18dcd44a734f93be68",
+      "commitId": "b0219bbaad12f00820bfbe7c16d231cb42b6eebc",
+      "commitTime": 1408370228,
+      "changeType": "container change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/stratosphere-streaming-core/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "ccc1f5f246e690465099ce7a808ecfa7811ef49b",
+      "commitId": "7b7ac3d09b7769c4c13961abb4f51c58895e8e3d",
+      "commitTime": 1408370226,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "96434ab57c9229e535a8317d7128932006b9f3c3",
+      "commitId": "b39305f864b40eaf52d5a799edb09c7b898095b0",
+      "commitTime": 1408370224,
+      "changeType": "parameter change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "96434ab57c9229e535a8317d7128932006b9f3c3",
+      "commitId": "b39305f864b40eaf52d5a799edb09c7b898095b0",
+      "commitTime": 1408370224,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction, int)"
+    },
+    {
+      "parentCommitId": "3e337a0435c0980d4780e706f98a92f3e12d1fd5",
+      "commitId": "3e93ea6d5f2ac89d4df9d55642f1d0e80418d26f",
+      "commitTime": 1408370223,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "3e93ea6d5f2ac89d4df9d55642f1d0e80418d26f",
+      "commitId": "697eb774e84b43e9b7cfef07fe812a05e1a836ce",
+      "commitTime": 1408370223,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "e509ba9596c3c3783da379706d9e65e02a118f64",
+      "commitId": "3e337a0435c0980d4780e706f98a92f3e12d1fd5",
+      "commitTime": 1408370223,
+      "changeType": "body change",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    },
+    {
+      "parentCommitId": "cde1d46344741ff8c87d2bad62d2f49e05fe3fe8",
+      "commitId": "f8425f1d1e9c6846a684bd2745623b14b11ddd51",
+      "commitTime": 1408370221,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameBefore": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)",
+      "elementFileAfter": "flink-addons/flink-streaming/src/main/java/eu/stratosphere/streaming/api/DataStream.java",
+      "elementNameAfter": "flink-addons/flink-streaming/src/main/java/eu.stratosphere.streaming.api.DataStream#filter(FilterFunction)"
+    }
+  ]
 }

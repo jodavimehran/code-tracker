@@ -1,50 +1,55 @@
 {
-  "repositoryName" : "flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-  "attributeName" : "sharedStateRegistry",
-  "attributeKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@sharedStateRegistry:SharedStateRegistry(181)",
-  "attributeDeclarationLine" : 181,
-  "expectedChanges" : [ {
-    "parentCommitId" : "b71154a734ea9f4489dffe1be6761efbb90cff41",
-    "commitId" : "91a4b276171afb760bfff9ccf30593e648e91dfb",
-    "commitTime" : 1502801814,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(178)",
-    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)sharedStateRegistry:SharedStateRegistry(182)",
-    "comment" : "Remove Attribute Modifier final in attribute private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
-  }, {
-    "parentCommitId" : "b93396c5a48c604c403dc383cf34eba3d446642e",
-    "commitId" : "040356391f621858199948b15160b1e382152cc1",
-    "commitTime" : 1495287945,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(34)",
-    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(177)",
-    "comment" : "Change Attribute Access Modifier protected to private in attribute private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
-  }, {
-    "parentCommitId" : "b93396c5a48c604c403dc383cf34eba3d446642e",
-    "commitId" : "040356391f621858199948b15160b1e382152cc1",
-    "commitTime" : 1495287945,
-    "changeType" : "moved",
-    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(34)",
-    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(177)",
-    "comment" : "Move Attribute protected sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore to private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
-  }, {
-    "parentCommitId" : "218bed8b8e49b0e4c61c61f696a8f010eafea1b7",
-    "commitId" : "aa21f853ab0380ec1f68ae1d0b7c8d9268da4533",
-    "commitTime" : 1492867556,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(32)",
-    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(32)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "filePath": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+  "attributeName": "sharedStateRegistry",
+  "attributeKey": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@sharedStateRegistry:SharedStateRegistry(181)",
+  "attributeDeclarationLine": 181,
+  "expectedChanges": [
+    {
+      "parentCommitId": "b71154a734ea9f4489dffe1be6761efbb90cff41",
+      "commitId": "91a4b276171afb760bfff9ccf30593e648e91dfb",
+      "commitTime": 1502801814,
+      "changeType": "modifier change",
+      "elementFileBefore": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+      "elementNameBefore": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(178)",
+      "elementFileAfter": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+      "elementNameAfter": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(private)sharedStateRegistry:SharedStateRegistry(182)",
+      "comment": "Remove Attribute Modifier final in attribute private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+    },
+    {
+      "parentCommitId": "b93396c5a48c604c403dc383cf34eba3d446642e",
+      "commitId": "040356391f621858199948b15160b1e382152cc1",
+      "commitTime": 1495287945,
+      "changeType": "access modifier change",
+      "elementFileBefore": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
+      "elementNameBefore": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(34)",
+      "elementFileAfter": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+      "elementNameAfter": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(177)",
+      "comment": "Change Attribute Access Modifier protected to private in attribute private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+    },
+    {
+      "parentCommitId": "b93396c5a48c604c403dc383cf34eba3d446642e",
+      "commitId": "040356391f621858199948b15160b1e382152cc1",
+      "commitTime": 1495287945,
+      "changeType": "moved",
+      "elementFileBefore": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
+      "elementNameBefore": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(34)",
+      "elementFileAfter": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/CheckpointCoordinator.java",
+      "elementNameAfter": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.CheckpointCoordinator@(final)(private)sharedStateRegistry:SharedStateRegistry(177)",
+      "comment": "Move Attribute protected sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore to private sharedStateRegistry : SharedStateRegistry from class org.apache.flink.runtime.checkpoint.CheckpointCoordinator"
+    },
+    {
+      "parentCommitId": "218bed8b8e49b0e4c61c61f696a8f010eafea1b7",
+      "commitId": "aa21f853ab0380ec1f68ae1d0b7c8d9268da4533",
+      "commitTime": 1492867556,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
+      "elementNameBefore": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(32)",
+      "elementFileAfter": "flink-runtime/src/main/java/org/apache/flink/runtime/checkpoint/AbstractCompletedCheckpointStore.java",
+      "elementNameAfter": "flink-runtime/src/main/java/org.apache.flink.runtime.checkpoint.AbstractCompletedCheckpointStore@(final)(protected)sharedStateRegistry:SharedStateRegistry(32)",
+      "comment": "added with new class"
+    }
+  ]
 }

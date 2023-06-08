@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "javaparser\\javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "filePath" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-  "functionName" : "solveSymbolAsValue",
-  "functionKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)",
-  "functionStartLine" : 56,
-  "variableName" : "entry",
-  "variableKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry(113)",
-  "variableStartLine" : 113,
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "expectedChanges" : [ {
-    "parentCommitId" : "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
-    "commitId" : "5d8d0cb7947efcf2282f7d056302dd905f348532",
-    "commitTime" : 1506630980,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameterDeclaration,Type>(114)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Pair<ResolvedTypeParameterDeclaration,ResolvedType>(114)",
-    "comment" : "Change Variable Type entry : Tuple2<TypeParameterDeclaration,Type> to entry : Pair<ResolvedTypeParameterDeclaration,ResolvedType> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
-  }, {
-    "parentCommitId" : "04795580f2c5fc92f5d546ce3da82605f750f155",
-    "commitId" : "ecc78c8b480ceb41019f764c983aaa69c2dabfe3",
-    "commitTime" : 1476463882,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,Type>(71)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameterDeclaration,Type>(71)",
-    "comment" : "Change Variable Type entry : Tuple2<TypeParameter,Type> to entry : Tuple2<TypeParameterDeclaration,Type> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
-  }, {
-    "parentCommitId" : "b75d0c51157475833e5364ec6df88b2b6fe0db79",
-    "commitId" : "82eb44707b620803d424188a1eb8708fcaf093cb",
-    "commitTime" : 1476389491,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,Type>(71)",
-    "comment" : "Change Variable Type entry : Tuple2<TypeParameter,TypeUsage> to entry : Tuple2<TypeParameter,Type> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
-  }, {
-    "parentCommitId" : "38d780df85a22c9baffb1f772a45b063cad73aab",
-    "commitId" : "401a56f412ca186a00a2282d9088e8cb7b67e0e5",
-    "commitTime" : 1476308582,
-    "changeType" : "introduced",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "javaparser\\javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+  "functionName": "solveSymbolAsValue",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)",
+  "functionStartLine": 56,
+  "variableName": "entry",
+  "variableKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry(113)",
+  "variableStartLine": 113,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
+      "commitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitTime": 1506630980,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameterDeclaration,Type>(114)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Pair<ResolvedTypeParameterDeclaration,ResolvedType>(114)",
+      "comment": "Change Variable Type entry : Tuple2<TypeParameterDeclaration,Type> to entry : Pair<ResolvedTypeParameterDeclaration,ResolvedType> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
+    },
+    {
+      "parentCommitId": "04795580f2c5fc92f5d546ce3da82605f750f155",
+      "commitId": "ecc78c8b480ceb41019f764c983aaa69c2dabfe3",
+      "commitTime": 1476463882,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,Type>(71)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameterDeclaration,Type>(71)",
+      "comment": "Change Variable Type entry : Tuple2<TypeParameter,Type> to entry : Tuple2<TypeParameterDeclaration,Type> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
+    },
+    {
+      "parentCommitId": "b75d0c51157475833e5364ec6df88b2b6fe0db79",
+      "commitId": "82eb44707b620803d424188a1eb8708fcaf093cb",
+      "commitTime": 1476389491,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,Type>(71)",
+      "comment": "Change Variable Type entry : Tuple2<TypeParameter,TypeUsage> to entry : Tuple2<TypeParameter,Type> in method public solveSymbolAsValue(name String, typeSolver TypeSolver) : Optional<Value> from class me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext"
+    },
+    {
+      "parentCommitId": "38d780df85a22c9baffb1f772a45b063cad73aab",
+      "commitId": "401a56f412ca186a00a2282d9088e8cb7b67e0e5",
+      "commitTime": 1476308582,
+      "changeType": "introduced",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/javaparsermodel/contexts/LambdaExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.javaparsermodel.contexts.LambdaExprContext#solveSymbolAsValue(String, TypeSolver)$entry:Tuple2<TypeParameter,TypeUsage>(72)",
+      "comment": "new variable"
+    }
+  ]
 }

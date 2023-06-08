@@ -1,80 +1,88 @@
 {
-  "repositoryName" : "hadoop",
-  "repositoryWebURL" : "https://github.com/apache/hadoop.git",
-  "startCommitId" : "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
-  "filePath" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-  "attributeName" : "reReservations",
-  "attributeKey" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@reReservations:ConcurrentHashMultiset<SchedulerRequestKey>(119)",
-  "attributeDeclarationLine" : 119,
-  "expectedChanges" : [ {
-    "parentCommitId" : "ea29e3bc27f15516f4346d1312eef703bcd3d032",
-    "commitId" : "b8a30f2f170ffbd590e7366c3c944ab4919e40df",
-    "commitTime" : 1474276081,
-    "changeType" : "type change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<SchedulerRequestKey>(104)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:ConcurrentHashMultiset<SchedulerRequestKey>(105)",
-    "comment" : "Change Attribute Type reReservations : Multiset<SchedulerRequestKey> to reReservations : ConcurrentHashMultiset<SchedulerRequestKey> in class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
-  }, {
-    "parentCommitId" : "d2cf8b54c546fad098307b771ffe40173700f5a8",
-    "commitId" : "5aace38b748ba71aaadd2c4d64eba8dc1f816828",
-    "commitTime" : 1469570043,
-    "changeType" : "type change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<Priority>(104)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<SchedulerRequestKey>(104)",
-    "comment" : "Change Attribute Type reReservations : Multiset<Priority> to reReservations : Multiset<SchedulerRequestKey> in class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
-  }, {
-    "parentCommitId" : "b4eb963c3c3e0b123003d7b32cdf7c9202cfb441",
-    "commitId" : "a45017a5f17ec11814db7e206d1e80aaa4dd8d8f",
-    "commitTime" : 1388693985,
-    "changeType" : "container change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(71)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<Priority>(72)",
-    "comment" : "Rename Class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication renamed to org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
-  }, {
-    "parentCommitId" : "b3195f1283c4524c32e67640e965b70e96530fcc",
-    "commitId" : "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
-    "commitTime" : 1382656525,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(102)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(70)",
-    "comment" : "Change Attribute Access Modifier package to private in attribute private reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
-  }, {
-    "parentCommitId" : "b3195f1283c4524c32e67640e965b70e96530fcc",
-    "commitId" : "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
-    "commitTime" : 1382656525,
-    "changeType" : "moved",
-    "elementFileBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameBefore" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(102)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(70)",
-    "comment" : "Pull Up Attribute package reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp to private reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
-  }, {
-    "parentCommitId" : "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
-    "commitId" : "e1fdf62123625e4ba399af02f8aad500637d29d1",
-    "commitTime" : 1344403347,
-    "changeType" : "container change",
-    "elementFileBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
-    "elementFileAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameAfter" : "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
-    "comment" : "Move Source Folder hadoop-mapreduce-project to hadoop-yarn-project"
-  }, {
-    "parentCommitId" : "30099efb3525265f8b9fccd2709d45327f5b6724",
-    "commitId" : "7f2b1eadc1b0807ec1302a0c3488bf6e7a59bc76",
-    "commitTime" : 1342489383,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameBefore" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
-    "elementFileAfter" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
-    "elementNameAfter" : "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "hadoop",
+  "repositoryWebURL": "https://github.com/apache/hadoop.git",
+  "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+  "attributeName": "reReservations",
+  "attributeKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@reReservations:ConcurrentHashMultiset<SchedulerRequestKey>(119)",
+  "attributeDeclarationLine": 119,
+  "expectedChanges": [
+    {
+      "parentCommitId": "ea29e3bc27f15516f4346d1312eef703bcd3d032",
+      "commitId": "b8a30f2f170ffbd590e7366c3c944ab4919e40df",
+      "commitTime": 1474276081,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<SchedulerRequestKey>(104)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:ConcurrentHashMultiset<SchedulerRequestKey>(105)",
+      "comment": "Change Attribute Type reReservations : Multiset<SchedulerRequestKey> to reReservations : ConcurrentHashMultiset<SchedulerRequestKey> in class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "d2cf8b54c546fad098307b771ffe40173700f5a8",
+      "commitId": "5aace38b748ba71aaadd2c4d64eba8dc1f816828",
+      "commitTime": 1469570043,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<Priority>(104)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<SchedulerRequestKey>(104)",
+      "comment": "Change Attribute Type reReservations : Multiset<Priority> to reReservations : Multiset<SchedulerRequestKey> in class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "b4eb963c3c3e0b123003d7b32cdf7c9202cfb441",
+      "commitId": "a45017a5f17ec11814db7e206d1e80aaa4dd8d8f",
+      "commitTime": 1388693985,
+      "changeType": "container change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(71)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt@(final)(private)reReservations:Multiset<Priority>(72)",
+      "comment": "Rename Class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication renamed to org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
+      "commitId": "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
+      "commitTime": 1382656525,
+      "changeType": "modifier change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(102)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(70)",
+      "comment": "Change Attribute Access Modifier package to private in attribute private reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
+    },
+    {
+      "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
+      "commitId": "6772d07fdc0ad7d0cd1be851bf83ae0208abd391",
+      "commitTime": 1382656525,
+      "changeType": "moved",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(102)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication@(final)(private)reReservations:Multiset<Priority>(70)",
+      "comment": "Pull Up Attribute package reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp to private reReservations : Multiset<Priority> from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
+    },
+    {
+      "parentCommitId": "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
+      "commitId": "e1fdf62123625e4ba399af02f8aad500637d29d1",
+      "commitTime": 1344403347,
+      "changeType": "container change",
+      "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
+      "comment": "Move Source Folder hadoop-mapreduce-project to hadoop-yarn-project"
+    },
+    {
+      "parentCommitId": "30099efb3525265f8b9fccd2709d45327f5b6724",
+      "commitId": "7f2b1eadc1b0807ec1302a0c3488bf6e7a59bc76",
+      "commitTime": 1342489383,
+      "changeType": "introduced",
+      "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
+      "elementFileAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
+      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp@(package)reReservations:Multiset<Priority>(97)",
+      "comment": "new attribute"
+    }
+  ]
 }

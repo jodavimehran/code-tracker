@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "javaparser\\javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "filePath" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-  "functionName" : "apply",
-  "functionKey" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply()",
-  "functionStartLine" : 115,
-  "variableName" : "originalElement",
-  "variableKey" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply()$originalElement(129)",
-  "variableStartLine" : 129,
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "expectedChanges" : [ {
-    "parentCommitId" : "77386fec9f12fb711779151186fe72b345bd4299",
-    "commitId" : "2ae6f779cc175b3cd82d915419f378e53ff4b056",
-    "commitTime" : 1526673942,
-    "changeType" : "rename",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$givenElement:TextElement(638)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$originalElement:TextElement(638)",
-    "comment" : "Rename Variable givenElement : TextElement to originalElement : TextElement in method package apply(nodeText NodeText, node Node) : void from class com.github.javaparser.printer.lexicalpreservation.Difference"
-  }, {
-    "parentCommitId" : "7e86d04481f1128e3644b46991f106b34e775bb9",
-    "commitId" : "fb8daf1673c35798aeb7cca8033dd9c9b2e5c4fc",
-    "commitTime" : 1526592264,
-    "changeType" : "rename",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$nodeTextEl:TextElement(524)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$givenElement:TextElement(528)",
-    "comment" : "Rename Variable nodeTextEl : TextElement to givenElement : TextElement in method package apply(nodeText NodeText, node Node) : void from class com.github.javaparser.printer.lexicalpreservation.Difference"
-  }, {
-    "parentCommitId" : "c73ae5d79b62de91209477538b45ab5216fb108e",
-    "commitId" : "cc13f68e3655ea43b56dd13ee55a81f3a2d37fee",
-    "commitTime" : 1487866773,
-    "changeType" : "introduced",
-    "elementFileBefore" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java",
-    "elementNameBefore" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.LexicalDifferenceCalculator.Difference#apply(NodeText)$nodeTextEl:TextElement(358)",
-    "elementFileAfter" : "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java",
-    "elementNameAfter" : "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.LexicalDifferenceCalculator.Difference#apply(NodeText)$nodeTextEl:TextElement(358)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "javaparser\\javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+  "functionName": "apply",
+  "functionKey": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply()",
+  "functionStartLine": 115,
+  "variableName": "originalElement",
+  "variableKey": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply()$originalElement(129)",
+  "variableStartLine": 129,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "77386fec9f12fb711779151186fe72b345bd4299",
+      "commitId": "2ae6f779cc175b3cd82d915419f378e53ff4b056",
+      "commitTime": 1526673942,
+      "changeType": "rename",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$givenElement:TextElement(638)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$originalElement:TextElement(638)",
+      "comment": "Rename Variable givenElement : TextElement to originalElement : TextElement in method package apply(nodeText NodeText, node Node) : void from class com.github.javaparser.printer.lexicalpreservation.Difference"
+    },
+    {
+      "parentCommitId": "7e86d04481f1128e3644b46991f106b34e775bb9",
+      "commitId": "fb8daf1673c35798aeb7cca8033dd9c9b2e5c4fc",
+      "commitTime": 1526592264,
+      "changeType": "rename",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$nodeTextEl:TextElement(524)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$givenElement:TextElement(528)",
+      "comment": "Rename Variable nodeTextEl : TextElement to givenElement : TextElement in method package apply(nodeText NodeText, node Node) : void from class com.github.javaparser.printer.lexicalpreservation.Difference"
+    },
+    {
+      "parentCommitId": "c73ae5d79b62de91209477538b45ab5216fb108e",
+      "commitId": "cc13f68e3655ea43b56dd13ee55a81f3a2d37fee",
+      "commitTime": 1487866773,
+      "changeType": "introduced",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.LexicalDifferenceCalculator.Difference#apply(NodeText)$nodeTextEl:TextElement(358)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.LexicalDifferenceCalculator.Difference#apply(NodeText)$nodeTextEl:TextElement(358)",
+      "comment": "new variable"
+    }
+  ]
 }

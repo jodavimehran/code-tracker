@@ -1,90 +1,99 @@
 {
-  "repositoryName" : "intellij-community",
-  "repositoryWebURL" : "https://github.com/JetBrains/intellij-community.git",
-  "startCommitId" : "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
-  "filePath" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
-  "attributeName" : "LOG",
-  "attributeKey" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@LOG:Logger(14)",
-  "attributeDeclarationLine" : 14,
-  "expectedChanges" : [ {
-    "parentCommitId" : "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
-    "commitId" : "3c8f350a73251898468aaeeaccc34f066f91e26f",
-    "commitTime" : 1470224828,
-    "changeType" : "container change",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@(final,static)(private)LOG:Logger(28)",
-    "comment" : "Rename Class com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer renamed to com.intellij.debugger.ui.tree.render.TypeRenderer"
-  }, {
-    "parentCommitId" : "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
-    "commitId" : "3c8f350a73251898468aaeeaccc34f066f91e26f",
-    "commitTime" : 1470224828,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@(final,static)(private)LOG:Logger(28)",
-    "comment" : "Change Attribute Access Modifier protected to private in attribute private LOG : Logger from class com.intellij.debugger.ui.tree.render.TypeRenderer"
-  }, {
-    "parentCommitId" : "a4e344f831989ed093fe0ff3ba53d5b9eb2a7fa9",
-    "commitId" : "70d66687e2c4c8936e331875799a4538f8f240ea",
-    "commitTime" : 1442915162,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(27)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
-    "comment" : "Change Attribute Access Modifier private to protected in attribute protected LOG : Logger from class com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer"
-  }, {
-    "parentCommitId" : "abec9f6b355cfab53064655ba7d1fd35823f345b",
-    "commitId" : "786fa6b666889eb866b86ada8dc674d53a553aa4",
-    "commitTime" : 1251650347,
-    "changeType" : "container change",
-    "elementFileBefore" : "debugger/impl/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "debugger/impl/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(16)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(16)",
-    "comment" : "Move Source Folder debugger/impl to java/debugger/impl/src"
-  }, {
-    "parentCommitId" : "f183ad06c732befeaa76de1cbaeb763337084e3e",
-    "commitId" : "1b12b4f6ab85d0409467c49dbc54918796edf0b8",
-    "commitTime" : 1129560955,
-    "changeType" : "container change",
-    "elementFileBefore" : "debugger-impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "debugger-impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
-    "elementFileAfter" : "debugger/impl/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameAfter" : "debugger/impl/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
-    "comment" : "Move Source Folder debugger-impl/src to debugger/impl"
-  }, {
-    "parentCommitId" : "637afa62e37f2ff15acf2f0129aa7eae57024506",
-    "commitId" : "ed963063110c01a599ee9840c4ad9eb8a7949988",
-    "commitTime" : 1129544887,
-    "changeType" : "container change",
-    "elementFileBefore" : "source/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameBefore" : "source/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
-    "elementFileAfter" : "debugger-impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameAfter" : "debugger-impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
-    "comment" : "Move Source Folder source to debugger-impl/src"
-  }, {
-    "parentCommitId" : "92f6b51e59213873a5d434e90784e078c979b7ba",
-    "commitId" : "bfe82dc83a75d544fa3ff4054e33414a2a195961",
-    "commitTime" : 1108563258,
-    "changeType" : "container change",
-    "elementFileBefore" : "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
-    "elementNameBefore" : "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
-    "elementFileAfter" : "source/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
-    "elementNameAfter" : "source/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
-    "comment" : "Move And Rename Class com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer moved and renamed to com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer"
-  }, {
-    "parentCommitId" : "0",
-    "commitId" : "7460e5adae69c7b17c951f1198a6b6900721a1ee",
-    "commitTime" : 1105649070,
-    "changeType" : "introduced",
-    "elementFileBefore" : "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
-    "elementNameBefore" : "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
-    "elementFileAfter" : "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
-    "elementNameAfter" : "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
-    "comment" : "Initial commit!"
-  } ]
+  "repositoryName": "intellij-community",
+  "repositoryWebURL": "https://github.com/JetBrains/intellij-community.git",
+  "startCommitId": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "filePath": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+  "attributeName": "LOG",
+  "attributeKey": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@LOG:Logger(14)",
+  "attributeDeclarationLine": 14,
+  "expectedChanges": [
+    {
+      "parentCommitId": "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
+      "commitId": "3c8f350a73251898468aaeeaccc34f066f91e26f",
+      "commitTime": 1470224828,
+      "changeType": "container change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@(final,static)(private)LOG:Logger(28)",
+      "comment": "Rename Class com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer renamed to com.intellij.debugger.ui.tree.render.TypeRenderer"
+    },
+    {
+      "parentCommitId": "f73dbb431bf06d8e51ed333a2b6dcead9957e7ed",
+      "commitId": "3c8f350a73251898468aaeeaccc34f066f91e26f",
+      "commitTime": 1470224828,
+      "changeType": "modifier change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/TypeRenderer.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.TypeRenderer@(final,static)(private)LOG:Logger(28)",
+      "comment": "Change Attribute Access Modifier protected to private in attribute private LOG : Logger from class com.intellij.debugger.ui.tree.render.TypeRenderer"
+    },
+    {
+      "parentCommitId": "a4e344f831989ed093fe0ff3ba53d5b9eb2a7fa9",
+      "commitId": "70d66687e2c4c8936e331875799a4538f8f240ea",
+      "commitTime": 1442915162,
+      "changeType": "modifier change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(27)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(protected)LOG:Logger(35)",
+      "comment": "Change Attribute Access Modifier private to protected in attribute protected LOG : Logger from class com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer"
+    },
+    {
+      "parentCommitId": "abec9f6b355cfab53064655ba7d1fd35823f345b",
+      "commitId": "786fa6b666889eb866b86ada8dc674d53a553aa4",
+      "commitTime": 1251650347,
+      "changeType": "container change",
+      "elementFileBefore": "debugger/impl/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "debugger/impl/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(16)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(16)",
+      "comment": "Move Source Folder debugger/impl to java/debugger/impl/src"
+    },
+    {
+      "parentCommitId": "f183ad06c732befeaa76de1cbaeb763337084e3e",
+      "commitId": "1b12b4f6ab85d0409467c49dbc54918796edf0b8",
+      "commitTime": 1129560955,
+      "changeType": "container change",
+      "elementFileBefore": "debugger-impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "debugger-impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
+      "elementFileAfter": "debugger/impl/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameAfter": "debugger/impl/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
+      "comment": "Move Source Folder debugger-impl/src to debugger/impl"
+    },
+    {
+      "parentCommitId": "637afa62e37f2ff15acf2f0129aa7eae57024506",
+      "commitId": "ed963063110c01a599ee9840c4ad9eb8a7949988",
+      "commitTime": 1129544887,
+      "changeType": "container change",
+      "elementFileBefore": "source/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameBefore": "source/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
+      "elementFileAfter": "debugger-impl/src/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameAfter": "debugger-impl/src/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
+      "comment": "Move Source Folder source to debugger-impl/src"
+    },
+    {
+      "parentCommitId": "92f6b51e59213873a5d434e90784e078c979b7ba",
+      "commitId": "bfe82dc83a75d544fa3ff4054e33414a2a195961",
+      "commitTime": 1108563258,
+      "changeType": "container change",
+      "elementFileBefore": "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
+      "elementNameBefore": "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
+      "elementFileAfter": "source/com/intellij/debugger/ui/tree/render/CompoundReferenceRenderer.java",
+      "elementNameAfter": "source/com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer@(final,static)(private)LOG:Logger(12)",
+      "comment": "Move And Rename Class com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer moved and renamed to com.intellij.debugger.ui.tree.render.CompoundReferenceRenderer"
+    },
+    {
+      "parentCommitId": "0",
+      "commitId": "7460e5adae69c7b17c951f1198a6b6900721a1ee",
+      "commitTime": 1105649070,
+      "changeType": "introduced",
+      "elementFileBefore": "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
+      "elementNameBefore": "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
+      "elementFileAfter": "source/com/intellij/debugger/ui/impl/watch/render/PrimitiveRenderer.java",
+      "elementNameAfter": "source/com.intellij.debugger.ui.impl.watch.render.PrimitiveRenderer@(final,static)(private)LOG:Logger(29)",
+      "comment": "Initial commit!"
+    }
+  ]
 }

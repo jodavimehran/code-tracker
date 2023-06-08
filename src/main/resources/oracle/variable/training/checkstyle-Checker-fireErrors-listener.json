@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-  "functionName" : "fireErrors",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
-  "functionStartLine" : 384,
-  "variableName" : "listener",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$listener(391)",
-  "variableStartLine" : 391,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "6e96026ec6d95fc5eadd3044cab91c24c73c8e0c",
-    "commitId" : "e00c478dd61d9d883e41b500b780ab217582c2e7",
-    "commitTime" : 1287650559,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$listener:AuditListener(512)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$listener:AuditListener(510)",
-    "comment" : "Add Variable Modifier final in variable listener : AuditListener in method public fireErrors(aFileName String, aErrors TreeSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "08638b5f739d9929698860048c052da2d5f80209",
-    "commitId" : "f1afaf83f39b83cc3bd07a2388448b262652a76b",
-    "commitTime" : 1197706480,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$listener:AuditListener(484)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$listener:AuditListener(474)",
-    "comment" : "Remove Variable Modifier final in variable listener : AuditListener in method public fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
-    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
-    "commitTime" : 999188004,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$listener:AuditListener(317)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$listener:AuditListener(317)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "functionName": "fireErrors",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)",
+  "functionStartLine": 384,
+  "variableName": "listener",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, SortedSet)$listener(391)",
+  "variableStartLine": 391,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6e96026ec6d95fc5eadd3044cab91c24c73c8e0c",
+      "commitId": "e00c478dd61d9d883e41b500b780ab217582c2e7",
+      "commitTime": 1287650559,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$listener:AuditListener(512)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, TreeSet)$listener:AuditListener(510)",
+      "comment": "Add Variable Modifier final in variable listener : AuditListener in method public fireErrors(aFileName String, aErrors TreeSet<LocalizedMessage>) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "08638b5f739d9929698860048c052da2d5f80209",
+      "commitId": "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+      "commitTime": 1197706480,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$listener:AuditListener(484)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LocalizedMessage[])$listener:AuditListener(474)",
+      "comment": "Remove Variable Modifier final in variable listener : AuditListener in method public fireErrors(aFileName String, aErrors LocalizedMessage[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$listener:AuditListener(317)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])$listener:AuditListener(317)",
+      "comment": "added with method"
+    }
+  ]
 }

@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-  "functionName" : "bindClass",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
-  "functionStartLine" : 524,
-  "variableName" : "elementsToProcess",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$elementsToProcess(778)",
-  "variableStartLine" : 778,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "c57ab61dcf1c6c546260c45081ab8d76cdd2620b",
-    "commitId" : "5ee9ba361c96c29b06542720cb8b01e1034d8544",
-    "commitTime" : 1264510621,
-    "changeType" : "type change",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:InheritanceState.ElementsToProcess(627)",
-    "comment" : "Change Variable Type elementsToProcess : ElementsToProcess to elementsToProcess : InheritanceState.ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "671d9db8e2150111ec279c7ec35f1eaa82370412",
-    "commitId" : "d00f7efb308fab613b4918f9b8831f07602c6bd0",
-    "commitTime" : 1264439945,
-    "changeType" : "type change",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
-    "comment" : "Change Variable Type elements : List<PropertyData> to elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "671d9db8e2150111ec279c7ec35f1eaa82370412",
-    "commitId" : "d00f7efb308fab613b4918f9b8831f07602c6bd0",
-    "commitTime" : 1264439945,
-    "changeType" : "rename",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
-    "comment" : "Rename Variable elements : List<PropertyData> to elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "671d9db8e2150111ec279c7ec35f1eaa82370412",
-    "commitId" : "d00f7efb308fab613b4918f9b8831f07602c6bd0",
-    "commitTime" : 1264439945,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
-    "elementFileAfter" : "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
-    "comment" : "Add Variable Modifier final in variable elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
-    "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
-    "commitTime" : 1225219270,
-    "changeType" : "introduced",
-    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(667)",
-    "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(667)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+  "functionName": "bindClass",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
+  "functionStartLine": 524,
+  "variableName": "elementsToProcess",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$elementsToProcess(778)",
+  "variableStartLine": 778,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "c57ab61dcf1c6c546260c45081ab8d76cdd2620b",
+      "commitId": "5ee9ba361c96c29b06542720cb8b01e1034d8544",
+      "commitTime": 1264510621,
+      "changeType": "type change",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:InheritanceState.ElementsToProcess(627)",
+      "comment": "Change Variable Type elementsToProcess : ElementsToProcess to elementsToProcess : InheritanceState.ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "671d9db8e2150111ec279c7ec35f1eaa82370412",
+      "commitId": "d00f7efb308fab613b4918f9b8831f07602c6bd0",
+      "commitTime": 1264439945,
+      "changeType": "type change",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
+      "comment": "Change Variable Type elements : List<PropertyData> to elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "671d9db8e2150111ec279c7ec35f1eaa82370412",
+      "commitId": "d00f7efb308fab613b4918f9b8831f07602c6bd0",
+      "commitTime": 1264439945,
+      "changeType": "rename",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
+      "comment": "Rename Variable elements : List<PropertyData> to elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "671d9db8e2150111ec279c7ec35f1eaa82370412",
+      "commitId": "d00f7efb308fab613b4918f9b8831f07602c6bd0",
+      "commitTime": 1264439945,
+      "changeType": "modifier change",
+      "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(628)",
+      "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elementsToProcess:ElementsToProcess(628)",
+      "comment": "Add Variable Modifier final in variable elementsToProcess : ElementsToProcess in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings ExtendedMappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(667)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$elements:List<PropertyData>(667)",
+      "comment": "added with method"
+    }
+  ]
 }

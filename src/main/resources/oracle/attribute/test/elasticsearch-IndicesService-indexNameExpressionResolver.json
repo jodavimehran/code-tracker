@@ -1,70 +1,77 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-  "attributeName" : "indexNameExpressionResolver",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService@indexNameExpressionResolver:IndexNameExpressionResolver(164)",
-  "attributeDeclarationLine" : 164,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(154)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(154)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "b56bbf62dd88225d2c396fc023e2bb44cc8698fc",
-    "commitId" : "4176964358a9daf3de237d5c3b06a4eef5a924c3",
-    "commitTime" : 1446495611,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(84)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(104)",
-    "comment" : "Change Attribute Access Modifier package to private in attribute private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.indices.IndicesService"
-  }, {
-    "parentCommitId" : "b56bbf62dd88225d2c396fc023e2bb44cc8698fc",
-    "commitId" : "4176964358a9daf3de237d5c3b06a4eef5a924c3",
-    "commitTime" : 1446495611,
-    "changeType" : "moved",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(84)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(104)",
-    "comment" : "Move Attribute package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService to private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.indices.IndicesService"
-  }, {
-    "parentCommitId" : "4a3faf1126800a4e4be736e11fae64269e7a4e55",
-    "commitId" : "99ac70860fc70d53ca2d4f9459561876e89b9cde",
-    "commitTime" : 1439904644,
-    "changeType" : "access modifier change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(47)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(81)",
-    "comment" : "Change Attribute Access Modifier private to package in attribute package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService"
-  }, {
-    "parentCommitId" : "4a3faf1126800a4e4be736e11fae64269e7a4e55",
-    "commitId" : "99ac70860fc70d53ca2d4f9459561876e89b9cde",
-    "commitTime" : 1439904644,
-    "changeType" : "moved",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(47)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(81)",
-    "comment" : "Move Attribute private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndicesQueryParser to package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService"
-  }, {
-    "parentCommitId" : "75a51ede24086378faaaf301944949b61432be22",
-    "commitId" : "52859e3a523983275cea0bbb0bd2d4f0203f69cf",
-    "commitTime" : 1436534308,
-    "changeType" : "introduced",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(48)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(48)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+  "attributeName": "indexNameExpressionResolver",
+  "attributeKey": "server/src/main/java/org.elasticsearch.indices.IndicesService@indexNameExpressionResolver:IndexNameExpressionResolver(164)",
+  "attributeDeclarationLine": 164,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(154)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(154)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "b56bbf62dd88225d2c396fc023e2bb44cc8698fc",
+      "commitId": "4176964358a9daf3de237d5c3b06a4eef5a924c3",
+      "commitTime": 1446495611,
+      "changeType": "access modifier change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(84)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(104)",
+      "comment": "Change Attribute Access Modifier package to private in attribute private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.indices.IndicesService"
+    },
+    {
+      "parentCommitId": "b56bbf62dd88225d2c396fc023e2bb44cc8698fc",
+      "commitId": "4176964358a9daf3de237d5c3b06a4eef5a924c3",
+      "commitTime": 1446495611,
+      "changeType": "moved",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(84)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(104)",
+      "comment": "Move Attribute package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService to private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.indices.IndicesService"
+    },
+    {
+      "parentCommitId": "4a3faf1126800a4e4be736e11fae64269e7a4e55",
+      "commitId": "99ac70860fc70d53ca2d4f9459561876e89b9cde",
+      "commitTime": 1439904644,
+      "changeType": "access modifier change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(47)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(81)",
+      "comment": "Change Attribute Access Modifier private to package in attribute package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService"
+    },
+    {
+      "parentCommitId": "4a3faf1126800a4e4be736e11fae64269e7a4e55",
+      "commitId": "99ac70860fc70d53ca2d4f9459561876e89b9cde",
+      "commitTime": 1439904644,
+      "changeType": "moved",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(47)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/query/IndexQueryParserService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.query.IndexQueryParserService@(final)(package)indexNameExpressionResolver:IndexNameExpressionResolver(81)",
+      "comment": "Move Attribute private indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndicesQueryParser to package indexNameExpressionResolver : IndexNameExpressionResolver from class org.elasticsearch.index.query.IndexQueryParserService"
+    },
+    {
+      "parentCommitId": "75a51ede24086378faaaf301944949b61432be22",
+      "commitId": "52859e3a523983275cea0bbb0bd2d4f0203f69cf",
+      "commitTime": 1436534308,
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(48)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/query/IndicesQueryParser.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.query.IndicesQueryParser@(final)(private)indexNameExpressionResolver:IndexNameExpressionResolver(48)",
+      "comment": "new attribute"
+    }
+  ]
 }

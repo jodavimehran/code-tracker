@@ -1,73 +1,80 @@
 {
-  "repositoryName" : "eclipse\\jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-  "functionName" : "findObjectsToPack",
-  "functionKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-  "functionStartLine" : 1775,
-  "variableName" : "have",
-  "variableKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$have(1777)",
-  "variableStartLine" : 1777,
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "expectedChanges" : [ {
-    "parentCommitId" : "40051505d7aaccfe2efaf5f3022f1d99a3976554",
-    "commitId" : "4e650c0d76b716c0e9cb3592d30def9e609066c1",
-    "commitTime" : 1452645032,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1602)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1610)",
-    "comment" : "Add Parameter Annotation @NonNull in parameter have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "100e9429b5a7eea8383c6e693d17b6233794c488",
-    "commitId" : "74333e63b60440be5ff9f591f2203b635e26e3a0",
-    "commitTime" : 1313522319,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$have:Collection<?extendsObjectId>(1260)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1340)",
-    "comment" : "Change Parameter Type have : Collection<? extends ObjectId> to have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
-    "commitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitTime" : 1296572604,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
-    "comment" : "Change Variable Type not : Set<ObjectId> to have : Collection<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
-    "commitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitTime" : 1296572604,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
-    "comment" : "Remove Variable Modifier final in variable not : Set<ObjectId> in method private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
-    "commitId" : "2fbcba41e365752681f635c706d577e605d3336a",
-    "commitTime" : 1296572604,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
-    "comment" : "Parameterize Variable not : Set<ObjectId> to have : Collection<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "11a5bef8b1c866fadc9b340a1300c7fdd927a46b",
-    "commitId" : "f048af3fd19547d3692f5df968571ffd7556b688",
-    "commitTime" : 1282351287,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(1019)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(1019)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "eclipse\\jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+  "functionName": "findObjectsToPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+  "functionStartLine": 1775,
+  "variableName": "have",
+  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$have(1777)",
+  "variableStartLine": 1777,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
+      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
+      "commitTime": 1452645032,
+      "changeType": "annotation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1602)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1610)",
+      "comment": "Add Parameter Annotation @NonNull in parameter have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "100e9429b5a7eea8383c6e693d17b6233794c488",
+      "commitId": "74333e63b60440be5ff9f591f2203b635e26e3a0",
+      "commitTime": 1313522319,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Collection, Collection)$have:Collection<?extendsObjectId>(1260)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$have:Set<?extendsObjectId>(1340)",
+      "comment": "Change Parameter Type have : Collection<? extends ObjectId> to have : Set<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
+      "commitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitTime": 1296572604,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
+      "comment": "Change Variable Type not : Set<ObjectId> to have : Collection<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
+      "commitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitTime": 1296572604,
+      "changeType": "modifier change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
+      "comment": "Remove Variable Modifier final in variable not : Set<ObjectId> in method private setUpWalker(interestingObjects Collection<? extends ObjectId>, uninterestingObjects Collection<? extends ObjectId>) : ObjectWalk from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "8f63dface2e08b228cdeb3bef3f93458eab9ce14",
+      "commitId": "2fbcba41e365752681f635c706d577e605d3336a",
+      "commitTime": 1296572604,
+      "changeType": "rename",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(988)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, Collection, Collection)$have:Collection<?extendsObjectId>(978)",
+      "comment": "Parameterize Variable not : Set<ObjectId> to have : Collection<? extends ObjectId> in method private findObjectsToPack(countingMonitor ProgressMonitor, want Collection<? extends ObjectId>, have Collection<? extends ObjectId>) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "11a5bef8b1c866fadc9b340a1300c7fdd927a46b",
+      "commitId": "f048af3fd19547d3692f5df968571ffd7556b688",
+      "commitTime": 1282351287,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(1019)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#setUpWalker(Collection, Collection)$not:Set<ObjectId>(1019)",
+      "comment": "new variable"
+    }
+  ]
 }

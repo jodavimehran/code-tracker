@@ -1,88 +1,97 @@
 {
-  "repositoryName" : "checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-  "attributeName" : "filters",
-  "attributeKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@filters:FilterSet(90)",
-  "attributeDeclarationLine" : 90,
-  "expectedChanges" : [ {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)filters:FilterSet(91)",
-    "comment" : "Rename Attribute mFilters : FilterSet to filters : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
-    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
-    "commitTime" : 1393953491,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
-    "comment" : "Move Source Folder src/checkstyle to src/main/java"
-  }, {
-    "parentCommitId" : "7c22cbca328161b61049c4a3240613959341fb9a",
-    "commitId" : "1846dacad6c2a3a04b3350b45bb8b05835192296",
-    "commitTime" : 1058522231,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterSet(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(128)",
-    "comment" : "Rename Attribute mFilterChain : FilterSet to mFilters : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "a9bfdceec2a2d86a622c03fbd4052f007b5e70cc",
-    "commitId" : "1e7d8eef0641edcf97316618c8fab40bd248133d",
-    "commitTime" : 1058300282,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterChain(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterSet(128)",
-    "comment" : "Change Attribute Type mFilterChain : FilterChain to mFilterChain : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "d917b95a017b235c99f52624475352e2d79ce7b2",
-    "commitId" : "51dae59b8dcfb5a34f2a8a5b3e788eb6599a1df3",
-    "commitTime" : 1058185912,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilterChain:FilterChain(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterChain(128)",
-    "comment" : "Add Attribute Modifier final in attribute private mFilterChain : FilterChain from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "8dc1a8ab994076f3fc10bab9248a2439ee54b443",
-    "commitId" : "21f0b07bd031f022d14106150af66ceddb4c06b8",
-    "commitTime" : 1058170930,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilters:List(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilterChain:FilterChain(129)"
-  }, {
-    "parentCommitId" : "8dc1a8ab994076f3fc10bab9248a2439ee54b443",
-    "commitId" : "21f0b07bd031f022d14106150af66ceddb4c06b8",
-    "commitTime" : 1058170930,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilters:List(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilterChain:FilterChain(129)"
-  }, {
-    "parentCommitId" : "04bca2e0435d598918603ce5a457ddc99e6ae5a5",
-    "commitId" : "c3baa3fa77f4ed8e475ab52db6d0f2f860d93ef0",
-    "commitTime" : 1057948517,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilters:List(128)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilters:List(128)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "attributeName": "filters",
+  "attributeKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker@filters:FilterSet(90)",
+  "attributeDeclarationLine": 90,
+  "expectedChanges": [
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)filters:FilterSet(91)",
+      "comment": "Rename Attribute mFilters : FilterSet to filters : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+      "commitId": "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+      "commitTime": 1393953491,
+      "changeType": "container change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(91)",
+      "comment": "Move Source Folder src/checkstyle to src/main/java"
+    },
+    {
+      "parentCommitId": "7c22cbca328161b61049c4a3240613959341fb9a",
+      "commitId": "1846dacad6c2a3a04b3350b45bb8b05835192296",
+      "commitTime": 1058522231,
+      "changeType": "rename",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterSet(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilters:FilterSet(128)",
+      "comment": "Rename Attribute mFilterChain : FilterSet to mFilters : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "a9bfdceec2a2d86a622c03fbd4052f007b5e70cc",
+      "commitId": "1e7d8eef0641edcf97316618c8fab40bd248133d",
+      "commitTime": 1058300282,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterChain(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterSet(128)",
+      "comment": "Change Attribute Type mFilterChain : FilterChain to mFilterChain : FilterSet in class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "d917b95a017b235c99f52624475352e2d79ce7b2",
+      "commitId": "51dae59b8dcfb5a34f2a8a5b3e788eb6599a1df3",
+      "commitTime": 1058185912,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilterChain:FilterChain(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(final)(private)mFilterChain:FilterChain(128)",
+      "comment": "Add Attribute Modifier final in attribute private mFilterChain : FilterChain from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "8dc1a8ab994076f3fc10bab9248a2439ee54b443",
+      "commitId": "21f0b07bd031f022d14106150af66ceddb4c06b8",
+      "commitTime": 1058170930,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilters:List(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilterChain:FilterChain(129)"
+    },
+    {
+      "parentCommitId": "8dc1a8ab994076f3fc10bab9248a2439ee54b443",
+      "commitId": "21f0b07bd031f022d14106150af66ceddb4c06b8",
+      "commitTime": 1058170930,
+      "changeType": "rename",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilters:List(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@mFilterChain:FilterChain(129)"
+    },
+    {
+      "parentCommitId": "04bca2e0435d598918603ce5a457ddc99e6ae5a5",
+      "commitId": "c3baa3fa77f4ed8e475ab52db6d0f2f860d93ef0",
+      "commitTime": 1057948517,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilters:List(128)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker@(private)mFilters:List(128)",
+      "comment": "new attribute"
+    }
+  ]
 }

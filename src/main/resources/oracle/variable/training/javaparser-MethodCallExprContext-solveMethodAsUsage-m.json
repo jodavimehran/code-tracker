@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "javaparser\\javaparser",
-  "repositoryWebURL" : "https://github.com/javaparser/javaparser.git",
-  "filePath" : "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-  "functionName" : "solveMethodAsUsage",
-  "functionKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)",
-  "functionStartLine" : 76,
-  "variableName" : "m",
-  "variableKey" : "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m(84)",
-  "variableStartLine" : 84,
-  "startCommitId" : "97555053af3025556efe1a168fd7943dac28a2a6",
-  "expectedChanges" : [ {
-    "parentCommitId" : "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
-    "commitId" : "5d8d0cb7947efcf2282f7d056302dd905f348532",
-    "commitTime" : 1506630980,
-    "changeType" : "type change",
-    "elementFileBefore" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(87)",
-    "elementFileAfter" : "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<ResolvedMethodDeclaration>(81)",
-    "comment" : "Change Variable Type m : SymbolReference<MethodDeclaration> to m : SymbolReference<ResolvedMethodDeclaration> in method public solveMethodAsUsage(name String, argumentsTypes List<ResolvedType>, typeSolver TypeSolver) : Optional<MethodUsage> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
-  }, {
-    "parentCommitId" : "be64d2e61b56eafd01abc7236a7a0dcd6ce6dafd",
-    "commitId" : "7b2a0b366461674aa6320b11a38a17909d8a74a3",
-    "commitTime" : 1440318263,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameBefore" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(49)",
-    "elementFileAfter" : "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
-    "elementNameAfter" : "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(49)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "javaparser\\javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+  "functionName": "solveMethodAsUsage",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)",
+  "functionStartLine": 76,
+  "variableName": "m",
+  "variableKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m(84)",
+  "variableStartLine": 84,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "223fc7650a7a3b89b43d81160f40326aaeaa98f1",
+      "commitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitTime": 1506630980,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(87)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<ResolvedMethodDeclaration>(81)",
+      "comment": "Change Variable Type m : SymbolReference<MethodDeclaration> to m : SymbolReference<ResolvedMethodDeclaration> in method public solveMethodAsUsage(name String, argumentsTypes List<ResolvedType>, typeSolver TypeSolver) : Optional<MethodUsage> from class com.github.javaparser.symbolsolver.javaparsermodel.contexts.MethodCallExprContext"
+    },
+    {
+      "parentCommitId": "be64d2e61b56eafd01abc7236a7a0dcd6ce6dafd",
+      "commitId": "7b2a0b366461674aa6320b11a38a17909d8a74a3",
+      "commitTime": 1440318263,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(49)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/javaparser/contexts/MethodCallExprContext.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.javaparser.contexts.MethodCallExprContext#solveMethodAsUsage(String, List, TypeSolver)$m:SymbolReference<MethodDeclaration>(49)",
+      "comment": "new variable"
+    }
+  ]
 }

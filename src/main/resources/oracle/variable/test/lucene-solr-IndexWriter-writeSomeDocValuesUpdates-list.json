@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "apache\\lucene-solr",
-  "repositoryWebURL" : "https://github.com/apache/lucene-solr.git",
-  "filePath" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-  "functionName" : "writeSomeDocValuesUpdates",
-  "functionKey" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
-  "functionStartLine" : 579,
-  "variableName" : "list",
-  "variableKey" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list(595)",
-  "variableStartLine" : 595,
-  "startCommitId" : "38bf976cd4b9e324c21664bd7ae3d554df803705",
-  "expectedChanges" : [ {
-    "parentCommitId" : "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
-    "commitId" : "772e171ac6e70c96295f65749d0d15339133b8a6",
-    "commitTime" : 1529056889,
-    "changeType" : "type change",
-    "elementFileBefore" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
-    "elementFileAfter" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
-    "comment" : "Change Variable Type queue : PriorityQueue<ReadersAndUpdates> to list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
-  }, {
-    "parentCommitId" : "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
-    "commitId" : "772e171ac6e70c96295f65749d0d15339133b8a6",
-    "commitTime" : 1529056889,
-    "changeType" : "rename",
-    "elementFileBefore" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
-    "elementFileAfter" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
-    "comment" : "Rename Variable queue : PriorityQueue<ReadersAndUpdates> to list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
-  }, {
-    "parentCommitId" : "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
-    "commitId" : "772e171ac6e70c96295f65749d0d15339133b8a6",
-    "commitTime" : 1529056889,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
-    "elementFileAfter" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
-    "comment" : "Add Variable Modifier final in variable list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
-  }, {
-    "parentCommitId" : "1737fce5df106847fb5d93eb46ba7b062072c589",
-    "commitId" : "58105a203a19d18a56e09cf69dc0083c1b890315",
-    "commitTime" : 1498067235,
-    "changeType" : "introduced",
-    "elementFileBefore" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameBefore" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(681)",
-    "elementFileAfter" : "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-    "elementNameAfter" : "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(681)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "apache\\lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+  "functionName": "writeSomeDocValuesUpdates",
+  "functionKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
+  "functionStartLine": 579,
+  "variableName": "list",
+  "variableKey": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list(595)",
+  "variableStartLine": 595,
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "expectedChanges": [
+    {
+      "parentCommitId": "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
+      "commitId": "772e171ac6e70c96295f65749d0d15339133b8a6",
+      "commitTime": 1529056889,
+      "changeType": "type change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
+      "comment": "Change Variable Type queue : PriorityQueue<ReadersAndUpdates> to list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
+      "commitId": "772e171ac6e70c96295f65749d0d15339133b8a6",
+      "commitTime": 1529056889,
+      "changeType": "rename",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
+      "comment": "Rename Variable queue : PriorityQueue<ReadersAndUpdates> to list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
+      "commitId": "772e171ac6e70c96295f65749d0d15339133b8a6",
+      "commitTime": 1529056889,
+      "changeType": "modifier change",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(595)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()$list:List<ReadersAndUpdates>(594)",
+      "comment": "Add Variable Modifier final in variable list : List<ReadersAndUpdates> in method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "1737fce5df106847fb5d93eb46ba7b062072c589",
+      "commitId": "58105a203a19d18a56e09cf69dc0083c1b890315",
+      "commitTime": 1498067235,
+      "changeType": "introduced",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(681)",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()$queue:PriorityQueue<ReadersAndUpdates>(681)",
+      "comment": "added with method"
+    }
+  ]
 }

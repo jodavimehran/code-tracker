@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "spring-projects\\spring-boot",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-boot.git",
-  "filePath" : "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
-  "functionName" : "addErrorMessage",
-  "functionKey" : "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
-  "functionStartLine" : 156,
-  "variableName" : "error",
-  "variableKey" : "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)$error(156)",
-  "variableStartLine" : 156,
-  "startCommitId" : "5cfe8dbee950dbf3a8de3ece2f6f3363f13d904a",
-  "expectedChanges" : [ {
-    "parentCommitId" : "4474b104b62e1e82cedb6c38581ceb3565165b32",
-    "commitId" : "27580e726fa907c57590a0935673d1d7c620c57a",
-    "commitTime" : 1398781408,
-    "changeType" : "introduced",
-    "elementFileBefore" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameBefore" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
-    "elementFileAfter" : "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
-    "elementNameAfter" : "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
-    "comment" : "Extract Method protected addMessage(map Map<String,Object>, error Throwable) : void extracted from public extract(attributes RequestAttributes, trace boolean, log boolean) : Map<String,Object> in class org.springframework.boot.actuate.web.BasicErrorController"
-  } ]
+  "repositoryName": "spring-projects\\spring-boot",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-boot.git",
+  "filePath": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
+  "functionName": "addErrorMessage",
+  "functionKey": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+  "functionStartLine": 156,
+  "variableName": "error",
+  "variableKey": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)$error(156)",
+  "variableStartLine": 156,
+  "startCommitId": "5cfe8dbee950dbf3a8de3ece2f6f3363f13d904a",
+  "expectedChanges": [
+    {
+      "parentCommitId": "4474b104b62e1e82cedb6c38581ceb3565165b32",
+      "commitId": "27580e726fa907c57590a0935673d1d7c620c57a",
+      "commitTime": 1398781408,
+      "changeType": "introduced",
+      "elementFileBefore": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
+      "elementNameBefore": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
+      "elementFileAfter": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
+      "elementNameAfter": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$error:Throwable(180)",
+      "comment": "Extract Method protected addMessage(map Map<String,Object>, error Throwable) : void extracted from public extract(attributes RequestAttributes, trace boolean, log boolean) : Map<String,Object> in class org.springframework.boot.actuate.web.BasicErrorController"
+    }
+  ]
 }

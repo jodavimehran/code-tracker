@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-search",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
-  "filePath" : "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
-  "functionName" : "createComponents",
-  "functionKey" : "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)",
-  "functionStartLine" : 48,
-  "variableName" : "fieldName",
-  "variableKey" : "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)$fieldName(48)",
-  "variableStartLine" : 48,
-  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "expectedChanges" : [ {
-    "parentCommitId" : "411a77e5c315292eccab9f869a5a79d0c8b01f50",
-    "commitId" : "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
-    "commitTime" : 1438892239,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(48)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)$fieldName:String(48)",
-    "comment" : "Remove Parameter Modifier final in parameter fieldName : String in method protected createComponents(fieldName String, aReader Reader) : TokenStreamComponents from class org.hibernate.search.engine.impl.TokenizerChain"
-  }, {
-    "parentCommitId" : "331f9153b012a9ab5696aea7774fa3e1014f2bbe",
-    "commitId" : "6e432d32793618c49eec5234e14048f0dbd59943",
-    "commitTime" : 1391612417,
-    "changeType" : "introduced",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(65)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(65)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "filePath": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+  "functionName": "createComponents",
+  "functionKey": "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)",
+  "functionStartLine": 48,
+  "variableName": "fieldName",
+  "variableKey": "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)$fieldName(48)",
+  "variableStartLine": 48,
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "expectedChanges": [
+    {
+      "parentCommitId": "411a77e5c315292eccab9f869a5a79d0c8b01f50",
+      "commitId": "b3dc2cfffa7e016c288eaeb9e82443572a6c081d",
+      "commitTime": 1438892239,
+      "changeType": "modifier change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(48)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/engine/impl/TokenizerChain.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.engine.impl.TokenizerChain#createComponents(String)$fieldName:String(48)",
+      "comment": "Remove Parameter Modifier final in parameter fieldName : String in method protected createComponents(fieldName String, aReader Reader) : TokenStreamComponents from class org.hibernate.search.engine.impl.TokenizerChain"
+    },
+    {
+      "parentCommitId": "331f9153b012a9ab5696aea7774fa3e1014f2bbe",
+      "commitId": "6e432d32793618c49eec5234e14048f0dbd59943",
+      "commitTime": 1391612417,
+      "changeType": "introduced",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(65)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/impl/TokenizerChain.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.impl.TokenizerChain#createComponents(String, Reader)$fieldName:String(65)",
+      "comment": "added with method"
+    }
+  ]
 }

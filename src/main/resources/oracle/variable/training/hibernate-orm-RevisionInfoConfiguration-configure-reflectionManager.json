@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
-  "functionName" : "configure",
-  "functionKey" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)",
-  "functionStartLine" : 296,
-  "variableName" : "reflectionManager",
-  "variableKey" : "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)$reflectionManager(296)",
-  "variableStartLine" : 296,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "c1312db93432f748ab02382b9e27c8b6a9a67636",
-    "commitId" : "a94515206db0eee8867d399bee6a87aa9e8cb074",
-    "commitTime" : 1225455807,
-    "changeType" : "type change",
-    "elementFileBefore" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
-    "elementNameBefore" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(157)",
-    "elementFileAfter" : "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
-    "elementNameAfter" : "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$reflectionManager:ReflectionManager(157)",
-    "comment" : "Change Parameter Type reflectionManager : YReflectionManager to reflectionManager : ReflectionManager in method public configure(cfg Configuration, reflectionManager ReflectionManager) : RevisionInfoConfigurationResult from class org.hibernate.envers.configuration.RevisionInfoConfiguration"
-  }, {
-    "parentCommitId" : "e163f8264d41ab028db28af450f3d9bae418f9c0",
-    "commitId" : "78e5d9fd89aa571f8ad5cf5b8a5046b9b74cb09b",
-    "commitTime" : 1225133791,
-    "changeType" : "introduced",
-    "elementFileBefore" : "envers/src/main/java/org/jboss/envers/configuration/RevisionInfoConfiguration.java",
-    "elementNameBefore" : "envers/src/main/java/org.jboss.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(152)",
-    "elementFileAfter" : "envers/src/main/java/org/jboss/envers/configuration/RevisionInfoConfiguration.java",
-    "elementNameAfter" : "envers/src/main/java/org.jboss.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(152)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+  "functionName": "configure",
+  "functionKey": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)",
+  "functionStartLine": 296,
+  "variableName": "reflectionManager",
+  "variableKey": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)$reflectionManager(296)",
+  "variableStartLine": 296,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "c1312db93432f748ab02382b9e27c8b6a9a67636",
+      "commitId": "a94515206db0eee8867d399bee6a87aa9e8cb074",
+      "commitTime": 1225455807,
+      "changeType": "type change",
+      "elementFileBefore": "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameBefore": "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(157)",
+      "elementFileAfter": "envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameAfter": "envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$reflectionManager:ReflectionManager(157)",
+      "comment": "Change Parameter Type reflectionManager : YReflectionManager to reflectionManager : ReflectionManager in method public configure(cfg Configuration, reflectionManager ReflectionManager) : RevisionInfoConfigurationResult from class org.hibernate.envers.configuration.RevisionInfoConfiguration"
+    },
+    {
+      "parentCommitId": "e163f8264d41ab028db28af450f3d9bae418f9c0",
+      "commitId": "78e5d9fd89aa571f8ad5cf5b8a5046b9b74cb09b",
+      "commitTime": 1225133791,
+      "changeType": "introduced",
+      "elementFileBefore": "envers/src/main/java/org/jboss/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameBefore": "envers/src/main/java/org.jboss.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(152)",
+      "elementFileAfter": "envers/src/main/java/org/jboss/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameAfter": "envers/src/main/java/org.jboss.envers.configuration.RevisionInfoConfiguration#configure(Configuration, YReflectionManager)$reflectionManager:YReflectionManager(152)",
+      "comment": "added with method"
+    }
+  ]
 }
