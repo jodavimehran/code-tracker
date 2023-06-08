@@ -51,27 +51,40 @@
       "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
       "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
       "commitTime": 1272366299,
+      "changeType": "rename",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)",
+      "comment": "Rename Method private format(buffer StringBuilder, msg String) : void renamed to private escape(builder StringBuilder, string String) : void in class org.eclipse.jetty.util.log.StdErrLog"
+    },
+    {
+      "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
+      "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
+      "commitTime": 1272366299,
       "changeType": "parameter change",
       "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
       "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
       "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
-      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)"
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)",
+      "comment": "Rename Parameter buffer : StringBuilder to builder : StringBuilder in method private escape(builder StringBuilder, string String) : void from class org.eclipse.jetty.util.log.StdErrLog"
+    },
+    {
+      "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
+      "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
+      "commitTime": 1272366299,
+      "changeType": "parameter change",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)",
+      "comment": "Rename Parameter msg : String to string : String in method private escape(builder StringBuilder, string String) : void from class org.eclipse.jetty.util.log.StdErrLog"
     },
     {
       "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
       "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
       "commitTime": 1272366299,
       "changeType": "body change",
-      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
-      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
-      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
-      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)"
-    },
-    {
-      "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
-      "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
-      "commitTime": 1272366299,
-      "changeType": "rename",
       "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
       "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
       "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
@@ -85,7 +98,19 @@
       "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
       "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)",
       "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
-      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)"
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
+      "comment": "Add Parameter buffer : StringBuilder in method private format(buffer StringBuilder, msg String) : void from class org.eclipse.jetty.util.log.StdErrLog"
+    },
+    {
+      "parentCommitId": "547b3f310ca2c0eea2ce11cf5a7dfa2776a579f6",
+      "commitId": "e0d07733bd3f03c1337f200523bf9fec220d0cad",
+      "commitTime": 1271424772,
+      "changeType": "parameter change",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)",
+      "comment": "Parameterize Attribute _buffer : StringBuilder to buffer : StringBuilder in method private format(buffer StringBuilder, msg String) : void from class org.eclipse.jetty.util.log.StdErrLog"
     },
     {
       "parentCommitId": "547b3f310ca2c0eea2ce11cf5a7dfa2776a579f6",
@@ -115,7 +140,8 @@
       "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
       "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)",
       "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
-      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)"
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)",
+      "comment": "new method"
     }
   ]
 }

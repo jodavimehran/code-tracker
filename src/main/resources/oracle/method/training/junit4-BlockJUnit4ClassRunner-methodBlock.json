@@ -15,7 +15,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
+      "comment": "Add Parameter Modifier final in parameter method : FrameworkMethod in method protected methodBlock(method FrameworkMethod) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "96ca415d66bb37d6d3c54505cf34ce5dce3fecf5",
@@ -35,7 +36,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
+      "comment": "Change Method Access Modifier public to protected in method protected methodBlock(method FrameworkMethod) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "9de3abe6c337247fd4b5d5af6406bdbb30403f50",
@@ -55,7 +57,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
+      "comment": "Change Method Access Modifier protected to public in method public methodBlock(method FrameworkMethod) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "d3e86b059db787af5c0d58ddf3f69af5b42865b8",
@@ -101,17 +104,18 @@
       "parentCommitId": "979e8abbe974e8847668f5887403da78a6165ebc",
       "commitId": "1fcd990f60518c941a44bae2596392021614a20b",
       "commitTime": 1217357758,
-      "changeType": "body change",
+      "changeType": "rename",
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#methodBlock(FrameworkMethod)",
+      "comment": "Rename Method protected childBlock(method FrameworkMethod) : Statement renamed to protected methodBlock(method FrameworkMethod) : Statement in class org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "979e8abbe974e8847668f5887403da78a6165ebc",
       "commitId": "1fcd990f60518c941a44bae2596392021614a20b",
       "commitTime": 1217357758,
-      "changeType": "rename",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
@@ -125,7 +129,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)",
+      "comment": "Move Class org.junit.internal.runners.BlockJUnit4ClassRunner moved to org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
@@ -145,7 +150,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#childBlock(FrameworkMethod)",
+      "comment": "Move Method protected childBlock(method FrameworkMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner to protected childBlock(method FrameworkMethod) : Statement from class org.junit.internal.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "44fabd25eb7d8c5291094b033007c32b7a1b8da2",
@@ -155,7 +161,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
+      "comment": "Change Method Access Modifier public to protected in method protected childBlock(method FrameworkMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "804f76fdf00c9f9fcbef58f03bbeda1f80b3ad8e",
@@ -165,7 +172,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
+      "comment": "Move Source Folder src to src/main/java"
     },
     {
       "parentCommitId": "fc7d4be813c4c89963bb90cd884efc849f334c31",
@@ -191,17 +199,18 @@
       "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
       "commitId": "8bed6c9278517d9fb13f274bc5a6ade358a39745",
       "commitTime": 1195064490,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(FrameworkMethod)",
+      "comment": "Change Parameter Type method : TestMethod to method : FrameworkMethod in method public childBlock(method FrameworkMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
       "commitId": "8bed6c9278517d9fb13f274bc5a6ade358a39745",
       "commitTime": 1195064490,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -215,17 +224,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(TestMethod)"
-    },
-    {
-      "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
-      "commitId": "59b1e2926cdebfd257c6c091ee2bd478d8aa04d2",
-      "commitTime": 1192210052,
-      "changeType": "body change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#childBlock(TestMethod)",
+      "comment": "Rename Method public chain(method TestMethod) : Statement renamed to public childBlock(method TestMethod) : Statement in class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
@@ -235,7 +235,19 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Change Return Type Notifier to Statement in method public chain(method TestMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
+      "commitId": "59b1e2926cdebfd257c6c091ee2bd478d8aa04d2",
+      "commitTime": 1192210052,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Localize Parameter test : Object to test : Object in method public chain(method TestMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
@@ -245,13 +257,14 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Change Method Access Modifier protected to public in method public chain(method TestMethod) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
       "commitId": "59b1e2926cdebfd257c6c091ee2bd478d8aa04d2",
       "commitTime": 1192210052,
-      "changeType": "parameter change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -261,7 +274,7 @@
       "parentCommitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
       "commitId": "59b1e2926cdebfd257c6c091ee2bd478d8aa04d2",
       "commitTime": 1192210052,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -275,7 +288,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
+      "comment": "Change Return Type NotificationStrategy to Notifier in method protected chain(method TestMethod, test Object) : Notifier from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
@@ -291,21 +305,12 @@
       "parentCommitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
       "commitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
       "commitTime": 1192200543,
-      "changeType": "body change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
-    },
-    {
-      "parentCommitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
-      "commitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
-      "commitTime": 1192200543,
       "changeType": "return type change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
+      "comment": "Change Return Type Link to NotificationStrategy in method protected chain(method TestMethod, test Object) : NotificationStrategy from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
@@ -315,7 +320,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
+      "comment": "Parameterize Variable test : Object to test : Object in method protected chain(method TestMethod, test Object) : NotificationStrategy from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
@@ -326,6 +332,48 @@
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+    },
+    {
+      "parentCommitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
+      "commitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
+      "commitTime": 1192200543,
+      "changeType": "body change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+    },
+    {
+      "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
+      "commitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
+      "commitTime": 1192036525,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Remove Parameter notifier : EachTestNotifier in method protected chain(method TestMethod, test Object, notifier EachTestNotifier) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
+      "commitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
+      "commitTime": 1192036525,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Localize Parameter test : Object to test : Object in method protected chain(method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
+      "commitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
+      "commitTime": 1192036525,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
     },
     {
       "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
@@ -338,24 +386,15 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
     },
     {
-      "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
-      "commitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
-      "commitTime": 1192036525,
+      "parentCommitId": "a4c68872a91681139d404825c2bb04bd5ba804dd",
+      "commitId": "f0ef837a40922ac08c608661385abf71732975d3",
+      "commitTime": 1192031835,
       "changeType": "parameter change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
-    },
-    {
-      "parentCommitId": "f0ef837a40922ac08c608661385abf71732975d3",
-      "commitId": "0e1c92693e70e52ad9af23ee6180500c74fc9c95",
-      "commitTime": 1192036525,
-      "changeType": "documentation change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)",
+      "comment": "Add Parameter notifier : EachTestNotifier in method protected chain(method TestMethod, test Object, notifier EachTestNotifier) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "a4c68872a91681139d404825c2bb04bd5ba804dd",
@@ -368,26 +407,6 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)"
     },
     {
-      "parentCommitId": "a4c68872a91681139d404825c2bb04bd5ba804dd",
-      "commitId": "f0ef837a40922ac08c608661385abf71732975d3",
-      "commitTime": 1192031835,
-      "changeType": "parameter change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object, EachTestNotifier)"
-    },
-    {
-      "parentCommitId": "6887479f1b64c5a18f5708ea6905bb59804a9a0f",
-      "commitId": "b333208ccfbef77c556a270bd4385586523dcafc",
-      "commitTime": 1191954039,
-      "changeType": "body change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
-    },
-    {
       "parentCommitId": "6887479f1b64c5a18f5708ea6905bb59804a9a0f",
       "commitId": "b333208ccfbef77c556a270bd4385586523dcafc",
       "commitTime": 1191954039,
@@ -395,13 +414,24 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)",
+      "comment": "Add Parameter test : Object in method protected chain(method TestMethod, test Object) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "6887479f1b64c5a18f5708ea6905bb59804a9a0f",
       "commitId": "b333208ccfbef77c556a270bd4385586523dcafc",
       "commitTime": 1191954039,
       "changeType": "documentation change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod, Object)"
+    },
+    {
+      "parentCommitId": "6887479f1b64c5a18f5708ea6905bb59804a9a0f",
+      "commitId": "b333208ccfbef77c556a270bd4385586523dcafc",
+      "commitTime": 1191954039,
+      "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -421,7 +451,7 @@
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
       "commitId": "44e7458b19d5cd1900a765a440c96e85b81d25fc",
       "commitTime": 1191877663,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -431,7 +461,7 @@
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
       "commitId": "44e7458b19d5cd1900a765a440c96e85b81d25fc",
       "commitTime": 1191877663,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -445,17 +475,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
-    },
-    {
-      "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
-      "commitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
-      "commitTime": 1191872431,
-      "changeType": "body change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Add Parameter method : TestMethod in method protected chain(method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
@@ -465,7 +486,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)",
+      "comment": "Move Method protected chain() : Link from class org.junit.internal.runners.JUnit4MethodRunner to protected chain(method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
@@ -478,14 +500,14 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
     },
     {
-      "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
-      "commitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
-      "commitTime": 1191617273,
+      "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
+      "commitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
+      "commitTime": 1191872431,
       "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()"
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#chain(TestMethod)"
     },
     {
       "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
@@ -498,9 +520,9 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()"
     },
     {
-      "parentCommitId": "4081076e513e84bb2376f889d4108e64e9a18653",
-      "commitId": "a58514aec7e843339be24980e92aeeb759327ffb",
-      "commitTime": 1191603275,
+      "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
+      "commitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
+      "commitTime": 1191617273,
       "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
@@ -518,9 +540,9 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()"
     },
     {
-      "parentCommitId": "679e5dd3e4af3115492fabed45ea8c48bfa9d9bf",
-      "commitId": "4081076e513e84bb2376f889d4108e64e9a18653",
-      "commitTime": 1191560378,
+      "parentCommitId": "4081076e513e84bb2376f889d4108e64e9a18653",
+      "commitId": "a58514aec7e843339be24980e92aeeb759327ffb",
+      "commitTime": 1191603275,
       "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
@@ -535,6 +557,17 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
+      "comment": "Change Method Access Modifier private to protected in method protected chain() : Link from class org.junit.internal.runners.JUnit4MethodRunner"
+    },
+    {
+      "parentCommitId": "679e5dd3e4af3115492fabed45ea8c48bfa9d9bf",
+      "commitId": "4081076e513e84bb2376f889d4108e64e9a18653",
+      "commitTime": 1191560378,
+      "changeType": "body change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()"
     },
     {
@@ -545,7 +578,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#chain()",
+      "comment": "new method"
     }
   ]
 }

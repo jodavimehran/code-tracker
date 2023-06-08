@@ -11,17 +11,18 @@
       "parentCommitId": "c119d88aba986b295f286615a087712713d5f8f5",
       "commitId": "913fe67db10cc4d93587ad55b40d0edfeb662ebe",
       "commitTime": 1529828143,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/FormalComment.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs(String)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/FormalComment.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs()"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs()",
+      "comment": "Remove Parameter commentText : String in method private findJavadocs(commentText String) : void from class net.sourceforge.pmd.lang.java.ast.FormalComment"
     },
     {
       "parentCommitId": "c119d88aba986b295f286615a087712713d5f8f5",
       "commitId": "913fe67db10cc4d93587ad55b40d0edfeb662ebe",
       "commitTime": 1529828143,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/FormalComment.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs(String)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/FormalComment.java",
@@ -35,7 +36,8 @@
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/Comment.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/FormalComment.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs(String)"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.FormalComment#findJavadocs(String)",
+      "comment": "Push Down Method private findJavadocs(commentText String) : void from class net.sourceforge.pmd.lang.java.ast.Comment to private findJavadocs(commentText String) : void from class net.sourceforge.pmd.lang.java.ast.FormalComment"
     },
     {
       "parentCommitId": "5b93b14373015a1bf92446b6d36e0a67de103956",
@@ -95,7 +97,8 @@
       "elementFileBefore": "pmd/src/main/java/net/sourceforge/pmd/lang/java/ast/Comment.java",
       "elementNameBefore": "pmd/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/ast/Comment.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
+      "comment": "Move Source Folder pmd to pmd-java"
     },
     {
       "parentCommitId": "821f452f692c1497e2849302b5d9417c90edc054",
@@ -105,7 +108,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/ast/Comment.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
       "elementFileAfter": "pmd/src/main/java/net/sourceforge/pmd/lang/java/ast/Comment.java",
-      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)"
+      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
+      "comment": "Move Source Folder pmd/src to pmd/src/main/java"
     },
     {
       "parentCommitId": "22efa6d2ab7e0cbe4d61a055f6f3452d71fc6d02",
@@ -115,7 +119,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/ast/Comment.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/ast/Comment.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.ast.Comment#findJavadocs(String)",
+      "comment": "new method"
     }
   ]
 }

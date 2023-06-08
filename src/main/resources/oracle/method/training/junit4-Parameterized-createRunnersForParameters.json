@@ -18,16 +18,6 @@
       "elementNameAfter": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)"
     },
     {
-      "parentCommitId": "b03c6a529861e0e10edde534ae69d5507eed123c",
-      "commitId": "c391c25b230e880289484202f3dc3aa81c373a1c",
-      "commitTime": 1415920461,
-      "changeType": "exception change",
-      "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
-      "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)"
-    },
-    {
       "parentCommitId": "c391c25b230e880289484202f3dc3aa81c373a1c",
       "commitId": "495a9a93e4a1157e707a01467e7cc3f600c88d19",
       "commitTime": 1415920461,
@@ -35,17 +25,19 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized.RunnersFactory#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+      "comment": "Move Method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String, runnerFactory ParametersRunnerFactory) : List<Runner> from class org.junit.runners.Parameterized to private createRunnersForParameters(allParameters Iterable<Object>, namePattern String, runnerFactory ParametersRunnerFactory) : List<Runner> from class org.junit.runners.Parameterized.RunnersFactory"
     },
     {
-      "parentCommitId": "dca4a949f93bb85cc8ee0eb8789979a18aa3ffc7",
-      "commitId": "cb6abf6fc729f07c5d60b0756e91af444400b4b5",
-      "commitTime": 1393441109,
+      "parentCommitId": "b03c6a529861e0e10edde534ae69d5507eed123c",
+      "commitId": "c391c25b230e880289484202f3dc3aa81c373a1c",
+      "commitTime": 1415920461,
       "changeType": "exception change",
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+      "comment": "Remove Thrown Exception Type InitializationError in method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String, runnerFactory ParametersRunnerFactory) : List<Runner> from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "dca4a949f93bb85cc8ee0eb8789979a18aa3ffc7",
@@ -55,7 +47,19 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+      "comment": "Add Parameter runnerFactory : ParametersRunnerFactory in method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String, runnerFactory ParametersRunnerFactory) : List<Runner> from class org.junit.runners.Parameterized"
+    },
+    {
+      "parentCommitId": "dca4a949f93bb85cc8ee0eb8789979a18aa3ffc7",
+      "commitId": "cb6abf6fc729f07c5d60b0756e91af444400b4b5",
+      "commitTime": 1393441109,
+      "changeType": "exception change",
+      "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String, ParametersRunnerFactory)",
+      "comment": "Add Thrown Exception Type InitializationError in method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String, runnerFactory ParametersRunnerFactory) : List<Runner> from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "dca4a949f93bb85cc8ee0eb8789979a18aa3ffc7",
@@ -75,7 +79,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "comment": "Change Parameter Type allParameters : Iterable<Object[]> to allParameters : Iterable<Object> in method private createRunnersForParameters(allParameters Iterable<Object>, namePattern String) : List<Runner> from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "e1bf14b4d5b7aecf4611fd400417359424121544",
@@ -101,17 +106,18 @@
       "parentCommitId": "163f503af57d91f60c6b57d4c9afa768b7c04df0",
       "commitId": "ede492496de0f3c0872216ac9c9b88a00fdef09e",
       "commitTime": 1370305153,
-      "changeType": "body change",
+      "changeType": "return type change",
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "comment": "Change Return Type void to List<Runner> in method private createRunnersForParameters(allParameters Iterable<Object[]>, namePattern String) : List<Runner> from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "163f503af57d91f60c6b57d4c9afa768b7c04df0",
       "commitId": "ede492496de0f3c0872216ac9c9b88a00fdef09e",
       "commitTime": 1370305153,
-      "changeType": "return type change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
@@ -125,7 +131,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "comment": "Remove Thrown Exception Type InitializationError in method private createRunnersForParameters(allParameters Iterable<Object[]>, namePattern String) : void from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "010f7461c5e9bb4304b68b8c0eb3027b677d7f31",
@@ -145,7 +152,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable, String)",
+      "comment": "Add Parameter namePattern : String in method private createRunnersForParameters(allParameters Iterable<Object[]>, namePattern String) : void from class org.junit.runners.Parameterized"
     },
     {
       "parentCommitId": "1cec456a2c5638818959856eb3cef98743cbe08b",
@@ -165,7 +173,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/Parameterized.java",
       "elementNameBefore": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)",
       "elementFileAfter": "src/main/java/org/junit/runners/Parameterized.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)"
+      "elementNameAfter": "src/main/java/org.junit.runners.Parameterized#createRunnersForParameters(Iterable)",
+      "comment": "new method"
     }
   ]
 }

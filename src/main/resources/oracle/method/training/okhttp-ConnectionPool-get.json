@@ -25,23 +25,25 @@
       "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation, Route)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation, Route)"
-    },
-    {
-      "parentCommitId": "e2d2ad80fffd1774561b4825203ab44209cd60bd",
-      "commitId": "81c7461c98f2228c3bb1a0c80fb803b5ea2e47f0",
-      "commitTime": 1488762418,
-      "changeType": "body change",
-      "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-      "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
-      "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation, Route)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation, Route)",
+      "comment": "Add Method Annotation @Nullable in method package get(address Address, streamAllocation StreamAllocation, route Route) : RealConnection from class okhttp3.ConnectionPool"
     },
     {
       "parentCommitId": "e2d2ad80fffd1774561b4825203ab44209cd60bd",
       "commitId": "81c7461c98f2228c3bb1a0c80fb803b5ea2e47f0",
       "commitTime": 1488762418,
       "changeType": "parameter change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation, Route)",
+      "comment": "Add Parameter route : Route in method package get(address Address, streamAllocation StreamAllocation, route Route) : RealConnection from class okhttp3.ConnectionPool"
+    },
+    {
+      "parentCommitId": "e2d2ad80fffd1774561b4825203ab44209cd60bd",
+      "commitId": "81c7461c98f2228c3bb1a0c80fb803b5ea2e47f0",
+      "commitTime": 1488762418,
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
@@ -61,7 +63,7 @@
       "parentCommitId": "9b0706489c02b3001452a28411aafb2e77079cf4",
       "commitId": "75ebcd5cd13995c3b70e0b621d3204b9a5996806",
       "commitTime": 1452922186,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
@@ -71,7 +73,7 @@
       "parentCommitId": "9b0706489c02b3001452a28411aafb2e77079cf4",
       "commitId": "75ebcd5cd13995c3b70e0b621d3204b9a5996806",
       "commitTime": 1452922186,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
@@ -95,7 +97,19 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.ConnectionPool#get(Address, StreamAllocation)",
+      "comment": "Move Class com.squareup.okhttp.ConnectionPool moved to okhttp3.ConnectionPool"
+    },
+    {
+      "parentCommitId": "5fb2e48653c36711a6ecb90948d9f927f1dbf442",
+      "commitId": "c099f69d0b7198a40e4a6373ae564b65d04363ef",
+      "commitTime": 1450016335,
+      "changeType": "return type change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "comment": "Change Return Type Connection to RealConnection in method package get(address Address, streamAllocation StreamAllocation) : RealConnection from class com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "5fb2e48653c36711a6ecb90948d9f927f1dbf442",
@@ -105,23 +119,25 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "comment": "Remove Method Modifier synchronized in method public get(address Address, streamAllocation StreamAllocation) : Connection from class com.squareup.okhttp.ConnectionPool"
+    },
+    {
+      "parentCommitId": "5fb2e48653c36711a6ecb90948d9f927f1dbf442",
+      "commitId": "c099f69d0b7198a40e4a6373ae564b65d04363ef",
+      "commitTime": 1450016335,
+      "changeType": "modifier change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "comment": "Change Method Access Modifier public to package in method package get(address Address, streamAllocation StreamAllocation) : RealConnection from class com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "5fb2e48653c36711a6ecb90948d9f927f1dbf442",
       "commitId": "c099f69d0b7198a40e4a6373ae564b65d04363ef",
       "commitTime": 1450016335,
       "changeType": "body change",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
-      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)"
-    },
-    {
-      "parentCommitId": "5fb2e48653c36711a6ecb90948d9f927f1dbf442",
-      "commitId": "c099f69d0b7198a40e4a6373ae564b65d04363ef",
-      "commitTime": 1450016335,
-      "changeType": "return type change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
@@ -135,7 +151,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address, StreamAllocation)",
+      "comment": "Add Parameter streamAllocation : StreamAllocation in method public get(address Address, streamAllocation StreamAllocation) : Connection from class com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "308df8295ccf872ceb273874edb3831218348434",
@@ -151,7 +168,7 @@
       "parentCommitId": "b59a7527cabc35bb2346773a9fdcd0f9a8f862b1",
       "commitId": "c5f58e45454d1ffc621c65e377cb91345018e087",
       "commitTime": 1449078281,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
@@ -161,16 +178,6 @@
       "parentCommitId": "b59a7527cabc35bb2346773a9fdcd0f9a8f862b1",
       "commitId": "c5f58e45454d1ffc621c65e377cb91345018e087",
       "commitTime": 1449078281,
-      "changeType": "documentation change",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
-      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
-    },
-    {
-      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
-      "commitTime": 1448721366,
       "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
@@ -182,6 +189,16 @@
       "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
       "commitTime": 1448721366,
       "changeType": "documentation change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+    },
+    {
+      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "commitTime": 1448721366,
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
@@ -220,8 +237,7 @@
     {
       "parentCommitId": "9f5951b3112d3f84e84d597af6871081a0b90b43",
       "commitId": "0d8704e252b4a4d43caa63d0d14d9e31bc91ce56",
-      "altCommitId": " a8327d121b9eeb3b61ae63f06095d423936a5da2",
-      "commitTime": 1418919546,
+      "commitTime": 1419574551,
       "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
@@ -266,7 +282,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "comment": "Move Source Folder src to okhttp/src"
     },
     {
       "parentCommitId": "f24072ec6b1280789a1f84fa32989b6f0ebb22fd",
@@ -282,27 +299,28 @@
       "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
       "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
       "commitTime": 1359670986,
-      "changeType": "body change",
-      "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
-      "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
-    },
-    {
-      "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
-      "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
-      "commitTime": 1359670986,
       "changeType": "modifier change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "comment": "Add Method Modifier synchronized in method public get(address Address) : Connection from class com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
       "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
       "commitTime": 1359670986,
       "changeType": "documentation change",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+    },
+    {
+      "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
+      "commitId": "6f6d959fdae64065521990413f86bc7ab038d7c1",
+      "commitTime": 1359670986,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
@@ -332,7 +350,7 @@
       "parentCommitId": "d2f4f21654e407ecb5333a403564d272239486f6",
       "commitId": "67604f618d96ae00318ce696ec29a66bec6aafa8",
       "commitTime": 1356546685,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
@@ -342,19 +360,9 @@
       "parentCommitId": "d2f4f21654e407ecb5333a403564d272239486f6",
       "commitId": "67604f618d96ae00318ce696ec29a66bec6aafa8",
       "commitTime": 1356546685,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
-      "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
-    },
-    {
-      "parentCommitId": "73291e89c43de449949450c216a5220d9b903da6",
-      "commitId": "78c6624b11d5f33504dae8211b4592383468343e",
-      "commitTime": 1356327588,
-      "changeType": "container change",
-      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
-      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
       "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
     },
@@ -366,7 +374,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "comment": "Change Return Type HttpConnection to Connection in method public get(address Address) : Connection from class com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "73291e89c43de449949450c216a5220d9b903da6",
@@ -376,7 +385,19 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "comment": "Change Parameter Type address : HttpConnection.Address to address : Address in method public get(address Address) : Connection from class com.squareup.okhttp.ConnectionPool"
+    },
+    {
+      "parentCommitId": "73291e89c43de449949450c216a5220d9b903da6",
+      "commitId": "78c6624b11d5f33504dae8211b4592383468343e",
+      "commitTime": 1356327588,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
+      "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
+      "elementFileAfter": "src/main/java/com/squareup/okhttp/ConnectionPool.java",
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.ConnectionPool#get(Address)",
+      "comment": "Rename Class com.squareup.okhttp.internal.net.http.HttpConnectionPool renamed to com.squareup.okhttp.ConnectionPool"
     },
     {
       "parentCommitId": "73291e89c43de449949450c216a5220d9b903da6",
@@ -392,7 +413,7 @@
       "parentCommitId": "6579f9d97460613c429df6083f2d6c21afdf4123",
       "commitId": "70e64037ff295874602133a1d254e5a0440ae4e3",
       "commitTime": 1356217527,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
@@ -402,7 +423,7 @@
       "parentCommitId": "6579f9d97460613c429df6083f2d6c21afdf4123",
       "commitId": "70e64037ff295874602133a1d254e5a0440ae4e3",
       "commitTime": 1356217527,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
@@ -426,13 +447,36 @@
       "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/http/HttpConnectionPool.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.HttpConnectionPool#get(HttpConnection.Address)",
+      "comment": "Move Class libcore.net.http.HttpConnectionPool moved to com.squareup.okhttp.internal.net.http.HttpConnectionPool"
     },
     {
       "parentCommitId": "f1eacbff7ec5912d041184e1b35aa4e5468ea4ba",
       "commitId": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
       "commitTime": 1352175952,
       "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
+      "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
+      "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
+      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)",
+      "comment": "Remove Parameter connectTimeout : int in method public get(address HttpConnection.Address, connectTimeout int) : HttpConnection from class libcore.net.http.HttpConnectionPool"
+    },
+    {
+      "parentCommitId": "f1eacbff7ec5912d041184e1b35aa4e5468ea4ba",
+      "commitId": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
+      "commitTime": 1352175952,
+      "changeType": "exception change",
+      "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
+      "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
+      "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
+      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)",
+      "comment": "Remove Thrown Exception Type IOException in method public get(address HttpConnection.Address, connectTimeout int) : HttpConnection from class libcore.net.http.HttpConnectionPool"
+    },
+    {
+      "parentCommitId": "f1eacbff7ec5912d041184e1b35aa4e5468ea4ba",
+      "commitId": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
+      "commitTime": 1352175952,
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
       "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
@@ -449,26 +493,6 @@
       "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)"
     },
     {
-      "parentCommitId": "f1eacbff7ec5912d041184e1b35aa4e5468ea4ba",
-      "commitId": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
-      "commitTime": 1352175952,
-      "changeType": "exception change",
-      "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
-      "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
-      "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
-      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)"
-    },
-    {
-      "parentCommitId": "f1eacbff7ec5912d041184e1b35aa4e5468ea4ba",
-      "commitId": "40ff76547064c3fb5acb9047a6f679dd4379a4d0",
-      "commitTime": 1352175952,
-      "changeType": "documentation change",
-      "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
-      "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
-      "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
-      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address)"
-    },
-    {
       "parentCommitId": "063964211c05103bd10fddeda9fafe93a856506b",
       "commitId": "ea63463c2ff8a67f63e541036f0d5998b5bb1f3e",
       "commitTime": 1343052148,
@@ -476,7 +500,8 @@
       "elementFileBefore": "src/main/java/libcore/net/http/HttpConnectionPool.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
       "elementFileAfter": "src/main/java/libcore/net/http/HttpConnectionPool.java",
-      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)"
+      "elementNameAfter": "src/main/java/libcore.net.http.HttpConnectionPool#get(HttpConnection.Address, int)",
+      "comment": "added with new class"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "parentCommitId": "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
       "commitId": "772e171ac6e70c96295f65749d0d15339133b8a6",
       "commitTime": 1529056889,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
@@ -21,16 +21,6 @@
       "parentCommitId": "47b9ca6f575a8e5249894bf48a701f3bb269bb71",
       "commitId": "772e171ac6e70c96295f65749d0d15339133b8a6",
       "commitTime": 1529056889,
-      "changeType": "documentation change",
-      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
-      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()"
-    },
-    {
-      "parentCommitId": "ca35c40f1b16aa79ac5b110ca922443c1185a7eb",
-      "commitId": "61e68ec1e8cd409cb51a209f827fc64710b31f6f",
-      "commitTime": 1528877401,
       "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
@@ -48,12 +38,12 @@
       "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()"
     },
     {
-      "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
-      "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
-      "commitTime": 1524472150,
+      "parentCommitId": "ca35c40f1b16aa79ac5b110ca922443c1185a7eb",
+      "commitId": "61e68ec1e8cd409cb51a209f827fc64710b31f6f",
+      "commitTime": 1528877401,
       "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()"
     },
@@ -62,6 +52,17 @@
       "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
       "commitTime": 1524472150,
       "changeType": "moved",
+      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()",
+      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#writeSomeDocValuesUpdates()",
+      "comment": "Move Method package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter.ReaderPool to package writeSomeDocValuesUpdates() : void from class org.apache.lucene.index.IndexWriter"
+    },
+    {
+      "parentCommitId": "4136fe0e65ac4394033d24840ac364943c7d89a2",
+      "commitId": "8975692953713923bd1cc67766cf92565183c2b8",
+      "commitTime": 1524472150,
+      "changeType": "body change",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
@@ -85,7 +86,8 @@
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter.ReaderPool#writeSomeDocValuesUpdates()",
+      "comment": "new method"
     }
   ]
 }

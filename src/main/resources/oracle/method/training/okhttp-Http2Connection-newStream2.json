@@ -11,37 +11,40 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "container change",
+      "changeType": "return type change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)",
+      "comment": "Change Return Type FramedStream to Http2Stream in method public newStream(requestHeaders List<Header>, out boolean) : Http2Stream from class okhttp3.internal.http2.Http2Connection"
     },
     {
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "return type change",
+      "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)"
-    },
-    {
-      "parentCommitId": "a3bcaa3b6e30409094319dfbf5010dfd2322778a",
-      "commitId": "0c04821a25c83fddebb29e8cd590609142ba20a2",
-      "commitTime": 1468099144,
-      "changeType": "body change",
-      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
-      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
-      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection#newStream(List, boolean)",
+      "comment": "Rename Class okhttp3.internal.framed.FramedConnection renamed to okhttp3.internal.http2.Http2Connection"
     },
     {
       "parentCommitId": "a3bcaa3b6e30409094319dfbf5010dfd2322778a",
       "commitId": "0c04821a25c83fddebb29e8cd590609142ba20a2",
       "commitTime": 1468099144,
       "changeType": "parameter change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean)",
+      "comment": "Remove Parameter in : boolean in method public newStream(requestHeaders List<Header>, out boolean, in boolean) : FramedStream from class okhttp3.internal.framed.FramedConnection"
+    },
+    {
+      "parentCommitId": "a3bcaa3b6e30409094319dfbf5010dfd2322778a",
+      "commitId": "0c04821a25c83fddebb29e8cd590609142ba20a2",
+      "commitTime": 1468099144,
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
@@ -55,7 +58,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Class com.squareup.okhttp.internal.framed.FramedConnection moved to okhttp3.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
@@ -65,7 +69,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
+      "comment": "Change Return Type SpdyStream to FramedStream in method public newStream(requestHeaders List<Header>, out boolean, in boolean) : FramedStream from class com.squareup.okhttp.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
@@ -75,7 +80,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection#newStream(List, boolean, boolean)",
+      "comment": "Rename Class com.squareup.okhttp.internal.spdy.SpdyConnection renamed to com.squareup.okhttp.internal.framed.FramedConnection"
     },
     {
       "parentCommitId": "d5cbd0aebe090d956f54b6697068fcbff6d668e7",
@@ -85,13 +91,14 @@
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Source Folder okhttp-protocols to okhttp"
     },
     {
       "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
       "commitId": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
       "commitTime": 1393204561,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
@@ -101,7 +108,7 @@
       "parentCommitId": "0537eedd5d0223bfa08998f85a865a22b192c61d",
       "commitId": "fb46f100a4d66342a0b101624fd351a51b6f14a9",
       "commitTime": 1393204561,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
@@ -145,7 +152,8 @@
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Change Parameter Type requestHeaders : List<ByteString> to requestHeaders : List<Header> in method public newStream(requestHeaders List<Header>, out boolean, in boolean) : SpdyStream from class com.squareup.okhttp.internal.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "04bd1ad5a68647fff2857699d023390f4b029422",
@@ -165,7 +173,8 @@
       "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Change Parameter Type requestHeaders : List<String> to requestHeaders : List<ByteString> in method public newStream(requestHeaders List<ByteString>, out boolean, in boolean) : SpdyStream from class com.squareup.okhttp.internal.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "87cab927b1c07accd2edf3a23a4309a77a91a238",
@@ -216,7 +225,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Source Folder okhttp to okhttp-protocols"
     },
     {
       "parentCommitId": "ba2b7432cb9fabfc725b09a9f14878cb128ef208",
@@ -226,7 +236,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Source Folder src to okhttp/src"
     },
     {
       "parentCommitId": "83de4eb552994d30451f8a3481b5a00d6b457a2e",
@@ -252,7 +263,7 @@
       "parentCommitId": "34ea44bc1d8fba429fd850df14adcda16251cf6c",
       "commitId": "06579c5bfb6a051a9fbca5be2d15a52fcf77f38c",
       "commitTime": 1357515016,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
@@ -262,7 +273,7 @@
       "parentCommitId": "34ea44bc1d8fba429fd850df14adcda16251cf6c",
       "commitId": "06579c5bfb6a051a9fbca5be2d15a52fcf77f38c",
       "commitTime": 1357515016,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
@@ -276,7 +287,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Class com.squareup.okhttp.internal.net.spdy.SpdyConnection moved to com.squareup.okhttp.internal.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "a52eaa4ee650728e4fb59f48c59a3572ef4ddb5a",
@@ -306,7 +318,8 @@
       "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Move Class libcore.net.spdy.SpdyConnection moved to com.squareup.okhttp.internal.net.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "6ac030e67b009354c2491c2801109bb4b2874ae1",
@@ -336,13 +349,14 @@
       "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
-      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "Remove Method Modifier synchronized in method public newStream(requestHeaders List<String>, out boolean, in boolean) : SpdyStream from class libcore.net.spdy.SpdyConnection"
     },
     {
       "parentCommitId": "1853b5b108aec81093740beff129d5db537977b9",
       "commitId": "60b3a6dd6240f40c29fffd897c2dac314af49836",
       "commitTime": 1348597765,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
@@ -352,7 +366,7 @@
       "parentCommitId": "1853b5b108aec81093740beff129d5db537977b9",
       "commitId": "60b3a6dd6240f40c29fffd897c2dac314af49836",
       "commitTime": 1348597765,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
@@ -376,7 +390,8 @@
       "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
       "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
       "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
-      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)"
+      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection#newStream(List, boolean, boolean)",
+      "comment": "added with new class"
     }
   ]
 }

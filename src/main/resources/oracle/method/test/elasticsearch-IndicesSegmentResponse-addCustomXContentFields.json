@@ -25,7 +25,19 @@
       "elementFileBefore": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)",
+      "comment": "Change Return Type XContentBuilder to void in method protected addCustomXContentFields(builder XContentBuilder, params Params) : void from class org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse"
+    },
+    {
+      "parentCommitId": "8328b9c5cd958aa0e0b9b28d2585a42e42b6a96c",
+      "commitId": "4a8099c6962da1e68309e0e382d0e6198a3937c2",
+      "commitTime": 1521798817,
+      "changeType": "rename",
+      "elementFileBefore": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameBefore": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)",
+      "comment": "Rename Method public toXContent(builder XContentBuilder, params Params) : XContentBuilder renamed to protected addCustomXContentFields(builder XContentBuilder, params Params) : void in class org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse"
     },
     {
       "parentCommitId": "8328b9c5cd958aa0e0b9b28d2585a42e42b6a96c",
@@ -35,23 +47,14 @@
       "elementFileBefore": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)",
+      "comment": "Change Method Access Modifier public to protected in method protected addCustomXContentFields(builder XContentBuilder, params Params) : void from class org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse"
     },
     {
       "parentCommitId": "8328b9c5cd958aa0e0b9b28d2585a42e42b6a96c",
       "commitId": "4a8099c6962da1e68309e0e382d0e6198a3937c2",
       "commitTime": 1521798817,
       "changeType": "body change",
-      "elementFileBefore": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameBefore": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
-      "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)"
-    },
-    {
-      "parentCommitId": "8328b9c5cd958aa0e0b9b28d2585a42e42b6a96c",
-      "commitId": "4a8099c6962da1e68309e0e382d0e6198a3937c2",
-      "commitTime": 1521798817,
-      "changeType": "rename",
       "elementFileBefore": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
@@ -65,7 +68,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
+      "comment": "Move Source Folder core to server"
     },
     {
       "parentCommitId": "a975f4e5d6f6aa13ae806348827d43413e5579eb",
@@ -105,7 +109,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
+      "comment": "Move Source Folder src to core/src"
     },
     {
       "parentCommitId": "09b4d0e097fe5b40c7c1b4469ed76629cc9860b9",
@@ -185,7 +190,8 @@
       "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)"
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
+      "comment": "Move Source Folder modules/elasticsearch/src to src"
     },
     {
       "parentCommitId": "e2b1cb1640993370ba918fed319c7da12c9754da",
@@ -205,7 +211,8 @@
       "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
       "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
       "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
-      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)"
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)",
+      "comment": "added with new class"
     }
   ]
 }

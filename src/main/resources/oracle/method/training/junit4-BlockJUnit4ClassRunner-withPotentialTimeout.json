@@ -25,7 +25,8 @@
       "elementFileBefore": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
+      "comment": "Add Method Annotation @Deprecated in method protected withPotentialTimeout(method FrameworkMethod, test Object, next Statement) : Statement from class org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "161229441b7365fa06f0d82e272e15f1f378b315",
@@ -41,37 +42,61 @@
       "parentCommitId": "eb2750d861ac1ecf2dbd0425e457fe833468a169",
       "commitId": "96d7dd609920deb1336cf85dc6c9a3a0d5e30d15",
       "commitTime": 1214936994,
-      "changeType": "body change",
+      "changeType": "container change",
       "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
+      "comment": "Move Class org.junit.internal.runners.BlockJUnit4ClassRunner moved to org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "eb2750d861ac1ecf2dbd0425e457fe833468a169",
       "commitId": "96d7dd609920deb1336cf85dc6c9a3a0d5e30d15",
       "commitTime": 1214936994,
-      "changeType": "container change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
       "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)"
-    },
-    {
-      "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
-      "commitId": "9bd1be07aa38d7fa2de048845f7b13458c9420d7",
-      "commitTime": 1214325259,
-      "changeType": "body change",
-      "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-      "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
-      "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)"
     },
     {
       "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
       "commitId": "9bd1be07aa38d7fa2de048845f7b13458c9420d7",
       "commitTime": 1214325259,
       "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
+      "comment": "Remove Parameter annotation : TestAnnotation in method protected withPotentialTimeout(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.BlockJUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
+      "commitId": "9bd1be07aa38d7fa2de048845f7b13458c9420d7",
+      "commitTime": 1214325259,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
+      "comment": "Add Parameter method : FrameworkMethod in method protected withPotentialTimeout(method FrameworkMethod, test Object, next Statement) : Statement from class org.junit.internal.runners.BlockJUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
+      "commitId": "9bd1be07aa38d7fa2de048845f7b13458c9420d7",
+      "commitTime": 1214325259,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(FrameworkMethod, Object, Statement)",
+      "comment": "Add Parameter test : Object in method protected withPotentialTimeout(method FrameworkMethod, test Object, next Statement) : Statement from class org.junit.internal.runners.BlockJUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "078e45bd31a9920e00633ad6ce658e22529304f2",
+      "commitId": "9bd1be07aa38d7fa2de048845f7b13458c9420d7",
+      "commitTime": 1214325259,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
@@ -85,7 +110,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "comment": "Move Method protected withPotentialTimeout(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner to protected withPotentialTimeout(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "804f76fdf00c9f9fcbef58f03bbeda1f80b3ad8e",
@@ -95,7 +121,30 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "comment": "Move Source Folder src to src/main/java"
+    },
+    {
+      "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
+      "commitId": "8bed6c9278517d9fb13f274bc5a6ade358a39745",
+      "commitTime": 1195064490,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "comment": "Change Parameter Type method : TestMethod to annotation : TestAnnotation in method protected withPotentialTimeout(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
+      "commitId": "8bed6c9278517d9fb13f274bc5a6ade358a39745",
+      "commitTime": 1195064490,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)",
+      "comment": "Rename Parameter method : TestMethod to annotation : TestAnnotation in method protected withPotentialTimeout(annotation TestAnnotation, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
@@ -108,26 +157,6 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)"
     },
     {
-      "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
-      "commitId": "8bed6c9278517d9fb13f274bc5a6ade358a39745",
-      "commitTime": 1195064490,
-      "changeType": "parameter change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestAnnotation, Statement)"
-    },
-    {
-      "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
-      "commitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
-      "commitTime": 1192208299,
-      "changeType": "parameter change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)"
-    },
-    {
       "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
       "commitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
       "commitTime": 1192208299,
@@ -135,7 +164,19 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)",
+      "comment": "Change Return Type Link to Statement in method protected withPotentialTimeout(method TestMethod, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
+      "commitId": "de43b277b8f2e63051368a36e27a35c5ed0f0e0b",
+      "commitTime": 1192208299,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Statement)",
+      "comment": "Change Parameter Type next : Link to next : Statement in method protected withPotentialTimeout(method TestMethod, next Statement) : Statement from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "0dbe9eefa369da78ca67bf5487797a8de5b2d631",
@@ -155,17 +196,19 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
+      "comment": "Rename Method public timeout(next Link, method TestMethod) : Link renamed to protected withPotentialTimeout(method TestMethod, next Link) : Link in class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
       "commitId": "44e7458b19d5cd1900a765a440c96e85b81d25fc",
       "commitTime": 1191877663,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
+      "comment": "Reorder Parameter [next : Link, method : TestMethod] to [method : TestMethod, next : Link] in method protected withPotentialTimeout(method TestMethod, next Link) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
@@ -175,13 +218,14 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#withPotentialTimeout(TestMethod, Link)",
+      "comment": "Change Method Access Modifier public to protected in method protected withPotentialTimeout(method TestMethod, next Link) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
       "commitId": "44e7458b19d5cd1900a765a440c96e85b81d25fc",
       "commitTime": 1191877663,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
@@ -195,7 +239,19 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
+      "comment": "Add Parameter method : TestMethod in method public timeout(next Link, method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
+    },
+    {
+      "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
+      "commitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
+      "commitTime": 1191872431,
+      "changeType": "moved",
+      "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)",
+      "comment": "Move Method public timeout(next Link) : Link from class org.junit.internal.runners.JUnit4MethodRunner to public timeout(next Link, method TestMethod) : Link from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
@@ -208,14 +264,15 @@
       "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)"
     },
     {
-      "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
-      "commitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
-      "commitTime": 1191872431,
-      "changeType": "moved",
+      "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
+      "commitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
+      "commitTime": 1191617273,
+      "changeType": "return type change",
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#timeout(Link, TestMethod)"
+      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)",
+      "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
+      "comment": "Change Return Type Anchor to Link in method public timeout(next Link) : Link from class org.junit.internal.runners.JUnit4MethodRunner"
     },
     {
       "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
@@ -225,17 +282,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)"
-    },
-    {
-      "parentCommitId": "a58514aec7e843339be24980e92aeeb759327ffb",
-      "commitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
-      "commitTime": 1191617273,
-      "changeType": "return type change",
-      "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)",
-      "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
+      "comment": "Change Parameter Type next : Anchor to next : Link in method public timeout(next Link) : Link from class org.junit.internal.runners.JUnit4MethodRunner"
     },
     {
       "parentCommitId": "4081076e513e84bb2376f889d4108e64e9a18653",
@@ -245,7 +293,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)",
+      "comment": "Change Return Type Link to Anchor in method public timeout(next Anchor) : Anchor from class org.junit.internal.runners.JUnit4MethodRunner"
     },
     {
       "parentCommitId": "4081076e513e84bb2376f889d4108e64e9a18653",
@@ -255,7 +304,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Anchor)",
+      "comment": "Change Parameter Type next : Link to next : Anchor in method public timeout(next Anchor) : Anchor from class org.junit.internal.runners.JUnit4MethodRunner"
     },
     {
       "parentCommitId": "679e5dd3e4af3115492fabed45ea8c48bfa9d9bf",
@@ -265,7 +315,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4MethodRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4MethodRunner#timeout(Link)",
+      "comment": "new method"
     }
   ]
 }

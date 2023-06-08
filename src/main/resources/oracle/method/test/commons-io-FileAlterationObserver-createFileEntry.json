@@ -21,17 +21,29 @@
       "parentCommitId": "efca1657258b7555b80bbee207a3221489b9ffed",
       "commitId": "6aa00766b9103d75c763160280429af8e1f0549e",
       "commitTime": 1354308699,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
       "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)"
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
+      "comment": "Add Parameter Modifier final in parameter parent : FileEntry in method private createFileEntry(parent FileEntry, file File) : FileEntry from class org.apache.commons.io.monitor.FileAlterationObserver"
     },
     {
       "parentCommitId": "efca1657258b7555b80bbee207a3221489b9ffed",
       "commitId": "6aa00766b9103d75c763160280429af8e1f0549e",
       "commitTime": 1354308699,
       "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
+      "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
+      "comment": "Add Parameter Modifier final in parameter file : File in method private createFileEntry(parent FileEntry, file File) : FileEntry from class org.apache.commons.io.monitor.FileAlterationObserver"
+    },
+    {
+      "parentCommitId": "efca1657258b7555b80bbee207a3221489b9ffed",
+      "commitId": "6aa00766b9103d75c763160280429af8e1f0549e",
+      "commitTime": 1354308699,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
       "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
@@ -55,27 +67,8 @@
       "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
       "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileAlterationObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)"
-    },
-    {
-      "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
-      "commitId": "2ee073f3eb5da25c88e184ea78581b297f168a06",
-      "commitTime": 1286911660,
-      "changeType": "container change",
-      "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
-      "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
-      "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)"
-    },
-    {
-      "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
-      "commitId": "2ee073f3eb5da25c88e184ea78581b297f168a06",
-      "commitTime": 1286911660,
-      "changeType": "body change",
-      "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
-      "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
-      "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)"
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileAlterationObserver#createFileEntry(FileEntry, File)",
+      "comment": "Rename Class org.apache.commons.io.monitor.FileObserver renamed to org.apache.commons.io.monitor.FileAlterationObserver"
     },
     {
       "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
@@ -85,13 +78,36 @@
       "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
       "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)"
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)",
+      "comment": "Change Return Type FilesystemEntry to FileEntry in method private createFileEntry(parent FileEntry, file File) : FileEntry from class org.apache.commons.io.monitor.FileObserver"
     },
     {
       "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
       "commitId": "2ee073f3eb5da25c88e184ea78581b297f168a06",
       "commitTime": 1286911660,
       "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
+      "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)",
+      "comment": "Change Parameter Type parent : FilesystemEntry to parent : FileEntry in method private createFileEntry(parent FileEntry, file File) : FileEntry from class org.apache.commons.io.monitor.FileObserver"
+    },
+    {
+      "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
+      "commitId": "2ee073f3eb5da25c88e184ea78581b297f168a06",
+      "commitTime": 1286911660,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
+      "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FileObserver#createFileEntry(FileEntry, File)",
+      "comment": "Rename Class org.apache.commons.io.monitor.FilesystemObserver renamed to org.apache.commons.io.monitor.FileObserver"
+    },
+    {
+      "parentCommitId": "f04a6d47557933a7fb855c1646c350c856def37d",
+      "commitId": "2ee073f3eb5da25c88e184ea78581b297f168a06",
+      "commitTime": 1286911660,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
       "elementNameBefore": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FileObserver.java",
@@ -115,7 +131,8 @@
       "elementFileBefore": "src/java/org/apache/commons/io/monitor/FilesystemObserver.java",
       "elementNameBefore": "src/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
       "elementFileAfter": "src/main/java/org/apache/commons/io/monitor/FilesystemObserver.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)"
+      "elementNameAfter": "src/main/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
+      "comment": "Move Source Folder src to src/main"
     },
     {
       "parentCommitId": "500778fcad1ee90d1da0637b82a968945ff6be13",
@@ -125,7 +142,8 @@
       "elementFileBefore": "src/java/org/apache/commons/io/monitor/FilesystemObserver.java",
       "elementNameBefore": "src/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
       "elementFileAfter": "src/java/org/apache/commons/io/monitor/FilesystemObserver.java",
-      "elementNameAfter": "src/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)"
+      "elementNameAfter": "src/java/org.apache.commons.io.monitor.FilesystemObserver#createFileEntry(FilesystemEntry, File)",
+      "comment": "added with new class"
     }
   ]
 }
