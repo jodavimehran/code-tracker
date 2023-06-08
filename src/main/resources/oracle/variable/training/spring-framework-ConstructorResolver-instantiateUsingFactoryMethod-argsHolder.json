@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-  "functionName" : "instantiateUsingFactoryMethod",
-  "functionKey" : "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
-  "functionStartLine" : 360,
-  "variableName" : "argsHolder",
-  "variableKey" : "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$argsHolder(461)",
-  "variableStartLine" : 461,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "e6b0a1d4d7d5eea5136f236502ef84614c730333",
-    "commitId" : "12ce250c6ce911774a7983905fd6e006b5a1eac1",
-    "commitTime" : 1271247116,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(439)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$argsHolder:ArgumentsHolder(441)",
-    "comment" : "Rename Variable args : ArgumentsHolder to argsHolder : ArgumentsHolder in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
-  }, {
-    "parentCommitId" : "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
-    "commitId" : "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
-    "commitTime" : 1224692017,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-    "elementNameBefore" : "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(366)",
-    "elementFileAfter" : "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-    "elementNameAfter" : "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(366)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+  "functionName": "instantiateUsingFactoryMethod",
+  "functionKey": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+  "functionStartLine": 360,
+  "variableName": "argsHolder",
+  "variableKey": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$argsHolder(461)",
+  "variableStartLine": 461,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "e6b0a1d4d7d5eea5136f236502ef84614c730333",
+      "commitId": "12ce250c6ce911774a7983905fd6e006b5a1eac1",
+      "commitTime": 1271247116,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(439)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$argsHolder:ArgumentsHolder(441)",
+      "comment": "Rename Variable args : ArgumentsHolder to argsHolder : ArgumentsHolder in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
+    },
+    {
+      "parentCommitId": "684a4f28c242c7161fb1d8305cf0e3c22def57ab",
+      "commitId": "f11d3436ed21d3908b9e0b569f2d783df161c0a3",
+      "commitTime": 1224692017,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(366)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])$args:ArgumentsHolder(366)",
+      "comment": "added with method"
+    }
+  ]
 }

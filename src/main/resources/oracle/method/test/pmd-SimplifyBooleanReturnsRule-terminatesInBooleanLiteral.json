@@ -1,82 +1,91 @@
 {
-  "repositoryName" : "pmd",
-  "repositoryWebURL" : "https://github.com/pmd/pmd.git",
-  "startCommitId" : "d528dcd5d45582229ab3410deb7c40b2143d015d",
-  "filePath" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-  "functionName" : "terminatesInBooleanLiteral",
-  "functionKey" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
-  "functionStartLine" : 209,
-  "expectedChanges" : [ {
-    "parentCommitId" : "61e8412afe8816c0383fd3222fd54d5b2e9e3299",
-    "commitId" : "e57007e1bef8b6de966f607fe1d79d3ecabe6884",
-    "commitTime" : 1427311015,
-    "changeType" : "body change",
-    "elementFileBefore" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameBefore" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
-    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "fa950a82960993c7a7d70e276553b85174eec8b2",
-    "commitId" : "ad88b4784d78bf1698fac72cad3825144caf6863",
-    "commitTime" : 1412437001,
-    "changeType" : "container change",
-    "elementFileBefore" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameBefore" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
-    "elementFileAfter" : "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameAfter" : "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "821f452f692c1497e2849302b5d9417c90edc054",
-    "commitId" : "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
-    "commitTime" : 1321908307,
-    "changeType" : "container change",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
-    "elementFileAfter" : "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameAfter" : "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
-    "commitId" : "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
-    "commitTime" : 1207345139,
-    "changeType" : "container change",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)",
-    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
-    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
-    "commitId" : "82d36689d3696a80c4f867bc50a8aec76794d261",
-    "commitTime" : 1207337229,
-    "changeType" : "container change",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)",
-    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
-    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "d239a4d8cd8688be708b6dfd46994f3f9756f2fe",
-    "commitId" : "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
-    "commitTime" : 1207281072,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(SimpleNode)",
-    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
-    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)"
-  }, {
-    "parentCommitId" : "357f6f57e8587be5b6d97a3d012b35766e513a5f",
-    "commitId" : "ccaf1594a4a23743e2049009001d8d6d82de3b7c",
-    "commitTime" : 1103053995,
-    "changeType" : "container change",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)",
-    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
-    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(SimpleNode)"
-  }, {
-    "parentCommitId" : "a8b3c474104d0f947434dae5787ba9aab631922e",
-    "commitId" : "bd57e8010dbdcfe2fc434083512f77419c5fde2d",
-    "commitTime" : 1029339266,
-    "changeType" : "introduced",
-    "elementFileBefore" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
-    "elementNameBefore" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)",
-    "elementFileAfter" : "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
-    "elementNameAfter" : "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)"
-  } ]
+  "repositoryName": "pmd",
+  "repositoryWebURL": "https://github.com/pmd/pmd.git",
+  "startCommitId": "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "filePath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+  "functionName": "terminatesInBooleanLiteral",
+  "functionKey": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
+  "functionStartLine": 209,
+  "expectedChanges": [
+    {
+      "parentCommitId": "61e8412afe8816c0383fd3222fd54d5b2e9e3299",
+      "commitId": "e57007e1bef8b6de966f607fe1d79d3ecabe6884",
+      "commitTime": 1427311015,
+      "changeType": "body change",
+      "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
+      "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "fa950a82960993c7a7d70e276553b85174eec8b2",
+      "commitId": "ad88b4784d78bf1698fac72cad3825144caf6863",
+      "commitTime": 1412437001,
+      "changeType": "container change",
+      "elementFileBefore": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameBefore": "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
+      "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "821f452f692c1497e2849302b5d9417c90edc054",
+      "commitId": "75daf38ed303bcdbfe1034fd3a070a4306402c2d",
+      "commitTime": 1321908307,
+      "changeType": "container change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)",
+      "elementFileAfter": "pmd/src/main/java/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "82d36689d3696a80c4f867bc50a8aec76794d261",
+      "commitId": "4e02b9b831743c0e6f46514ae6a209ed96e86e22",
+      "commitTime": 1207345139,
+      "changeType": "container change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturnsRule.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "86d6d24dad6ba51be61bfaa9905a2baabf994bf1",
+      "commitId": "82d36689d3696a80c4f867bc50a8aec76794d261",
+      "commitTime": 1207337229,
+      "changeType": "container change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/rule/design/SimplifyBooleanReturns.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.rule.design.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "d239a4d8cd8688be708b6dfd46994f3f9756f2fe",
+      "commitId": "113e719ad482e8c2ff7b4702de1cf6855e8ef79b",
+      "commitTime": 1207281072,
+      "changeType": "parameter change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(SimpleNode)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(Node)"
+    },
+    {
+      "parentCommitId": "357f6f57e8587be5b6d97a3d012b35766e513a5f",
+      "commitId": "ccaf1594a4a23743e2049009001d8d6d82de3b7c",
+      "commitTime": 1103053995,
+      "changeType": "container change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturns.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturns#terminatesInBooleanLiteral(SimpleNode)"
+    },
+    {
+      "parentCommitId": "a8b3c474104d0f947434dae5787ba9aab631922e",
+      "commitId": "bd57e8010dbdcfe2fc434083512f77419c5fde2d",
+      "commitTime": 1029339266,
+      "changeType": "introduced",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/rules/SimplifyBooleanReturnsRule.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.rules.SimplifyBooleanReturnsRule#terminatesInBooleanLiteral(SimpleNode)"
+    }
+  ]
 }

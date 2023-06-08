@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
-  "functionName" : "main",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])",
-  "functionStartLine" : 181,
-  "variableName" : "args",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args(181)",
-  "variableStartLine" : 181,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "6a9872d60c718b5d5770013f73523a55ff12cd6d",
-    "commitId" : "c0446a825514ea0279b8c22f633f2c4e3c73dc1f",
-    "commitTime" : 1430353274,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String[](55)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String...(55)",
-    "comment" : "Change Parameter Type args : String[] to args : String... in method public main(args String...) : void from class com.puppycrawl.tools.checkstyle.Main"
-  }, {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](71)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String[](71)",
-    "comment" : "Rename Parameter aArgs : String[] to args : String[] in method public main(args String[]) : void from class com.puppycrawl.tools.checkstyle.Main"
-  }, {
-    "parentCommitId" : "5f53a2a380e038e791af244b42f245b813dbc379",
-    "commitId" : "0fd69594a4c3e82f92f93f0371791da66938f8c3",
-    "commitTime" : 993216264,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](34)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](34)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
+  "functionName": "main",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])",
+  "functionStartLine": 181,
+  "variableName": "args",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args(181)",
+  "variableStartLine": 181,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6a9872d60c718b5d5770013f73523a55ff12cd6d",
+      "commitId": "c0446a825514ea0279b8c22f633f2c4e3c73dc1f",
+      "commitTime": 1430353274,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String[](55)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String...(55)",
+      "comment": "Change Parameter Type args : String[] to args : String... in method public main(args String...) : void from class com.puppycrawl.tools.checkstyle.Main"
+    },
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](71)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$args:String[](71)",
+      "comment": "Rename Parameter aArgs : String[] to args : String[] in method public main(args String[]) : void from class com.puppycrawl.tools.checkstyle.Main"
+    },
+    {
+      "parentCommitId": "5f53a2a380e038e791af244b42f245b813dbc379",
+      "commitId": "0fd69594a4c3e82f92f93f0371791da66938f8c3",
+      "commitTime": 993216264,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](34)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Main.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Main#main(String[])$aArgs:String[](34)",
+      "comment": "added with method"
+    }
+  ]
 }

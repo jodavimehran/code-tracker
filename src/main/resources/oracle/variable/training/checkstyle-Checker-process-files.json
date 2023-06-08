@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "checkstyle\\checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-  "functionName" : "process",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)",
-  "functionStartLine" : 206,
-  "variableName" : "files",
-  "variableKey" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$files(206)",
-  "variableStartLine" : 206,
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "expectedChanges" : [ {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$aFiles:List<File>(246)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$files:List<File>(246)",
-    "comment" : "Rename Parameter aFiles : List<File> to files : List<File> in method public process(files List<File>) : int from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "e287c5e741ce8b13d19e7f0885977792a0d0fcc9",
-    "commitId" : "f38d8abd42c3e824635e542e6031b3da1997c02e",
-    "commitTime" : 1198131671,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$aFiles:File[](235)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(List)$aFiles:List<File>(235)",
-    "comment" : "Change Parameter Type aFiles : File[] to aFiles : List<File> in method public process(aFiles List<File>) : int from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
-    "commitId" : "822384a711290170148b43b5ae390dd4e8cfaf4f",
-    "commitTime" : 1037515736,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String[])$aFiles:String[](168)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$aFiles:File[](168)",
-    "comment" : "Change Parameter Type aFiles : String[] to aFiles : File[] in method public process(aFiles File[]) : int from class com.puppycrawl.tools.checkstyle.Checker"
-  }, {
-    "parentCommitId" : "5f53a2a380e038e791af244b42f245b813dbc379",
-    "commitId" : "0fd69594a4c3e82f92f93f0371791da66938f8c3",
-    "commitTime" : 993216264,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$aFiles:String[](200)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$aFiles:String[](200)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+  "functionName": "process",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)",
+  "functionStartLine": 206,
+  "variableName": "files",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$files(206)",
+  "variableStartLine": 206,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$aFiles:List<File>(246)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Checker#process(List)$files:List<File>(246)",
+      "comment": "Rename Parameter aFiles : List<File> to files : List<File> in method public process(files List<File>) : int from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "e287c5e741ce8b13d19e7f0885977792a0d0fcc9",
+      "commitId": "f38d8abd42c3e824635e542e6031b3da1997c02e",
+      "commitTime": 1198131671,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$aFiles:File[](235)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(List)$aFiles:List<File>(235)",
+      "comment": "Change Parameter Type aFiles : File[] to aFiles : List<File> in method public process(aFiles List<File>) : int from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
+      "commitId": "822384a711290170148b43b5ae390dd4e8cfaf4f",
+      "commitTime": 1037515736,
+      "changeType": "type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String[])$aFiles:String[](168)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$aFiles:File[](168)",
+      "comment": "Change Parameter Type aFiles : String[] to aFiles : File[] in method public process(aFiles File[]) : int from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "5f53a2a380e038e791af244b42f245b813dbc379",
+      "commitId": "0fd69594a4c3e82f92f93f0371791da66938f8c3",
+      "commitTime": 993216264,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$aFiles:String[](200)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$aFiles:String[](200)",
+      "comment": "added with method"
+    }
+  ]
 }

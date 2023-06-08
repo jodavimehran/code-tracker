@@ -1,361 +1,401 @@
 {
-  "repositoryName" : "junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-  "functionName" : "discover",
-  "functionKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)",
-  "functionStartLine" : 82,
-  "expectedChanges" : [ {
-    "parentCommitId" : "27a7928a6ced05237be4a1223e528aab8d96bfba",
-    "commitId" : "402c756a056e13f5f49634616d87b1333e3c211e",
-    "commitTime" : 1467316432,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameBefore" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "27a7928a6ced05237be4a1223e528aab8d96bfba",
-    "commitId" : "402c756a056e13f5f49634616d87b1333e3c211e",
-    "commitTime" : 1467316432,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameBefore" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
-    "commitId" : "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
-    "commitTime" : 1466413192,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
-    "commitId" : "4537bec58804c392a8bce296dced0337c8ec1a8d",
-    "commitTime" : 1466356953,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "d4fca2b705b1f05312a59e71d37853e15632c437",
-    "commitId" : "e273d6681b96509b0bd35916a82fcfada21f18c6",
-    "commitTime" : 1466285196,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "53cd0ebd400200b3cb8601fde5387867a1dd4943",
-    "commitId" : "35d4733fea906c6853ef0f12ba4bb86c838d6046",
-    "commitTime" : 1465134705,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
-    "commitId" : "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
-    "commitTime" : 1453312358,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
-    "commitId" : "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
-    "commitTime" : 1453312358,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "027bc980ad0a17a6130013aeec068296606bbfef",
-    "commitId" : "a2e588e96c3a763553d764d5c35a44b9eea41d75",
-    "commitTime" : 1453312065,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "2e70f575f1e3803fc3d934de6932524efca4fe8a",
-    "commitId" : "57b07e0594875902399805d6e41514f03a4b2f31",
-    "commitTime" : 1453195956,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)"
-  }, {
-    "parentCommitId" : "93397066597b7ca8af35a77b9559bdc079d4f5d5",
-    "commitId" : "961fd47344c55d21907607ec9672df6d4f3d2362",
-    "commitTime" : 1453134880,
-    "changeType" : "container change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "93397066597b7ca8af35a77b9559bdc079d4f5d5",
-    "commitId" : "961fd47344c55d21907607ec9672df6d4f3d2362",
-    "commitTime" : 1453134880,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "763cf502451c5053cd72248aac3561cd1530b719",
-    "commitId" : "9da25e126d174ba6e6ae02596afa538a7cafe17b",
-    "commitTime" : 1453129027,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
-    "commitId" : "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
-    "commitTime" : 1453090240,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
-    "commitId" : "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
-    "commitTime" : 1453090240,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "d35b6c097deae4347abc54a431ed712e4b0818f1",
-    "commitId" : "ad553b10b4b2b1a78c9a0c91a6d50ebb1421ff3f",
-    "commitTime" : 1452867306,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
-  }, {
-    "parentCommitId" : "ff333a234170a4befd04909d03d7d8953ff5a8c1",
-    "commitId" : "d6b17576a2b7e2d1ba28dbef2430c042ad1b887a",
-    "commitTime" : 1451856974,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
-    "commitId" : "830b6d5976b6db01dad3866cfb3d54c6216b1252",
-    "commitTime" : 1449569937,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "e74f44734fa1099bc1d9fc2d60838d7b1f64de46",
-    "commitId" : "7dc017fd9255ba302736d9ad1ce778f93e77b573",
-    "commitTime" : 1449405027,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "b371ee9a845f6571a93dfabb1e1356db6729221e",
-    "commitId" : "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
-    "commitTime" : 1449147508,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "5f0bdad2730cc1563ed3929964802abddff326de",
-    "commitId" : "849e9afba14e3ea2639dfc985b0fd515a991639a",
-    "commitTime" : 1448229774,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "5bb440e06279fd20c98ea617c245141307390274",
-    "commitId" : "a6a549c084132d2d1c2d7d46a26b47e48cb4f608",
-    "commitTime" : 1448227343,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
-    "commitId" : "49ae3709bdf93aa8c83f5d11476b9c301eb4fc7f",
-    "commitTime" : 1447080620,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "80332bc3278da8923c2601250ca33ba016bcdb3a",
-    "commitId" : "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
-    "commitTime" : 1447067483,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "f5e07eb572717a38f2f74c5af7facea3818426e1",
-    "commitId" : "1105bef6877be1c036331d5b6d607d5e16c7463b",
-    "commitTime" : 1446975992,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "a881ff75a8368afa76362a0e06c7f9da2c43d35b",
-    "commitId" : "e1184f5a171d084f33ddca961836b17dabc63165",
-    "commitTime" : 1446964286,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "a881ff75a8368afa76362a0e06c7f9da2c43d35b",
-    "commitId" : "e1184f5a171d084f33ddca961836b17dabc63165",
-    "commitTime" : 1446964286,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "a859d14b845c059715d70dec81c279eab8adf67c",
-    "commitId" : "cecc46dfd9b0dd931bc8625560cdcd9bced45753",
-    "commitTime" : 1446933518,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "a859d14b845c059715d70dec81c279eab8adf67c",
-    "commitId" : "cecc46dfd9b0dd931bc8625560cdcd9bced45753",
-    "commitTime" : 1446933518,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "113318d8a0e0bb6d6125db36bc821c33077453e2",
-    "commitId" : "a150c7c86dcb16500114a601f76f476c06b0a782",
-    "commitTime" : 1446650897,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "3d944922b2b2fa8d016f8341af59654d61e73549",
-    "commitId" : "0e097640972835e71a625cdee7a9359089cbec78",
-    "commitTime" : 1446543965,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "00da4559995025e357f162a93ec80516a086ffec",
-    "commitId" : "623ccd4a73d487ec55e24f8415597910626fd90d",
-    "commitTime" : 1446290889,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "15179836342e05bdecce07a1c894c7e98283cbb0",
-    "commitId" : "9d0819e13f70c9385836259aabb8077b5240fb2c",
-    "commitTime" : 1446217954,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "a2abf9b70d4e4dcab2acc189267e46e52d144fb2",
-    "commitId" : "2faf053a85fd24cb6f65e7b1258d7c507587866c",
-    "commitTime" : 1446198862,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "2f4d175b8b29c7a916aa26d706fd3b36b67b1fb1",
-    "commitId" : "8edbcf80166518746080a12cecfddc04f2577351",
-    "commitTime" : 1446131452,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "d52c83585be599440ce918a38208a2a0370c274c",
-    "commitId" : "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
-    "commitTime" : 1446038699,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "db7c029008a0fab7fb6770078c1b54a175c35c6c",
-    "commitId" : "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
-    "commitTime" : 1446027542,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "db7c029008a0fab7fb6770078c1b54a175c35c6c",
-    "commitId" : "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
-    "commitTime" : 1446027542,
-    "changeType" : "body change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)"
-  }, {
-    "parentCommitId" : "4ed7da080632a120397988eb5adf898c2b7508bd",
-    "commitId" : "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-    "commitTime" : 1446024196,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)"
-  } ]
+  "repositoryName": "junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "filePath": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "functionName": "discover",
+  "functionKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)",
+  "functionStartLine": 82,
+  "expectedChanges": [
+    {
+      "parentCommitId": "27a7928a6ced05237be4a1223e528aab8d96bfba",
+      "commitId": "402c756a056e13f5f49634616d87b1333e3c211e",
+      "commitTime": 1467316432,
+      "changeType": "body change",
+      "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "27a7928a6ced05237be4a1223e528aab8d96bfba",
+      "commitId": "402c756a056e13f5f49634616d87b1333e3c211e",
+      "commitTime": 1467316432,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(LauncherDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
+      "commitId": "4972eb58d680a30e8fbd1ffb6cdc6477bef83374",
+      "commitTime": 1466413192,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
+      "commitId": "4537bec58804c392a8bce296dced0337c8ec1a8d",
+      "commitTime": 1466356953,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "d4fca2b705b1f05312a59e71d37853e15632c437",
+      "commitId": "e273d6681b96509b0bd35916a82fcfada21f18c6",
+      "commitTime": 1466285196,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "53cd0ebd400200b3cb8601fde5387867a1dd4943",
+      "commitId": "35d4733fea906c6853ef0f12ba4bb86c838d6046",
+      "commitTime": 1465134705,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+      "commitId": "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
+      "commitTime": 1453312358,
+      "changeType": "annotation change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+      "commitId": "0d96e17fb66ba6e7dc174c5c87a1c4cfc3fade33",
+      "commitTime": 1453312358,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "027bc980ad0a17a6130013aeec068296606bbfef",
+      "commitId": "a2e588e96c3a763553d764d5c35a44b9eea41d75",
+      "commitTime": 1453312065,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "2e70f575f1e3803fc3d934de6932524efca4fe8a",
+      "commitId": "57b07e0594875902399805d6e41514f03a4b2f31",
+      "commitTime": 1453195956,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(TestDiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+      "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
+      "commitTime": 1453134880,
+      "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+      "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
+      "commitTime": 1453134880,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "763cf502451c5053cd72248aac3561cd1530b719",
+      "commitId": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
+      "commitTime": 1453129027,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
+      "commitId": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
+      "commitTime": 1453090240,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
+      "commitId": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
+      "commitTime": 1453090240,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "d35b6c097deae4347abc54a431ed712e4b0818f1",
+      "commitId": "ad553b10b4b2b1a78c9a0c91a6d50ebb1421ff3f",
+      "commitTime": 1452867306,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(DiscoveryRequest)"
+    },
+    {
+      "parentCommitId": "ff333a234170a4befd04909d03d7d8953ff5a8c1",
+      "commitId": "d6b17576a2b7e2d1ba28dbef2430c042ad1b887a",
+      "commitTime": 1451856974,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
+      "commitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+      "commitTime": 1449569937,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "e74f44734fa1099bc1d9fc2d60838d7b1f64de46",
+      "commitId": "7dc017fd9255ba302736d9ad1ce778f93e77b573",
+      "commitTime": 1449405027,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "b371ee9a845f6571a93dfabb1e1356db6729221e",
+      "commitId": "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
+      "commitTime": 1449147508,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "5f0bdad2730cc1563ed3929964802abddff326de",
+      "commitId": "849e9afba14e3ea2639dfc985b0fd515a991639a",
+      "commitTime": 1448229774,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "5bb440e06279fd20c98ea617c245141307390274",
+      "commitId": "a6a549c084132d2d1c2d7d46a26b47e48cb4f608",
+      "commitTime": 1448227343,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
+      "commitId": "49ae3709bdf93aa8c83f5d11476b9c301eb4fc7f",
+      "commitTime": 1447080620,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "80332bc3278da8923c2601250ca33ba016bcdb3a",
+      "commitId": "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
+      "commitTime": 1447067483,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "f5e07eb572717a38f2f74c5af7facea3818426e1",
+      "commitId": "1105bef6877be1c036331d5b6d607d5e16c7463b",
+      "commitTime": 1446975992,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "a881ff75a8368afa76362a0e06c7f9da2c43d35b",
+      "commitId": "e1184f5a171d084f33ddca961836b17dabc63165",
+      "commitTime": 1446964286,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "a881ff75a8368afa76362a0e06c7f9da2c43d35b",
+      "commitId": "e1184f5a171d084f33ddca961836b17dabc63165",
+      "commitTime": 1446964286,
+      "changeType": "documentation change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "a859d14b845c059715d70dec81c279eab8adf67c",
+      "commitId": "cecc46dfd9b0dd931bc8625560cdcd9bced45753",
+      "commitTime": 1446933518,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "a859d14b845c059715d70dec81c279eab8adf67c",
+      "commitId": "cecc46dfd9b0dd931bc8625560cdcd9bced45753",
+      "commitTime": 1446933518,
+      "changeType": "documentation change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "113318d8a0e0bb6d6125db36bc821c33077453e2",
+      "commitId": "a150c7c86dcb16500114a601f76f476c06b0a782",
+      "commitTime": 1446650897,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "3d944922b2b2fa8d016f8341af59654d61e73549",
+      "commitId": "0e097640972835e71a625cdee7a9359089cbec78",
+      "commitTime": 1446543965,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "00da4559995025e357f162a93ec80516a086ffec",
+      "commitId": "623ccd4a73d487ec55e24f8415597910626fd90d",
+      "commitTime": 1446290889,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "15179836342e05bdecce07a1c894c7e98283cbb0",
+      "commitId": "9d0819e13f70c9385836259aabb8077b5240fb2c",
+      "commitTime": 1446217954,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "a2abf9b70d4e4dcab2acc189267e46e52d144fb2",
+      "commitId": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
+      "commitTime": 1446198862,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "2f4d175b8b29c7a916aa26d706fd3b36b67b1fb1",
+      "commitId": "8edbcf80166518746080a12cecfddc04f2577351",
+      "commitTime": 1446131452,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "d52c83585be599440ce918a38208a2a0370c274c",
+      "commitId": "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
+      "commitTime": 1446038699,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discover(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "db7c029008a0fab7fb6770078c1b54a175c35c6c",
+      "commitId": "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
+      "commitTime": 1446027542,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "db7c029008a0fab7fb6770078c1b54a175c35c6c",
+      "commitId": "2e1ad2e7fc7fbc71b12027f9777bbbd2a7a8667a",
+      "commitTime": 1446027542,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanSpecification)"
+    },
+    {
+      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
+      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitTime": 1446024196,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#createTestPlanWithConfiguration(TestPlanConfiguration)"
+    }
+  ]
 }

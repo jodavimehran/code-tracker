@@ -1,40 +1,44 @@
 {
-  "repositoryName" : "intellij-community",
-  "repositoryWebURL" : "https://github.com/JetBrains/intellij-community.git",
-  "startCommitId" : "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
-  "filePath" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-  "attributeName" : "myStackFrame",
-  "attributeKey" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@myStackFrame:JavaStackFrame(43)",
-  "attributeDeclarationLine" : 43,
-  "expectedChanges" : [ {
-    "parentCommitId" : "e4d5f8802133752f779a249a274b2252cf908c93",
-    "commitId" : "1b7a15247448cf1a02a1bc4c495a9c1c58b6fbeb",
-    "commitTime" : 1400160282,
-    "changeType" : "rename",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(45)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myStackFrame:JavaStackFrame(46)",
-    "comment" : "Rename Attribute myDebuggerContext : DebuggerContextImpl to myStackFrame : JavaStackFrame in class com.intellij.debugger.engine.JavaDebuggerEvaluator"
-  }, {
-    "parentCommitId" : "e4d5f8802133752f779a249a274b2252cf908c93",
-    "commitId" : "1b7a15247448cf1a02a1bc4c495a9c1c58b6fbeb",
-    "commitTime" : 1400160282,
-    "changeType" : "type change",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(45)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myStackFrame:JavaStackFrame(46)",
-    "comment" : "Change Attribute Type myDebuggerContext : DebuggerContextImpl to myStackFrame : JavaStackFrame in class com.intellij.debugger.engine.JavaDebuggerEvaluator"
-  }, {
-    "parentCommitId" : "d2fe21138dbbd4bcd30a619e1cd031d194736398",
-    "commitId" : "d66fc12051f8150a603a7c0799bd8afb9ddb171a",
-    "commitTime" : 1400160209,
-    "changeType" : "introduced",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(35)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(35)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "intellij-community",
+  "repositoryWebURL": "https://github.com/JetBrains/intellij-community.git",
+  "startCommitId": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "filePath": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+  "attributeName": "myStackFrame",
+  "attributeKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@myStackFrame:JavaStackFrame(43)",
+  "attributeDeclarationLine": 43,
+  "expectedChanges": [
+    {
+      "parentCommitId": "e4d5f8802133752f779a249a274b2252cf908c93",
+      "commitId": "1b7a15247448cf1a02a1bc4c495a9c1c58b6fbeb",
+      "commitTime": 1400160282,
+      "changeType": "rename",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(45)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myStackFrame:JavaStackFrame(46)",
+      "comment": "Rename Attribute myDebuggerContext : DebuggerContextImpl to myStackFrame : JavaStackFrame in class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "e4d5f8802133752f779a249a274b2252cf908c93",
+      "commitId": "1b7a15247448cf1a02a1bc4c495a9c1c58b6fbeb",
+      "commitTime": 1400160282,
+      "changeType": "type change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(45)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myStackFrame:JavaStackFrame(46)",
+      "comment": "Change Attribute Type myDebuggerContext : DebuggerContextImpl to myStackFrame : JavaStackFrame in class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "d2fe21138dbbd4bcd30a619e1cd031d194736398",
+      "commitId": "d66fc12051f8150a603a7c0799bd8afb9ddb171a",
+      "commitTime": 1400160209,
+      "changeType": "introduced",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(35)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator@(final)(private)myDebuggerContext:DebuggerContextImpl(35)",
+      "comment": "added with new class"
+    }
+  ]
 }

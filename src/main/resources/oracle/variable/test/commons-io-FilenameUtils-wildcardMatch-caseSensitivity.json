@@ -1,43 +1,47 @@
 {
-  "repositoryName" : "apache\\commons-io",
-  "repositoryWebURL" : "https://github.com/apache/commons-io.git",
-  "filePath" : "src/main/java/org/apache/commons/io/FilenameUtils.java",
-  "functionName" : "wildcardMatch",
-  "functionKey" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)",
-  "functionStartLine" : 1374,
-  "variableName" : "caseSensitivity",
-  "variableKey" : "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity(1374)",
-  "variableStartLine" : 1374,
-  "startCommitId" : "559de2c461e94ab636c959149c775bb27111fb48",
-  "expectedChanges" : [ {
-    "parentCommitId" : "9af996d4c44c7c4f317d0cbd094d5eb9c19efc97",
-    "commitId" : "07751ea95c575cb95a310a23a78dc8cbe85b27a9",
-    "commitTime" : 1151277543,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(1123)",
-    "elementFileAfter" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity:IOCase(1127)",
-    "comment" : "Rename Parameter system : boolean to caseSensitivity : IOCase in method public wildcardMatch(filename String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
-  }, {
-    "parentCommitId" : "9af996d4c44c7c4f317d0cbd094d5eb9c19efc97",
-    "commitId" : "07751ea95c575cb95a310a23a78dc8cbe85b27a9",
-    "commitTime" : 1151277543,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(1123)",
-    "elementFileAfter" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity:IOCase(1127)",
-    "comment" : "Change Parameter Type system : boolean to caseSensitivity : IOCase in method public wildcardMatch(filename String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
-  }, {
-    "parentCommitId" : "d1080684022a6b33b775d2e963218921af6a5826",
-    "commitId" : "745375d22e427574f1ef1301c8378cd81e85a1fc",
-    "commitTime" : 1112830543,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameBefore" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(912)",
-    "elementFileAfter" : "src/java/org/apache/commons/io/FilenameUtils.java",
-    "elementNameAfter" : "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(912)",
-    "comment" : "Extract Method private wildcardMatch(filename String, wildcardMatcher String, system boolean) : boolean extracted from public wildcardMatch(filename String, wildcardMatcher String) : boolean in class org.apache.commons.io.FilenameUtils"
-  } ]
+  "repositoryName": "apache\\commons-io",
+  "repositoryWebURL": "https://github.com/apache/commons-io.git",
+  "filePath": "src/main/java/org/apache/commons/io/FilenameUtils.java",
+  "functionName": "wildcardMatch",
+  "functionKey": "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)",
+  "functionStartLine": 1374,
+  "variableName": "caseSensitivity",
+  "variableKey": "src/main/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity(1374)",
+  "variableStartLine": 1374,
+  "startCommitId": "559de2c461e94ab636c959149c775bb27111fb48",
+  "expectedChanges": [
+    {
+      "parentCommitId": "9af996d4c44c7c4f317d0cbd094d5eb9c19efc97",
+      "commitId": "07751ea95c575cb95a310a23a78dc8cbe85b27a9",
+      "commitTime": 1151277543,
+      "changeType": "rename",
+      "elementFileBefore": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(1123)",
+      "elementFileAfter": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity:IOCase(1127)",
+      "comment": "Rename Parameter system : boolean to caseSensitivity : IOCase in method public wildcardMatch(filename String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
+    },
+    {
+      "parentCommitId": "9af996d4c44c7c4f317d0cbd094d5eb9c19efc97",
+      "commitId": "07751ea95c575cb95a310a23a78dc8cbe85b27a9",
+      "commitTime": 1151277543,
+      "changeType": "type change",
+      "elementFileBefore": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(1123)",
+      "elementFileAfter": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, IOCase)$caseSensitivity:IOCase(1127)",
+      "comment": "Change Parameter Type system : boolean to caseSensitivity : IOCase in method public wildcardMatch(filename String, wildcardMatcher String, caseSensitivity IOCase) : boolean from class org.apache.commons.io.FilenameUtils"
+    },
+    {
+      "parentCommitId": "d1080684022a6b33b775d2e963218921af6a5826",
+      "commitId": "745375d22e427574f1ef1301c8378cd81e85a1fc",
+      "commitTime": 1112830543,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(912)",
+      "elementFileAfter": "src/java/org/apache/commons/io/FilenameUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.io.FilenameUtils#wildcardMatch(String, String, boolean)$system:boolean(912)",
+      "comment": "Extract Method private wildcardMatch(filename String, wildcardMatcher String, system boolean) : boolean extracted from public wildcardMatch(filename String, wildcardMatcher String) : boolean in class org.apache.commons.io.FilenameUtils"
+    }
+  ]
 }

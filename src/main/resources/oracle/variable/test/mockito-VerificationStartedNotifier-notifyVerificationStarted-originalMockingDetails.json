@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "mockito\\mockito",
-  "repositoryWebURL" : "https://github.com/mockito/mockito.git",
-  "filePath" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-  "functionName" : "notifyVerificationStarted",
-  "functionKey" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)",
-  "functionStartLine" : 20,
-  "variableName" : "originalMockingDetails",
-  "variableKey" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails(20)",
-  "variableStartLine" : 20,
-  "startCommitId" : "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
-  "expectedChanges" : [ {
-    "parentCommitId" : "4f0f9c973e31eee30c00700b5db9361d9e3df430",
-    "commitId" : "4bc732153e83b9490d6d94c2e27ea2f6ac9dc10c",
-    "commitTime" : 1507739512,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(16)",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails:MockingDetails(16)",
-    "comment" : "Change Parameter Type originalMock : MockitoMock to originalMockingDetails : MockingDetails in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMockingDetails MockingDetails) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
-  }, {
-    "parentCommitId" : "4f0f9c973e31eee30c00700b5db9361d9e3df430",
-    "commitId" : "4bc732153e83b9490d6d94c2e27ea2f6ac9dc10c",
-    "commitTime" : 1507739512,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(16)",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails:MockingDetails(16)",
-    "comment" : "Rename Parameter originalMock : MockitoMock to originalMockingDetails : MockingDetails in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMockingDetails MockingDetails) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
-  }, {
-    "parentCommitId" : "f8cd5302bd16432f2f1263e716b1a57c82f086fa",
-    "commitId" : "bf9524388ba5fc8f3350399a65c0ccd31442f730",
-    "commitTime" : 1507706292,
-    "changeType" : "type change",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(12)",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(13)",
-    "comment" : "Change Parameter Type mock : Object to originalMock : MockitoMock in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMock MockitoMock) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
-  }, {
-    "parentCommitId" : "f8cd5302bd16432f2f1263e716b1a57c82f086fa",
-    "commitId" : "bf9524388ba5fc8f3350399a65c0ccd31442f730",
-    "commitTime" : 1507706292,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(12)",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(13)",
-    "comment" : "Rename Parameter mock : Object to originalMock : MockitoMock in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMock MockitoMock) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
-  }, {
-    "parentCommitId" : "14c6171e7ffebf2d38a444584eae87837deb95cd",
-    "commitId" : "1f9b4f3de3af9f29e2123e74c5f6c036bb94d2aa",
-    "commitTime" : 1507479898,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameBefore" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(10)",
-    "elementFileAfter" : "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
-    "elementNameAfter" : "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(10)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "mockito\\mockito",
+  "repositoryWebURL": "https://github.com/mockito/mockito.git",
+  "filePath": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+  "functionName": "notifyVerificationStarted",
+  "functionKey": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)",
+  "functionStartLine": 20,
+  "variableName": "originalMockingDetails",
+  "variableKey": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails(20)",
+  "variableStartLine": 20,
+  "startCommitId": "077562ea54f1fa87ff8dd233c3060ddbf0f1ce26",
+  "expectedChanges": [
+    {
+      "parentCommitId": "4f0f9c973e31eee30c00700b5db9361d9e3df430",
+      "commitId": "4bc732153e83b9490d6d94c2e27ea2f6ac9dc10c",
+      "commitTime": 1507739512,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(16)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails:MockingDetails(16)",
+      "comment": "Change Parameter Type originalMock : MockitoMock to originalMockingDetails : MockingDetails in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMockingDetails MockingDetails) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
+    },
+    {
+      "parentCommitId": "4f0f9c973e31eee30c00700b5db9361d9e3df430",
+      "commitId": "4bc732153e83b9490d6d94c2e27ea2f6ac9dc10c",
+      "commitTime": 1507739512,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(16)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockingDetails)$originalMockingDetails:MockingDetails(16)",
+      "comment": "Rename Parameter originalMock : MockitoMock to originalMockingDetails : MockingDetails in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMockingDetails MockingDetails) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
+    },
+    {
+      "parentCommitId": "f8cd5302bd16432f2f1263e716b1a57c82f086fa",
+      "commitId": "bf9524388ba5fc8f3350399a65c0ccd31442f730",
+      "commitTime": 1507706292,
+      "changeType": "type change",
+      "elementFileBefore": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(12)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(13)",
+      "comment": "Change Parameter Type mock : Object to originalMock : MockitoMock in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMock MockitoMock) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
+    },
+    {
+      "parentCommitId": "f8cd5302bd16432f2f1263e716b1a57c82f086fa",
+      "commitId": "bf9524388ba5fc8f3350399a65c0ccd31442f730",
+      "commitTime": 1507706292,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(12)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, MockitoMock)$originalMock:MockitoMock(13)",
+      "comment": "Rename Parameter mock : Object to originalMock : MockitoMock in method public notifyVerificationStarted(listeners List<VerificationStartedListener>, originalMock MockitoMock) : Object from class org.mockito.internal.listeners.VerificationStartedNotifier"
+    },
+    {
+      "parentCommitId": "14c6171e7ffebf2d38a444584eae87837deb95cd",
+      "commitId": "1f9b4f3de3af9f29e2123e74c5f6c036bb94d2aa",
+      "commitTime": 1507479898,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameBefore": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(10)",
+      "elementFileAfter": "src/main/java/org/mockito/internal/listeners/VerificationStartedNotifier.java",
+      "elementNameAfter": "src/main/java/org.mockito.internal.listeners.VerificationStartedNotifier#notifyVerificationStarted(List, Object)$mock:Object(10)",
+      "comment": "added with method"
+    }
+  ]
 }

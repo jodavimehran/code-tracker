@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "JetBrains\\intellij-community",
-  "repositoryWebURL" : "https://github.com/JetBrains/intellij-community.git",
-  "filePath" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-  "functionName" : "getExpressionInfoAtOffset",
-  "functionKey" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
-  "functionStartLine" : 164,
-  "variableName" : "sideEffectsAllowed",
-  "variableKey" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$sideEffectsAllowed(167)",
-  "variableStartLine" : 167,
-  "startCommitId" : "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
-  "expectedChanges" : [ {
-    "parentCommitId" : "6b81e567cc2b610d5220e48714ad6cb5003ae668",
-    "commitId" : "0f72008ee799986196217384078c8f2e55dba4f1",
-    "commitTime" : 1516871772,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(109)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(146)",
-    "comment" : "Remove Parameter Modifier final in parameter sideEffectsAllowed : boolean in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
-  }, {
-    "parentCommitId" : "3b0b8f99c600215e36f47a5fe8cb871187ad2094",
-    "commitId" : "c83bb6029573c0b6cdbcb1deeaaf0420bfd15701",
-    "commitTime" : 1400160249,
-    "changeType" : "introduced",
-    "elementFileBefore" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameBefore" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(78)",
-    "elementFileAfter" : "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
-    "elementNameAfter" : "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(78)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "JetBrains\\intellij-community",
+  "repositoryWebURL": "https://github.com/JetBrains/intellij-community.git",
+  "filePath": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+  "functionName": "getExpressionInfoAtOffset",
+  "functionKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
+  "functionStartLine": 164,
+  "variableName": "sideEffectsAllowed",
+  "variableKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$sideEffectsAllowed(167)",
+  "variableStartLine": 167,
+  "startCommitId": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6b81e567cc2b610d5220e48714ad6cb5003ae668",
+      "commitId": "0f72008ee799986196217384078c8f2e55dba4f1",
+      "commitTime": 1516871772,
+      "changeType": "modifier change",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(109)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(146)",
+      "comment": "Remove Parameter Modifier final in parameter sideEffectsAllowed : boolean in method public getExpressionRangeAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : TextRange from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
+    },
+    {
+      "parentCommitId": "3b0b8f99c600215e36f47a5fe8cb871187ad2094",
+      "commitId": "c83bb6029573c0b6cdbcb1deeaaf0420bfd15701",
+      "commitTime": 1400160249,
+      "changeType": "introduced",
+      "elementFileBefore": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(78)",
+      "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
+      "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionRangeAtOffset(Project, Document, int, boolean)$sideEffectsAllowed:boolean(78)",
+      "comment": "added with method"
+    }
+  ]
 }

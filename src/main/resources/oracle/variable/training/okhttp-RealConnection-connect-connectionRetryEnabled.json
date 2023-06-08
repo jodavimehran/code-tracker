@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "square\\okhttp",
-  "repositoryWebURL" : "https://github.com/square/okhttp.git",
-  "filePath" : "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
-  "functionName" : "connect",
-  "functionKey" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)",
-  "functionStartLine" : 130,
-  "variableName" : "connectionRetryEnabled",
-  "variableKey" : "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)$connectionRetryEnabled(131)",
-  "variableStartLine" : 131,
-  "startCommitId" : "5224f3045ba9b171fce521777edf389f9206173c",
-  "expectedChanges" : [ {
-    "parentCommitId" : "0237d3c3f29b004f4313b2b9fd58830b29cc6311",
-    "commitId" : "60f5406dcc094d0431420139bd002e8bdd4ea5d5",
-    "commitTime" : 1426694377,
-    "changeType" : "introduced",
-    "elementFileBefore" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameBefore" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$connectionRetryEnabled:boolean(134)",
-    "elementFileAfter" : "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-    "elementNameAfter" : "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$connectionRetryEnabled:boolean(134)",
-    "comment" : "Add Parameter connectionRetryEnabled : boolean in method package connect(connectTimeout int, readTimeout int, writeTimeout int, request Request, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.Connection"
-  } ]
+  "repositoryName": "square\\okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/connection/RealConnection.java",
+  "functionName": "connect",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)",
+  "functionStartLine": 130,
+  "variableName": "connectionRetryEnabled",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.connection.RealConnection#connect(int, int, int, int, boolean, Call, EventListener)$connectionRetryEnabled(131)",
+  "variableStartLine": 131,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "0237d3c3f29b004f4313b2b9fd58830b29cc6311",
+      "commitId": "60f5406dcc094d0431420139bd002e8bdd4ea5d5",
+      "commitTime": 1426694377,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$connectionRetryEnabled:boolean(134)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$connectionRetryEnabled:boolean(134)",
+      "comment": "Add Parameter connectionRetryEnabled : boolean in method package connect(connectTimeout int, readTimeout int, writeTimeout int, request Request, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.Connection"
+    }
+  ]
 }
