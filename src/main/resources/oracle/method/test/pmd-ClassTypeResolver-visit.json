@@ -10,7 +10,6 @@
     {
       "parentCommitId": "d22c99b28047c989f5f69f61f2816b16d8347291",
       "commitId": "d6213b79b1788ded52ce1b653ea6d516c6c5d031",
-      "altCommitId": "30afff46c65d17dd4974f4831b1ea0f0232bdf75",
       "commitTime": 1521928477,
       "changeType": "body change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
@@ -32,7 +31,7 @@
       "parentCommitId": "926fe63a1128d9ed72983dc8fe3b6a754a987f64",
       "commitId": "800cfa6e484e0ae704b4f2856ce7e5aa4b66509e",
       "commitTime": 1500492129,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
@@ -42,7 +41,7 @@
       "parentCommitId": "926fe63a1128d9ed72983dc8fe3b6a754a987f64",
       "commitId": "800cfa6e484e0ae704b4f2856ce7e5aa4b66509e",
       "commitTime": 1500492129,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
@@ -61,7 +60,6 @@
     {
       "parentCommitId": "88477e3f54563a3e932a6aeb4c9f0b3d66daa34b",
       "commitId": "b78c7f2aa7bc5db3c28ff6d402cbc91359582584",
-      "altCommitId": "fd2dcddc447c8ae88fe5b1df9fca0326017309f8",
       "commitTime": 1448831504,
       "changeType": "body change",
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
@@ -97,7 +95,8 @@
       "elementFileBefore": "pmd/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+      "comment": "Move Source Folder pmd to pmd-java"
     },
     {
       "parentCommitId": "b0c2721c22dd03fd4c4fb1579b75f3005afd229b",
@@ -117,7 +116,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)"
+      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+      "comment": "Move Source Folder pmd/src to pmd/src/main/java"
     },
     {
       "parentCommitId": "daee6c698386f2cdb94c59846125597a71eae7a8",
@@ -147,7 +147,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+      "comment": "Add Method Annotation @Override in method public visit(node ASTCompilationUnit, data Object) : Object from class net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver"
     },
     {
       "parentCommitId": "e2a1216285ade21204cd926884d8fdf8fbba75c6",
@@ -157,7 +158,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+      "comment": "Move Class net.sourceforge.pmd.typeresolution.ClassTypeResolver moved to net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver"
     },
     {
       "parentCommitId": "e9ccc61428d7de6ede6a14384496c6063c778876",
@@ -213,7 +215,7 @@
       "parentCommitId": "a8f04ec309cc0d772818a7993419fa02cf4969b5",
       "commitId": "3bbc6575ef1ade840f1bfa7b9d9090a20a4e1394",
       "commitTime": 1188334863,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
@@ -223,7 +225,7 @@
       "parentCommitId": "a8f04ec309cc0d772818a7993419fa02cf4969b5",
       "commitId": "3bbc6575ef1ade840f1bfa7b9d9090a20a4e1394",
       "commitTime": 1188334863,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
@@ -243,7 +245,7 @@
       "parentCommitId": "639ff6a00bd18370ad109e347e67de4bd1a3bab6",
       "commitId": "ad46a291ea19b057a88588db2c80f50374599b6a",
       "commitTime": 1176761801,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
@@ -253,7 +255,7 @@
       "parentCommitId": "639ff6a00bd18370ad109e347e67de4bd1a3bab6",
       "commitId": "ad46a291ea19b057a88588db2c80f50374599b6a",
       "commitTime": 1176761801,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
@@ -287,7 +289,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+      "comment": "added with new class"
     }
   ]
 }

@@ -13,9 +13,9 @@
       "commitTime": 1453508333,
       "changeType": "container change",
       "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameBefore": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameAfter": "lucene/src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "comment": "Move Source Folder src to lucene/src"
     },
     {
@@ -45,7 +45,7 @@
       "commitTime": 1310355420,
       "changeType": "container change",
       "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-      "elementNameBefore": "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
       "elementFileAfter": "modules/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
       "elementNameAfter": "modules/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
       "comment": "Move Class org.apache.lucene.queryParser.QueryParserBase moved to org.apache.lucene.queryparser.classic.QueryParserBase"
@@ -56,9 +56,9 @@
       "commitTime": 1287756261,
       "changeType": "moved",
       "elementFileBefore": "lucene/src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameBefore": "lucene/src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameBefore": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "elementFileAfter": "lucene/src/java/org/apache/lucene/queryParser/QueryParserBase.java",
-      "elementNameAfter": "lucene/src/java/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
+      "elementNameAfter": "lucene/src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParserBase#addClause(List, int, int, Query)",
       "comment": "Pull Up Method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser to protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParserBase"
     },
     {
@@ -67,9 +67,10 @@
       "commitTime": 1256054789,
       "changeType": "parameter change",
       "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameBefore": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameAfter": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)"
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "comment": "Change Parameter Type clauses : List to clauses : List<BooleanClause> in method protected addClause(clauses List<BooleanClause>, conj int, mods int, q Query) : void from class org.apache.lucene.queryParser.QueryParser"
     },
     {
       "parentCommitId": "5ceb81834df7a389dae70bfac3463493de99d41c",
@@ -77,9 +78,9 @@
       "commitTime": 1256054789,
       "changeType": "body change",
       "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameBefore": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameAfter": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)"
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)"
     },
     {
       "parentCommitId": "6242cb3322d921bc76506a1c0fad665a141f0f07",
@@ -87,9 +88,9 @@
       "commitTime": 1220815360,
       "changeType": "introduced",
       "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameBefore": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
-      "elementNameAfter": "src/java/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)",
       "comment": "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
     }
   ]

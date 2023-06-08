@@ -31,17 +31,18 @@
       "parentCommitId": "b0866994b979d5986a4bda07538b3d262327c371",
       "commitId": "e99a78098dae04b1fd2c5cc28ff2a09ab77567e4",
       "commitTime": 1489941232,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
       "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])"
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])",
+      "comment": "Add Parameter listeners : TestExecutionListener... in method private execute(root Root, configurationParameters ConfigurationParameters, listeners TestExecutionListener...) : void from class org.junit.platform.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "b0866994b979d5986a4bda07538b3d262327c371",
       "commitId": "e99a78098dae04b1fd2c5cc28ff2a09ab77567e4",
       "commitTime": 1489941232,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
       "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
@@ -55,7 +56,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
       "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)"
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
+      "comment": "Move Source Folder junit-launcher to junit-platform-launcher"
     },
     {
       "parentCommitId": "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
@@ -65,7 +67,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
+      "comment": "Move Class org.junit.gen5.launcher.core.DefaultLauncher moved to org.junit.platform.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "d4fca2b705b1f05312a59e71d37853e15632c437",
@@ -75,7 +78,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root, ConfigurationParameters)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters)",
+      "comment": "Move Class org.junit.gen5.launcher.main.DefaultLauncher moved to org.junit.gen5.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "facb1062bc35b18b6280f2ad93f143101f7abc78",
@@ -91,17 +95,18 @@
       "parentCommitId": "e7af10ca97c6cfd0f2f47425a2649673464fa842",
       "commitId": "6d3cbe6240ef9bcc2aec860f0400a6edd0bdd6bf",
       "commitTime": 1463158029,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root, ConfigurationParameters)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root, ConfigurationParameters)",
+      "comment": "Add Parameter configurationParameters : ConfigurationParameters in method private execute(root Root, configurationParameters ConfigurationParameters) : void from class org.junit.gen5.launcher.main.DefaultLauncher"
     },
     {
       "parentCommitId": "e7af10ca97c6cfd0f2f47425a2649673464fa842",
       "commitId": "6d3cbe6240ef9bcc2aec860f0400a6edd0bdd6bf",
       "commitTime": 1463158029,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
@@ -125,7 +130,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#execute(Root)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#execute(Root)",
+      "comment": "Rename Class org.junit.gen5.launcher.main.JUnit5Launcher renamed to org.junit.gen5.launcher.main.DefaultLauncher"
     },
     {
       "parentCommitId": "027bc980ad0a17a6130013aeec068296606bbfef",
@@ -135,23 +141,25 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#execute(Root)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/JUnit5Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#execute(Root)"
-    },
-    {
-      "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
-      "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
-      "commitTime": 1453134880,
-      "changeType": "body change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(Root)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#execute(Root)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.JUnit5Launcher#execute(Root)",
+      "comment": "Rename Class org.junit.gen5.launcher.main.Launcher renamed to org.junit.gen5.launcher.main.JUnit5Launcher"
     },
     {
       "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
       "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
       "commitTime": 1453134880,
       "changeType": "container change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(Root)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#execute(Root)",
+      "comment": "Move Class org.junit.gen5.launcher.Launcher moved to org.junit.gen5.launcher.main.Launcher"
+    },
+    {
+      "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
+      "commitId": "961fd47344c55d21907607ec9672df6d4f3d2362",
+      "commitTime": 1453134880,
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(Root)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
@@ -175,7 +183,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(Root)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(Root)",
+      "comment": "Change Parameter Type root : RootTestDescriptor to root : Root in method private execute(root Root) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
@@ -198,14 +207,26 @@
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)"
     },
     {
-      "parentCommitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
-      "commitId": "e4c640078022076935caef8edd312ea547f3b9d1",
+      "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
+      "commitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
       "commitTime": 1449569937,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
+      "comment": "Change Parameter Type testPlan : TestPlan to root : RootTestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
+      "commitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+      "commitTime": 1449569937,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
+      "comment": "Rename Parameter testPlan : TestPlan to root : RootTestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
@@ -215,16 +236,16 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
+      "comment": "Change Method Access Modifier public to private in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
-      "parentCommitId": "b506af765c5a78d9bb8ea63b834d6b2b6c41ef54",
-      "commitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
-      "altCommitId": null,
+      "parentCommitId": "830b6d5976b6db01dad3866cfb3d54c6216b1252",
+      "commitId": "e4c640078022076935caef8edd312ea547f3b9d1",
       "commitTime": 1449569937,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)"
     },
@@ -292,17 +313,18 @@
       "parentCommitId": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
       "commitId": "5b99f734253c15189a88cd5704ec30ded2f24694",
       "commitTime": 1446199734,
-      "changeType": "body change",
+      "changeType": "modifier change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "comment": "Change Method Access Modifier private to public in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
       "commitId": "5b99f734253c15189a88cd5704ec30ded2f24694",
       "commitTime": 1446199734,
-      "changeType": "modifier change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
@@ -372,17 +394,18 @@
       "parentCommitId": "d52c83585be599440ce918a38208a2a0370c274c",
       "commitId": "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
       "commitTime": 1446038699,
-      "changeType": "body change",
+      "changeType": "modifier change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "comment": "Change Method Access Modifier public to private in method private execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "d52c83585be599440ce918a38208a2a0370c274c",
       "commitId": "cdaf66815c7308c9d5a430f08c7bc0d790a80534",
       "commitTime": 1446038699,
-      "changeType": "modifier change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
@@ -392,6 +415,48 @@
       "parentCommitId": "10f20e04cbb3e2dbf31e44ab7bbbea4e7805d848",
       "commitId": "62a0ab3e60e4a1c62c806934158444f901d8e22c",
       "commitTime": 1446030722,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
+    },
+    {
+      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
+      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitTime": 1446024196,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "comment": "Change Parameter Type testPlan : TestExecutionPlan to testPlan : TestPlan in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
+      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitTime": 1446024196,
+      "changeType": "exception change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "comment": "Remove Thrown Exception Type Throwable in method public execute(testPlan TestExecutionPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
+      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitTime": 1446024196,
+      "changeType": "documentation change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
+    },
+    {
+      "parentCommitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
+      "commitId": "36f0d62665a55a1250823ea1b7a7d9148efb27a8",
+      "commitTime": 1446024196,
       "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
@@ -412,49 +477,9 @@
       "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
       "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
       "commitTime": 1446024196,
-      "changeType": "exception change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
-    },
-    {
-      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
-      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-      "commitTime": 1446024196,
       "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
-    },
-    {
-      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
-      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-      "commitTime": 1446024196,
-      "changeType": "documentation change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
-    },
-    {
-      "parentCommitId": "4ed7da080632a120397988eb5adf898c2b7508bd",
-      "commitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-      "commitTime": 1446024196,
-      "changeType": "parameter change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
-    },
-    {
-      "parentCommitId": "cbf97077bae0db71dc3a7cade28c3b00587a8699",
-      "commitId": "36f0d62665a55a1250823ea1b7a7d9148efb27a8",
-      "commitTime": 1446024196,
-      "changeType": "body change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
     },
@@ -466,23 +491,25 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)"
-    },
-    {
-      "parentCommitId": "75a91267a92e9fd4d171a3f18f2135e675687961",
-      "commitId": "226ecd8efc45e4540bba43f6c604e891b5a94689",
-      "commitTime": 1445962195,
-      "changeType": "body change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
+      "comment": "Change Thrown Exception Type Exception to Throwable in method public execute(testPlan TestExecutionPlan) : void from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "75a91267a92e9fd4d171a3f18f2135e675687961",
       "commitId": "226ecd8efc45e4540bba43f6c604e891b5a94689",
       "commitTime": 1445962195,
       "changeType": "parameter change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestExecutionPlan)",
+      "comment": "Change Parameter Type testPlan : TestPlan to testPlan : TestExecutionPlan in method public execute(testPlan TestExecutionPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "75a91267a92e9fd4d171a3f18f2135e675687961",
+      "commitId": "226ecd8efc45e4540bba43f6c604e891b5a94689",
+      "commitTime": 1445962195,
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
@@ -496,7 +523,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)",
+      "comment": "added with new class"
     }
   ]
 }

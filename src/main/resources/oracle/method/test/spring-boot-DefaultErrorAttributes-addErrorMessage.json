@@ -15,7 +15,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Move Source Folder spring-boot to spring-boot-project/spring-boot"
     },
     {
       "parentCommitId": "0f99b29b1a8b8c61e9e5b0ed23bc6b42941975eb",
@@ -25,7 +26,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/error/DefaultErrorAttributes.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Move Class org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorAttributes moved to org.springframework.boot.web.servlet.error.DefaultErrorAttributes"
     },
     {
       "parentCommitId": "33e54ed7238c515531e93cbd2e159664a4b5dc62",
@@ -35,7 +37,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaultErrorAttributes.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/servlet/error/DefaultErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Move Class org.springframework.boot.autoconfigure.web.DefaultErrorAttributes moved to org.springframework.boot.autoconfigure.web.servlet.error.DefaultErrorAttributes"
     },
     {
       "parentCommitId": "17fde264e219ded7b73d39308f37ce13779f98a9",
@@ -55,7 +58,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaultErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaultErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Rename Class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes renamed to org.springframework.boot.autoconfigure.web.DefaultErrorAttributes"
     },
     {
       "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
@@ -65,27 +69,8 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)"
-    },
-    {
-      "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
-      "commitId": "30ac768cbfca5d6aaa3719028033c792da789853",
-      "commitTime": 1399920417,
-      "changeType": "moved",
-      "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
-      "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
-      "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)"
-    },
-    {
-      "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
-      "commitId": "30ac768cbfca5d6aaa3719028033c792da789853",
-      "commitTime": 1399920417,
-      "changeType": "modifier change",
-      "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
-      "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
-      "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Move And Rename Method protected addMessage(map Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.BasicErrorController to private addErrorMessage(errorAttributes Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes"
     },
     {
       "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
@@ -95,7 +80,30 @@
       "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
       "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
       "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
-      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)"
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Rename Parameter map : Map<String,Object> to errorAttributes : Map<String,Object> in method private addErrorMessage(errorAttributes Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes"
+    },
+    {
+      "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
+      "commitId": "30ac768cbfca5d6aaa3719028033c792da789853",
+      "commitTime": 1399920417,
+      "changeType": "moved",
+      "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
+      "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
+      "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Move And Rename Method protected addMessage(map Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.BasicErrorController to private addErrorMessage(errorAttributes Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes"
+    },
+    {
+      "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
+      "commitId": "30ac768cbfca5d6aaa3719028033c792da789853",
+      "commitTime": 1399920417,
+      "changeType": "modifier change",
+      "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
+      "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)",
+      "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)",
+      "comment": "Change Method Access Modifier protected to private in method private addErrorMessage(errorAttributes Map<String,Object>, error Throwable) : void from class org.springframework.boot.autoconfigure.web.DefaulErrorAttributes"
     },
     {
       "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",

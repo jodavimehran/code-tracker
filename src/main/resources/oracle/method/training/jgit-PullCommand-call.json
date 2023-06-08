@@ -8,16 +8,6 @@
   "functionStartLine": 206,
   "expectedChanges": [
     {
-      "parentCommitId": "0d447b16604d934675d2dc8e958fa043e945dfc6",
-      "commitId": "df638e0cfc628469eee9a91df5b2b65634e274d7",
-      "commitTime": 1497648020,
-      "changeType": "body change",
-      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
-      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
-    },
-    {
       "parentCommitId": "b4a46b5ed0e33f0a958ba809c648f46e5a19abd7",
       "commitId": "0d447b16604d934675d2dc8e958fa043e945dfc6",
       "commitTime": 1497648020,
@@ -28,9 +18,9 @@
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
     },
     {
-      "parentCommitId": "8f7d0a4fbe8862e71d900b0585c97407037ef9a5",
-      "commitId": "5b84e25fa3afe66bbfa7eb953ea0bd332c745ecd",
-      "commitTime": 1494196705,
+      "parentCommitId": "0d447b16604d934675d2dc8e958fa043e945dfc6",
+      "commitId": "df638e0cfc628469eee9a91df5b2b65634e274d7",
+      "commitTime": 1497648020,
       "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
@@ -45,13 +35,24 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Remove Thrown Exception Type DetachedHeadException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "8f7d0a4fbe8862e71d900b0585c97407037ef9a5",
       "commitId": "5b84e25fa3afe66bbfa7eb953ea0bd332c745ecd",
       "commitTime": 1494196705,
       "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+    },
+    {
+      "parentCommitId": "8f7d0a4fbe8862e71d900b0585c97407037ef9a5",
+      "commitId": "5b84e25fa3afe66bbfa7eb953ea0bd332c745ecd",
+      "commitTime": 1494196705,
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -75,7 +76,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Method Annotation @Override in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "30628e3b86386a7f53d7c9b14d9209ee45cdb1bb",
@@ -111,17 +113,18 @@
       "parentCommitId": "8787176ef1cd4c7b7fc6e312bdf680f384c38467",
       "commitId": "efacad0fc8e98505be6f007230ab2b1cdc1684f3",
       "commitTime": 1432851333,
-      "changeType": "body change",
+      "changeType": "exception change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Thrown Exception Type RefNotAdvertisedException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "8787176ef1cd4c7b7fc6e312bdf680f384c38467",
       "commitId": "efacad0fc8e98505be6f007230ab2b1cdc1684f3",
       "commitTime": 1432851333,
-      "changeType": "exception change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -141,7 +144,7 @@
       "parentCommitId": "e0fbae5dc3fc2345383ec373b384fcca10e64f24",
       "commitId": "48544e27ae3808807dc1960083d8e42c05e62af3",
       "commitTime": 1405465699,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -151,7 +154,7 @@
       "parentCommitId": "e0fbae5dc3fc2345383ec373b384fcca10e64f24",
       "commitId": "48544e27ae3808807dc1960083d8e42c05e62af3",
       "commitTime": 1405465699,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -191,7 +194,7 @@
       "parentCommitId": "58dd2868485352de558121b7397e8a9ea2901f82",
       "commitId": "fa5231191d530afb24810080e89990913c8e8054",
       "commitTime": 1353099095,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -201,7 +204,7 @@
       "parentCommitId": "58dd2868485352de558121b7397e8a9ea2901f82",
       "commitId": "fa5231191d530afb24810080e89990913c8e8054",
       "commitTime": 1353099095,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -221,17 +224,18 @@
       "parentCommitId": "1c0ac7cd10750e3c82eff61201cfc3ba91b203da",
       "commitId": "b61d35e848e637ef85fde4ebe95d60ced171e963",
       "commitTime": 1338908139,
-      "changeType": "body change",
+      "changeType": "exception change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Thrown Exception Type TransportException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "1c0ac7cd10750e3c82eff61201cfc3ba91b203da",
       "commitId": "b61d35e848e637ef85fde4ebe95d60ced171e963",
       "commitTime": 1338908139,
-      "changeType": "exception change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -245,7 +249,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Thrown Exception Type GitAPIException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "900bdbac5bad9d40df8d310a8f319ab616d1420b",
@@ -255,7 +260,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Thrown Exception Type NoHeadException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "900bdbac5bad9d40df8d310a8f319ab616d1420b",
@@ -311,26 +317,17 @@
       "parentCommitId": "18e822a7fefb35e4a68ca4b337541c0a1a222a43",
       "commitId": "68459b646e6c8243dc5650cbe08ce1bcdb8a621d",
       "commitTime": 1297867586,
-      "changeType": "body change",
+      "changeType": "exception change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "Add Thrown Exception Type RefNotFoundException in method public call() : PullResult from class org.eclipse.jgit.api.PullCommand"
     },
     {
       "parentCommitId": "18e822a7fefb35e4a68ca4b337541c0a1a222a43",
       "commitId": "68459b646e6c8243dc5650cbe08ce1bcdb8a621d",
       "commitTime": 1297867586,
-      "changeType": "exception change",
-      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
-      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
-    },
-    {
-      "parentCommitId": "0180946bc885436be2d3c205c7444bcdd57d85cd",
-      "commitId": "724af77c65c27eb24d41989bed3229910dbe063c",
-      "commitTime": 1297151779,
       "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
@@ -342,6 +339,16 @@
       "commitId": "724af77c65c27eb24d41989bed3229910dbe063c",
       "commitTime": 1297151779,
       "changeType": "documentation change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+    },
+    {
+      "parentCommitId": "0180946bc885436be2d3c205c7444bcdd57d85cd",
+      "commitId": "724af77c65c27eb24d41989bed3229910dbe063c",
+      "commitTime": 1297151779,
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -371,7 +378,7 @@
       "parentCommitId": "e8a1328d05aa55b7ace0d101e34b87422219c959",
       "commitId": "14ca80bc90ed85e3484fa28aa665fa0538096d30",
       "commitTime": 1296223492,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -381,7 +388,7 @@
       "parentCommitId": "e8a1328d05aa55b7ace0d101e34b87422219c959",
       "commitId": "14ca80bc90ed85e3484fa28aa665fa0538096d30",
       "commitTime": 1296223492,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -411,7 +418,7 @@
       "parentCommitId": "0544c9af4159ede49a42119833f680b2435e78a7",
       "commitId": "7668a462829b12e4f6a192c43157152ef63ff305",
       "commitTime": 1288282682,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -421,7 +428,7 @@
       "parentCommitId": "0544c9af4159ede49a42119833f680b2435e78a7",
       "commitId": "7668a462829b12e4f6a192c43157152ef63ff305",
       "commitTime": 1288282682,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
@@ -435,7 +442,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/PullCommand.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.PullCommand#call()",
+      "comment": "added with new class"
     }
   ]
 }

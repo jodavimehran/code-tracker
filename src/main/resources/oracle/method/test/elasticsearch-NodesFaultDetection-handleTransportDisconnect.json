@@ -15,7 +15,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Move Source Folder core to server"
     },
     {
       "parentCommitId": "95b6f85c87d301f2038711d094752c1c5dac443f",
@@ -25,7 +26,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Move Class org.elasticsearch.discovery.zen.fd.NodesFaultDetection moved to org.elasticsearch.discovery.zen.NodesFaultDetection"
     },
     {
       "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
@@ -35,13 +37,14 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Move Source Folder src to core/src"
     },
     {
       "parentCommitId": "db54e9c2d5d5fc3405cf29a4f92ef56ccc17b4dd",
       "commitId": "36c3e896de86ced11a239e9b0ce66a896d472a8a",
       "commitTime": 1411723315,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
@@ -51,7 +54,7 @@
       "parentCommitId": "db54e9c2d5d5fc3405cf29a4f92ef56ccc17b4dd",
       "commitId": "36c3e896de86ced11a239e9b0ce66a896d472a8a",
       "commitTime": 1411723315,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
@@ -65,7 +68,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Change Method Access Modifier private to protected in method protected handleTransportDisconnect(node DiscoveryNode) : void from class org.elasticsearch.discovery.zen.fd.NodesFaultDetection"
     },
     {
       "parentCommitId": "d8a5ff0047f530f489b34702a61e85037ce2e7b6",
@@ -75,17 +79,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
-    },
-    {
-      "parentCommitId": "48c7da1fd43bebcc6d73cee634f86bbf03ba0859",
-      "commitId": "5302a53145a62ec2add7bdab095a92074819266a",
-      "commitTime": 1409147242,
-      "changeType": "body change",
-      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
-      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Add Method Annotation @Override in method protected handleTransportDisconnect(node DiscoveryNode) : void from class org.elasticsearch.discovery.zen.fd.NodesFaultDetection"
     },
     {
       "parentCommitId": "48c7da1fd43bebcc6d73cee634f86bbf03ba0859",
@@ -98,9 +93,9 @@
       "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
     },
     {
-      "parentCommitId": "e662d3c5351afea5d91c70d6289cce6e0ea673bd",
-      "commitId": "caf11ff2fbd9195cc780edb375f6a74302d906df",
-      "commitTime": 1404819308,
+      "parentCommitId": "48c7da1fd43bebcc6d73cee634f86bbf03ba0859",
+      "commitId": "5302a53145a62ec2add7bdab095a92074819266a",
+      "commitTime": 1409147242,
       "changeType": "body change",
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
@@ -118,9 +113,9 @@
       "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
     },
     {
-      "parentCommitId": "f22e51ae81537f46f7b2248013f391aac7a1b0dd",
-      "commitId": "ae16956e072bea317ea481f65f2e110dc48fde17",
-      "commitTime": 1404391871,
+      "parentCommitId": "e662d3c5351afea5d91c70d6289cce6e0ea673bd",
+      "commitId": "caf11ff2fbd9195cc780edb375f6a74302d906df",
+      "commitTime": 1404819308,
       "changeType": "body change",
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
@@ -132,6 +127,16 @@
       "commitId": "ae16956e072bea317ea481f65f2e110dc48fde17",
       "commitTime": 1404391871,
       "changeType": "documentation change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+    },
+    {
+      "parentCommitId": "f22e51ae81537f46f7b2248013f391aac7a1b0dd",
+      "commitId": "ae16956e072bea317ea481f65f2e110dc48fde17",
+      "commitTime": 1404391871,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
@@ -145,7 +150,8 @@
       "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "Move Source Folder modules/elasticsearch/src to src"
     },
     {
       "parentCommitId": "1b5cdb181a1efb92a4c0ef793a9940f06cbb9fc3",
@@ -215,7 +221,8 @@
       "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
       "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
       "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
-      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)"
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+      "comment": "added with new class"
     }
   ]
 }

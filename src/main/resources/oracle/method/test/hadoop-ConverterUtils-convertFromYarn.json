@@ -11,21 +11,23 @@
       "parentCommitId": "364b379cb84ab053d5704e2f761ebec27fd54cc4",
       "commitId": "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
       "commitTime": 1371534474,
-      "changeType": "moved",
+      "changeType": "rename",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(Token, InetSocketAddress)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org.apache.hadoop.yarn.util.ConverterUtils#convertFromYarn(Token, InetSocketAddress)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org.apache.hadoop.yarn.util.ConverterUtils#convertFromYarn(Token, InetSocketAddress)",
+      "comment": "Move And Rename Method public convertFromProtoFormat(protoToken Token, serviceAddr InetSocketAddress) : Token<T> from class org.apache.hadoop.yarn.util.ProtoUtils to public convertFromYarn(protoToken Token, serviceAddr InetSocketAddress) : Token<T> from class org.apache.hadoop.yarn.util.ConverterUtils"
     },
     {
       "parentCommitId": "364b379cb84ab053d5704e2f761ebec27fd54cc4",
       "commitId": "acc0d3eb521e3c1d1b2f4be9b46c685ee921504b",
       "commitTime": 1371534474,
-      "changeType": "rename",
+      "changeType": "moved",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(Token, InetSocketAddress)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org/apache/hadoop/yarn/util/ConverterUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org.apache.hadoop.yarn.util.ConverterUtils#convertFromYarn(Token, InetSocketAddress)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-common/src/main/java/org.apache.hadoop.yarn.util.ConverterUtils#convertFromYarn(Token, InetSocketAddress)",
+      "comment": "Move And Rename Method public convertFromProtoFormat(protoToken Token, serviceAddr InetSocketAddress) : Token<T> from class org.apache.hadoop.yarn.util.ProtoUtils to public convertFromYarn(protoToken Token, serviceAddr InetSocketAddress) : Token<T> from class org.apache.hadoop.yarn.util.ConverterUtils"
     },
     {
       "parentCommitId": "8ab69eb0c3735d803b16472cea7a93bad9242573",
@@ -35,7 +37,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(Token, InetSocketAddress)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(Token, InetSocketAddress)",
+      "comment": "Change Parameter Type protoToken : DelegationToken to protoToken : Token in method public convertFromProtoFormat(protoToken Token, serviceAddr InetSocketAddress) : Token<T> from class org.apache.hadoop.yarn.util.ProtoUtils"
     },
     {
       "parentCommitId": "34554d1e11ee1d5b564d7d9ed3e6d55931d72749",
@@ -45,7 +48,8 @@
       "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
       "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)",
+      "comment": "Move Source Folder hadoop-mapreduce-project to hadoop-yarn-project"
     },
     {
       "parentCommitId": "a9808de0d9a73a99c10a3e4290ec20778fed4f24",
@@ -55,7 +59,8 @@
       "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
       "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)",
       "elementFileAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org/apache/hadoop/yarn/util/ProtoUtils.java",
-      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)"
+      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-api/src/main/java/org.apache.hadoop.yarn.util.ProtoUtils#convertFromProtoFormat(DelegationToken, InetSocketAddress)",
+      "comment": "new method"
     }
   ]
 }

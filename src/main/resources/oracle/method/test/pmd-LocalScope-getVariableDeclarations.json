@@ -15,7 +15,8 @@
       "elementFileBefore": "pmd/src/main/java/net/sourceforge/pmd/lang/java/symboltable/LocalScope.java",
       "elementNameBefore": "pmd/src/main/java/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/symboltable/LocalScope.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()",
+      "comment": "Move Source Folder pmd to pmd-java"
     },
     {
       "parentCommitId": "1354f6f1fad892bdb9b131f3057fa322ca123b3a",
@@ -35,7 +36,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/lang/java/symboltable/LocalScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()",
       "elementFileAfter": "pmd/src/main/java/net/sourceforge/pmd/lang/java/symboltable/LocalScope.java",
-      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()"
+      "elementNameAfter": "pmd/src/main/java/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()",
+      "comment": "Move Source Folder pmd/src to pmd/src/main/java"
     },
     {
       "parentCommitId": "ca6eda7e61fe4daf90682014e11fe1507fd331ed",
@@ -45,7 +47,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/symboltable/LocalScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.symboltable.LocalScope#getVariableDeclarations()",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/lang/java/symboltable/LocalScope.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.lang.java.symboltable.LocalScope#getVariableDeclarations()",
+      "comment": "Move Class net.sourceforge.pmd.symboltable.LocalScope moved to net.sourceforge.pmd.lang.java.symboltable.LocalScope"
     },
     {
       "parentCommitId": "0f22e2b21b238709e222c9f08285428299340130",
@@ -55,7 +58,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/symboltable/LocalScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.symboltable.LocalScope#getVariableDeclarations()",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/symboltable/LocalScope.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.LocalScope#getVariableDeclarations()"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.LocalScope#getVariableDeclarations()",
+      "comment": "Change Return Type Map to Map<VariableNameDeclaration,List<NameOccurrence>> in method public getVariableDeclarations() : Map<VariableNameDeclaration,List<NameOccurrence>> from class net.sourceforge.pmd.symboltable.LocalScope"
     },
     {
       "parentCommitId": "b5731b6858c6bb508f70b7b8f2ad3951442fdf4f",
@@ -64,8 +68,9 @@
       "changeType": "moved",
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/symboltable/AbstractScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations()",
-      "elementFileAfter": "pmd/src/net/sourceforge/pmd/symboltable/ClassScope.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.ClassScope#getVariableDeclarations()"
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/symboltable/LocalScope.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.LocalScope#getVariableDeclarations()",
+      "comment": "Push Down Method public getVariableDeclarations() : Map from class net.sourceforge.pmd.symboltable.AbstractScope to public getVariableDeclarations() : Map from class net.sourceforge.pmd.symboltable.LocalScope"
     },
     {
       "parentCommitId": "bb2a2a9df7ff73c096c962b8c4906881a9f5ca81",
@@ -75,7 +80,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/symboltable/AbstractScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations(boolean)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/symboltable/AbstractScope.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations()"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations()",
+      "comment": "Remove Parameter lookingForUsed : boolean in method public getVariableDeclarations(lookingForUsed boolean) : Map from class net.sourceforge.pmd.symboltable.AbstractScope"
     },
     {
       "parentCommitId": "bb2a2a9df7ff73c096c962b8c4906881a9f5ca81",
@@ -95,7 +101,8 @@
       "elementFileBefore": "pmd/src/net/sourceforge/pmd/symboltable/AbstractScope.java",
       "elementNameBefore": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations(boolean)",
       "elementFileAfter": "pmd/src/net/sourceforge/pmd/symboltable/AbstractScope.java",
-      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations(boolean)"
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.symboltable.AbstractScope#getVariableDeclarations(boolean)",
+      "comment": "new method"
     }
   ]
 }
