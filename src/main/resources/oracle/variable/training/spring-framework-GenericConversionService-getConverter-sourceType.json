@@ -1,63 +1,69 @@
 {
-  "repositoryName" : "spring-projects\\spring-framework",
-  "repositoryWebURL" : "https://github.com/spring-projects/spring-framework.git",
-  "filePath" : "spring-core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
-  "functionName" : "getConverter",
-  "functionKey" : "spring-core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)",
-  "functionStartLine" : 253,
-  "variableName" : "sourceType",
-  "variableKey" : "spring-core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)$sourceType(253)",
-  "variableStartLine" : 253,
-  "startCommitId" : "b325c74216fd9564a36602158fa1269e2e832874",
-  "expectedChanges" : [ {
-    "parentCommitId" : "6420fd303bdae3962d4eab6326811afbca759d05",
-    "commitId" : "d3b43ebccb923c6d5825b10d4f4f305b54ee549d",
-    "commitTime" : 1253303879,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
-    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, TypeDescriptor)$sourceType:Class(181)",
-    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
-    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)$sourceType:TypeDescriptor(186)",
-    "comment" : "Change Parameter Type sourceType : Class to sourceType : TypeDescriptor in method protected getConverter(sourceType TypeDescriptor, targetType TypeDescriptor) : GenericConverter from class org.springframework.core.convert.support.GenericConversionService"
-  }, {
-    "parentCommitId" : "39c1ab923f6a196318581c66ebe8d5519b01fdb2",
-    "commitId" : "31441627de02bcc4ac2dcf307809b3c94b642e7b",
-    "commitTime" : 1253216935,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
-    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, Class)$sourceType:Class<?>(184)",
-    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
-    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, TypeDescriptor)$sourceType:Class(180)",
-    "comment" : "Change Parameter Type sourceType : Class<?> to sourceType : Class in method protected getConverter(sourceType Class, targetType TypeDescriptor) : GenericConverter from class org.springframework.core.convert.support.GenericConversionService"
-  }, {
-    "parentCommitId" : "b988f1a539aba6a814da900cdd95160310000eb0",
-    "commitId" : "ebb203a25155f822e0eec8719b7f2327fcd664c0",
-    "commitTime" : 1239379038,
-    "changeType" : "rename",
-    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(TypeDescriptor, TypeDescriptor)$sourceClass:Class<?>(327)",
-    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceType:Class<?>(311)",
-    "comment" : "Parameterize Variable sourceClass : Class<?> to sourceType : Class<?> in method private findRegisteredConverter(sourceType Class<?>, targetType Class<?>) : Converter from class org.springframework.core.convert.service.GenericConversionService"
-  }, {
-    "parentCommitId" : "eabad33aa287fb0a45f7bc88ce32e636307ab094",
-    "commitId" : "518f98d4c35d21243747fc159ccc94a3265b42c5",
-    "commitTime" : 1238511982,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(309)",
-    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(TypeDescriptor, TypeDescriptor)$sourceClass:Class<?>(317)",
-    "comment" : "Change Variable Type sourceClass : Class to sourceClass : Class<?> in method private findRegisteredConverter(sourceType TypeDescriptor, targetType TypeDescriptor) : Converter from class org.springframework.core.convert.service.GenericConversionService"
-  }, {
-    "parentCommitId" : "c1f3ec0c5bee9d8f577a599fcfa4f3f9937f7646",
-    "commitId" : "3a7b4bf1b0d671a1d00f3dee3df301d621e7ad98",
-    "commitTime" : 1236383297,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameBefore" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(262)",
-    "elementFileAfter" : "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
-    "elementNameAfter" : "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(262)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
+  "filePath": "spring-core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+  "functionName": "getConverter",
+  "functionKey": "spring-core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)",
+  "functionStartLine": 253,
+  "variableName": "sourceType",
+  "variableKey": "spring-core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)$sourceType(253)",
+  "variableStartLine": 253,
+  "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6420fd303bdae3962d4eab6326811afbca759d05",
+      "commitId": "d3b43ebccb923c6d5825b10d4f4f305b54ee549d",
+      "commitTime": 1253303879,
+      "changeType": "type change",
+      "elementFileBefore": "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+      "elementNameBefore": "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, TypeDescriptor)$sourceType:Class(181)",
+      "elementFileAfter": "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+      "elementNameAfter": "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(TypeDescriptor, TypeDescriptor)$sourceType:TypeDescriptor(186)",
+      "comment": "Change Parameter Type sourceType : Class to sourceType : TypeDescriptor in method protected getConverter(sourceType TypeDescriptor, targetType TypeDescriptor) : GenericConverter from class org.springframework.core.convert.support.GenericConversionService"
+    },
+    {
+      "parentCommitId": "39c1ab923f6a196318581c66ebe8d5519b01fdb2",
+      "commitId": "31441627de02bcc4ac2dcf307809b3c94b642e7b",
+      "commitTime": 1253216935,
+      "changeType": "type change",
+      "elementFileBefore": "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+      "elementNameBefore": "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, Class)$sourceType:Class<?>(184)",
+      "elementFileAfter": "org.springframework.core/src/main/java/org/springframework/core/convert/support/GenericConversionService.java",
+      "elementNameAfter": "org.springframework.core/src/main/java/org.springframework.core.convert.support.GenericConversionService#getConverter(Class, TypeDescriptor)$sourceType:Class(180)",
+      "comment": "Change Parameter Type sourceType : Class<?> to sourceType : Class in method protected getConverter(sourceType Class, targetType TypeDescriptor) : GenericConverter from class org.springframework.core.convert.support.GenericConversionService"
+    },
+    {
+      "parentCommitId": "b988f1a539aba6a814da900cdd95160310000eb0",
+      "commitId": "ebb203a25155f822e0eec8719b7f2327fcd664c0",
+      "commitTime": 1239379038,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameBefore": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(TypeDescriptor, TypeDescriptor)$sourceClass:Class<?>(327)",
+      "elementFileAfter": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameAfter": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceType:Class<?>(311)",
+      "comment": "Parameterize Variable sourceClass : Class<?> to sourceType : Class<?> in method private findRegisteredConverter(sourceType Class<?>, targetType Class<?>) : Converter from class org.springframework.core.convert.service.GenericConversionService"
+    },
+    {
+      "parentCommitId": "eabad33aa287fb0a45f7bc88ce32e636307ab094",
+      "commitId": "518f98d4c35d21243747fc159ccc94a3265b42c5",
+      "commitTime": 1238511982,
+      "changeType": "type change",
+      "elementFileBefore": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameBefore": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(309)",
+      "elementFileAfter": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameAfter": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(TypeDescriptor, TypeDescriptor)$sourceClass:Class<?>(317)",
+      "comment": "Change Variable Type sourceClass : Class to sourceClass : Class<?> in method private findRegisteredConverter(sourceType TypeDescriptor, targetType TypeDescriptor) : Converter from class org.springframework.core.convert.service.GenericConversionService"
+    },
+    {
+      "parentCommitId": "c1f3ec0c5bee9d8f577a599fcfa4f3f9937f7646",
+      "commitId": "3a7b4bf1b0d671a1d00f3dee3df301d621e7ad98",
+      "commitTime": 1236383297,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameBefore": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(262)",
+      "elementFileAfter": "org.springframework.core/src/main/java/org/springframework/core/convert/service/GenericConversionService.java",
+      "elementNameAfter": "org.springframework.core/src/main/java/org.springframework.core.convert.service.GenericConversionService#findRegisteredConverter(Class, Class)$sourceClass:Class(262)",
+      "comment": "added with method"
+    }
+  ]
 }

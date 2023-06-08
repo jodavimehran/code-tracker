@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "eclipse\\jgit",
-  "repositoryWebURL" : "https://github.com/eclipse/jgit.git",
-  "filePath" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-  "functionName" : "findObjectsToPack",
-  "functionKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
-  "functionStartLine" : 1775,
-  "variableName" : "bitmapWalker",
-  "variableKey" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker(1793)",
-  "variableStartLine" : 1793,
-  "startCommitId" : "bd1a82502680b5de5bf86f6c4470185fd1602386",
-  "expectedChanges" : [ {
-    "parentCommitId" : "5ea57ba1b5b02dd69b7ff66a346e62c94cd277ed",
-    "commitId" : "ccf25f95411d7faae7b7aa5a75d74c62e6c47e07",
-    "commitTime" : 1510357291,
-    "changeType" : "type change",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1717)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker:BitmapWalker(1718)",
-    "comment" : "Change Variable Type bitmapWalker : PackWriterBitmapWalker to bitmapWalker : BitmapWalker in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>, noBitmaps Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-  }, {
-    "parentCommitId" : "3b325917a5c928caadd88a0ec718b1632f088fd5",
-    "commitId" : "dafcb8f6db82b899c917832768f1c240d273190c",
-    "commitTime" : 1362510885,
-    "changeType" : "introduced",
-    "elementFileBefore" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameBefore" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1621)",
-    "elementFileAfter" : "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-    "elementNameAfter" : "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1621)",
-    "comment" : "new variable"
-  } ]
+  "repositoryName": "eclipse\\jgit",
+  "repositoryWebURL": "https://github.com/eclipse/jgit.git",
+  "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+  "functionName": "findObjectsToPack",
+  "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
+  "functionStartLine": 1775,
+  "variableName": "bitmapWalker",
+  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker(1793)",
+  "variableStartLine": 1793,
+  "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
+  "expectedChanges": [
+    {
+      "parentCommitId": "5ea57ba1b5b02dd69b7ff66a346e62c94cd277ed",
+      "commitId": "ccf25f95411d7faae7b7aa5a75d74c62e6c47e07",
+      "commitTime": 1510357291,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1717)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$bitmapWalker:BitmapWalker(1718)",
+      "comment": "Change Variable Type bitmapWalker : PackWriterBitmapWalker to bitmapWalker : BitmapWalker in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>, noBitmaps Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "3b325917a5c928caadd88a0ec718b1632f088fd5",
+      "commitId": "dafcb8f6db82b899c917832768f1c240d273190c",
+      "commitTime": 1362510885,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1621)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$bitmapWalker:PackWriterBitmapWalker(1621)",
+      "comment": "new variable"
+    }
+  ]
 }

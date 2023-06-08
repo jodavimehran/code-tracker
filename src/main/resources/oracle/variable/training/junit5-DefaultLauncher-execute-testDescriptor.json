@@ -1,93 +1,102 @@
 {
-  "repositoryName" : "junit-team\\junit5",
-  "repositoryWebURL" : "https://github.com/junit-team/junit5.git",
-  "filePath" : "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-  "functionName" : "execute",
-  "functionKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])",
-  "functionStartLine" : 142,
-  "variableName" : "testDescriptor",
-  "variableKey" : "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])$testDescriptor(151)",
-  "variableStartLine" : 151,
-  "startCommitId" : "77cfe71e7f787c59626198e25350545f41e968bd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
-    "commitId" : "9f7d082872c4b4109729a3a480f1dedad3083bad",
-    "commitTime" : 1450454294,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptorOptional:Optional<TestDescriptor>(76)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptor:TestDescriptor(72)",
-    "comment" : "Change Variable Type testDescriptorOptional : Optional<TestDescriptor> to testDescriptor : TestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
-    "commitId" : "9f7d082872c4b4109729a3a480f1dedad3083bad",
-    "commitTime" : 1450454294,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptorOptional:Optional<TestDescriptor>(76)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptor:TestDescriptor(72)",
-    "comment" : "Rename Variable testDescriptorOptional : Optional<TestDescriptor> to testDescriptor : TestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "b371ee9a845f6571a93dfabb1e1356db6729221e",
-    "commitId" : "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
-    "commitTime" : 1449147508,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(63)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptorOptional:Optional<TestDescriptor>(59)",
-    "comment" : "Change Variable Type engineDescriptorOptional : Optional<EngineDescriptor> to testDescriptorOptional : Optional<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "b371ee9a845f6571a93dfabb1e1356db6729221e",
-    "commitId" : "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
-    "commitTime" : 1449147508,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(63)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptorOptional:Optional<TestDescriptor>(59)",
-    "comment" : "Rename Variable engineDescriptorOptional : Optional<EngineDescriptor> to testDescriptorOptional : Optional<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "c924f9c2af7d026ba30e2d424f68e98d1e77710b",
-    "commitId" : "891efa3653cb899ca27afcd1abc385fc3fa663fa",
-    "commitTime" : 1447413840,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(60)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(59)",
-    "comment" : "Rename Variable engineDescriptor : Optional<EngineDescriptor> to engineDescriptorOptional : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "80332bc3278da8923c2601250ca33ba016bcdb3a",
-    "commitId" : "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
-    "commitTime" : 1447067483,
-    "changeType" : "type change",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(86)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(88)",
-    "comment" : "Change Variable Type testDescriptors : List<TestDescriptor> to engineDescriptor : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "80332bc3278da8923c2601250ca33ba016bcdb3a",
-    "commitId" : "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
-    "commitTime" : 1447067483,
-    "changeType" : "rename",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(86)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(88)",
-    "comment" : "Rename Variable testDescriptors : List<TestDescriptor> to engineDescriptor : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  }, {
-    "parentCommitId" : "2faf053a85fd24cb6f65e7b1258d7c507587866c",
-    "commitId" : "5b99f734253c15189a88cd5704ec30ded2f24694",
-    "commitTime" : 1446199734,
-    "changeType" : "introduced",
-    "elementFileBefore" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameBefore" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(56)",
-    "elementFileAfter" : "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-    "elementNameAfter" : "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(56)",
-    "comment" : "Extract Variable testDescriptors : List<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
-  } ]
+  "repositoryName": "junit-team\\junit5",
+  "repositoryWebURL": "https://github.com/junit-team/junit5.git",
+  "filePath": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
+  "functionName": "execute",
+  "functionKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])",
+  "functionStartLine": 142,
+  "variableName": "testDescriptor",
+  "variableKey": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#execute(Root, ConfigurationParameters, TestExecutionListener[])$testDescriptor(151)",
+  "variableStartLine": 151,
+  "startCommitId": "77cfe71e7f787c59626198e25350545f41e968bd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
+      "commitId": "9f7d082872c4b4109729a3a480f1dedad3083bad",
+      "commitTime": 1450454294,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptorOptional:Optional<TestDescriptor>(76)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptor:TestDescriptor(72)",
+      "comment": "Change Variable Type testDescriptorOptional : Optional<TestDescriptor> to testDescriptor : TestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "12bbe5afc72f457e5bba4bbcf68c49d6e4b77a4e",
+      "commitId": "9f7d082872c4b4109729a3a480f1dedad3083bad",
+      "commitTime": 1450454294,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptorOptional:Optional<TestDescriptor>(76)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(RootTestDescriptor)$testDescriptor:TestDescriptor(72)",
+      "comment": "Rename Variable testDescriptorOptional : Optional<TestDescriptor> to testDescriptor : TestDescriptor in method private execute(root RootTestDescriptor) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "b371ee9a845f6571a93dfabb1e1356db6729221e",
+      "commitId": "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
+      "commitTime": 1449147508,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(63)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptorOptional:Optional<TestDescriptor>(59)",
+      "comment": "Change Variable Type engineDescriptorOptional : Optional<EngineDescriptor> to testDescriptorOptional : Optional<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "b371ee9a845f6571a93dfabb1e1356db6729221e",
+      "commitId": "40ea4f270254c3faf95fea9e2a48ecb7a6c47bb8",
+      "commitTime": 1449147508,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(63)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptorOptional:Optional<TestDescriptor>(59)",
+      "comment": "Rename Variable engineDescriptorOptional : Optional<EngineDescriptor> to testDescriptorOptional : Optional<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "c924f9c2af7d026ba30e2d424f68e98d1e77710b",
+      "commitId": "891efa3653cb899ca27afcd1abc385fc3fa663fa",
+      "commitTime": 1447413840,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(60)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptorOptional:Optional<EngineDescriptor>(59)",
+      "comment": "Rename Variable engineDescriptor : Optional<EngineDescriptor> to engineDescriptorOptional : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "80332bc3278da8923c2601250ca33ba016bcdb3a",
+      "commitId": "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
+      "commitTime": 1447067483,
+      "changeType": "type change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(86)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(88)",
+      "comment": "Change Variable Type testDescriptors : List<TestDescriptor> to engineDescriptor : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "80332bc3278da8923c2601250ca33ba016bcdb3a",
+      "commitId": "4a34c1bc27a7ad936639a83ad7e34f89add92c4c",
+      "commitTime": 1447067483,
+      "changeType": "rename",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(86)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$engineDescriptor:Optional<EngineDescriptor>(88)",
+      "comment": "Rename Variable testDescriptors : List<TestDescriptor> to engineDescriptor : Optional<EngineDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "2faf053a85fd24cb6f65e7b1258d7c507587866c",
+      "commitId": "5b99f734253c15189a88cd5704ec30ded2f24694",
+      "commitTime": 1446199734,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(56)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#execute(TestPlan)$testDescriptors:List<TestDescriptor>(56)",
+      "comment": "Extract Variable testDescriptors : List<TestDescriptor> in method public execute(testPlan TestPlan) : void from class org.junit.gen5.launcher.Launcher"
+    }
+  ]
 }

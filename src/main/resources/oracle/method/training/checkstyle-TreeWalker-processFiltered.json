@@ -1,796 +1,884 @@
 {
-  "repositoryName" : "checkstyle",
-  "repositoryWebURL" : "https://github.com/checkstyle/checkstyle.git",
-  "startCommitId" : "119fd4fb33bef9f5c66fc950396669af842c21a3",
-  "filePath" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-  "functionName" : "processFiltered",
-  "functionKey" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
-  "functionStartLine" : 176,
-  "expectedChanges" : [ {
-    "parentCommitId" : "9bcb6bffd03dc4f42f402bd126f22c730007861a",
-    "commitId" : "58327e1dd9707b09f82ae2d4d4ce14c253247154",
-    "commitTime" : 1516775986,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
-  }, {
-    "parentCommitId" : "7b48869b997bfa00e9516fd2e7b0841072d64966",
-    "commitId" : "f994512712c08a16def4a3c5a0426b7ab1590cc9",
-    "commitTime" : 1503501086,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
-  }, {
-    "parentCommitId" : "4c10bc55b4aea0f7e3b95b06d820eedb7c6a6fb2",
-    "commitId" : "6d9e8ece85007117e048fef55469623b830f9446",
-    "commitTime" : 1500928695,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
-  }, {
-    "parentCommitId" : "9cd7b5508a1be8c3031b0b8511d93bb879776959",
-    "commitId" : "82979737c4201b4913ea30b9c9431e71783d1c02",
-    "commitTime" : 1499372568,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
-  }, {
-    "parentCommitId" : "9cd7b5508a1be8c3031b0b8511d93bb879776959",
-    "commitId" : "82979737c4201b4913ea30b9c9431e71783d1c02",
-    "commitTime" : 1499372568,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
-    "comment" : "Parameterize Variable text : FileText to fileText : FileText in method protected processFiltered(file File, fileText FileText) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
-  }, {
-    "parentCommitId" : "47026a6de8793bc4a0f52b66706b5ca1e84ac58f",
-    "commitId" : "d72e6f7d0b9f339feef4309a9dada7fd381ba242",
-    "commitTime" : 1498141328,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "59b7c690d9b6e9e34d067a5d01cdc683134bbf2f",
-    "commitId" : "27e1e94244b6bb369c2ea7502c235260f49f78b0",
-    "commitTime" : 1496840526,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "2483ddc5a4d286891da1922cadf9e66547a7ec48",
-    "commitId" : "39b343a32a4f1ce18ee98a34618fda0a5404d6a0",
-    "commitTime" : 1464356569,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "3c2c3f7f59671fc9d03cd7b9fea7a9bbf389dff6",
-    "commitId" : "d46c2cf0e9df06bb5f424dbd7645574f082f7609",
-    "commitTime" : 1455040202,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "1f33757f8fc4f5f6f52620658b7665dda5f03387",
-    "commitId" : "be3e035ce39a610881cd2c1bfdce3eef101c2e3c",
-    "commitTime" : 1444779430,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "3ef918920c58c550169ccef3cfe1706aede11a6e",
-    "commitId" : "5922d5a6730d7582d7d66121eb911ef9426f9e24",
-    "commitTime" : 1440997584,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "3ef918920c58c550169ccef3cfe1706aede11a6e",
-    "commitId" : "5922d5a6730d7582d7d66121eb911ef9426f9e24",
-    "commitTime" : 1440997584,
-    "changeType" : "exception change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "3ef918920c58c550169ccef3cfe1706aede11a6e",
-    "commitId" : "5922d5a6730d7582d7d66121eb911ef9426f9e24",
-    "commitTime" : 1440997584,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "904de34fcd984edce3d6042a5a17e2a969254588",
-    "commitId" : "46a52f84c014e4d25379f429f11ed3de11fe8ae7",
-    "commitTime" : 1440827451,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "8142c804e90f6d24a3a5db736f3f1f576766a9a5",
-    "commitId" : "4d2e6647f9e8385749c382bcab5e64965a943178",
-    "commitTime" : 1440705239,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "ed595de84fba2db507adaf01d04cb089a5e0bac5",
-    "commitId" : "cdf3e56bacd3895262af8a1df9ca5c81f4071970",
-    "commitTime" : 1440677821,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "ba9639e5decde52e38fbc1a048be7501dc701ac3",
-    "commitId" : "c4928f486c67afa62e7e8fbd5d8f731be7186985",
-    "commitTime" : 1439355282,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "521dacce7582a4349a9b02980c3e849e83c023fb",
-    "commitId" : "82d8e91024a57a96fbb6410dacb29d6a3f582903",
-    "commitTime" : 1439324041,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "7d513f08c27c741105f712dc882fd4c3553f71e7",
-    "commitId" : "8a3f5bf6d5389b9e175c9c769992faece6d76ada",
-    "commitTime" : 1439007161,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "b2d7013e9e503b5ac634f8f78026e1df6e7e5aea",
-    "commitId" : "a2da840df3bcb4e251695f7fbf1a5d341142459d",
-    "commitTime" : 1438778391,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "0ce872d7cc6b0b1564655b9e3119f72911f4dddd",
-    "commitId" : "ea9ff3965d9c657b5b7bd2d969e075f430635c47",
-    "commitTime" : 1438103538,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "6cdcfc135ab45c2ab0c69080b89b4baa360fed16",
-    "commitId" : "56743942d548686fb90ebd8b7a17fed5977e49dc",
-    "commitTime" : 1431839947,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "ec83f8e883dcf563afa2db2cfe36b22efc2fd0da",
-    "commitId" : "aeef83ee58cce5b5bf0f10a8793fc37514751ef5",
-    "commitTime" : 1430436070,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "cb5f9827e5ee8bd134452862c8eb526554e8f2c2",
-    "commitId" : "f374e2e7a0b0fe2df21ed85aef77a91630b1dd66",
-    "commitTime" : 1430064836,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "efc6142fb04bfdaf04775ea2e61a3885b7ee3861",
-    "commitId" : "ee518dfe86b29d1fa4d76f0dc0c11fb83afafda1",
-    "commitTime" : 1428961380,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "290ae38a14021785018fbfa7c2651200534a88ca",
-    "commitId" : "1dacd5303bfe94b9d5476059b6a5676146d96708",
-    "commitTime" : 1427233706,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "290ae38a14021785018fbfa7c2651200534a88ca",
-    "commitId" : "1dacd5303bfe94b9d5476059b6a5676146d96708",
-    "commitTime" : 1427233706,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "fa102b60fae8420f4376531e207e3ef30b2cd728",
-    "commitId" : "14e0b0ea52977de4a8d8ceb6bab1420e84093a21",
-    "commitTime" : 1427151609,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5bd22fd6136bd16e82d32c5a386bcf033004d8eb",
-    "commitId" : "b9a1bec65f9eec7b96add7336dfcca4bf284e479",
-    "commitTime" : 1426571164,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "bac672f756acb6603e127a1c2ef84474b0db2ccd",
-    "commitId" : "204c073294cdca6756bcd546d6af85a797ad7d79",
-    "commitTime" : 1422178221,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
-    "commitId" : "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
-    "commitTime" : 1421678312,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "ead8bd33ba69eb06ce1c411bb80af54cecf8d76d",
-    "commitId" : "a8b8375b1db65b131938111ff283baed771161ed",
-    "commitTime" : 1420821761,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "59aa66c3cc43db0a7cd8bb0ea3a39b6f4339fe88",
-    "commitId" : "a24df47cafeab03fd65cf72b460aad3d2fafce3d",
-    "commitTime" : 1413609550,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
-    "commitId" : "f1efb27670a93690577f1bae17fc9dcbd88a795d",
-    "commitTime" : 1393953491,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "78a5fd3494e8f3fe6e5edd0925f46b43583451fe",
-    "commitId" : "3cd6646941eca3da7d3b9a221c88e4c1d214876e",
-    "commitTime" : 1277730133,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "rename",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
-    "commitId" : "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
-    "commitTime" : 1226223447,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
-  }, {
-    "parentCommitId" : "3b5c81da39e0a179d439ac18c880b3d79970037d",
-    "commitId" : "17754d363645285e49bf4323a1af5762af47a8ea",
-    "commitTime" : 1216160862,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "f4a92dad02a3a36b5e2e988bba04debb1e2c9db9",
-    "commitId" : "35d1673788bbbac8263fdb69275dc6a63b095a24",
-    "commitTime" : 1152243856,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "96c668724bc05a11ceb031dda71efe1e9e69480d",
-    "commitId" : "788b41973d5747c7b4699a853b62168cf0001df6",
-    "commitTime" : 1135859700,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "37bc6ba73748aac4ef2aa272c8a8b74b1bf28d10",
-    "commitId" : "76374876692534687016dba762a465bf93039402",
-    "commitTime" : 1091540711,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "a6990c84f05a74679588549df56143d3a5d053d1",
-    "commitId" : "748df52c1317e298203bf28e48545d3e50db59f1",
-    "commitTime" : 1091199570,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "75ede62d22a7cc9119844c038c3961f25f65ccb1",
-    "commitId" : "915c6568cf2cde57c3e92ee9786acb4808562671",
-    "commitTime" : 1087904564,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "d622cf7e4255dd35e2592a71653c51e7c2b698f0",
-    "commitId" : "44e3d33fc25d44157486288d5c77de75156984cb",
-    "commitTime" : 1087857052,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "39c810009d787616a45ad2efa57525cbc57eff34",
-    "commitId" : "1e7bbb8cd8a0d8d2167792e917c7cb79a36b20b0",
-    "commitTime" : 1062563740,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "e6860c68f6901dc27c280667fa4c515b0ada17bb",
-    "commitId" : "6db0b3effd48f02d741b2202338d710b1b254910",
-    "commitTime" : 1057402055,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "ee57742c06fda7207ab8110333d1f8d5b93ae3f0",
-    "commitId" : "5ace399de6c8963584b1fbe08007721433c4bad3",
-    "commitTime" : 1051172333,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "d4cee632835a462da2dc6794b059fb0d6b1c9bc2",
-    "commitId" : "d216ec75255a120ce7c24e51da7df63a2b9864de",
-    "commitTime" : 1048708350,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "0f8970e3901a671c3b0a331dcaec71ff269b7bc9",
-    "commitId" : "784b3270054dd61d8c6dbe413bcedfc628063171",
-    "commitTime" : 1046456671,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "58ce4c40970fc29d00e5740bc6098eb475668e86",
-    "commitId" : "2149a9c42dce7a3913cca83755c8f562b0442929",
-    "commitTime" : 1040983106,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "12231e14b8344b551ee2177c81536a14059ac641",
-    "commitId" : "9f6a98ac725727519c43f6496f020c2e595dac57",
-    "commitTime" : 1039259567,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "65ca7775ba7d0b649c16cfdc8a1447f41867c870",
-    "commitId" : "6ffc8dd26075456b055ffcd35d3915c23049bfbb",
-    "commitTime" : 1038680984,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
-    "commitId" : "abff1a2489ea8af10e1bc0a335551262d22f44e7",
-    "commitTime" : 1037737306,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
-  }, {
-    "parentCommitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
-    "commitId" : "abff1a2489ea8af10e1bc0a335551262d22f44e7",
-    "commitTime" : 1037737306,
-    "changeType" : "moved",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
-    "comment" : "Move Method private process(aFile File) : void from class com.puppycrawl.tools.checkstyle.Checker to private process(aFile File) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
-  }, {
-    "parentCommitId" : "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
-    "commitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
-    "commitTime" : 1037733445,
-    "changeType" : "return type change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
-    "commitId" : "54a09706ec1db32435b09e6b6910813325558f8d",
-    "commitTime" : 1037733445,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "b33ff29c69de2b8aca3b7f73315f4594bdce4c24",
-    "commitId" : "82b2ba526976588d550cac698e512f8de6c1ffc6",
-    "commitTime" : 1037521490,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "b33ff29c69de2b8aca3b7f73315f4594bdce4c24",
-    "commitId" : "82b2ba526976588d550cac698e512f8de6c1ffc6",
-    "commitTime" : 1037521490,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "62133d954155f6ca9a1ace7a1d88898d654ab375",
-    "commitId" : "93390fbc8a6952bbb20571ac1b18a705814fc219",
-    "commitTime" : 1037520335,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
-    "commitId" : "822384a711290170148b43b5ae390dd4e8cfaf4f",
-    "commitTime" : 1037515736,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
-    "commitId" : "822384a711290170148b43b5ae390dd4e8cfaf4f",
-    "commitTime" : 1037515736,
-    "changeType" : "parameter change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
-  }, {
-    "parentCommitId" : "01d27913a71c29d6a769ed98ca7dd4ba01fe31eb",
-    "commitId" : "4cbd709c019cf1b69796858506d673f7b66d37c7",
-    "commitTime" : 1037161281,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "01d27913a71c29d6a769ed98ca7dd4ba01fe31eb",
-    "commitId" : "4cbd709c019cf1b69796858506d673f7b66d37c7",
-    "commitTime" : 1037161281,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "7a603d5fa8bedf038652b6c862753eb76c75241c",
-    "commitId" : "51941dcf2475545cee7b754acd5e2494c53acf9c",
-    "commitTime" : 1033948354,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "1b7d45aed32280e6d30b14f733ad6fe700139d4c",
-    "commitId" : "03f8352479400cd2c80511bfe0242932a4f00f11",
-    "commitTime" : 1032426477,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "18ce1a9f667788fe10875f4ed0775500285c15cc",
-    "commitId" : "4880b50a3a89db93e7e7c1b8bae8036ec06e186b",
-    "commitTime" : 1032325714,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "ecc852d48b9d26398926b255e3cd68572119c106",
-    "commitId" : "751257987b2ef5f301e2deb3b55302196e5015af",
-    "commitTime" : 1029158302,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "d499f72239cec254d620ab1619ac936e233e2033",
-    "commitId" : "c682b5725d22afc38bf19d9667b23a7deab6d8c3",
-    "commitTime" : 1028988900,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "fd1225fe8ba5d096fa8405e4f099d92cb2518490",
-    "commitId" : "7521f1897b007e3acc06ea3330df5124f4206589",
-    "commitTime" : 1025937329,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "0e62f23a10fc00f43cd84d5e169336911fdf27aa",
-    "commitId" : "bbe51f6884ac0a961f55310e15ec90411709d970",
-    "commitTime" : 1025488656,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "0e62f23a10fc00f43cd84d5e169336911fdf27aa",
-    "commitId" : "bbe51f6884ac0a961f55310e15ec90411709d970",
-    "commitTime" : 1025488656,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "43c3cc74863fc9b5248b28ef4ffe9134736975f6",
-    "commitId" : "8f8879df46592e6e35658026c354b804ef328097",
-    "commitTime" : 1020164209,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "08c03a7a57b76c96d234a1e0c3c10a0499472f89",
-    "commitId" : "190c0e5ca6cff056a136bc2c17f7678eb10686c7",
-    "commitTime" : 1016569562,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "08c03a7a57b76c96d234a1e0c3c10a0499472f89",
-    "commitId" : "190c0e5ca6cff056a136bc2c17f7678eb10686c7",
-    "commitTime" : 1016569562,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
-    "commitId" : "b671e6bb1c0652cfc1ccd07355cac99df584eb2f",
-    "commitTime" : 1016101246,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "4a859be12ad9dcd56e5689407e0cfcbdbb0003ea",
-    "commitId" : "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
-    "commitTime" : 1016086749,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "4a859be12ad9dcd56e5689407e0cfcbdbb0003ea",
-    "commitId" : "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
-    "commitTime" : 1016086749,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "1104baffa485ed4d49179c6fd349385692378cbc",
-    "commitId" : "f8ea4c69a2228c5aca6c0b6e08a39a613d157708",
-    "commitTime" : 1010972022,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "d63b30261570bca4b8231ca6f8a1d598c7a954ac",
-    "commitId" : "030798a11d2d21330cbdddd159cdc1824492157a",
-    "commitTime" : 1004532139,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
-    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
-    "commitTime" : 999188004,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
-    "commitId" : "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
-    "commitTime" : 999188004,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "b3373646ee85fc7905c3e4f41a0f3929f0e0e822",
-    "commitId" : "6c304950f62f06cb3c72e46869c3fa3fbdc1e7d7",
-    "commitTime" : 997020777,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
-  }, {
-    "parentCommitId" : "5f53a2a380e038e791af244b42f245b813dbc379",
-    "commitId" : "0fd69594a4c3e82f92f93f0371791da66938f8c3",
-    "commitTime" : 993216264,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameBefore" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "elementFileAfter" : "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-    "elementNameAfter" : "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
-    "comment" : "added with new class"
-  } ]
+  "repositoryName": "checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+  "functionName": "processFiltered",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
+  "functionStartLine": 176,
+  "expectedChanges": [
+    {
+      "parentCommitId": "9bcb6bffd03dc4f42f402bd126f22c730007861a",
+      "commitId": "58327e1dd9707b09f82ae2d4d4ce14c253247154",
+      "commitTime": 1516775986,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
+    },
+    {
+      "parentCommitId": "7b48869b997bfa00e9516fd2e7b0841072d64966",
+      "commitId": "f994512712c08a16def4a3c5a0426b7ab1590cc9",
+      "commitTime": 1503501086,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
+    },
+    {
+      "parentCommitId": "4c10bc55b4aea0f7e3b95b06d820eedb7c6a6fb2",
+      "commitId": "6d9e8ece85007117e048fef55469623b830f9446",
+      "commitTime": 1500928695,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
+    },
+    {
+      "parentCommitId": "9cd7b5508a1be8c3031b0b8511d93bb879776959",
+      "commitId": "82979737c4201b4913ea30b9c9431e71783d1c02",
+      "commitTime": 1499372568,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)"
+    },
+    {
+      "parentCommitId": "9cd7b5508a1be8c3031b0b8511d93bb879776959",
+      "commitId": "82979737c4201b4913ea30b9c9431e71783d1c02",
+      "commitTime": 1499372568,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)",
+      "comment": "Parameterize Variable text : FileText to fileText : FileText in method protected processFiltered(file File, fileText FileText) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
+    },
+    {
+      "parentCommitId": "47026a6de8793bc4a0f52b66706b5ca1e84ac58f",
+      "commitId": "d72e6f7d0b9f339feef4309a9dada7fd381ba242",
+      "commitTime": 1498141328,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "59b7c690d9b6e9e34d067a5d01cdc683134bbf2f",
+      "commitId": "27e1e94244b6bb369c2ea7502c235260f49f78b0",
+      "commitTime": 1496840526,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "2483ddc5a4d286891da1922cadf9e66547a7ec48",
+      "commitId": "39b343a32a4f1ce18ee98a34618fda0a5404d6a0",
+      "commitTime": 1464356569,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "3c2c3f7f59671fc9d03cd7b9fea7a9bbf389dff6",
+      "commitId": "d46c2cf0e9df06bb5f424dbd7645574f082f7609",
+      "commitTime": 1455040202,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "1f33757f8fc4f5f6f52620658b7665dda5f03387",
+      "commitId": "be3e035ce39a610881cd2c1bfdce3eef101c2e3c",
+      "commitTime": 1444779430,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "3ef918920c58c550169ccef3cfe1706aede11a6e",
+      "commitId": "5922d5a6730d7582d7d66121eb911ef9426f9e24",
+      "commitTime": 1440997584,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "3ef918920c58c550169ccef3cfe1706aede11a6e",
+      "commitId": "5922d5a6730d7582d7d66121eb911ef9426f9e24",
+      "commitTime": 1440997584,
+      "changeType": "exception change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "3ef918920c58c550169ccef3cfe1706aede11a6e",
+      "commitId": "5922d5a6730d7582d7d66121eb911ef9426f9e24",
+      "commitTime": 1440997584,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "904de34fcd984edce3d6042a5a17e2a969254588",
+      "commitId": "46a52f84c014e4d25379f429f11ed3de11fe8ae7",
+      "commitTime": 1440827451,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "8142c804e90f6d24a3a5db736f3f1f576766a9a5",
+      "commitId": "4d2e6647f9e8385749c382bcab5e64965a943178",
+      "commitTime": 1440705239,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "ed595de84fba2db507adaf01d04cb089a5e0bac5",
+      "commitId": "cdf3e56bacd3895262af8a1df9ca5c81f4071970",
+      "commitTime": 1440677821,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "ba9639e5decde52e38fbc1a048be7501dc701ac3",
+      "commitId": "c4928f486c67afa62e7e8fbd5d8f731be7186985",
+      "commitTime": 1439355282,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "521dacce7582a4349a9b02980c3e849e83c023fb",
+      "commitId": "82d8e91024a57a96fbb6410dacb29d6a3f582903",
+      "commitTime": 1439324041,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "7d513f08c27c741105f712dc882fd4c3553f71e7",
+      "commitId": "8a3f5bf6d5389b9e175c9c769992faece6d76ada",
+      "commitTime": 1439007161,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "b2d7013e9e503b5ac634f8f78026e1df6e7e5aea",
+      "commitId": "a2da840df3bcb4e251695f7fbf1a5d341142459d",
+      "commitTime": 1438778391,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "0ce872d7cc6b0b1564655b9e3119f72911f4dddd",
+      "commitId": "ea9ff3965d9c657b5b7bd2d969e075f430635c47",
+      "commitTime": 1438103538,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "6cdcfc135ab45c2ab0c69080b89b4baa360fed16",
+      "commitId": "56743942d548686fb90ebd8b7a17fed5977e49dc",
+      "commitTime": 1431839947,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "ec83f8e883dcf563afa2db2cfe36b22efc2fd0da",
+      "commitId": "aeef83ee58cce5b5bf0f10a8793fc37514751ef5",
+      "commitTime": 1430436070,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "cb5f9827e5ee8bd134452862c8eb526554e8f2c2",
+      "commitId": "f374e2e7a0b0fe2df21ed85aef77a91630b1dd66",
+      "commitTime": 1430064836,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "efc6142fb04bfdaf04775ea2e61a3885b7ee3861",
+      "commitId": "ee518dfe86b29d1fa4d76f0dc0c11fb83afafda1",
+      "commitTime": 1428961380,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "290ae38a14021785018fbfa7c2651200534a88ca",
+      "commitId": "1dacd5303bfe94b9d5476059b6a5676146d96708",
+      "commitTime": 1427233706,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "290ae38a14021785018fbfa7c2651200534a88ca",
+      "commitId": "1dacd5303bfe94b9d5476059b6a5676146d96708",
+      "commitTime": 1427233706,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "fa102b60fae8420f4376531e207e3ef30b2cd728",
+      "commitId": "14e0b0ea52977de4a8d8ceb6bab1420e84093a21",
+      "commitTime": 1427151609,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5bd22fd6136bd16e82d32c5a386bcf033004d8eb",
+      "commitId": "b9a1bec65f9eec7b96add7336dfcca4bf284e479",
+      "commitTime": 1426571164,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "bac672f756acb6603e127a1c2ef84474b0db2ccd",
+      "commitId": "204c073294cdca6756bcd546d6af85a797ad7d79",
+      "commitTime": 1422178221,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "58219b9bd31c8f7fbc4f4bba0eeb811851f276b3",
+      "commitId": "b8ca6a585b824e91b3b8c72dd5cc53c0eb0ab0f1",
+      "commitTime": 1421678312,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "ead8bd33ba69eb06ce1c411bb80af54cecf8d76d",
+      "commitId": "a8b8375b1db65b131938111ff283baed771161ed",
+      "commitTime": 1420821761,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "59aa66c3cc43db0a7cd8bb0ea3a39b6f4339fe88",
+      "commitId": "a24df47cafeab03fd65cf72b460aad3d2fafce3d",
+      "commitTime": 1413609550,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "1cdaeaaa4fbf02a7388f1fcbea1c86ef0ea32fed",
+      "commitId": "f1efb27670a93690577f1bae17fc9dcbd88a795d",
+      "commitTime": 1393953491,
+      "changeType": "container change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "78a5fd3494e8f3fe6e5edd0925f46b43583451fe",
+      "commitId": "3cd6646941eca3da7d3b9a221c88e4c1d214876e",
+      "commitTime": 1277730133,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "rename",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "annotation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "5dfb3f5a9e0206f9f80f9f067faa3dbe7766cef9",
+      "commitId": "13b7c634337e38d20daa92ca9d5e069a2e72ec55",
+      "commitTime": 1226223447,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, List)"
+    },
+    {
+      "parentCommitId": "3b5c81da39e0a179d439ac18c880b3d79970037d",
+      "commitId": "17754d363645285e49bf4323a1af5762af47a8ea",
+      "commitTime": 1216160862,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "f4a92dad02a3a36b5e2e988bba04debb1e2c9db9",
+      "commitId": "35d1673788bbbac8263fdb69275dc6a63b095a24",
+      "commitTime": 1152243856,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "96c668724bc05a11ceb031dda71efe1e9e69480d",
+      "commitId": "788b41973d5747c7b4699a853b62168cf0001df6",
+      "commitTime": 1135859700,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "37bc6ba73748aac4ef2aa272c8a8b74b1bf28d10",
+      "commitId": "76374876692534687016dba762a465bf93039402",
+      "commitTime": 1091540711,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "a6990c84f05a74679588549df56143d3a5d053d1",
+      "commitId": "748df52c1317e298203bf28e48545d3e50db59f1",
+      "commitTime": 1091199570,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "75ede62d22a7cc9119844c038c3961f25f65ccb1",
+      "commitId": "915c6568cf2cde57c3e92ee9786acb4808562671",
+      "commitTime": 1087904564,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "d622cf7e4255dd35e2592a71653c51e7c2b698f0",
+      "commitId": "44e3d33fc25d44157486288d5c77de75156984cb",
+      "commitTime": 1087857052,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "39c810009d787616a45ad2efa57525cbc57eff34",
+      "commitId": "1e7bbb8cd8a0d8d2167792e917c7cb79a36b20b0",
+      "commitTime": 1062563740,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "e6860c68f6901dc27c280667fa4c515b0ada17bb",
+      "commitId": "6db0b3effd48f02d741b2202338d710b1b254910",
+      "commitTime": 1057402055,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "ee57742c06fda7207ab8110333d1f8d5b93ae3f0",
+      "commitId": "5ace399de6c8963584b1fbe08007721433c4bad3",
+      "commitTime": 1051172333,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "d4cee632835a462da2dc6794b059fb0d6b1c9bc2",
+      "commitId": "d216ec75255a120ce7c24e51da7df63a2b9864de",
+      "commitTime": 1048708350,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "0f8970e3901a671c3b0a331dcaec71ff269b7bc9",
+      "commitId": "784b3270054dd61d8c6dbe413bcedfc628063171",
+      "commitTime": 1046456671,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "58ce4c40970fc29d00e5740bc6098eb475668e86",
+      "commitId": "2149a9c42dce7a3913cca83755c8f562b0442929",
+      "commitTime": 1040983106,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "12231e14b8344b551ee2177c81536a14059ac641",
+      "commitId": "9f6a98ac725727519c43f6496f020c2e595dac57",
+      "commitTime": 1039259567,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "65ca7775ba7d0b649c16cfdc8a1447f41867c870",
+      "commitId": "6ffc8dd26075456b055ffcd35d3915c23049bfbb",
+      "commitTime": 1038680984,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "54a09706ec1db32435b09e6b6910813325558f8d",
+      "commitId": "abff1a2489ea8af10e1bc0a335551262d22f44e7",
+      "commitTime": 1037737306,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)"
+    },
+    {
+      "parentCommitId": "54a09706ec1db32435b09e6b6910813325558f8d",
+      "commitId": "abff1a2489ea8af10e1bc0a335551262d22f44e7",
+      "commitTime": 1037737306,
+      "changeType": "moved",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.TreeWalker#process(File)",
+      "comment": "Move Method private process(aFile File) : void from class com.puppycrawl.tools.checkstyle.Checker to private process(aFile File) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
+    },
+    {
+      "parentCommitId": "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
+      "commitId": "54a09706ec1db32435b09e6b6910813325558f8d",
+      "commitTime": 1037733445,
+      "changeType": "return type change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
+      "commitId": "54a09706ec1db32435b09e6b6910813325558f8d",
+      "commitTime": 1037733445,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "b33ff29c69de2b8aca3b7f73315f4594bdce4c24",
+      "commitId": "82b2ba526976588d550cac698e512f8de6c1ffc6",
+      "commitTime": 1037521490,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "b33ff29c69de2b8aca3b7f73315f4594bdce4c24",
+      "commitId": "82b2ba526976588d550cac698e512f8de6c1ffc6",
+      "commitTime": 1037521490,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "62133d954155f6ca9a1ace7a1d88898d654ab375",
+      "commitId": "93390fbc8a6952bbb20571ac1b18a705814fc219",
+      "commitTime": 1037520335,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
+      "commitId": "822384a711290170148b43b5ae390dd4e8cfaf4f",
+      "commitTime": 1037515736,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "cb2862b73a3aa9192fad25015da2c2fed87f8a91",
+      "commitId": "822384a711290170148b43b5ae390dd4e8cfaf4f",
+      "commitTime": 1037515736,
+      "changeType": "parameter change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File)"
+    },
+    {
+      "parentCommitId": "01d27913a71c29d6a769ed98ca7dd4ba01fe31eb",
+      "commitId": "4cbd709c019cf1b69796858506d673f7b66d37c7",
+      "commitTime": 1037161281,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "01d27913a71c29d6a769ed98ca7dd4ba01fe31eb",
+      "commitId": "4cbd709c019cf1b69796858506d673f7b66d37c7",
+      "commitTime": 1037161281,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "7a603d5fa8bedf038652b6c862753eb76c75241c",
+      "commitId": "51941dcf2475545cee7b754acd5e2494c53acf9c",
+      "commitTime": 1033948354,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "1b7d45aed32280e6d30b14f733ad6fe700139d4c",
+      "commitId": "03f8352479400cd2c80511bfe0242932a4f00f11",
+      "commitTime": 1032426477,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "18ce1a9f667788fe10875f4ed0775500285c15cc",
+      "commitId": "4880b50a3a89db93e7e7c1b8bae8036ec06e186b",
+      "commitTime": 1032325714,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "ecc852d48b9d26398926b255e3cd68572119c106",
+      "commitId": "751257987b2ef5f301e2deb3b55302196e5015af",
+      "commitTime": 1029158302,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "d499f72239cec254d620ab1619ac936e233e2033",
+      "commitId": "c682b5725d22afc38bf19d9667b23a7deab6d8c3",
+      "commitTime": 1028988900,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "fd1225fe8ba5d096fa8405e4f099d92cb2518490",
+      "commitId": "7521f1897b007e3acc06ea3330df5124f4206589",
+      "commitTime": 1025937329,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "0e62f23a10fc00f43cd84d5e169336911fdf27aa",
+      "commitId": "bbe51f6884ac0a961f55310e15ec90411709d970",
+      "commitTime": 1025488656,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "0e62f23a10fc00f43cd84d5e169336911fdf27aa",
+      "commitId": "bbe51f6884ac0a961f55310e15ec90411709d970",
+      "commitTime": 1025488656,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "43c3cc74863fc9b5248b28ef4ffe9134736975f6",
+      "commitId": "8f8879df46592e6e35658026c354b804ef328097",
+      "commitTime": 1020164209,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "08c03a7a57b76c96d234a1e0c3c10a0499472f89",
+      "commitId": "190c0e5ca6cff056a136bc2c17f7678eb10686c7",
+      "commitTime": 1016569562,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "08c03a7a57b76c96d234a1e0c3c10a0499472f89",
+      "commitId": "190c0e5ca6cff056a136bc2c17f7678eb10686c7",
+      "commitTime": 1016569562,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
+      "commitId": "b671e6bb1c0652cfc1ccd07355cac99df584eb2f",
+      "commitTime": 1016101246,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "4a859be12ad9dcd56e5689407e0cfcbdbb0003ea",
+      "commitId": "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
+      "commitTime": 1016086749,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "4a859be12ad9dcd56e5689407e0cfcbdbb0003ea",
+      "commitId": "e2ec464f27b2e30ee66802cb9f8f1899b2dc4a24",
+      "commitTime": 1016086749,
+      "changeType": "documentation change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "1104baffa485ed4d49179c6fd349385692378cbc",
+      "commitId": "f8ea4c69a2228c5aca6c0b6e08a39a613d157708",
+      "commitTime": 1010972022,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "d63b30261570bca4b8231ca6f8a1d598c7a954ac",
+      "commitId": "030798a11d2d21330cbdddd159cdc1824492157a",
+      "commitTime": 1004532139,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "b3373646ee85fc7905c3e4f41a0f3929f0e0e822",
+      "commitId": "6c304950f62f06cb3c72e46869c3fa3fbdc1e7d7",
+      "commitTime": 997020777,
+      "changeType": "body change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)"
+    },
+    {
+      "parentCommitId": "5f53a2a380e038e791af244b42f245b813dbc379",
+      "commitId": "0fd69594a4c3e82f92f93f0371791da66938f8c3",
+      "commitTime": 993216264,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String)",
+      "comment": "added with new class"
+    }
+  ]
 }

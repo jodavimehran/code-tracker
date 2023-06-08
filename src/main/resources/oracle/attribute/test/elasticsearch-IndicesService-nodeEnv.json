@@ -1,40 +1,44 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-  "attributeName" : "nodeEnv",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.indices.IndicesService@nodeEnv:NodeEnvironment(160)",
-  "attributeDeclarationLine" : 160,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(150)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(150)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
-    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
-    "commitTime" : 1433502723,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(107)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(107)",
-    "comment" : "Move Source Folder src to core/src"
-  }, {
-    "parentCommitId" : "d3762d642799c582ece8490ca58caca104d5b2b8",
-    "commitId" : "2f0d1586925af8daf6971319f19f7a19c5d37c99",
-    "commitTime" : 1423641920,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(108)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/indices/IndicesService.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(108)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+  "attributeName": "nodeEnv",
+  "attributeKey": "server/src/main/java/org.elasticsearch.indices.IndicesService@nodeEnv:NodeEnvironment(160)",
+  "attributeDeclarationLine": 160,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(150)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(150)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitId": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitTime": 1433502723,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(107)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(107)",
+      "comment": "Move Source Folder src to core/src"
+    },
+    {
+      "parentCommitId": "d3762d642799c582ece8490ca58caca104d5b2b8",
+      "commitId": "2f0d1586925af8daf6971319f19f7a19c5d37c99",
+      "commitTime": 1423641920,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(108)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)nodeEnv:NodeEnvironment(108)",
+      "comment": "new attribute"
+    }
+  ]
 }

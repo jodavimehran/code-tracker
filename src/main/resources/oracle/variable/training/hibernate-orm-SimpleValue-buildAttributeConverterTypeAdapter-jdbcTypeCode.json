@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
-  "functionName" : "buildAttributeConverterTypeAdapter",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()",
-  "functionStartLine" : 565,
-  "variableName" : "jdbcTypeCode",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode(598)",
-  "variableStartLine" : 598,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "8a7bc2e7c159ff0acdfdaa076e0e8da1bbc59746",
-    "commitId" : "38c004431d006ac5173d0c095f97415b5e6267a6",
-    "commitTime" : 1426888529,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(461)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(476)",
-    "comment" : "Remove Variable Modifier final in variable jdbcTypeCode : int in method private buildAttributeConverterTypeAdapter() : Type from class org.hibernate.mapping.SimpleValue"
-  }, {
-    "parentCommitId" : "5a7d179f81d235ba7be9b9248f75d6f2a156744b",
-    "commitId" : "7bcf161d36d5b1e59fba1ae32e8e2d692c2fd33d",
-    "commitTime" : 1376942086,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(434)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(434)",
-    "comment" : "Extract Method private buildAttributeConverterTypeAdapter() : Type extracted from public setTypeUsingReflection(className String, propertyName String) : void in class org.hibernate.mapping.SimpleValue"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+  "functionName": "buildAttributeConverterTypeAdapter",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()",
+  "functionStartLine": 565,
+  "variableName": "jdbcTypeCode",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode(598)",
+  "variableStartLine": 598,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "8a7bc2e7c159ff0acdfdaa076e0e8da1bbc59746",
+      "commitId": "38c004431d006ac5173d0c095f97415b5e6267a6",
+      "commitTime": 1426888529,
+      "changeType": "modifier change",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(461)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(476)",
+      "comment": "Remove Variable Modifier final in variable jdbcTypeCode : int in method private buildAttributeConverterTypeAdapter() : Type from class org.hibernate.mapping.SimpleValue"
+    },
+    {
+      "parentCommitId": "5a7d179f81d235ba7be9b9248f75d6f2a156744b",
+      "commitId": "7bcf161d36d5b1e59fba1ae32e8e2d692c2fd33d",
+      "commitTime": 1376942086,
+      "changeType": "introduced",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(434)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/mapping/SimpleValue.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.mapping.SimpleValue#buildAttributeConverterTypeAdapter()$jdbcTypeCode:int(434)",
+      "comment": "Extract Method private buildAttributeConverterTypeAdapter() : Type extracted from public setTypeUsingReflection(className String, propertyName String) : void in class org.hibernate.mapping.SimpleValue"
+    }
+  ]
 }

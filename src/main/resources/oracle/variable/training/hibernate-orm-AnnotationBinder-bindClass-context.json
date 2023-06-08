@@ -1,53 +1,58 @@
 {
-  "repositoryName" : "hibernate\\hibernate-orm",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-orm.git",
-  "filePath" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-  "functionName" : "bindClass",
-  "functionKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
-  "functionStartLine" : 524,
-  "variableName" : "context",
-  "variableKey" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context(527)",
-  "variableStartLine" : 527,
-  "startCommitId" : "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
-  "expectedChanges" : [ {
-    "parentCommitId" : "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
-    "commitId" : "9caca0ce37d5a2763d476c6fa2471addcca710ca",
-    "commitTime" : 1426024431,
-    "changeType" : "type change",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(577)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context:MetadataBuildingContext(590)",
-    "comment" : "Change Parameter Type mappings : Mappings to context : MetadataBuildingContext in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, context MetadataBuildingContext) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
-    "commitId" : "9caca0ce37d5a2763d476c6fa2471addcca710ca",
-    "commitTime" : 1426024431,
-    "changeType" : "rename",
-    "elementFileBefore" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(577)",
-    "elementFileAfter" : "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context:MetadataBuildingContext(590)",
-    "comment" : "Rename Parameter mappings : Mappings to context : MetadataBuildingContext in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, context MetadataBuildingContext) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "74eb608be6e926bc77bb60b7279b08f9c67c691e",
-    "commitId" : "f0f82e4f1ba7416ef010d5d71914a2bbde7fc22f",
-    "commitTime" : 1281640428,
-    "changeType" : "type change",
-    "elementFileBefore" : "core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(506)",
-    "elementFileAfter" : "core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(505)",
-    "comment" : "Change Parameter Type mappings : ExtendedMappings to mappings : Mappings in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings Mappings) : void from class org.hibernate.cfg.AnnotationBinder"
-  }, {
-    "parentCommitId" : "53deb4b357384f32819f70c497ef04885171c399",
-    "commitId" : "7337743c93574823424ed6c399cfcf6bd75614f8",
-    "commitTime" : 1225219270,
-    "changeType" : "introduced",
-    "elementFileBefore" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameBefore" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(395)",
-    "elementFileAfter" : "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
-    "elementNameAfter" : "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(395)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "hibernate\\hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+  "functionName": "bindClass",
+  "functionKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)",
+  "functionStartLine": 524,
+  "variableName": "context",
+  "variableKey": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context(527)",
+  "variableStartLine": 527,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+      "commitId": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "commitTime": 1426024431,
+      "changeType": "type change",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(577)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context:MetadataBuildingContext(590)",
+      "comment": "Change Parameter Type mappings : Mappings to context : MetadataBuildingContext in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, context MetadataBuildingContext) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+      "commitId": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "commitTime": 1426024431,
+      "changeType": "rename",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(577)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, MetadataBuildingContext)$context:MetadataBuildingContext(590)",
+      "comment": "Rename Parameter mappings : Mappings to context : MetadataBuildingContext in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, context MetadataBuildingContext) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "74eb608be6e926bc77bb60b7279b08f9c67c691e",
+      "commitId": "f0f82e4f1ba7416ef010d5d71914a2bbde7fc22f",
+      "commitTime": 1281640428,
+      "changeType": "type change",
+      "elementFileBefore": "core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(506)",
+      "elementFileAfter": "core/src/main/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, Mappings)$mappings:Mappings(505)",
+      "comment": "Change Parameter Type mappings : ExtendedMappings to mappings : Mappings in method public bindClass(clazzToProcess XClass, inheritanceStatePerClass Map<XClass,InheritanceState>, mappings Mappings) : void from class org.hibernate.cfg.AnnotationBinder"
+    },
+    {
+      "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
+      "commitId": "7337743c93574823424ed6c399cfcf6bd75614f8",
+      "commitTime": 1225219270,
+      "changeType": "introduced",
+      "elementFileBefore": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameBefore": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(395)",
+      "elementFileAfter": "annotations/src/java/org/hibernate/cfg/AnnotationBinder.java",
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.AnnotationBinder#bindClass(XClass, Map, ExtendedMappings)$mappings:ExtendedMappings(395)",
+      "comment": "added with method"
+    }
+  ]
 }

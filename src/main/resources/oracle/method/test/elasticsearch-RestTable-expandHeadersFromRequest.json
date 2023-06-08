@@ -1,55 +1,61 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-  "functionName" : "expandHeadersFromRequest",
-  "functionKey" : "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-  "functionStartLine" : 222,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
-  }, {
-    "parentCommitId" : "2adc2a19719eeb5781a49e00fbc23f86128103bf",
-    "commitId" : "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
-    "commitTime" : 1471309592,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
-  }, {
-    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
-    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
-    "commitTime" : 1433502723,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
-  }, {
-    "parentCommitId" : "ceb0782ebd4d354a8ebc10fd638ee666eebf5483",
-    "commitId" : "9d5e7895080cd186f8cea327f4fa43445476bee6",
-    "commitTime" : 1432741582,
-    "changeType" : "body change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
-  }, {
-    "parentCommitId" : "5384e4712ae6f7c89074e1054dd3f58b8bdb433d",
-    "commitId" : "fc224a0de8153652ed2d0e409bc2dbd8746068e8",
-    "commitTime" : 1432735771,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+  "functionName": "expandHeadersFromRequest",
+  "functionKey": "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+  "functionStartLine": 222,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+    },
+    {
+      "parentCommitId": "2adc2a19719eeb5781a49e00fbc23f86128103bf",
+      "commitId": "1452ab4b9f7fcd2b2699dc95fc64f03f1d97338f",
+      "commitTime": 1471309592,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+    },
+    {
+      "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitId": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitTime": 1433502723,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+    },
+    {
+      "parentCommitId": "ceb0782ebd4d354a8ebc10fd638ee666eebf5483",
+      "commitId": "9d5e7895080cd186f8cea327f4fa43445476bee6",
+      "commitTime": 1432741582,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+    },
+    {
+      "parentCommitId": "5384e4712ae6f7c89074e1054dd3f58b8bdb433d",
+      "commitId": "fc224a0de8153652ed2d0e409bc2dbd8746068e8",
+      "commitTime": 1432735771,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+    }
+  ]
 }

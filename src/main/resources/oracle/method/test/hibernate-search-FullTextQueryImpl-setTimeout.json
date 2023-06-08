@@ -1,83 +1,92 @@
 {
-  "repositoryName" : "hibernate-search",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
-  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "filePath" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-  "functionName" : "setTimeout",
-  "functionKey" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-  "functionStartLine" : 559,
-  "expectedChanges" : [ {
-    "parentCommitId" : "2ccfb9d59c3deff3271ef1edb90a5110ae4ebf52",
-    "commitId" : "38fc9b864e6a279eccb84a15c14002dce61df4fa",
-    "commitTime" : 1492082265,
-    "changeType" : "return type change",
-    "elementFileBefore" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameBefore" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameAfter" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "0938146b1772f404d22f93dd5db8be041316ea9b",
-    "commitId" : "2f45e686199bf9f20f354e1c953018eb0ebb934a",
-    "commitTime" : 1376317199,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameBefore" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameAfter" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
-    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
-    "commitTime" : 1366736556,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameAfter" : "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "33627c651cc0081b02c8c66031ebfc27cc228809",
-    "commitId" : "46186ad2bdda3c84dd58a641ed93e1b1203bdc89",
-    "commitTime" : 1317026455,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameAfter" : "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "ce58bb10a58aa3bed46d4a53e7ad58880d444ceb",
-    "commitId" : "dc3a4d26f215331ac43e3bf779a25b8476e42c59",
-    "commitTime" : 1299177574,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "e62361cfaa89eee775839212ecb590dd1f08525a",
-    "commitId" : "e6fd51e42f176e3661a251a4acd57925ac3a657f",
-    "commitTime" : 1299157836,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "6ad2ba256e8f13e8025899e09bafd3d30e5b491d",
-    "commitId" : "6454e7ddc7b5c19ffabe140d41faaec1af5fec0c",
-    "commitTime" : 1288972881,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  }, {
-    "parentCommitId" : "37512a9d3e717fc8ffdb4d079ca669fa44c813a1",
-    "commitId" : "fe0441d5c4aaa45d8fdda8718f7798c6117272b0",
-    "altCommitId" : "8c951cada13edc8ca2a556a652b781480e57288e",
-    "commitTime" : 1288362223,
-    "changeType" : "introduced",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
-  } ]
+  "repositoryName": "hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+  "functionName": "setTimeout",
+  "functionKey": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+  "functionStartLine": 559,
+  "expectedChanges": [
+    {
+      "parentCommitId": "2ccfb9d59c3deff3271ef1edb90a5110ae4ebf52",
+      "commitId": "38fc9b864e6a279eccb84a15c14002dce61df4fa",
+      "commitTime": 1492082265,
+      "changeType": "return type change",
+      "elementFileBefore": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameBefore": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameAfter": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "0938146b1772f404d22f93dd5db8be041316ea9b",
+      "commitId": "2f45e686199bf9f20f354e1c953018eb0ebb934a",
+      "commitTime": 1376317199,
+      "changeType": "annotation change",
+      "elementFileBefore": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameBefore": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameAfter": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitId": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitTime": 1366736556,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameAfter": "orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "33627c651cc0081b02c8c66031ebfc27cc228809",
+      "commitId": "46186ad2bdda3c84dd58a641ed93e1b1203bdc89",
+      "commitTime": 1317026455,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "hibernate-search-orm/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameAfter": "hibernate-search-orm/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "ce58bb10a58aa3bed46d4a53e7ad58880d444ceb",
+      "commitId": "dc3a4d26f215331ac43e3bf779a25b8476e42c59",
+      "commitTime": 1299177574,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/query/hibernate/impl/FullTextQueryImpl.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.query.hibernate.impl.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "e62361cfaa89eee775839212ecb590dd1f08525a",
+      "commitId": "e6fd51e42f176e3661a251a4acd57925ac3a657f",
+      "commitTime": 1299157836,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "6ad2ba256e8f13e8025899e09bafd3d30e5b491d",
+      "commitId": "6454e7ddc7b5c19ffabe140d41faaec1af5fec0c",
+      "commitTime": 1288972881,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    },
+    {
+      "parentCommitId": "37512a9d3e717fc8ffdb4d079ca669fa44c813a1",
+      "commitId": "fe0441d5c4aaa45d8fdda8718f7798c6117272b0",
+      "altCommitId": "8c951cada13edc8ca2a556a652b781480e57288e",
+      "commitTime": 1288362223,
+      "changeType": "introduced",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/query/FullTextQueryImpl.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.query.FullTextQueryImpl#setTimeout(long, TimeUnit)"
+    }
+  ]
 }

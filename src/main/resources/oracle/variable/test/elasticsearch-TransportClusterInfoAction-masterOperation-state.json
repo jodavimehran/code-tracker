@@ -1,33 +1,36 @@
 {
-  "repositoryName" : "elastic\\elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "filePath" : "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-  "functionName" : "masterOperation",
-  "functionKey" : "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
-  "functionStartLine" : 50,
-  "variableName" : "state",
-  "variableKey" : "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)$state(50)",
-  "variableStartLine" : 50,
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "expectedChanges" : [ {
-    "parentCommitId" : "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
-    "commitId" : "4930b93c26506e8f063a3b817f0434bd17fca14c",
-    "commitTime" : 1374530925,
-    "changeType" : "modifier change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)$state:ClusterState(51)",
-    "comment" : "Add Parameter Modifier final in parameter state : ClusterState in method protected masterOperation(request Request, state ClusterState, listener ActionListener<Response>) : void from class org.elasticsearch.action.support.master.info.TransportClusterInfoAction"
-  }, {
-    "parentCommitId" : "8e33e0e69d73f14cc02abd286d767ba83e171cee",
-    "commitId" : "dc0d81b8aac03af962e895381406f312565fd358",
-    "commitTime" : 1371063827,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
-    "comment" : "added with method"
-  } ]
+  "repositoryName": "elastic\\elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "filePath": "server/src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+  "functionName": "masterOperation",
+  "functionKey": "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)",
+  "functionStartLine": 50,
+  "variableName": "state",
+  "variableKey": "server/src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)$state(50)",
+  "variableStartLine": 50,
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "expectedChanges": [
+    {
+      "parentCommitId": "e943cc81a5cd02e6ef641ad0662f34bda176fb5b",
+      "commitId": "4930b93c26506e8f063a3b817f0434bd17fca14c",
+      "commitTime": 1374530925,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState, ActionListener)$state:ClusterState(51)",
+      "comment": "Add Parameter Modifier final in parameter state : ClusterState in method protected masterOperation(request Request, state ClusterState, listener ActionListener<Response>) : void from class org.elasticsearch.action.support.master.info.TransportClusterInfoAction"
+    },
+    {
+      "parentCommitId": "8e33e0e69d73f14cc02abd286d767ba83e171cee",
+      "commitId": "dc0d81b8aac03af962e895381406f312565fd358",
+      "commitTime": 1371063827,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/support/master/info/TransportClusterInfoAction.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.support.master.info.TransportClusterInfoAction#masterOperation(Request, ClusterState)$state:ClusterState(49)",
+      "comment": "added with method"
+    }
+  ]
 }

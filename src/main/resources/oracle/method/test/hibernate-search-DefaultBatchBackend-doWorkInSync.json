@@ -1,109 +1,121 @@
 {
-  "repositoryName" : "hibernate-search",
-  "repositoryWebURL" : "https://github.com/hibernate/hibernate-search.git",
-  "startCommitId" : "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
-  "filePath" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-  "functionName" : "doWorkInSync",
-  "functionKey" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-  "functionStartLine" : 66,
-  "expectedChanges" : [ {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "body change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-    "commitId" : "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-    "commitTime" : 1492639846,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "0938146b1772f404d22f93dd5db8be041316ea9b",
-    "commitId" : "2f45e686199bf9f20f354e1c953018eb0ebb934a",
-    "commitTime" : 1376317199,
-    "changeType" : "annotation change",
-    "elementFileBefore" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
-    "commitId" : "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
-    "commitTime" : 1366736556,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
-    "commitId" : "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
-    "commitTime" : 1317161019,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
-    "commitId" : "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
-    "commitTime" : 1311863821,
-    "changeType" : "container change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
-    "commitId" : "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
-    "commitTime" : 1311863120,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "fabff8b00abedf2ea4fbd87e3e553b444b975183",
-    "commitId" : "c866b2799a080b4806438f7047f30ee2c673106f",
-    "commitTime" : 1311846710,
-    "changeType" : "body change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "fabff8b00abedf2ea4fbd87e3e553b444b975183",
-    "commitId" : "c866b2799a080b4806438f7047f30ee2c673106f",
-    "commitTime" : 1311846710,
-    "changeType" : "documentation change",
-    "elementFileBefore" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
-    "commitId" : "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
-    "commitTime" : 1268702887,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
-  }, {
-    "parentCommitId" : "67f507fa7bf80f8c822926380ff960b15095d10e",
-    "commitId" : "f7b4e276eb754193a72fa98a8972b66da837664e",
-    "commitTime" : 1246314343,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameBefore" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
-    "elementFileAfter" : "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-    "elementNameAfter" : "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
-  } ]
+  "repositoryName": "hibernate-search",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-search.git",
+  "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
+  "filePath": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+  "functionName": "doWorkInSync",
+  "functionKey": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+  "functionStartLine": 66,
+  "expectedChanges": [
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "body change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "documentation change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "0938146b1772f404d22f93dd5db8be041316ea9b",
+      "commitId": "2f45e686199bf9f20f354e1c953018eb0ebb934a",
+      "commitTime": 1376317199,
+      "changeType": "annotation change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "29a168b99657e8cc302bbb487a67a4ea3856c3a3",
+      "commitId": "354f2cadec6dee7d4dde2250e13f468e2d93cd27",
+      "commitTime": 1366736556,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "7505d6fbbf06c479d98555dc237eaa62eb83c4a2",
+      "commitId": "02b8eb4f6017e7fb44bee6013d7f8bf1ae23a7b1",
+      "commitTime": 1317161019,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitId": "97b2764a15b3c1a4697fc7378ef490f9464fa82b",
+      "commitTime": 1311863821,
+      "changeType": "container change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
+      "commitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitTime": 1311863120,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
+      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
+      "commitTime": 1311846710,
+      "changeType": "body change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
+      "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
+      "commitTime": 1311846710,
+      "changeType": "documentation change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "7e2cdab57ca6e6e258f46b64a16ead68247a23ff",
+      "commitId": "39529f69239ecf1f14dbf548a1b36eb40ee7b97e",
+      "commitTime": 1268702887,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
+    },
+    {
+      "parentCommitId": "67f507fa7bf80f8c822926380ff960b15095d10e",
+      "commitId": "f7b4e276eb754193a72fa98a8972b66da837664e",
+      "commitTime": 1246314343,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)",
+      "elementFileAfter": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#doWorkInSync(LuceneWork)"
+    }
+  ]
 }

@@ -1,40 +1,44 @@
 {
-  "repositoryName" : "elasticsearch",
-  "repositoryWebURL" : "https://github.com/elastic/elasticsearch.git",
-  "startCommitId" : "767c69593c67befb843686de8ea51b7bc87728c9",
-  "filePath" : "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-  "attributeName" : "REQUEST_OVERHEAD",
-  "attributeKey" : "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@REQUEST_OVERHEAD:int(68)",
-  "attributeDeclarationLine" : 68,
-  "expectedChanges" : [ {
-    "parentCommitId" : "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
-    "commitId" : "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
-    "commitTime" : 1515695443,
-    "changeType" : "container change",
-    "elementFileBefore" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(70)",
-    "elementFileAfter" : "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(70)",
-    "comment" : "Move Source Folder core to server"
-  }, {
-    "parentCommitId" : "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
-    "commitId" : "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
-    "commitTime" : 1433502723,
-    "changeType" : "container change",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(58)",
-    "elementFileAfter" : "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(58)",
-    "comment" : "Move Source Folder src to core/src"
-  }, {
-    "parentCommitId" : "b979dfa0be8bc7536c4185156a5629f2966c7d77",
-    "commitId" : "bdea0e2eddb4373b850e00d8e363c5240d78d180",
-    "commitTime" : 1344849888,
-    "changeType" : "introduced",
-    "elementFileBefore" : "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameBefore" : "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(54)",
-    "elementFileAfter" : "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-    "elementNameAfter" : "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(54)",
-    "comment" : "new attribute"
-  } ]
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "filePath": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+  "attributeName": "REQUEST_OVERHEAD",
+  "attributeKey": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@REQUEST_OVERHEAD:int(68)",
+  "attributeDeclarationLine": 68,
+  "expectedChanges": [
+    {
+      "parentCommitId": "7d0eb3292b8f8ba27ef50dbbf38783dc68c70728",
+      "commitId": "99f88f15c5febbca2d13b5b5fda27b844153bf1a",
+      "commitTime": 1515695443,
+      "changeType": "container change",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(70)",
+      "elementFileAfter": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(70)",
+      "comment": "Move Source Folder core to server"
+    },
+    {
+      "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
+      "commitId": "15a62448343fd24f8e63f43b1e4b16f50005e4a5",
+      "commitTime": 1433502723,
+      "changeType": "container change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(58)",
+      "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(58)",
+      "comment": "Move Source Folder src to core/src"
+    },
+    {
+      "parentCommitId": "b979dfa0be8bc7536c4185156a5629f2966c7d77",
+      "commitId": "bdea0e2eddb4373b850e00d8e363c5240d78d180",
+      "commitTime": 1344849888,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(54)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.bulk.BulkRequest@(final,static)(private)REQUEST_OVERHEAD:int(54)",
+      "comment": "new attribute"
+    }
+  ]
 }

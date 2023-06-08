@@ -1,23 +1,25 @@
 {
-  "repositoryName" : "apache\\flink",
-  "repositoryWebURL" : "https://github.com/apache/flink.git",
-  "filePath" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-  "functionName" : "initializeHandlers",
-  "functionKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)",
-  "functionStartLine" : 83,
-  "variableName" : "restAddressFuture",
-  "variableKey" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture(83)",
-  "variableStartLine" : 83,
-  "startCommitId" : "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
-  "expectedChanges" : [ {
-    "parentCommitId" : "2cb37cb937c6f225ad7afe829a28a6eda043ffc1",
-    "commitId" : "55b76d54f0dcc4bdaa96eaa463ce0bfcad23d239",
-    "commitTime" : 1505896530,
-    "changeType" : "introduced",
-    "elementFileBefore" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameBefore" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture:CompletableFuture<String>(63)",
-    "elementFileAfter" : "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
-    "elementNameAfter" : "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture:CompletableFuture<String>(63)",
-    "comment" : "Add Parameter restAddressFuture : CompletableFuture<String> in method protected initializeHandlers(restAddressFuture CompletableFuture<String>) : Collection<Tuple2<RestHandlerSpecification,ChannelInboundHandler>> from class org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint"
-  } ]
+  "repositoryName": "apache\\flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "filePath": "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
+  "functionName": "initializeHandlers",
+  "functionKey": "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)",
+  "functionStartLine": 83,
+  "variableName": "restAddressFuture",
+  "variableKey": "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture(83)",
+  "variableStartLine": 83,
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "2cb37cb937c6f225ad7afe829a28a6eda043ffc1",
+      "commitId": "55b76d54f0dcc4bdaa96eaa463ce0bfcad23d239",
+      "commitTime": 1505896530,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
+      "elementNameBefore": "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture:CompletableFuture<String>(63)",
+      "elementFileAfter": "flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java",
+      "elementNameAfter": "flink-runtime/src/main/java/org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint#initializeHandlers(CompletableFuture)$restAddressFuture:CompletableFuture<String>(63)",
+      "comment": "Add Parameter restAddressFuture : CompletableFuture<String> in method protected initializeHandlers(restAddressFuture CompletableFuture<String>) : Collection<Tuple2<RestHandlerSpecification,ChannelInboundHandler>> from class org.apache.flink.runtime.dispatcher.DispatcherRestEndpoint"
+    }
+  ]
 }
