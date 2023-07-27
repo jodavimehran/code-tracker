@@ -1,0 +1,126 @@
+{
+  "repositoryName": "hadoop",
+  "repositoryWebURL": "https://github.com/apache/hadoop.git",
+  "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+  "functionName": "allocate",
+  "functionKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)",
+  "functionStartLine": 322,
+  "blockType": "SYNCHRONIZED_STATEMENT",
+  "blockKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, ContainerUpdates)$synchronized(351-386)",
+  "blockStartLine": 351,
+  "blockEndLine": 386,
+  "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
+  "expectedChanges": [
+    {
+      "parentCommitId": "be34e85e682880f46eee0310bf00ecc7d39cd5bd",
+      "commitId": "620325e81696fca140195b74929ed9eda2d5eb16",
+      "commitTime": 1465337202,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$synchronized(349-390)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$synchronized(349-384)"
+    },
+    {
+      "parentCommitId": "7fb212e5e672b3f285493f6c7b2598ef7e61406b",
+      "commitId": "6cb0af3c39a5d49cb2f7911ee21363a9542ca2d7",
+      "commitTime": 1450119166,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$synchronized(333-374)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$synchronized(333-374)"
+    },
+    {
+      "parentCommitId": "c57eac5dfe277845ab4522a1188023a73ee41539",
+      "commitId": "89cab1ba5f0671f8ef30dbe7432079c18362b434",
+      "commitTime": 1443040178,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(330-373)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List, List, List)$synchronized(333-374)"
+    },
+    {
+      "parentCommitId": "7269906254afe59ea464ed674d8218f82eeaec26",
+      "commitId": "81df7b586a16f8226c7b01c139c1c70c060399c3",
+      "commitTime": 1442188995,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(330-366)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(330-373)"
+    },
+    {
+      "parentCommitId": "3bc72cc16d8c7b8addd8f565523001dfcc32b891",
+      "commitId": "658097d6da1b1aac8e01db459f0c3b456e99652f",
+      "commitTime": 1426653023,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(314-349)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(314-350)"
+    },
+    {
+      "parentCommitId": "0369aff403012f8dd02486a3dd2f8e346ad23b03",
+      "commitId": "5fd5c9900cfd299428acbc8dff767273e44647c0",
+      "commitTime": 1392853153,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(301-335)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(297-332)"
+    },
+    {
+      "parentCommitId": "3c7813bbad3fbed264af39033a90949deef5a0a9",
+      "commitId": "0a6e275ee3360719290ad666629624450d4f0a6f",
+      "commitTime": 1380749507,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(290-322)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(290-324)"
+    },
+    {
+      "parentCommitId": "28d5fa1fb1c93a5d20ad68554533ba77bd08ef58",
+      "commitId": "8eb3be63f598daae01f0a0c09eab5086881f153d",
+      "commitTime": 1372537137,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(276-308)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(277-309)"
+    },
+    {
+      "parentCommitId": "98f55792ffcad0bcf427e2bb3680e68fa89b4347",
+      "commitId": "2051fd5ee29e99df6fe79c70b0c7c8c0c1cc131f",
+      "commitTime": 1370544419,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$synchronized(254-286)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List, List, List)$synchronized(254-286)"
+    },
+    {
+      "parentCommitId": "1b87baa06f837d4c0b024388f12edb18e91bf0d1",
+      "commitId": "01aabf73639785a29d1651f2e268cec04a8b9b94",
+      "commitTime": 1364567813,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$synchronized(254-277)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$synchronized(254-286)"
+    },
+    {
+      "parentCommitId": "9fe9f42c8fad872f7aab5f9bbdac4a860edb0d43",
+      "commitId": "80cc8e94861e2b0fc423b77fa8ce0f174c3a91fd",
+      "commitTime": 1320738951,
+      "changeType": "introduced",
+      "elementFileBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameBefore": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$synchronized(239-262)",
+      "elementFileAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fifo/FifoScheduler.java",
+      "elementNameAfter": "hadoop-mapreduce-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fifo.FifoScheduler#allocate(ApplicationAttemptId, List, List)$synchronized(239-262)",
+      "comment": "new block"
+    }
+  ]
+}
