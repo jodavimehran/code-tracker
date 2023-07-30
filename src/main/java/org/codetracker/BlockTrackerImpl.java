@@ -576,7 +576,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     break;
                 }
             }
-            if (changeType != null) {
+            if (changeType != null && blockBefore != null) {
                 if (equalOperator.test(blockAfter)) {
                     blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(changeType).refactoring(refactoring));
                     leftBlockSet.add(blockBefore);
