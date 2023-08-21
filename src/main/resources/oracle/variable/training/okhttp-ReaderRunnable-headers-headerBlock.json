@@ -1,0 +1,58 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "headers",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)",
+  "functionStartLine": 644,
+  "variableName": "headerBlock",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)$headerBlock:List<Header>(645)",
+  "variableStartLine": 645,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "0c5b5454bc8e9c24160a5df1f5b83a0532323ee1",
+      "commitId": "f214cf9670339b850f97da4a2d4ad64758fd0e4d",
+      "commitTime": 1390321642,
+      "changeType": "rename",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$nameValueBlock:List<Header>(485)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$headerBlock:List<Header>(485)",
+      "comment": "Rename Parameter nameValueBlock : List<Header> to headerBlock : List<Header> in method public headers(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, priority int, headerBlock List<Header>, headersMode HeadersMode) : void from class com.squareup.okhttp.internal.spdy.SpdyConnection.Reader"
+    },
+    {
+      "parentCommitId": "01ac1019bb48b77ea33e998e052f916f8dd271de",
+      "commitId": "b95a0ccbcae50f92acc923d62fc6c9cecc6bbb63",
+      "commitTime": 1390156534,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$nameValueBlock:List<ByteString>(483)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$nameValueBlock:List<Header>(482)",
+      "comment": "Change Parameter Type nameValueBlock : List<ByteString> to nameValueBlock : List<Header> in method public headers(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, priority int, nameValueBlock List<Header>, headersMode HeadersMode) : void from class com.squareup.okhttp.internal.spdy.SpdyConnection.Reader"
+    },
+    {
+      "parentCommitId": "a9157db5359e31cac13ab35c1e5e39584c3d3e17",
+      "commitId": "5c787a0b9d5c83c764880da4b1503a65ee0ff267",
+      "commitTime": 1389063071,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$nameValueBlock:List<String>(475)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$nameValueBlock:List<ByteString>(476)",
+      "comment": "Change Parameter Type nameValueBlock : List<String> to nameValueBlock : List<ByteString> in method public headers(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, priority int, nameValueBlock List<ByteString>, headersMode HeadersMode) : void from class com.squareup.okhttp.internal.spdy.SpdyConnection.Reader"
+    },
+    {
+      "parentCommitId": "277fa12c5ef07be2502aad54b94e13c6db7a853a",
+      "commitId": "961d797e9c84557cdf56f7036558e72a54c578f6",
+      "commitTime": 1349021154,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection.Reader#synStream(int, int, int, int, List)$nameValueBlock:List<String>(320)",
+      "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection.Reader#synStream(int, int, int, int, List)$nameValueBlock:List<String>(320)",
+      "comment": "added with method"
+    }
+  ]
+}

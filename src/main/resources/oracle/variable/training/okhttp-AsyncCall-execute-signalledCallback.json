@@ -1,0 +1,36 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/RealCall.java",
+  "functionName": "execute",
+  "functionKey": "okhttp/src/main/java/okhttp3.RealCall.AsyncCall#execute()",
+  "functionStartLine": 144,
+  "variableName": "signalledCallback",
+  "variableKey": "okhttp/src/main/java/okhttp3.RealCall.AsyncCall#execute()$signalledCallback:boolean(145)",
+  "variableStartLine": 145,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "142868f8e69f42dd0cff4f97ed990ed0a14e9339",
+      "commitId": "0b677ac70d37f9064d3a0c0914794f60f66d64be",
+      "commitTime": 1398399915,
+      "changeType": "rename",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Job.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Job#execute()$signalledReceiver:boolean(63)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Job.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Job#execute()$signalledCallback:boolean(63)",
+      "comment": "Rename Variable signalledReceiver : boolean to signalledCallback : boolean in method protected execute() : void from class com.squareup.okhttp.Job"
+    },
+    {
+      "parentCommitId": "4c929a6e37e36edfb42780d74cc031e2d38ce789",
+      "commitId": "112dcc40900d503ea7e416e0da0a8fd9b08a9c17",
+      "commitTime": 1398181180,
+      "changeType": "introduced",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Job.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Job#execute()$signalledReceiver:boolean(63)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Job.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Job#execute()$signalledReceiver:boolean(63)",
+      "comment": "new variable"
+    }
+  ]
+}

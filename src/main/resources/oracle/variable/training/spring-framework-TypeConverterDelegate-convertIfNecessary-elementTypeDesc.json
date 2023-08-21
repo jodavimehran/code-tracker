@@ -1,12 +1,12 @@
 {
-  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryName": "spring-framework",
   "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
   "filePath": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
   "functionName": "convertIfNecessary",
   "functionKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)",
-  "functionStartLine": 152,
+  "functionStartLine": 138,
   "variableName": "elementTypeDesc",
-  "variableKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc(181)",
+  "variableKey": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc:TypeDescriptor(181)",
   "variableStartLine": 181,
   "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
   "expectedChanges": [
@@ -18,7 +18,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementType:TypeDescriptor(187)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc:TypeDescriptor(188)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$elementTypeDesc:TypeDescriptor(188)",
+      "comment": "Rename Variable elementType : TypeDescriptor to elementTypeDesc : TypeDescriptor in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
     },
     {
       "parentCommitId": "a2a4929c147208e959a93b290e930828287833d8",

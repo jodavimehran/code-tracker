@@ -1,0 +1,25 @@
+{
+  "repositoryName": "flink",
+  "repositoryWebURL": "https://github.com/apache/flink.git",
+  "filePath": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+  "functionName": "getUnguardedFileSystem",
+  "functionKey": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)",
+  "functionStartLine": 321,
+  "variableName": "e",
+  "variableKey": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$e:URISyntaxException(341)",
+  "variableStartLine": 341,
+  "startCommitId": "9e936a5f8198b0059e9b5fba33163c2bbe3efbdd",
+  "expectedChanges": [
+    {
+      "parentCommitId": "c590912c93a4059b40452dfa6cffbdd4d58cac13",
+      "commitId": "ba8ed263695d16eacb4bdfdf195dd22c83bb53ed",
+      "commitTime": 1479853012,
+      "changeType": "introduced",
+      "elementFileBefore": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameBefore": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$e:URISyntaxException(270)",
+      "elementFileAfter": "flink-core/src/main/java/org/apache/flink/core/fs/FileSystem.java",
+      "elementNameAfter": "flink-core/src/main/java/org.apache.flink.core.fs.FileSystem#getUnguardedFileSystem(URI)$e:URISyntaxException(270)",
+      "comment": "Extract Method public getUnguardedFileSystem(uri URI) : FileSystem extracted from public get(uri URI) : FileSystem in class org.apache.flink.core.fs.FileSystem"
+    }
+  ]
+}

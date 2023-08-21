@@ -1,0 +1,36 @@
+{
+  "repositoryName": "jetty.project",
+  "repositoryWebURL": "https://github.com/eclipse/jetty.project.git",
+  "filePath": "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+  "functionName": "send",
+  "functionKey": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)",
+  "functionStartLine": 87,
+  "variableName": "interimResponse",
+  "variableKey": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$interimResponse:boolean(95)",
+  "variableStartLine": 95,
+  "startCommitId": "fc5dd874f3deda71e6cd42af994a5af5cb6be4af",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ea6d18f9190a67230cce7724a6b410ce0674e406",
+      "commitId": "06454f64098e01b42347841211afed229d8798a0",
+      "commitTime": 1523096739,
+      "changeType": "rename",
+      "elementFileBefore": "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+      "elementNameBefore": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$informational:boolean(96)",
+      "elementFileAfter": "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+      "elementNameAfter": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$interimResponse:boolean(95)",
+      "comment": "Rename Variable informational : boolean to interimResponse : boolean in method public send(info MetaData.Response, isHeadRequest boolean, content ByteBuffer, lastContent boolean, callback Callback) : void from class org.eclipse.jetty.http2.server.HttpTransportOverHTTP2"
+    },
+    {
+      "parentCommitId": "d116385d6ab19cf5c76dd65db79ad4a2e7b878b0",
+      "commitId": "448100ff80f59b03af2aacb2ec8c3aded9423f59",
+      "commitTime": 1473156121,
+      "changeType": "introduced",
+      "elementFileBefore": "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+      "elementNameBefore": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$informational:boolean(92)",
+      "elementFileAfter": "jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java",
+      "elementNameAfter": "jetty-http2/http2-server/src/main/java/org.eclipse.jetty.http2.server.HttpTransportOverHTTP2#send(MetaData.Response, boolean, ByteBuffer, boolean, Callback)$informational:boolean(92)",
+      "comment": "new variable"
+    }
+  ]
+}

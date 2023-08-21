@@ -1,0 +1,47 @@
+{
+  "repositoryName": "javaparser",
+  "repositoryWebURL": "https://github.com/javaparser/javaparser.git",
+  "filePath": "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+  "functionName": "isApplicable",
+  "functionKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(ResolvedMethodDeclaration, String, List, TypeSolver, boolean)",
+  "functionStartLine": 71,
+  "variableName": "expectedType",
+  "variableKey": "javaparser-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(ResolvedMethodDeclaration, String, List, TypeSolver, boolean)$expectedType:ResolvedType(79)",
+  "variableStartLine": 79,
+  "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
+  "expectedChanges": [
+    {
+      "parentCommitId": "5d8d0cb7947efcf2282f7d056302dd905f348532",
+      "commitId": "e15d5a8aa84a34917e4ef47135dfc62e58ea7650",
+      "commitTime": 1506665261,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$expectedType:Type(86)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic#isApplicable(ResolvedMethodDeclaration, String, List, TypeSolver, boolean)$expectedType:ResolvedType(80)",
+      "comment": "Change Variable Type expectedType : Type to expectedType : ResolvedType in method private isApplicable(method ResolvedMethodDeclaration, name String, argumentsTypes List<ResolvedType>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean from class com.github.javaparser.symbolsolver.resolution.MethodResolutionLogic"
+    },
+    {
+      "parentCommitId": "b75d0c51157475833e5364ec6df88b2b6fe0db79",
+      "commitId": "82eb44707b620803d424188a1eb8708fcaf093cb",
+      "commitTime": 1476389491,
+      "changeType": "type change",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$expectedType:TypeUsage(50)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$expectedType:Type(50)",
+      "comment": "Change Variable Type expectedType : TypeUsage to expectedType : Type in method private isApplicable(method MethodDeclaration, name String, paramTypes List<Type>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean from class me.tomassetti.symbolsolver.resolution.MethodResolutionLogic"
+    },
+    {
+      "parentCommitId": "407c343559d9633054c6d07b649f8b08e5eba8a3",
+      "commitId": "c48864ccaea00039c2f6a8390d21cffd3fbde054",
+      "commitTime": 1476372360,
+      "changeType": "introduced",
+      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$expectedType:TypeUsage(50)",
+      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$expectedType:TypeUsage(50)",
+      "comment": "Extract Method private isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean extracted from public isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver) : boolean in class me.tomassetti.symbolsolver.resolution.MethodResolutionLogic"
+    }
+  ]
+}

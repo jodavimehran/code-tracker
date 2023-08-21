@@ -1,0 +1,36 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "filePath": "lucene/core/src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+  "functionName": "sync",
+  "functionKey": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler#sync()",
+  "functionStartLine": 446,
+  "variableName": "ie",
+  "variableKey": "lucene/core/src/java/org.apache.lucene.index.ConcurrentMergeScheduler#sync()$ie:InterruptedException(465)",
+  "variableStartLine": 465,
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "expectedChanges": [
+    {
+      "parentCommitId": "c73712d1bb823917c70bf4c0dba754d44733e334",
+      "commitId": "7aa012ca2712cf8204b2b06b58e14e5ac6440f53",
+      "commitTime": 1238267455,
+      "changeType": "rename",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler#sync()$e:InterruptedException(132)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler#sync()$ie:InterruptedException(132)",
+      "comment": "Rename Variable e : InterruptedException to ie : InterruptedException in method public sync() : void from class org.apache.lucene.index.ConcurrentMergeScheduler"
+    },
+    {
+      "parentCommitId": "5f4975211a32ff5e9358c7c2a42023da7aa3e187",
+      "commitId": "3b6b76593900f714a299928c8a324593ecbfc8df",
+      "commitTime": 1192034795,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameBefore": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler#finishThreads()$e:InterruptedException(116)",
+      "elementFileAfter": "src/java/org/apache/lucene/index/ConcurrentMergeScheduler.java",
+      "elementNameAfter": "src/java/org.apache.lucene.index.ConcurrentMergeScheduler#sync()$e:InterruptedException(121)",
+      "comment": "Inline Method private finishThreads() : void inlined to public sync() : void in class org.apache.lucene.index.ConcurrentMergeScheduler"
+    }
+  ]
+}

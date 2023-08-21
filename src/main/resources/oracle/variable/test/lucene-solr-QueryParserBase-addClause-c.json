@@ -1,0 +1,25 @@
+{
+  "repositoryName": "lucene-solr",
+  "repositoryWebURL": "https://github.com/apache/lucene-solr.git",
+  "filePath": "lucene/queryparser/src/java/org/apache/lucene/queryparser/classic/QueryParserBase.java",
+  "functionName": "addClause",
+  "functionKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)",
+  "functionStartLine": 374,
+  "variableName": "c",
+  "variableKey": "lucene/queryparser/src/java/org.apache.lucene.queryparser.classic.QueryParserBase#addClause(List, int, int, Query)$c:BooleanClause(380)",
+  "variableStartLine": 380,
+  "startCommitId": "38bf976cd4b9e324c21664bd7ae3d554df803705",
+  "expectedChanges": [
+    {
+      "parentCommitId": "6242cb3322d921bc76506a1c0fad665a141f0f07",
+      "commitId": "d5a40278bc39ec0c4f300d68c9f5bd4be0fea85b",
+      "commitTime": 1220815360,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameBefore": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$c:BooleanClause(427)",
+      "elementFileAfter": "src/java/org/apache/lucene/queryParser/QueryParser.java",
+      "elementNameAfter": "src/java/org/apache/lucene/queryParser/org.apache.lucene.queryParser.QueryParser#addClause(List, int, int, Query)$c:BooleanClause(427)",
+      "comment": "Extract Method protected addClause(clauses List, conj int, mods int, q Query) : void extracted from protected addClause(clauses Vector, conj int, mods int, q Query) : void in class org.apache.lucene.queryParser.QueryParser"
+    }
+  ]
+}

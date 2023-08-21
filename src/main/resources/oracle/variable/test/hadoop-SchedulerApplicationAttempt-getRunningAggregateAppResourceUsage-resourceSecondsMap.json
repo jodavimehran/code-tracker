@@ -1,12 +1,12 @@
 {
-  "repositoryName": "apache\\hadoop",
+  "repositoryName": "hadoop",
   "repositoryWebURL": "https://github.com/apache/hadoop.git",
   "filePath": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
   "functionName": "getRunningAggregateAppResourceUsage",
   "functionKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()",
   "functionStartLine": 1080,
   "variableName": "resourceSecondsMap",
-  "variableKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap(1086)",
+  "variableKey": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap:Map<String,Long>(1086)",
   "variableStartLine": 1086,
   "startCommitId": "9c3fc3ef2865164aa5f121793ac914cfeb21a181",
   "expectedChanges": [
@@ -14,11 +14,34 @@
       "parentCommitId": "7805deed4896e470ebd2f6bbd1ba9962947c63cd",
       "commitId": "dae65f3bef8ffa34d02a37041f1dfdfeeee91845",
       "commitTime": 1505233151,
+      "changeType": "type change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$memorySeconds:long(1005)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap:Map<String,Long>(1005)",
+      "comment": "Change Variable Type memorySeconds : long to resourceSecondsMap : Map<String,Long> in method private getRunningAggregateAppResourceUsage() : AggregateAppResourceUsage from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "7805deed4896e470ebd2f6bbd1ba9962947c63cd",
+      "commitId": "dae65f3bef8ffa34d02a37041f1dfdfeeee91845",
+      "commitTime": 1505233151,
+      "changeType": "rename",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$memorySeconds:long(1005)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap:Map<String,Long>(1005)",
+      "comment": "Rename Variable memorySeconds : long to resourceSecondsMap : Map<String,Long> in method private getRunningAggregateAppResourceUsage() : AggregateAppResourceUsage from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "5ec7fcd9dd6bb86858c6e2583321bb9a615bd392",
+      "commitId": "83be3ad44484bf8a24cb90de4b9c26ab59d226a8",
+      "commitTime": 1410398454,
       "changeType": "introduced",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap:Map<String,Long>(1005)",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$memorySeconds:long(522)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$resourceSecondsMap:Map<String,Long>(1005)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#getRunningAggregateAppResourceUsage()$memorySeconds:long(522)",
+      "comment": "added with method"
     }
   ]
 }
