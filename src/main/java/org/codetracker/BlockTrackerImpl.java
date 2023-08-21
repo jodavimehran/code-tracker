@@ -336,15 +336,14 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
                         if (matchedBlockFromSourceMethod == null) {
                             blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
+                            blocks.add(blockBefore);
                         }
                         else {
                             VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
-                            blockChangeHistory.addChange(blockBefore, rightBlock, ChangeFactory.forBlock(Change.Type.INTRODUCED)
-                                    .refactoring(extractOperationRefactoring).codeElement(rightBlock).hookedElement(Block.of(matchedBlockFromSourceMethod, sourceMethod)));
-                            blockBefore.setAdded(true);
+                            Block leftBlock = Block.of(matchedBlockFromSourceMethod, sourceMethod);
+                            blocks.add(leftBlock);
                         }
-                        blocks.add(blockBefore);
                         blockChangeHistory.connectRelatedNodes();
                         return true;
                     }
