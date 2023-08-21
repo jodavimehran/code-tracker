@@ -1,0 +1,36 @@
+{
+  "repositoryName": "jetty.project",
+  "repositoryWebURL": "https://github.com/eclipse/jetty.project.git",
+  "filePath": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+  "functionName": "escape",
+  "functionKey": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)",
+  "functionStartLine": 573,
+  "variableName": "string",
+  "variableKey": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)$string:String(573)",
+  "variableStartLine": 573,
+  "startCommitId": "fc5dd874f3deda71e6cd42af994a5af5cb6be4af",
+  "expectedChanges": [
+    {
+      "parentCommitId": "19f96a84ed79fd72dae280f1042733d294b41daf",
+      "commitId": "19368f398576bcd1959ab20c8a09b98a4ed30c42",
+      "commitTime": 1272366299,
+      "changeType": "rename",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(StringBuilder, String)$msg:String(255)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#escape(StringBuilder, String)$string:String(206)",
+      "comment": "Rename Parameter msg : String to string : String in method private escape(builder StringBuilder, string String) : void from class org.eclipse.jetty.util.log.StdErrLog"
+    },
+    {
+      "parentCommitId": "95830517094ca273f4e1025439e134d89587fda4",
+      "commitId": "b5d16898e5af5a1590abf01c8887fbf5241eda58",
+      "commitTime": 1255633488,
+      "changeType": "introduced",
+      "elementFileBefore": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameBefore": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)$msg:String(268)",
+      "elementFileAfter": "jetty-util/src/main/java/org/eclipse/jetty/util/log/StdErrLog.java",
+      "elementNameAfter": "jetty-util/src/main/java/org.eclipse.jetty.util.log.StdErrLog#format(String)$msg:String(268)",
+      "comment": "added with method"
+    }
+  ]
+}

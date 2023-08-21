@@ -1,0 +1,47 @@
+{
+  "repositoryName": "checkstyle",
+  "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
+  "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+  "functionName": "checkThrowsTags",
+  "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)",
+  "functionStartLine": 867,
+  "variableName": "exceptionInfo",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$exceptionInfo:null(916)",
+  "variableStartLine": 916,
+  "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+  "expectedChanges": [
+    {
+      "parentCommitId": "25badc206f9b8fdce3391992cec951235250a3d2",
+      "commitId": "aab0718232e060bd8f289770ab81780b3a2705a2",
+      "commitTime": 1449446571,
+      "changeType": "rename",
+      "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$ei:ExceptionInfo(915)",
+      "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$exceptionInfo:ExceptionInfo(915)",
+      "comment": "Rename Variable ei : ExceptionInfo to exceptionInfo : ExceptionInfo in method private checkThrowsTags(tags List<JavadocTag>, throwsList List<ExceptionInfo>, reportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    },
+    {
+      "parentCommitId": "f1afaf83f39b83cc3bd07a2388448b262652a76b",
+      "commitId": "e50e1fcd1c17ba1f73d11df38382907cc163a1d1",
+      "commitTime": 1197714527,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$ei:ExceptionInfo(793)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/javadoc/JavadocMethodCheck.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck#checkThrowsTags(List, List, boolean)$ei:ExceptionInfo(787)",
+      "comment": "Remove Variable Modifier final in variable ei : ExceptionInfo in method private checkThrowsTags(aTags List<JavadocTag>, aThrows List<ExceptionInfo>, aReportExpectedTags boolean) : void from class com.puppycrawl.tools.checkstyle.checks.javadoc.JavadocMethodCheck"
+    },
+    {
+      "parentCommitId": "205cbab8af785b1cddb9c4123ff3fa8b63dcbe1c",
+      "commitId": "4e1f8ef98e9e43d6101a00bdecd040377472f852",
+      "commitTime": 1052504065,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocMethodCheck.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck#checkThrowsTags(List, List)$ei:ExceptionInfo(741)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/checks/JavadocMethodCheck.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.checks.JavadocMethodCheck#checkThrowsTags(List, List)$ei:ExceptionInfo(741)",
+      "comment": "new variable"
+    }
+  ]
+}

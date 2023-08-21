@@ -1,0 +1,58 @@
+{
+  "repositoryName": "okhttp",
+  "repositoryWebURL": "https://github.com/square/okhttp.git",
+  "filePath": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+  "functionName": "headers",
+  "functionKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)",
+  "functionStartLine": 644,
+  "variableName": "newStream",
+  "variableKey": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)$newStream:Http2Stream(665)",
+  "variableStartLine": 665,
+  "startCommitId": "5224f3045ba9b171fce521777edf389f9206173c",
+  "expectedChanges": [
+    {
+      "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
+      "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
+      "commitTime": 1468102159,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.framed.FramedConnection.Reader#headers(boolean, int, int, List)$newStream:FramedStream(618)",
+      "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java",
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Connection.ReaderRunnable#headers(boolean, int, int, List)$newStream:Http2Stream(618)",
+      "comment": "Change Variable Type newStream : FramedStream to newStream : Http2Stream in method public headers(inFinished boolean, streamId int, associatedStreamId int, headerBlock List<Header>) : void from class okhttp3.internal.http2.Http2Connection.ReaderRunnable"
+    },
+    {
+      "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
+      "commitId": "c753d2e41ba667f9b5a31451a16ecbaecdc65d80",
+      "commitTime": 1434580812,
+      "changeType": "type change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, List, HeadersMode)$newStream:SpdyStream(640)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.framed.FramedConnection.Reader#headers(boolean, boolean, int, int, List, HeadersMode)$newStream:FramedStream(641)",
+      "comment": "Change Variable Type newStream : SpdyStream to newStream : FramedStream in method public headers(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, headerBlock List<Header>, headersMode HeadersMode) : void from class com.squareup.okhttp.internal.framed.FramedConnection.Reader"
+    },
+    {
+      "parentCommitId": "dd82416bc5b6c45d4aeecd6acdc0f178eb4ac841",
+      "commitId": "a91124b6d4e2eb1bb3c71a7a8ddff7d40b7db55a",
+      "commitTime": 1378058240,
+      "changeType": "rename",
+      "elementFileBefore": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameBefore": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#synStream(boolean, boolean, int, int, int, int, List)$synStream:SpdyStream(461)",
+      "elementFileAfter": "okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java",
+      "elementNameAfter": "okhttp-protocols/src/main/java/com.squareup.okhttp.internal.spdy.SpdyConnection.Reader#headers(boolean, boolean, int, int, int, List, HeadersMode)$newStream:SpdyStream(483)",
+      "comment": "Rename Variable synStream : SpdyStream to newStream : SpdyStream in method public headers(outFinished boolean, inFinished boolean, streamId int, associatedStreamId int, priority int, nameValueBlock List<String>, headersMode HeadersMode) : void from class com.squareup.okhttp.internal.spdy.SpdyConnection.Reader"
+    },
+    {
+      "parentCommitId": "277fa12c5ef07be2502aad54b94e13c6db7a853a",
+      "commitId": "961d797e9c84557cdf56f7036558e72a54c578f6",
+      "commitTime": 1349021154,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameBefore": "src/main/java/libcore.net.spdy.SpdyConnection.Reader#synStream(int, int, int, int, List)$synStream:SpdyStream(321)",
+      "elementFileAfter": "src/main/java/libcore/net/spdy/SpdyConnection.java",
+      "elementNameAfter": "src/main/java/libcore.net.spdy.SpdyConnection.Reader#synStream(int, int, int, int, List)$synStream:SpdyStream(321)",
+      "comment": "added with method"
+    }
+  ]
+}

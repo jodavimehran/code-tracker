@@ -1,26 +1,15 @@
 {
-  "repositoryName": "eclipse\\jgit",
+  "repositoryName": "jgit",
   "repositoryWebURL": "https://github.com/eclipse/jgit.git",
   "filePath": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
   "functionName": "findObjectsToPack",
   "functionKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)",
   "functionStartLine": 1775,
   "variableName": "countingMonitor",
-  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$countingMonitor(1775)",
+  "variableKey": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set, Set)$countingMonitor:ProgressMonitor(1775)",
   "variableStartLine": 1775,
   "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
   "expectedChanges": [
-    {
-      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
-      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
-      "commitTime": 1452645032,
-      "changeType": "modifier change",
-      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$countingMonitor:ProgressMonitor(1600)",
-      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$countingMonitor:ProgressMonitor(1608)",
-      "comment": "Remove Parameter Modifier final in parameter countingMonitor : ProgressMonitor in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
-    },
     {
       "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
       "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
@@ -31,6 +20,17 @@
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$countingMonitor:ProgressMonitor(1608)",
       "comment": "Add Parameter Annotation @NonNull in parameter countingMonitor : ProgressMonitor in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "40051505d7aaccfe2efaf5f3022f1d99a3976554",
+      "commitId": "4e650c0d76b716c0e9cb3592d30def9e609066c1",
+      "commitTime": 1452645032,
+      "changeType": "modifier change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$countingMonitor:ProgressMonitor(1600)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#findObjectsToPack(ProgressMonitor, ObjectWalk, Set, Set)$countingMonitor:ProgressMonitor(1608)",
+      "comment": "Remove Parameter Modifier final in parameter countingMonitor : ProgressMonitor in method private findObjectsToPack(countingMonitor ProgressMonitor, walker ObjectWalk, want Set<? extends ObjectId>, have Set<? extends ObjectId>) : void from class org.eclipse.jgit.internal.storage.pack.PackWriter"
     },
     {
       "parentCommitId": "8f63dface2e08b228cdeb3bef3f93458eab9ce14",

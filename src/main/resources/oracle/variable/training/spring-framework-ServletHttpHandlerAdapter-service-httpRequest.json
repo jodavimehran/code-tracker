@@ -1,12 +1,12 @@
 {
-  "repositoryName": "spring-projects\\spring-framework",
+  "repositoryName": "spring-framework",
   "repositoryWebURL": "https://github.com/spring-projects/spring-framework.git",
   "filePath": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
   "functionName": "service",
   "functionKey": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)",
-  "functionStartLine": 158,
+  "functionStartLine": 157,
   "variableName": "httpRequest",
-  "variableKey": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest(169)",
+  "variableKey": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest:ServletServerHttpRequest(169)",
   "variableStartLine": 169,
   "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
   "expectedChanges": [
@@ -25,21 +25,23 @@
       "parentCommitId": "70f14c14c8951b56059552554f51170c8a089b76",
       "commitId": "5a2906979816ce1268a8dfe56c5f0a89ad720b99",
       "commitTime": 1481747698,
-      "changeType": "rename",
+      "changeType": "type change",
       "elementFileBefore": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
       "elementNameBefore": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$request:ServletServerHttpRequest(96)",
       "elementFileAfter": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest:ServerHttpRequest(101)"
+      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest:ServerHttpRequest(101)",
+      "comment": "Change Variable Type request : ServletServerHttpRequest to httpRequest : ServerHttpRequest in method public service(request ServletRequest, response ServletResponse) : void from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
     },
     {
       "parentCommitId": "70f14c14c8951b56059552554f51170c8a089b76",
       "commitId": "5a2906979816ce1268a8dfe56c5f0a89ad720b99",
       "commitTime": 1481747698,
-      "changeType": "type change",
+      "changeType": "rename",
       "elementFileBefore": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
       "elementNameBefore": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$request:ServletServerHttpRequest(96)",
       "elementFileAfter": "spring-web/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest:ServerHttpRequest(101)"
+      "elementNameAfter": "spring-web/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(ServletRequest, ServletResponse)$httpRequest:ServerHttpRequest(101)",
+      "comment": "Rename Variable request : ServletServerHttpRequest to httpRequest : ServerHttpRequest in method public service(request ServletRequest, response ServletResponse) : void from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
     },
     {
       "parentCommitId": "869f6bef4086fe66d642a7e4f841c5716e6e45a3",
@@ -49,7 +51,8 @@
       "elementFileBefore": "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
       "elementNameBefore": "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(HttpServletRequest, HttpServletResponse)$httpRequest:ServletServerHttpRequest(59)",
       "elementFileAfter": "spring-web-reactive/src/main/java/org/springframework/http/server/reactive/ServletHttpHandlerAdapter.java",
-      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(HttpServletRequest, HttpServletResponse)$request:ServletServerHttpRequest(71)"
+      "elementNameAfter": "spring-web-reactive/src/main/java/org.springframework.http.server.reactive.ServletHttpHandlerAdapter#service(HttpServletRequest, HttpServletResponse)$request:ServletServerHttpRequest(71)",
+      "comment": "Rename Variable httpRequest : ServletServerHttpRequest to request : ServletServerHttpRequest in method protected service(servletRequest HttpServletRequest, servletResponse HttpServletResponse) : void from class org.springframework.http.server.reactive.ServletHttpHandlerAdapter"
     },
     {
       "parentCommitId": "382c98f9680fab9a0c2ad50de18e3385f9cba5c1",

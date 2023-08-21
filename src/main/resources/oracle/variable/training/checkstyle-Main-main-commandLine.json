@@ -1,12 +1,12 @@
 {
-  "repositoryName": "checkstyle\\checkstyle",
+  "repositoryName": "checkstyle",
   "repositoryWebURL": "https://github.com/checkstyle/checkstyle.git",
   "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
   "functionName": "main",
   "functionKey": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])",
-  "functionStartLine": 181,
+  "functionStartLine": 174,
   "variableName": "commandLine",
-  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$commandLine(190)",
+  "variableKey": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$commandLine:CommandLine(190)",
   "variableStartLine": 190,
   "startCommitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
   "expectedChanges": [
@@ -19,7 +19,7 @@
       "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$commandLine:CommandLine(72)",
       "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/Main.java",
       "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.Main#main(String[])$commandLine:CommandLine(72)",
-      "comment": "new variable"
+      "comment": "Extract Variable commandLine : CommandLine in method public main(args String...) : void from class com.puppycrawl.tools.checkstyle.Main"
     }
   ]
 }

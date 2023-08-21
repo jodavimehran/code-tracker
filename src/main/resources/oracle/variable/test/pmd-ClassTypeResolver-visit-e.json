@@ -1,0 +1,47 @@
+{
+  "repositoryName": "pmd",
+  "repositoryWebURL": "https://github.com/pmd/pmd.git",
+  "filePath": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
+  "functionName": "visit",
+  "functionKey": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)",
+  "functionStartLine": 185,
+  "variableName": "e",
+  "variableKey": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:ClassNotFoundException|NoClassDefFoundError(202)",
+  "variableStartLine": 202,
+  "startCommitId": "d528dcd5d45582229ab3410deb7c40b2143d015d",
+  "expectedChanges": [
+    {
+      "parentCommitId": "d22c99b28047c989f5f69f61f2816b16d8347291",
+      "commitId": "d6213b79b1788ded52ce1b653ea6d516c6c5d031",
+      "commitTime": 1521928477,
+      "changeType": "type change",
+      "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
+      "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:ClassNotFoundException(206)",
+      "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:ClassNotFoundException|NoClassDefFoundError(209)",
+      "comment": "Change Variable Type e : ClassNotFoundException to e : ClassNotFoundException|NoClassDefFoundError in method public visit(node ASTCompilationUnit, data Object) : Object from class net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver"
+    },
+    {
+      "parentCommitId": "1b4aef4e56a27d4f13aed630d4e91cc8d36d2066",
+      "commitId": "a708221106c1084c8aef235b14c39ad0f2c6bb1a",
+      "commitTime": 1191507050,
+      "changeType": "type change",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:NoClassDefFoundError(98)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:ClassNotFoundException(96)",
+      "comment": "Change Variable Type e : NoClassDefFoundError to e : ClassNotFoundException in method public visit(node ASTCompilationUnit, data Object) : Object from class net.sourceforge.pmd.typeresolution.ClassTypeResolver"
+    },
+    {
+      "parentCommitId": "85b2f45b0bb75d535acb1562b91fa49b074d531f",
+      "commitId": "33a6d45cd1953696b60a2e1abbb92738bc136ffc",
+      "commitTime": 1169083435,
+      "changeType": "introduced",
+      "elementFileBefore": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
+      "elementNameBefore": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:NoClassDefFoundError(49)",
+      "elementFileAfter": "pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java",
+      "elementNameAfter": "pmd/src/net.sourceforge.pmd.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$e:NoClassDefFoundError(49)",
+      "comment": "new variable"
+    }
+  ]
+}

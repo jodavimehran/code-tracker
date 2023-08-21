@@ -1,0 +1,36 @@
+{
+  "repositoryName": "hibernate-orm",
+  "repositoryWebURL": "https://github.com/hibernate/hibernate-orm.git",
+  "filePath": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+  "functionName": "configure",
+  "functionKey": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)",
+  "functionStartLine": 296,
+  "variableName": "revisionListenerClass",
+  "variableKey": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(MetadataImplementor, ReflectionManager)$revisionListenerClass:Class<?extendsRevisionListener>(353)",
+  "variableStartLine": 353,
+  "startCommitId": "8bd79b29cfa7b2d539a746dc356d60b66e1e596b",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ad1d1ab8b4fa166de59bfcfbe57622e71b2448f9",
+      "commitId": "364a47f2c746a5eeb1642102580a9daa8bc27fc9",
+      "commitTime": 1367506881,
+      "changeType": "modifier change",
+      "elementFileBefore": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+      "elementNameBefore": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$revisionListenerClass:Class<?extendsRevisionListener>(298)",
+      "elementFileAfter": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/internal/RevisionInfoConfiguration.java",
+      "elementNameAfter": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.internal.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$revisionListenerClass:Class<?extendsRevisionListener>(371)",
+      "comment": "Add Variable Modifier final in variable revisionListenerClass : Class<? extends RevisionListener> in method public configure(cfg Configuration, reflectionManager ReflectionManager) : RevisionInfoConfigurationResult from class org.hibernate.envers.configuration.internal.RevisionInfoConfiguration"
+    },
+    {
+      "parentCommitId": "e14e47968f8238192f2abf291ac549c55dcfd708",
+      "commitId": "45f3ced6daf96f1a697f350e134512562b48d3fd",
+      "commitTime": 1317322207,
+      "changeType": "introduced",
+      "elementFileBefore": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameBefore": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$revisionListenerClass:Class<?extendsRevisionListener>(290)",
+      "elementFileAfter": "hibernate-envers/src/main/java/org/hibernate/envers/configuration/RevisionInfoConfiguration.java",
+      "elementNameAfter": "hibernate-envers/src/main/java/org.hibernate.envers.configuration.RevisionInfoConfiguration#configure(Configuration, ReflectionManager)$revisionListenerClass:Class<?extendsRevisionListener>(290)",
+      "comment": "Extract Variable revisionListenerClass : Class<? extends RevisionListener> in method public configure(cfg Configuration, reflectionManager ReflectionManager) : RevisionInfoConfigurationResult from class org.hibernate.envers.configuration.RevisionInfoConfiguration"
+    }
+  ]
+}

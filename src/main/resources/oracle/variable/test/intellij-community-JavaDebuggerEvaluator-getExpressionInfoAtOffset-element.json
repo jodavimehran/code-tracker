@@ -1,12 +1,12 @@
 {
-  "repositoryName": "JetBrains\\intellij-community",
+  "repositoryName": "intellij-community",
   "repositoryWebURL": "https://github.com/JetBrains/intellij-community.git",
   "filePath": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
   "functionName": "getExpressionInfoAtOffset",
   "functionKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)",
-  "functionStartLine": 164,
+  "functionStartLine": 162,
   "variableName": "element",
-  "variableKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$element(176)",
+  "variableKey": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$element:PsiElement(176)",
   "variableStartLine": 176,
   "startCommitId": "ecb1bb9d4d484ae63ee77f8ad45bdce154db9356",
   "expectedChanges": [
@@ -19,7 +19,7 @@
       "elementNameBefore": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$element:PsiElement(155)",
       "elementFileAfter": "java/debugger/impl/src/com/intellij/debugger/engine/JavaDebuggerEvaluator.java",
       "elementNameAfter": "java/debugger/impl/src/com.intellij.debugger.engine.JavaDebuggerEvaluator#getExpressionInfoAtOffset(Project, Document, int, boolean)$element:PsiElement(155)",
-      "comment": "new variable"
+      "comment": "Extract Variable element : PsiElement in method public getExpressionInfoAtOffset(project Project, document Document, offset int, sideEffectsAllowed boolean) : ExpressionInfo from class com.intellij.debugger.engine.JavaDebuggerEvaluator"
     }
   ]
 }
