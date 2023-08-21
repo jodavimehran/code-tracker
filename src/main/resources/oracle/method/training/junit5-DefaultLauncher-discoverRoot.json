@@ -48,8 +48,8 @@
       "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)"
     },
     {
-      "parentCommitId": "2eef1f0dbbcd9a3fad2d00a65b37a39d97a079cb",
-      "commitId": "8ca326a0b7a664a38ed489bd4a69470b9391063d",
+      "parentCommitId": "1cea403ff64bb5afe8831874b8694dcf9b647afb",
+      "commitId": "c49b423f2d1c723a3724597049810416a91f5cba",
       "commitTime": 1492252020,
       "changeType": "body change",
       "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
@@ -58,8 +58,8 @@
       "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)"
     },
     {
-      "parentCommitId": "1cea403ff64bb5afe8831874b8694dcf9b647afb",
-      "commitId": "c49b423f2d1c723a3724597049810416a91f5cba",
+      "parentCommitId": "2eef1f0dbbcd9a3fad2d00a65b37a39d97a079cb",
+      "commitId": "8ca326a0b7a664a38ed489bd4a69470b9391063d",
       "commitTime": 1492252020,
       "changeType": "body change",
       "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
@@ -95,7 +95,8 @@
       "elementFileBefore": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)"
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(LauncherDiscoveryRequest, String)",
+      "comment": "Change Parameter Type discoveryRequest : TestDiscoveryRequest to discoveryRequest : LauncherDiscoveryRequest in method private discoverRoot(discoveryRequest LauncherDiscoveryRequest, phase String) : Root from class org.junit.platform.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "e5b7300ba40a0420e310d463a63ea4c10cc8d9b9",
@@ -105,7 +106,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-platform-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)"
+      "elementNameAfter": "junit-platform-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
+      "comment": "Move Source Folder junit-launcher to junit-platform-launcher"
     },
     {
       "parentCommitId": "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
@@ -115,7 +117,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/platform/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.platform.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
+      "comment": "Move Class org.junit.gen5.launcher.core.DefaultLauncher moved to org.junit.platform.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "d4fca2b705b1f05312a59e71d37853e15632c437",
@@ -125,13 +128,14 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/core/DefaultLauncher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.core.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
+      "comment": "Move Class org.junit.gen5.launcher.main.DefaultLauncher moved to org.junit.gen5.launcher.core.DefaultLauncher"
     },
     {
       "parentCommitId": "59d95c759888eccefa5f1bf21f52d68641ba769a",
       "commitId": "c1f6fc7c8a7dbdf120b7447c96c9b81751b8a96b",
       "commitTime": 1465065689,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
@@ -141,7 +145,7 @@
       "parentCommitId": "59d95c759888eccefa5f1bf21f52d68641ba769a",
       "commitId": "c1f6fc7c8a7dbdf120b7447c96c9b81751b8a96b",
       "commitTime": 1465065689,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.DefaultLauncher#discoverRoot(TestDiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/DefaultLauncher.java",
@@ -267,7 +271,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(TestDiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(TestDiscoveryRequest, String)",
+      "comment": "Change Parameter Type discoveryRequest : DiscoveryRequest to discoveryRequest : TestDiscoveryRequest in method private discoverRoot(discoveryRequest TestDiscoveryRequest, phase String) : Root from class org.junit.gen5.launcher.main.Launcher"
     },
     {
       "parentCommitId": "93397066597b7ca8af35a77b9559bdc079d4f5d5",
@@ -277,7 +282,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/main/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(DiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.main.Launcher#discoverRoot(DiscoveryRequest, String)",
+      "comment": "Move Class org.junit.gen5.launcher.Launcher moved to org.junit.gen5.launcher.main.Launcher"
     },
     {
       "parentCommitId": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
@@ -297,17 +303,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)"
-    },
-    {
-      "parentCommitId": "763cf502451c5053cd72248aac3561cd1530b719",
-      "commitId": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
-      "commitTime": 1453129027,
-      "changeType": "body change",
-      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
-      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)",
+      "comment": "Change Return Type RootTestDescriptor to Root in method private discoverRoot(discoveryRequest DiscoveryRequest, phase String) : Root from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "763cf502451c5053cd72248aac3561cd1530b719",
@@ -317,23 +314,35 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)",
+      "comment": "Rename Method private discoverRootDescriptor(discoveryRequest DiscoveryRequest, phase String) : RootTestDescriptor renamed to private discoverRoot(discoveryRequest DiscoveryRequest, phase String) : Root in class org.junit.gen5.launcher.Launcher"
+    },
+    {
+      "parentCommitId": "763cf502451c5053cd72248aac3561cd1530b719",
+      "commitId": "9da25e126d174ba6e6ae02596afa538a7cafe17b",
+      "commitTime": 1453129027,
+      "changeType": "body change",
+      "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
+      "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
+      "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRoot(DiscoveryRequest, String)"
     },
     {
       "parentCommitId": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
       "commitId": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
       "commitTime": 1453090240,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
+      "comment": "Rename Parameter specification : DiscoveryRequest to discoveryRequest : DiscoveryRequest in method private discoverRootDescriptor(discoveryRequest DiscoveryRequest, phase String) : RootTestDescriptor from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "82ff8d2c1bf2426f25b7ac2d9617fa25a2a312b5",
       "commitId": "9162134ee3dfc3e80a45d08e32fdbf8ed06e87be",
       "commitTime": 1453090240,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
@@ -377,7 +386,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification, String)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(DiscoveryRequest, String)",
+      "comment": "Change Parameter Type specification : TestPlanSpecification to specification : DiscoveryRequest in method private discoverRootDescriptor(specification DiscoveryRequest, phase String) : RootTestDescriptor from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "e4f68f0dd5d8a545d8509fbca0bb458fbe665616",
@@ -407,7 +417,8 @@
       "elementFileBefore": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
       "elementNameBefore": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification)",
       "elementFileAfter": "junit-launcher/src/main/java/org/junit/gen5/launcher/Launcher.java",
-      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification, String)"
+      "elementNameAfter": "junit-launcher/src/main/java/org.junit.gen5.launcher.Launcher#discoverRootDescriptor(TestPlanSpecification, String)",
+      "comment": "Add Parameter phase : String in method private discoverRootDescriptor(specification TestPlanSpecification, phase String) : RootTestDescriptor from class org.junit.gen5.launcher.Launcher"
     },
     {
       "parentCommitId": "ff333a234170a4befd04909d03d7d8953ff5a8c1",

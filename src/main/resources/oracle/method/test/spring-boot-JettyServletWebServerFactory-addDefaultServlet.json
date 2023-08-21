@@ -15,7 +15,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/embedded/jetty/JettyServletWebServerFactory.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/embedded/jetty/JettyServletWebServerFactory.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Source Folder spring-boot to spring-boot-project/spring-boot"
     },
     {
       "parentCommitId": "7b388e5865c82701f28fb1bf126f44a29b469798",
@@ -25,7 +26,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/embedded/jetty/JettyServletWebServerFactory.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move And Rename Class org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory moved and renamed to org.springframework.boot.web.embedded.jetty.JettyServletWebServerFactory"
     },
     {
       "parentCommitId": "2ad4c47d18a40f95ccb0972d3ed494850f214e9f",
@@ -35,7 +37,19 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Add Method Modifier final in method protected addDefaultServlet(context WebAppContext) : void from class org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
+    },
+    {
+      "parentCommitId": "2ad4c47d18a40f95ccb0972d3ed494850f214e9f",
+      "commitId": "216e93fc5c0ce4be2e97de5870b1342bd3104d61",
+      "commitTime": 1402339348,
+      "changeType": "modifier change",
+      "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
+      "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Change Method Access Modifier private to protected in method protected addDefaultServlet(context WebAppContext) : void from class org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
     },
     {
       "parentCommitId": "2ad4c47d18a40f95ccb0972d3ed494850f214e9f",
@@ -55,7 +69,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/strap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Class org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory moved to org.springframework.boot.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
     },
     {
       "parentCommitId": "06ddd92438d7d2e64f2c54da5932efbd4b47f1b9",
@@ -65,7 +80,8 @@
       "elementFileBefore": "spring-boot-strap/src/main/java/org/springframework/boot/strap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/strap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Source Folder spring-boot-strap to spring-boot"
     },
     {
       "parentCommitId": "b2873fbc2d55c007d7fbc882bbcff701173b1887",
@@ -75,7 +91,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-boot-strap/src/main/java/org/springframework/boot/strap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-boot-strap/src/main/java/org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Class org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory moved to org.springframework.boot.strap.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
     },
     {
       "parentCommitId": "cd51f357a3cfae04954ac6dce5134c3e2a6ad241",
@@ -85,7 +102,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/zero/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Class org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory moved to org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
     },
     {
       "parentCommitId": "9fde0a3715d00c1a3fc968b856db036ca4a8845c",
@@ -95,7 +113,8 @@
       "elementFileBefore": "spring-zero-core/src/main/java/org/springframework/zero/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/zero/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Source Folder spring-zero-core to spring-bootstrap"
     },
     {
       "parentCommitId": "d039822064b3ed1c16973428fc4b477f8b86048e",
@@ -105,7 +124,8 @@
       "elementFileBefore": "spring-zero-core/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-zero-core/src/main/java/org/springframework/zero/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Class org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory moved to org.springframework.zero.context.embedded.jetty.JettyEmbeddedServletContainerFactory"
     },
     {
       "parentCommitId": "3996353e3513c86ca74f983f09c8491712ca48cf",
@@ -115,7 +135,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-zero-core/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-zero-core/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "Move Source Folder spring-bootstrap to spring-zero-core"
     },
     {
       "parentCommitId": "80b151e2b37a66a8fe7eb2d5bac2f7aa766d4ead",
@@ -125,7 +146,8 @@
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/context/embedded/jetty/JettyEmbeddedServletContainerFactory.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.context.embedded.jetty.JettyEmbeddedServletContainerFactory#addDefaultServlet(WebAppContext)",
+      "comment": "added with new class"
     }
   ]
 }

@@ -15,7 +15,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "comment": "Move Source Folder core to server"
     },
     {
       "parentCommitId": "2adc2a19719eeb5781a49e00fbc23f86128103bf",
@@ -25,7 +26,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/action/cat/RestTable.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.cat.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "comment": "Move Class org.elasticsearch.rest.action.support.RestTable moved to org.elasticsearch.rest.action.cat.RestTable"
     },
     {
       "parentCommitId": "7ccc193a666e2ae888e7ac93d677a2143e5e07c3",
@@ -35,7 +37,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "comment": "Move Source Folder src to core/src"
     },
     {
       "parentCommitId": "ceb0782ebd4d354a8ebc10fd638ee666eebf5483",
@@ -55,7 +58,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
       "elementFileAfter": "src/main/java/org/elasticsearch/rest/action/support/RestTable.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)"
+      "elementNameAfter": "src/main/java/org.elasticsearch.rest.action.support.RestTable#expandHeadersFromRequest(Table, RestRequest)",
+      "comment": "new method"
     }
   ]
 }

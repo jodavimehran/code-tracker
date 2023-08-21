@@ -75,7 +75,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#describeChild(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#describeChild(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.runners.BlockJUnit4ClassRunner#describeChild(FrameworkMethod)",
+      "comment": "Move Class org.junit.internal.runners.BlockJUnit4ClassRunner moved to org.junit.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "f49fb25b6fbffcc7a68b28824ed3856ffa9d6fdd",
@@ -85,7 +86,8 @@
       "elementFileBefore": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#describeChild(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.BlockJUnit4ClassRunner#describeChild(FrameworkMethod)",
+      "comment": "Move Method protected describeChild(method FrameworkMethod) : Description from class org.junit.internal.runners.JUnit4ClassRunner to protected describeChild(method FrameworkMethod) : Description from class org.junit.internal.runners.BlockJUnit4ClassRunner"
     },
     {
       "parentCommitId": "77ecd2119d3124b72935038effffadf7b98eccd9",
@@ -105,7 +107,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)",
       "elementFileAfter": "src/main/java/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)"
+      "elementNameAfter": "src/main/java/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)",
+      "comment": "Move Source Folder src to src/main/java"
     },
     {
       "parentCommitId": "53e85db0bec2e03bf93afc73dced9b4a0b231644",
@@ -115,7 +118,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(FrameworkMethod)",
+      "comment": "Change Parameter Type method : TestMethod to method : FrameworkMethod in method protected describeChild(method FrameworkMethod) : Description from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "1d982e5310d57fe0ea4b63e05f20215ee3add1fe",
@@ -125,7 +129,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(TestMethod)",
+      "comment": "Rename Method protected methodDescription(method TestMethod) : Description renamed to protected describeChild(method TestMethod) : Description in class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "1d982e5310d57fe0ea4b63e05f20215ee3add1fe",
@@ -135,7 +140,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(TestMethod)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#describeChild(TestMethod)",
+      "comment": "Add Method Annotation @Override in method protected describeChild(method TestMethod) : Description from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "576377b9ad44028dc84c2f8487cfe8dbccb8c252",
@@ -155,7 +161,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(Method)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(TestMethod)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(TestMethod)",
+      "comment": "Change Parameter Type method : Method to method : TestMethod in method protected methodDescription(method TestMethod) : Description from class org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "57302f0df76fba83ba72a676bd660efeb5881af6",
@@ -195,7 +202,8 @@
       "elementFileBefore": "src/org/junit/internal/runners/TestClassMethodsRunner.java",
       "elementNameBefore": "src/org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)",
       "elementFileAfter": "src/org/junit/internal/runners/JUnit4ClassRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(Method)"
+      "elementNameAfter": "src/org.junit.internal.runners.JUnit4ClassRunner#methodDescription(Method)",
+      "comment": "Rename Class org.junit.internal.runners.TestClassMethodsRunner renamed to org.junit.internal.runners.JUnit4ClassRunner"
     },
     {
       "parentCommitId": "db89759c22060a89f6750e2e92ce93072eace561",
@@ -215,7 +223,8 @@
       "elementFileBefore": "org/junit/internal/runners/TestClassMethodsRunner.java",
       "elementNameBefore": "org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)",
       "elementFileAfter": "src/org/junit/internal/runners/TestClassMethodsRunner.java",
-      "elementNameAfter": "src/org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)"
+      "elementNameAfter": "src/org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)",
+      "comment": "Move Source Folder org to src/org"
     },
     {
       "parentCommitId": "a0f0ee1b3f72d9361eb09b3a25156c69a748aa47",
@@ -225,7 +234,8 @@
       "elementFileBefore": "org/junit/internal/runners/TestClassMethodsRunner.java",
       "elementNameBefore": "org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)",
       "elementFileAfter": "org/junit/internal/runners/TestClassMethodsRunner.java",
-      "elementNameAfter": "org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)"
+      "elementNameAfter": "org.junit.internal.runners.TestClassMethodsRunner#methodDescription(Method)",
+      "comment": "added with new class"
     }
   ]
 }

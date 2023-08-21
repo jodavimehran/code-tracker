@@ -41,21 +41,12 @@
       "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
       "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
       "commitTime": 1492639846,
-      "changeType": "body change",
+      "changeType": "rename",
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
-    },
-    {
-      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
-      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
-      "commitTime": 1492639846,
-      "changeType": "moved",
-      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
-      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "comment": "Move And Rename Method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend to private executeWork(work LuceneWork, progressMonitor IndexingMonitor) : void from class org.hibernate.search.backend.impl.StreamingOperationDispatcher"
     },
     {
       "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
@@ -65,13 +56,36 @@
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "comment": "Remove Parameter forceAsync : boolean in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
     },
     {
       "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
       "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
       "commitTime": 1492639846,
-      "changeType": "rename",
+      "changeType": "parameter change",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "comment": "Add Parameter progressMonitor : IndexingMonitor in method private executeWork(work LuceneWork, progressMonitor IndexingMonitor) : void from class org.hibernate.search.backend.impl.StreamingOperationDispatcher"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "moved",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.StreamingOperationDispatcher#executeWork(LuceneWork, IndexingMonitor)",
+      "comment": "Move And Rename Method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batch.DefaultBatchBackend to private executeWork(work LuceneWork, progressMonitor IndexingMonitor) : void from class org.hibernate.search.backend.impl.StreamingOperationDispatcher"
+    },
+    {
+      "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
+      "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
+      "commitTime": 1492639846,
+      "changeType": "documentation change",
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
@@ -81,7 +95,7 @@
       "parentCommitId": "d2b79ca1bd3cbafff57bb4a349c31d170f384e50",
       "commitId": "a3097e1b94884633b6fd72b9aa9e0a575ccb2a2a",
       "commitTime": 1492639846,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java",
@@ -145,7 +159,8 @@
       "elementFileBefore": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "comment": "Move Source Folder hibernate-search-engine to engine"
     },
     {
       "parentCommitId": "ecb8241a88c222d9c7094260a95361b32829ab8f",
@@ -175,13 +190,14 @@
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "hibernate-search-engine/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+      "elementNameAfter": "hibernate-search-engine/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "comment": "Move Source Folder hibernate-search to hibernate-search-engine"
     },
     {
       "parentCommitId": "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
       "commitId": "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
       "commitTime": 1313170471,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
@@ -191,7 +207,7 @@
       "parentCommitId": "2280f7735e3960243285d1cbca6fc8f55a08c4b5",
       "commitId": "7e482c4e5d6d6754b1036b8f714fda1ca28d378c",
       "commitTime": 1313170471,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
@@ -215,7 +231,8 @@
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batch/DefaultBatchBackend.java",
-      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batch.DefaultBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "comment": "Move And Rename Class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend moved and renamed to org.hibernate.search.backend.impl.batch.DefaultBatchBackend"
     },
     {
       "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
@@ -225,7 +242,19 @@
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)"
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "comment": "Add Parameter forceAsync : boolean in method private sendWorkToShards(work LuceneWork, forceAsync boolean) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
+    },
+    {
+      "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
+      "commitId": "2dbaff812e9bd31b7de6ddd6487c78179457c80c",
+      "commitTime": 1311863120,
+      "changeType": "parameter change",
+      "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, boolean)",
+      "comment": "Remove Parameter worker : PerDirectoryWorkProcessor in method private sendWorkToShards(work LuceneWork, worker PerDirectoryWorkProcessor) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
     },
     {
       "parentCommitId": "6df3f6286d3c9fbb33ff2129035945a8e4e379cd",
@@ -251,17 +280,18 @@
       "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
       "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
       "commitTime": 1311846710,
-      "changeType": "body change",
+      "changeType": "exception change",
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "comment": "Remove Thrown Exception Type InterruptedException in method private sendWorkToShards(work LuceneWork, worker PerDirectoryWorkProcessor) : void from class org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend"
     },
     {
       "parentCommitId": "fabff8b00abedf2ea4fbd87e3e553b444b975183",
       "commitId": "c866b2799a080b4806438f7047f30ee2c673106f",
       "commitTime": 1311846710,
-      "changeType": "exception change",
+      "changeType": "body change",
       "elementFileBefore": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
@@ -275,7 +305,8 @@
       "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
       "elementFileAfter": "hibernate-search/src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+      "elementNameAfter": "hibernate-search/src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "comment": "Move Source Folder src to hibernate-search/src"
     },
     {
       "parentCommitId": "67f507fa7bf80f8c822926380ff960b15095d10e",
@@ -285,7 +316,8 @@
       "elementFileBefore": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
       "elementNameBefore": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
       "elementFileAfter": "src/main/java/org/hibernate/search/backend/impl/batchlucene/LuceneBatchBackend.java",
-      "elementNameAfter": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)"
+      "elementNameAfter": "src/main/java/org.hibernate.search.backend.impl.batchlucene.LuceneBatchBackend#sendWorkToShards(LuceneWork, PerDirectoryWorkProcessor)",
+      "comment": "added with new class"
     }
   ]
 }

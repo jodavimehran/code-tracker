@@ -21,7 +21,7 @@
       "parentCommitId": "444836b3dcd3ee28238af7b5e753d644e8095788",
       "commitId": "d6f6741296639a73f5306e3ebefec84a40ca03e5",
       "commitTime": 1431390675,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler, RMContext)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
@@ -31,7 +31,7 @@
       "parentCommitId": "444836b3dcd3ee28238af7b5e753d644e8095788",
       "commitId": "d6f6741296639a73f5306e3ebefec84a40ca03e5",
       "commitTime": 1431390675,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler, RMContext)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
@@ -45,7 +45,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler, RMContext)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler, RMContext)",
+      "comment": "Add Parameter rmContext : RMContext in method public normalizeAndValidateRequests(ask List<ResourceRequest>, maximumResource Resource, queueName String, scheduler YarnScheduler, rmContext RMContext) : void from class org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils"
     },
     {
       "parentCommitId": "4d9f9e546ff9d8de75d08bf17d038c7d1ed3bc11",
@@ -65,7 +66,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource, String, YarnScheduler)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#normalizeAndValidateRequests(List, Resource, String, YarnScheduler)",
+      "comment": "Rename Method public validateResourceRequests(ask List<ResourceRequest>, maximumResource Resource, queueName String, scheduler YarnScheduler) : void renamed to public normalizeAndValidateRequests(ask List<ResourceRequest>, maximumResource Resource, queueName String, scheduler YarnScheduler) : void in class org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils"
     },
     {
       "parentCommitId": "6779467ab6fcc6a02d0e8c80b138cc9df1aa831e",
@@ -81,11 +83,12 @@
       "parentCommitId": "466f08792f11c2f95bf293ac9b6facd7018a5bb8",
       "commitId": "f2ea555ac6c06a3f2f6559731f48711fff05d3f1",
       "commitTime": 1413423186,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource, String, YarnScheduler)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource, String, YarnScheduler)",
+      "comment": "Add Parameter queueName : String in method public validateResourceRequests(ask List<ResourceRequest>, maximumResource Resource, queueName String, scheduler YarnScheduler) : void from class org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils"
     },
     {
       "parentCommitId": "466f08792f11c2f95bf293ac9b6facd7018a5bb8",
@@ -95,23 +98,35 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource, String, YarnScheduler)",
+      "comment": "Add Parameter scheduler : YarnScheduler in method public validateResourceRequests(ask List<ResourceRequest>, maximumResource Resource, queueName String, scheduler YarnScheduler) : void from class org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils"
+    },
+    {
+      "parentCommitId": "466f08792f11c2f95bf293ac9b6facd7018a5bb8",
+      "commitId": "f2ea555ac6c06a3f2f6559731f48711fff05d3f1",
+      "commitTime": 1413423186,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
       "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource, String, YarnScheduler)"
     },
     {
       "parentCommitId": "1d915238a6a06d09e1789532994f00f496bd969c",
       "commitId": "48264f1994c8b6002d5f1ac2fea46da28798df2d",
       "commitTime": 1375216254,
-      "changeType": "body change",
+      "changeType": "moved",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils#validateResourceRequests(List, Resource)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils#validateResourceRequests(List, Resource)",
+      "comment": "Move Method public validateResourceRequests(ask List<ResourceRequest>, maximumResource Resource) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils to public validateResourceRequests(ask List<ResourceRequest>, maximumResource Resource) : void from class org.apache.hadoop.yarn.server.resourcemanager.RMServerUtils"
     },
     {
       "parentCommitId": "1d915238a6a06d09e1789532994f00f496bd969c",
       "commitId": "48264f1994c8b6002d5f1ac2fea46da28798df2d",
       "commitTime": 1375216254,
-      "changeType": "moved",
+      "changeType": "body change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils#validateResourceRequests(List, Resource)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/RMServerUtils.java",
@@ -125,7 +140,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerUtils.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils#validateResourceRequests(List, Resource)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerUtils.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils#validateResourceRequests(List, Resource)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerUtils#validateResourceRequests(List, Resource)",
+      "comment": "new method"
     }
   ]
 }

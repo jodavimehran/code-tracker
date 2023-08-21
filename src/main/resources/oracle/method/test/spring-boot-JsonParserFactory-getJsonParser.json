@@ -160,11 +160,12 @@
       "parentCommitId": "2f84df66b66567b242be46578f09ca1743888e7b",
       "commitId": "dd69d0f660c2d1d5c551c9476e4e6f8702657e68",
       "commitTime": 1371076975,
-      "changeType": "body change",
+      "changeType": "rename",
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/config/SimpleJsonParser.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.SimpleJsonParser#instance()",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/config/JsonParserFactory.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.JsonParserFactory#getJsonParser()"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.JsonParserFactory#getJsonParser()",
+      "comment": "Move And Rename Method public instance() : JsonParser from class org.springframework.bootstrap.config.SimpleJsonParser to public getJsonParser() : JsonParser from class org.springframework.bootstrap.config.JsonParserFactory"
     },
     {
       "parentCommitId": "2f84df66b66567b242be46578f09ca1743888e7b",
@@ -181,12 +182,11 @@
       "parentCommitId": "2f84df66b66567b242be46578f09ca1743888e7b",
       "commitId": "dd69d0f660c2d1d5c551c9476e4e6f8702657e68",
       "commitTime": 1371076975,
-      "changeType": "rename",
+      "changeType": "body change",
       "elementFileBefore": "spring-bootstrap/src/main/java/org/springframework/bootstrap/config/SimpleJsonParser.java",
       "elementNameBefore": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.SimpleJsonParser#instance()",
       "elementFileAfter": "spring-bootstrap/src/main/java/org/springframework/bootstrap/config/JsonParserFactory.java",
-      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.JsonParserFactory#getJsonParser()",
-      "comment": "Move And Rename Method public instance() : JsonParser from class org.springframework.bootstrap.config.SimpleJsonParser to public getJsonParser() : JsonParser from class org.springframework.bootstrap.config.JsonParserFactory"
+      "elementNameAfter": "spring-bootstrap/src/main/java/org.springframework.bootstrap.config.JsonParserFactory#getJsonParser()"
     },
     {
       "parentCommitId": "e0d7fc2240a3f2c56cac72d50ebe04c4f2b77823",

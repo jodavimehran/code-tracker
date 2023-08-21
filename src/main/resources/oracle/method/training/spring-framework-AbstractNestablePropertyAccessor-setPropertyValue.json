@@ -11,6 +11,16 @@
       "parentCommitId": "47be2d8786f8690efd04d12ce5ed34ced2000247",
       "commitId": "64d6561cbbda4d5a74cd0f3ce5983e29c9d42b89",
       "commitTime": 1482778046,
+      "changeType": "documentation change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+    },
+    {
+      "parentCommitId": "47be2d8786f8690efd04d12ce5ed34ced2000247",
+      "commitId": "64d6561cbbda4d5a74cd0f3ce5983e29c9d42b89",
+      "commitTime": 1482778046,
       "changeType": "body change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
@@ -25,17 +35,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
-    },
-    {
-      "parentCommitId": "47be2d8786f8690efd04d12ce5ed34ced2000247",
-      "commitId": "64d6561cbbda4d5a74cd0f3ce5983e29c9d42b89",
-      "commitTime": 1482778046,
-      "changeType": "documentation change",
-      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
-      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
-      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Remove Method Annotation @SuppressWarnings(\"unchecked\") in method protected setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.AbstractNestablePropertyAccessor"
     },
     {
       "parentCommitId": "042d8d0b4c699e58629d99b7860bc6b8c546c773",
@@ -55,7 +56,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractNestablePropertyAccessor.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractNestablePropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Push Down Method protected setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.AbstractPropertyAccessor to protected setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.AbstractNestablePropertyAccessor"
     },
     {
       "parentCommitId": "2ab34373d17c251b0ee89d4fa4537998164413c6",
@@ -71,21 +73,23 @@
       "parentCommitId": "ad4c8795ae13c94f942526765b5cf36ac6c3ae9b",
       "commitId": "3d86f15a847d4567c3b08b21a21500398a394e31",
       "commitTime": 1432208995,
-      "changeType": "modifier change",
+      "changeType": "moved",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Pull Up Method private setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.BeanWrapperImpl to protected setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.AbstractPropertyAccessor"
     },
     {
       "parentCommitId": "ad4c8795ae13c94f942526765b5cf36ac6c3ae9b",
       "commitId": "3d86f15a847d4567c3b08b21a21500398a394e31",
       "commitTime": 1432208995,
-      "changeType": "moved",
+      "changeType": "modifier change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/AbstractPropertyAccessor.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.AbstractPropertyAccessor#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Change Method Access Modifier private to protected in method protected setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.AbstractPropertyAccessor"
     },
     {
       "parentCommitId": "ad4c8795ae13c94f942526765b5cf36ac6c3ae9b",
@@ -101,7 +105,7 @@
       "parentCommitId": "e78b0860dff906f8376c701cab6ff49ba3058188",
       "commitId": "595cdf05e962299c19c34bbfb370316636d074f2",
       "commitTime": 1428099805,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -111,7 +115,7 @@
       "parentCommitId": "e78b0860dff906f8376c701cab6ff49ba3058188",
       "commitId": "595cdf05e962299c19c34bbfb370316636d074f2",
       "commitTime": 1428099805,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -205,7 +209,8 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Move Source Folder org.springframework.beans to spring-beans"
     },
     {
       "parentCommitId": "f9144ea1eae5b09b3f8609dec0e6343f35c887a9",
@@ -241,7 +246,7 @@
       "parentCommitId": "4c75054f9041279423f31754aa23f9ca781e9d43",
       "commitId": "b9fe1b325081f4ec7a5c1e905da00d3ed5223091",
       "commitTime": 1309723507,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -251,7 +256,7 @@
       "parentCommitId": "4c75054f9041279423f31754aa23f9ca781e9d43",
       "commitId": "b9fe1b325081f4ec7a5c1e905da00d3ed5223091",
       "commitTime": 1309723507,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -301,7 +306,7 @@
       "parentCommitId": "ac9fd008debdefa2b98301a8efc4952a449d5b06",
       "commitId": "414fcab899b4fdf0b0190227ac1699ef3f3b3f3f",
       "commitTime": 1294428165,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -311,7 +316,7 @@
       "parentCommitId": "ac9fd008debdefa2b98301a8efc4952a449d5b06",
       "commitId": "414fcab899b4fdf0b0190227ac1699ef3f3b3f3f",
       "commitTime": 1294428165,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -331,7 +336,7 @@
       "parentCommitId": "2ef629d5a8f5f933a614ba89e1b1e0d58ae04044",
       "commitId": "5d6840e8770b441ae0676b309ba2021704e55a77",
       "commitTime": 1294421298,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -341,7 +346,7 @@
       "parentCommitId": "2ef629d5a8f5f933a614ba89e1b1e0d58ae04044",
       "commitId": "5d6840e8770b441ae0676b309ba2021704e55a77",
       "commitTime": 1294421298,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -371,7 +376,7 @@
       "parentCommitId": "c309ef74d717cb5829a15fc79473aeb17ca00fe6",
       "commitId": "c6c782df59c09a6a36c8283cbd725e9aef20e0e8",
       "commitTime": 1294338830,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -381,7 +386,7 @@
       "parentCommitId": "c309ef74d717cb5829a15fc79473aeb17ca00fe6",
       "commitId": "c6c782df59c09a6a36c8283cbd725e9aef20e0e8",
       "commitTime": 1294338830,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
@@ -555,7 +560,8 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
-      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "Add Method Annotation @SuppressWarnings(\"unchecked\") in method private setPropertyValue(tokens PropertyTokenHolder, pv PropertyValue) : void from class org.springframework.beans.BeanWrapperImpl"
     },
     {
       "parentCommitId": "6bbc966a21a765542d579f32c94b278982f0b5d9",
@@ -585,7 +591,8 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/BeanWrapperImpl.java",
-      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)"
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.BeanWrapperImpl#setPropertyValue(PropertyTokenHolder, PropertyValue)",
+      "comment": "added with new class"
     }
   ]
 }

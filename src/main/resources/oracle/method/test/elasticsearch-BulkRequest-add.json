@@ -15,7 +15,8 @@
       "elementFileBefore": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])",
+      "comment": "Change Parameter Type requests : DocWriteRequest... to requests : DocWriteRequest<?>... in method public add(requests DocWriteRequest<?>...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "8e4768890abbd2fb6fbc49d6188909ed7ca6961b",
@@ -35,7 +36,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])",
       "elementFileAfter": "server/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])"
+      "elementNameAfter": "server/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])",
+      "comment": "Move Source Folder core to server"
     },
     {
       "parentCommitId": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
@@ -45,7 +47,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocWriteRequest[])",
+      "comment": "Change Parameter Type requests : DocumentRequest... to requests : DocWriteRequest... in method public add(requests DocWriteRequest...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
@@ -61,17 +64,18 @@
       "parentCommitId": "225a04b2ccd562ad9fcbb4e9e39b06d7d174cc21",
       "commitId": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
       "commitTime": 1476215916,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
+      "comment": "Change Parameter Type requests : DocumentRequest<?>... to requests : DocumentRequest... in method public add(requests DocumentRequest...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "225a04b2ccd562ad9fcbb4e9e39b06d7d174cc21",
       "commitId": "661067d160e9ace12a8bbe3b12a783dd97bf78e6",
       "commitTime": 1476215916,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
@@ -85,7 +89,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentWriteRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
+      "comment": "Change Parameter Type requests : DocumentWriteRequest<?>... to requests : DocumentRequest<?>... in method public add(requests DocumentRequest<?>...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "68c82cd113e0a79916ea9fce6546139de7753731",
@@ -101,17 +106,18 @@
       "parentCommitId": "eee0d18f94108b5ece7b18a450bbcc5c729d9311",
       "commitId": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
       "commitTime": 1475744759,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentWriteRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentWriteRequest[])",
+      "comment": "Change Parameter Type requests : DocumentRequest<?>... to requests : DocumentWriteRequest<?>... in method public add(requests DocumentWriteRequest<?>...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "eee0d18f94108b5ece7b18a450bbcc5c729d9311",
       "commitId": "b5079ce0092e2dfd742fbe3aed8a8f95931a378d",
       "commitTime": 1475744759,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
@@ -125,7 +131,8 @@
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(DocumentRequest[])",
+      "comment": "Change Parameter Type requests : ActionRequest<?>... to requests : DocumentRequest<?>... in method public add(requests DocumentRequest<?>...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "d4dec26aa00ced5ead648881301a035272210288",
@@ -140,18 +147,17 @@
     {
       "parentCommitId": "993092cde660abdf0a13228be954ff7e877969b4",
       "commitId": "602a0f183ed055ae4e0688fc0aa14cfb13c96306",
-      "altCommitId": "57af01451045984812f247c99c099e723fd49433",
       "commitTime": 1453237298,
       "changeType": "parameter change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
+      "comment": "Change Parameter Type requests : ActionRequest... to requests : ActionRequest<?>... in method public add(requests ActionRequest<?>...) : BulkRequest from class org.elasticsearch.action.bulk.BulkRequest"
     },
     {
       "parentCommitId": "993092cde660abdf0a13228be954ff7e877969b4",
       "commitId": "602a0f183ed055ae4e0688fc0aa14cfb13c96306",
-      "altCommitId": "57af01451045984812f247c99c099e723fd49433",
       "commitTime": 1453237298,
       "changeType": "body change",
       "elementFileBefore": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
@@ -167,7 +173,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])"
+      "elementNameAfter": "core/src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
+      "comment": "Move Source Folder src to core/src"
     },
     {
       "parentCommitId": "83257c8af874014578c81338a46be6bb6b41e2b7",
@@ -187,7 +194,8 @@
       "elementFileBefore": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
       "elementNameBefore": "src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
       "elementFileAfter": "src/main/java/org/elasticsearch/action/bulk/BulkRequest.java",
-      "elementNameAfter": "src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])"
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.bulk.BulkRequest#add(ActionRequest[])",
+      "comment": "new method"
     }
   ]
 }

@@ -15,7 +15,19 @@
       "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)",
       "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, MetadataBuildingContext)"
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, MetadataBuildingContext)",
+      "comment": "Rename Parameter mappings : Mappings to context : MetadataBuildingContext in method public bindQuery(queryAnn NamedQuery, context MetadataBuildingContext) : void from class org.hibernate.cfg.annotations.QueryBinder"
+    },
+    {
+      "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
+      "commitId": "9caca0ce37d5a2763d476c6fa2471addcca710ca",
+      "commitTime": 1426024431,
+      "changeType": "parameter change",
+      "elementFileBefore": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameBefore": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)",
+      "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, MetadataBuildingContext)",
+      "comment": "Change Parameter Type mappings : Mappings to context : MetadataBuildingContext in method public bindQuery(queryAnn NamedQuery, context MetadataBuildingContext) : void from class org.hibernate.cfg.annotations.QueryBinder"
     },
     {
       "parentCommitId": "aa31b26d322989276b978c4a8c511a70bc2a0fc8",
@@ -95,7 +107,8 @@
       "elementFileBefore": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)",
       "elementFileAfter": "hibernate-core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)"
+      "elementNameAfter": "hibernate-core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)",
+      "comment": "Move Source Folder core to hibernate-core"
     },
     {
       "parentCommitId": "e14f58de29eb5f8a3de7480dbd8bc10fcc9e6185",
@@ -115,7 +128,8 @@
       "elementFileBefore": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
       "elementFileAfter": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)"
+      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, Mappings)",
+      "comment": "Change Parameter Type mappings : ExtendedMappings to mappings : Mappings in method public bindQuery(queryAnn NamedQuery, mappings Mappings) : void from class org.hibernate.cfg.annotations.QueryBinder"
     },
     {
       "parentCommitId": "cc3b41a09c983913594b16d6c909be0bfd41bd7a",
@@ -125,7 +139,8 @@
       "elementFileBefore": "annotations/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "annotations/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
       "elementFileAfter": "core/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)"
+      "elementNameAfter": "core/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
+      "comment": "Move Source Folder annotations to core"
     },
     {
       "parentCommitId": "c457f2b3258fc48ef4010a9e58cd2fc3baaca6cc",
@@ -135,7 +150,8 @@
       "elementFileBefore": "annotations/src/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
       "elementFileAfter": "annotations/src/main/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)"
+      "elementNameAfter": "annotations/src/main/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
+      "comment": "Move Source Folder annotations/src to annotations/src/main"
     },
     {
       "parentCommitId": "53deb4b357384f32819f70c497ef04885171c399",
@@ -145,7 +161,8 @@
       "elementFileBefore": "annotations/src/java/org/hibernate/cfg/annotations/QueryBinder.java",
       "elementNameBefore": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
       "elementFileAfter": "annotations/src/java/org/hibernate/cfg/annotations/QueryBinder.java",
-      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)"
+      "elementNameAfter": "annotations/src/java/org.hibernate.cfg.annotations.QueryBinder#bindQuery(NamedQuery, ExtendedMappings)",
+      "comment": "added with new class"
     }
   ]
 }

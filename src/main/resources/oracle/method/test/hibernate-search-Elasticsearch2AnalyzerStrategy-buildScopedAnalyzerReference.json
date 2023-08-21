@@ -15,7 +15,8 @@
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/Elasticsearch2AnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.Elasticsearch2AnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)"
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.Elasticsearch2AnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)",
+      "comment": "Rename Class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy renamed to org.hibernate.search.elasticsearch.analyzer.impl.Elasticsearch2AnalyzerStrategy"
     },
     {
       "parentCommitId": "2d5cf2fe8a1a556e617c9ed46b0084d67317cd1f",
@@ -31,21 +32,12 @@
       "parentCommitId": "1c8ed6665c9c58d2d6112ca3decd41c9794f1095",
       "commitId": "271f0b6a3d625b7af4b09f42a181d927d43227ff",
       "commitTime": 1485046732,
-      "changeType": "body change",
-      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)",
-      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)"
-    },
-    {
-      "parentCommitId": "1c8ed6665c9c58d2d6112ca3decd41c9794f1095",
-      "commitId": "271f0b6a3d625b7af4b09f42a181d927d43227ff",
-      "commitTime": 1485046732,
       "changeType": "parameter change",
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)"
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)",
+      "comment": "Change Parameter Type initialGlobalAnalyzerReference : ElasticsearchAnalyzerReference to initialGlobalAnalyzerReference : AnalyzerReference in method public buildScopedAnalyzerReference(initialGlobalAnalyzerReference AnalyzerReference) : ScopedElasticsearchAnalyzerReference.Builder from class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy"
     },
     {
       "parentCommitId": "271f0b6a3d625b7af4b09f42a181d927d43227ff",
@@ -58,14 +50,14 @@
       "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)"
     },
     {
-      "parentCommitId": "6281a4baf4eb1f9dfdbdf745017ee046984c4865",
-      "commitId": "5147cfbbbcb0596d25179833dd0ebc5633ea885e",
-      "commitTime": 1485046731,
-      "changeType": "rename",
+      "parentCommitId": "1c8ed6665c9c58d2d6112ca3decd41c9794f1095",
+      "commitId": "271f0b6a3d625b7af4b09f42a181d927d43227ff",
+      "commitTime": 1485046732,
+      "changeType": "body change",
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
+      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)"
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(AnalyzerReference)"
     },
     {
       "parentCommitId": "6281a4baf4eb1f9dfdbdf745017ee046984c4865",
@@ -75,7 +67,19 @@
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)"
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)",
+      "comment": "Change Return Type ScopedElasticsearchAnalyzer.Builder to ScopedElasticsearchAnalyzerReference.Builder in method public buildScopedAnalyzerReference(initialGlobalAnalyzerReference ElasticsearchAnalyzerReference) : ScopedElasticsearchAnalyzerReference.Builder from class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy"
+    },
+    {
+      "parentCommitId": "6281a4baf4eb1f9dfdbdf745017ee046984c4865",
+      "commitId": "5147cfbbbcb0596d25179833dd0ebc5633ea885e",
+      "commitTime": 1485046731,
+      "changeType": "rename",
+      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
+      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)",
+      "comment": "Rename Method public buildScopedAnalyzer(initialGlobalAnalyzerReference ElasticsearchAnalyzerReference) : ScopedElasticsearchAnalyzer.Builder renamed to public buildScopedAnalyzerReference(initialGlobalAnalyzerReference ElasticsearchAnalyzerReference) : ScopedElasticsearchAnalyzerReference.Builder in class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy"
     },
     {
       "parentCommitId": "6281a4baf4eb1f9dfdbdf745017ee046984c4865",
@@ -86,6 +90,17 @@
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzerReference(ElasticsearchAnalyzerReference)"
+    },
+    {
+      "parentCommitId": "a300ae7c0927ebd5f9ce41932206e813702935f9",
+      "commitId": "679e1e7d5845925dbee16fa9742db77de5248aaf",
+      "commitTime": 1482187193,
+      "changeType": "return type change",
+      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
+      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
+      "comment": "Change Return Type ScopedRemoteAnalyzer.Builder to ScopedElasticsearchAnalyzer.Builder in method public buildScopedAnalyzer(initialGlobalAnalyzerReference ElasticsearchAnalyzerReference) : ScopedElasticsearchAnalyzer.Builder from class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy"
     },
     {
       "parentCommitId": "a300ae7c0927ebd5f9ce41932206e813702935f9",
@@ -95,47 +110,39 @@
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)"
-    },
-    {
-      "parentCommitId": "a300ae7c0927ebd5f9ce41932206e813702935f9",
-      "commitId": "679e1e7d5845925dbee16fa9742db77de5248aaf",
-      "commitTime": 1482187193,
-      "changeType": "return type change",
-      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
-      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)"
-    },
-    {
-      "parentCommitId": "a300ae7c0927ebd5f9ce41932206e813702935f9",
-      "commitId": "679e1e7d5845925dbee16fa9742db77de5248aaf",
-      "commitTime": 1482187193,
-      "changeType": "body change",
-      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
-      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)"
-    },
-    {
-      "parentCommitId": "26409af97126b89e8107c592fddcb7963b62f879",
-      "commitId": "11577f700d21d558e92f914c30b87d28c5636911",
-      "commitTime": 1482187192,
-      "changeType": "body change",
-      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
-      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
-      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)"
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)",
+      "comment": "Change Parameter Type initialGlobalAnalyzerReference : RemoteAnalyzerReference to initialGlobalAnalyzerReference : ElasticsearchAnalyzerReference in method public buildScopedAnalyzer(initialGlobalAnalyzerReference ElasticsearchAnalyzerReference) : ScopedElasticsearchAnalyzer.Builder from class org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy"
     },
     {
       "parentCommitId": "743d241b0768341e54b1c469d055e73c29161945",
       "commitId": "41f3df944236b6f1be388d156f1a466e4cb19738",
-      "commitTime": 1482187191,
+      "commitTime": 1482187193,
       "changeType": "introduced",
       "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
       "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
+      "comment": "new method"
+    },
+    {
+      "parentCommitId": "26409af97126b89e8107c592fddcb7963b62f879",
+      "commitId": "11577f700d21d558e92f914c30b87d28c5636911",
+      "commitTime": 1482187193,
+      "changeType": "body change",
+      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
+      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
       "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)"
+    },
+    {
+      "parentCommitId": "a300ae7c0927ebd5f9ce41932206e813702935f9",
+      "commitId": "679e1e7d5845925dbee16fa9742db77de5248aaf",
+      "commitTime": 1482187193,
+      "changeType": "body change",
+      "elementFileBefore": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameBefore": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(RemoteAnalyzerReference)",
+      "elementFileAfter": "elasticsearch/src/main/java/org/hibernate/search/elasticsearch/analyzer/impl/ElasticsearchAnalyzerStrategy.java",
+      "elementNameAfter": "elasticsearch/src/main/java/org.hibernate.search.elasticsearch.analyzer.impl.ElasticsearchAnalyzerStrategy#buildScopedAnalyzer(ElasticsearchAnalyzerReference)"
     }
   ]
 }
