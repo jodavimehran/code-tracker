@@ -162,7 +162,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     }
                 }
             }
-            return new HistoryImpl<>(classChangeHistory.findSubGraph(start), historyReport);
+            return new HistoryImpl<>(classChangeHistory.getCompleteGraph(), historyReport);
         }
     }
 

@@ -251,7 +251,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     }
                 }
             }
-            return new HistoryImpl<>(methodChangeHistory.findSubGraph(start), historyReport);
+            return new HistoryImpl<>(methodChangeHistory.getCompleteGraph(), historyReport);
         }
     }
 
