@@ -293,7 +293,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     }
                 }
             }
-            return new HistoryImpl<>(blockChangeHistory.findSubGraph(startBlock), historyReport);
+            return new HistoryImpl<>(blockChangeHistory.getCompleteGraph(), historyReport);
         }
     }
 
