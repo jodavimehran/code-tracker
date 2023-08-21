@@ -75,7 +75,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.internal.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)",
+      "comment": "Move Class org.eclipse.jgit.storage.pack.PackWriter moved to org.eclipse.jgit.internal.storage.pack.PackWriter"
     },
     {
       "parentCommitId": "41a18d57bcaf3bb7eb4bcee5c1d53a222d07316b",
@@ -238,8 +239,8 @@
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)"
     },
     {
-      "parentCommitId": "cc6210619b82dc0c7bdb014b5ccf29d6f93e5ef3",
-      "commitId": "b85af06324644e699bd2cc7e2047ae1f65f35db5",
+      "parentCommitId": "de78cf33672813feecce36637694b189f1c10082",
+      "commitId": "cc6210619b82dc0c7bdb014b5ccf29d6f93e5ef3",
       "commitTime": 1282351287,
       "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
@@ -248,8 +249,8 @@
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)"
     },
     {
-      "parentCommitId": "de78cf33672813feecce36637694b189f1c10082",
-      "commitId": "cc6210619b82dc0c7bdb014b5ccf29d6f93e5ef3",
+      "parentCommitId": "cc6210619b82dc0c7bdb014b5ccf29d6f93e5ef3",
+      "commitId": "b85af06324644e699bd2cc7e2047ae1f65f35db5",
       "commitTime": 1282351287,
       "changeType": "body change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
@@ -308,14 +309,15 @@
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)"
     },
     {
-      "parentCommitId": "1ad2feb7b3d48d8bfedfdd03ee6ca4f599041476",
-      "commitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
+      "parentCommitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
+      "commitId": "6b62e53b607630b6c00411741972838ced552f4d",
       "commitTime": 1277750848,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)",
+      "comment": "Add Parameter writeMonitor : ProgressMonitor in method public writePack(compressMonitor ProgressMonitor, writeMonitor ProgressMonitor, packStream OutputStream) : void from class org.eclipse.jgit.storage.pack.PackWriter"
     },
     {
       "parentCommitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
@@ -325,7 +327,18 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(ProgressMonitor, ProgressMonitor, OutputStream)",
+      "comment": "Add Parameter compressMonitor : ProgressMonitor in method public writePack(compressMonitor ProgressMonitor, writeMonitor ProgressMonitor, packStream OutputStream) : void from class org.eclipse.jgit.storage.pack.PackWriter"
+    },
+    {
+      "parentCommitId": "1ad2feb7b3d48d8bfedfdd03ee6ca4f599041476",
+      "commitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
+      "commitTime": 1277750848,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)"
     },
     {
       "parentCommitId": "f288c27e465a91e80b53c4100c0d9b2f2341a9aa",
@@ -365,7 +378,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#writePack(OutputStream)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.storage.pack.PackWriter#writePack(OutputStream)",
+      "comment": "Move Class org.eclipse.jgit.lib.PackWriter moved to org.eclipse.jgit.storage.pack.PackWriter"
     },
     {
       "parentCommitId": "bf4ffff07fb5be4a405ca13ae8baa13dee693b10",
@@ -395,7 +409,8 @@
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
       "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#writePack(OutputStream)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#writePack(OutputStream)"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.PackWriter#writePack(OutputStream)",
+      "comment": "Initial commit!"
     }
   ]
 }

@@ -11,7 +11,7 @@
       "parentCommitId": "bdbe2dad8806a77bf018b87f4518df250fa67f89",
       "commitId": "aac684aeae32ff18e443799a3ccff6de9d68a684",
       "commitTime": 1530844644,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse(boolean)",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
@@ -21,7 +21,7 @@
       "parentCommitId": "bdbe2dad8806a77bf018b87f4518df250fa67f89",
       "commitId": "aac684aeae32ff18e443799a3ccff6de9d68a684",
       "commitTime": 1530844644,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse(boolean)",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
@@ -31,17 +31,18 @@
       "parentCommitId": "ccf88de917071387b34c84e80d0263c5b5b0b841",
       "commitId": "2b8ad31b084af93ad202a1b835e5be63ac58a269",
       "commitTime": 1479783531,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse(boolean)"
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse(boolean)",
+      "comment": "Add Parameter networkResponseOnError : boolean in method private getResponse(networkResponseOnError boolean) : Response from class okhttp3.internal.huc.OkHttpURLConnection"
     },
     {
       "parentCommitId": "ccf88de917071387b34c84e80d0263c5b5b0b841",
       "commitId": "2b8ad31b084af93ad202a1b835e5be63ac58a269",
       "commitTime": 1479783531,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
@@ -65,17 +66,8 @@
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/OkHttpURLConnection.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse()"
-    },
-    {
-      "parentCommitId": "e444deddd9683fc2fd586c889d9352c35089504d",
-      "commitId": "084b06b48bae2b566bb1be3415b6c847d8ea3682",
-      "commitTime": 1466533800,
-      "changeType": "body change",
-      "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
-      "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.OkHttpURLConnection#getResponse()",
+      "comment": "Rename Class okhttp3.internal.huc.HttpURLConnectionImpl renamed to okhttp3.internal.huc.OkHttpURLConnection"
     },
     {
       "parentCommitId": "e444deddd9683fc2fd586c889d9352c35089504d",
@@ -85,13 +77,24 @@
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "comment": "Change Return Type HttpEngine to Response in method private getResponse() : Response from class okhttp3.internal.huc.HttpURLConnectionImpl"
     },
     {
       "parentCommitId": "e444deddd9683fc2fd586c889d9352c35089504d",
       "commitId": "084b06b48bae2b566bb1be3415b6c847d8ea3682",
       "commitTime": 1466533800,
       "changeType": "documentation change",
+      "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()"
+    },
+    {
+      "parentCommitId": "e444deddd9683fc2fd586c889d9352c35089504d",
+      "commitId": "084b06b48bae2b566bb1be3415b6c847d8ea3682",
+      "commitTime": 1466533800,
+      "changeType": "body change",
       "elementFileBefore": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
@@ -105,7 +108,8 @@
       "elementFileBefore": "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/okhttp3/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/okhttp3.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Class com.squareup.okhttp.internal.huc.HttpURLConnectionImpl moved to okhttp3.internal.huc.HttpURLConnectionImpl"
     },
     {
       "parentCommitId": "f3529652aa4e130840e48e2081cdeebbd6c6fb91",
@@ -165,7 +169,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp-urlconnection/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp-urlconnection/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Source Folder okhttp to okhttp-urlconnection"
     },
     {
       "parentCommitId": "f63a8d7de09bd4cacf5d58e97e3390c34a81bf55",
@@ -181,7 +186,7 @@
       "parentCommitId": "fa842d11fcb0dddc98a758d77d5a8b5412129faf",
       "commitId": "b7542587b8e90aa4472d4d9e4b74a72ca0c42cb4",
       "commitTime": 1398531739,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
@@ -191,16 +196,6 @@
       "parentCommitId": "fa842d11fcb0dddc98a758d77d5a8b5412129faf",
       "commitId": "b7542587b8e90aa4472d4d9e4b74a72ca0c42cb4",
       "commitTime": 1398531739,
-      "changeType": "documentation change",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
-      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()"
-    },
-    {
-      "parentCommitId": "6dff9f5630f6b7aa0b3442d195921c5dbfd1110f",
-      "commitId": "9146c579dd9110d0028144c59515da9be1ce7108",
-      "commitTime": 1398140069,
       "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
@@ -212,6 +207,16 @@
       "commitId": "9146c579dd9110d0028144c59515da9be1ce7108",
       "commitTime": 1398140069,
       "changeType": "documentation change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()"
+    },
+    {
+      "parentCommitId": "6dff9f5630f6b7aa0b3442d195921c5dbfd1110f",
+      "commitId": "9146c579dd9110d0028144c59515da9be1ce7108",
+      "commitTime": 1398140069,
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
@@ -225,7 +230,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/huc/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.huc.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Class com.squareup.okhttp.internal.http.HttpURLConnectionImpl moved to com.squareup.okhttp.internal.huc.HttpURLConnectionImpl"
     },
     {
       "parentCommitId": "8858ca8aba466201a49a169060376ddc5534118f",
@@ -261,7 +267,7 @@
       "parentCommitId": "63a278d2f4da0a5d5be19ab90bf6cdb53e1996ff",
       "commitId": "350c43b6fe02401a73f967d9ef322061638b372a",
       "commitTime": 1388369834,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
@@ -271,7 +277,7 @@
       "parentCommitId": "63a278d2f4da0a5d5be19ab90bf6cdb53e1996ff",
       "commitId": "350c43b6fe02401a73f967d9ef322061638b372a",
       "commitTime": 1388369834,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
@@ -291,7 +297,7 @@
       "parentCommitId": "ca7d09b4e84410d743a5d6016dbb25f2a988e594",
       "commitId": "a948ffce1eb2b9ec46069722f6744f252d6dbfc7",
       "commitTime": 1377367875,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
@@ -301,7 +307,7 @@
       "parentCommitId": "ca7d09b4e84410d743a5d6016dbb25f2a988e594",
       "commitId": "a948ffce1eb2b9ec46069722f6744f252d6dbfc7",
       "commitTime": 1377367875,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
@@ -315,7 +321,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Source Folder src to okhttp/src"
     },
     {
       "parentCommitId": "3e44564738bf079f040d0ad0dff6f930f11a762b",
@@ -365,7 +372,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/http/HttpURLConnectionImpl.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.http.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Class com.squareup.okhttp.internal.net.http.HttpURLConnectionImpl moved to com.squareup.okhttp.internal.http.HttpURLConnectionImpl"
     },
     {
       "parentCommitId": "d2f4f21654e407ecb5333a403564d272239486f6",
@@ -385,13 +393,14 @@
       "elementFileBefore": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/http/HttpURLConnectionImpl.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.HttpURLConnectionImpl#getResponse()",
+      "comment": "Move Class libcore.net.http.HttpURLConnectionImpl moved to com.squareup.okhttp.internal.net.http.HttpURLConnectionImpl"
     },
     {
       "parentCommitId": "21e9c8398867f983e8c3cf29c6382690c1e4785d",
       "commitId": "3355d0c99bb946a6441f08fe6fd1c9881a9ea96a",
       "commitTime": 1352581553,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
@@ -401,7 +410,7 @@
       "parentCommitId": "21e9c8398867f983e8c3cf29c6382690c1e4785d",
       "commitId": "3355d0c99bb946a6441f08fe6fd1c9881a9ea96a",
       "commitTime": 1352581553,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
@@ -415,7 +424,8 @@
       "elementFileBefore": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
       "elementNameBefore": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()",
       "elementFileAfter": "src/main/java/libcore/net/http/HttpURLConnectionImpl.java",
-      "elementNameAfter": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()"
+      "elementNameAfter": "src/main/java/libcore.net.http.HttpURLConnectionImpl#getResponse()",
+      "comment": "added with new class"
     }
   ]
 }

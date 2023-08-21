@@ -41,17 +41,18 @@
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "body change",
+      "changeType": "container change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream#writeRequestHeaders(Request)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http2.Http2Codec#writeRequestHeaders(Request)",
+      "comment": "Move And Rename Class okhttp3.internal.http.Http2xStream moved and renamed to okhttp3.internal.http2.Http2Codec"
     },
     {
       "parentCommitId": "33660bf58babd09521d19ef0ed1b09c15a5e27bb",
       "commitId": "3d43a8dba89ccd7333c3ebcf74928e441790d943",
       "commitTime": 1468102159,
-      "changeType": "container change",
+      "changeType": "body change",
       "elementFileBefore": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
       "elementNameBefore": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream#writeRequestHeaders(Request)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http2/Http2Codec.java",
@@ -105,17 +106,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)",
       "elementFileAfter": "okhttp/src/main/java/okhttp3/internal/http/Http2xStream.java",
-      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream#writeRequestHeaders(Request)"
-    },
-    {
-      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
-      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
-      "commitTime": 1448721366,
-      "changeType": "body change",
-      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
-      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport#writeRequestHeaders(Request)",
-      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)"
+      "elementNameAfter": "okhttp/src/main/java/okhttp3.internal.http.Http2xStream#writeRequestHeaders(Request)",
+      "comment": "Move Class com.squareup.okhttp.internal.http.Http2xStream moved to okhttp3.internal.http.Http2xStream"
     },
     {
       "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
@@ -127,6 +119,16 @@
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
       "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)",
       "comment": "Rename Class com.squareup.okhttp.internal.http.FramedTransport renamed to com.squareup.okhttp.internal.http.Http2xStream"
+    },
+    {
+      "parentCommitId": "e0d34ebdd7aba18149d195804075a87b97f3c02d",
+      "commitId": "c358656c8799d30fd422448153e99a5dd37e298a",
+      "commitTime": 1448721366,
+      "changeType": "body change",
+      "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
+      "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport#writeRequestHeaders(Request)",
+      "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/Http2xStream.java",
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.Http2xStream#writeRequestHeaders(Request)"
     },
     {
       "parentCommitId": "85310b1f88e082a244043be36aac49772677f052",
@@ -166,7 +168,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/FramedTransport.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport#writeRequestHeaders(Request)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.FramedTransport#writeRequestHeaders(Request)",
+      "comment": "Rename Class com.squareup.okhttp.internal.http.SpdyTransport renamed to com.squareup.okhttp.internal.http.FramedTransport"
     },
     {
       "parentCommitId": "b262f2a03001cd990568b929b2739dd3c7adb75f",
@@ -246,7 +249,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders(Request)",
+      "comment": "Add Parameter request : Request in method public writeRequestHeaders(request Request) : void from class com.squareup.okhttp.internal.http.SpdyTransport"
     },
     {
       "parentCommitId": "3ed1e2a744b5c5d75c20fa49552f7c159dd9d30a",
@@ -306,7 +310,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()",
+      "comment": "Move Source Folder src to okhttp/src"
     },
     {
       "parentCommitId": "383b49df9df36fa4c335177b0e5d6984a9fb52e1",
@@ -336,7 +341,8 @@
       "elementFileBefore": "src/main/java/com/squareup/okhttp/internal/net/http/SpdyTransport.java",
       "elementNameBefore": "src/main/java/com.squareup.okhttp.internal.net.http.SpdyTransport#writeRequestHeaders()",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/http/SpdyTransport.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.http.SpdyTransport#writeRequestHeaders()",
+      "comment": "Move Class com.squareup.okhttp.internal.net.http.SpdyTransport moved to com.squareup.okhttp.internal.http.SpdyTransport"
     },
     {
       "parentCommitId": "7b35a0d86cdadac706e24525edd64c8e0b3c694f",
@@ -366,7 +372,8 @@
       "elementFileBefore": "src/main/java/libcore/net/http/SpdyTransport.java",
       "elementNameBefore": "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()",
       "elementFileAfter": "src/main/java/com/squareup/okhttp/internal/net/http/SpdyTransport.java",
-      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.SpdyTransport#writeRequestHeaders()"
+      "elementNameAfter": "src/main/java/com.squareup.okhttp.internal.net.http.SpdyTransport#writeRequestHeaders()",
+      "comment": "Move Class libcore.net.http.SpdyTransport moved to com.squareup.okhttp.internal.net.http.SpdyTransport"
     },
     {
       "parentCommitId": "e6aee715825781f3287faf7e3e35847d30e0d7fe",
@@ -386,7 +393,8 @@
       "elementFileBefore": "src/main/java/libcore/net/http/SpdyTransport.java",
       "elementNameBefore": "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()",
       "elementFileAfter": "src/main/java/libcore/net/http/SpdyTransport.java",
-      "elementNameAfter": "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()"
+      "elementNameAfter": "src/main/java/libcore.net.http.SpdyTransport#writeRequestHeaders()",
+      "comment": "added with new class"
     }
   ]
 }

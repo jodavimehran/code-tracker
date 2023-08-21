@@ -31,6 +31,50 @@
       "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
       "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
       "commitTime": 1529690124,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()",
+      "comment": "Remove Parameter parentContext : C in method package execute(parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor"
+    },
+    {
+      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
+      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
+      "commitTime": 1529690124,
+      "changeType": "parameter change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()",
+      "comment": "Remove Parameter tracker : ExecutionTracker in method package execute(parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor"
+    },
+    {
+      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
+      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
+      "commitTime": 1529690124,
+      "changeType": "moved",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()",
+      "comment": "Move Method package execute(parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor to public execute() : void from class org.junit.platform.engine.support.hierarchical.NodeTestTask"
+    },
+    {
+      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
+      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
+      "commitTime": 1529690124,
+      "changeType": "modifier change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()",
+      "comment": "Change Method Access Modifier package to public in method public execute() : void from class org.junit.platform.engine.support.hierarchical.NodeTestTask"
+    },
+    {
+      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
+      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
+      "commitTime": 1529690124,
       "changeType": "body change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
@@ -45,37 +89,61 @@
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()"
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()",
+      "comment": "Add Method Annotation @Override in method public execute() : void from class org.junit.platform.engine.support.hierarchical.NodeTestTask"
     },
     {
-      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
-      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
-      "commitTime": 1529690124,
+      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
+      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
+      "commitTime": 1514481784,
       "changeType": "parameter change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()"
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "comment": "Remove Parameter testDescriptor : TestDescriptor in method private execute(testDescriptor TestDescriptor, parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor"
     },
     {
-      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
-      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
-      "commitTime": 1529690124,
-      "changeType": "modifier change",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()"
-    },
-    {
-      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
-      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
-      "commitTime": 1529690124,
+      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
+      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
+      "commitTime": 1514481784,
       "changeType": "moved",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask#execute()"
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "comment": "Move Method private execute(testDescriptor TestDescriptor, parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor to package execute(parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor"
+    },
+    {
+      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
+      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
+      "commitTime": 1514481784,
+      "changeType": "modifier change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)",
+      "comment": "Change Method Access Modifier private to package in method package execute(parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor"
+    },
+    {
+      "parentCommitId": "b443f4af96e201c2370b7312a1ff36b4ff8f003d",
+      "commitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
+      "commitTime": 1514481784,
+      "changeType": "documentation change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)"
+    },
+    {
+      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
+      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
+      "commitTime": 1514481784,
+      "changeType": "documentation change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
     },
     {
       "parentCommitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
@@ -108,60 +176,21 @@
       "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
     },
     {
-      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
-      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
-      "commitTime": 1514481784,
-      "changeType": "modifier change",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
-    },
-    {
-      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
-      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
-      "commitTime": 1514481784,
+      "parentCommitId": "7925bf2ebf6a648ae3eac8c00ef8389adca49244",
+      "commitId": "a3e4b97efb03bd7b52d18c17b9dc185d112a04e8",
+      "commitTime": 1493805174,
       "changeType": "parameter change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
-    },
-    {
-      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
-      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
-      "commitTime": 1514481784,
-      "changeType": "moved",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
-    },
-    {
-      "parentCommitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
-      "commitId": "805d4dad6d3893b8e973019b824167d7b6f2cb8c",
-      "commitTime": 1514481784,
-      "changeType": "documentation change",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor.NodeExecutor#execute(C, ExecutionTracker)"
-    },
-    {
-      "parentCommitId": "b443f4af96e201c2370b7312a1ff36b4ff8f003d",
-      "commitId": "e0a49d10ffb6505755fc8a0308e898382e3cc1eb",
-      "commitTime": 1514481784,
-      "changeType": "documentation change",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)"
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)",
+      "comment": "Add Parameter tracker : ExecutionTracker in method private execute(testDescriptor TestDescriptor, parentContext C, tracker ExecutionTracker) : void from class org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor"
     },
     {
       "parentCommitId": "7925bf2ebf6a648ae3eac8c00ef8389adca49244",
       "commitId": "a3e4b97efb03bd7b52d18c17b9dc185d112a04e8",
       "commitTime": 1493805174,
-      "changeType": "parameter change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -172,16 +201,6 @@
       "commitId": "a3e4b97efb03bd7b52d18c17b9dc185d112a04e8",
       "commitTime": 1493805174,
       "changeType": "body change",
-      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
-      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C, ExecutionTracker)"
-    },
-    {
-      "parentCommitId": "7925bf2ebf6a648ae3eac8c00ef8389adca49244",
-      "commitId": "a3e4b97efb03bd7b52d18c17b9dc185d112a04e8",
-      "commitTime": 1493805174,
-      "changeType": "documentation change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -211,7 +230,7 @@
       "parentCommitId": "d565f81ce504834b2f8ecbf6a27956f94d723afd",
       "commitId": "62c433c14ce9d70fa5b82ef385a6e15c22cc0003",
       "commitTime": 1466882960,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -221,7 +240,7 @@
       "parentCommitId": "d565f81ce504834b2f8ecbf6a27956f94d723afd",
       "commitId": "62c433c14ce9d70fa5b82ef385a6e15c22cc0003",
       "commitTime": 1466882960,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -245,7 +264,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
+      "comment": "Move Source Folder junit-engine-api to junit-platform-engine"
     },
     {
       "parentCommitId": "4dd821ac0cf681f17f14e1dcd383b10c99104e70",
@@ -255,7 +275,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/platform/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
+      "comment": "Move Class org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor moved to org.junit.platform.engine.support.hierarchical.HierarchicalTestExecutor"
     },
     {
       "parentCommitId": "0621ba4252c2c0caad734a246ab40b376840647b",
@@ -275,17 +296,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
-    },
-    {
-      "parentCommitId": "9d281657dd802b941280a2e78a170ceba3030838",
-      "commitId": "c8e52a7cde0579562c51c838ef1c83b68b0c31cf",
-      "commitTime": 1464659647,
-      "changeType": "body change",
-      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
-      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)",
+      "comment": "Rename Method private executeAll(testDescriptor TestDescriptor, parentContext C) : void renamed to private execute(testDescriptor TestDescriptor, parentContext C) : void in class org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor"
     },
     {
       "parentCommitId": "9d281657dd802b941280a2e78a170ceba3030838",
@@ -298,10 +310,20 @@
       "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
     },
     {
+      "parentCommitId": "9d281657dd802b941280a2e78a170ceba3030838",
+      "commitId": "c8e52a7cde0579562c51c838ef1c83b68b0c31cf",
+      "commitTime": 1464659647,
+      "changeType": "body change",
+      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
+      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#execute(TestDescriptor, C)"
+    },
+    {
       "parentCommitId": "03255925caa091dd6a36d1c1ae05accc2a4ef285",
       "commitId": "ac7bb522519cd8a600324aa909a5c17a110cb97f",
       "commitTime": 1464031301,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -311,7 +333,7 @@
       "parentCommitId": "03255925caa091dd6a36d1c1ae05accc2a4ef285",
       "commitId": "ac7bb522519cd8a600324aa909a5c17a110cb97f",
       "commitTime": 1464031301,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
@@ -345,7 +367,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/support/hierarchical/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
+      "comment": "Move Class org.junit.gen5.engine.HierarchicalTestExecutor moved to org.junit.gen5.engine.support.hierarchical.HierarchicalTestExecutor"
     },
     {
       "parentCommitId": "614df95c0ec68977bb02515585340418fc3d7a6e",
@@ -361,7 +384,7 @@
       "parentCommitId": "3542b7a872720b62e5a5d7e5c0ae5baef2129f7f",
       "commitId": "a02c0e24af370ced24d8fa9d758b1a1db396796f",
       "commitTime": 1452010442,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
@@ -371,16 +394,6 @@
       "parentCommitId": "3542b7a872720b62e5a5d7e5c0ae5baef2129f7f",
       "commitId": "a02c0e24af370ced24d8fa9d758b1a1db396796f",
       "commitTime": 1452010442,
-      "changeType": "documentation change",
-      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
-      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
-      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
-    },
-    {
-      "parentCommitId": "d3e8a9fac261e1ec09ff7aba7536f52f419108d4",
-      "commitId": "c54786d16f1c5f5ac5384a68893d069eba062e39",
-      "commitTime": 1450859968,
       "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
@@ -398,9 +411,9 @@
       "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
     },
     {
-      "parentCommitId": "4dfb1c838ff287ef3e8b986c3a7920169de06ab8",
-      "commitId": "0027ade00fd483e08714ece1021a7715bb1855da",
-      "commitTime": 1450776847,
+      "parentCommitId": "d3e8a9fac261e1ec09ff7aba7536f52f419108d4",
+      "commitId": "c54786d16f1c5f5ac5384a68893d069eba062e39",
+      "commitTime": 1450859968,
       "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
@@ -412,6 +425,16 @@
       "commitId": "0027ade00fd483e08714ece1021a7715bb1855da",
       "commitTime": 1450776847,
       "changeType": "documentation change",
+      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
+      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
+      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
+    },
+    {
+      "parentCommitId": "4dfb1c838ff287ef3e8b986c3a7920169de06ab8",
+      "commitId": "0027ade00fd483e08714ece1021a7715bb1855da",
+      "commitTime": 1450776847,
+      "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
@@ -435,7 +458,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
+      "comment": "Remove Parameter listener : EngineExecutionListener in method private executeAll(testDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.HierarchicalTestEngine"
     },
     {
       "parentCommitId": "e9d19c214a3117efdd9295bdb1b2ddb4f7e67987",
@@ -445,7 +469,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestExecutor.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestExecutor#executeAll(TestDescriptor, C)",
+      "comment": "Rename Class org.junit.gen5.engine.HierarchicalTestEngine renamed to org.junit.gen5.engine.HierarchicalTestExecutor"
     },
     {
       "parentCommitId": "e9d19c214a3117efdd9295bdb1b2ddb4f7e67987",
@@ -471,7 +496,7 @@
       "parentCommitId": "fc86dab57883ffcc0c5e6b9ea0999abb98101137",
       "commitId": "f8a1c6b5ae5a144d1a3e85100a4d61b7f059822d",
       "commitTime": 1449869754,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
@@ -491,7 +516,7 @@
       "parentCommitId": "fc86dab57883ffcc0c5e6b9ea0999abb98101137",
       "commitId": "f8a1c6b5ae5a144d1a3e85100a4d61b7f059822d",
       "commitTime": 1449869754,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
@@ -505,7 +530,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Rename Parameter parentDescriptor : TestDescriptor to testDescriptor : TestDescriptor in method private executeAll(testDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.HierarchicalTestEngine"
     },
     {
       "parentCommitId": "09b33da66c9780d80e020b42b319198a34ba24e9",
@@ -515,7 +541,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Remove Thrown Exception Type Exception in method private executeAll(parentDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.HierarchicalTestEngine"
     },
     {
       "parentCommitId": "09b33da66c9780d80e020b42b319198a34ba24e9",
@@ -535,7 +562,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Remove Method Annotation @SuppressWarnings({\"unused\",\"unchecked\"}) in method private executeAll(parentDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.HierarchicalTestEngine"
     },
     {
       "parentCommitId": "758f652746e826fcd059b5ed110dcc57597bce36",
@@ -545,17 +573,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
-    },
-    {
-      "parentCommitId": "0e14ad4525a5ade99dacdd76d0ab27223f57ebd4",
-      "commitId": "3f9c11b9326b7d3051cb2a50568cd91113a0c0da",
-      "commitTime": 1449754787,
-      "changeType": "body change",
-      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
-      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
-      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Add Method Annotation @SuppressWarnings({\"unused\",\"unchecked\"}) in method private executeAll(parentDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.HierarchicalTestEngine"
     },
     {
       "parentCommitId": "0e14ad4525a5ade99dacdd76d0ab27223f57ebd4",
@@ -565,23 +584,35 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Rename Class org.junit.gen5.engine.TreeBasedTestEngine renamed to org.junit.gen5.engine.HierarchicalTestEngine"
+    },
+    {
+      "parentCommitId": "0e14ad4525a5ade99dacdd76d0ab27223f57ebd4",
+      "commitId": "3f9c11b9326b7d3051cb2a50568cd91113a0c0da",
+      "commitTime": 1449754787,
+      "changeType": "body change",
+      "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
+      "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/HierarchicalTestEngine.java",
       "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.HierarchicalTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
     },
     {
       "parentCommitId": "28ffd5ee9d1e996133445cac2256407f28380e91",
       "commitId": "57b31220d25f59bb4aa4903dfee4b8ec2be4525e",
       "commitTime": 1449582937,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, Context)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, C)",
+      "comment": "Change Parameter Type parentContext : Context to parentContext : C in method private executeAll(parentDescriptor TestDescriptor, listener EngineExecutionListener, parentContext C) : void from class org.junit.gen5.engine.TreeBasedTestEngine"
     },
     {
       "parentCommitId": "28ffd5ee9d1e996133445cac2256407f28380e91",
       "commitId": "57b31220d25f59bb4aa4903dfee4b8ec2be4525e",
       "commitTime": 1449582937,
-      "changeType": "parameter change",
+      "changeType": "body change",
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, Context)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
@@ -595,7 +626,8 @@
       "elementFileBefore": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
       "elementNameBefore": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, Context)",
       "elementFileAfter": "junit-engine-api/src/main/java/org/junit/gen5/engine/TreeBasedTestEngine.java",
-      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, Context)"
+      "elementNameAfter": "junit-engine-api/src/main/java/org.junit.gen5.engine.TreeBasedTestEngine#executeAll(TestDescriptor, EngineExecutionListener, Context)",
+      "comment": "added with new class"
     }
   ]
 }

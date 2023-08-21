@@ -25,7 +25,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)",
+      "comment": "Remove Method Modifier synchronized in method public resetSchedulingOpportunities(schedulerKey SchedulerRequestKey, currentTimeMs long) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
     },
     {
       "parentCommitId": "ea29e3bc27f15516f4346d1312eef703bcd3d032",
@@ -41,11 +42,12 @@
       "parentCommitId": "d2cf8b54c546fad098307b771ffe40173700f5a8",
       "commitId": "5aace38b748ba71aaadd2c4d64eba8dc1f816828",
       "commitTime": 1469570043,
-      "changeType": "body change",
+      "changeType": "parameter change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(Priority, long)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)",
+      "comment": "Change Parameter Type priority : Priority to schedulerKey : SchedulerRequestKey in method public resetSchedulingOpportunities(schedulerKey SchedulerRequestKey, currentTimeMs long) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
     },
     {
       "parentCommitId": "d2cf8b54c546fad098307b771ffe40173700f5a8",
@@ -55,17 +57,29 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(Priority, long)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)",
+      "comment": "Rename Parameter priority : Priority to schedulerKey : SchedulerRequestKey in method public resetSchedulingOpportunities(schedulerKey SchedulerRequestKey, currentTimeMs long) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
+    },
+    {
+      "parentCommitId": "d2cf8b54c546fad098307b771ffe40173700f5a8",
+      "commitId": "5aace38b748ba71aaadd2c4d64eba8dc1f816828",
+      "commitTime": 1469570043,
+      "changeType": "body change",
+      "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
+      "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(Priority, long)",
+      "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
       "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(SchedulerRequestKey, long)"
     },
     {
       "parentCommitId": "b4eb963c3c3e0b123003d7b32cdf7c9202cfb441",
       "commitId": "a45017a5f17ec11814db7e206d1e80aaa4dd8d8f",
       "commitTime": 1388693985,
-      "changeType": "moved",
+      "changeType": "container change",
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication#resetSchedulingOpportunities(Priority, long)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplicationAttempt.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(Priority, long)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt#resetSchedulingOpportunities(Priority, long)",
+      "comment": "Rename Class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication renamed to org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplicationAttempt"
     },
     {
       "parentCommitId": "b3195f1283c4524c32e67640e965b70e96530fcc",
@@ -75,7 +89,8 @@
       "elementFileBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/fair/FSSchedulerApp.java",
       "elementNameBefore": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp#resetSchedulingOpportunities(Priority, long)",
       "elementFileAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org/apache/hadoop/yarn/server/resourcemanager/scheduler/SchedulerApplication.java",
-      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication#resetSchedulingOpportunities(Priority, long)"
+      "elementNameAfter": "hadoop-yarn-project/hadoop-yarn/hadoop-yarn-server/hadoop-yarn-server-resourcemanager/src/main/java/org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication#resetSchedulingOpportunities(Priority, long)",
+      "comment": "Pull Up Method public resetSchedulingOpportunities(priority Priority, currentTimeMs long) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FSSchedulerApp to public resetSchedulingOpportunities(priority Priority, currentTimeMs long) : void from class org.apache.hadoop.yarn.server.resourcemanager.scheduler.SchedulerApplication"
     },
     {
       "parentCommitId": "4fe912df9cd5b41317a3f4037d13c247e7d1380c",

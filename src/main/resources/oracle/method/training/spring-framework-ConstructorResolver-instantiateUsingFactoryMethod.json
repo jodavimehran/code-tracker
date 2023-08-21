@@ -51,7 +51,7 @@
       "parentCommitId": "e2bb06edbdd23716df7c265db28f65e6c432a2aa",
       "commitId": "b5cedd43eb2b70510729696554bbc1f99003ac10",
       "commitTime": 1510606271,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -61,7 +61,17 @@
       "parentCommitId": "e2bb06edbdd23716df7c265db28f65e6c432a2aa",
       "commitId": "b5cedd43eb2b70510729696554bbc1f99003ac10",
       "commitTime": 1510606271,
-      "changeType": "documentation change",
+      "changeType": "body change",
+      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+    },
+    {
+      "parentCommitId": "10dcaa9bf67702fbef799a0532ef33e4e2b9c89c",
+      "commitId": "b94302b5bde7475b9926dacb9fb69f3c8c894444",
+      "commitTime": 1503007895,
+      "changeType": "body change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -75,17 +85,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
-    },
-    {
-      "parentCommitId": "10dcaa9bf67702fbef799a0532ef33e4e2b9c89c",
-      "commitId": "b94302b5bde7475b9926dacb9fb69f3c8c894444",
-      "commitTime": 1503007895,
-      "changeType": "body change",
-      "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
-      "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Remove Method Annotation @Nullable in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
     },
     {
       "parentCommitId": "ffc3f6d87d640631c997fc9566679d094cdda267",
@@ -105,7 +106,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Add Parameter Annotation @Nullable in parameter explicitArgs : Object[] in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
     },
     {
       "parentCommitId": "2d37c966b2831add8fd0e01efa9c1eb8240fbdd3",
@@ -115,7 +117,8 @@
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Add Method Annotation @Nullable in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
     },
     {
       "parentCommitId": "1f128110f7ceb5b3da696600025c62c0fe0cb1a5",
@@ -241,7 +244,7 @@
       "parentCommitId": "49758a2a96261d827c9f448af7de157116e547fb",
       "commitId": "b093b8495416cd3f05a32add1c671174341bd595",
       "commitTime": 1383520795,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -251,7 +254,7 @@
       "parentCommitId": "49758a2a96261d827c9f448af7de157116e547fb",
       "commitId": "b093b8495416cd3f05a32add1c671174341bd595",
       "commitTime": 1383520795,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -275,7 +278,8 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "spring-beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "spring-beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Move Source Folder org.springframework.beans to spring-beans"
     },
     {
       "parentCommitId": "4e43ba544b058d406aac907ab50d7a7c4746a635",
@@ -375,7 +379,30 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Add Parameter Modifier final in parameter mbd : RootBeanDefinition in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
+    },
+    {
+      "parentCommitId": "fe5b5022f0de144d05da65b63015229241cf58b2",
+      "commitId": "d5d3104b7b13ce249bf9c877f7160cd2137ec209",
+      "commitTime": 1249576479,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Add Parameter Modifier final in parameter beanName : String in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
+    },
+    {
+      "parentCommitId": "fe5b5022f0de144d05da65b63015229241cf58b2",
+      "commitId": "d5d3104b7b13ce249bf9c877f7160cd2137ec209",
+      "commitTime": 1249576479,
+      "changeType": "parameter change",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "Add Parameter Modifier final in parameter explicitArgs : Object[] in method public instantiateUsingFactoryMethod(beanName String, mbd RootBeanDefinition, explicitArgs Object[]) : BeanWrapper from class org.springframework.beans.factory.support.ConstructorResolver"
     },
     {
       "parentCommitId": "fe5b5022f0de144d05da65b63015229241cf58b2",
@@ -401,7 +428,7 @@
       "parentCommitId": "1d6a7e57c1e6806309a40533fbe3e2ccd485c5aa",
       "commitId": "3cb073abce659c130abc9adc0662b75380fcc7f3",
       "commitTime": 1248792217,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -411,7 +438,7 @@
       "parentCommitId": "1d6a7e57c1e6806309a40533fbe3e2ccd485c5aa",
       "commitId": "3cb073abce659c130abc9adc0662b75380fcc7f3",
       "commitTime": 1248792217,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -441,7 +468,7 @@
       "parentCommitId": "0a0b10b2ff9be5be9b1bbeee2fec5592b9bd03d3",
       "commitId": "53333c3ed06e465a55592a0f351ffab40110e5b3",
       "commitTime": 1244024517,
-      "changeType": "body change",
+      "changeType": "documentation change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -451,7 +478,7 @@
       "parentCommitId": "0a0b10b2ff9be5be9b1bbeee2fec5592b9bd03d3",
       "commitId": "53333c3ed06e465a55592a0f351ffab40110e5b3",
       "commitTime": 1244024517,
-      "changeType": "documentation change",
+      "changeType": "body change",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
@@ -525,7 +552,8 @@
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
       "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/factory/support/ConstructorResolver.java",
-      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])"
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.factory.support.ConstructorResolver#instantiateUsingFactoryMethod(String, RootBeanDefinition, Object[])",
+      "comment": "added with new class"
     }
   ]
 }
