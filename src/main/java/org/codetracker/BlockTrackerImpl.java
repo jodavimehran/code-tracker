@@ -128,7 +128,22 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     }
                     //CHANGE BODY OR DOCUMENT
                     leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+                    //check if there is another method in leftModel with identical bodyHashCode to the rightMethod
+                    boolean otherExactMatchFound = false;
                     if (leftMethod != null) {
+                        for (UMLClass leftClass : leftModel.getClassList()) {
+                            for (UMLOperation leftOperation : leftClass.getOperations()) {
+                                if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
+                                    otherExactMatchFound = true;
+                                    break;
+                                }
+                            }
+                            if(otherExactMatchFound) {
+                                break;
+                            }
+                        }
+                    }
+                    if (leftMethod != null && !otherExactMatchFound) {
                         VariableDeclarationContainer leftOperation = leftMethod.getUmlOperation();
                         VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
                         UMLOperationBodyMapper bodyMapper = null;
