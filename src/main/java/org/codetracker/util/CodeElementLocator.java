@@ -59,8 +59,13 @@ public class CodeElementLocator {
     }
 
     private boolean blockPredicate(Block block) {
-        return block.getComposite().getLocationInfo().getCodeElementType().getName().equals(name) &&
-                block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
+        String blockCodeElementTypeName = block.getComposite().getLocationInfo().getCodeElementType().getName();
+        if(blockCodeElementTypeName != null) {
+            return blockCodeElementTypeName.equals(name) &&
+                    block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
+                    block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
+        }
+        return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
                 block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
     }
 
