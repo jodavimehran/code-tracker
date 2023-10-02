@@ -1,0 +1,46 @@
+{
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "filePath": "server/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+  "functionName": "addCustomXContentFields",
+  "functionKey": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)",
+  "functionStartLine": 104,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "server/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#addCustomXContentFields(XContentBuilder, Params)$if(121-123)",
+  "blockStartLine": 121,
+  "blockEndLine": 123,
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "expectedChanges": [
+    {
+      "parentCommitId": "ac2e6a3a4de751aeac61e7da9f0991bd1fc61749",
+      "commitId": "cc83c2f848be69a77f1275fe1ff5363dcdd4c955",
+      "commitTime": 1361203772,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(119-121)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(115-117)"
+    },
+    {
+      "parentCommitId": "ac2e6a3a4de751aeac61e7da9f0991bd1fc61749",
+      "commitId": "cc83c2f848be69a77f1275fe1ff5363dcdd4c955",
+      "commitTime": 1361203772,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(119-121)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(115-117)"
+    },
+    {
+      "parentCommitId": "7acdda74f4a448adad22f51c31739bda57b182b9",
+      "commitId": "b670a7f2a345aa2507714c1e8b61906c679c1107",
+      "commitTime": 1309036850,
+      "changeType": "introduced",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(116-118)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/action/admin/indices/segments/IndicesSegmentResponse.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.action.admin.indices.segments.IndicesSegmentResponse#toXContent(XContentBuilder, Params)$if(116-118)",
+      "comment": "added with method"
+    }
+  ]
+}

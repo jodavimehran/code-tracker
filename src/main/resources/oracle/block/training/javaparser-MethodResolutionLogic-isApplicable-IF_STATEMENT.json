@@ -12,15 +12,15 @@
   "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
   "expectedChanges": [
     {
-      "parentCommitId": "407c343559d9633054c6d07b649f8b08e5eba8a3",
-      "commitId": "c48864ccaea00039c2f6a8390d21cffd3fbde054",
-      "commitTime": 1476372360,
+      "parentCommitId": "241cd249688d1e7c621c495746d2603433599eb9",
+      "commitId": "d420a496cd03b7e9b5c4cce5074d8a74da69f3cd",
+      "commitTime": 1438530871,
       "changeType": "introduced",
-      "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
-      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(43-45)",
-      "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
-      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(43-45)",
-      "comment": "Extract Method private isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean extracted from public isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver) : boolean in class me.tomassetti.symbolsolver.resolution.MethodResolutionLogic"
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List)$if(13-15)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List)$if(13-15)",
+      "comment": "added with method"
     }
   ]
 }

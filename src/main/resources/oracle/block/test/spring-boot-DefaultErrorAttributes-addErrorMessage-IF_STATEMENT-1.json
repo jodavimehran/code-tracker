@@ -1,0 +1,36 @@
+{
+  "repositoryName": "spring-boot",
+  "repositoryWebURL": "https://github.com/spring-projects/spring-boot.git",
+  "filePath": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/error/DefaultErrorAttributes.java",
+  "functionName": "addErrorMessage",
+  "functionKey": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)",
+  "functionStartLine": 156,
+  "blockType": "IF_STATEMENT",
+  "blockKey": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.error.DefaultErrorAttributes#addErrorMessage(Map, Throwable)$if(162-170)",
+  "blockStartLine": 162,
+  "blockEndLine": 170,
+  "startCommitId": "5cfe8dbee950dbf3a8de3ece2f6f3363f13d904a",
+  "expectedChanges": [
+    {
+      "parentCommitId": "5dd77a725c9573437a451bea731f6f93deaabb6a",
+      "commitId": "30ac768cbfca5d6aaa3719028033c792da789853",
+      "commitTime": 1399920417,
+      "changeType": "body change",
+      "elementFileBefore": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/BasicErrorController.java",
+      "elementNameBefore": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.BasicErrorController#addMessage(Map, Throwable)$if(188-196)",
+      "elementFileAfter": "spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/web/DefaulErrorAttributes.java",
+      "elementNameAfter": "spring-boot-autoconfigure/src/main/java/org.springframework.boot.autoconfigure.web.DefaulErrorAttributes#addErrorMessage(Map, Throwable)$if(137-145)"
+    },
+    {
+      "parentCommitId": "4474b104b62e1e82cedb6c38581ceb3565165b32",
+      "commitId": "27580e726fa907c57590a0935673d1d7c620c57a",
+      "commitTime": 1398781408,
+      "changeType": "introduced",
+      "elementFileBefore": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
+      "elementNameBefore": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$if(183-191)",
+      "elementFileAfter": "spring-boot-actuator/src/main/java/org/springframework/boot/actuate/web/BasicErrorController.java",
+      "elementNameAfter": "spring-boot-actuator/src/main/java/org.springframework.boot.actuate.web.BasicErrorController#addMessage(Map, Throwable)$if(183-191)",
+      "comment": "new block"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "repositoryName": "elasticsearch",
+  "repositoryWebURL": "https://github.com/elastic/elasticsearch.git",
+  "filePath": "server/src/main/java/org/elasticsearch/discovery/zen/NodesFaultDetection.java",
+  "functionName": "handleTransportDisconnect",
+  "functionKey": "server/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)",
+  "functionStartLine": 148,
+  "blockType": "TRY_STATEMENT",
+  "blockKey": "server/src/main/java/org.elasticsearch.discovery.zen.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(156-166)",
+  "blockStartLine": 156,
+  "blockEndLine": 166,
+  "startCommitId": "767c69593c67befb843686de8ea51b7bc87728c9",
+  "expectedChanges": [
+    {
+      "parentCommitId": "db54e9c2d5d5fc3405cf29a4f92ef56ccc17b4dd",
+      "commitId": "36c3e896de86ced11a239e9b0ce66a896d472a8a",
+      "commitTime": 1411723315,
+      "changeType": "catch block change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(148-156)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(132-142)"
+    },
+    {
+      "parentCommitId": "db54e9c2d5d5fc3405cf29a4f92ef56ccc17b4dd",
+      "commitId": "36c3e896de86ced11a239e9b0ce66a896d472a8a",
+      "commitTime": 1411723315,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(148-156)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(132-142)"
+    },
+    {
+      "parentCommitId": "48c7da1fd43bebcc6d73cee634f86bbf03ba0859",
+      "commitId": "5302a53145a62ec2add7bdab095a92074819266a",
+      "commitTime": 1409147242,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(167-174)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-176)"
+    },
+    {
+      "parentCommitId": "e662d3c5351afea5d91c70d6289cce6e0ea673bd",
+      "commitId": "caf11ff2fbd9195cc780edb375f6a74302d906df",
+      "commitTime": 1404819308,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(166-174)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(165-172)"
+    },
+    {
+      "parentCommitId": "f22e51ae81537f46f7b2248013f391aac7a1b0dd",
+      "commitId": "ae16956e072bea317ea481f65f2e110dc48fde17",
+      "commitTime": 1404391871,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(165-172)",
+      "elementFileAfter": "src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(166-174)"
+    },
+    {
+      "parentCommitId": "1b5cdb181a1efb92a4c0ef793a9940f06cbb9fc3",
+      "commitId": "3ed848a495a494538a9071ccd447f23fa07fb7f2",
+      "commitTime": 1297746024,
+      "changeType": "body change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-175)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-175)"
+    },
+    {
+      "parentCommitId": "f6dced375078b4c8a22f25c168a5b96cf7bef273",
+      "commitId": "ccb30d42e9512c2618880a3cd026d6c6c2e5a253",
+      "commitTime": 1297261509,
+      "changeType": "body change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-175)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-175)"
+    },
+    {
+      "parentCommitId": "e313379ed506dfa9ee090020e5ce219a81a561c1",
+      "commitId": "de7dd3c0706c21b2ae5d12e266d662a8fb989784",
+      "commitTime": 1293115869,
+      "changeType": "body change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(167-172)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(168-175)"
+    },
+    {
+      "parentCommitId": "d1c7bde07e17cf1fc7c6b3433baa0a45c20c5b1a",
+      "commitId": "86134d32a806b657b9db2a7ceb5dbd6d3b0f234d",
+      "commitTime": 1276767965,
+      "changeType": "catch block change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(166-171)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(166-171)"
+    },
+    {
+      "parentCommitId": "4d26acd6dab7bcc8783bfc594cb06f29518d1f78",
+      "commitId": "a59679b0c678e0d614953baef20237578b506f08",
+      "commitTime": 1276714078,
+      "changeType": "catch block change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(160-165)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(160-165)"
+    },
+    {
+      "parentCommitId": "3e0f854c8857b803c52dea74c3957ecdbb972cee",
+      "commitId": "b4940d258cc16193df07a2b57da83bb3d753cff5",
+      "commitTime": 1274382347,
+      "changeType": "catch block change",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(155-160)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(159-164)"
+    },
+    {
+      "parentCommitId": "609af0da60012080fbf796efd5912a58545d8e49",
+      "commitId": "cb0d7d4735665fa8ca1b59555a06354859c0045a",
+      "commitTime": 1272142125,
+      "changeType": "introduced",
+      "elementFileBefore": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameBefore": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(151-156)",
+      "elementFileAfter": "modules/elasticsearch/src/main/java/org/elasticsearch/discovery/zen/fd/NodesFaultDetection.java",
+      "elementNameAfter": "modules/elasticsearch/src/main/java/org.elasticsearch.discovery.zen.fd.NodesFaultDetection#handleTransportDisconnect(DiscoveryNode)$try(151-156)",
+      "comment": "added with method"
+    }
+  ]
+}
