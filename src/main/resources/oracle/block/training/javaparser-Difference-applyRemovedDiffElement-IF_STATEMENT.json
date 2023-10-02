@@ -12,15 +12,45 @@
   "startCommitId": "97555053af3025556efe1a168fd7943dac28a2a6",
   "expectedChanges": [
     {
-      "parentCommitId": "c35fbac21da07f996f017169288b748764488c20",
-      "commitId": "b7bd15d12e107c85e29912960f7b4e48aac4dc38",
-      "commitTime": 1526693640,
+      "parentCommitId": "2ae6f779cc175b3cd82d915419f378e53ff4b056",
+      "commitId": "7f177dcaadbccb2076a2a41aa1000696a9a8a10e",
+      "commitTime": 1526680101,
+      "changeType": "expression change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(696-700)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(735-739)"
+    },
+    {
+      "parentCommitId": "77386fec9f12fb711779151186fe72b345bd4299",
+      "commitId": "2ae6f779cc175b3cd82d915419f378e53ff4b056",
+      "commitTime": 1526673942,
+      "changeType": "body change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(696-700)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(696-700)"
+    },
+    {
+      "parentCommitId": "7e86d04481f1128e3644b46991f106b34e775bb9",
+      "commitId": "fb8daf1673c35798aeb7cca8033dd9c9b2e5c4fc",
+      "commitTime": 1526592264,
+      "changeType": "body change",
+      "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(642-646)",
+      "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(646-650)"
+    },
+    {
+      "parentCommitId": "48e5289ce3a579c63b4eff8f4eea07678407fe42",
+      "commitId": "3a31705ba43ab2968ab2f113272b2462c91027bb",
+      "commitTime": 1510600871,
       "changeType": "introduced",
       "elementFileBefore": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)$if(274-278)",
+      "elementNameBefore": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(643-647)",
       "elementFileAfter": "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java",
-      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#applyRemovedDiffElement(Removed, TextElement, boolean, boolean)$if(274-278)",
-      "comment": "Extract Method private applyRemovedDiffElement(removed Removed, originalElement TextElement, originalElementIsChild boolean, originalElementIsToken boolean) : void extracted from package apply() : void in class com.github.javaparser.printer.lexicalpreservation.Difference"
+      "elementNameAfter": "javaparser-core/src/main/java/com.github.javaparser.printer.lexicalpreservation.Difference#apply(NodeText, Node)$if(643-647)",
+      "comment": "new block"
     }
   ]
 }

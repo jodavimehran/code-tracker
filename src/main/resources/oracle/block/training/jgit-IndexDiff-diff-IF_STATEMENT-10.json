@@ -12,15 +12,25 @@
   "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
   "expectedChanges": [
     {
-      "parentCommitId": "e43887b69e27672b80e55391e0ee255efe715ab9",
-      "commitId": "5e2e3819a690b739eba773415899d20db88a452e",
-      "commitTime": 1295569734,
+      "parentCommitId": "f4e9c8890cc625ba57b5a3cd078ca14cbcc86f8b",
+      "commitId": "ca9baa0ee2d86edf1c1e29ba3c35ba45fcf32b8c",
+      "commitTime": 1291831400,
+      "changeType": "body change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/IndexDiff.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff()$if(214-216)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/lib/IndexDiff.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff()$if(214-215)"
+    },
+    {
+      "parentCommitId": "a28f33fa8cf93e82b113fb303dfb4955a92b8956",
+      "commitId": "2dc2dd8b1b4c98b255b3f2dec655a3f0b197ce07",
+      "commitTime": 1289259123,
       "changeType": "introduced",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/lib/IndexDiff.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff(ProgressMonitor, int, int, String)$if(296-297)",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff()$if(206-208)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/lib/IndexDiff.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff(ProgressMonitor, int, int, String)$if(296-297)",
-      "comment": "Extract Method public diff(monitor ProgressMonitor, estWorkTreeSize int, estIndexSize int, title String) : boolean extracted from public diff() : boolean in class org.eclipse.jgit.lib.IndexDiff"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.lib.IndexDiff#diff()$if(206-208)",
+      "comment": "new block"
     }
   ]
 }

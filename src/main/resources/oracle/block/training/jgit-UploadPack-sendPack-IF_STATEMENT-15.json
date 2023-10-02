@@ -12,15 +12,25 @@
   "startCommitId": "bd1a82502680b5de5bf86f6c4470185fd1602386",
   "expectedChanges": [
     {
-      "parentCommitId": "1a87a725be28cb33f370bb62db69ae672a64c56b",
-      "commitId": "7ff6eb584cf8b83f83a3b5edf897feb53dbf42c0",
-      "commitTime": 1307665786,
+      "parentCommitId": "f9c9fe52266c7a64a6a72eb90287b6e872c142e9",
+      "commitId": "3271bcee2bc37b45da048cbd64c29c3cba1ea16b",
+      "commitTime": 1297632743,
+      "changeType": "expression change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(680-681)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(682-683)"
+    },
+    {
+      "parentCommitId": "0",
+      "commitId": "1a6964c8274c50f0253db75f010d78ef0e739343",
+      "commitTime": 1254268023,
       "changeType": "introduced",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(911-912)",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(470-471)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/transport/UploadPack.java",
-      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack(boolean)$if(911-912)",
-      "comment": "Extract Method private sendPack(sideband boolean) : void extracted from private sendPack() : void in class org.eclipse.jgit.transport.UploadPack"
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.transport.UploadPack#sendPack()$if(470-471)",
+      "comment": "Initial commit!"
     }
   ]
 }

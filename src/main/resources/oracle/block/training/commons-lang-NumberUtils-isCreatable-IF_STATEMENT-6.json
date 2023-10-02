@@ -32,15 +32,56 @@
       "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1414-1439)"
     },
     {
-      "parentCommitId": "1a1fc65b04bcbe2e95d0fa300fce110e1224906e",
-      "commitId": "c503d742f094dc2048b72c3f78f5e2e6070a44e1",
-      "commitTime": 1473555668,
-      "changeType": "introduced",
+      "parentCommitId": "708da45999d8e545bfbae17a092c68df94061756",
+      "commitId": "cf03e6173b70ad64337704402bea51600cddd1ba",
+      "commitTime": 1395976227,
+      "changeType": "body change",
       "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
-      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1412-1440)",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1349-1376)",
       "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isCreatable(String)$if(1412-1440)",
-      "comment": "Extract Method public isCreatable(str String) : boolean extracted from public isNumber(str String) : boolean in class org.apache.commons.lang3.math.NumberUtils"
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1349-1377)"
+    },
+    {
+      "parentCommitId": "5a509030a946646780e963b9f492a4eaff734116",
+      "commitId": "9397608dd35a335d5e14813c0923f9419782980a",
+      "commitTime": 1392087183,
+      "changeType": "block split",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1348-1368)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1348-1375)",
+      "comment": "Split Conditional if(sz > start + 1 && chars[start] == '0' && ((chars[start + 1] == 'x') || (chars[start + 1] == 'X'))) to [if((chars[start + 1] == 'x') || (chars[start + 1] == 'X')), if(sz > start + 1 && chars[start] == '0')] in method public isNumber(str String) : boolean from class org.apache.commons.lang3.math.NumberUtils"
+    },
+    {
+      "parentCommitId": "159415855d06d186e86a70f3d4aba8c2e96d4b34",
+      "commitId": "5a509030a946646780e963b9f492a4eaff734116",
+      "commitTime": 1392086076,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1348-1362)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1348-1368)"
+    },
+    {
+      "parentCommitId": "ad5b9b01497834d0710eb9fa00a4372c3ceb60ec",
+      "commitId": "2b5f7a79b0fc561a0dee8dddc46e31c2c8bf6818",
+      "commitTime": 1312310992,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1324-1338)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1323-1337)"
+    },
+    {
+      "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",
+      "commitId": "2d06a7ce861432fc702168fd4c94bc00ddfc39eb",
+      "commitTime": 1056489291,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(816-830)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/math/NumberUtils.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.math.NumberUtils#isNumber(String)$if(816-830)",
+      "comment": "added with method"
     }
   ]
 }

@@ -55,12 +55,73 @@
       "parentCommitId": "407c343559d9633054c6d07b649f8b08e5eba8a3",
       "commitId": "c48864ccaea00039c2f6a8390d21cffd3fbde054",
       "commitTime": 1476372360,
-      "changeType": "introduced",
+      "changeType": "body change",
       "elementFileBefore": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
-      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(88-94)",
+      "elementNameBefore": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(83-85)",
       "elementFileAfter": "java-symbol-solver-core/src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
-      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(88-94)",
-      "comment": "Extract Method private isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver, withWildcardTolerance boolean) : boolean extracted from public isApplicable(method MethodDeclaration, name String, paramTypes List<TypeUsage>, typeSolver TypeSolver) : boolean in class me.tomassetti.symbolsolver.resolution.MethodResolutionLogic"
+      "elementNameAfter": "java-symbol-solver-core/src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver, boolean)$if(88-94)"
+    },
+
+    {
+      "parentCommitId": "49f82c8a5bfaead7da63e0793ed4dec4318f2b89",
+      "commitId": "0b419e87200878fe13db395a415efc4d1338cef2",
+      "commitTime": 1446332885,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(35-37)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(36-38)"
+    },
+    {
+      "parentCommitId": "0e81f51c40996b42cb262dc2397126cee8f60965",
+      "commitId": "adb02497ed443e836ae552e20bcb11ab8c1ab623",
+      "commitTime": 1446245510,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(35-37)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/resolution/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.resolution.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(35-37)"
+    },
+    {
+      "parentCommitId": "ee58eb8363ecd8fad15a63eb2fdc94a387b58807",
+      "commitId": "f821be8dfe72fcd3f4e14f75420617b87ddb8689",
+      "commitTime": 1440448941,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(26-28)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(37-39)"
+    },
+    {
+      "parentCommitId": "1d5332815b543d569be3d7ec672a65b7efc39a04",
+      "commitId": "a7fa0c3db19bd74be9affdd624447251963b68af",
+      "commitTime": 1439975854,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(24-26)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(25-27)"
+    },
+    {
+      "parentCommitId": "7753a05297e5ca19a58bcdd962fcd651bb93ca79",
+      "commitId": "80f951258992f75441239c79e0f31eda7d47e107",
+      "commitTime": 1438696484,
+      "changeType": "expression change",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List)$if(23-25)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List, TypeSolver)$if(23-25)"
+    },
+    {
+      "parentCommitId": "241cd249688d1e7c621c495746d2603433599eb9",
+      "commitId": "d420a496cd03b7e9b5c4cce5074d8a74da69f3cd",
+      "commitTime": 1438530871,
+      "changeType": "introduced",
+      "elementFileBefore": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameBefore": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List)$if(21-23)",
+      "elementFileAfter": "src/main/java/me/tomassetti/symbolsolver/model/MethodResolutionLogic.java",
+      "elementNameAfter": "src/main/java/me.tomassetti.symbolsolver.model.MethodResolutionLogic#isApplicable(MethodDeclaration, String, List)$if(21-23)",
+      "comment": "added with method"
     }
   ]
 }
