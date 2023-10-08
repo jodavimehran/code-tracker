@@ -15,22 +15,12 @@
       "parentCommitId": "9938a39a872d4f232f718b2672d0245cae658e0b",
       "commitId": "872bd9145cd9504fc16b318f7ea0a666d9429103",
       "commitTime": 1407610475,
-      "changeType": "body change",
+      "changeType": "introduced",
       "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
       "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown(boolean)$if(919-921)",
       "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$if(897-899)"
-    },
-    {
-      "parentCommitId": "9a3c3bd35a6ee954232f9f8a1a1f1c39f4b742c4",
-      "commitId": "8559eafd99e5b569d4ad866e98f410fb4868fd4c",
-      "commitTime": 1396971290,
-      "changeType": "introduced",
-      "elementFileBefore": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameBefore": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown(boolean)$if(872-874)",
-      "elementFileAfter": "lucene/core/src/java/org/apache/lucene/index/IndexWriter.java",
-      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown(boolean)$if(872-874)",
-      "comment": "added with method"
+      "elementNameAfter": "lucene/core/src/java/org.apache.lucene.index.IndexWriter#shutdown()$if(897-899)",
+      "comment": "Inline Method public shutdown(waitForMerges boolean) : void inlined to private shutdown() : void in class org.apache.lucene.index.IndexWriter"
     }
   ]
 }
