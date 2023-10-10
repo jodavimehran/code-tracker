@@ -35,6 +35,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
               edge.target(),
               edgeValue.getChangeList(),
               edgeValue.getType(),
+              edge.source().getVersion().getId(),
               edge.target().getVersion().getId(),
               edge.target().getVersion().getTime(),
               edge.target().getVersion().getAuthoredTime(),
@@ -66,6 +67,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     private final Set<Change> changeList;
     private final Change.Type changeType;
     private final String commitId;
+    private final String parentCommitId;
     private final long commitTime;
     private final long authoredTime;
     private final String committerName;
@@ -84,6 +86,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
         C elementAfter,
         Set<Change> changeList,
         Change.Type changeType,
+        String parentCommitId,
         String commitId,
         long commitTime,
         long authoredTime,
@@ -93,6 +96,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
       this.changeList = changeList;
       this.changeType = changeType;
       this.commitId = commitId;
+      this.parentCommitId = parentCommitId;
       this.commitTime = commitTime;
       this.authoredTime = authoredTime;
       this.committerName = committerName;
@@ -121,6 +125,11 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     @Override
     public String getCommitId() {
       return commitId;
+    }
+
+    @Override
+    public String getParentCommitId() {
+      return parentCommitId;
     }
 
     @Override

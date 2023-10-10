@@ -37,6 +37,8 @@ public interface History<C extends CodeElement> {
 
     String getCommitId();
 
+    String getParentCommitId();
+
     long getCommitTime();
 
     long getAuthoredTime();
