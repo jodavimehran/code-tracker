@@ -248,6 +248,34 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentMethod.getFilePath(), fileNames::contains, false);
                             UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
+                            Set<Refactoring> moveRenameClassRefactorings = umlModelDiffAll.getMoveRenameClassRefactorings();
+                            UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethodClassName);
+                            if (classDiff != null) {
+                                List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
+                                boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+
+                                found = isBlockRefactored(classLevelRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+
+                                found = checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+
+                                found = checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, classDiff);
+                                if (found) {
+                                    historyReport.step5PlusPlus();
+                                    break;
+                                }
+                            }
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
                             boolean flag = false;
                             for (Refactoring refactoring : refactorings) {
