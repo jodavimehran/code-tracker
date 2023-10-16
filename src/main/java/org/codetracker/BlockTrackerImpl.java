@@ -372,6 +372,19 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
                                 if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
                                     matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
+                                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                    List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                        if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+                                        }
+                                        List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+                                        List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+                                        if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                        }
+                                    }
                                     break;
                                 }
                             }
