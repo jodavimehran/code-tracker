@@ -12,6 +12,16 @@
   "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
   "expectedChanges": [
     {
+      "parentCommitId": "9f89fd4626bbb4e34a905835e397bcffbad59307",
+      "commitId": "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
+      "commitTime": 1479059248,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class, String[])$catch(375-382)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)$catch(548-556)"
+    },
+    {
       "parentCommitId": "5bd622dab027ef37001a630a7c825c5b8c19d1db",
       "commitId": "5292526e476ffbb19c6613a98464054236c86ace",
       "commitTime": 1358838585,
@@ -30,7 +40,7 @@
       "elementNameBefore": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$catch(235-242)",
       "elementFileAfter": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
       "elementNameAfter": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$catch(235-242)",
-      "comment": "new block"
+      "comment": "Extract Method public reflectionEquals(lhs Object, rhs Object, testTransients boolean, reflectUpToClass Class) : boolean extracted from public reflectionEquals(lhs Object, rhs Object, testTransients boolean) : boolean in class org.apache.commons.lang.builder.EqualsBuilder"
     }
   ]
 }
