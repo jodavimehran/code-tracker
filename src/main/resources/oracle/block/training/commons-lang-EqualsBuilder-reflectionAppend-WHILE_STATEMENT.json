@@ -12,6 +12,26 @@
   "startCommitId": "a36c903d4f1065bc59f5e6d2bb0f9d92a5e71d83",
   "expectedChanges": [
     {
+      "parentCommitId": "9f89fd4626bbb4e34a905835e397bcffbad59307",
+      "commitId": "0095d8adf26b9469115b1be0358cb09d1fcb5fd4",
+      "commitTime": 1479059248,
+      "changeType": "body change",
+      "elementFileBefore": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class, String[])$while(370-373)",
+      "elementFileAfter": "src/main/java/org/apache/commons/lang3/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.builder.EqualsBuilder#reflectionAppend(Object, Object)$while(543-546)"
+    },
+    {
+      "parentCommitId": "fc9b4cc1d839079cd37380ea6566a7575d9f4900",
+      "commitId": "8393f10b791c4fd28a1031f0a6427a2c9af04977",
+      "commitTime": 1145862000,
+      "changeType": "body change",
+      "elementFileBefore": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
+      "elementNameBefore": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$while(206-209)",
+      "elementFileAfter": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
+      "elementNameAfter": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class, String[])$while(263-266)"
+    },
+    {
       "parentCommitId": "9247caa92e300a8797f086c0191939bfb3b42240",
       "commitId": "5c40090fecdacd9366bba7e3e29d94f213cf2633",
       "commitTime": 1042997721,
@@ -20,7 +40,7 @@
       "elementNameBefore": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$while(231-234)",
       "elementFileAfter": "src/java/org/apache/commons/lang/builder/EqualsBuilder.java",
       "elementNameAfter": "src/java/org.apache.commons.lang.builder.EqualsBuilder#reflectionEquals(Object, Object, boolean, Class)$while(231-234)",
-      "comment": "new block"
+      "comment": "Extract Method public reflectionEquals(lhs Object, rhs Object, testTransients boolean, reflectUpToClass Class) : boolean extracted from public reflectionEquals(lhs Object, rhs Object, testTransients boolean) : boolean in class org.apache.commons.lang.builder.EqualsBuilder"
     }
   ]
 }
