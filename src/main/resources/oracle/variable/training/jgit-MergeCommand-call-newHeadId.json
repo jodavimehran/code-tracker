@@ -14,11 +14,33 @@
       "parentCommitId": "81b601de53125bbcd30620b58168154d7541d8ad",
       "commitId": "545358577376bec8fc140a76ce0f72bf81cc0a94",
       "commitTime": 1365081109,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
-      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHeadId:ObjectId(355)",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHead:RevCommit(353)",
       "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
       "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHeadId:ObjectId(355)",
+      "comment": "Rename Variable newHead : RevCommit to newHeadId : ObjectId in method public call() : MergeResult from class org.eclipse.jgit.api.MergeCommand"
+    },
+    {
+      "parentCommitId": "81b601de53125bbcd30620b58168154d7541d8ad",
+      "commitId": "545358577376bec8fc140a76ce0f72bf81cc0a94",
+      "commitTime": 1365081109,
+      "changeType": "type change",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHead:RevCommit(353)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHeadId:ObjectId(355)",
+      "comment": "Change Variable Type newHead : RevCommit to newHeadId : ObjectId in method public call() : MergeResult from class org.eclipse.jgit.api.MergeCommand"
+    },
+    {
+      "parentCommitId": "77f79659f575dd8b8739707e6c8ddba51d765c78",
+      "commitId": "45e79a526c7ffebaf8e4758a6cb6b7af05716707",
+      "commitTime": 1283210514,
+      "changeType": "introduced",
+      "elementFileBefore": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameBefore": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHead:RevCommit(189)",
+      "elementFileAfter": "org.eclipse.jgit/src/org/eclipse/jgit/api/MergeCommand.java",
+      "elementNameAfter": "org.eclipse.jgit/src/org.eclipse.jgit.api.MergeCommand#call()$newHead:RevCommit(189)",
       "comment": "new variable"
     }
   ]
