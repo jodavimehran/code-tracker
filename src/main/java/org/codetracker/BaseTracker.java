@@ -207,16 +207,26 @@ public abstract class BaseTracker {
             final String leftSideFileNameFinal = leftSideFileName;
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
-            return optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> rightSideFileNamePredicate.test(map.getKey())).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
-            return optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent);
+            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            //remove from rightSideModel the classes not matching the rightSideFileNamePredicate
+            Set<UMLClass> rightClassesToBeRemoved = new HashSet<>();
+            for (UMLClass rightClass : rightSideUMLModel.getClassList()) {
+                if (!rightSideFileNamePredicate.test(rightClass.getSourceFile())) {
+                    rightClassesToBeRemoved.add(rightClass);
+                }
+            }
+            rightSideUMLModel.getClassList().removeAll(rightClassesToBeRemoved);
+            return Pair.of(leftSideUMLModel, rightSideUMLModel);
         }
 
     }
 
-    private static Pair<UMLModel, UMLModel> optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel) {
+    private static void optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel) {
         for (UMLClass leftClass : leftSideUMLModel.getClassList()) {
             UMLClass rightClass = rightSideUMLModel.getClass(leftClass);
             if (rightClass != null) {
@@ -234,11 +244,22 @@ public abstract class BaseTracker {
                 }
                 leftClass.getOperations().removeAll(leftOperationsToBeRemoved);
                 rightClass.getOperations().removeAll(rightOperationsToBeRemoved);
+                List<UMLAttribute> leftAttributesToBeRemoved = new ArrayList<>();
+                List<UMLAttribute> rightAttributesToBeRemoved = new ArrayList<>();
+                for (UMLAttribute leftAttribute : leftClass.getAttributes()) {
+                    int index = rightClass.getAttributes().indexOf(leftAttribute);
+                    if (index != -1) {
+                        UMLAttribute rightAttribute = rightClass.getAttributes().get(index);
+                        leftAttributesToBeRemoved.add(leftAttribute);
+                        rightAttributesToBeRemoved.add(rightAttribute);
+                    }
+                }
+                leftClass.getAttributes().removeAll(leftAttributesToBeRemoved);
+                rightClass.getAttributes().removeAll(rightAttributesToBeRemoved);
             }
         }
         leftSideUMLModel.setPartial(true);
         rightSideUMLModel.setPartial(true);
-        return Pair.of(leftSideUMLModel, rightSideUMLModel);
     }
 
     protected static boolean isNewlyAddedFile(CommitModel commitModel, String currentMethodFilePath) {
