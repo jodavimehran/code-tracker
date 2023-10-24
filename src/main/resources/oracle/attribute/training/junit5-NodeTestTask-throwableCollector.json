@@ -22,12 +22,34 @@
       "parentCommitId": "3dedce4fd9abfa4162a2c55b16c970057fb69abe",
       "commitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
       "commitTime": 1530994538,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)executionErrors:List<Throwable>(39)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
       "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
-      "comment": "new attribute"
+      "comment": "Rename Attribute executionErrors : List<Throwable> to throwableCollector : ThrowableCollector in class org.junit.platform.engine.support.hierarchical.NodeTestTask"
+    },
+    {
+      "parentCommitId": "3dedce4fd9abfa4162a2c55b16c970057fb69abe",
+      "commitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
+      "commitTime": 1530994538,
+      "changeType": "type change",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)executionErrors:List<Throwable>(39)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
+      "comment": "Change Attribute Type executionErrors : List<Throwable> to throwableCollector : ThrowableCollector in class org.junit.platform.engine.support.hierarchical.NodeTestTask"
+    },
+    {
+      "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
+      "commitId": "2f3440e0f221255a83b28c42cf77407bde92a8b4",
+      "commitTime": 1529690124,
+      "changeType": "introduced",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)executionErrors:List<Throwable>(39)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)executionErrors:List<Throwable>(39)",
+      "comment": "added with new class"
     }
   ]
 }
