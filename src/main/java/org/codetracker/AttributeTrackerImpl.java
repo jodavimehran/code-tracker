@@ -177,18 +177,18 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
-                            boolean flag = false;
+                            int moveAttributeRefactorings = 0;
                             for (Refactoring refactoring : refactorings) {
                                 if (RefactoringType.MOVE_ATTRIBUTE.equals(refactoring.getRefactoringType())) {
                                     MoveAttributeRefactoring moveAttributeRefactoring = (MoveAttributeRefactoring) refactoring;
                                     Attribute movedAttribute = Attribute.of(moveAttributeRefactoring.getMovedAttribute(), currentVersion);
                                     if (rightAttribute.equalIdentifierIgnoringVersion(movedAttribute)) {
                                         fileNames.add(moveAttributeRefactoring.getOriginalAttribute().getLocationInfo().getFilePath());
-                                        flag = true;
+                                        moveAttributeRefactorings++;
                                     }
                                 }
                             }
-                            if (flag) {
+                            if (moveAttributeRefactorings == 1) {
                                 umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
                                 umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
                                 refactorings = umlModelDiffAll.getRefactorings();
@@ -197,7 +197,13 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             Set<Attribute> attributeContainerChanged = isAttributeContainerChanged(umlModelDiffAll, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             boolean containerChanged = !attributeContainerChanged.isEmpty();
 
-                            Set<Attribute> attributeRefactored = analyseAttributeRefactorings(refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+                            Set<Attribute> attributeRefactored;
+                            if (moveAttributeRefactorings <= 1) {
+                                attributeRefactored = analyseAttributeRefactorings(refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+                            }
+                            else {
+                                attributeRefactored = Collections.emptySet();
+                            }
                             boolean refactored = !attributeRefactored.isEmpty();
 
                             if (containerChanged || refactored) {

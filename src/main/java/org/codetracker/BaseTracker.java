@@ -207,12 +207,12 @@ public abstract class BaseTracker {
             final String leftSideFileNameFinal = leftSideFileName;
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
-            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
             return Pair.of(leftSideUMLModel, rightSideUMLModel);
         } else {
             UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
             UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent);
-            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel);
+            optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
             //remove from rightSideModel the classes not matching the rightSideFileNamePredicate
             Set<UMLClass> rightClassesToBeRemoved = new HashSet<>();
             for (UMLClass rightClass : rightSideUMLModel.getClassList()) {
@@ -226,9 +226,29 @@ public abstract class BaseTracker {
 
     }
 
-    private static void optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel) {
+    private static void optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel, final String rightSideFileName, Map<String, String> renamedFilesHint) {
         for (UMLClass leftClass : leftSideUMLModel.getClassList()) {
             UMLClass rightClass = rightSideUMLModel.getClass(leftClass);
+            if (rightClass == null && renamedFilesHint.containsKey(leftClass.getSourceFile()) && !renamedFilesHint.get(leftClass.getSourceFile()).equals(rightSideFileName)) {
+                String rightSideFile = renamedFilesHint.get(leftClass.getSourceFile());
+                List<UMLClass> matchingRightClasses = new ArrayList<>();
+                for (UMLClass c : rightSideUMLModel.getClassList()) {
+                    if (c.getSourceFile().equals(rightSideFile)) {
+                        matchingRightClasses.add(c);
+                    }
+                }
+                if (matchingRightClasses.size() == 1) {
+                    rightClass = matchingRightClasses.get(0);
+                }
+                else if (matchingRightClasses.size() > 1) {
+                    for (UMLClass c : matchingRightClasses) {
+                        if (c.getName().equals(leftClass.getName())) {
+                            rightClass = c;
+                            break;
+                        }
+                    }
+                }
+            }
             if (rightClass != null) {
                 List<UMLOperation> leftOperationsToBeRemoved = new ArrayList<>();
                 List<UMLOperation> rightOperationsToBeRemoved = new ArrayList<>();
