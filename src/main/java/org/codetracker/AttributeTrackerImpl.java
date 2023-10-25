@@ -129,6 +129,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         continue;
                     }
 
+                    String extractedClassFilePath = null;
                     //Local Refactoring
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
@@ -136,7 +137,29 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         Set<Attribute> attributeContainerChanged = isAttributeContainerChanged(umlModelDiffLocal, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                         boolean containerChanged = !attributeContainerChanged.isEmpty();
 
-                        Set<Attribute> attributeRefactored = analyseAttributeRefactorings(refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+                        String renamedAttributeClassType = null;
+                        for (Refactoring r : refactorings) {
+                            if (r.getRefactoringType().equals(RefactoringType.RENAME_ATTRIBUTE)) {
+                                RenameAttributeRefactoring renameAttributeRefactoring = (RenameAttributeRefactoring)r;
+                                if (renameAttributeRefactoring.getRenamedAttribute().getType() != null) {
+                                    renamedAttributeClassType = renameAttributeRefactoring.getRenamedAttribute().getType().getClassType();
+                                }
+                                if (renamedAttributeClassType != null) {
+                                    CommitModel commitModel = getCommitModel(currentVersion.getId());
+                                    for (String filePath : commitModel.fileContentsCurrentOriginal.keySet()) {
+                                        if (filePath.endsWith(renamedAttributeClassType + ".java") && !commitModel.fileContentsBeforeOriginal.keySet().contains(filePath)) {
+                                            extractedClassFilePath = filePath;
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        Set<Attribute> attributeRefactored = null;
+                        if (extractedClassFilePath == null)
+                            attributeRefactored = analyseAttributeRefactorings(refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+                        else
+                            attributeRefactored = Collections.emptySet();
                         boolean refactored = !attributeRefactored.isEmpty();
 
                         if (containerChanged || refactored) {
@@ -172,6 +195,9 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         }
                         {
                             Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
+                            if (extractedClassFilePath != null) {
+                                fileNames.add(extractedClassFilePath);
+                            }
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
                             UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
