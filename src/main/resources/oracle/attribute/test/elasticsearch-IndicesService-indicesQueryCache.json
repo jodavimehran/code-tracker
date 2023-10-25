@@ -22,34 +22,12 @@
       "parentCommitId": "4d0feff2efc358914f2d29634eafdb4dec1e5c0f",
       "commitId": "4bb5b4100d0687f29d758ce5a329c831c563ebe5",
       "commitTime": 1455288811,
-      "changeType": "moved",
-      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/NodeServicesProvider.java",
-      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.NodeServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(43)",
+      "changeType": "introduced",
+      "elementFileBefore": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
+      "elementNameBefore": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indicesQueryCache:IndicesQueryCache(139)",
       "elementFileAfter": "core/src/main/java/org/elasticsearch/indices/IndicesService.java",
       "elementNameAfter": "core/src/main/java/org.elasticsearch.indices.IndicesService@(final)(private)indicesQueryCache:IndicesQueryCache(139)",
-      "comment": "Move Attribute private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.index.NodeServicesProvider to private indicesQueryCache : IndicesQueryCache from class org.elasticsearch.indices.IndicesService"
-    },
-    {
-      "parentCommitId": "45f7844948d0a639b28fff08ddf1ede5637c0a49",
-      "commitId": "487af301ea4fc11d635fa9fa993be8b9aa261466",
-      "commitTime": 1446718691,
-      "changeType": "container change",
-      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
-      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(50)",
-      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/NodeServicesProvider.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.NodeServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(44)",
-      "comment": "Rename Class org.elasticsearch.index.IndexServicesProvider renamed to org.elasticsearch.index.NodeServicesProvider"
-    },
-    {
-      "parentCommitId": "c5971272ee71a24f17e4958d729588c59266ab05",
-      "commitId": "a0821355384ec6881bade28dd3d29e1a64bea550",
-      "commitTime": 1444119596,
-      "changeType": "introduced",
-      "elementFileBefore": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
-      "elementNameBefore": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(54)",
-      "elementFileAfter": "core/src/main/java/org/elasticsearch/index/IndexServicesProvider.java",
-      "elementNameAfter": "core/src/main/java/org.elasticsearch.index.IndexServicesProvider@(final)(private)indicesQueryCache:IndicesQueryCache(54)",
-      "comment": "added with new class"
+      "comment": "new attribute"
     }
   ]
 }
