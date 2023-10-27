@@ -307,10 +307,13 @@ In the code snippet below we demonstrate how to print all changes performed in t
 ```
 
 # Oracle
-The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of 1345 variables declared in these methods, is available in the following links:
+The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of **1345 variables** and **1280 blocks** declared in these methods, is available in the following links:
 * [Method](src/main/resources/oracle/method)
   * [Training](src/main/resources/oracle/method/training)
   * [Test](src/main/resources/oracle/method/test)
+* [Block](src/main/resources/oracle/block)
+  * [Training](src/main/resources/oracle/block/training)
+  * [Test](src/main/resources/oracle/block/test)
 * [Variable](src/main/resources/oracle/variable)
   * [Training](src/main/resources/oracle/variable/training)
   * [Test](src/main/resources/oracle/variable/test)
@@ -378,6 +381,7 @@ To avoid unnecessary processing and speed up the tracking process, CodeTracker e
 ### Tracking Accuracy
   All data we collect to compute the precision and recall of CodeTracker and CodeShovel at commit level and change level are available in the following links:
 * [Method](experiments/tracking-accuracy/method)
+* [Block](experiments/tracking-accuracy/block)
 * [Variable](experiments/tracking-accuracy/variable)
   
 ### CSV column descriptions
