@@ -179,6 +179,18 @@ CodeTracker can track the history of code blocks in git repositories.
 
 In the code snippet below we demonstrate how to print all changes performed in the history of [`for (final AuditListener listener : listeners)`](https://github.com/checkstyle/checkstyle/blob/119fd4fb33bef9f5c66fc950396669af842c21a3/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java#L391).
 
+`.codeElementType()` can take the following values:
+- `CodeElementType.FOR_STATEMENT`
+- `CodeElementType.ENHANCED_FOR_STATEMENT`
+- `CodeElementType.WHILE_STATEMENT`
+- `CodeElementType.IF_STATEMENT`
+- `CodeElementType.DO_STATEMENT`
+- `CodeElementType.SWITCH_STATEMENT`
+- `CodeElementType.SYNCHRONIZED_STATEMENT`
+- `CodeElementType.TRY_STATEMENT`
+- `CodeElementType.CATCH_CLAUSE`
+- `CodeElementType.FINALLY_BLOCK`
+
 ```java
     GitService gitService = new GitServiceImpl();
     try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle",
