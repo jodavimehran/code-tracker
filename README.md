@@ -75,6 +75,10 @@ and execute `mvn install` again
 
 `mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.VariableExperimentStarter"`
 
+7. **Run the block tracking experiment** (takes around 2 hours for 1280 tracked blocks)
+
+`mvn compile exec:java -Dexec.mainClass="org.codetracker.experiment.BlockExperimentStarter"`
+
 Note: by default the analyzed repositories will be cloned in folder "code-tracker/tmp".
 If you want to change folder where the repositories will be cloned, you have to edit the field `FOLDER_TO_CLONE` in class `org.codetracker.experiment.AbstractExperimentStarter`
 and execute `mvn install` again 
@@ -112,6 +116,12 @@ From the Package Explorer navigate to `org.codetracker.experiment.VariableExperi
 
 Right-click on the file and select *Run as* -> *Java Application*
 
+6. **Run the block tracking experiment** (takes around 2 hours for 1280 tracked blocks)
+
+From the Package Explorer navigate to `org.codetracker.experiment.BlockExperimentStarter`
+
+Right-click on the file and select *Run as* -> *Java Application*
+
 ## IntelliJ IDEA
 1. **Clone repository**
 
@@ -144,6 +154,12 @@ Right-click on the file and select *Run MethodExperimentStarter.main()*
 From the Project tab navigate to `org.codetracker.experiment.VariableExperimentStarter`
 
 Right-click on the file and select *Run VariableExperimentStarter.main()*
+
+6. **Run the block tracking experiment** (takes around 2 hours for 1280 tracked blocks)
+
+From the Project tab navigate to `org.codetracker.experiment.BlockExperimentStarter`
+
+Right-click on the file and select *Run BlockExperimentStarter.main()*
 
 
 # How to add as a Maven dependency
