@@ -10,6 +10,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
       * [Eclipse IDE](#eclipse-ide)
       * [IntelliJ IDEA](#intellij-idea)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
+  * [How to Track Blocks](#how-to-track-blocks)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
   * [How to Track Attributes](#how-to-track-attributes)
@@ -156,6 +157,45 @@ To add code-tracker as a maven dependency in your project, add the following dep
       <artifactId>code-tracker</artifactId>
       <version>1.0</version>
     </dependency>
+
+# How to Track Blocks
+CodeTracker can track the history of code blocks in git repositories.
+
+In the code snippet below we demonstrate how to print all changes performed in the history of [`for (final AuditListener listener : listeners)`](https://github.com/checkstyle/checkstyle/blob/119fd4fb33bef9f5c66fc950396669af842c21a3/src/main/java/com/puppycrawl/tools/checkstyle/Checker.java#L391).
+
+```java
+    GitService gitService = new GitServiceImpl();
+    try (Repository repository = gitService.cloneIfNotExists("tmp/checkstyle",
+            "https://github.com/checkstyle/checkstyle.git")){
+
+        BlockTracker blockTracker = CodeTracker.blockTracker()
+                .repository(repository)
+                .filePath("src/main/java/com/puppycrawl/tools/checkstyle/Checker.java")
+                .startCommitId("119fd4fb33bef9f5c66fc950396669af842c21a3")
+                .methodName("fireErrors")
+                .methodDeclarationLineNumber(384)
+                .codeElementType(CodeElementType.ENHANCED_FOR_STATEMENT)
+                .blockStartLineNumber(391)
+                .blockEndLineNumber(393)
+                .build();
+
+        History<Block> blockHistory = blockTracker.track();
+
+        for (History.HistoryInfo<Block> historyInfo : blockHistory.getHistoryInfoList()) {
+            System.out.println("======================================================");
+            System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Date: " +
+                    LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Before: " + historyInfo.getElementBefore().getName());
+            System.out.println("After: " + historyInfo.getElementAfter().getName());
+
+            for (Change change : historyInfo.getChangeList()) {
+                System.out.println(change.getType().getTitle() + ": " + change);
+            }
+        }
+        System.out.println("======================================================");
+    }
+```
 
 # How to Track Methods
 CodeTracker can track the history of methods in git repositories.
