@@ -171,7 +171,7 @@ To add code-tracker as a maven dependency in your project, add the following dep
     <dependency>
       <groupId>io.github.jodavimehran</groupId>
       <artifactId>code-tracker</artifactId>
-      <version>1.0</version>
+      <version>2.3</version>
     </dependency>
 
 # How to Track Blocks
