@@ -166,13 +166,20 @@ Right-click on the file and select *Run BlockExperimentStarter.main()*
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker/badge.svg)](https://maven-badges.herokuapp.com/maven-central/io.github.jodavimehran/code-tracker)
 
-To add code-tracker as a maven dependency in your project, add the following dependency in your project's pom.xml:
+Since version 1.0, CodeTracker is available in the [Maven Central Repository](https://mvnrepository.com/artifact/io.github.jodavimehran/code-tracker).
+In order to use CodeTracker as a maven dependency in your project, add the following snippet to your project's build configuration file:
+
+**pom.xml**
 
     <dependency>
       <groupId>io.github.jodavimehran</groupId>
       <artifactId>code-tracker</artifactId>
       <version>2.3</version>
     </dependency>
+
+**build.gradle**
+
+    implementation 'io.github.jodavimehran:code-tracker:2.3'
 
 # How to Track Blocks
 CodeTracker can track the history of code blocks in git repositories.
