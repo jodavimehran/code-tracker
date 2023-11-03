@@ -174,12 +174,12 @@ In order to use CodeTracker as a maven dependency in your project, add the follo
     <dependency>
       <groupId>io.github.jodavimehran</groupId>
       <artifactId>code-tracker</artifactId>
-      <version>2.3</version>
+      <version>2.4</version>
     </dependency>
 
 **build.gradle**
 
-    implementation 'io.github.jodavimehran:code-tracker:2.3'
+    implementation 'io.github.jodavimehran:code-tracker:2.4'
 
 # How to Track Blocks
 CodeTracker can track the history of code blocks in git repositories.
