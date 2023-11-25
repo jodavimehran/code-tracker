@@ -14,6 +14,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
   * [How to Track Attributes](#how-to-track-attributes)
+  * [How to Run the REST API](#how-to-run-the-rest-api)
   * [Oracle](#oracle)
   * [Experiments](#experiments)
 
@@ -340,6 +341,18 @@ In the code snippet below we demonstrate how to print all changes performed in t
         System.out.println("======================================================");
     }
 ```
+
+# How to Run the REST API
+
+You can serve CodeTracker as a REST API. 
+
+In the command line, run
+
+`mvn compile exec:java -Dexec.mainClass="org.codetracker.rest.REST"`
+
+To provide GitHub credentials for tracking private repositories, set environment variables `GITHUB_USERNAME` and `GITHUB_KEY` before running the API.
+ - `set GITHUB_USERNAME=<your_username>`
+ - `set GITHUB_KEY=<your_github_key>`
 
 # Oracle
 The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of **1345 variables** and **1280 blocks** declared in these methods, is available in the following links:
