@@ -15,6 +15,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to Track Variables](#how-to-track-variables)
   * [How to Track Attributes](#how-to-track-attributes)
   * [How to Run the REST API](#how-to-run-the-rest-api)
+  * [REST API Endpoints](#rest-api-endpoints)
   * [Oracle](#oracle)
   * [Experiments](#experiments)
 
@@ -353,6 +354,82 @@ In the command line, run
 To provide GitHub credentials for tracking private repositories, set environment variables `GITHUB_USERNAME` and `GITHUB_KEY` before running the API.
  - `set GITHUB_USERNAME=<your_username>`
  - `set GITHUB_KEY=<your_github_key>`
+
+# Rest API Endpoints
+
+### Endpoint
+
+`HTTP Method`: `GET`
+
+`Endpoint URL`: `/api/track`
+
+#### Endpoint Description
+
+Initiate one of the four supported Trackers on a given code element. Returns the change history of the selected element in the form of a JSON array. Works for all types of supported code elements (methods, attributes, variables, blocks).
+
+### Parameters
+
+#### Request Parameters (query params)
+
+| Parameter     | Type     | Description                                                     |
+|---------------|----------|-----------------------------------------------------------------|
+| `owner`       | `String` | The owner of the repository.                                    |
+| `repoName`    | `String` | The name of the repository.                                     |
+| `commitId`    | `String` | The commit Id to start tracking from.                           |
+| `filePath`    | `String` | The path of the file the code element is defined in.            |
+| `selection`   | `String` | The code element to be tracked.                                 |
+| `lineNumber`  | `String` | The line the code element is defined on                         |
+| `gitHubToken` | `String` | [Optional] The GitHub access token for private repositories.    |
+
+### Request Example
+
+```json
+{
+    "owner": "checkstyle",
+    "repoName": "checkstyle",
+    "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java",
+    "commitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+    "selection": "stack",
+    "lineNumber": "486"
+}
+```
+
+### Endpoint
+
+`HTTP Method`: `GET`
+
+`Endpoint URL`: `/api/codeElementType`
+
+#### Endpoint Description
+
+Detect the type of code element selected using the `CodeElementLocator` API. Returns the type of code element selected. Works for all types of supported code elements (methods, attributes, variables, blocks).
+
+### Parameters
+
+#### Request Parameters (query params)
+
+| Parameter     | Type     | Description                                                     |
+|---------------|----------|-----------------------------------------------------------------|
+| `owner`       | `String` | The owner of the repository.                                    |
+| `repoName`    | `String` | The name of the repository.                                     |
+| `commitId`    | `String` | The commit Id to start tracking from.                           |
+| `filePath`    | `String` | The path of the file the code element is defined in.            |
+| `selection`   | `String` | The code element to be tracked.                                 |
+| `lineNumber`  | `String` | The line the code element is defined on                         |
+| `gitHubToken` | `String` | [Optional] The GitHub access token for private repositories.    |
+
+### Request Example
+
+```json
+{
+    "owner": "checkstyle",
+    "repoName": "checkstyle",
+    "filePath": "src/main/java/com/puppycrawl/tools/checkstyle/JavadocDetailNodeParser.java",
+    "commitId": "119fd4fb33bef9f5c66fc950396669af842c21a3",
+    "selection": "stack",
+    "lineNumber": "486"
+}
+```
 
 # Oracle
 The oracle we used to evaluate CodeTracker is an extension of [CodeShovel oracle](https://github.com/ataraxie/codeshovel/tree/master/src/test/resources/oracles/java), including the evolution history of 200 methods and the evolution history of **1345 variables** and **1280 blocks** declared in these methods, is available in the following links:
