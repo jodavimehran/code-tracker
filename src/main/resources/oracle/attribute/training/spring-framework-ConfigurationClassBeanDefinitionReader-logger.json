@@ -22,12 +22,78 @@
       "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
       "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
       "commitTime": 1240184731,
-      "changeType": "introduced",
-      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
-      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final,static)(private)logger:Log(53)",
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(57)",
       "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
       "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final,static)(private)logger:Log(53)",
-      "comment": "new attribute"
+      "comment": "Rename Class org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader renamed to org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "736169aa2a46f489cd8e75cf4d61cef997fc456f",
+      "commitId": "14bd47551900ced88eeacf2a5f63c187ff72028c",
+      "commitTime": 1240184731,
+      "changeType": "rename",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(57)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationClassBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader@(final,static)(private)logger:Log(53)",
+      "comment": "Rename Attribute log : Log to logger : Log in class org.springframework.context.annotation.ConfigurationClassBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "2c0c523d7099ed1ad77864242f25d30e218b2a95",
+      "commitId": "1697932c57af5389fe07971e91866980e966403f",
+      "commitTime": 1238129833,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.context/src/main/java/org/springframework/context/annotation/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.context/src/main/java/org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(61)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(57)",
+      "comment": "Move Class org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader moved to org.springframework.context.annotation.ConfigurationModelBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "63b5c48461f69cc611f4378d52f46197998334db",
+      "commitId": "cd50e456457ecac48f61e2da991b6fd5dc0c6ee7",
+      "commitTime": 1237783684,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(60)",
+      "elementFileAfter": "org.springframework.context/src/main/java/org/springframework/context/annotation/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.context/src/main/java/org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(60)",
+      "comment": "Move Source Folder org.springframework.config.java to org.springframework.context"
+    },
+    {
+      "parentCommitId": "3f196517f99b7a7148e68531d1fa1b475ff81939",
+      "commitId": "ef02c61e581dcd1f3cf110608da72ed133777d62",
+      "commitTime": 1237782205,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(60)",
+      "elementFileAfter": "org.springframework.config.java/src/main/java/org/springframework/context/annotation/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.config.java/src/main/java/org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(60)",
+      "comment": "Move Class org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader moved to org.springframework.context.annotation.support.ConfigurationModelBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "6deb1acab435d18f024e07a564ac77147729e0ec",
+      "commitId": "c593f063970df90d7de7b85c6da5733aadcafde6",
+      "commitTime": 1235792615,
+      "changeType": "container change",
+      "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/factory/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.factory.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(61)",
+      "elementFileAfter": "org.springframework.config.java/src/main/java/org/springframework/config/java/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.config.java/src/main/java/org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(60)",
+      "comment": "Move Class org.springframework.config.java.internal.factory.support.ConfigurationModelBeanDefinitionReader moved to org.springframework.config.java.support.ConfigurationModelBeanDefinitionReader"
+    },
+    {
+      "parentCommitId": "e8b353e703c2c8a19bed6d8990615ca0d72545f0",
+      "commitId": "e48fe0d89271113bcac4e7c41e86cb1d8230594e",
+      "commitTime": 1235698544,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/factory/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameBefore": "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.factory.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(61)",
+      "elementFileAfter": "org.springframework.config.java/src/main/java/org/springframework/config/java/internal/factory/support/ConfigurationModelBeanDefinitionReader.java",
+      "elementNameAfter": "org.springframework.config.java/src/main/java/org.springframework.config.java.internal.factory.support.ConfigurationModelBeanDefinitionReader@(final,static)(private)log:Log(61)",
+      "comment": "added with new class"
     }
   ]
 }
