@@ -25,12 +25,34 @@
       "parentCommitId": "a49d4e972a6bfd26e73e42337ff75d50b4df8959",
       "commitId": "54a09706ec1db32435b09e6b6910813325558f8d",
       "commitTime": 1037733445,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$errorCount:int(183)",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$total:int(124)",
       "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
       "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(File[])$errorCount:int(183)",
-      "comment": "new variable"
+      "comment": "Rename Variable total : int to errorCount : int in method public process(aFiles File[]) : int from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "rename",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$retVal:int(269)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#process(String[])$total:int(113)",
+      "comment": "Rename Variable retVal : int to total : int in method package process(aFiles String[]) : int from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "5f53a2a380e038e791af244b42f245b813dbc379",
+      "commitId": "0fd69594a4c3e82f92f93f0371791da66938f8c3",
+      "commitTime": 993216264,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$retVal:int(202)",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/CheckStyleTask.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.CheckStyleTask#process(String, String[], Checker)$retVal:int(202)",
+      "comment": "added with method"
     }
   ]
 }
