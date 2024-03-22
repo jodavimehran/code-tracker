@@ -30,12 +30,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <rm.version>3.0.4</rm.version>
     </properties>
     <dependencies>
         <dependency>
             <groupId>com.github.tsantalis</groupId>
             <artifactId>refactoring-miner</artifactId>
-            <version>3.0.4</version>
+            <version>${rm.version}</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
