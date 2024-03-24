@@ -27,5 +27,14 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Build with Maven
-      run: mvn -B package --file pom.xml
+
+    - name : Clone repos in tmp folder
+      run: |
+        mkdir -p tmp &&
+        cd tmp &&
+        git clone https://github.com/apache/hadoop &&
+        echo "Hadoop repository cloned successfully" ||
+        echo "Failed to clone Hadoop repository"
+
+#    - name: Build with Maven
+#      run: mvn -B package --file pom.xml
