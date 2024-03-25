@@ -18,6 +18,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Clear TMP folder cache
+        uses: actions/cache@v2
+        with:
+          path: /tmp
+          key: ${{ runner.os }}-tmp-${{ hashFiles('**/tmp/**') }}
+          restore-keys: |
+            ${{ runner.os }}-tmp-
+
       - uses: actions/checkout@v3
 
       - name: Set up JDK 17
