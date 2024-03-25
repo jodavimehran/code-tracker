@@ -146,6 +146,8 @@ public abstract class AbstractExperimentStarter {
 
     protected abstract String getToolName();
 
+    public abstract void start() throws IOException;
+
     protected void calculateFinalResults(String oracleName) {
         Map<String, Set<String>> commitLevelExpected = new HashMap<>();
         Map<String, Set<String>> commitLevelActual = new HashMap<>();
@@ -239,6 +241,7 @@ public abstract class AbstractExperimentStarter {
 
     protected <H extends AbstractHistoryInfo, E extends CodeElement> void codeTracker(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker) throws IOException {
         String oracleName = oracle.getName();
+        if (oracleName.equals("codeshovel")) return;
         GitService gitService = new GitServiceImpl();
         Set<String> processedFiles = getAllProcessedSamples(oracleName);
         for (Map.Entry<String, H> oracleInstance : oracle.getOracle().entrySet()) {
