@@ -50,8 +50,8 @@ jobs:
         git clone https://github.com/spring-projects/spring-boot && mv spring-boot spring-projects\\spring-boot
         git clone https://github.com/spring-projects/spring-framework && mv spring-framework spring-projects\\spring-framework
         git clone https://github.com/square/okhttp && mv okhttp square\\okhttp
-        git clone https://gerrit.googlesource.com/jgit && mv jgit eclipse\jgit
-        git clone https://github.com/pmd/pmd && mv pmd pmd\pmd
+        git clone https://gerrit.googlesource.com/jgit && mv jgit eclipse\\jgit
+        git clone https://github.com/pmd/pmd && mv pmd pmd\\pmd
         
     - name : ls
       run: ls -l tmp/
