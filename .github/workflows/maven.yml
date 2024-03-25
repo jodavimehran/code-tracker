@@ -36,7 +36,7 @@ jobs:
           maven-version: '3.9.6'
 
       - name: ./mvn version check
-        run:  mvn --version
+        run:  mvnw --version
 
 #    - name : Clone repos in tmp folder
 #      run: |
@@ -75,7 +75,7 @@ jobs:
 
 
       - name: Build with Maven
-        run: ./mvn -B package --file pom.xml
+        run: ./mvnw -B package --file pom.xml
 
 
 
