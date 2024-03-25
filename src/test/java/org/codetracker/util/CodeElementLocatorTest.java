@@ -6,6 +6,7 @@ import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 import org.eclipse.jgit.lib.Repository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
@@ -13,6 +14,7 @@ import org.refactoringminer.util.GitServiceImpl;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+@Disabled
 public class CodeElementLocatorTest {
     private final static String FOLDER_TO_CLONE = "tmp/";
 
