@@ -4,6 +4,7 @@ import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
 import org.codetracker.experiment.AbstractExperimentStarter;
 import org.codetracker.experiment.MethodExperimentStarter;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -28,6 +29,11 @@ public class ExperimentResultTest {
 //                Arguments.of(new VariableExperimentStarter(), "variable"),
 //                Arguments.of(new BlockExperimentStarter(), "block")
         );
+    }
+
+    @Test
+    public void c(){
+        System.out.println("a");
     }
 
     @ParameterizedTest(name = "{index}: {0}")
