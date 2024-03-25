@@ -43,7 +43,7 @@ public class ExperimentResultTest {
         String generatedFilePath = String.format(generatedFilePathTemplate, folderName);
         System.out.println(expectedFilePath);
         System.out.println(generatedFilePath);
-//        abstractExperimentStarter.start();
+        abstractExperimentStarter.start();
         try (
                 CSVReader expectedCSV = new CSVReader(new FileReader(expectedFilePath));
                 CSVReader actualCSV = new CSVReader(new FileReader(generatedFilePath))
