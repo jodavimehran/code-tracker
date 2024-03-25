@@ -54,18 +54,14 @@ public class ExperimentResultTest {
             for (int i = 0; i < actualLines.size() && i < expectedLines.size(); i++) {
                 String[] record1 = actualLines.get(i);
                 String[] record2 = expectedLines.get(i);
-                String cellCsv1_col6 = record1[6];
-                String cellCsv1_col7 = record1[7];
-                String cellCsv1_col8 = record1[8];
-                String cellCsv2_col6 = record2[6];
-                String cellCsv2_col7 = record2[7];
-                String cellCsv2_col8 = record2[8];
-                System.out.println("Comparing " + cellCsv1_col6 + " with " + cellCsv2_col6);
-                System.out.println("Comparing " + cellCsv1_col7 + " with " + cellCsv2_col8);
-                System.out.println("Comparing " + cellCsv1_col7 + " with " + cellCsv2_col8);
-                assertEquals(cellCsv1_col6, cellCsv2_col6);
-                assertEquals(cellCsv1_col7, cellCsv2_col7);
-                assertEquals(cellCsv1_col8, cellCsv2_col8);
+                String tp1 = record1[5]; String fp1 = record1[6]; String fn1 = record1[7];
+                String tp2 = record2[5]; String fp2 = record2[6]; String fn2 = record2[7];
+                System.out.println("Comparing " + tp1 + " with " + tp2);
+                System.out.println("Comparing " + fp1 + " with " + fp2);
+                System.out.println("Comparing " + fn1 + " with " + fn2);
+                assertEquals(tp1, tp2);
+                assertEquals(fp1, fp2);
+                assertEquals(fn1, fn2);
             }
         }
     }
