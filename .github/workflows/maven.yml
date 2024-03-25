@@ -32,12 +32,10 @@ jobs:
       run: |
         mkdir -p tmp &&
         cd tmp &&
-#        git clone https://github.com/square/okhttp &&
         git clone https://github.com/apache/flink && mv flink apache/flink
-#        git clone https://gerrit.googlesource.com/jgit && mv jgit eclipse\jgit
         
     - name : ls
-      run: ls -ls tmp/
+      run: ls -l tmp/
         
 
 #    - name: Build with Maven
@@ -62,3 +60,5 @@ jobs:
 #        git clone https://github.com/mockito/mockito &&
 #        git clone https://github.com/spring-projects/spring-boot &&
 #        git clone https://github.com/spring-projects/spring-framework &&
+#        git clone https://github.com/square/okhttp &&
+#        git clone https://gerrit.googlesource.com/jgit && mv jgit eclipse\jgit
