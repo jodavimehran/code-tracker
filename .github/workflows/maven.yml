@@ -35,6 +35,9 @@ jobs:
           distribution: 'temurin'
           maven-version: '3.9.6'
 
+      - name: mvn version check
+        run:  mvn --version
+
 #    - name : Clone repos in tmp folder
 #      run: |
 #        mkdir -p tmp &&
