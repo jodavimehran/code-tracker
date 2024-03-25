@@ -32,7 +32,7 @@ jobs:
       run: |
         mkdir -p tmp &&
         cd tmp &&
-        git clone https://github.com/apache/flink && mv flink apache/flink
+        git clone https://github.com/apache/flink && mv flink apache\\link
         
     - name : ls
       run: ls -l tmp/
