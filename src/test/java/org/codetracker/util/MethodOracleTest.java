@@ -31,7 +31,7 @@ public class MethodOracleTest extends OracleTest {
 		List<MethodOracle> oracles = MethodOracle.all();
 		for (MethodOracle oracle : oracles) {
 			loadExpected(EXPECTED + oracle.getName() + "-expected.txt");
-			codeTracker(oracle, this::methodTracker);
+			codeTracker(oracle, this::methodTracker, ALL_CORES);
 		}
 	}
 }

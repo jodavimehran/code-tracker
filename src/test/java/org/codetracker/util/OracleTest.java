@@ -32,6 +32,8 @@ public abstract class OracleTest {
 	private static final Map<String, Integer> expectedTP = new HashMap<>();
 	private static final Map<String, Integer> expectedFP = new HashMap<>();
 	private static final Map<String, Integer> expectedFN = new HashMap<>();
+	protected static final int ALL_CORES = Runtime.getRuntime().availableProcessors();
+	protected static final int HALF_CORES = Runtime.getRuntime().availableProcessors()/2;
 
 	protected static void loadExpected(String filePath) {
 		try {
@@ -53,9 +55,9 @@ public abstract class OracleTest {
 		}
 	}
 
-	protected <H extends AbstractHistoryInfo, E extends CodeElement> void codeTracker(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker) throws IOException, InterruptedException {
+	protected <H extends AbstractHistoryInfo, E extends CodeElement> void codeTracker(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker, int cores) throws IOException, InterruptedException {
 		GitService gitService = new GitServiceImpl();
-		ExecutorService pool = Executors.newWorkStealingPool();
+		ExecutorService pool = Executors.newWorkStealingPool(cores);
 		for (Map.Entry<String, H> oracleInstance : oracle.getOracle().entrySet()) {
 			String fileName = oracleInstance.getKey();
 			H historyInfo = oracleInstance.getValue();

@@ -33,7 +33,7 @@ public class VariableOracleTest extends OracleTest {
 		List<VariableOracle> oracles = VariableOracle.all();
 		for (VariableOracle oracle : oracles) {
 			loadExpected(EXPECTED + oracle.getName() + "-expected.txt");
-			codeTracker(oracle, this::variableTracker);
+			codeTracker(oracle, this::variableTracker, HALF_CORES);
 		}
 	}
 }

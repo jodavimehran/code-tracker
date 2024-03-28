@@ -37,7 +37,7 @@ public class BlockOracleTest extends OracleTest {
 		List<BlockOracle> oracles = BlockOracle.all();
 		for (BlockOracle oracle : oracles) {
 			loadExpected(EXPECTED + oracle.getName() + "-expected.txt");
-			codeTracker(oracle, this::blockTracker);
+			codeTracker(oracle, this::blockTracker, ALL_CORES);
 		}
 	}
 }
