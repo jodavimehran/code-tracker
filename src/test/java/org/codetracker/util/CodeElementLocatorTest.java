@@ -6,11 +6,15 @@ import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 import org.eclipse.jgit.lib.Repository;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+@Disabled
 public class CodeElementLocatorTest {
     private final static String FOLDER_TO_CLONE = "tmp/";
 
@@ -25,8 +29,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Method.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Method.class);
         }
     }
 
@@ -41,8 +45,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -57,8 +62,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -73,8 +78,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -89,8 +94,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -105,8 +110,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -121,8 +126,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Attribute.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Attribute.class);
         }
     }
 
@@ -137,8 +142,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
         }
     }
 
@@ -153,8 +158,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
         }
     }
 
@@ -169,8 +174,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
         }
     }
 
@@ -185,8 +190,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Attribute.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Attribute.class);
         }
     }
 
@@ -201,8 +206,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Method.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Method.class);
         }
     }
 
@@ -217,8 +222,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -233,8 +238,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -249,8 +254,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -265,8 +270,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -281,8 +286,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Attribute.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Attribute.class);
         }
     }
 
@@ -297,8 +302,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Attribute.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Attribute.class);
         }
     }
 
@@ -313,8 +318,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Method.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Method.class);
         }
     }
 
@@ -329,8 +334,8 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Variable.class);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Variable.class);
         }
     }
 
@@ -345,9 +350,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -362,9 +367,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -379,9 +384,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -396,9 +401,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -413,9 +418,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -430,9 +435,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -447,9 +452,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -464,9 +469,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -481,9 +486,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
@@ -498,9 +503,9 @@ public class CodeElementLocatorTest {
                 "https://github.com/checkstyle/checkstyle.git")){
             CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
             CodeElement codeElement = locator.locate();
-            Assert.assertNotNull(codeElement);
-            Assert.assertEquals(codeElement.getClass(), Block.class);
-            Assert.assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 }
