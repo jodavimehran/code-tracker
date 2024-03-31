@@ -34,6 +34,7 @@ public abstract class OracleTest {
 	private static final Map<String, Integer> expectedFN = new HashMap<>();
 	protected static final int ALL_CORES = Runtime.getRuntime().availableProcessors();
 	protected static final int HALF_CORES = Runtime.getRuntime().availableProcessors()/2;
+	protected static final int QUARTER_CORES = Runtime.getRuntime().availableProcessors()/4;
 
 	protected static void loadExpected(String filePath) {
 		try {

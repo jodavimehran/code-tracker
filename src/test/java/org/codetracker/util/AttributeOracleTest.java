@@ -31,7 +31,7 @@ public class AttributeOracleTest extends OracleTest {
 		List<AttributeOracle> oracles = AttributeOracle.all();
 		for (AttributeOracle oracle : oracles) {
 			loadExpected(EXPECTED + oracle.getName() + "-expected.txt");
-			codeTracker(oracle, this::attributeTracker, HALF_CORES);
+			codeTracker(oracle, this::attributeTracker, QUARTER_CORES);
 		}
 	}
 }
