@@ -1,5 +1,24 @@
 package org.codetracker.util;
 
+import com.google.common.graph.EndpointPair;
+import org.codetracker.HistoryImpl;
+import org.codetracker.api.CodeElement;
+import org.codetracker.api.Edge;
+import org.codetracker.api.History;
+import org.codetracker.change.Change;
+import org.codetracker.experiment.AbstractExperimentStarter;
+import org.codetracker.experiment.AbstractExperimentStarter.CheckedBiFunction;
+import org.codetracker.experiment.oracle.AbstractOracle;
+import org.codetracker.experiment.oracle.history.AbstractHistoryInfo;
+import org.codetracker.experiment.oracle.history.ChangeHistory;
+import org.eclipse.jgit.lib.Repository;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
+import org.refactoringminer.api.GitService;
+import org.refactoringminer.util.GitServiceImpl;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -7,25 +26,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-
-import org.codetracker.HistoryImpl;
-import org.codetracker.api.CodeElement;
-import org.codetracker.api.Edge;
-import org.codetracker.api.History;
-import org.codetracker.change.Change;
-import org.codetracker.experiment.AbstractExperimentStarter.CheckedBiFunction;
-import org.codetracker.experiment.oracle.AbstractOracle;
-import org.codetracker.experiment.oracle.history.AbstractHistoryInfo;
-import org.codetracker.experiment.oracle.history.ChangeHistory;
-import org.eclipse.jgit.lib.Repository;
-import org.junit.jupiter.api.Assertions;
-import org.refactoringminer.api.GitService;
-import org.refactoringminer.util.GitServiceImpl;
-
-import com.google.common.graph.EndpointPair;
+import java.util.stream.Stream;
 
 public abstract class OracleTest {
 	private static final String FOLDER_TO_CLONE = "tmp/";
@@ -56,50 +57,57 @@ public abstract class OracleTest {
 		}
 	}
 
-	protected <H extends AbstractHistoryInfo, E extends CodeElement> void codeTracker(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker, int cores) throws IOException, InterruptedException {
+	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> codeTrackerTestProvider
+			(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker) {
 		GitService gitService = new GitServiceImpl();
-		ExecutorService pool = Executors.newWorkStealingPool(cores);
+		Stream.Builder<Arguments> builder = Stream.builder();
 		for (Map.Entry<String, H> oracleInstance : oracle.getOracle().entrySet()) {
 			String fileName = oracleInstance.getKey();
 			H historyInfo = oracleInstance.getValue();
-
-			//TODO: Replace with parameterized test
-			Runnable r = () -> {
-				String repositoryWebURL = historyInfo.getRepositoryWebURL();
-				String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-				String projectDirectory = FOLDER_TO_CLONE + repositoryName;
-
-				try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
-					HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
-					History<E> history = tracker.apply(historyInfo, repository);
-					HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
-					HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
-					HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
-
-					for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
-						String changeKey = oracleChangeEntry.getKey();
-						if (falseDetectedChanges.containsKey(changeKey)) {
-							detectedChanges.put(changeKey, falseDetectedChanges.get(changeKey));
-							notDetectedChanges.remove(changeKey);
-							falseDetectedChanges.remove(changeKey);
-						}
-					}
-					final int actualTP = detectedChanges.size();
-					final int actualFP = falseDetectedChanges.size();
-					final int actualFN = notDetectedChanges.size();
-					Assertions.assertAll(
-							() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s True Positives, but has %s", expectedTP.get(fileName), actualTP)),
-							() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
-							() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
-							);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			};
-			pool.submit(r);
+			builder.add(Arguments.of(tracker,historyInfo, gitService, fileName));
 		}
-		pool.shutdown();
-		pool.awaitTermination(Long.MAX_VALUE, TimeUnit.MILLISECONDS);
+		return builder.build();
+	}
+
+	@ParameterizedTest(name = "{index}: {0} , {1}")
+	@MethodSource(value = "testProvider")
+	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, Repository, History<E>> tracker, H historyInfo, GitService gitService, String fileName) {
+		String repositoryWebURL = historyInfo.getRepositoryWebURL();
+		String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
+		String projectDirectory = FOLDER_TO_CLONE + repositoryName;
+
+		try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
+			HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
+			History<E> history = tracker.apply(historyInfo, repository);
+			HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
+			HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
+			HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
+
+			for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
+				String changeKey = oracleChangeEntry.getKey();
+				if (falseDetectedChanges.containsKey(changeKey)) {
+					detectedChanges.put(changeKey, falseDetectedChanges.get(changeKey));
+					notDetectedChanges.remove(changeKey);
+					falseDetectedChanges.remove(changeKey);
+				}
+			}
+			final int actualTP = detectedChanges.size();
+			final int actualFP = falseDetectedChanges.size();
+			final int actualFN = notDetectedChanges.size();
+			Assertions.assertAll(
+					() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s True Positives, but has %s", expectedTP.get(fileName), actualTP)),
+					() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
+					() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
+					);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> getArgumentsStream(List<? extends AbstractOracle<H>> all, String expected, AbstractExperimentStarter.CheckedBiFunction<H, Repository, History<E>> tracker) {
+		return all.stream().flatMap(oracle -> {
+					loadExpected(expected + oracle.getName() + "-expected.txt");
+					return codeTrackerTestProvider(oracle, tracker);
+				});
 	}
 
 	protected static HashMap<String, ChangeHistory> oracle(List<ChangeHistory> expectedChanges) {
