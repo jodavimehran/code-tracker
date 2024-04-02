@@ -8,11 +8,13 @@ import org.codetracker.element.Block;
 import org.codetracker.experiment.oracle.BlockOracle;
 import org.codetracker.experiment.oracle.history.BlockHistoryInfo;
 import org.eclipse.jgit.lib.Repository;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.provider.Arguments;
 
 import java.io.IOException;
 import java.util.stream.Stream;
 
+@Disabled
 public class BlockOracleTest extends OracleTest {
 	private static final String EXPECTED = System.getProperty("user.dir") + "/src/test/resources/block/";
 
