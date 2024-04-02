@@ -69,7 +69,7 @@ public abstract class OracleTest {
 		return builder.build();
 	}
 
-	@ParameterizedTest(name = "{index}: {0} , {1}")
+	@ParameterizedTest(name = "{index}: {3}")
 	@MethodSource(value = "testProvider")
 	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, Repository, History<E>> tracker, H historyInfo, GitService gitService, String fileName) {
 		String repositoryWebURL = historyInfo.getRepositoryWebURL();
