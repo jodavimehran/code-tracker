@@ -89,7 +89,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
                         continue;
-                    System.out.println("processing " + commitId);
+                    //System.out.println("processing " + commitId);
                     analysedCommits.add(commitId);
 
                     Version currentVersion = gitRepository.getVersion(commitId);
