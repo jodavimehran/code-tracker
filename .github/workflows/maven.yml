@@ -1,0 +1,73 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-maven
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+name: Java CI with Maven
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          maven-version: '3.9.6'
+
+      - name: mvn version check
+        run:  ./mvnw --version
+
+      - name : Clone repos in tmp folder
+        run: |
+          mkdir -p tmp &&
+          cd tmp &&
+          git clone --no-checkout https://github.com/apache/hadoop && mv hadoop apache\\hadoop
+          git clone --no-checkout https://github.com/apache/flink && mv flink apache\\flink
+          git clone --no-checkout https://github.com/apache/commons-lang && mv commons-lang apache\\commons-lang
+          git clone --no-checkout https://github.com/apache/commons-io && mv commons-io apache\\commons-io
+          git clone --no-checkout https://github.com/apache/lucene-solr && mv lucene-solr apache\\lucene-solr
+          git clone --no-checkout https://github.com/checkstyle/checkstyle && mv checkstyle checkstyle\\checkstyle
+          git clone --no-checkout https://github.com/elastic/elasticsearch && mv elasticsearch elasticsearch\\elasticsearch
+          git clone --no-checkout https://github.com/eclipse/jetty.project && mv jetty.project eclipse\\jetty
+          git clone --no-checkout https://github.com/hibernate/hibernate-orm && mv hibernate-orm hibernate\\hibernate-orm
+          git clone --no-checkout https://github.com/hibernate/hibernate-search && mv hibernate-search hibernate\\hibernate-search
+          git clone --no-checkout https://github.com/javaparser/javaparser && mv javaparser javaparser\\javaparser
+          git clone --no-checkout https://github.com/Jetbrains/intellij-community && mv intellij-community intellij\\intellij-community
+          git clone --no-checkout https://github.com/junit-team/junit4 && mv junit4 junit-team\\junit4
+          git clone --no-checkout https://github.com/junit-team/junit5 && mv junit5 junit-team\\junit5
+          git clone --no-checkout https://github.com/mockito/mockito && mv mockito mockito\\mockito
+          git clone --no-checkout https://github.com/spring-projects/spring-boot && mv spring-boot spring-projects\\spring-boot
+          git clone --no-checkout https://github.com/spring-projects/spring-framework && mv spring-framework spring-projects\\spring-framework
+          git clone --no-checkout https://github.com/square/okhttp && mv okhttp square\\okhttp
+          git clone --no-checkout https://gerrit.googlesource.com/jgit && mv jgit eclipse\\jgit
+          git clone --no-checkout https://github.com/pmd/pmd && mv pmd pmd\\pmd
+
+
+#      - name: Cache tmp folder
+#        uses: actions/cache@v2
+#        with:
+#          path: tmp
+#          key: ${{ runner.os }}-tmp-${{ hashFiles('**/tmp/**') }}
+
+#      - name : ls
+#        run: ls -l tmp/
+
+
+      - name: Build with Maven
+        run: ./mvnw -B package --file pom.xml
+
+
+
