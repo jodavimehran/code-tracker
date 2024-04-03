@@ -147,10 +147,36 @@
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
-            </plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-compiler-plugin</artifactId>
+			    <version>3.8.1</version>
+			    <configuration>
+			        <excludes>
+			            <exclude>src/test/resources/oracle/commits/**</exclude>
+			        </excludes>
+			    </configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <version>3.2.0</version>
+			    <configuration>
+			        <resources>
+			            <resource>
+			                <directory>src/main/resources</directory>
+			                <excludes>
+			                    <exclude>oracle/commits/**</exclude>
+			                </excludes>
+			            </resource>
+			            <resource>
+			                <directory>src/test/resources</directory>
+			                <excludes>
+			                    <exclude>oracle/commits/**</exclude>
+			                </excludes>
+			            </resource>
+			        </resources>
+			    </configuration>
+			</plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
