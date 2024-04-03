@@ -7,10 +7,12 @@ import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 import org.eclipse.jgit.lib.Repository;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
 
+@Disabled
 public class CodeElementLocatorTest {
     private final static String FOLDER_TO_CLONE = "tmp/";
 
