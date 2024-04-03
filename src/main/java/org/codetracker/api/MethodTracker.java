@@ -2,6 +2,7 @@ package org.codetracker.api;
 
 import org.eclipse.jgit.lib.Repository;
 import org.codetracker.MethodTrackerImpl;
+import org.codetracker.MethodTrackerWithLocalFilesImpl;
 import org.codetracker.element.Method;
 
 public interface MethodTracker extends CodeTracker {
@@ -10,6 +11,7 @@ public interface MethodTracker extends CodeTracker {
 
     class Builder {
         private Repository repository;
+        private String gitURL;
         private String startCommitId;
         private String filePath;
         private String methodName;
@@ -17,6 +19,11 @@ public interface MethodTracker extends CodeTracker {
 
         public Builder repository(Repository repository) {
             this.repository = repository;
+            return this;
+        }
+
+        public Builder gitURL(String gitURL) {
+            this.gitURL = gitURL;
             return this;
         }
 
@@ -49,5 +56,9 @@ public interface MethodTracker extends CodeTracker {
             return new MethodTrackerImpl(repository, startCommitId, filePath, methodName, methodDeclarationLineNumber);
         }
 
+        public MethodTracker buildWithLocalFiles() {
+            checkInput();
+            return new MethodTrackerWithLocalFilesImpl(gitURL, startCommitId, filePath, methodName, methodDeclarationLineNumber);
+        }
     }
 }

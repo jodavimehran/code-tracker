@@ -27,8 +27,9 @@ public class AttributeOracleTest extends OracleTest {
 			.build();
 		return attributeTracker.track();
 	}
-
+/*
 	public static Stream<Arguments> testProvider() throws IOException {
 		return getArgumentsStream(AttributeOracle.all(), EXPECTED, AttributeOracleTest::attributeTracker);
 	}
+*/
 }

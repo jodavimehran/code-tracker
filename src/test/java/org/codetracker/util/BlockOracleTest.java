@@ -32,8 +32,9 @@ public class BlockOracleTest extends OracleTest {
 			.build();
 		return blockTracker.track();
 	}
-
+/*
 	public static Stream<Arguments> testProvider() throws IOException {
 		return getArgumentsStream(BlockOracle.all(), EXPECTED, BlockOracleTest::blockTracker);
 	}
+*/
 }

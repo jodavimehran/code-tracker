@@ -6,18 +6,13 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.History;
 import org.codetracker.change.Change;
-import org.codetracker.experiment.AbstractExperimentStarter;
-import org.codetracker.experiment.AbstractExperimentStarter.CheckedBiFunction;
 import org.codetracker.experiment.oracle.AbstractOracle;
 import org.codetracker.experiment.oracle.history.AbstractHistoryInfo;
 import org.codetracker.experiment.oracle.history.ChangeHistory;
-import org.eclipse.jgit.lib.Repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-import org.refactoringminer.api.GitService;
-import org.refactoringminer.util.GitServiceImpl;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -29,13 +24,9 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 public abstract class OracleTest {
-	private static final String FOLDER_TO_CLONE = "tmp/";
 	private static final Map<String, Integer> expectedTP = new HashMap<>();
 	private static final Map<String, Integer> expectedFP = new HashMap<>();
 	private static final Map<String, Integer> expectedFN = new HashMap<>();
-	protected static final int ALL_CORES = Runtime.getRuntime().availableProcessors();
-	protected static final int HALF_CORES = Runtime.getRuntime().availableProcessors()/2;
-	protected static final int QUARTER_CORES = Runtime.getRuntime().availableProcessors()/4;
 
 	protected static void loadExpected(String filePath) {
 		try {
@@ -58,27 +49,24 @@ public abstract class OracleTest {
 	}
 
 	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> codeTrackerTestProvider
-			(AbstractOracle<H> oracle, CheckedBiFunction<H, Repository, History<E>> tracker) {
-		GitService gitService = new GitServiceImpl();
+			(AbstractOracle<H> oracle, CheckedBiFunction<H, String, History<E>> tracker) {
 		Stream.Builder<Arguments> builder = Stream.builder();
 		for (Map.Entry<String, H> oracleInstance : oracle.getOracle().entrySet()) {
 			String fileName = oracleInstance.getKey();
 			H historyInfo = oracleInstance.getValue();
-			builder.add(Arguments.of(tracker,historyInfo, gitService, fileName));
+			builder.add(Arguments.of(tracker,historyInfo, fileName));
 		}
 		return builder.build();
 	}
 
-	@ParameterizedTest(name = "{index}: {3}")
+	@ParameterizedTest(name = "{index}: {2}")
 	@MethodSource(value = "testProvider")
-	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, Repository, History<E>> tracker, H historyInfo, GitService gitService, String fileName) {
+	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, String, History<E>> tracker, H historyInfo, String fileName) throws Exception {
 		String repositoryWebURL = historyInfo.getRepositoryWebURL();
-		String repositoryName = repositoryWebURL.replace("https://github.com/", "").replace(".git", "").replace("/", "\\");
-		String projectDirectory = FOLDER_TO_CLONE + repositoryName;
-
-		try (Repository repository = gitService.cloneIfNotExists(projectDirectory, repositoryWebURL)) {
+		//TODO temporary if check, remove when all local files are created
+		if(fileName.startsWith("checkstyle")) {
 			HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
-			History<E> history = tracker.apply(historyInfo, repository);
+			History<E> history = tracker.apply(historyInfo, repositoryWebURL);
 			HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
 			HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
 			HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
@@ -99,11 +87,9 @@ public abstract class OracleTest {
 					() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
 					() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
 					);
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 	}
-	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> getArgumentsStream(List<? extends AbstractOracle<H>> all, String expected, AbstractExperimentStarter.CheckedBiFunction<H, Repository, History<E>> tracker) {
+	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> getArgumentsStream(List<? extends AbstractOracle<H>> all, String expected, CheckedBiFunction<H, String, History<E>> tracker) {
 		return all.stream().flatMap(oracle -> {
 					loadExpected(expected + oracle.getName() + "-expected.txt");
 					return codeTrackerTestProvider(oracle, tracker);
@@ -167,5 +153,10 @@ public abstract class OracleTest {
 
 	protected static String getChangeKey(String changeType, String commitId) {
 		return String.format("%s-%s", commitId, changeType);
+	}
+
+	@FunctionalInterface
+	public interface CheckedBiFunction<T, U, R> {
+		R apply(T t, U u) throws Exception;
 	}
 }

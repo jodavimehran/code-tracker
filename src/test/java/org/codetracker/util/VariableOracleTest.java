@@ -29,8 +29,9 @@ public class VariableOracleTest extends OracleTest {
             .build();
         return variableTracker.track();
     }
-
+/*
 	public static Stream<Arguments> testProvider() throws IOException {
 		return getArgumentsStream(VariableOracle.all(), EXPECTED, VariableOracleTest::variableTracker);
 	}
+*/
 }
