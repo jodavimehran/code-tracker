@@ -1,0 +1,48 @@
+package me.tomassetti.symbolsolver.resolution.reflection;
+
+import me.tomassetti.symbolsolver.model.declarations.FieldDeclaration;
+import me.tomassetti.symbolsolver.model.typesystem.TypeUsage;
+import me.tomassetti.symbolsolver.resolution.TypeSolver;
+
+import java.lang.reflect.Field;
+
+public class ReflectionFieldDeclaration implements FieldDeclaration {
+
+    private Field field;
+    private TypeSolver typeSolver;
+    public ReflectionFieldDeclaration(Field field, TypeSolver typeSolver) {
+        this.field = field;
+        this.typeSolver = typeSolver;
+    }
+
+    @Override
+    public TypeUsage getType() {
+        // TODO consider interfaces, enums, primitive types, arrays
+        return ReflectionFactory.typeUsageFor(field.getType(), typeSolver);
+    }
+
+    @Override
+    public String getName() {
+        return field.getName();
+    }
+
+    @Override
+    public boolean isField() {
+        return true;
+    }
+
+    @Override
+    public boolean isParameter() {
+        return false;
+    }
+
+    @Override
+    public boolean isVariable() {
+        return false;
+    }
+
+    @Override
+    public boolean isType() {
+        return false;
+    }
+}

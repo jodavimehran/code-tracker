@@ -1,0 +1,60 @@
+/*
+ * Hibernate, Relational Persistence for Idiomatic Java
+ *
+ * Copyright (c) 2008, Red Hat Middleware LLC or third-party contributors as
+ * indicated by the @author tags or express copyright attribution
+ * statements applied by the authors.  All third-party contributions are
+ * distributed under license by Red Hat Middleware LLC.
+ *
+ * This copyrighted material is made available to anyone wishing to use, modify,
+ * copy, or redistribute it subject to the terms and conditions of the GNU
+ * Lesser General Public License, as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this distribution; if not, write to:
+ * Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor
+ * Boston, MA  02110-1301  USA
+ */
+package org.jboss.envers.query.criteria;
+
+import org.jboss.envers.configuration.VersionsConfiguration;
+import org.jboss.envers.entities.RelationDescription;
+import org.jboss.envers.entities.RelationType;
+import org.jboss.envers.exception.VersionsException;
+
+/**
+ * @author Adam Warski (adam at warski dot org)
+ */
+public class CriteriaTools {
+    private CriteriaTools() { }
+
+    public static void checkPropertyNotARelation(VersionsConfiguration verCfg, String entityName,
+                                                 String propertyName) throws VersionsException {
+        if (verCfg.getEntCfg().get(entityName).isRelation(propertyName)) {
+            throw new VersionsException("This criterion cannot be used on a property that is " +
+                    "a relation to another property.");
+        }
+    }
+
+    public static RelationDescription getRelatedEntity(VersionsConfiguration verCfg, String entityName,
+                                                       String propertyName) throws VersionsException {
+        RelationDescription relationDesc = verCfg.getEntCfg().getRelationDescription(entityName, propertyName);
+
+        if (relationDesc == null) {
+            return null;
+        }
+
+        if (relationDesc.getRelationType() == RelationType.TO_ONE) {
+            return relationDesc;
+        }
+
+        throw new VersionsException("This type of relation (" + entityName + "." + propertyName +
+                ") isn't supported and can't be used in queries.");
+    }
+}

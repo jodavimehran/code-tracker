@@ -1,0 +1,131 @@
+/*
+ * Copyright (C) 2007-2010 Júlio Vilmar Gesser.
+ * Copyright (C) 2011, 2013-2016 The JavaParser Team.
+ *
+ * This file is part of JavaParser.
+ * 
+ * JavaParser can be used either under the terms of
+ * a) the GNU Lesser General Public License as published by
+ *     the Free Software Foundation, either version 3 of the License, or
+ *     (at your option) any later version.
+ * b) the terms of the Apache License 
+ *
+ * You should have received a copy of both licenses in LICENCE.LGPL and
+ * LICENCE.APACHE. Please refer to those files for details.
+ *
+ * JavaParser is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Lesser General Public License for more details.
+ */
+
+package com.github.javaparser.ast.type;
+
+import com.github.javaparser.Range;
+import com.github.javaparser.ast.NodeList;
+import com.github.javaparser.ast.nodeTypes.NodeWithAnnotations;
+import com.github.javaparser.ast.nodeTypes.NodeWithName;
+import com.github.javaparser.ast.nodeTypes.NodeWithTypeArguments;
+import com.github.javaparser.ast.visitor.GenericVisitor;
+import com.github.javaparser.ast.visitor.VoidVisitor;
+
+import java.util.List;
+import java.util.Optional;
+
+import static com.github.javaparser.utils.Utils.assertNotNull;
+import static com.github.javaparser.utils.Utils.none;
+
+/**
+ * @author Julio Vilmar Gesser
+ */
+public final class ClassOrInterfaceType extends ReferenceType<ClassOrInterfaceType> implements 
+        NodeWithName<ClassOrInterfaceType>, 
+        NodeWithAnnotations<ClassOrInterfaceType>,
+        NodeWithTypeArguments<ClassOrInterfaceType> {
+
+    private Optional<ClassOrInterfaceType> scope;
+
+    private String name;
+
+    private Optional<NodeList<Type<?>>> typeArguments;
+
+    public ClassOrInterfaceType() {
+        this(Range.UNKNOWN,
+                none(),
+                "empty",
+                none());
+    }
+
+    public ClassOrInterfaceType(final String name) {
+        this(Range.UNKNOWN,
+                none(),
+                name,
+                none());
+    }
+
+    public ClassOrInterfaceType(final Optional<ClassOrInterfaceType> scope, final String name) {
+        this(Range.UNKNOWN,
+                scope,
+                name,
+                none());
+    }
+
+    public ClassOrInterfaceType(final Range range, final Optional<ClassOrInterfaceType> scope, final String name, final Optional<NodeList<Type<?>>> typeArguments) {
+        super(range);
+        setScope(scope);
+        setName(name);
+        setTypeArguments(typeArguments);
+    }
+
+    @Override public <R, A> R accept(final GenericVisitor<R, A> v, final A arg) {
+        return v.visit(this, arg);
+    }
+
+    @Override public <A> void accept(final VoidVisitor<A> v, final A arg) {
+        v.visit(this, arg);
+    }
+
+    @Override
+    public String getName() {
+        return name;
+    }
+
+    public Optional<ClassOrInterfaceType> getScope() {
+        return scope;
+    }
+
+    public boolean isBoxedType() {
+        return PrimitiveType.unboxMap.containsKey(name);
+    }
+
+    public PrimitiveType toUnboxedType() throws UnsupportedOperationException {
+        if (!isBoxedType()) {
+            throw new UnsupportedOperationException(name + " isn't a boxed type.");
+        }
+        return new PrimitiveType(PrimitiveType.unboxMap.get(name));
+    }
+
+    @Override
+    public ClassOrInterfaceType setName(final String name) {
+        this.name = name;
+        return this;
+    }
+
+    public ClassOrInterfaceType setScope(final Optional<ClassOrInterfaceType> scope) {
+        this.scope = assertNotNull(scope);
+        setAsParentNodeOf(this.scope);
+        return this;
+    }
+
+    @Override
+    public Optional<NodeList<Type<?>>> getTypeArguments() {
+        return typeArguments;
+    }
+
+    @Override
+    public ClassOrInterfaceType setTypeArguments(final Optional<NodeList<Type<?>>> types) {
+        this.typeArguments = assertNotNull(types);
+        setAsParentNodeOf(this.typeArguments);
+        return this;
+    }
+}
