@@ -144,18 +144,27 @@
                 <configuration>
                     <parallel>suites</parallel>
                     <perCoreThreadCount>true</perCoreThreadCount>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.basedir}/src/test/resources/</additionalClasspathElement>
+                    </additionalClasspathElements>
                 </configuration>
             </plugin>
             <plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 			    <artifactId>maven-compiler-plugin</artifactId>
 			    <version>3.8.1</version>
-			    <configuration>
-			        <excludes>
-			            <exclude>src/test/resources/oracle/commits/**</exclude>
-			        </excludes>
-			    </configuration>
 			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>default-testResources</id>
+                        <phase>none</phase>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>versions-maven-plugin</artifactId>
