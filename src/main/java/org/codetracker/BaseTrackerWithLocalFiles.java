@@ -5,6 +5,8 @@ import gr.uom.java.xmi.decomposition.AbstractCall;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
 import org.codetracker.element.Method;
@@ -524,6 +526,43 @@ public abstract class BaseTrackerWithLocalFiles {
     	UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(leftFileContents, commitModel.repositoryDirectoriesBefore);
     	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(rightFileContents, commitModel.repositoryDirectoriesCurrent);
     	return Pair.of(leftModel, rightModel);
+    }
+
+    public CommitModel getLightCommitModel(String commitId, String currentMethodFilePath) throws Exception {
+    	File rootFolder = new File(REPOS);
+    	final String systemFileSeparator = Matcher.quoteReplacement(File.separator);
+    	String repoName = cloneURL.substring(cloneURL.lastIndexOf('/') + 1, cloneURL.lastIndexOf('.'));
+		String jsonFilePath = repoName + "-" + commitId + ".json";
+		File jsonFile = new File(rootFolder, jsonFilePath);
+		if(jsonFile.exists()) {
+			final ObjectMapper mapper = new ObjectMapper();
+			ChangedFileInfo changedFileInfo = mapper.readValue(jsonFile, ChangedFileInfo.class);
+			String parentCommitId = changedFileInfo.getParentCommitId();
+			Set<String> repositoryDirectoriesBefore = ConcurrentHashMap.newKeySet();
+			Set<String> repositoryDirectoriesCurrent = ConcurrentHashMap.newKeySet();
+			Map<String, String> fileContentsBefore = new ConcurrentHashMap<String, String>();
+			Map<String, String> fileContentsCurrent = new ConcurrentHashMap<String, String>();
+			Map<String, String> renamedFilesHint = new ConcurrentHashMap<String, String>();
+			repositoryDirectoriesBefore.addAll(changedFileInfo.getRepositoryDirectoriesBefore());
+			repositoryDirectoriesCurrent.addAll(changedFileInfo.getRepositoryDirectoriesCurrent());
+			renamedFilesHint.putAll(changedFileInfo.getRenamedFilesHint());
+			for(String filePathBefore : changedFileInfo.getFilesBefore()) {
+				if(filePathBefore.equals(currentMethodFilePath)) {
+					String fullPath = rootFolder + File.separator + repoName + "-" + parentCommitId + File.separator + filePathBefore.replaceAll("/", systemFileSeparator);
+					String contents = FileUtils.readFileToString(new File(fullPath));
+					fileContentsBefore.put(filePathBefore, contents);
+				}
+			}
+			for(String filePathCurrent : changedFileInfo.getFilesCurrent()) {
+				if(filePathCurrent.equals(currentMethodFilePath)) {
+					String fullPath = rootFolder + File.separator + repoName + "-" + commitId + File.separator + filePathCurrent.replaceAll("/", systemFileSeparator);
+					String contents = FileUtils.readFileToString(new File(fullPath));
+					fileContentsCurrent.put(filePathCurrent, contents);
+				}
+			}
+			return new CommitModel(parentCommitId, repositoryDirectoriesBefore, fileContentsBefore, fileContentsBefore, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrent, renamedFilesHint, Collections.emptyList());
+		}
+		return null;
     }
 
     public CommitModel getCommitModel(String commitId) throws Exception {

@@ -103,27 +103,13 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 //System.out.println("processing " + commitId);
                 analysedCommits.add(commitId);
                 
-                CommitModel commitModel = getCommitModel(commitId);
-                String parentCommitId = commitModel.parentCommitId;
+                CommitModel lightCommitModel = getLightCommitModel(commitId, currentMethodFilePath);
+                String parentCommitId = lightCommitModel.parentCommitId;
                 Version currentVersion = new VersionImpl(commitId, 0, 0, "");
                 Version parentVersion = new VersionImpl(parentCommitId, 0, 0, "");
             	
-                Set<String> leftFileNames = Collections.singleton(currentMethodFilePath);
-            	Map<String, String> leftFileContents = new LinkedHashMap<>();
-            	for(String leftFileName : leftFileNames) {
-            		if(commitModel.fileContentsBeforeOriginal.containsKey(leftFileName)) {
-            			leftFileContents.put(leftFileName, commitModel.fileContentsBeforeOriginal.get(leftFileName));
-            		}
-            	}
-            	Set<String> rightFileNames = Collections.singleton(currentMethodFilePath);
-            	Map<String, String> rightFileContents = new LinkedHashMap<>();
-            	for(String rightFileName : rightFileNames) {
-            		if(commitModel.fileContentsCurrentOriginal.containsKey(rightFileName)) {
-            			rightFileContents.put(rightFileName, commitModel.fileContentsCurrentOriginal.get(rightFileName));
-            		}
-            	}
-            	UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(leftFileContents, commitModel.repositoryDirectoriesBefore);
-            	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(rightFileContents, commitModel.repositoryDirectoriesCurrent);
+            	UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsBeforeOriginal, lightCommitModel.repositoryDirectoriesBefore);
+            	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsCurrentOriginal, lightCommitModel.repositoryDirectoriesCurrent);
 
                 Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                 if (rightMethod == null) {
@@ -173,7 +159,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 }
                 //All refactorings
                 {
-                    //CommitModel commitModel = getCommitModel(commitId);
+                    CommitModel commitModel = getCommitModel(commitId);
                     if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
                         Set<Method> methodContainerChanged = null;
                         boolean containerChanged = false;
