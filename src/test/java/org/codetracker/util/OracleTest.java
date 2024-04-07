@@ -64,7 +64,7 @@ public abstract class OracleTest {
 	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, String, History<E>> tracker, H historyInfo, String fileName) throws Exception {
 		String repositoryWebURL = historyInfo.getRepositoryWebURL();
 		//TODO temporary if check, remove when all local files are created
-		if(fileName.startsWith("checkstyle") || fileName.startsWith("commons-lang") || fileName.startsWith("flink") || fileName.startsWith("hibernate-orm") || fileName.startsWith("javaparser") || fileName.startsWith("jgit") || fileName.startsWith("junit") ||
+		if(fileName.startsWith("checkstyle") || fileName.startsWith("commons-lang") || fileName.startsWith("flink") || fileName.startsWith("hibernate") || fileName.startsWith("javaparser") || fileName.startsWith("jgit") || fileName.startsWith("junit") ||
 				fileName.startsWith("okhttp") || fileName.startsWith("spring-framework") || fileName.startsWith("commons-io") || fileName.startsWith("elasticsearch") || fileName.startsWith("hadoop")) {
 			HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
 			History<E> history = tracker.apply(historyInfo, repositoryWebURL);
