@@ -1,0 +1,107 @@
+/*
+ * Copyright 2000-2005 JetBrains s.r.o.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.intellij.openapi.compiler;
+
+import com.intellij.openapi.application.ApplicationManager;
+import com.intellij.openapi.module.Module;
+import com.intellij.openapi.progress.ProgressIndicator;
+import com.intellij.openapi.roots.ModuleRootManager;
+import com.intellij.openapi.util.Computable;
+import com.intellij.openapi.util.Key;
+import com.intellij.openapi.vfs.VirtualFile;
+import com.intellij.pom.Navigatable;
+import org.jetbrains.annotations.Nullable;
+
+public class DummyCompileContext implements CompileContext {
+  protected DummyCompileContext() {
+  }
+
+  private static final DummyCompileContext OUR_INSTANCE = new DummyCompileContext();
+
+  public static DummyCompileContext getInstance() {
+    return OUR_INSTANCE;
+  }
+
+  public void addMessage(CompilerMessageCategory category, String message, String url, int lineNum, int columnNum) {
+  }
+
+
+  public void addMessage(CompilerMessageCategory category,
+                         String message,
+                         @Nullable String url,
+                         int lineNum,
+                         int columnNum,
+                         Navigatable navigatable) {
+  }
+
+  public CompilerMessage[] getMessages(CompilerMessageCategory category) {
+    return new CompilerMessage[0];
+  }
+
+  public int getMessageCount(CompilerMessageCategory category) {
+    return 0;
+  }
+
+  public ProgressIndicator getProgressIndicator() {
+    return null;
+  }
+
+  public CompileScope getCompileScope() {
+    return null;
+  }
+
+  public CompileScope getProjectCompileScope() {
+    return null;
+  }
+
+  public void requestRebuildNextTime(String message) {
+  }
+
+  public Module getModuleByFile(VirtualFile file) {
+    return null;
+  }
+
+  public VirtualFile[] getSourceRoots(Module module) {
+    return VirtualFile.EMPTY_ARRAY;
+  }
+
+  public VirtualFile[] getAllOutputDirectories() {
+    return VirtualFile.EMPTY_ARRAY;
+  }
+
+  public VirtualFile getModuleOutputDirectory(final Module module) {
+    return ApplicationManager.getApplication().runReadAction(new Computable<VirtualFile>() {
+      public VirtualFile compute() {
+        return ModuleRootManager.getInstance(module).getCompilerOutputPath();
+      }
+    });
+  }
+
+  public VirtualFile getModuleOutputDirectoryForTests(Module module) {
+    return null;
+  }
+
+  public <T> T getUserData(Key<T> key) {
+    return null;
+  }
+
+  public <T> void putUserData(Key<T> key, T value) {
+  }
+
+  public boolean isMake() {
+    return false; // stub implementation
+  }
+}

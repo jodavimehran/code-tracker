@@ -1,0 +1,1787 @@
+//
+//  ========================================================================
+//  Copyright (c) 1995-2018 Mort Bay Consulting Pty. Ltd.
+//  ------------------------------------------------------------------------
+//  All rights reserved. This program and the accompanying materials
+//  are made available under the terms of the Eclipse Public License v1.0
+//  and Apache License v2.0 which accompanies this distribution.
+//
+//      The Eclipse Public License is available at
+//      http://www.eclipse.org/legal/epl-v10.html
+//
+//      The Apache License v2.0 is available at
+//      http://www.opensource.org/licenses/apache2.0.php
+//
+//  You may elect to redistribute this code under either of these licenses.
+//  ========================================================================
+//
+
+package org.eclipse.jetty.test.rfcs;
+
+import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.nullValue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+import static org.junit.matchers.JUnitMatchers.containsString;
+
+import java.io.File;
+import java.io.IOException;
+import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.TimeZone;
+
+import org.eclipse.jetty.http.HttpFields;
+import org.eclipse.jetty.http.HttpParser;
+import org.eclipse.jetty.http.HttpStatus;
+import org.eclipse.jetty.http.HttpTester;
+import org.eclipse.jetty.test.support.StringUtil;
+import org.eclipse.jetty.test.support.TestableJettyServer;
+import org.eclipse.jetty.test.support.rawhttp.HttpSocket;
+import org.eclipse.jetty.test.support.rawhttp.HttpTesting;
+import org.eclipse.jetty.toolchain.test.FS;
+import org.eclipse.jetty.toolchain.test.MavenTestingUtils;
+import org.eclipse.jetty.toolchain.test.StringAssert;
+import org.eclipse.jetty.util.log.StacklessLogging;
+import org.hamcrest.Matchers;
+import org.junit.AfterClass;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
+import org.junit.Test;
+
+/**
+ * <a href="http://tools.ietf.org/html/rfc2616">RFC 2616</a> (HTTP/1.1) Test Case
+ */
+public abstract class RFC2616BaseTest
+{
+    private static final String ALPHA = "ABCDEFGHIJKLMNOPQRSTUVWXYZ\n";
+    /** STRICT RFC TESTS */
+    private static final boolean STRICT = false;
+    private static TestableJettyServer server;
+    private HttpTesting http;
+
+    class TestFile
+    {
+        String name;
+        String modDate;
+        String data;
+        long length;
+
+        public TestFile(String name)
+        {
+            this.name = name;
+            // HTTP-Date format - see RFC 2616 section 14.29
+            SimpleDateFormat sdf = new SimpleDateFormat("EEE, dd MMM yyyy HH:mm:ss zzz");
+            sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+            this.modDate = sdf.format(new Date());
+        }
+
+        public void setData(String data)
+        {
+            this.data = data;
+            this.length = data.length();
+        }
+    }
+
+    public static void setUpServer(TestableJettyServer testableserver, Class<?> testclazz) throws Exception
+    {
+        File testWorkDir = MavenTestingUtils.getTargetTestingDir(testclazz.getName());
+        FS.ensureDirExists(testWorkDir);
+
+        System.setProperty("java.io.tmpdir",testWorkDir.getAbsolutePath());
+
+        server = testableserver;
+        server.load();
+        server.start();
+        //server.getServer().dumpStdErr();
+    }
+    
+    @Before
+    public void setUp() throws Exception
+    {
+        http = new HttpTesting(getHttpClientSocket(),server.getServerPort());
+    }
+
+    @AfterClass
+    public static void tearDownServer() throws Exception
+    {
+        server.stop();
+    }
+
+    public abstract HttpSocket getHttpClientSocket() throws Exception;
+
+    /**
+     * Test Date/Time format Specs.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.3">RFC 2616 (section 3.3)</a>
+     */
+    @Test
+    public void test3_3()
+    {
+        Calendar expected = Calendar.getInstance();
+        expected.set(Calendar.YEAR,1994);
+        expected.set(Calendar.MONTH,Calendar.NOVEMBER);
+        expected.set(Calendar.DAY_OF_MONTH,6);
+        expected.set(Calendar.HOUR_OF_DAY,8);
+        expected.set(Calendar.MINUTE,49);
+        expected.set(Calendar.SECOND,37);
+        expected.set(Calendar.MILLISECOND,0); // Milliseconds is not compared
+        expected.set(Calendar.ZONE_OFFSET,0); // Use GMT+0:00
+        expected.set(Calendar.DST_OFFSET,0); // No Daylight Savings Offset
+
+        HttpFields fields = new HttpFields();
+
+        // RFC 822 Preferred Format
+        fields.put("D1","Sun, 6 Nov 1994 08:49:37 GMT");
+        // RFC 822 / RFC 850 Format
+        fields.put("D2","Sunday, 6-Nov-94 08:49:37 GMT");
+        // RFC 850 / ANSIC C Format
+        fields.put("D3","Sun Nov  6 08:49:37 1994");
+
+        // Test parsing
+        assertDate("3.3.1 RFC 822 Preferred",expected,fields.getDateField("D1"));
+        assertDate("3.3.1 RFC 822 / RFC 850",expected,fields.getDateField("D2"));
+        assertDate("3.3.1 RFC 850 / ANSI C",expected,fields.getDateField("D3"));
+
+        // Test formatting
+        fields.putDateField("Date",expected.getTime().getTime());
+        Assert.assertEquals("3.3.1 RFC 822 preferred","Sun, 06 Nov 1994 08:49:37 GMT",fields.get("Date"));
+    }
+
+    /**
+     * Test Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.6">RFC 2616 (section 3.6)</a>
+     */
+    @Test
+    public void test3_6() throws Throwable
+    {
+        // Chunk last
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/R1 HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Transfer-Encoding: chunked,identity\n"); // Invalid Transfer-Encoding
+        req1.append("Content-Type: text/plain\n");
+        req1.append("Connection: close\n");
+        req1.append("\r\n");
+        req1.append("5;\r\n");
+        req1.append("123\r\n\r\n");
+        req1.append("0;\r\n\r\n");
+
+        HttpTester.Response response = http.request(req1);
+        
+        assertEquals("3.6 Transfer Coding / Bad 400",HttpStatus.BAD_REQUEST_400,response.getStatus());
+    }
+    
+    /**
+     * Test Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.6">RFC 2616 (section 3.6)</a>
+     */
+    @Test
+    public void test3_6_2() throws Throwable
+    {
+        // Chunked
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /echo/R1 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Transfer-Encoding: chunked\n");
+        req2.append("Content-Type: text/plain\n");
+        req2.append("\n");
+        req2.append("2;\n"); // 2 chars
+        req2.append("12\n");
+        req2.append("3;\n"); // 3 chars
+        req2.append("345\n");
+        req2.append("0;\n\n");
+
+        req2.append("GET /echo/R2 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Transfer-Encoding: chunked\n");
+        req2.append("Content-Type: text/plain\n");
+        req2.append("\n");
+        req2.append("4;\n"); // 4 chars
+        req2.append("6789\n");
+        req2.append("5;\n"); // 5 chars
+        req2.append("abcde\n");
+        req2.append("0;\n\n"); // 0 chars
+
+        req2.append("GET /echo/R3 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req2);
+        Assert.assertEquals("Response Count",3,responses.size());
+
+        HttpTester.Response response = responses.get(0); // Response 1
+        assertEquals("3.6.1 Transfer Codings / Response 1 Code", HttpStatus.OK_200, response.getStatus());
+        assertTrue("3.6.1 Transfer Codings / Chunked String", response.getContent().contains("12345\n"));
+
+        response = responses.get(1); // Response 2
+        assertEquals("3.6.1 Transfer Codings / Response 2 Code", HttpStatus.OK_200, response.getStatus());
+        assertThat("3.6.1 Transfer Codings / Chunked String",response.getContent(),Matchers.containsString("6789abcde\n"));
+
+        response = responses.get(2); // Response 3
+        assertEquals("3.6.1 Transfer Codings / Response 3 Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("3.6.1 Transfer Codings / No Body","",response.getContent());
+    }
+
+    /**
+     * Test Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.6">RFC 2616 (section 3.6)</a>
+     */
+    @Test
+    public void test3_6_3() throws Throwable
+    {
+        // Chunked
+        StringBuffer req3 = new StringBuffer();
+        req3.append("POST /echo/R1 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Transfer-Encoding: chunked\n");
+        req3.append("Content-Type: text/plain\n");
+        req3.append("\n");
+        req3.append("3;\n"); // 3 chars
+        req3.append("fgh\n");
+        req3.append("3;\n"); // 3 chars
+        req3.append("Ijk\n");
+        req3.append("0;\n\n"); // 0 chars
+
+        req3.append("POST /echo/R2 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Transfer-Encoding: chunked\n");
+        req3.append("Content-Type: text/plain\n");
+        req3.append("\n");
+        req3.append("4;\n"); // 4 chars
+        req3.append("lmno\n");
+        req3.append("5;\n"); // 5 chars
+        req3.append("Pqrst\n");
+        req3.append("0;\n\n"); // 0 chars
+
+        req3.append("GET /echo/R3 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req3);
+        Assert.assertEquals("Response Count",3,responses.size());
+
+        HttpTester.Response response = responses.get(0); // Response 1
+        assertEquals("3.6.1 Transfer Codings / Response 1 Code", HttpStatus.OK_200, response.getStatus());
+        assertTrue("3.6.1 Transfer Codings / Chunked String", response.getContent().contains("fghIjk\n")); // Complete R1 string
+
+        response = responses.get(1); // Response 2
+        assertEquals("3.6.1 Transfer Codings / Response 2 Code", HttpStatus.OK_200, response.getStatus());
+        assertTrue("3.6.1 Transfer Codings / Chunked String", response.getContent().contains("lmnoPqrst\n")); // Complete R2 string
+
+        response = responses.get(2); // Response 3
+        assertEquals("3.6.1 Transfer Codings / Response 3 Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("3.6.1 Transfer Codings / No Body","",response.getContent());
+
+    }
+
+    /**
+     * Test Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.6">RFC 2616 (section 3.6)</a>
+     */
+    @Test
+    public void test3_6_4() throws Throwable
+    {
+        // Chunked and keep alive
+        StringBuffer req4 = new StringBuffer();
+        req4.append("GET /echo/R1 HTTP/1.1\n");
+        req4.append("Host: localhost\n");
+        req4.append("Transfer-Encoding: chunked\n");
+        req4.append("Content-Type: text/plain\n");
+        req4.append("Connection: keep-alive\n"); // keep-alive
+        req4.append("\n");
+        req4.append("3;\n"); // 3 chars
+        req4.append("123\n");
+        req4.append("3;\n"); // 3 chars
+        req4.append("456\n");
+        req4.append("0;\n\n"); // 0 chars
+
+        req4.append("GET /echo/R2 HTTP/1.1\n");
+        req4.append("Host: localhost\n");
+        req4.append("Connection: close\n"); // close
+        req4.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req4);
+        Assert.assertEquals("Response Count",2,responses.size());
+
+        HttpTester.Response response = responses.get(0); // Response 1
+        assertEquals("3.6.1 Transfer Codings / Response 1 Code", HttpStatus.OK_200, response.getStatus());
+        assertTrue("3.6.1 Transfer Codings / Chunked String", response.getContent().contains("123456\n")); // Complete R1 string
+
+        response = responses.get(1); // Response 2
+        assertEquals("3.6.1 Transfer Codings / Response 2 Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("3.6.1 Transfer Codings / No Body","",response.getContent());
+    }
+
+    /**
+     * Test Quality Values
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-3.9">RFC 2616 (section 3.9)</a>
+     */
+    @Test
+    public void test3_9()
+    {
+        HttpFields fields = new HttpFields();
+
+        fields.put("Q","bbb;q=0.5,aaa,ccc;q=0.002,d;q=0,e;q=0.0001,ddd;q=0.001,aa2,abb;q=0.7");
+        Enumeration<String> qualities = fields.getValues("Q",", \t");
+        List<?> list = HttpFields.qualityList(qualities);
+        Assert.assertEquals("Quality parameters","aaa",HttpFields.valueParameters(list.get(0).toString(),null));
+        Assert.assertEquals("Quality parameters","aa2",HttpFields.valueParameters(list.get(1).toString(),null));
+        Assert.assertEquals("Quality parameters","abb",HttpFields.valueParameters(list.get(2).toString(),null));
+        Assert.assertEquals("Quality parameters","bbb",HttpFields.valueParameters(list.get(3).toString(),null));
+        Assert.assertEquals("Quality parameters","ccc",HttpFields.valueParameters(list.get(4).toString(),null));
+        Assert.assertEquals("Quality parameters","ddd",HttpFields.valueParameters(list.get(5).toString(),null));
+    }
+
+    /**
+     * Test Message Length
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-4.4">RFC 2616 (section 4.4)</a>
+     */
+    @Test
+    public void test4_4() throws Exception
+    {
+        // 4.4.2 - transfer length is 'chunked' when the 'Transfer-Encoding' header
+        // is provided with a value other than 'identity', unless the
+        // request message is terminated with a 'Connection: close'.
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /echo/R1 HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Transfer-Encoding: identity\n");
+        req1.append("Content-Type: text/plain\n");
+        req1.append("Content-Length: 5\n");
+        req1.append("\n");
+        req1.append("123\r\n");
+
+        req1.append("GET /echo/R2 HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req1);
+        Assert.assertEquals("Response Count",2,responses.size());
+
+        HttpTester.Response response = responses.get(0);
+        assertEquals("4.4.2 Message Length / Response Code", HttpStatus.OK_200, response.getStatus());
+        assertThat("4.4.2 Message Length / Body",response.getContent(),Matchers.containsString("123\n"));
+        response = responses.get(1);
+        assertEquals("4.4.2 Message Length / Response Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("4.4.2 Message Length / No Body", "",response.getContent());
+
+        // 4.4.3 -
+        // Client - do not send 'Content-Length' if entity-length
+        // and the transfer-length are different.
+        // Server - bad message to avoid smuggling concerns
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /echo/R1 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Transfer-Encoding: chunked\n");
+        req2.append("Content-Type: text/plain\n");
+        req2.append("Content-Length: 100\n");
+        req2.append("\n");
+        req2.append("3;\n");
+        req2.append("123\n");
+        req2.append("3;\n");
+        req2.append("456\n");
+        req2.append("0;\n");
+        req2.append("\n");
+
+        req2.append("GET /echo/R2 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("Content-Type: text/plain\n");
+        req2.append("Content-Length: 6\n");
+        req2.append("\n");
+        req2.append("7890AB");
+
+        responses = http.requests(req2);
+        Assert.assertEquals("Response Count",1,responses.size());
+
+        response = responses.get(0); // response 1
+        assertEquals("4.4.3 Ignore Content-Length / Response Code", HttpStatus.BAD_REQUEST_400, response.getStatus());
+
+        // 4.4 - Server can request valid Content-Length from client if client
+        // fails to provide a Content-Length.
+        // Server can respond with 400 (Bad Request) or 411 (Length Required).
+
+        // NOTE: MSIE breaks this rule
+        // TODO: Document which version of MSIE Breaks Rule.
+        // TODO: Document which versions of MSIE pass this rule (if any).
+        if (STRICT)
+        {
+            StringBuffer req3 = new StringBuffer();
+            req3.append("GET /echo/R2 HTTP/1.1\n");
+            req3.append("Host: localhost\n");
+            req3.append("Content-Type: text/plain\n");
+            req3.append("Connection: close\n");
+            req3.append("\n");
+            req3.append("123456");
+
+            response = http.request(req3);
+
+            assertEquals("4.4 Valid Content-Length Required",HttpStatus.LENGTH_REQUIRED_411, response.getStatus());
+            assertTrue("4.4 Valid Content-Length Required", response.getContent() == null);
+
+            StringBuffer req4 = new StringBuffer();
+            req4.append("GET /echo/R2 HTTP/1.0\n");
+            req4.append("Content-Type: text/plain\n");
+            req4.append("\n");
+            req4.append("123456");
+
+            response = http.request(req4);
+
+            assertEquals("4.4 Valid Content-Length Required",HttpStatus.LENGTH_REQUIRED_411, response.getStatus());
+            assertTrue("4.4 Valid Content-Length Required", response.getContent() == null);
+        }
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_DefaultHost() throws Exception
+    {
+        // Default Host
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/index.html HTTP/1.1\n");
+        req1.append("Host: localhost\n"); // default host
+        req1.append("Connection: close\n");
+        req1.append("\r\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals("5.2 Default Host", HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Default Host",response.getContent(),Matchers.containsString("Default DOCRoot"));
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_VirtualHost() throws Exception
+    {
+        // Virtual Host
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /tests/ HTTP/1.1\n");
+        req2.append("Host: VirtualHost\n"); // simple virtual host
+        req2.append("Connection: close\n");
+        req2.append("\r\n");
+
+        HttpTester.Response response = http.request(req2);
+
+        assertEquals("5.2 Virtual Host", HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Virtual Host",response.getContent(),Matchers.containsString("VirtualHost DOCRoot"));
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_VirtualHostInsensitive() throws Exception
+    {
+        // Virtual Host case insensitive
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /tests/ HTTP/1.1\n");
+        req3.append("Host: ViRtUalhOst\n"); // mixed case host
+        req3.append("Connection: close\n");
+        req3.append("\n");
+
+        HttpTester.Response response = http.request(req3);
+
+        assertEquals("5.2 Virtual Host (mixed case)", HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Virtual Host (mixed case)",response.getContent(),Matchers.containsString("VirtualHost DOCRoot"));
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_NoVirtualHost() throws Exception
+    {
+        // No Virtual Host
+
+        StringBuffer req4 = new StringBuffer();
+        req4.append("GET /tests/ HTTP/1.1\n");
+        req4.append("Connection: close\n");
+        req4.append("\n"); // no virtual host
+
+        HttpTester.Response response = http.request(req4);
+
+        assertEquals("5.2 No Host",HttpStatus.BAD_REQUEST_400,response.getStatus());
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_BadVirtualHost() throws Exception
+    {
+        // Bad Virtual Host
+
+        StringBuffer req5 = new StringBuffer();
+        req5.append("GET /tests/ HTTP/1.1\n");
+        req5.append("Host: bad.eclipse.org\n"); // Bad virtual host
+        req5.append("Connection: close\n");
+        req5.append("\n");
+
+        HttpTester.Response response = http.request(req5);
+
+        assertEquals("5.2 Bad Host",HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Bad Host",response.getContent(),Matchers.containsString("Default DOCRoot")); // served by default context
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_VirtualHostAbsoluteURI_Http11_WithoutHostHeader() throws Exception
+    {
+        // Virtual Host as Absolute URI
+
+        StringBuffer req6 = new StringBuffer();
+        req6.append("GET http://VirtualHost/tests/ HTTP/1.1\n");
+        req6.append("Connection: close\n");
+        req6.append("\n");
+
+        HttpTester.Response response = http.request(req6);
+
+        // No host header should always return a 400 Bad Request by 19.6.1.1
+        assertEquals("5.2 Virtual Host as AbsoluteURI (No Host Header / HTTP 1.1)",HttpStatus.BAD_REQUEST_400,response.getStatus());
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_VirtualHostAbsoluteURI_Http10_WithoutHostHeader() throws Exception
+    {
+        // Virtual Host as Absolute URI
+
+        StringBuffer req6 = new StringBuffer();
+        req6.append("GET http://VirtualHost/tests/ HTTP/1.0\n");
+        req6.append("Connection: close\n");
+        req6.append("\n");
+
+        HttpTester.Response response = http.request(req6);
+
+        assertEquals("5.2 Virtual Host as AbsoluteURI (No Host Header / HTTP 1.0)",HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Virtual Host as AbsoluteURI (No Host Header / HTTP 1.1)",response.getContent(),Matchers.containsString("VirtualHost DOCRoot"));
+    }
+
+    /**
+     * Test The Resource Identified by a Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-5.2">RFC 2616 (section 5.2)</a>
+     */
+    @Test
+    public void test5_2_VirtualHostAbsoluteURI_WithHostHeader() throws Exception
+    {
+        // Virtual Host as Absolute URI (with Host header)
+
+        StringBuffer req7 = new StringBuffer();
+        req7.append("GET http://VirtualHost/tests/ HTTP/1.1\n");
+        req7.append("Host: localhost\n"); // is ignored (would normally trigger default context)
+        req7.append("Connection: close\n");
+        req7.append("\n");
+
+        HttpTester.Response response = http.request(req7);
+
+        assertEquals("5.2 Virtual Host as AbsoluteURI (and Host header)", HttpStatus.OK_200, response.getStatus());
+        assertThat("5.2 Virtual Host as AbsoluteURI (and Host header)",response.getContent(),Matchers.containsString("VirtualHost DOCRoot"));
+    }
+
+    /**
+     * Test Persistent Connections
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-8.1">RFC 2616 (section 8.1)</a>
+     */
+    @Test
+    public void test8_1() throws Exception
+    {
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/R1.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals("8.1 Persistent Connections", HttpStatus.OK_200, response.getStatus());
+        assertTrue("8.1 Persistent Connections", response.get("Content-Length") != null);
+        assertThat("8.1 Persistent Connections",response.getContent(),Matchers.containsString("Resource=R1"));
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /tests/R1.txt HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("\n");
+
+        req2.append("GET /tests/R2.txt HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        req2.append("GET /tests/R3.txt HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req2);
+        Assert.assertEquals("Response Count",2,responses.size()); // Should not have a R3 response.
+
+        response = responses.get(0); // response 1
+        assertEquals("8.1 Persistent Connections", HttpStatus.OK_200, response.getStatus());
+        assertTrue("8.1 Persistent Connections",response.get("Content-Length") != null);
+        assertTrue("8.1 Persistent Connections", response.getContent().contains("Resource=R1"));
+
+        response = responses.get(1); // response 2
+        assertEquals("8.1.2.2 Persistent Connections / Pipeline", HttpStatus.OK_200, response.getStatus());
+        assertTrue("8.1.2.2 Persistent Connections / Pipeline", response.get("Content-Length") != null);
+        assertEquals("8.1.2.2 Persistent Connections / Pipeline","close", response.get("Connection"));
+        assertTrue("8.1.2.2 Persistent Connections / Pipeline", response.getContent().contains("Resource=R2"));
+    }
+
+    /**
+     * Test Message Transmission Requirements -- Bad client behaviour, invalid Expect header.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-8.2">RFC 2616 (section 8.2)</a>
+     */
+    @Test
+    public void test8_2_ExpectInvalid() throws Exception
+    {
+        // Expect Failure
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /echo/R1 HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Expect: unknown\n"); // Invalid Expect header.
+        req2.append("Content-Type: text/plain\n");
+        req2.append("Content-Length: 8\n");
+        req2.append("\n"); 
+        req2.append("12345678\n"); 
+
+        HttpTester.Response response = http.request(req2);
+
+        assertEquals("8.2.3 expect failure",HttpStatus.EXPECTATION_FAILED_417, response.getStatus());
+    }
+
+    /**
+     * Test Message Transmission Requirements -- Acceptable bad client behavior, Expect 100 with body content.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-8.2">RFC 2616 (section 8.2)</a>
+     */
+    @Test
+    public void test8_2_ExpectWithBody() throws Exception
+    {
+        // Expect with body
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /echo/R1 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Expect: 100-continue\n"); // Valid Expect header.
+        req3.append("Content-Type: text/plain\n");
+        req3.append("Content-Length: 8\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+        req3.append("123456\r\n"); // Body
+
+        // Should only expect 1 response.
+        // The existence of 2 responses usually means a bad "HTTP/1.1 100" was received.
+        HttpTester.Response response = http.request(req3);
+
+        assertEquals("8.2.3 expect 100", HttpStatus.OK_200, response.getStatus());
+    }
+    
+    
+    /**
+     * Test Message Transmission Requirements -- Acceptable bad client behavior, Expect 100 with body content.
+     * @throws Exception failure
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-8.2">RFC 2616 (section 8.2)</a>
+     */
+    @Test
+    public void test8_2_UnexpectWithBody() throws Exception
+    {
+        // Expect with body
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /redirect/R1 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Expect: 100-continue\n"); // Valid Expect header.
+        req3.append("Content-Type: text/plain\n");
+        req3.append("Content-Length: 8\n");
+        req3.append("\n");
+        req3.append("123456\r\n");
+        req3.append("GET /echo/R1 HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Content-Type: text/plain\n");
+        req3.append("Content-Length: 8\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+        req3.append("87654321"); // Body
+
+        List<HttpTester.Response> responses = http.requests(req3);
+                
+        HttpTester.Response response=responses.get(0);
+        
+        assertEquals("8.2.3 ignored no 100",302, response.getStatus());
+        assertEquals("close",response.get("Connection"));
+        assertEquals(1,responses.size());
+    }
+
+    /**
+     * Test Message Transmission Requirements
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-8.2">RFC 2616 (section 8.2)</a>
+     */
+    @Test
+    public void test8_2_ExpectNormal() throws Exception
+    {
+        // Expect 100
+
+        StringBuffer req4 = new StringBuffer();
+        req4.append("GET /echo/R1 HTTP/1.1\n");
+        req4.append("Host: localhost\n");
+        req4.append("Connection: close\n");
+        req4.append("Expect: 100-continue\n"); // Valid Expect header.
+        req4.append("Content-Type: text/plain\n");
+        req4.append("Content-Length: 7\n");
+        req4.append("\n"); // No body
+
+        Socket sock = http.open();
+        try
+        {
+            http.send(sock,req4);
+
+            http.setTimeoutMillis(2000);
+            HttpTester.Response response = http.readAvailable(sock);
+            assertEquals("8.2.3 expect 100",HttpStatus.CONTINUE_100,response.getStatus());
+
+            http.send(sock,"654321\n"); // Now send the data
+            response = http.read(sock);
+
+            assertEquals("8.2.3 expect 100", HttpStatus.OK_200, response.getStatus());
+            assertThat("8.2.3 expect 100",response.getContent(),Matchers.containsString("654321\n"));
+        }
+        finally
+        {
+            http.close(sock);
+        }
+    }
+
+    /**
+     * Test OPTIONS (HTTP) method - Server Options
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-9.2">RFC 2616 (section 9.2)</a>
+     */
+    @Test
+    public void test9_2_ServerOptions() throws Exception
+    {
+        // Unsupported in Jetty.
+        // Server can handle many webapps, each with their own set of supported OPTIONS.
+        // Both www.cnn.com and www.apache.org do NOT support this request as well.
+
+        if (STRICT)
+        {
+            // Server OPTIONS
+
+            StringBuffer req1 = new StringBuffer();
+            req1.append("OPTIONS * HTTP/1.1\n"); // Apply to server in general, rather than a specific resource
+            req1.append("Connection: close\n");
+            req1.append("Host: localhost\n");
+            req1.append("\n");
+
+            HttpTester.Response response = http.request(req1);
+
+            assertEquals("9.2 OPTIONS", HttpStatus.OK_200, response.getStatus());
+            assertTrue("9.2 OPTIONS",response.get("Allow") != null);
+            // Header expected ...
+            // Allow: GET, HEAD, POST, PUT, DELETE, MOVE, OPTIONS, TRACE
+            String allow = response.get("Allow");
+            String expectedMethods[] =
+            { "GET", "HEAD", "POST", "PUT", "DELETE", "MOVE", "OPTIONS", "TRACE" };
+            for (String expectedMethod : expectedMethods)
+            {
+                assertThat(allow,containsString(expectedMethod));
+            }
+            assertEquals("9.2 OPTIONS","0", response.get("Content-Length")); // Required if no response body.
+        }
+    }
+
+    /**
+     * Test OPTIONS (HTTP) method - Resource Options
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-9.2">RFC 2616 (section 9.2)</a>
+     */
+    @Test
+    public void test9_2_ResourceOptions() throws Exception
+    {
+        // Jetty is conditionally compliant.
+        // Possible Bug in the Spec.
+        // The content-length: 0 in the spec is not appropriate if the connection is being closed.
+
+        // Resource specific OPTIONS
+        StringBuffer req2 = new StringBuffer();
+        req2.append("OPTIONS /rfc2616-webapp/httpmethods HTTP/1.1\n"); // Apply to specific resource
+        req2.append("Host: localhost\n");
+        req2.append("\n");
+
+        // Test issues 2 requests. first as OPTIONS (not closed),
+        // second as GET (closed), this is to allow the 2 conflicting aspects of the
+        // RFC2616 rules with regards to section 9.2 (OPTIONS) and section 4.4 (Message Length)
+        // to not conflict with each other.
+
+        req2.append("GET /rfc2616-webapp/httpmethods HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n"); // Close this second request
+        req2.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req2);
+
+        Assert.assertEquals("Response Count",2,responses.size()); // Should have 2 responses
+
+        HttpTester.Response response = responses.get(0); // Only interested in first response
+        assertTrue("9.2 OPTIONS", response.get("Allow") != null);
+        // Header expected ...
+        // Allow: GET, HEAD, POST, TRACE, OPTIONS
+        String allow = response.get("Allow");
+        String expectedMethods[] =
+        { "GET", "HEAD", "POST", "OPTIONS", "TRACE" };
+        for (String expectedMethod : expectedMethods)
+        {
+            assertThat(allow,containsString(expectedMethod));
+        }
+
+        assertEquals("9.2 OPTIONS","0", response.get("Content-Length")); // Required if no response body.
+    }
+
+    /**
+     * Test HEAD (HTTP) method
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-9.4">RFC 2616 (section 9.4)</a>
+     */
+    @Test
+    public void test9_4() throws Exception
+    {
+        /* Test GET first. (should have body) */
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/R1.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals("9.4 GET / Response Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("9.4 GET / Content Type","text/plain", response.get("Content-Type"));
+        assertEquals("9.4 HEAD / Content Type","25", response.get("Content-Length"));
+        assertTrue("9.4 GET / Body", response.getContent().contains("Host=Default\nResource=R1\n"));
+
+        /* Test HEAD next. (should have no body) */
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("HEAD /tests/R1.txt HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        // Need to get the HEAD response in a RAW format, as HttpParser.parse()
+        // can't properly parse a HEAD response.
+        Socket sock = http.open();
+        try
+        {
+            http.send(sock,req2);
+
+            String rawHeadResponse = http.readRaw(sock);
+            int headResponseLength = rawHeadResponse.length();
+            // Only interested in the response header from the GET request above.
+            String rawGetResponse = response.toString().substring(0,headResponseLength);
+
+            // As there is a possibility that the time between GET and HEAD requests
+            // can cross the second mark. (eg: GET at 11:00:00.999 and HEAD at 11:00:01.001)
+            // So with that knowledge, we will remove the 'Date:' header from both sides before comparing.
+            List<String> linesGet = StringUtil.asLines(rawGetResponse.trim());
+            List<String> linesHead = StringUtil.asLines(rawHeadResponse.trim());
+
+            StringUtil.removeStartsWith("Date: ",linesGet);
+            StringUtil.removeStartsWith("Date: ",linesHead);
+
+            // Compare the 2 lists of lines to make sure they contain the same information
+            // Do not worry about order of the headers, as that's not important to test,
+            // just the existence of the same headers
+            StringAssert.assertContainsSame("9.4 HEAD equals GET",linesGet,linesHead);
+        }
+        finally
+        {
+            http.close(sock);
+        }
+    }
+
+    /**
+     * Test TRACE (HTTP) method
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-9.8">RFC 2616 (section 9.8)</a>
+     */
+    @Test
+    @Ignore("Introduction of fix for realm-less security constraints has rendered this test invalid due to default configuration preventing use of TRACE in webdefault.xml")
+    public void test9_8() throws Exception
+    {
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("TRACE /rfc2616-webapp/httpmethods HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals("9.8 TRACE / Response Code", HttpStatus.OK_200, response.getStatus());
+        assertEquals("9.8 TRACE / Content Type", "message/http", response.get("Content-Type"));
+        assertTrue("9.8 TRACE / echo", response.getContent().contains("TRACE /rfc2616-webapp/httpmethods HTTP/1.1"));
+        assertTrue("9.8 TRACE / echo", response.getContent().contains("Host: localhost"));
+    }
+
+    /**
+     * Test 206 Partial Content (Response Code)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.2.7">RFC 2616 (section 10.2.7)</a>
+     */
+    @Test
+    public void test10_2_7() throws Exception
+    {
+        // check to see if corresponding GET w/o range would return
+        // a) ETag
+        // b) Content-Location
+        // these same headers will be required for corresponding
+        // sub range requests
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        boolean noRangeHasContentLocation = (response.get("Content-Location") != null);
+        boolean noRangeHasETag = (response.get("ETag") != null);
+
+        // now try again for the same resource but this time WITH range header
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("Range: bytes=1-3\n"); // request first 3 bytes
+        req2.append("\n");
+
+        response = http.request(req2);
+        
+        assertEquals("10.2.7 Partial Content",HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+
+        // (point 1) A 206 response MUST contain either a Content-Range header
+        // field (section 14.16) indicating the range included with this
+        // response, or a multipart/byteranges Content-Type including Content-Range
+        // fields for each part. If a Content-Length header field is present
+        // in the response, its value MUST match the actual number of OCTETs
+        // transmitted in the message-body.
+
+        if (response.get("Content-Range") != null)
+        {
+            assertEquals("10.2.7 Partial Content / Response / Content Range","bytes 1-3/27",response.get("Content-Range"));
+        }
+
+        if (response.get("Content-Length") != null)
+        {
+            assertEquals("10.2.7 Patial Content / Response / Content Length","3", response.get("Content-Length"));
+        }
+
+        // (point 2) A 206 response MUST contain a Date header
+        assertTrue("10.2.7 Partial Content / Response / Date", response.get("Date") != null);
+
+        // (point 3) A 206 response MUST contain ETag and/or Content-Location,
+        // if the header would have been sent in a 200 response to the same request
+        if (noRangeHasContentLocation)
+        {
+            assertTrue("10.2.7 Partial Content / Content-Location", response.get("Content-Location") != null);
+        }
+        if (noRangeHasETag)
+        {
+            assertTrue("10.2.7 Partial Content / Content-Location", response.get("ETag") != null);
+        }
+
+        // (point 4) A 206 response MUST contain Expires, Cache-Control, and/or Vary,
+        // if the field-value might differ from that sent in any previous response
+        // for the same variant
+
+        // TODO: Not sure how to test this condition.
+
+        // Test the body sent
+        assertThat("10.2.7 Partial Content",response.getContent(),Matchers.containsString("BCD")); // should only have bytes 1-3
+    }
+
+    /**
+     * Test Redirection 3xx (Response Code)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3">RFC 2616 (section 10.3)</a>
+     */
+    @Test
+    public void test10_3_RedirectHttp10Path() throws Exception
+    {
+        String specId;
+
+        String serverURI = server.getServerURI().toASCIIString();
+
+        // HTTP/1.0
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /redirect/ HTTP/1.0\n");
+        req1.append("Connection: Close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        specId = "10.3 Redirection HTTP/1.0 - basic";
+        assertEquals(specId,HttpStatus.FOUND_302, response.getStatus());
+        assertEquals(specId,serverURI + "/tests/", response.get("Location"));
+    }
+
+    /**
+     * Test Redirection 3xx (Response Code)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3">RFC 2616 (section 10.3)</a>
+     */
+    @Test
+    public void test10_3_RedirectHttp11Path() throws Exception
+    {
+        // HTTP/1.1
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /redirect/ HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("\n");
+
+        req2.append("GET /redirect/ HTTP/1.1\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req2);
+        Assert.assertEquals("Response Count",2,responses.size());
+
+        HttpTester.Response response = responses.get(0);
+        String specId = "10.3 Redirection HTTP/1.1 - basic (response 1)";
+        assertEquals(specId,HttpStatus.FOUND_302, response.getStatus());
+        assertEquals(specId,server.getScheme() + "://localhost/tests/", response.get("Location"));
+
+        response = responses.get(1);
+        specId = "10.3 Redirection HTTP/1.1 - basic (response 2)";
+        assertEquals(specId,HttpStatus.FOUND_302, response.getStatus());
+        assertEquals(specId,server.getScheme() + "://localhost/tests/", response.get("Location"));
+        assertEquals(specId,"close", response.get("Connection"));
+    }
+
+    /**
+     * Test Redirection 3xx (Response Code)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3">RFC 2616 (section 10.3)</a>
+     */
+    @Test
+    public void test10_3_RedirectHttp10Resource() throws Exception
+    {
+        // HTTP/1.0 - redirect with resource/content
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /redirect/R1.txt HTTP/1.0\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+
+        HttpTester.Response response = http.request(req3);
+
+        String specId = "10.3 Redirection HTTP/1.0 w/content";
+        assertEquals(specId,HttpStatus.FOUND_302, response.getStatus());
+        assertEquals(specId,server.getScheme() + "://localhost/tests/R1.txt", response.get("Location"));
+    }
+
+    /**
+     * Test Redirection 3xx (Response Code)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-10.3">RFC 2616 (section 10.3)</a>
+     */
+    @Test
+    public void test10_3_RedirectHttp11Resource() throws Exception
+    {
+        // HTTP/1.1 - redirect with resource/content
+
+        StringBuffer req4 = new StringBuffer();
+        req4.append("GET /redirect/R2.txt HTTP/1.1\n");
+        req4.append("Host: localhost\n");
+        req4.append("Connection: close\n");
+        req4.append("\n");
+
+        HttpTester.Response response = http.request(req4);
+        
+        String specId = "10.3 Redirection HTTP/1.1 w/content";
+        assertThat(specId + " [status]",response.getStatus(),is(HttpStatus.FOUND_302));
+        assertThat(specId + " [location]",response.get("Location"),is(server.getScheme() + "://localhost/tests/R2.txt"));
+        assertThat(specId + " [connection]",response.get("Connection"),is("close"));
+        assertThat(specId + " [content-length]",response.get("Content-Length"), nullValue());
+    }
+
+    /**
+     * Test Accept-Encoding (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.3">RFC 2616 (section 14.3)</a>
+     */
+    @Test
+    public void test14_3_AcceptEncodingGzip() throws Exception
+    {
+        String specId;
+
+        // Gzip accepted
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/solutions.html HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Accept-Encoding: gzip\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+        specId = "14.3 Accept-Encoding Header";
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertEquals(specId,"gzip", response.get("Content-Encoding"));
+        assertEquals(specId,"text/html", response.get("Content-Type"));
+    }
+
+    /**
+     * Test Content-Range (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.16">RFC 2616 (section 14.16)</a>
+     */
+    @Test
+    public void test14_16_NoRange() throws Exception
+    {
+        //
+        // calibrate with normal request (no ranges); if this doesnt
+        // work, dont expect ranges to work either
+        //
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals(HttpStatus.OK_200, response.getStatus());
+        assertTrue(response.getContent().contains(ALPHA));
+    }
+
+
+    private void assertPartialContentRange(String rangedef, String expectedRange, String expectedBody) throws IOException
+    {
+        // server should ignore all range headers which include
+        // at least one syntactically invalid range
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: ").append(rangedef).append("\n"); // Invalid range
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        String msg = "Partial Range: '" + rangedef + "'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+        assertEquals(msg,"bytes " + expectedRange, response.get("Content-Range"));
+        assertTrue(msg,response.getContent().contains(expectedBody));
+    }
+
+    /**
+     * Test Content-Range (Header Field) - Tests multiple ranges, where all defined ranges are syntactically valid, however some ranges are outside of the
+     * limits of the available data
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.16">RFC 2616 (section 14.16)</a>
+     */
+    @Test
+    public void test14_16_PartialRange() throws Exception
+    {
+        String alpha = ALPHA;
+
+        // server should not return a 416 if at least one syntactically valid ranges
+        // are is satisfiable
+
+        assertPartialContentRange("bytes=5-8,50-60","5-8/27",alpha.substring(5,8 + 1));
+        assertPartialContentRange("bytes=50-60,5-8","5-8/27",alpha.substring(5,8 + 1));
+    }
+
+    /**
+     * Test Content-Range (Header Field) - Tests single Range request header with 2 ranges defined, where there is a mixed case of validity, 1 range invalid,
+     * another 1 valid.
+     * 
+     * Only the valid range should be processed. The invalid range should be ignored.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.16">RFC 2616 (section 14.16)</a>
+     */
+    @Test
+    public void test14_16_PartialRange_MixedRanges() throws Exception
+    {
+        String alpha = ALPHA;
+
+        // server should not return a 416 if at least one syntactically valid ranges
+        // are is satisfiable
+        //
+        // should test for combinations of good and syntactically
+        // invalid ranges here, but I am not certain what the right
+        // behavior is anymore
+        //
+        // return data for valid ranges while ignoring unsatisfiable
+        // ranges
+
+        // a) Range: bytes=a-b,5-8
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: bytes=a-b,5-8\n"); // Invalid range, then Valid range
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        http.setTimeoutMillis(60000);
+        HttpTester.Response response = http.request(req1);
+
+        String msg = "Partial Range (Mixed): 'bytes=a-b,5-8'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+        assertEquals(msg,"bytes 5-8/27", response.get("Content-Range"));
+        assertTrue(msg,response.getContent().contains(alpha.substring(5,8 + 1)));
+    }
+
+    /**
+     * Test Content-Range (Header Field) - Tests single Range request header with 2 ranges defined, where there is a mixed case of validity, 1 range invalid,
+     * another 1 valid.
+     * 
+     * Only the valid range should be processed. The invalid range should be ignored.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.16">RFC 2616 (section 14.16)</a>
+     */
+    @Test
+    public void test14_16_PartialRange_MixedBytes() throws Exception
+    {
+        String alpha = ALPHA;
+
+        // server should not return a 416 if at least one syntactically valid ranges
+        // are is satisfiable
+        //
+        // should test for combinations of good and syntactically
+        // invalid ranges here, but I am not certain what the right
+        // behavior is anymore
+        //
+        // return data for valid ranges while ignoring unsatisfiable
+        // ranges
+
+        // b) Range: bytes=a-b,bytes=5-8
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: bytes=a-b,bytes=5-8\n"); // Invalid range, then Valid range
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        String msg = "Partial Range (Mixed): 'bytes=a-b,bytes=5-8'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+        assertEquals(msg,"bytes 5-8/27", response.get("Content-Range"));
+        assertTrue(msg,response.getContent().contains(alpha.substring(5,8 + 1)));
+    }
+
+    /**
+     * Test Content-Range (Header Field) - Tests multiple Range request headers, where there is a mixed case of validity, 1 range invalid, another 1 valid.
+     * 
+     * Only the valid range should be processed. The invalid range should be ignored.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.16">RFC 2616 (section 14.16)</a>
+     */
+    @Test
+    public void test14_16_PartialRange_MixedMultiple() throws Exception
+    {
+        String alpha = ALPHA;
+
+        // server should not return a 416 if at least one syntactically valid ranges
+        // are is satisfiable
+        //
+        // should test for combinations of good and syntactically
+        // invalid ranges here, but I am not certain what the right
+        // behavior is anymore
+        //
+        // return data for valid ranges while ignoring unsatisfiable
+        // ranges
+
+        // c) Range: bytes=a-b
+        // Range: bytes=5-8
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: bytes=a-b\n"); // Invalid range
+        req1.append("Range: bytes=5-8\n"); // Valid range
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        String msg = "Partial Range (Mixed): 'bytes=a-b' 'bytes=5-8'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+        assertEquals(msg,"bytes 5-8/27", response.get("Content-Range"));
+        assertTrue(msg,response.getContent().contains(alpha.substring(5,8 + 1)));
+    }
+
+    /**
+     * Test Host (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.23">RFC 2616 (section 14.23)</a>
+     */
+    @Test
+    public void test14_23_Http10_NoHostHeader() throws Exception
+    {
+        // HTTP/1.0 OK with no host
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/R1.txt HTTP/1.0\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+        assertEquals("14.23 HTTP/1.0 - No Host", HttpStatus.OK_200, response.getStatus());
+    }
+
+    /**
+     * Test Host (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.23">RFC 2616 (section 14.23)</a>
+     */
+    @Test
+    public void test14_23_Http11_NoHost() throws Exception
+    {
+        // HTTP/1.1 400 (bad request) with no host
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /tests/R1.txt HTTP/1.1\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        HttpTester.Response response = http.request(req2);
+        assertEquals("14.23 HTTP/1.1 - No Host",HttpStatus.BAD_REQUEST_400, response.getStatus());
+    }
+
+    /**
+     * Test Host (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.23">RFC 2616 (section 14.23)</a>
+     */
+    @Test
+    public void test14_23_ValidHost() throws Exception
+    {
+        // HTTP/1.1 - Valid host
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /tests/R1.txt HTTP/1.1\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+
+        HttpTester.Response response = http.request(req3);
+        assertEquals("14.23 HTTP/1.1 - Valid Host", HttpStatus.OK_200, response.getStatus());
+    }
+
+    /**
+     * Test Host (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.23">RFC 2616 (section 14.23)</a>
+     */
+    @Test
+    public void test14_23_IncompleteHostHeader() throws Exception
+    {
+        // HTTP/1.1 - Incomplete (empty) Host header
+        try (StacklessLogging stackless = new StacklessLogging(HttpParser.class))
+        {
+            StringBuffer req4 = new StringBuffer();
+            req4.append("GET /tests/R1.txt HTTP/1.1\n");
+            req4.append("Host:\n");
+            req4.append("Connection: close\n");
+            req4.append("\n");
+
+            HttpTester.Response response = http.request(req4);
+            assertEquals("14.23 HTTP/1.1 - Empty Host", HttpStatus.OK_200, response.getStatus());
+        }
+    }
+
+    /**
+     * Tests the (byte) "Range" header for partial content.
+     * 
+     * Note: This is similar to {@link #assertPartialContentRange(String, String, String)} but uses the "Range" header and not the "Content-Range" header.
+     * 
+     * @param rangedef
+     * @param expectedRange
+     * @param expectedBody
+     * @throws IOException
+     */
+    private void assertByteRange(String rangedef, String expectedRange, String expectedBody) throws IOException
+    {
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: ").append(rangedef).append("\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        String msg = "Partial (Byte) Range: '" + rangedef + "'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+        // It might be strange to see a "Content-Range' response header to a 'Range' request,
+        // but this is appropriate per the RFC2616 spec.
+        assertEquals(msg,"bytes " + expectedRange, response.get("Content-Range"));
+        assertTrue(msg,response.getContent().contains(expectedBody));
+    }
+
+    /**
+     * Test Range (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.35">RFC 2616 (section 14.35)</a>
+     */
+    @Test
+    public void test14_35_Range() throws Exception
+    {
+        //
+        // test various valid range specs that have not been
+        // tested yet
+        //
+
+        String alpha = ALPHA;
+
+        // First 3 bytes
+        assertByteRange("bytes=0-2","0-2/27",alpha.substring(0,2 + 1));
+
+        // From byte offset 23 thru the end of the content
+        assertByteRange("bytes=23-","23-26/27",alpha.substring(23));
+
+        // Request byte offset 23 thru 42 (only 26 bytes in content)
+        // The last 3 bytes are returned.
+        assertByteRange("bytes=23-42","23-26/27",alpha.substring(23,26 + 1));
+
+        // Request the last 3 bytes
+        assertByteRange("bytes=-3","24-26/27",alpha.substring(24,26 + 1));
+    }
+
+    /**
+     * Test Range (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.35">RFC 2616 (section 14.35)</a>
+     */
+    @Test
+    public void test14_35_Range_Multipart1() throws Exception
+    {
+        String rangedef = "23-23,-2"; // Request byte at offset 23, and the last 2 bytes
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: ").append(rangedef).append("\n");
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+        
+        String msg = "Partial (Byte) Range: '" + rangedef + "'";
+        assertEquals(msg,HttpStatus.PARTIAL_CONTENT_206, response.getStatus());
+
+        String contentType = response.get("Content-Type");
+        // RFC states that multiple parts should result in multipart/byteranges Content type.
+        StringAssert.assertContains(msg + " Content-Type",contentType,"multipart/byteranges");
+
+        // Collect 'boundary' string
+        String boundary = null;
+        String parts[] = StringUtil.split(contentType,';');
+        for (int i = 0; i < parts.length; i++)
+        {
+            if (parts[i].trim().startsWith("boundary="))
+            {
+                String boundparts[] = StringUtil.split(parts[i],'=');
+                Assert.assertEquals(msg + " Boundary parts.length",2,boundparts.length);
+                boundary = boundparts[1];
+            }
+        }
+
+        Assert.assertNotNull(msg + " Should have found boundary in Content-Type header",boundary);
+
+        List<String> lines = StringUtil.asLines(response.getContent().trim());
+        int i=0;
+        assertEquals("--"+boundary,lines.get(i++));
+        assertEquals("Content-Type: text/plain",lines.get(i++));
+        assertEquals("Content-Range: bytes 23-23/27",lines.get(i++));
+        assertEquals("",lines.get(i++));
+        assertEquals("X",lines.get(i++));
+        assertEquals("--"+boundary,lines.get(i++));
+        assertEquals("Content-Type: text/plain",lines.get(i++));
+        assertEquals("Content-Range: bytes 25-26/27",lines.get(i++));
+        assertEquals("",lines.get(i++));
+        assertEquals("Z",lines.get(i++));
+        assertEquals("",lines.get(i++));
+        assertEquals("--"+boundary+"--",lines.get(i++));
+    }
+
+    /**
+     * Test Range (Header Field)
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.35">RFC 2616 (section 14.35)</a>
+     */
+    @Test
+    public void test14_35_PartialRange() throws Exception
+    {
+        //
+        // test various valid range specs that have not been
+        // tested yet
+        //
+
+        String alpha = ALPHA;
+
+        // server should not return a 416 if at least one syntactically valid ranges
+        // are is satisfiable
+
+        assertByteRange("bytes=5-8,50-60","5-8/27",alpha.substring(5,8 + 1));
+        assertByteRange("bytes=50-60,5-8","5-8/27",alpha.substring(5,8 + 1));
+    }
+
+    private void assertBadByteRange(String rangedef) throws IOException
+    {
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /rfc2616-webapp/alpha.txt HTTP/1.1\n");
+        req1.append("Host: localhost\n");
+        req1.append("Range: ").append(rangedef).append("\n"); // Invalid range
+        req1.append("Connection: close\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+
+        assertEquals("BadByteRange: '" + rangedef + "'",HttpStatus.REQUESTED_RANGE_NOT_SATISFIABLE_416, response.getStatus());
+    }
+
+    /**
+     * Test Range (Header Field) - Bad Range Request
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.35">RFC 2616 (section 14.35)</a>
+     */
+    @Test
+    public void test14_35_BadRange_InvalidSyntax() throws Exception
+    {
+        // server should ignore all range headers which include
+        // at least one syntactically invalid range
+
+        assertBadByteRange("bytes=a-b"); // Invalid due to non-digit entries
+        assertBadByteRange("bytes=-"); // Invalid due to missing range ends
+        assertBadByteRange("bytes=-1-"); // Invalid due negative to end range
+        assertBadByteRange("doublehalfwords=1-2"); // Invalid due to bad key 'doublehalfwords'
+    }
+
+    /**
+     * Test TE (Header Field) / Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.39">RFC 2616 (section 14.39)</a>
+     */
+    @Test
+    public void test14_39_TEGzip() throws Exception
+    {
+        if (STRICT)
+        {
+            String specId;
+
+            // Gzip accepted
+
+            StringBuffer req1 = new StringBuffer();
+            req1.append("GET /rfc2616-webapp/solutions.html HTTP/1.1\n");
+            req1.append("Host: localhost\n");
+            req1.append("TE: gzip\n");
+            req1.append("Connection: close\n");
+            req1.append("\n");
+
+            HttpTester.Response response = http.request(req1);
+            specId = "14.39 TE Header";
+            assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+            assertEquals(specId,"gzip", response.get("Transfer-Encoding"));
+        }
+    }
+
+    /**
+     * Test TE (Header Field) / Transfer Codings
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-14.39">RFC 2616 (section 14.39)</a>
+     */
+    @Test
+    public void test14_39_TEDeflate() throws Exception
+    {
+        if (STRICT)
+        {
+            String specId;
+
+            // Deflate not accepted
+            StringBuffer req2 = new StringBuffer();
+            req2.append("GET /rfc2616-webapp/solutions.html HTTP/1.1\n");
+            req2.append("Host: localhost\n");
+            req2.append("TE: deflate\n"); // deflate not accepted
+            req2.append("Connection: close\n");
+            req2.append("\n");
+
+            HttpTester.Response response = http.request(req2);
+            specId = "14.39 TE Header";
+            assertEquals(specId,HttpStatus.NOT_IMPLEMENTED_501, response.getStatus()); // Error on TE (deflate not supported)
+        }
+    }
+
+    /**
+     * Test Compatibility with Previous (HTTP) Versions.
+     * 
+     * @see <a href="http://tools.ietf.org/html/rfc2616#section-19.6">RFC 2616 (section 19.6)</a>
+     */
+    @Test
+    public void test19_6() throws Exception
+    {
+    
+        String specId;
+
+        /* Compatibility with HTTP/1.0 */
+
+        StringBuffer req1 = new StringBuffer();
+        req1.append("GET /tests/R1.txt HTTP/1.0\n");
+        req1.append("\n");
+
+        HttpTester.Response response = http.request(req1);
+        specId = "19.6 Compatibility with HTTP/1.0 - simple request";
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertTrue(specId + " - connection closed not assumed",response.get("Connection") == null);
+
+        /* Compatibility with HTTP/1.0 */
+
+        StringBuffer req2 = new StringBuffer();
+        req2.append("GET /tests/R1.txt HTTP/1.0\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: keep-alive\n");
+        req2.append("\n");
+
+        req2.append("GET /tests/R2.txt HTTP/1.0\n");
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n"); // Connection closed here
+        req2.append("\n");
+
+        req2.append("GET /tests/R3.txt HTTP/1.0\n"); // This request should not be handled
+        req2.append("Host: localhost\n");
+        req2.append("Connection: close\n");
+        req2.append("\n");
+
+        List<HttpTester.Response> responses = http.requests(req2);
+        // Since R2 closes the connection, should only get 2 responses (R1 &
+        // R2), not (R3)
+        Assert.assertEquals("Response Count",2,responses.size());
+
+        response = responses.get(0); // response 1
+        specId = "19.6.2 Compatibility with previous HTTP - Keep-alive";
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertEquals(specId,"keep-alive", response.get("Connection"));
+        assertTrue(specId,response.getContent().contains("Resource=R1"));
+
+        response = responses.get(1); // response 2
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertTrue(specId,response.getContent().contains("Resource=R2"));
+
+        /* Compatibility with HTTP/1.0 */
+
+        StringBuffer req3 = new StringBuffer();
+        req3.append("GET /echo/R1 HTTP/1.0\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: keep-alive\n");
+        req3.append("Content-Length: 10\n");
+        req3.append("\n");
+        req3.append("1234567890\n");
+
+        req3.append("GET /echo/RA HTTP/1.0\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: keep-alive\n");
+        req3.append("Content-Length: 10\n");
+        req3.append("\n");
+        req3.append("ABCDEFGHIJ\n");
+
+        req3.append("GET /tests/R2.txt HTTP/1.0\n");
+        req3.append("Host: localhost\n");
+        req3.append("Connection: close\n"); // Close connection here
+        req3.append("\n");
+
+        req3.append("GET /tests/R3.txt HTTP/1.0\n"); // This request should not
+        // be handled.
+        req3.append("Host: localhost\n");
+        req3.append("Connection: close\n");
+        req3.append("\n");
+        responses = http.requests(req3);
+        Assert.assertEquals("Response Count",3,responses.size());
+
+        specId = "19.6.2 Compatibility with HTTP/1.0- Keep-alive";
+        response = responses.get(0);
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertEquals(specId,"keep-alive", response.get("Connection"));
+        assertTrue(specId, response.getContent().contains("1234567890\n"));
+
+        response = responses.get(1);
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertEquals(specId, "keep-alive", response.get("Connection"));
+        assertTrue(specId,response.getContent().contains("ABCDEFGHIJ\n"));
+
+        response = responses.get(2);
+        assertEquals(specId, HttpStatus.OK_200, response.getStatus());
+        assertTrue(specId,response.getContent().contains("Host=Default\nResource=R2\n"));
+    }
+
+    protected void assertDate(String msg, Calendar expectedTime, long actualTime)
+    {
+        SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMMM yyyy HH:mm:ss:SSS zzz");
+        sdf.setTimeZone(TimeZone.getTimeZone("GMT"));
+        String actual = sdf.format(new Date(actualTime));
+        String expected = sdf.format(expectedTime.getTime());
+
+        Assert.assertEquals(msg,expected,actual);
+    }
+}
