@@ -1,0 +1,56 @@
+/**
+ * BSD-style license; for more info see http://pmd.sourceforge.net/license.html
+ */
+package net.sourceforge.pmd.rules;
+
+import net.sourceforge.pmd.AbstractRule;
+import net.sourceforge.pmd.RuleContext;
+import net.sourceforge.pmd.ast.ASTClassOrInterfaceDeclaration;
+import net.sourceforge.pmd.ast.ASTMethodDeclarator;
+
+import java.util.Iterator;
+import java.util.List;
+
+public class TestClassWithoutTestCases extends AbstractRule {
+	
+	public Object visit(ASTClassOrInterfaceDeclaration node, Object data) {
+        if (node.isInterface() || node.isInnerClass()) {
+		return data;
+        }
+
+        String className = node.getImage();
+        if (className.endsWith("Test")) {
+            List m = node.findChildrenOfType(ASTMethodDeclarator.class);
+            boolean testsFound = false;
+            if (m!=null) {
+                for (Iterator it = m.iterator() ; it.hasNext() && !testsFound ; ) {
+                    ASTMethodDeclarator md = (ASTMethodDeclarator) it.next();
+                    if (!isInInnerClassOrInterface(md)
+                            && md.getImage().startsWith("test")) {
+                                testsFound = true;
+                    }
+                }
+            }
+
+            if (!testsFound) {
+                addViolation((RuleContext)data, node);
+            }
+
+        }
+        return data;
+	}
+	private boolean isInInnerClassOrInterface(ASTMethodDeclarator md) {
+        return true;
+/*
+FIXME
+		Object p;
+		p = md.getFirstParentOfType(ASTNestedClassDeclaration.class);
+		if (p!=null)
+			return true;
+		p = md.getFirstParentOfType(ASTNestedInterfaceDeclaration.class);
+		if (p!=null)
+			return true;
+		return false;
+*/
+	}
+}
