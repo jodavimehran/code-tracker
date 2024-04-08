@@ -63,32 +63,28 @@ public abstract class OracleTest {
 	@MethodSource(value = "testProvider")
 	public <H extends AbstractHistoryInfo, E extends CodeElement> void testCodeTracker(CheckedBiFunction<H, String, History<E>> tracker, H historyInfo, String fileName) throws Exception {
 		String repositoryWebURL = historyInfo.getRepositoryWebURL();
-		//TODO temporary if check, remove when all local files are created
-		if(fileName.startsWith("checkstyle") || fileName.startsWith("commons-lang") || fileName.startsWith("flink") || fileName.startsWith("hibernate") || fileName.startsWith("javaparser") || fileName.startsWith("jgit") || fileName.startsWith("junit") ||
-				fileName.startsWith("okhttp") || fileName.startsWith("spring-framework") || fileName.startsWith("commons-io") || fileName.startsWith("elasticsearch") || fileName.startsWith("hadoop") || fileName.startsWith("intellij") || fileName.startsWith("jetty")) {
-			HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
-			History<E> history = tracker.apply(historyInfo, repositoryWebURL);
-			HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
-			HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
-			HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
+		HashMap<String, ChangeHistory> oracleChanges = oracle(historyInfo.getExpectedChanges());
+		History<E> history = tracker.apply(historyInfo, repositoryWebURL);
+		HashMap<String, ChangeHistory> detectedChanges = new HashMap<>();
+		HashMap<String, ChangeHistory> notDetectedChanges = new HashMap<>(oracleChanges);
+		HashMap<String, ChangeHistory> falseDetectedChanges = processHistory((HistoryImpl<E>) history);
 
-			for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
-				String changeKey = oracleChangeEntry.getKey();
-				if (falseDetectedChanges.containsKey(changeKey)) {
-					detectedChanges.put(changeKey, falseDetectedChanges.get(changeKey));
-					notDetectedChanges.remove(changeKey);
-					falseDetectedChanges.remove(changeKey);
-				}
+		for (Map.Entry<String, ChangeHistory> oracleChangeEntry : oracleChanges.entrySet()) {
+			String changeKey = oracleChangeEntry.getKey();
+			if (falseDetectedChanges.containsKey(changeKey)) {
+				detectedChanges.put(changeKey, falseDetectedChanges.get(changeKey));
+				notDetectedChanges.remove(changeKey);
+				falseDetectedChanges.remove(changeKey);
 			}
-			final int actualTP = detectedChanges.size();
-			final int actualFP = falseDetectedChanges.size();
-			final int actualFN = notDetectedChanges.size();
-			Assertions.assertAll(
-					() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s True Positives, but has %s", expectedTP.get(fileName), actualTP)),
-					() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
-					() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
-					);
 		}
+		final int actualTP = detectedChanges.size();
+		final int actualFP = falseDetectedChanges.size();
+		final int actualFN = notDetectedChanges.size();
+		Assertions.assertAll(
+				() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s True Positives, but has %s", expectedTP.get(fileName), actualTP)),
+				() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
+				() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
+				);
 	}
 	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> getArgumentsStream(List<? extends AbstractOracle<H>> all, String expected, CheckedBiFunction<H, String, History<E>> tracker) {
 		return all.stream().flatMap(oracle -> {
