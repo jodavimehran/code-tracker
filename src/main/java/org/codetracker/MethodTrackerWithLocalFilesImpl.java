@@ -65,6 +65,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
     		startFileContents.put(rightFileName, startModel.fileContentsCurrentOriginal.get(rightFileName));
     	}
     	UMLModel umlModel = GitHistoryRefactoringMinerImpl.createModel(startFileContents, startModel.repositoryDirectoriesCurrent);
+    	umlModel.setPartial(true);
         Method start = getMethod(umlModel, startVersion, this::isStartMethod);
         String startFilePath = start.getFilePath();
         if (start == null) {
@@ -109,8 +110,9 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 Version parentVersion = new VersionImpl(parentCommitId, 0, 0, "");
             	
             	UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsBeforeOriginal, lightCommitModel.repositoryDirectoriesBefore);
+            	leftModel.setPartial(true);
             	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsCurrentOriginal, lightCommitModel.repositoryDirectoriesCurrent);
-
+            	rightModel.setPartial(true);
                 Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                 if (rightMethod == null) {
                     continue;
