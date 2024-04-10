@@ -2,12 +2,11 @@ package org.codetracker.util;
 
 import java.io.File;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.Predicate;
 
+import gr.uom.java.xmi.UMLModel;
 import org.codetracker.VersionImpl;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.CodeElementNotFoundException;
@@ -20,22 +19,13 @@ import org.codetracker.element.Variable;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl.ChangedFileInfo;
 
-import gr.uom.java.xmi.UMLAnonymousClass;
-import gr.uom.java.xmi.UMLAttribute;
-import gr.uom.java.xmi.UMLClass;
-import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
-
-public class CodeElementLocatorWithLocalFiles {
+public class CodeElementLocatorWithLocalFiles extends AbstractCodeElementLocator {
 	private final UMLModel currentUMLModel;
 	private final UMLModel parentUMLModel;
-	private final String commitId;
-    private final String filePath;
-    private final String name;
-    private final int lineNumber;
     private static final String REPOS = System.getProperty("user.dir") + "/src/test/resources/oracle/commits";
 
     public CodeElementLocatorWithLocalFiles(String cloneURL, String commitId, String filePath, String name, int lineNumber) throws Exception {
+    	super(commitId, filePath, name, lineNumber);
     	Set<String> repositoryDirectoriesBefore = ConcurrentHashMap.newKeySet();
 		Set<String> repositoryDirectoriesCurrent = ConcurrentHashMap.newKeySet();
 		Map<String, String> fileContentsBefore = new ConcurrentHashMap<String, String>();
@@ -61,48 +51,6 @@ public class CodeElementLocatorWithLocalFiles {
 		GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBefore, fileContentsCurrent, renamedFilesHint, false);
 		this.currentUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsCurrent, repositoryDirectoriesCurrent);
 		this.parentUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsBefore, repositoryDirectoriesBefore);
-		this.commitId = commitId;
-        this.filePath = filePath;
-        this.name = name;
-        this.lineNumber = lineNumber;
-    }
-
-    private boolean classPredicate(Class clazz) {
-        return clazz.getUmlClass().getNonQualifiedName().equals(name);
-    }
-
-    private boolean methodPredicateWithName(Method method) {
-        return method.getUmlOperation().getName().equals(name) &&
-                method.getUmlOperation().getLocationInfo().getStartLine() <= lineNumber &&
-                method.getUmlOperation().getLocationInfo().getEndLine() >= lineNumber;
-    }
-
-    private boolean methodPredicateWithoutName(Method method) {
-        return method.getUmlOperation().getLocationInfo().getStartLine() <= lineNumber &&
-                method.getUmlOperation().getLocationInfo().getEndLine() >= lineNumber;
-    }
-
-    private boolean variablePredicate(Variable variable) {
-        return variable.getVariableDeclaration().getVariableName().equals(name) &&
-                variable.getVariableDeclaration().getLocationInfo().getStartLine() <= lineNumber &&
-                variable.getVariableDeclaration().getLocationInfo().getEndLine() >= lineNumber;
-    }
-
-    private boolean attributePredicate(Attribute attribute) {
-        return attribute.getUmlAttribute().getName().equals(name) &&
-                attribute.getUmlAttribute().getLocationInfo().getStartLine() <= lineNumber &&
-                attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
-    }
-
-    private boolean blockPredicate(Block block) {
-        String blockCodeElementTypeName = block.getComposite().getLocationInfo().getCodeElementType().getName();
-        if(blockCodeElementTypeName != null) {
-            return blockCodeElementTypeName.equals(name) &&
-                    block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
-                    block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
-        }
-        return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
-                block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
     }
 
     public CodeElement locate() throws Exception {
@@ -134,63 +82,5 @@ public class CodeElementLocatorWithLocalFiles {
             }
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
-    }
-
-    private static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
-        if (umlModel != null)
-            for (UMLClass umlClass : umlModel.getClassList()) {
-                for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-                    Method method = getMethod(version, predicate, anonymousClass.getOperations());
-                    if (method != null) return method;
-                }
-                Method method = getMethod(version, predicate, umlClass.getOperations());
-                if (method != null) return method;
-            }
-        return null;
-    }
-
-    private static Method getMethod(Version version, Predicate<Method> predicate, List<UMLOperation> operations) {
-        for (UMLOperation umlOperation : operations) {
-            Method method = Method.of(umlOperation, version);
-            if (predicate.test(method))
-                return method;
-        }
-        return null;
-    }
-
-    private static Attribute getAttribute(UMLModel umlModel, Version version, Predicate<Attribute> predicate) {
-        if (umlModel != null)
-            for (UMLClass umlClass : umlModel.getClassList()) {
-                for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-                    Attribute attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
-                    if (attribute != null) return attribute;
-                    attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
-                    if (attribute != null) return attribute;
-                }
-                Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
-                if (attribute != null) return attribute;
-                attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
-                if (attribute != null) return attribute;
-            }
-        return null;
-    }
-
-    private static Attribute getAttribute(Version version, Predicate<Attribute> predicate, List<? extends UMLAttribute> attributes) {
-        for (UMLAttribute umlAttribute : attributes) {
-            Attribute attribute = Attribute.of(umlAttribute, version);
-            if (predicate.test(attribute))
-                return attribute;
-        }
-        return null;
-    }
-
-    private static Class getClass(UMLModel umlModel, Version version, Predicate<Class> predicate) {
-        if (umlModel != null)
-            for (UMLClass umlClass : umlModel.getClassList()) {
-                Class clazz = Class.of(umlClass, version);
-                if (predicate.test(clazz))
-                    return clazz;
-            }
-        return null;
     }
 }
