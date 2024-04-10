@@ -9,49 +9,24 @@ import org.codetracker.api.BlockTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
-import org.codetracker.change.AbstractChange;
-import org.codetracker.change.Change;
-import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.api.RefactoringType;
 
 import java.util.*;
 import java.util.function.Predicate;
 
 public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
-    private final ChangeHistory<Block> blockChangeHistory = new ChangeHistory<>();
-    private final String methodName;
-    private final int methodDeclarationLineNumber;
-    private final CodeElementType blockType;
-    private final int blockStartLineNumber;
-    private final int blockEndLineNumber;
+    private final BlockTrackerChangeHistory changeHistory;
 
     public BlockTrackerImpl(Repository repository, String startCommitId, String filePath,
                             String methodName, int methodDeclarationLineNumber,
                             CodeElementType blockType, int blockStartLineNumber, int blockEndLineNumber) {
         super(repository, startCommitId, filePath);
-        this.methodName = methodName;
-        this.methodDeclarationLineNumber = methodDeclarationLineNumber;
-        this.blockType = blockType;
-        this.blockStartLineNumber = blockStartLineNumber;
-        this.blockEndLineNumber = blockEndLineNumber;
-    }
-
-    private boolean isStartBlock(Block block) {
-        return block.getComposite().getLocationInfo().getCodeElementType().equals(blockType) &&
-                block.getComposite().getLocationInfo().getStartLine() == blockStartLineNumber &&
-                block.getComposite().getLocationInfo().getEndLine() == blockEndLineNumber;
-    }
-
-    private boolean isStartMethod(Method method) {
-        return method.getUmlOperation().getName().equals(methodName) &&
-                method.getUmlOperation().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
-                method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
+        this.changeHistory = new BlockTrackerChangeHistory(methodName, methodDeclarationLineNumber, blockType, blockStartLineNumber, blockEndLineNumber);
     }
 
     @Override
@@ -60,15 +35,15 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
-            Method startMethod = getMethod(umlModel, startVersion, this::isStartMethod);
+            Method startMethod = getMethod(umlModel, startVersion, changeHistory::isStartMethod);
             if (startMethod == null) {
-                throw new CodeElementNotFoundException(filePath, methodName, methodDeclarationLineNumber);
+                throw new CodeElementNotFoundException(filePath, changeHistory.getMethodName(), changeHistory.getMethodDeclarationLineNumber());
             }
-            Block startBlock = startMethod.findBlock(this::isStartBlock);
+            Block startBlock = startMethod.findBlock(changeHistory::isStartBlock);
             if (startBlock == null) {
-                throw new CodeElementNotFoundException(filePath, blockType.getName(), blockStartLineNumber);
+                throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
-            blockChangeHistory.addNode(startBlock);
+            changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();
             blocks.addFirst(startBlock);
@@ -114,8 +89,8 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     if ("0".equals(parentCommitId)) {
                         Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
                         Block leftBlock = Block.of(rightBlock.getComposite(), leftMethod);
-                        blockChangeHistory.handleAdd(leftBlock, rightBlock, "Initial commit!");
-                        blockChangeHistory.connectRelatedNodes();
+                        changeHistory.get().handleAdd(leftBlock, rightBlock, "Initial commit!");
+                        changeHistory.get().connectRelatedNodes();
                         blocks.add(leftBlock);
                         break;
                     }
@@ -161,7 +136,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 bodyMapper = null;
                             }
                         }
-                        if (checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+                        if (changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
                             historyReport.step3PlusPlus();
                             break;
                         }
@@ -170,17 +145,17 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     {
                         //Local Refactoring
                         List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                        boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                        boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
                         }
-                        found = checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                        found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
                         }
-                        found = checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
+                        found = changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
@@ -214,7 +189,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                                 VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
                                                 UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlModelPairPartial.getLeft(), umlModelPairPartial.getRight(), operation, rightOperation);
                                                 UMLOperationBodyMapper bodyMapper = new UMLOperationBodyMapper(operation, (UMLOperation) rightOperation, lightweightClassDiff);
-                                                found = isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                                                found = changeHistory.isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                                                 if (found) {
                                                     break;
                                                 }
@@ -236,7 +211,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
 
                                 boolean found;
                                 UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
-                                found = checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper);
+                                found = changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -252,25 +227,25 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethodClassName);
                             if (classDiff != null) {
                                 List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
-                                boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                                boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
 
-                                found = isBlockRefactored(classLevelRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                                found = changeHistory.isBlockRefactored(classLevelRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
 
-                                found = checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                                found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
 
-                                found = checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, classDiff);
+                                found = changeHistory.checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, classDiff);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -294,19 +269,19 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                                 refactorings = umlModelDiffAll.getRefactorings();
                             }
 
-                            boolean found = checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                            boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                            found = changeHistory.isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                            found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
@@ -315,7 +290,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
 
                             UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                             if (umlClassDiff != null) {
-                                found = checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
+                                found = changeHistory.checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 
                                 if (found) {
                                     historyReport.step5PlusPlus();
@@ -326,9 +301,9 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
                             }, currentVersion)) {
                                 Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
-                                blockChangeHistory.handleAdd(blockBefore, rightBlock, "added with method");
+                                changeHistory.get().handleAdd(blockBefore, rightBlock, "added with method");
                                 blocks.add(blockBefore);
-                                blockChangeHistory.connectRelatedNodes();
+                                changeHistory.get().connectRelatedNodes();
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -336,493 +311,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                     }
                 }
             }
-            return new HistoryImpl<>(blockChangeHistory.getCompleteGraph(), historyReport);
+            return new HistoryImpl<>(changeHistory.get().getCompleteGraph(), historyReport);
         }
     }
-
-    private boolean checkClassDiffForBlockChange(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
-        for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
-            Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
-            if (equalMethod.test(method2)) {
-                if (isBlockRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), blocks, currentVersion, parentVersion, equalBlock))
-                    return true;
-                // check if it is in the matched
-                if (isMatched(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
-                    return true;
-                //Check if is added
-                if (isAdded(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
-                    return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean checkForExtractionOrInline(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
-        for (Refactoring refactoring : refactorings) {
-            switch (refactoring.getRefactoringType()) {
-                case EXTRACT_AND_MOVE_OPERATION:
-                case EXTRACT_OPERATION: {
-                    ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
-                    Method extractedMethod = Method.of(extractOperationRefactoring.getExtractedOperation(), currentVersion);
-                    if (equalMethod.test(extractedMethod)) {
-                        CompositeStatementObject matchedBlockFromSourceMethod = null;
-                        UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
-                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
-                            if (mapping instanceof CompositeStatementObjectMapping) {
-                                Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
-                                if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                    matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
-                                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
-                                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
-                                    List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
-                                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                        if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
-                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                        }
-                                        List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
-                                        List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
-                                        if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
-                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
-                                        }
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-                        Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
-                        if (matchedBlockFromSourceMethod == null) {
-                            blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
-                            blocks.add(blockBefore);
-                        }
-                        else {
-                            VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
-                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
-                            Block leftBlock = Block.of(matchedBlockFromSourceMethod, sourceMethod);
-                            blocks.add(leftBlock);
-                        }
-                        blockChangeHistory.connectRelatedNodes();
-                        return true;
-                    }
-                    break;
-                }
-                case MOVE_AND_INLINE_OPERATION:
-                case INLINE_OPERATION: {
-                    InlineOperationRefactoring inlineOperationRefactoring = (InlineOperationRefactoring) refactoring;
-                    Method targetOperationAfterInline = Method.of(inlineOperationRefactoring.getTargetOperationAfterInline(), currentVersion);
-                    if (equalMethod.test(targetOperationAfterInline)) {
-                        UMLOperationBodyMapper bodyMapper = inlineOperationRefactoring.getBodyMapper();
-                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
-                            if (mapping instanceof CompositeStatementObjectMapping) {
-                                Block matchedBlockInsideInlinedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
-                                if (matchedBlockInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
-                                    blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                    blocks.add(blockBefore);
-                                    blockChangeHistory.connectRelatedNodes();
-                                    return true;
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-                case MERGE_OPERATION: {
-                    MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
-                    Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
-                    if (equalMethod.test(methodAfter)) {
-                        for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
-                            for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
-                                if (mapping instanceof CompositeStatementObjectMapping) {
-                                    Block matchedBlockInsideMergedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
-                                    if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                        // implementation for introduced
-                                        /*
-                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
-                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
-                                        blocks.add(blockBefore);
-                                        blockChangeHistory.connectRelatedNodes();
-                                        return true;
-                                        */
-                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
-                                        //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
-                                        // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-                case SPLIT_OPERATION: {
-                    SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
-                    for (VariableDeclarationContainer splitMethod : splitOperationRefactoring.getSplitMethods()) {
-                        Method methodAfter = Method.of(splitMethod, currentVersion);
-                        if (equalMethod.test(methodAfter)) {
-                            for (UMLOperationBodyMapper bodyMapper : splitOperationRefactoring.getMappers()) {
-                                for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
-                                    if (mapping instanceof CompositeStatementObjectMapping) {
-                                        Block matchedBlockInsideSplitMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
-                                        if (matchedBlockInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                        // implementation for introduced
-                                        /*
-                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
-                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
-                                        blocks.add(blockBefore);
-                                        blockChangeHistory.connectRelatedNodes();
-                                        return true;
-                                        */
-                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
-                                        //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
-                                        // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean checkBodyOfMatchedOperations(Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
-        if (umlOperationBodyMapper == null)
-            return false;
-        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactoringsAfterPostProcessing();
-        //Check if refactored
-        if (isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, equalOperator))
-            return true;
-        // check if it is in the matched
-        if (isMatched(umlOperationBodyMapper, blocks, currentVersion, parentVersion, equalOperator))
-            return true;
-        //Check if is added
-        return isAdded(umlOperationBodyMapper, blocks, currentVersion, parentVersion, equalOperator);
-    }
-
-    private boolean isBlockRefactored(Collection<Refactoring> refactorings, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
-        Set<Block> leftBlockSet = analyseBlockRefactorings(refactorings, currentVersion, parentVersion, equalOperator);
-        for (Block leftBlock : leftBlockSet) {
-            blocks.add(leftBlock);
-            blockChangeHistory.connectRelatedNodes();
-            return true;
-        }
-        return false;
-    }
-
-    private Set<Block> analyseBlockRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
-        Set<Block> leftBlockSet = new HashSet<>();
-        for (Refactoring refactoring : refactorings) {
-            Block blockBefore = null;
-            Block blockAfter = null;
-            Change.Type changeType = null;
-            switch (refactoring.getRefactoringType()) {
-                case REPLACE_LOOP_WITH_PIPELINE: {
-                    ReplaceLoopWithPipelineRefactoring loopWithPipelineRefactoring = (ReplaceLoopWithPipelineRefactoring) refactoring;
-                    for (AbstractCodeFragment fragment : loopWithPipelineRefactoring.getCodeFragmentsAfter()) {
-                        if (fragment instanceof StatementObject) {
-                            StatementObject statement = (StatementObject) fragment;
-                            Block addedBlockAfter = Block.of(statement, loopWithPipelineRefactoring.getOperationAfter(), currentVersion);
-                            if (equalOperator.test(addedBlockAfter)) {
-                                Set<AbstractCodeFragment> fragmentsBefore = loopWithPipelineRefactoring.getCodeFragmentsBefore();
-                                for (AbstractCodeFragment fragmentBefore : fragmentsBefore) {
-                                    if (fragmentBefore instanceof CompositeStatementObject) {
-                                        if (fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.ENHANCED_FOR_STATEMENT) ||
-                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.FOR_STATEMENT) ||
-                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.WHILE_STATEMENT) ||
-                                                fragmentBefore.getLocationInfo().getCodeElementType().equals(CodeElementType.DO_STATEMENT)) {
-                                            blockBefore = Block.of((CompositeStatementObject) fragmentBefore, loopWithPipelineRefactoring.getOperationBefore(), parentVersion);
-                                            blockAfter = addedBlockAfter;
-                                            changeType = Change.Type.REPLACE_LOOP_WITH_PIPELINE;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-                case REPLACE_PIPELINE_WITH_LOOP: {
-                    ReplacePipelineWithLoopRefactoring pipelineWithLoopRefactoring = (ReplacePipelineWithLoopRefactoring) refactoring;
-                    for (AbstractCodeFragment fragment : pipelineWithLoopRefactoring.getCodeFragmentsAfter()) {
-                        if (fragment instanceof CompositeStatementObject) {
-                            CompositeStatementObject composite = (CompositeStatementObject) fragment;
-                            Block addedBlockAfter = Block.of(composite, pipelineWithLoopRefactoring.getOperationAfter(), currentVersion);
-                            if (equalOperator.test(addedBlockAfter)) {
-                                // implementation for introduced
-                                /*
-                                Block addedBlockBefore = Block.of(composite, pipelineWithLoopRefactoring.getOperationAfter(), parentVersion);
-                                addedBlockBefore.setAdded(true);
-                                ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.INTRODUCED)
-                                        .comment(pipelineWithLoopRefactoring.toString()).refactoring(pipelineWithLoopRefactoring).codeElement(addedBlockAfter);
-                                blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
-                                leftBlockSet.add(addedBlockBefore);
-                                blockChangeHistory.connectRelatedNodes();
-                                return leftBlockSet;
-                                 */
-                                Set<AbstractCodeFragment> fragmentsBefore = pipelineWithLoopRefactoring.getCodeFragmentsBefore();
-                                if (fragmentsBefore.size() == 1 && fragmentsBefore.iterator().next() instanceof StatementObject) {
-                                    StatementObject streamStatement = (StatementObject) fragmentsBefore.iterator().next();
-                                    blockBefore = Block.of(streamStatement, pipelineWithLoopRefactoring.getOperationBefore(), parentVersion);
-                                    blockAfter = addedBlockAfter;
-                                    changeType = Change.Type.REPLACE_PIPELINE_WITH_LOOP;
-                                }
-                            }
-                            else {
-                                //check if a nested composite statement matches
-                                List<CompositeStatementObject> innerNodes = composite.getInnerNodes();
-                                for (CompositeStatementObject innerNode : innerNodes) {
-                                    addedBlockAfter = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), currentVersion);
-                                    if (equalOperator.test(addedBlockAfter)) {
-                                        Block addedBlockBefore = Block.of(innerNode, pipelineWithLoopRefactoring.getOperationAfter(), parentVersion);
-                                        addedBlockBefore.setAdded(true);
-                                        ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.INTRODUCED)
-                                                .comment(pipelineWithLoopRefactoring.toString()).refactoring(pipelineWithLoopRefactoring).codeElement(addedBlockAfter);
-                                        blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
-                                        leftBlockSet.add(addedBlockBefore);
-                                        blockChangeHistory.connectRelatedNodes();
-                                        return leftBlockSet;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    break;
-                }
-                case SPLIT_CONDITIONAL: {
-                    SplitConditionalRefactoring splitConditionalRefactoring = (SplitConditionalRefactoring) refactoring;
-                    for (AbstractCodeFragment splitConditional : splitConditionalRefactoring.getSplitConditionals()) {
-                        if (splitConditional instanceof CompositeStatementObject) {
-                            Block addedBlockAfter = Block.of((CompositeStatementObject) splitConditional, splitConditionalRefactoring.getOperationAfter(), currentVersion);
-                            if (equalOperator.test(addedBlockAfter)) {
-                                // implementation with evolution hook
-                                /*
-                                Block addedBlockBefore = Block.of((CompositeStatementObject) splitConditional, splitConditionalRefactoring.getOperationAfter(), parentVersion);
-                                addedBlockBefore.setAdded(true);
-                                ChangeFactory changeFactory = ChangeFactory.forBlock(Change.Type.BLOCK_SPLIT)
-                                        .comment(splitConditionalRefactoring.toString()).refactoring(splitConditionalRefactoring).codeElement(addedBlockAfter);
-                                if (splitConditionalRefactoring.getOriginalConditional() instanceof CompositeStatementObject) {
-                                    blockBefore = Block.of((CompositeStatementObject) splitConditionalRefactoring.getOriginalConditional(), splitConditionalRefactoring.getOperationBefore(), parentVersion);
-                                    changeFactory.hookedElement(blockBefore);
-                                }
-                                blockChangeHistory.addChange(addedBlockBefore, addedBlockAfter, changeFactory);
-                                leftBlockSet.add(addedBlockBefore);
-                                blockChangeHistory.connectRelatedNodes();
-                                return leftBlockSet;
-                                 */
-                                // implementation without evolution hook
-                                if (splitConditionalRefactoring.getOriginalConditional() instanceof CompositeStatementObject) {
-                                    blockBefore = Block.of((CompositeStatementObject) splitConditionalRefactoring.getOriginalConditional(), splitConditionalRefactoring.getOperationBefore(), parentVersion);
-                                }
-                                blockAfter = addedBlockAfter;
-                                changeType = Change.Type.BLOCK_SPLIT;
-                            }
-                        }
-                    }
-                    break;
-                }
-            }
-            if (changeType != null && blockBefore != null) {
-                if (equalOperator.test(blockAfter)) {
-                    blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(changeType).refactoring(refactoring));
-                    leftBlockSet.add(blockBefore);
-                }
-            }
-        }
-        blockChangeHistory.connectRelatedNodes();
-        return leftBlockSet;
-    }
-
-    private boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
-        for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
-            if (mapping instanceof CompositeStatementObjectMapping) {
-                Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
-                if (equalOperator.test(blockAfter)) {
-                    boolean bodyChange = false;
-                    boolean catchOrFinallyChange = false;
-                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
-                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
-                    List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
-                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                        if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                        }
-                        List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
-                        List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
-                        if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
-                        }
-                        bodyChange = true;
-                    }
-                    if (blockBefore.getComposite() instanceof TryStatementObject && blockAfter.getComposite() instanceof TryStatementObject) {
-                        TryStatementObject tryBefore = (TryStatementObject) blockBefore.getComposite();
-                        TryStatementObject tryAfter = (TryStatementObject) blockAfter.getComposite();
-                        List<CompositeStatementObject> catchBlocksBefore = new ArrayList<>(tryBefore.getCatchClauses());
-                        List<CompositeStatementObject> catchBlocksAfter = new ArrayList<>(tryAfter.getCatchClauses());
-                        for (AbstractCodeMapping m : umlOperationBodyMapper.getMappings()) {
-                            if (m instanceof CompositeStatementObjectMapping) {
-                                CompositeStatementObject fragment1 = (CompositeStatementObject) m.getFragment1();
-                                CompositeStatementObject fragment2 = (CompositeStatementObject) m.getFragment2();
-                                if (m.getFragment1().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
-                                        m.getFragment2().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
-                                        tryBefore.getCatchClauses().contains(fragment1) &&
-                                        tryAfter.getCatchClauses().contains(fragment2)) {
-                                    List<String> catchStringRepresentationBefore = fragment1.stringRepresentation();
-                                    List<String> catchStringRepresentationAfter = fragment2.stringRepresentation();
-                                    catchBlocksBefore.remove(fragment1);
-                                    catchBlocksAfter.remove(fragment2);
-                                    if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
-                                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
-                                        catchOrFinallyChange = true;
-                                    }
-                                }
-                            }
-                        }
-                        Set<CompositeStatementObject> catchBlocksBeforeToRemove = new LinkedHashSet<>();
-                        Set<CompositeStatementObject> catchBlocksAfterToRemove = new LinkedHashSet<>();
-                        for (int i=0; i<Math.min(catchBlocksBefore.size(), catchBlocksAfter.size()); i++) {
-                            List<UMLType> typesBefore = new ArrayList<>();
-                            for (VariableDeclaration variableDeclaration : catchBlocksBefore.get(i).getVariableDeclarations()) {
-                                typesBefore.add(variableDeclaration.getType());
-                            }
-                            List<UMLType> typesAfter = new ArrayList<>();
-                            for (VariableDeclaration variableDeclaration : catchBlocksAfter.get(i).getVariableDeclarations()) {
-                                typesAfter.add(variableDeclaration.getType());
-                            }
-                            if (typesBefore.equals(typesAfter)) {
-                                List<String> catchStringRepresentationBefore = catchBlocksBefore.get(i).stringRepresentation();
-                                List<String> catchStringRepresentationAfter = catchBlocksAfter.get(i).stringRepresentation();
-                                catchBlocksBeforeToRemove.add(catchBlocksBefore.get(i));
-                                catchBlocksAfterToRemove.add(catchBlocksAfter.get(i));
-                                if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
-                                    blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
-                                    catchOrFinallyChange = true;
-                                }
-                            }
-                        }
-                        catchBlocksBefore.removeAll(catchBlocksBeforeToRemove);
-                        catchBlocksAfter.removeAll(catchBlocksAfterToRemove);
-                        for (CompositeStatementObject catchBlockBefore : catchBlocksBefore) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_REMOVED));
-                            catchOrFinallyChange = true;
-                        }
-                        for (CompositeStatementObject catchBlockAfter : catchBlocksAfter) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_ADDED));
-                            catchOrFinallyChange = true;
-                        }
-                        if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() != null) {
-                            List<String> finallyStringRepresentationBefore = tryBefore.getFinallyClause().stringRepresentation();
-                            List<String> finallyStringRepresentationAfter = tryAfter.getFinallyClause().stringRepresentation();
-                            if (!finallyStringRepresentationBefore.equals(finallyStringRepresentationAfter)) {
-                                blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_CHANGE));
-                                catchOrFinallyChange = true;
-                            }
-                        }
-                        else if (tryBefore.getFinallyClause() == null && tryAfter.getFinallyClause() != null) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_ADDED));
-                            catchOrFinallyChange = true;
-                        }
-                        else if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() == null) {
-                            blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_REMOVED));
-                            catchOrFinallyChange = true;
-                        }
-                    }
-                    if (!bodyChange && !catchOrFinallyChange) {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                    }
-                    blocks.add(blockBefore);
-                    blockChangeHistory.connectRelatedNodes();
-                    return true;
-                }
-            }
-            else if (mapping instanceof LeafMapping && mapping.getFragment2() instanceof StatementObject) {
-                Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
-                if (blockAfter != null && equalOperator.test(blockAfter)) {
-                    Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
-                    if (!blockBefore.getComposite().toString().equals(blockAfter.getComposite().toString())) {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
-                    }
-                    else {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                    }
-                    blocks.add(blockBefore);
-                    blockChangeHistory.connectRelatedNodes();
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
-        for (CompositeStatementObject composite : umlOperationBodyMapper.getNonMappedInnerNodesT2()) {
-            Block blockAfter = Block.of(composite, umlOperationBodyMapper.getContainer2(), currentVersion);
-            if (equalOperator.test(blockAfter)) {
-                Block blockBefore = Block.of(composite, umlOperationBodyMapper.getContainer2(), parentVersion);
-                blockChangeHistory.handleAdd(blockBefore, blockAfter, "new block");
-                blocks.add(blockBefore);
-                blockChangeHistory.connectRelatedNodes();
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean checkRefactoredMethod(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
-        for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
-            UMLOperationBodyMapper umlOperationBodyMapper = null;
-            switch (refactoring.getRefactoringType()) {
-                case PULL_UP_OPERATION: {
-                    PullUpOperationRefactoring pullUpOperationRefactoring = (PullUpOperationRefactoring) refactoring;
-                    operationBefore = pullUpOperationRefactoring.getOriginalOperation();
-                    operationAfter = pullUpOperationRefactoring.getMovedOperation();
-                    umlOperationBodyMapper = pullUpOperationRefactoring.getBodyMapper();
-                    break;
-                }
-                case PUSH_DOWN_OPERATION: {
-                    PushDownOperationRefactoring pushDownOperationRefactoring = (PushDownOperationRefactoring) refactoring;
-                    operationBefore = pushDownOperationRefactoring.getOriginalOperation();
-                    operationAfter = pushDownOperationRefactoring.getMovedOperation();
-                    umlOperationBodyMapper = pushDownOperationRefactoring.getBodyMapper();
-                    break;
-                }
-                case MOVE_AND_RENAME_OPERATION:
-                case MOVE_OPERATION: {
-                    MoveOperationRefactoring moveOperationRefactoring = (MoveOperationRefactoring) refactoring;
-                    operationBefore = moveOperationRefactoring.getOriginalOperation();
-                    operationAfter = moveOperationRefactoring.getMovedOperation();
-                    umlOperationBodyMapper = moveOperationRefactoring.getBodyMapper();
-                    break;
-                }
-                case RENAME_METHOD: {
-                    RenameOperationRefactoring renameOperationRefactoring = (RenameOperationRefactoring) refactoring;
-                    operationBefore = renameOperationRefactoring.getOriginalOperation();
-                    operationAfter = renameOperationRefactoring.getRenamedOperation();
-                    umlOperationBodyMapper = renameOperationRefactoring.getBodyMapper();
-                    break;
-                }
-            }
-            if (operationAfter != null) {
-                Method methodAfter = Method.of(operationAfter, currentVersion);
-                if (equalMethod.test(methodAfter)) {
-                    boolean found = checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
-                    if (found)
-                        return true;
-                }
-            }
-        }
-        return false;
-    }
-
 }
