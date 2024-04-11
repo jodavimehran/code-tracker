@@ -81,9 +81,9 @@ public abstract class OracleTest {
 		final int actualFP = falseDetectedChanges.size();
 		final int actualFN = notDetectedChanges.size();
 		Assertions.assertAll(
-				() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s True Positives, but has %s", expectedTP.get(fileName), actualTP)),
-				() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s False Positives, but has %s", expectedFP.get(fileName), actualFP)),
-				() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s False Negatives, but has %s", expectedFN.get(fileName), actualFN))
+				() -> Assertions.assertEquals(expectedTP.get(fileName), actualTP, String.format("Should have %s according to %s True Positives,  but has %s", expectedTP.get(fileName), fileName, actualTP)),
+				() -> Assertions.assertEquals(expectedFP.get(fileName), actualFP, String.format("Should have %s according to %s False Positives, but has %s", expectedFP.get(fileName), fileName, actualFP)),
+				() -> Assertions.assertEquals(expectedFN.get(fileName), actualFN, String.format("Should have %s according to %s False Negatives, but has %s", expectedFN.get(fileName), fileName, actualFN))
 				);
 	}
 	protected static <H extends AbstractHistoryInfo, E extends CodeElement> Stream<Arguments> getArgumentsStream(List<? extends AbstractOracle<H>> all, String expected, CheckedBiFunction<H, String, History<E>> tracker) {
