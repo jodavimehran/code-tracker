@@ -17,6 +17,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    env:
+#      OAuthToken: ${{ secrets.OAUTHTOKEN }}
+      releaseVersion: CI-RM-SNAPSHOT
+
     steps:
       - uses: actions/checkout@v3
 
@@ -26,9 +31,6 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           maven-version: '3.9.6'
-
-      - name: mvn version check
-        run:  ./mvnw --version
 
 #      - name : Clone repos in tmp folder
 #        run: |
@@ -55,19 +57,14 @@ jobs:
 #          git clone --no-checkout https://gerrit.googlesource.com/jgit && mv jgit eclipse\\jgit
 #          git clone --no-checkout https://github.com/pmd/pmd && mv pmd pmd\\pmd
 
-
-#      - name: Cache tmp folder
-#        uses: actions/cache@v2
-#        with:
-#          path: tmp
-#          key: ${{ runner.os }}-tmp-${{ hashFiles('**/tmp/**') }}
-
-#      - name : ls
-#        run: ls -l tmp/
-
+      - name: Clone RefactoringMiner repository and publishToMavenLocal
+        run: |
+          git clone -b master --depth 1 --single-branch https://github.com/tsantalis/RefactoringMiner.git &&
+          cd RefactoringMiner &&
+          ./gradlew publishToMavenLocal -x test -x javadoc -PbuildVersion=${{ env.releaseVersion }}
 
       - name: Build with Maven
-        run: ./mvnw -B package --file pom.xml
+        run: ./mvnw -Drm.version=${{ env.releaseVersion }} -B package --file pom.xml
 
 
 
