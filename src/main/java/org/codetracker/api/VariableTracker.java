@@ -2,6 +2,8 @@ package org.codetracker.api;
 
 import org.eclipse.jgit.lib.Repository;
 import org.codetracker.VariableTrackerImpl;
+import org.codetracker.VariableTrackerWithLocalFiles;
+import org.codetracker.api.MethodTracker.Builder;
 import org.codetracker.element.Variable;
 
 public interface VariableTracker extends CodeTracker {
@@ -10,6 +12,7 @@ public interface VariableTracker extends CodeTracker {
 
     class Builder {
         private Repository repository;
+        private String gitURL;
         private String startCommitId;
         private String filePath;
         private String methodName;
@@ -19,6 +22,11 @@ public interface VariableTracker extends CodeTracker {
 
         public Builder repository(Repository repository) {
             this.repository = repository;
+            return this;
+        }
+
+        public Builder gitURL(String gitURL) {
+            this.gitURL = gitURL;
             return this;
         }
 
@@ -61,6 +69,10 @@ public interface VariableTracker extends CodeTracker {
             return new VariableTrackerImpl(repository, startCommitId, filePath, methodName, methodDeclarationLineNumber, variableName, variableDeclarationLineNumber);
         }
 
+        public VariableTracker buildWithLocalFiles() {
+            checkInput();
+            return new VariableTrackerWithLocalFiles(gitURL, startCommitId, filePath, methodName, methodDeclarationLineNumber, variableName, variableDeclarationLineNumber);
+        }
     }
 
 }
