@@ -3,7 +3,6 @@ package org.codetracker.api;
 import org.eclipse.jgit.lib.Repository;
 import org.codetracker.VariableTrackerImpl;
 import org.codetracker.VariableTrackerWithLocalFiles;
-import org.codetracker.api.MethodTracker.Builder;
 import org.codetracker.element.Variable;
 
 public interface VariableTracker extends CodeTracker {
