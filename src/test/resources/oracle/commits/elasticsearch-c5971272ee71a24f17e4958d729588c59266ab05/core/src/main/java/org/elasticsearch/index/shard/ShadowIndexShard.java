@@ -1,0 +1,121 @@
+/*
+ * Licensed to Elasticsearch under one or more contributor
+ * license agreements. See the NOTICE file distributed with
+ * this work for additional information regarding copyright
+ * ownership. Elasticsearch licenses this file to you under
+ * the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing,
+ * software distributed under the License is distributed on an
+ * "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+ * KIND, either express or implied.  See the License for the
+ * specific language governing permissions and limitations
+ * under the License.
+ */
+package org.elasticsearch.index.shard;
+
+import java.io.IOException;
+
+import org.elasticsearch.cluster.ClusterService;
+import org.elasticsearch.cluster.routing.ShardRouting;
+import org.elasticsearch.common.Nullable;
+import org.elasticsearch.common.inject.Inject;
+import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.util.BigArrays;
+import org.elasticsearch.index.aliases.IndexAliasesService;
+import org.elasticsearch.index.cache.IndexCache;
+import org.elasticsearch.index.codec.CodecService;
+import org.elasticsearch.index.engine.Engine;
+import org.elasticsearch.index.engine.EngineConfig;
+import org.elasticsearch.index.engine.EngineFactory;
+import org.elasticsearch.index.engine.IndexSearcherWrappingService;
+import org.elasticsearch.index.fielddata.IndexFieldDataService;
+import org.elasticsearch.index.mapper.MapperService;
+import org.elasticsearch.index.merge.MergeStats;
+import org.elasticsearch.index.query.IndexQueryParserService;
+import org.elasticsearch.index.settings.IndexSettings;
+import org.elasticsearch.index.settings.IndexSettingsService;
+import org.elasticsearch.index.similarity.SimilarityService;
+import org.elasticsearch.index.store.Store;
+import org.elasticsearch.index.termvectors.TermVectorsService;
+import org.elasticsearch.indices.IndicesLifecycle;
+import org.elasticsearch.indices.IndicesWarmer;
+import org.elasticsearch.indices.cache.query.IndicesQueryCache;
+import org.elasticsearch.indices.memory.IndexingMemoryController;
+import org.elasticsearch.threadpool.ThreadPool;
+
+/**
+ * ShadowIndexShard extends {@link IndexShard} to add file synchronization
+ * from the primary when a flush happens. It also ensures that a replica being
+ * promoted to a primary causes the shard to fail, kicking off a re-allocation
+ * of the primary shard.
+ */
+public final class ShadowIndexShard extends IndexShard {
+
+    @Inject
+    public ShadowIndexShard(ShardId shardId, @IndexSettings Settings indexSettings,
+                            IndicesLifecycle indicesLifecycle, Store store,
+                            ThreadPool threadPool, MapperService mapperService,
+                            IndexQueryParserService queryParserService, IndexCache indexCache,
+                            IndexAliasesService indexAliasesService, IndicesQueryCache indicesQueryCache,
+                            CodecService codecService, TermVectorsService termVectorsService, IndexFieldDataService indexFieldDataService,
+                            @Nullable IndicesWarmer warmer,
+                            SimilarityService similarityService,
+                            EngineFactory factory,
+                            ShardPath path, BigArrays bigArrays, IndexSearcherWrappingService wrappingService,
+                            IndexingMemoryController indexingMemoryController) throws IOException {
+        super(shardId, indexSettings, indicesLifecycle, store,
+              threadPool, mapperService, queryParserService, indexCache, indexAliasesService,
+              indicesQueryCache, codecService,
+              termVectorsService, indexFieldDataService,
+              warmer, similarityService,
+              factory, path, bigArrays, wrappingService,
+              indexingMemoryController);
+    }
+
+    /**
+     * In addition to the regular accounting done in
+     * {@link IndexShard#updateRoutingEntry(org.elasticsearch.cluster.routing.ShardRouting, boolean)},
+     * if this shadow replica needs to be promoted to a primary, the shard is
+     * failed in order to allow a new primary to be re-allocated.
+     */
+    @Override
+    public void updateRoutingEntry(ShardRouting newRouting, boolean persistState) {
+        if (newRouting.primary() == true) {// becoming a primary
+            throw new IllegalStateException("can't promote shard to primary");
+        }
+        super.updateRoutingEntry(newRouting, persistState);
+    }
+
+    @Override
+    public MergeStats mergeStats() {
+        return new MergeStats();
+    }
+
+    @Override
+    public boolean canIndex() {
+        return false;
+    }
+
+    @Override
+    protected Engine newEngine(boolean skipInitialTranslogRecovery, EngineConfig config) {
+        assert this.shardRouting.primary() == false;
+        assert skipInitialTranslogRecovery : "can not recover from gateway";
+        config.setCreate(false); // hardcoded - we always expect an index to be present
+        return engineFactory.newReadOnlyEngine(config);
+    }
+
+    @Override
+    public boolean shouldFlush() {
+        // we don't need to flush since we don't write - all dominated by the primary
+        return false;
+    }
+
+    public boolean allowsPrimaryPromotion() {
+        return false;
+    }
+}

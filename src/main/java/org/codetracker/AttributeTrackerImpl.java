@@ -4,6 +4,7 @@ import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.AttributeTracker;
+import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.element.Attribute;
@@ -31,7 +32,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
             Attribute start = getAttribute(umlModel, startVersion, changeHistory::isStartAttribute);
             if (start == null) {
-                return null;
+            	throw new CodeElementNotFoundException(filePath, changeHistory.getAttributeName(), changeHistory.getAttributeDeclarationLineNumber());
             }
             start.setStart(true);
             changeHistory.get().addNode(start);

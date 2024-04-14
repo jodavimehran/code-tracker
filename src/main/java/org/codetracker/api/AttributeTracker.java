@@ -1,6 +1,7 @@
 package org.codetracker.api;
 
 import org.codetracker.AttributeTrackerImpl;
+import org.codetracker.AttributeTrackerWithLocalFiles;
 import org.codetracker.element.Attribute;
 import org.eclipse.jgit.lib.Repository;
 
@@ -10,6 +11,7 @@ public interface AttributeTracker extends CodeTracker {
 
     class Builder {
         private Repository repository;
+        private String gitURL;
         private String startCommitId;
         private String filePath;
         private String attributeName;
@@ -17,6 +19,11 @@ public interface AttributeTracker extends CodeTracker {
 
         public Builder repository(Repository repository) {
             this.repository = repository;
+            return this;
+        }
+
+        public Builder gitURL(String gitURL) {
+            this.gitURL = gitURL;
             return this;
         }
 
@@ -49,5 +56,9 @@ public interface AttributeTracker extends CodeTracker {
             return new AttributeTrackerImpl(repository, startCommitId, filePath, attributeName, attributeDeclarationLineNumber);
         }
 
+        public AttributeTracker buildWithLocalFiles() {
+            checkInput();
+            return new AttributeTrackerWithLocalFiles(gitURL, startCommitId, filePath, attributeName, attributeDeclarationLineNumber);
+        }
     }
 }
