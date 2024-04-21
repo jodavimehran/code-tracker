@@ -269,12 +269,45 @@
       "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
       "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
       "commitTime": 999188004,
-      "changeType": "introduced",
+      "changeType": "body change",
       "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
-      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#displayErrors(String, LineText[])",
       "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
       "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])",
-      "comment": "new method"
+      "comment": "Body Change"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "rename",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#displayErrors(String, LineText[])",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])",
+      "comment": "Rename Method private displayErrors(aFileName String, aErrors LineText[]) : void renamed to protected fireErrors(aFileName String, aErrors LineText[]) : void in class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "f34eba11cbd8559d4d06f96e19affa70abaf86ff",
+      "commitId": "0e3fe5643667a53079dbd114e5b1e9aa91fde083",
+      "commitTime": 999188004,
+      "changeType": "modifier change",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#displayErrors(String, LineText[])",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#fireErrors(String, LineText[])",
+      "comment": "Change Method Access Modifier private to protected in method protected fireErrors(aFileName String, aErrors LineText[]) : void from class com.puppycrawl.tools.checkstyle.Checker"
+    },
+    {
+      "parentCommitId": "5f53a2a380e038e791af244b42f245b813dbc379",
+      "commitId": "0fd69594a4c3e82f92f93f0371791da66938f8c3",
+      "commitTime": 993216264,
+      "changeType": "introduced",
+      "elementFileBefore": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameBefore": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#displayErrors(String, LineText[])",
+      "elementFileAfter": "src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java",
+      "elementNameAfter": "src/checkstyle/com.puppycrawl.tools.checkstyle.Checker#displayErrors(String, LineText[])",
+      "comment": "added with new class"
     }
   ]
 }
