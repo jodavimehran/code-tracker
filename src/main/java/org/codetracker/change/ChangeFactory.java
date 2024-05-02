@@ -160,6 +160,12 @@ public final class ChangeFactory {
                 }
                 break;
             }
+            case BLOCK_MERGE: {
+            	if (refactoring == null)
+                    throw new NullPointerException();
+            	change = new MergeBlock(refactoring);
+            	break;
+            }
             case METHOD_SPLIT: {
                 if (refactoring == null)
                     throw new NullPointerException();

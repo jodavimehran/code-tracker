@@ -34,6 +34,8 @@ import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.InlineOperationRefactoring;
+import gr.uom.java.xmi.diff.MergeCatchRefactoring;
+import gr.uom.java.xmi.diff.MergeConditionalRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
@@ -388,6 +390,46 @@ public class BlockTrackerChangeHistory {
                     }
                     break;
                 }
+                /*case MERGE_CONDITIONAL: {
+                    MergeConditionalRefactoring mergeConditionalRefactoring = (MergeConditionalRefactoring) refactoring;
+                    if (mergeConditionalRefactoring.getNewConditional() instanceof CompositeStatementObject) {
+                        Block addedBlockAfter = Block.of((CompositeStatementObject) mergeConditionalRefactoring.getNewConditional(), mergeConditionalRefactoring.getOperationAfter(), currentVersion);
+                        blockAfter = addedBlockAfter;
+                        changeType = Change.Type.BLOCK_MERGE;
+                        if (equalOperator.test(addedBlockAfter)) {
+                            for (AbstractCodeFragment mergedConditional : mergeConditionalRefactoring.getMergedConditionals()) {
+                            	if (mergedConditional instanceof CompositeStatementObject) {
+                            		blockBefore = Block.of((CompositeStatementObject) mergedConditional, mergeConditionalRefactoring.getOperationBefore(), parentVersion);
+                            		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(changeType).refactoring(refactoring));
+                                    leftBlockSet.add(blockBefore);
+                            	}
+                            }
+                            blockChangeHistory.connectRelatedNodes();
+                            return leftBlockSet;
+                        }
+                    }
+                    break;
+                }
+                case MERGE_CATCH: {
+                    MergeCatchRefactoring mergeCatchRefactoring = (MergeCatchRefactoring) refactoring;
+                    if (mergeCatchRefactoring.getNewCatchBlock() instanceof CompositeStatementObject) {
+                        Block addedBlockAfter = Block.of((CompositeStatementObject) mergeCatchRefactoring.getNewCatchBlock(), mergeCatchRefactoring.getOperationAfter(), currentVersion);
+                        blockAfter = addedBlockAfter;
+                        changeType = Change.Type.BLOCK_MERGE;
+                        if (equalOperator.test(addedBlockAfter)) {
+                            for (AbstractCodeFragment mergedCatchBlock : mergeCatchRefactoring.getMergedCatchBlocks()) {
+                            	if (mergedCatchBlock instanceof CompositeStatementObject) {
+                            		blockBefore = Block.of((CompositeStatementObject) mergedCatchBlock, mergeCatchRefactoring.getOperationBefore(), parentVersion);
+                            		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(changeType).refactoring(refactoring));
+                                    leftBlockSet.add(blockBefore);
+                            	}
+                            }
+                            blockChangeHistory.connectRelatedNodes();
+                            return leftBlockSet;
+                        }
+                    }
+                    break;
+                }*/
             }
             if (changeType != null && blockBefore != null) {
                 if (equalOperator.test(blockAfter)) {
