@@ -19,7 +19,8 @@
       "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
       "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$if(355-357)",
       "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassPostProcessor.java",
-      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$if(354-356)"
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassPostProcessor#processConfigBeanDefinitions(BeanDefinitionRegistry)$if(354-356)",
+      "comment": "Merge Conditional [if(!sbr.containsSingleton(IMPORT_REGISTRY_BEAN_NAME)), if(sbr != null)] to if(sbr != null && !sbr.containsSingleton(IMPORT_REGISTRY_BEAN_NAME)) in method public processConfigBeanDefinitions(registry BeanDefinitionRegistry) : void from class org.springframework.context.annotation.ConfigurationClassPostProcessor"
     },
     {
       "parentCommitId": "0d0b879a2313b73bf85abfe45ff0a59897aa6a3e",

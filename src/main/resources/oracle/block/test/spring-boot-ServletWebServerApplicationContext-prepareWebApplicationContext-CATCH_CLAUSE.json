@@ -19,7 +19,8 @@
       "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
       "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)$catch(276-281)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/servlet/context/ServletWebServerApplicationContext.java",
-      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)$catch(276-281)"
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext#prepareWebApplicationContext(ServletContext)$catch(276-281)",
+      "comment": "Merge Catch [catch(RuntimeException ex), catch(Error ex)] to catch(RuntimeException|Error ex) in method protected prepareWebApplicationContext(servletContext ServletContext) : void from class org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext"
     },
     {
       "parentCommitId": "80b151e2b37a66a8fe7eb2d5bac2f7aa766d4ead",

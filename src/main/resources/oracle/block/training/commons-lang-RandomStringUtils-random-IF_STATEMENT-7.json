@@ -19,7 +19,8 @@
       "elementFileBefore": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
       "elementNameBefore": "src/main/java/org.apache.commons.lang3.RandomStringUtils#random(int, int, int, boolean, boolean, char[], Random)$if(376-380)",
       "elementFileAfter": "src/main/java/org/apache/commons/lang3/RandomStringUtils.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.lang3.RandomStringUtils#random(int, int, int, boolean, boolean, char[], Random)$if(375-379)"
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.RandomStringUtils#random(int, int, int, boolean, boolean, char[], Random)$if(375-379)",
+      "comment": "Merge Conditional [if(chars == null), if(numbers && end <= zero_digit_ascii || letters && end <= first_letter_ascii)] to if(chars == null && (numbers && end <= zero_digit_ascii || letters && end <= first_letter_ascii)) in method public random(count int, start int, end int, letters boolean, numbers boolean, chars char[], random Random) : String from class org.apache.commons.lang3.RandomStringUtils"
     },
     {
       "parentCommitId": "b0bcf4f60a1e92480d78e44e3fda6e42cfc1b207",

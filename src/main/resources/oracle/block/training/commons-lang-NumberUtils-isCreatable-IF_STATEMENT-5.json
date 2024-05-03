@@ -60,7 +60,8 @@
       "elementFileBefore": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
       "elementNameBefore": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1324-1338)",
       "elementFileAfter": "src/main/java/org/apache/commons/lang3/math/NumberUtils.java",
-      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1323-1337)"
+      "elementNameAfter": "src/main/java/org.apache.commons.lang3.math.NumberUtils#isNumber(String)$if(1323-1337)",
+      "comment": "Merge Conditional [if(chars[start] == '0' && chars[start + 1] == 'x'), if(sz > start + 1)] to if(sz > start + 1 && chars[start] == '0' && chars[start + 1] == 'x') in method public isNumber(str String) : boolean from class org.apache.commons.lang3.math.NumberUtils"
     },
     {
       "parentCommitId": "9949f090897b042dce8fa86830f40d11ac7701df",

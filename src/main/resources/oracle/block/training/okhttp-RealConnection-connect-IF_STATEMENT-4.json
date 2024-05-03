@@ -70,7 +70,8 @@
       "elementFileBefore": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
       "elementNameBefore": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(147-151)",
       "elementFileAfter": "okhttp/src/main/java/com/squareup/okhttp/Connection.java",
-      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(162-166)"
+      "elementNameAfter": "okhttp/src/main/java/com.squareup.okhttp.Connection#connect(int, int, int, Request, List, boolean)$if(162-166)",
+      "comment": "Merge Conditional [if(!connectionSpecs.contains(ConnectionSpec.CLEARTEXT)), if(route.address.getSslSocketFactory() != null)] to if(route.address.getSslSocketFactory() == null && !connectionSpecs.contains(ConnectionSpec.CLEARTEXT)) in method package connect(connectTimeout int, readTimeout int, writeTimeout int, request Request, connectionSpecs List<ConnectionSpec>, connectionRetryEnabled boolean) : void from class com.squareup.okhttp.Connection"
     },
     {
       "parentCommitId": "0237d3c3f29b004f4313b2b9fd58830b29cc6311",

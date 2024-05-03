@@ -19,7 +19,8 @@
       "elementFileBefore": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/server/StaticResourceJars.java",
       "elementNameBefore": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.server.StaticResourceJars#addUrlConnection(List, URL, URLConnection)$if(92-94)",
       "elementFileAfter": "spring-boot-project/spring-boot/src/main/java/org/springframework/boot/web/servlet/server/StaticResourceJars.java",
-      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.server.StaticResourceJars#addUrlConnection(List, URL, URLConnection)$if(89-92)"
+      "elementNameAfter": "spring-boot-project/spring-boot/src/main/java/org.springframework.boot.web.servlet.server.StaticResourceJars#addUrlConnection(List, URL, URLConnection)$if(89-92)",
+      "comment": "Merge Conditional [if(isResourcesJar((JarURLConnection)connection)), if(connection instanceof JarURLConnection)] to if(connection instanceof JarURLConnection && isResourcesJar((JarURLConnection)connection)) in method private addUrlConnection(urls List<URL>, url URL, connection URLConnection) : void from class org.springframework.boot.web.servlet.server.StaticResourceJars"
     },
     {
       "parentCommitId": "b1c689b9b26c5f70f9b97d75ff2f1fbfc59e2c02",

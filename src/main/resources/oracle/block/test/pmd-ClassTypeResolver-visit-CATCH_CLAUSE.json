@@ -19,7 +19,8 @@
       "elementFileBefore": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
       "elementNameBefore": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$catch(206-210)",
       "elementFileAfter": "pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java",
-      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$catch(209-213)"
+      "elementNameAfter": "pmd-java/src/main/java/net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver#visit(ASTCompilationUnit, Object)$catch(209-213)",
+      "comment": "Merge Catch [catch(ClassNotFoundException e), catch(NoClassDefFoundError e)] to catch(ClassNotFoundException|NoClassDefFoundError e) in method public visit(node ASTCompilationUnit, data Object) : Object from class net.sourceforge.pmd.lang.java.typeresolution.ClassTypeResolver"
     },
     {
       "parentCommitId": "c44d94416dd5edff6530d6d9151dedfd7a002af9",

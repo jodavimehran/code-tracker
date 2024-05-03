@@ -19,7 +19,8 @@
       "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
       "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(192-231)",
       "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(178-198)"
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(178-198)",
+      "comment": "Merge Conditional [if(CommonUtils.matchesFileExtension(file,getFileExtensions())), if(!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())] to if(CommonUtils.matchesFileExtension(file,getFileExtensions()) && (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())) in method protected processFiltered(file File, fileText FileText) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
     },
     {
       "parentCommitId": "9bcb6bffd03dc4f42f402bd126f22c730007861a",
@@ -29,7 +30,8 @@
       "elementFileBefore": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
       "elementNameBefore": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(192-231)",
       "elementFileAfter": "src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java",
-      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(178-198)"
+      "elementNameAfter": "src/main/java/com.puppycrawl.tools.checkstyle.TreeWalker#processFiltered(File, FileText)$if(178-198)",
+      "comment": "Merge Conditional [if(CommonUtils.matchesFileExtension(file,getFileExtensions())), if(!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())] to if(CommonUtils.matchesFileExtension(file,getFileExtensions()) && (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())) in method protected processFiltered(file File, fileText FileText) : void from class com.puppycrawl.tools.checkstyle.TreeWalker"
     },
     {
       "parentCommitId": "7b48869b997bfa00e9516fd2e7b0841072d64966",

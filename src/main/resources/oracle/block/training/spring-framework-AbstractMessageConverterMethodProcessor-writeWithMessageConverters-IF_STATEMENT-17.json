@@ -79,7 +79,8 @@
       "elementFileBefore": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
       "elementNameBefore": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(228-243)",
       "elementFileAfter": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(230-250)"
+      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(230-250)",
+      "comment": "Merge Conditional [if(((GenericHttpMessageConverter)messageConverter).canWrite(declaredType,valueType,selectedMediaType)), if(messageConverter.canWrite(valueType,selectedMediaType))] to if(genericConverter != null ? ((GenericHttpMessageConverter)converter).canWrite(declaredType,valueType,selectedMediaType) : converter.canWrite(valueType,selectedMediaType)) in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
     },
     {
       "parentCommitId": "58242f224946682ad7cce515894f490b767c5240",
@@ -89,7 +90,8 @@
       "elementFileBefore": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
       "elementNameBefore": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(228-243)",
       "elementFileAfter": "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java",
-      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(230-250)"
+      "elementNameAfter": "spring-webmvc/src/main/java/org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor#writeWithMessageConverters(T, MethodParameter, ServletServerHttpRequest, ServletServerHttpResponse)$if(230-250)",
+      "comment": "Merge Conditional [if(((GenericHttpMessageConverter)messageConverter).canWrite(declaredType,valueType,selectedMediaType)), if(messageConverter.canWrite(valueType,selectedMediaType))] to if(genericConverter != null ? ((GenericHttpMessageConverter)converter).canWrite(declaredType,valueType,selectedMediaType) : converter.canWrite(valueType,selectedMediaType)) in method protected writeWithMessageConverters(value T, returnType MethodParameter, inputMessage ServletServerHttpRequest, outputMessage ServletServerHttpResponse) : void from class org.springframework.web.servlet.mvc.method.annotation.AbstractMessageConverterMethodProcessor"
     },
     {
       "parentCommitId": "e5122d084a936551da9786711b3de55dc0bc53d1",

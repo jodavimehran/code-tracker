@@ -69,7 +69,8 @@
       "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
       "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)$if(261-271)",
       "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
-      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)$if(259-269)"
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, SourceClass)$if(259-269)",
+      "comment": "Merge Conditional [if(!this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(),ConfigurationPhase.REGISTER_BEAN)), if(componentScan != null)] to if(componentScan != null && !this.conditionEvaluator.shouldSkip(sourceClass.getMetadata(),ConfigurationPhase.REGISTER_BEAN)) in method protected doProcessConfigurationClass(configClass ConfigurationClass, sourceClass SourceClass) : SourceClass from class org.springframework.context.annotation.ConfigurationClassParser"
     },
     {
       "parentCommitId": "187b681b9e06a3b1bc59299e7dd17996ab17f7a5",
