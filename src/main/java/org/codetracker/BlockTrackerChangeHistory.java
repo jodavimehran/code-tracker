@@ -118,7 +118,8 @@ public class BlockTrackerChangeHistory {
     }
 
     public boolean checkForExtractionOrInline(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
-        for (Refactoring refactoring : refactorings) {
+        int extractMatches = 0;
+    	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
                 case EXTRACT_AND_MOVE_OPERATION:
                 case EXTRACT_OPERATION: {
@@ -161,7 +162,7 @@ public class BlockTrackerChangeHistory {
                             blocks.add(leftBlock);
                         }
                         blockChangeHistory.connectRelatedNodes();
-                        return true;
+                        extractMatches++;
                     }
                     break;
                 }
@@ -252,6 +253,9 @@ public class BlockTrackerChangeHistory {
                 }
             }
         }
+    	if(extractMatches > 0) {
+    		return true;
+    	}
         return false;
     }
 
@@ -443,7 +447,8 @@ public class BlockTrackerChangeHistory {
     }
 
     public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
-        for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+    	int matches = 0;
+    	for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
             if (mapping instanceof CompositeStatementObjectMapping) {
                 Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
                 if (equalOperator.test(blockAfter)) {
@@ -541,7 +546,7 @@ public class BlockTrackerChangeHistory {
                     }
                     blocks.add(blockBefore);
                     blockChangeHistory.connectRelatedNodes();
-                    return true;
+                    matches++;
                 }
             }
             else if (mapping instanceof LeafMapping && mapping.getFragment2() instanceof StatementObject) {
@@ -556,10 +561,13 @@ public class BlockTrackerChangeHistory {
                     }
                     blocks.add(blockBefore);
                     blockChangeHistory.connectRelatedNodes();
-                    return true;
+                    matches++;
                 }
             }
         }
+    	if(matches > 0) {
+    		return true;
+    	}
         return false;
     }
 
