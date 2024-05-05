@@ -153,13 +153,17 @@ public class BlockTrackerChangeHistory {
                         Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
                         if (matchedBlockFromSourceMethod == null) {
                             blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
-                            blocks.add(blockBefore);
+                            if(extractMatches == 0) {
+                            	blocks.add(blockBefore);
+                            }
                         }
                         else {
                             VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Block leftBlock = Block.of(matchedBlockFromSourceMethod, sourceMethod);
-                            blocks.add(leftBlock);
+                            if(extractMatches == 0) {
+                            	blocks.add(leftBlock);
+                            }
                         }
                         blockChangeHistory.connectRelatedNodes();
                         extractMatches++;
@@ -544,7 +548,9 @@ public class BlockTrackerChangeHistory {
                     if (!bodyChange && !catchOrFinallyChange) {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
-                    blocks.add(blockBefore);
+                    if(matches == 0) {
+                    	blocks.add(blockBefore);
+                    }
                     blockChangeHistory.connectRelatedNodes();
                     matches++;
                 }
@@ -559,7 +565,9 @@ public class BlockTrackerChangeHistory {
                     else {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
-                    blocks.add(blockBefore);
+                    if(matches == 0) {
+                    	blocks.add(blockBefore);
+                    }
                     blockChangeHistory.connectRelatedNodes();
                     matches++;
                 }
