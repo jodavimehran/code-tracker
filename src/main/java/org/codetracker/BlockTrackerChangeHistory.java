@@ -195,6 +195,7 @@ public class BlockTrackerChangeHistory {
                     MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
                     Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
                     if (equalMethod.test(methodAfter)) {
+                    	int mergeMatches = 0;
                         for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
                             for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
                                 if (mapping instanceof CompositeStatementObjectMapping) {
@@ -211,13 +212,16 @@ public class BlockTrackerChangeHistory {
                                         Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
                                         if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
+                                        	mergeMatches++;
                                         // check if it is in the matched
                                         if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
-                                            return true;
+                                        	mergeMatches++;
                                     }
                                 }
                             }
+                        }
+                        if(mergeMatches > 0) {
+                        	return true;
                         }
                     }
                     break;
