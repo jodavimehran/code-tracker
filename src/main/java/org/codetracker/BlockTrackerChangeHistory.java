@@ -594,6 +594,18 @@ public class BlockTrackerChangeHistory {
                 return true;
             }
         }
+        for (AbstractCodeFragment composite : umlOperationBodyMapper.getNonMappedLeavesT2()) {
+        	if(composite instanceof StatementObject) {
+	            Block blockAfter = Block.of((StatementObject)composite, umlOperationBodyMapper.getContainer2(), currentVersion);
+	            if (equalOperator.test(blockAfter)) {
+	                Block blockBefore = Block.of((StatementObject)composite, umlOperationBodyMapper.getContainer2(), parentVersion);
+	                blockChangeHistory.handleAdd(blockBefore, blockAfter, "new statement");
+	                blocks.add(blockBefore);
+	                blockChangeHistory.connectRelatedNodes();
+	                return true;
+	            }
+        	}
+        }
         return false;
     }
 
