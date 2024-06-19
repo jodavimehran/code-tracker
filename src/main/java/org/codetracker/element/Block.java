@@ -70,7 +70,17 @@ public class Block extends BaseCodeElement {
             );
             return new Block(statement, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
         }
-        return null;
+    	String statementType = statement.getLocationInfo().getCodeElementType().name();
+        String name = String.format("%s$%s(%d-%d)", method.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
+        String sha512 = Util.getSHA512(statement.toString());
+        String identifierExcludeVersion = String.format(
+                "%s$%s:{%s,%s}",
+                method.getIdentifierIgnoringVersion(),
+                statementType,
+                sha512,
+                signature(statement, statementType)
+        );
+        return new Block(statement, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
     }
 
     private static String signature(StatementObject statement, String statementType) {
