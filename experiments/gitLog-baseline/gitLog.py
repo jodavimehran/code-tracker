@@ -160,7 +160,7 @@ def scanJSON(fileName, data, mappings_file, manual_empty_file):
 
 
 def processFile(oracle_file, mappings_file, manual_empty_file):
-    oracle_file1 = "./oracle/block/training/" + oracle_file
+    oracle_file1 = "../../src/main/resources/oracle/block/training/" + oracle_file
 
     oracle1 = load_json_file(oracle_file1)
     return scanJSON(oracle_file, oracle1, mappings_file, manual_empty_file)
