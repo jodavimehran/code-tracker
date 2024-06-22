@@ -22,7 +22,7 @@ import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl.ChangedFileInfo;
 public class CodeElementLocatorWithLocalFiles extends AbstractCodeElementLocator {
 	private final UMLModel currentUMLModel;
 	private final UMLModel parentUMLModel;
-    private static final String REPOS = System.getProperty("user.dir") + "/src/test/resources/oracle/commits";
+    private static final String REPOS = System.getProperty("user.dir") + "/oracle/commits";
 
     public CodeElementLocatorWithLocalFiles(String cloneURL, String commitId, String filePath, String name, int lineNumber) throws Exception {
     	super(commitId, filePath, name, lineNumber);

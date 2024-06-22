@@ -17,7 +17,7 @@ import java.util.regex.Matcher;
 
 public abstract class BaseTrackerWithLocalFiles extends AbstractTracker {
     protected final String cloneURL;
-    private static final String REPOS = System.getProperty("user.dir") + "/src/test/resources/oracle/commits";
+    private static final String REPOS = System.getProperty("user.dir") + "/oracle/commits";
 
     public BaseTrackerWithLocalFiles(String cloneURL, String startCommitId, String filePath) {
         super(startCommitId, filePath);
