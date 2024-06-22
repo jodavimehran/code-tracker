@@ -1,0 +1,75 @@
+/*
+ * Hibernate Search, full-text search for your domain model
+ *
+ * License: GNU Lesser General Public License (LGPL), version 2.1 or later
+ * See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+ */
+package org.hibernate.search.backend.impl.lucene.works;
+
+import org.hibernate.search.backend.AddLuceneWork;
+import org.hibernate.search.backend.DeleteLuceneWork;
+import org.hibernate.search.backend.FlushLuceneWork;
+import org.hibernate.search.backend.OptimizeLuceneWork;
+import org.hibernate.search.backend.PurgeAllLuceneWork;
+import org.hibernate.search.backend.UpdateLuceneWork;
+import org.hibernate.search.backend.impl.WorkVisitor;
+import org.hibernate.search.store.Workspace;
+
+/**
+ * @author Sanne Grinovero
+ */
+public class LuceneWorkVisitor implements WorkVisitor<LuceneWorkDelegate> {
+
+	private final AddWorkDelegate addDelegate;
+	private final DeleteWorkDelegate deleteDelegate;
+	private final UpdateWorkDelegate updateDelegate;
+	private final OptimizeWorkDelegate optimizeDelegate;
+	private final PurgeAllWorkDelegate purgeAllDelegate;
+	private final FlushWorkDelegate flushDelegate;
+
+	public LuceneWorkVisitor(Workspace workspace) {
+		this.addDelegate = new AddWorkDelegate( workspace );
+		if ( workspace.areSingleTermDeletesSafe() ) {
+			this.deleteDelegate = new DeleteExtWorkDelegate( workspace );
+			this.updateDelegate = new UpdateExtWorkDelegate( workspace, addDelegate );
+		}
+		else {
+			this.deleteDelegate = new DeleteWorkDelegate( workspace );
+			this.updateDelegate = new UpdateWorkDelegate( deleteDelegate, addDelegate );
+		}
+		this.purgeAllDelegate = new PurgeAllWorkDelegate( workspace );
+		this.optimizeDelegate = new OptimizeWorkDelegate( workspace );
+		this.flushDelegate = new FlushWorkDelegate( workspace );
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(AddLuceneWork addLuceneWork) {
+		return addDelegate;
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(DeleteLuceneWork deleteLuceneWork) {
+		return deleteDelegate;
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(OptimizeLuceneWork optimizeLuceneWork) {
+		return optimizeDelegate;
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(PurgeAllLuceneWork purgeAllLuceneWork) {
+		return purgeAllDelegate;
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(UpdateLuceneWork updateLuceneWork) {
+		return updateDelegate;
+	}
+
+	@Override
+	public LuceneWorkDelegate getDelegate(FlushLuceneWork flushLuceneWork) {
+		return flushDelegate;
+	}
+
+}

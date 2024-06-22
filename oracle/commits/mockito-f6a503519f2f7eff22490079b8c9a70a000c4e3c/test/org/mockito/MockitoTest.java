@@ -1,0 +1,68 @@
+/*
+ * Copyright (c) 2007 Mockito contributors 
+ * This program is made available under the terms of the MIT License.
+ */
+package org.mockito;
+
+import static org.junit.Assert.assertNull;
+
+import java.util.List;
+
+import org.junit.*;
+import org.mockito.exceptions.NotAMockException;
+import org.mockito.internal.*;
+
+@SuppressWarnings("unchecked")
+public class MockitoTest {
+
+    private String notMock;
+
+    @Before
+    public void setup() {
+        StateResetter.reset();
+        notMock = "i'm not a notMock";
+    }
+    
+    @After
+    public void resetState() {
+        StateResetter.reset();
+    }
+    
+    @Test
+    public void shouldRemoveStubbedControlFromStateWhenStubbing() {
+        List mock = Mockito.mock(List.class);
+        Mockito.stub(mock.add("test")).andReturn(true);
+        
+        assertNull(MockitoState.instance().pullControlToBeStubbed());
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenVerifying() {
+        Mockito.verify(notMock);
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenVerifyingWithExpectedNumberOfInvocations() {
+        Mockito.verify(notMock, 19);
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenVerifyingNoMoreInteractions() {
+        Mockito.verifyNoMoreInteractions(notMock);
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenVerifyingZeroInteractions() {
+        Mockito.verifyZeroInteractions(notMock);
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenStubbingVoid() {
+        Mockito.stubVoid(notMock);
+    }
+    
+    @Test(expected=NotAMockException.class)
+    public void shouldValidateMockWhenGettingStrictVerifier() {
+        Mockito.createStrictOrderVerifier(notMock);
+    }
+}

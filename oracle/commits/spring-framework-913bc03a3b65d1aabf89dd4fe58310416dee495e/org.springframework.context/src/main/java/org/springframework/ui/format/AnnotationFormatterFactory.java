@@ -1,0 +1,54 @@
+/*
+ * Copyright 2002-2009 the original author or authors.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package org.springframework.ui.format;
+
+import java.lang.annotation.Annotation;
+import java.util.Set;
+
+/**
+ * A factory that creates formatters to format values of fields annotated with a particular format {@link Annotation}.
+ *
+ * <p>For example, a <code>DateTimeFormatAnnotationFormatterFactory</code> might create a formatter
+ * that formats a <code>Date</code> objects set on properties annotated with <code>@DateFormat</code>.
+ *
+ * @author Keith Donald
+ * @since 3.0 
+ * @param <A> the type of Annotation that should trigger property formatting
+ */
+public interface AnnotationFormatterFactory<A extends Annotation> {
+
+	/**
+	 * The types of fields that may be annotated with the &lt;A&gt; annotation.
+	 */
+	Set<Class<?>> getFieldTypes();
+
+	/**
+	 * Get the Printer to print the value of a property of <code>fieldType</code> annotated with <code>annotation</code>.
+	 * @param annotation the annotation instance
+	 * @param fieldType the type of property being annotated
+	 * @return the printer
+	 */
+	Printer<?> getPrinter(A annotation, Class<?> fieldType);
+
+	/**
+	 * Get the Parser to parse the printed value of a property of <code>fieldType</code> annotated with <code>annotation</code>.
+	 * @param annotation the annotation instance
+	 * @param fieldType the type of field being annotated
+	 * @return the parser
+	 */
+	Parser<?> getParser(A annotation, Class<?> fieldType);
+	
+}

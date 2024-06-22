@@ -1,0 +1,74 @@
+/*
+ * Hibernate, Relational Persistence for Idiomatic Java
+ *
+ * Copyright (c) 2011, Red Hat Inc. or third-party contributors as
+ * indicated by the @author tags or express copyright attribution
+ * statements applied by the authors.  All third-party contributions are
+ * distributed under license by Red Hat Inc.
+ *
+ * This copyrighted material is made available to anyone wishing to use, modify,
+ * copy, or redistribute it subject to the terms and conditions of the GNU
+ * Lesser General Public License, as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+ * or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU Lesser General Public License
+ * for more details.
+ *
+ * You should have received a copy of the GNU Lesser General Public License
+ * along with this distribution; if not, write to:
+ * Free Software Foundation, Inc.
+ * 51 Franklin Street, Fifth Floor
+ * Boston, MA  02110-1301  USA
+ */
+package org.hibernate.test.annotations.derivedidentities.e6.a;
+
+import org.junit.Test;
+
+import org.hibernate.Session;
+import org.hibernate.test.util.SchemaUtil;
+import org.hibernate.testing.junit4.BaseCoreFunctionalTestCase;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+/**
+ * @author Emmanuel Bernard
+ */
+public class DerivedIdentityEmbeddedIdParentSameIdTypeIdClassDepTest extends BaseCoreFunctionalTestCase {
+	@Test
+	public void testOneToOneExplicitJoinColumn() throws Exception {
+		assertTrue( SchemaUtil.isColumnPresent( "MedicalHistory", "FK1", configuration() ) );
+		assertTrue( SchemaUtil.isColumnPresent( "MedicalHistory", "FK2", configuration() ) );
+		assertTrue( ! SchemaUtil.isColumnPresent( "MedicalHistory", "firstname", configuration() ) );
+		Person e = new Person();
+		e.id = new PersonId();
+		e.id.firstName = "Emmanuel";
+		e.id.lastName = "Bernard";
+		Session s = openSession(  );
+		s.getTransaction().begin();
+		s.persist( e );
+		MedicalHistory d = new MedicalHistory();
+		d.patient = e;
+		s.persist( d );
+		s.flush();
+		s.clear();
+		PersonId pId = new PersonId();
+		pId.firstName = e.id.firstName;
+		pId.lastName = e.id.lastName;
+		d = (MedicalHistory) s.get( MedicalHistory.class, pId );
+		assertEquals( pId.firstName, d.patient.id.firstName );
+		s.delete( d );
+		s.delete( d.patient );
+		s.getTransaction().commit();
+		s.close();
+	}
+
+	@Override
+	protected Class<?>[] getAnnotatedClasses() {
+		return new Class<?>[] {
+				MedicalHistory.class,
+				Person.class
+		};
+	}
+}

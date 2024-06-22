@@ -1,0 +1,50 @@
+package com.puppycrawl.tools.checkstyle.filters;
+
+import com.puppycrawl.tools.checkstyle.api.Filter;
+
+import junit.framework.TestCase;
+
+/** Tests IntRangeFilter */
+public class IntRangeFilterTest extends TestCase
+{
+    public void testDecide()
+    {
+        final Filter filter = new IntRangeFilter(0, 10);
+        assertFalse("less than", filter.accept(new Integer(-1)));
+        assertTrue("in range", filter.accept(new Integer(0)));
+        assertTrue("in range", filter.accept(new Integer(5)));
+        assertTrue("in range", filter.accept(new Integer(10)));
+        assertFalse("greater than", filter.accept(new Integer(11)));
+    }
+    
+    public void testDecideSingle()
+    {
+        final Filter filter = new IntRangeFilter(0, 0);
+        assertFalse("less than", filter.accept(new Integer(-1)));
+        assertTrue("in range", filter.accept(new Integer(0)));
+        assertFalse("greater than", filter.accept(new Integer(1)));
+    }
+
+    public void testDecideEmpty()
+    {
+        final Filter filter = new IntRangeFilter(10, 0);
+        assertFalse("out", filter.accept(new Integer(-1)));
+        assertFalse("out", filter.accept(new Integer(0)));
+        assertFalse("out", filter.accept(new Integer(5)));
+        assertFalse("out", filter.accept(new Integer(10)));
+        assertFalse("out", filter.accept(new Integer(11)));
+    }
+    
+    public void testEquals()
+    {
+        final Filter filter = new IntRangeFilter(0, 2);
+        final Filter filter2 = new IntRangeFilter(0, 2);
+        final Filter filter3 = new IntRangeFilter(0, 1);
+        final Filter filter4 = new IntRangeFilter(1, 2);
+        assertEquals("[0,2] == [0,2]", filter, filter2);
+        assertFalse("[0,2] != [0,1]", filter.equals(filter3));
+        assertFalse("[0,2] != [1,2]", filter.equals(filter4));
+        assertFalse("[0,2] != this", filter.equals(this));
+        assertFalse("[0,2] != null", filter.equals(null)); 
+    }
+}

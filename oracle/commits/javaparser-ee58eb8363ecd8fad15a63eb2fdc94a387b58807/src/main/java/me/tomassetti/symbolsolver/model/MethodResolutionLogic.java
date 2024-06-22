@@ -1,0 +1,161 @@
+package me.tomassetti.symbolsolver.model;
+
+import me.tomassetti.symbolsolver.model.declarations.MethodAmbiguityException;
+import me.tomassetti.symbolsolver.model.declarations.MethodDeclaration;
+import me.tomassetti.symbolsolver.model.usages.MethodUsage;
+import me.tomassetti.symbolsolver.model.usages.TypeUsage;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+/**
+ * Created by federico on 02/08/15.
+ */
+public class MethodResolutionLogic {
+
+    public static boolean isApplicable(MethodDeclaration method, String name, List<TypeUsage> paramTypes, TypeSolver typeSolver) {
+        if (!method.getName().equals(name)) {
+            return false;
+        }
+        // TODO Consider varargs
+        if (method.getNoParams() != paramTypes.size()) {
+            return false;
+        }
+        for (int i=0; i<method.getNoParams(); i++) {
+            if (!method.getParam(i).getType(typeSolver).isAssignableBy(paramTypes.get(i), typeSolver)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public static boolean isApplicable(MethodUsage method, String name, List<TypeUsage> paramTypes, TypeSolver typeSolver) {
+        if (!method.getName().equals(name)) {
+            return false;
+        }
+        // TODO Consider varargs
+        if (method.getNoParams() != paramTypes.size()) {
+            return false;
+        }
+        for (int i=0; i<method.getNoParams(); i++) {
+            if (!method.getParamType(i, typeSolver).isAssignableBy(paramTypes.get(i), typeSolver)){
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     *
+     * @param methods we expect the methods to be ordered such that inherited methods are later in the list
+     * @param name
+     * @param paramTypes
+     * @param typeSolver
+     * @return
+     */
+    public static SymbolReference<MethodDeclaration> findMostApplicable(List<MethodDeclaration> methods, String name, List<TypeUsage> paramTypes, TypeSolver typeSolver){
+        List<MethodDeclaration> applicableMethods = methods.stream().filter((m) -> isApplicable(m, name, paramTypes, typeSolver)).collect(Collectors.toList());
+        if (applicableMethods.isEmpty()) {
+            return SymbolReference.unsolved(MethodDeclaration.class);
+        }
+        if (applicableMethods.size() == 1) {
+            return SymbolReference.solved(applicableMethods.get(0));
+        } else {
+            MethodDeclaration winningCandidate = applicableMethods.get(0);
+            for (int i=1; i<applicableMethods.size(); i++) {
+                MethodDeclaration other = applicableMethods.get(i);
+                if (isMoreSpecific(winningCandidate, other, typeSolver)) {
+                    // nothing to do
+                } else if (isMoreSpecific(other, winningCandidate, typeSolver)) {
+                    winningCandidate = other;
+                } else {
+                    if (winningCandidate.declaringType().getQualifiedName().equals(other.declaringType().getQualifiedName())) {
+                        throw new MethodAmbiguityException("Ambiguous method call: cannot find a most applicable method: "+winningCandidate+", "+other);
+                    } else {
+                        // we expect the methods to be ordered such that inherited methods are later in the list
+                    }
+                }
+            }
+            return SymbolReference.solved(winningCandidate);
+        }
+    }
+
+    private static boolean isMoreSpecific(MethodDeclaration methodA, MethodDeclaration methodB, TypeSolver typeSolver) {
+        boolean oneMoreSpecificFound = false;
+        for (int i=0; i < methodA.getNoParams(); i++){
+            TypeUsage tdA = methodA.getParam(i).getType(typeSolver);
+            TypeUsage tdB = methodB.getParam(i).getType(typeSolver);
+            // B is more specific
+            if (tdB.isAssignableBy(tdA, typeSolver) && !tdA.isAssignableBy(tdB, typeSolver)) {
+                oneMoreSpecificFound = true;
+            }
+            // A is more specific
+            if (tdA.isAssignableBy(tdB, typeSolver) && !tdB.isAssignableBy(tdA, typeSolver)) {
+                return false;
+            }
+        }
+        return oneMoreSpecificFound;
+    }
+
+    private static boolean isMoreSpecific(MethodUsage methodA, MethodUsage methodB, TypeSolver typeSolver) {
+        boolean oneMoreSpecificFound = false;
+        for (int i=0; i < methodA.getNoParams(); i++){
+            TypeUsage tdA = methodA.getParamType(i, typeSolver);
+            TypeUsage tdB = methodB.getParamType(i, typeSolver);
+            // B is more specific
+            if (tdB.isAssignableBy(tdA, typeSolver) && !tdA.isAssignableBy(tdB, typeSolver)) {
+                oneMoreSpecificFound = true;
+            }
+            // A is more specific
+            if (tdA.isAssignableBy(tdB, typeSolver) && !tdB.isAssignableBy(tdA, typeSolver)) {
+                return false;
+            }
+        }
+        return oneMoreSpecificFound;
+    }
+
+    public static Optional<MethodUsage> findMostApplicableUsage(List<MethodUsage> methods, String name, List<TypeUsage> parameterTypes, TypeSolver typeSolver) {
+        List<MethodUsage> applicableMethods = methods.stream().filter((m) -> isApplicable(m, name, parameterTypes, typeSolver)).collect(Collectors.toList());
+        if (applicableMethods.isEmpty()) {
+            return Optional.empty();
+        }
+        if (applicableMethods.size() == 1) {
+            return Optional.of(applicableMethods.get(0));
+        } else {
+            MethodUsage winningCandidate = applicableMethods.get(0);
+            for (int i=1; i<applicableMethods.size(); i++) {
+                MethodUsage other = applicableMethods.get(i);
+                if (isMoreSpecific(winningCandidate, other, typeSolver)) {
+                    // nothing to do
+                } else if (isMoreSpecific(other, winningCandidate, typeSolver)) {
+                    winningCandidate = other;
+                } else {
+                    if (winningCandidate.declaringType().getQualifiedName().equals(other.declaringType().getQualifiedName())) {
+                        if (!areOverride(winningCandidate, other)) {
+                            throw new MethodAmbiguityException("Ambiguous method call: cannot find a most applicable method: " + winningCandidate + ", " + other + ". First declared in " + winningCandidate.declaringType().getQualifiedName());
+                        }
+                    } else {
+                        // we expect the methods to be ordered such that inherited methods are later in the list
+                    }
+                }
+            }
+            return Optional.of(winningCandidate);
+        }
+    }
+
+    private static boolean areOverride(MethodUsage winningCandidate, MethodUsage other) {
+        if (!winningCandidate.getName().equals(other.getName())) {
+            return false;
+        }
+        if (winningCandidate.getNoParams() != other.getNoParams()) {
+            return false;
+        }
+        for (int i=0;i<winningCandidate.getNoParams();i++) {
+            if (!winningCandidate.getParamTypes().get(i).equals(other.getParamTypes().get(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
