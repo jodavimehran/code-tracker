@@ -337,6 +337,22 @@ public class CodeElementLocatorTest {
     }
 
     @Test
+    public void testStatementLocator() throws Exception {
+        GitService gitService = new GitServiceImpl();
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 392;
+        try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
+                "https://github.com/checkstyle/checkstyle.git")){
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
+            CodeElement codeElement = locator.locate();
+            assertNotNull(codeElement);
+            assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+        }
+    }
+
+    @Test
     public void testForLocator() throws Exception {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";

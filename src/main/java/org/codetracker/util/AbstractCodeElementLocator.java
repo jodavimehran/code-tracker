@@ -87,12 +87,6 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean blockPredicate(Block block) {
-	    String blockCodeElementTypeName = block.getComposite().getLocationInfo().getCodeElementType().getName();
-	    if(blockCodeElementTypeName != null) {
-	        return blockCodeElementTypeName.equals(name) &&
-	                block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
-	                block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
-	    }
 	    return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
 	}

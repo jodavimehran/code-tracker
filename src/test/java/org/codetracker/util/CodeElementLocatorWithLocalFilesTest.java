@@ -271,13 +271,25 @@ public class CodeElementLocatorWithLocalFilesTest {
     }
 
     @Test
+    public void testStatementLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 392;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+    }
+
+    @Test
     public void testForLocator() throws Exception {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 387;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -289,9 +301,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 391;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -303,9 +314,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 389;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -317,9 +327,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 396;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -331,9 +340,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Main.java";
         final String commitId = "b1b49751d38af0bf2476aea1f4595283615ab7de";
-        final String name = "if";
         final int lineNumber = 231;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -345,9 +353,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "try";
         final int lineNumber = 317;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -359,9 +366,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 331;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -373,9 +379,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 319;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -387,9 +392,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 471;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
@@ -401,9 +405,8 @@ public class CodeElementLocatorWithLocalFilesTest {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 119;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
