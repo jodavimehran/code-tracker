@@ -30,6 +30,10 @@ public abstract class AbstractCodeElementLocator {
 		this.lineNumber = lineNumber;
 	}
 
+	public AbstractCodeElementLocator(String commitId, String filePath, int lineNumber) {
+		this(commitId, filePath, null, lineNumber);
+	}
+
 	public abstract CodeElement locate() throws Exception;
 
 	protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
@@ -45,8 +49,13 @@ public abstract class AbstractCodeElementLocator {
 	    return null;
 	}
 
-	protected boolean classPredicate(Class clazz) {
+	protected boolean classPredicateWithName(Class clazz) {
 	    return clazz.getUmlClass().getNonQualifiedName().equals(name);
+	}
+
+	protected boolean classPredicateWithoutName(Class clazz) {
+		return clazz.getUmlClass().getLocationInfo().getStartLine() <= lineNumber &&
+	            clazz.getUmlClass().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
 	protected boolean methodPredicateWithName(Method method) {
@@ -66,9 +75,14 @@ public abstract class AbstractCodeElementLocator {
 	            variable.getVariableDeclaration().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
-	protected boolean attributePredicate(Attribute attribute) {
+	protected boolean attributePredicateWithName(Attribute attribute) {
 	    return attribute.getUmlAttribute().getName().equals(name) &&
 	            attribute.getUmlAttribute().getLocationInfo().getStartLine() <= lineNumber &&
+	            attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
+	}
+
+	protected boolean attributePredicateWithoutName(Attribute attribute) {
+	    return attribute.getUmlAttribute().getLocationInfo().getStartLine() <= lineNumber &&
 	            attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
 	}
 

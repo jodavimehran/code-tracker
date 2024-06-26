@@ -1,8 +1,11 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.AbstractStatement;
+import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
+import gr.uom.java.xmi.decomposition.StatementObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
@@ -94,6 +97,67 @@ public class Method extends BaseCodeElement {
         for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
             if (lambda.getBody() != null) {
                 for (AbstractStatement composite : lambda.getBody().getCompositeStatement().getAllStatements()) {
+                    Block block = Block.of(composite, this);
+                    if (block != null && equalOperator.test(block)) {
+                        return block;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    public Block findBlockWithoutName(Predicate<Block> equalOperator) {
+        if (umlOperation.getBody() != null) {
+        	//first process leaves then composites
+            for (AbstractCodeFragment leaf : umlOperation.getBody().getCompositeStatement().getLeaves()) {
+            	if (leaf instanceof StatementObject) {
+	                Block block = Block.of((StatementObject)leaf, this);
+	                if (block != null && equalOperator.test(block)) {
+	                    return block;
+	                }
+            	}
+            }
+            for (CompositeStatementObject composite : umlOperation.getBody().getCompositeStatement().getInnerNodes()) {
+                Block block = Block.of(composite, this);
+                if (block != null && equalOperator.test(block)) {
+                    return block;
+                }
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                if (operation.getBody() != null) {
+                	//first process leaves then composites
+                	for (AbstractCodeFragment leaf : operation.getBody().getCompositeStatement().getLeaves()) {
+                    	if (leaf instanceof StatementObject) {
+        	                Block block = Block.of((StatementObject)leaf, this);
+        	                if (block != null && equalOperator.test(block)) {
+        	                    return block;
+        	                }
+                    	}
+                    }
+                    for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
+                        Block block = Block.of(composite, this);
+                        if (block != null && equalOperator.test(block)) {
+                            return block;
+                        }
+                    }
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            if (lambda.getBody() != null) {
+            	//first process leaves then composites
+            	for (AbstractCodeFragment leaf : lambda.getBody().getCompositeStatement().getLeaves()) {
+                	if (leaf instanceof StatementObject) {
+    	                Block block = Block.of((StatementObject)leaf, this);
+    	                if (block != null && equalOperator.test(block)) {
+    	                    return block;
+    	                }
+                	}
+                }
+                for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
                     Block block = Block.of(composite, this);
                     if (block != null && equalOperator.test(block)) {
                         return block;

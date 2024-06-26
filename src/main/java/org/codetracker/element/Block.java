@@ -8,7 +8,6 @@ import org.codetracker.util.Util;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class Block extends BaseCodeElement {
@@ -49,6 +48,21 @@ public class Block extends BaseCodeElement {
         return new Block(composite, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
     }
 
+    public static Block of(CompositeStatementObject composite, Attribute attribute) {
+        LocationInfo compositeLocationInfo = composite.getLocationInfo();
+        String statementType = compositeLocationInfo.getCodeElementType().getName() != null ? compositeLocationInfo.getCodeElementType().getName() : composite.toString();
+        String name = String.format("%s$%s(%d-%d)", attribute.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
+        String sha512 = Util.getSHA512(composite.getAllStatements().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
+        String identifierExcludeVersion = String.format(
+                "%s$%s:{%s,%s}",
+                attribute.getIdentifierIgnoringVersion(),
+                statementType,
+                sha512,
+                composite.getSignature()
+        );
+        return new Block(composite, attribute.getUmlAttribute(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), attribute.getVersion());
+    }
+
     public static Block of(StatementObject statement, VariableDeclarationContainer operation, Version version) {
         Method method = Method.of(operation, version);
         return of(statement, method);
@@ -81,6 +95,35 @@ public class Block extends BaseCodeElement {
                 signature(statement, statementType)
         );
         return new Block(statement, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
+    }
+
+    public static Block of(StatementObject statement, Attribute attribute) {
+        LocationInfo compositeLocationInfo = statement.getLocationInfo();
+        List<AbstractCall> streamAPICalls = streamAPICalls(statement);
+        if(streamAPICalls.size() > 0) {
+            String statementType = streamAPICalls.get(0).getName();
+            String name = String.format("%s$%s(%d-%d)", attribute.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
+            String sha512 = Util.getSHA512(statement.toString());
+            String identifierExcludeVersion = String.format(
+                    "%s$%s:{%s,%s}",
+                    attribute.getIdentifierIgnoringVersion(),
+                    statementType,
+                    sha512,
+                    signature(statement, statementType)
+            );
+            return new Block(statement, attribute.getUmlAttribute(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), attribute.getVersion());
+        }
+    	String statementType = statement.getLocationInfo().getCodeElementType().name();
+        String name = String.format("%s$%s(%d-%d)", attribute.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
+        String sha512 = Util.getSHA512(statement.toString());
+        String identifierExcludeVersion = String.format(
+                "%s$%s:{%s,%s}",
+                attribute.getIdentifierIgnoringVersion(),
+                statementType,
+                sha512,
+                signature(statement, statementType)
+        );
+        return new Block(statement, attribute.getUmlAttribute(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), attribute.getVersion());
     }
 
     private static String signature(StatementObject statement, String statementType) {

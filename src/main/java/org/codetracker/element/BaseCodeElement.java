@@ -3,8 +3,6 @@ package org.codetracker.element;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.Version;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 import java.util.TreeSet;
 

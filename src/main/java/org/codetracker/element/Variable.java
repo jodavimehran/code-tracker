@@ -1,7 +1,6 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
-import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;

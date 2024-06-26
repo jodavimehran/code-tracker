@@ -22,15 +22,24 @@ public class CodeElementLocator extends AbstractCodeElementLocator {
         this.gitRepository = new GitRepository(repository);
     }
 
+    public CodeElementLocator(Repository repository, String commitId, String filePath, int lineNumber) {
+        super(commitId, filePath, lineNumber);
+		this.repository = repository;
+        this.gitRepository = new GitRepository(repository);
+    }
+
     @Override
 	public CodeElement locate() throws Exception {
+    	if (name == null) {
+    		return locateWithoutName();
+    	}
         Version version = gitRepository.getVersion(commitId);
         UMLModel umlModel = getUMLModel(repository, commitId, Collections.singleton(filePath));
-        Class clazz = getClass(umlModel, version, this::classPredicate);
+        Class clazz = getClass(umlModel, version, this::classPredicateWithName);
         if (clazz != null) {
             return clazz;
         }
-        Attribute attribute = getAttribute(umlModel, version, this::attributePredicate);
+        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithName);
         if (attribute != null) {
             return attribute;
         }
@@ -50,6 +59,32 @@ public class CodeElementLocator extends AbstractCodeElementLocator {
                     return block;
                 }
             }
+        }
+        throw new CodeElementNotFoundException(filePath, name, lineNumber);
+    }
+
+	private CodeElement locateWithoutName() throws Exception {
+        Version version = gitRepository.getVersion(commitId);
+        UMLModel umlModel = getUMLModel(repository, commitId, Collections.singleton(filePath));
+        Method method = getMethod(umlModel, version, this::methodPredicateWithoutName);
+        if (method != null) {
+            Block block = method.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            return method;
+        }
+        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithoutName);
+        if (attribute != null) {
+        	Block block = attribute.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            return attribute;
+        }
+        Class clazz = getClass(umlModel, version, this::classPredicateWithoutName);
+        if (clazz != null) {
+        	return clazz;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
     }

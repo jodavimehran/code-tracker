@@ -53,14 +53,46 @@ public class CodeElementLocatorWithLocalFiles extends AbstractCodeElementLocator
 		this.parentUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsBefore, repositoryDirectoriesBefore);
     }
 
+    public CodeElementLocatorWithLocalFiles(String cloneURL, String commitId, String filePath, int lineNumber) throws Exception {
+    	super(commitId, filePath, lineNumber);
+    	Set<String> repositoryDirectoriesBefore = ConcurrentHashMap.newKeySet();
+		Set<String> repositoryDirectoriesCurrent = ConcurrentHashMap.newKeySet();
+		Map<String, String> fileContentsBefore = new ConcurrentHashMap<String, String>();
+		Map<String, String> fileContentsCurrent = new ConcurrentHashMap<String, String>();
+		Map<String, String> renamedFilesHint = new ConcurrentHashMap<String, String>();
+		GitHistoryRefactoringMinerImpl miner = new GitHistoryRefactoringMinerImpl();
+		ChangedFileInfo info = miner.populateWithGitHubAPIAndSaveFiles(cloneURL, commitId, 
+				fileContentsBefore, fileContentsCurrent, renamedFilesHint, repositoryDirectoriesBefore, repositoryDirectoriesCurrent, new File(REPOS));
+		Map<String, String> filesBefore = new LinkedHashMap<String, String>();
+		Map<String, String> filesCurrent = new LinkedHashMap<String, String>();
+		for(String fileName : info.getFilesBefore()) {
+			if(fileContentsBefore.containsKey(fileName)) {
+				filesBefore.put(fileName, fileContentsBefore.get(fileName));
+			}
+		}
+		for(String fileName : info.getFilesCurrent()) {
+			if(fileContentsCurrent.containsKey(fileName)) {
+				filesCurrent.put(fileName, fileContentsCurrent.get(fileName));
+			}
+		}
+		fileContentsBefore = filesBefore;
+		fileContentsCurrent = filesCurrent;
+		GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBefore, fileContentsCurrent, renamedFilesHint, false);
+		this.currentUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsCurrent, repositoryDirectoriesCurrent);
+		this.parentUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsBefore, repositoryDirectoriesBefore);
+    }
+
     public CodeElement locate() throws Exception {
+    	if (name == null) {
+    		return locateWithoutName();
+    	}
         Version version = new VersionImpl(commitId, 0, 0, "");
         UMLModel umlModel = currentUMLModel;
-        Class clazz = getClass(umlModel, version, this::classPredicate);
+        Class clazz = getClass(umlModel, version, this::classPredicateWithName);
         if (clazz != null) {
             return clazz;
         }
-        Attribute attribute = getAttribute(umlModel, version, this::attributePredicate);
+        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithName);
         if (attribute != null) {
             return attribute;
         }
@@ -80,6 +112,32 @@ public class CodeElementLocatorWithLocalFiles extends AbstractCodeElementLocator
                     return block;
                 }
             }
+        }
+        throw new CodeElementNotFoundException(filePath, name, lineNumber);
+    }
+
+    private CodeElement locateWithoutName() throws Exception {
+        Version version = new VersionImpl(commitId, 0, 0, "");
+        UMLModel umlModel = currentUMLModel;
+        Method method = getMethod(umlModel, version, this::methodPredicateWithoutName);
+        if (method != null) {
+            Block block = method.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            return method;
+        }
+        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithoutName);
+        if (attribute != null) {
+        	Block block = attribute.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            return attribute;
+        }
+        Class clazz = getClass(umlModel, version, this::classPredicateWithoutName);
+        if (clazz != null) {
+        	return clazz;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
     }
