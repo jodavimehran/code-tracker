@@ -194,6 +194,24 @@ public final class ChangeFactory {
                 change = new ExpressionChange();
                 break;
             }
+            case INITIALIZER_CHANGE: {
+            	if (isAttribute()) {
+            		change = new AttributeInitializerChange();
+            	}
+                break;
+            }
+            case INITIALIZER_ADDED: {
+            	if (isAttribute()) {
+            		change = new AttributeInitializerAdded();
+            	}
+                break;
+            }
+            case INITIALIZER_REMOVED: {
+            	if (isAttribute()) {
+            		change = new AttributeInitializerRemoved();
+            	}
+                break;
+            }
             case RETURN_TYPE_CHANGE: {
                 if (refactoring == null)
                     throw new NullPointerException();
