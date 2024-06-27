@@ -8,6 +8,8 @@ import org.codetracker.element.Variable;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
+
 public class CodeElementLocatorWithLocalFilesTest {
 
     @Test
@@ -17,10 +19,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "fireErrors";
         final int lineNumber = 384;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Method.class);
+        assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
     }
 
     @Test
@@ -95,10 +98,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "classLoader";
         final int lineNumber = 93;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Attribute.class);
+        assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
     }
 
     @Test
@@ -108,10 +112,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "Checker";
         final int lineNumber = 67;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+        assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
     }
 
     @Test
@@ -121,10 +126,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "IgnoredModulesOptions";
         final int lineNumber = 58;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+        assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
     }
 
     @Test
@@ -134,10 +140,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "InternalLoader";
         final int lineNumber = 568;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+        assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
     }
 
     @Test
@@ -147,10 +154,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "METADATA";
         final int lineNumber = 586;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Attribute.class);
+        assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
     }
 
     @Test
@@ -160,10 +168,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "containsAttribute";
         final int lineNumber = 703;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Method.class);
+        assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
     }
 
     @Test
@@ -225,10 +234,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "OMIT";
         final int lineNumber = 63;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Attribute.class);
+        assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
     }
 
     @Test
@@ -238,10 +248,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "serialVersionUID";
         final int lineNumber = 104;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Attribute.class);
+        assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
     }
 
     @Test
@@ -251,10 +262,11 @@ public class CodeElementLocatorWithLocalFilesTest {
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
         final String name = "actionPerformed";
         final int lineNumber = 107;
-        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, name, lineNumber);
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Method.class);
+        assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
     }
 
     @Test
@@ -280,6 +292,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.EXPRESSION_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -293,11 +306,12 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
     @Test
-    public void testNesterForLocator() throws Exception {
+    public void testNestedForLocator() throws Exception {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
@@ -306,6 +320,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -319,6 +334,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -332,6 +348,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -345,6 +362,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -358,6 +376,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.TRY_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -371,6 +390,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -384,6 +404,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -397,6 +418,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 
@@ -410,6 +432,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         CodeElement codeElement = locator.locate();
         assertNotNull(codeElement);
         assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
     }
 }

@@ -1,6 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.*;
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.AbstractStatement;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
@@ -118,11 +119,17 @@ public class Method extends BaseCodeElement {
 	                }
             	}
             }
+            Set<Block> matches = new LinkedHashSet<Block>();
             for (CompositeStatementObject composite : umlOperation.getBody().getCompositeStatement().getInnerNodes()) {
                 Block block = Block.of(composite, this);
                 if (block != null && equalOperator.test(block)) {
-                    return block;
+                    matches.add(block);
                 }
+            }
+            for (Block match : matches) {
+            	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
+            		return match;
+            	}
             }
         }
         for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
@@ -137,11 +144,17 @@ public class Method extends BaseCodeElement {
         	                }
                     	}
                     }
+                	Set<Block> matches = new LinkedHashSet<Block>();
                     for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
                         Block block = Block.of(composite, this);
                         if (block != null && equalOperator.test(block)) {
-                            return block;
+                        	matches.add(block);
                         }
+                    }
+                    for (Block match : matches) {
+                    	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
+                    		return match;
+                    	}
                     }
                 }
             }
@@ -157,11 +170,17 @@ public class Method extends BaseCodeElement {
     	                }
                 	}
                 }
+            	Set<Block> matches = new LinkedHashSet<Block>();
                 for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
                     Block block = Block.of(composite, this);
                     if (block != null && equalOperator.test(block)) {
-                        return block;
+                    	matches.add(block);
                     }
+                }
+                for (Block match : matches) {
+                	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
+                		return match;
+                	}
                 }
             }
         }

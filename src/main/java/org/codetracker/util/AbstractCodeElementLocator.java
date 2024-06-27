@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.codetracker.api.CodeElement;
+import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.Version;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
@@ -36,15 +37,17 @@ public abstract class AbstractCodeElementLocator {
 
 	public abstract CodeElement locate() throws Exception;
 
-	protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
+	protected static Method getMethod(UMLModel umlModel, Version version, String filePath, Predicate<Method> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
-	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-	                Method method = getMethod(version, predicate, anonymousClass.getOperations());
-	                if (method != null) return method;
-	            }
-	            Method method = getMethod(version, predicate, umlClass.getOperations());
-	            if (method != null) return method;
+	        	if (umlClass.getSourceFile().equals(filePath)) {
+		            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+		                Method method = getMethod(version, predicate, anonymousClass.getOperations());
+		                if (method != null) return method;
+		            }
+		            Method method = getMethod(version, predicate, umlClass.getOperations());
+		            if (method != null) return method;
+	        	}
 	        }
 	    return null;
 	}
@@ -100,19 +103,21 @@ public abstract class AbstractCodeElementLocator {
 	    return null;
 	}
 
-	protected static Attribute getAttribute(UMLModel umlModel, Version version, Predicate<Attribute> predicate) {
+	protected static Attribute getAttribute(UMLModel umlModel, Version version, String filePath, Predicate<Attribute> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
-	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-	                Attribute attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
-	                if (attribute != null) return attribute;
-	                attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
-	                if (attribute != null) return attribute;
-	            }
-	            Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
-	            if (attribute != null) return attribute;
-	            attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
-	            if (attribute != null) return attribute;
+	        	if (umlClass.getSourceFile().equals(filePath)) {
+		            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+		                Attribute attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
+		                if (attribute != null) return attribute;
+		                attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
+		                if (attribute != null) return attribute;
+		            }
+		            Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
+		            if (attribute != null) return attribute;
+		            attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
+		            if (attribute != null) return attribute;
+	        	}
 	        }
 	    return null;
 	}
@@ -126,13 +131,72 @@ public abstract class AbstractCodeElementLocator {
 	    return null;
 	}
 
-	protected static Class getClass(UMLModel umlModel, Version version, Predicate<Class> predicate) {
+	protected static Class getClass(UMLModel umlModel, Version version, String filePath, Predicate<Class> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
-	            Class clazz = Class.of(umlClass, version);
-	            if (predicate.test(clazz))
-	                return clazz;
+	        	if (umlClass.getSourceFile().equals(filePath)) {
+		            Class clazz = Class.of(umlClass, version);
+		            if (predicate.test(clazz))
+		                return clazz;
+	        	}
 	        }
 	    return null;
+	}
+
+	protected CodeElement locateWithName(Version version, UMLModel umlModel) throws CodeElementNotFoundException {
+        Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithName);
+        if (clazz != null) {
+            return clazz;
+        }
+        Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithName);
+        if (attribute != null) {
+            return attribute;
+        }
+        Method method = getMethod(umlModel, version, filePath, this::methodPredicateWithName);
+        if (method != null) {
+            return method;
+        }
+        else {
+            method = getMethod(umlModel, version, filePath, this::methodPredicateWithoutName);
+            if (method != null) {
+                Variable variable = method.findVariable(this::variablePredicate);
+                if (variable != null) {
+                    return variable;
+                }
+                Block block = method.findBlock(this::blockPredicate);
+                if (block != null) {
+                    return block;
+                }
+            }
+        }
+        throw new CodeElementNotFoundException(filePath, name, lineNumber);
+	}
+
+	protected CodeElement locateWithoutName(Version version, UMLModel umlModel) throws CodeElementNotFoundException {
+        Method method = getMethod(umlModel, version, filePath, this::methodPredicateWithoutName);
+        if (method != null) {
+            Block block = method.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
+            if (attribute != null) {
+            	return attribute;
+            }
+            return method;
+        }
+        Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
+        if (attribute != null) {
+        	Block block = attribute.findBlockWithoutName(this::blockPredicate);
+            if (block != null) {
+                return block;
+            }
+            return attribute;
+        }
+        Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
+        if (clazz != null) {
+        	return clazz;
+        }
+        throw new CodeElementNotFoundException(filePath, name, lineNumber);
 	}
 }

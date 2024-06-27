@@ -7,15 +7,10 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import gr.uom.java.xmi.UMLModel;
+
 import org.codetracker.VersionImpl;
 import org.codetracker.api.CodeElement;
-import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.Version;
-import org.codetracker.element.Attribute;
-import org.codetracker.element.Block;
-import org.codetracker.element.Class;
-import org.codetracker.element.Method;
-import org.codetracker.element.Variable;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl.ChangedFileInfo;
 
@@ -88,57 +83,12 @@ public class CodeElementLocatorWithLocalFiles extends AbstractCodeElementLocator
     	}
         Version version = new VersionImpl(commitId, 0, 0, "");
         UMLModel umlModel = currentUMLModel;
-        Class clazz = getClass(umlModel, version, this::classPredicateWithName);
-        if (clazz != null) {
-            return clazz;
-        }
-        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithName);
-        if (attribute != null) {
-            return attribute;
-        }
-        Method method = getMethod(umlModel, version, this::methodPredicateWithName);
-        if (method != null) {
-            return method;
-        }
-        else {
-            method = getMethod(umlModel, version, this::methodPredicateWithoutName);
-            if (method != null) {
-                Variable variable = method.findVariable(this::variablePredicate);
-                if (variable != null) {
-                    return variable;
-                }
-                Block block = method.findBlock(this::blockPredicate);
-                if (block != null) {
-                    return block;
-                }
-            }
-        }
-        throw new CodeElementNotFoundException(filePath, name, lineNumber);
+        return locateWithName(version, umlModel);
     }
 
     private CodeElement locateWithoutName() throws Exception {
         Version version = new VersionImpl(commitId, 0, 0, "");
         UMLModel umlModel = currentUMLModel;
-        Method method = getMethod(umlModel, version, this::methodPredicateWithoutName);
-        if (method != null) {
-            Block block = method.findBlockWithoutName(this::blockPredicate);
-            if (block != null) {
-                return block;
-            }
-            return method;
-        }
-        Attribute attribute = getAttribute(umlModel, version, this::attributePredicateWithoutName);
-        if (attribute != null) {
-        	Block block = attribute.findBlockWithoutName(this::blockPredicate);
-            if (block != null) {
-                return block;
-            }
-            return attribute;
-        }
-        Class clazz = getClass(umlModel, version, this::classPredicateWithoutName);
-        if (clazz != null) {
-        	return clazz;
-        }
-        throw new CodeElementNotFoundException(filePath, name, lineNumber);
+        return locateWithoutName(version, umlModel);
     }
 }

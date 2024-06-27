@@ -4,6 +4,7 @@ import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
@@ -14,6 +15,8 @@ import org.codetracker.api.Version;
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
 import java.util.function.Predicate;
 
 public class Attribute extends BaseCodeElement {
@@ -56,11 +59,17 @@ public class Attribute extends BaseCodeElement {
         	                }
                     	}
                     }
+                	Set<Block> matches = new LinkedHashSet<Block>();
                     for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
                         Block block = Block.of(composite, this);
                         if (block != null && equalOperator.test(block)) {
-                            return block;
+                        	matches.add(block);
                         }
+                    }
+                    for (Block match : matches) {
+                    	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
+                    		return match;
+                    	}
                     }
                 }
             }
@@ -76,11 +85,17 @@ public class Attribute extends BaseCodeElement {
     	                }
                 	}
                 }
+            	Set<Block> matches = new LinkedHashSet<Block>();
                 for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
                     Block block = Block.of(composite, this);
                     if (block != null && equalOperator.test(block)) {
-                        return block;
+                    	matches.add(block);
                     }
+                }
+                for (Block match : matches) {
+                	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
+                		return match;
+                	}
                 }
             }
         }

@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
 
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
+
 @Disabled
 public class CodeElementLocatorTest {
     private final static String FOLDER_TO_CLONE = "tmp/";
@@ -25,10 +27,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 384;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Method.class);
+            assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
         }
     }
 
@@ -121,10 +124,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 93;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Attribute.class);
+            assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
         }
     }
 
@@ -137,10 +141,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 67;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
         }
     }
 
@@ -153,10 +158,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 58;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
         }
     }
 
@@ -169,10 +175,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 568;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), org.codetracker.element.Class.class);
+            assertEquals(((org.codetracker.element.Class)codeElement).getUmlClass().getNonQualifiedName(), name);
         }
     }
 
@@ -185,10 +192,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 586;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Attribute.class);
+            assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
         }
     }
 
@@ -201,10 +209,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 703;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Method.class);
+            assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
         }
     }
 
@@ -281,10 +290,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 63;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Attribute.class);
+            assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
         }
     }
 
@@ -297,10 +307,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 104;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Attribute.class);
+            assertEquals(((Attribute)codeElement).getUmlAttribute().getName(), name);
         }
     }
 
@@ -313,10 +324,11 @@ public class CodeElementLocatorTest {
         final int lineNumber = 107;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Method.class);
+            assertEquals(((Method)codeElement).getUmlOperation().getName(), name);
         }
     }
 
@@ -348,6 +360,7 @@ public class CodeElementLocatorTest {
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.EXPRESSION_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -357,31 +370,31 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 387;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
 
     @Test
-    public void testNesterForLocator() throws Exception {
+    public void testNestedForLocator() throws Exception {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 391;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -391,14 +404,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 389;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -408,14 +421,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 396;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -425,14 +438,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Main.java";
         final String commitId = "b1b49751d38af0bf2476aea1f4595283615ab7de";
-        final String name = "if";
         final int lineNumber = 231;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -442,14 +455,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "try";
         final int lineNumber = 317;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.TRY_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -459,14 +472,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 331;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -476,14 +489,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "for";
         final int lineNumber = 319;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ENHANCED_FOR_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -493,14 +506,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 471;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
@@ -510,14 +523,14 @@ public class CodeElementLocatorTest {
         GitService gitService = new GitServiceImpl();
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/gui/TreeTable.java";
         final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
-        final String name = "if";
         final int lineNumber = 119;
         try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
                 "https://github.com/checkstyle/checkstyle.git")){
-            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, name, lineNumber);
+            CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
             CodeElement codeElement = locator.locate();
             assertNotNull(codeElement);
             assertEquals(codeElement.getClass(), Block.class);
+            assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
             assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         }
     }
