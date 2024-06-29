@@ -25,6 +25,9 @@ public abstract class BaseTrackerWithLocalFiles extends AbstractTracker {
     }
 
     protected static List<String> getCommits(String commitId, File jsonFile) throws IOException, GitAPIException {
+    	if (commitId.equals("0")) {
+        	return Collections.emptyList();
+        }
     	if(jsonFile.exists()) {
         	final ObjectMapper mapper = new ObjectMapper();
 			GitLog gitLog = mapper.readValue(jsonFile, GitLog.class);

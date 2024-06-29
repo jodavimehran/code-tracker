@@ -31,9 +31,29 @@ public abstract class BaseTracker extends AbstractTracker {
     }
 
     protected static List<String> getCommits(Repository repository, String startCommitId, String filePath, Git git) throws IOException, GitAPIException {
-        LogCommand logCommandFile = git.log().add(repository.resolve(startCommitId)).addPath(filePath).setRevFilter(RevFilter.ALL);
+        if (startCommitId.equals("0")) {
+        	return Collections.emptyList();
+        }
+    	LogCommand logCommandFile = git.log().add(repository.resolve(startCommitId)).addPath(filePath).setRevFilter(RevFilter.ALL);
         Iterable<RevCommit> fileRevisions = logCommandFile.call();
-        return StreamSupport.stream(fileRevisions.spliterator(), false).map(revCommit -> revCommit.getId().getName()).collect(Collectors.toList());
+        List<String> list = StreamSupport.stream(fileRevisions.spliterator(), false).map(revCommit -> revCommit.getId().getName()).collect(Collectors.toList()); 
+        /*
+        if(jsonFile.exists()) {
+        	final ObjectMapper mapper = new ObjectMapper();
+			GitLog gitLog = mapper.readValue(jsonFile, GitLog.class);
+			Map<String, List<String>> map = gitLog.getCommitLogMap();
+			map.put(startCommitId, list);
+			jsonFile.delete();
+			mapper.writeValue(jsonFile, gitLog);
+        }
+        else {
+        	Map<String, List<String>> map = new LinkedHashMap<>();
+        	map.put(startCommitId, list);
+        	final ObjectMapper mapper = new ObjectMapper();
+    		mapper.writeValue(jsonFile, new GitLog(map));
+        }
+        */
+        return list;
     }
 
     public static UMLModel getUMLModel(Repository repository, String commitId, Set<String> fileNames) throws Exception {
@@ -113,4 +133,16 @@ public abstract class BaseTracker extends AbstractTracker {
 
         return new CommitModel(parentCommit1.getId().getName(), repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
     }
+    /*
+    private static final String REPOS = System.getProperty("user.dir") + "/oracle/commits";
+    protected void populateWithGitHubAPIAndSaveFiles(Repository repository, String commitId) throws IOException, InterruptedException {
+    	Set<String> repositoryDirectoriesBefore = ConcurrentHashMap.newKeySet();
+		Set<String> repositoryDirectoriesCurrent = ConcurrentHashMap.newKeySet();
+		Map<String, String> fileContentsBefore = new ConcurrentHashMap<String, String>();
+		Map<String, String> fileContentsCurrent = new ConcurrentHashMap<String, String>();
+		Map<String, String> renamedFilesHint = new ConcurrentHashMap<String, String>();
+		GitHistoryRefactoringMinerImpl.populateWithLocalRepositoryAndSaveFiles(repository, commitId,
+				fileContentsBefore, fileContentsCurrent, renamedFilesHint, repositoryDirectoriesBefore, repositoryDirectoriesCurrent, new File(REPOS));
+    }
+    */
 }

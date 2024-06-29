@@ -116,8 +116,8 @@ public class ChangeHistory<T extends BaseCodeElement> {
         if (leftSide == null || rightSide == null)
             return;
         changeHistoryGraph.addNode(rightSide);
-        if (!changeHistoryGraph.predecessors(rightSide).isEmpty())
-            return;
+        //if (!changeHistoryGraph.predecessors(rightSide).isEmpty())
+        //    return;
         leftSide.setAdded(true);
         addChange(leftSide, rightSide, ChangeFactory.of(AbstractChange.Type.INTRODUCED).comment(comment).codeElement(rightSide));
     }

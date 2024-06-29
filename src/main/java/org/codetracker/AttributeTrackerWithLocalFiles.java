@@ -16,12 +16,15 @@ import org.codetracker.api.AttributeTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
+import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.UMLModel;
+import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.diff.MoveAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLModelDiff;
@@ -77,7 +80,7 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                 historyReport.gitLogCommandCallsPlusPlus();
                 analysedCommits.clear();
             }
-            if (analysedCommits.containsAll(commits))
+            if (commits == null || analysedCommits.containsAll(commits))
                 break;
             for (String commitId : commits) {
                 if (analysedCommits.contains(commitId))
@@ -111,6 +114,23 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                 Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                 if (leftAttribute != null) {
                     historyReport.step2PlusPlus();
+                    //check if initializer changed
+                    AbstractExpression leftInitializer = leftAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
+					AbstractExpression rightInitializer = rightAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
+					if (leftInitializer != null && rightInitializer != null) {
+                    	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
+                            changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
+                            attributes.add(leftAttribute);
+                    	}
+                    }
+					else if (leftInitializer == null && rightInitializer != null) {
+						changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
+                        attributes.add(leftAttribute);
+					}
+					else if (leftInitializer != null && rightInitializer == null) {
+						changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
+                        attributes.add(leftAttribute);
+					}
                     continue;
                 }
 

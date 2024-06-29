@@ -57,7 +57,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     historyReport.gitLogCommandCallsPlusPlus();
                     analysedCommits.clear();
                 }
-                if (analysedCommits.containsAll(commits))
+                if (commits == null || analysedCommits.containsAll(commits))
                     break;
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
