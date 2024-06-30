@@ -42,7 +42,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 
             ArrayDeque<Attribute> attributes = new ArrayDeque<>();
             attributes.addFirst(start);
-            Map<String, List<String>> map = new LinkedHashMap<>();
+            Map<String, List<String>> commitMap = new LinkedHashMap<>();
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
@@ -55,10 +55,10 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                 if (commits == null || !currentAttribute.getFilePath().equals(lastFileName)) {
                     lastFileName = currentAttribute.getFilePath();
                     commits = getCommits(repository, currentAttribute.getVersion().getId(), lastFileName, git);
-                    if (map.containsKey(currentAttribute.getVersion().getId()) && map.get(currentAttribute.getVersion().getId()).equals(commits)) {
+                    if (commitMap.containsKey(currentAttribute.getVersion().getId()) && commitMap.get(currentAttribute.getVersion().getId()).equals(commits)) {
                     	break;
                     }
-                    map.put(currentAttribute.getVersion().getId(), commits);
+                    commitMap.put(currentAttribute.getVersion().getId(), commits);
                     historyReport.gitLogCommandCallsPlusPlus();
                     analysedCommits.clear();
                 }

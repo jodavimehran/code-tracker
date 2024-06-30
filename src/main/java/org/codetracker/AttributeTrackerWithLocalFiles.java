@@ -59,7 +59,6 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
 
         ArrayDeque<Attribute> attributes = new ArrayDeque<>();
         attributes.addFirst(start);
-        Map<String, List<String>> map = new LinkedHashMap<>();
         HashSet<String> analysedCommits = new HashSet<>();
         List<String> commits = null;
         String lastFileName = null;
@@ -78,10 +77,6 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                 String jsonPath = System.getProperty("user.dir") + "/src/test/resources/attribute/" + repoName + "-" + className + "-" + changeHistory.getAttributeName() + ".json";
                 File jsonFile = new File(jsonPath);
                 commits = getCommits(currentAttribute.getVersion().getId(), jsonFile);
-                if (map.containsKey(currentAttribute.getVersion().getId()) && map.get(currentAttribute.getVersion().getId()).equals(commits)) {
-                	break;
-                }
-                map.put(currentAttribute.getVersion().getId(), commits);
                 historyReport.gitLogCommandCallsPlusPlus();
                 analysedCommits.clear();
             }
