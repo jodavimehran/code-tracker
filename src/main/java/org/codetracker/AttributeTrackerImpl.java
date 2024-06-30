@@ -42,18 +42,23 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 
             ArrayDeque<Attribute> attributes = new ArrayDeque<>();
             attributes.addFirst(start);
+            Map<String, List<String>> map = new LinkedHashMap<>();
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
             while (!attributes.isEmpty()) {
                 Attribute currentAttribute = attributes.poll();
-                if (currentAttribute.isAdded()) {
+                if (currentAttribute.isAdded() || currentAttribute.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
                 }
                 if (commits == null || !currentAttribute.getFilePath().equals(lastFileName)) {
                     lastFileName = currentAttribute.getFilePath();
                     commits = getCommits(repository, currentAttribute.getVersion().getId(), lastFileName, git);
+                    if (map.containsKey(currentAttribute.getVersion().getId()) && map.get(currentAttribute.getVersion().getId()).equals(commits)) {
+                    	break;
+                    }
+                    map.put(currentAttribute.getVersion().getId(), commits);
                     historyReport.gitLogCommandCallsPlusPlus();
                     analysedCommits.clear();
                 }
