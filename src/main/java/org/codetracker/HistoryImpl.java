@@ -20,7 +20,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     this.historyInfoList = processHistory(graph);
   }
 
-  private static <T extends CodeElement> List<HistoryInfo<T>> processHistory(Graph<T, Edge> graph) {
+  protected static <T extends CodeElement> List<HistoryInfo<T>> processHistory(Graph<T, Edge> graph) {
     List<HistoryInfo<T>> historyInfoList = new ArrayList<>();
     if (graph == null) return historyInfoList;
 

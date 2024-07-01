@@ -8,7 +8,10 @@ import org.codetracker.api.AttributeTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
+import org.codetracker.api.History.HistoryInfo;
+import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.attribute.AttributeCrossFileChange;
 import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.eclipse.jgit.api.Git;
@@ -236,5 +239,18 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             }
             return new HistoryImpl<>(changeHistory.get().getCompleteGraph(), historyReport);
         }
+    }
+
+    private History.HistoryInfo<Attribute> blameReturn() {
+    	List<HistoryInfo<Attribute>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
+        Collections.reverse(history); 
+		for (History.HistoryInfo<Attribute> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (!(change instanceof AttributeCrossFileChange)) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
     }
 }
