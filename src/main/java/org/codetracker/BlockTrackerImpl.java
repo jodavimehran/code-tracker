@@ -616,7 +616,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         Collections.reverse(history); 
 		for (History.HistoryInfo<Block> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (startBlock.isClosingCurlyBracket() && startBlock.getComposite() instanceof CompositeStatementObject) {
+				if (startBlock.isClosingCurlyBracket()) {
 					if (change instanceof Introduced) {
 						return historyInfo;
 					}

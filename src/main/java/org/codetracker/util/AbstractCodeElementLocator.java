@@ -17,6 +17,7 @@ import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 
 public abstract class AbstractCodeElementLocator {
 	protected final String commitId;
@@ -165,9 +166,7 @@ public abstract class AbstractCodeElementLocator {
                 }
                 Block block = method.findBlock(this::blockPredicate);
                 if (block != null) {
-                	if (block.getLocation().getEndLine() == lineNumber) {
-                		block.setClosingCurlyBracket(true);
-                	}
+                	checkClosingBracket(block);
                     return block;
                 }
             }
@@ -180,9 +179,7 @@ public abstract class AbstractCodeElementLocator {
         if (method != null) {
             Block block = method.findBlockWithoutName(this::blockPredicate);
             if (block != null) {
-            	if (block.getLocation().getEndLine() == lineNumber) {
-            		block.setClosingCurlyBracket(true);
-            	}
+            	checkClosingBracket(block);
                 return block;
             }
             Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
@@ -195,9 +192,7 @@ public abstract class AbstractCodeElementLocator {
         if (attribute != null) {
         	Block block = attribute.findBlockWithoutName(this::blockPredicate);
             if (block != null) {
-            	if (block.getLocation().getEndLine() == lineNumber) {
-            		block.setClosingCurlyBracket(true);
-            	}
+            	checkClosingBracket(block);
                 return block;
             }
             return attribute;
@@ -207,5 +202,11 @@ public abstract class AbstractCodeElementLocator {
         	return clazz;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
+	}
+
+	private void checkClosingBracket(Block block) {
+		if (block.getLocation().getEndLine() == lineNumber && block.getComposite() instanceof CompositeStatementObject) {
+			block.setClosingCurlyBracket(true);
+		}
 	}
 }
