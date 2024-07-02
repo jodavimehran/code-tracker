@@ -4,6 +4,8 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.History;
 import org.codetracker.util.CodeElementLocator;
 import org.eclipse.jgit.lib.Repository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import static org.codetracker.blame.Utils.getFileContentByCommit;
 
 /* Created by pourya on 2024-06-26*/
 public class CodeTrackerBlame implements IBlame{
+    private final static Logger logger = LoggerFactory.getLogger(CodeTrackerBlame.class);
     private static final String NOT_FOUND_PLACEHOLDER = "-----";
 
     public List<String[]> blameFile(Repository repository, String commitId, String filePath) throws Exception {
@@ -61,11 +64,11 @@ public class CodeTrackerBlame implements IBlame{
             try {
                 history = new LineTrackerImpl().blame(repository, filePath, commitId, name, lineNumber, codeElement);
             } catch (Exception e) {
-                System.out.println("Error in tracking line blame for " + filePath + " at line " + lineNumber + " in commit " + commitId);
+                logger.error("Error in tracking line blame for " + filePath + " at line " + lineNumber + " in commit " + commitId);
             }
         }
         else {
-            System.out.println("Code element not found for " + filePath + " at line " + lineNumber + " in commit " + commitId);
+            logger.error("Code element not found for " + filePath + " at line " + lineNumber + " in commit " + commitId);
         }
         return history;
     }
