@@ -616,12 +616,19 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         Collections.reverse(history); 
 		for (History.HistoryInfo<Block> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
-						change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop) {
-					return historyInfo;
+				if (startBlock.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
 				}
-				if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
-					return historyInfo;
+				else {
+					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop) {
+						return historyInfo;
+					}
+					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
+						return historyInfo;
+					}
 				}
 			}
 		}
