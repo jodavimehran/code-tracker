@@ -1,7 +1,7 @@
 package org.codetracker.blame;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.rest.changeHistory.RESTChange;
+import org.codetracker.api.History;
 import org.codetracker.util.CodeElementLocator;
 import org.eclipse.jgit.lib.Repository;
 
@@ -11,7 +11,6 @@ import java.util.Date;
 import java.util.List;
 
 import static org.codetracker.blame.Utils.getFileContentByCommit;
-import static org.codetracker.rest.RESTHandler.trackCodeHistory;
 
 /* Created by pourya on 2024-06-26*/
 public class CodeTrackerBlame implements IBlame{
@@ -21,19 +20,57 @@ public class CodeTrackerBlame implements IBlame{
         List<String> lines = getFileContentByCommit(repository, commitId, filePath);
         int maxLine = lines.size();
         List<String[]> result = new ArrayList<>();
-        for (int lineNumber = 0; lineNumber < maxLine; lineNumber++) {
+        for (int lineNumber = 1; lineNumber <= maxLine; lineNumber++) {
             try {
                 result.add(lineBlameFormat(repository, commitId, filePath, null, lineNumber, lines));
+            } catch (Exception e) {
+//                System.out.println(e.getMessage());
             }
-            catch (Exception e) {
-//                System.out.println("Error in line " + lineNumber + ": " + e.getMessage());
-            }
-
         }
         return result;
     }
 
-    private static String[] lineBlameFormat(Repository repository, String commitId, String filePath, String name, int lineNumber, List<String> lines) {
+    public static String[] lineBlameFormat(Repository repository, String commitId, String filePath, String name, int lineNumber, List<String> lines) {
+        History.HistoryInfo<? extends CodeElement> latestChange = getLineBlame(repository, commitId, filePath, name, lineNumber);
+        String shortCommitId = NOT_FOUND_PLACEHOLDER;
+        String committer = NOT_FOUND_PLACEHOLDER;
+        String commitDate = NOT_FOUND_PLACEHOLDER;
+        String beforeFilePath = NOT_FOUND_PLACEHOLDER;
+        long commitTime = 0L;
+        if (latestChange != null) {
+            shortCommitId = latestChange.getCommitId().substring(0, 9);  // take the first 7 characters
+            beforeFilePath = latestChange.getElementBefore().getFilePath();
+            committer = latestChange.getCommitterName();
+            commitTime =  latestChange.getCommitTime();
+            commitDate =  (commitTime == 0) ? NOT_FOUND_PLACEHOLDER : new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z").format(new Date(commitTime * 1000L));
+        }
+        return new String[]
+            {
+                shortCommitId,
+                beforeFilePath,
+                "(" + committer,
+                commitDate,
+                lineNumber + ")",
+                lines.get(lineNumber-1)
+            };
+    }
+    public static History.HistoryInfo<? extends CodeElement> getLineBlame(Repository repository, String commitId, String filePath, String name, int lineNumber) {
+        CodeElement codeElement = locate(repository, commitId, filePath, name, lineNumber);
+        History.HistoryInfo<? extends CodeElement> history = null;
+        if (codeElement != null) {
+            try {
+                history = new LineTrackerImpl().blame(repository, filePath, commitId, name, lineNumber, codeElement);
+            } catch (Exception e) {
+                System.out.println("Error in tracking line blame for " + filePath + " at line " + lineNumber + " in commit " + commitId);
+            }
+        }
+        else {
+            System.out.println("Code element not found for " + filePath + " at line " + lineNumber + " in commit " + commitId);
+        }
+        return history;
+    }
+
+    private static CodeElement locate(Repository repository, String commitId, String filePath, String name, int lineNumber) {
         CodeElementLocator locator = new CodeElementLocator(
                 repository,
                 commitId,
@@ -44,42 +81,11 @@ public class CodeTrackerBlame implements IBlame{
         CodeElement codeElement = null;
         try {
             codeElement = locator.locate();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
         }
-        String shortCommitId = NOT_FOUND_PLACEHOLDER;
-        String committer = NOT_FOUND_PLACEHOLDER;
-        Long commitTime = 0L;
-        String beforeFilePath = NOT_FOUND_PLACEHOLDER;
-        if (codeElement != null) {
-            ArrayList<RESTChange> restChanges = trackCodeHistory(
-                    repository,
-                    filePath,
-                    commitId,
-                    name,
-                    lineNumber,
-                    codeElement
-            );
+        catch (Exception e) {
 
-            if (restChanges.isEmpty()) {
-                throw new RuntimeException("No history found for the given code element");
-            }
-            RESTChange h0 = restChanges.get(0);
-            shortCommitId = h0.commitId.substring(0, 7);  // take the first 7 characters
-            beforeFilePath = h0.elementFileBefore;
-            committer = h0.committer;
-            commitTime =  h0.commitTime;
         }
-        String commitDate =  (commitTime == 0) ? NOT_FOUND_PLACEHOLDER : new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z").format(new Date(commitTime * 1000L));
-        return new String[]
-                {
-                        shortCommitId,
-                        beforeFilePath,
-                        "(" + committer,
-                        commitDate,
-                        lineNumber + ")",
-                        lines.get(lineNumber)
-                };
+        return codeElement;
     }
 
 }
