@@ -9,6 +9,9 @@ import org.eclipse.jgit.lib.Repository;
 public interface BlockTracker extends CodeTracker {
 
     History<Block> track() throws Exception;
+    default History.HistoryInfo<Block> blame() throws Exception{
+        throw new UnsupportedOperationException();
+    }
 
     class Builder {
         private Repository repository;
