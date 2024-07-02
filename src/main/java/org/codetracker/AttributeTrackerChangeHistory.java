@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
@@ -20,6 +21,7 @@ import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
+import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.AddAttributeModifierRefactoring;
 import gr.uom.java.xmi.diff.ChangeAttributeAccessModifierRefactoring;
@@ -219,6 +221,19 @@ public class AttributeTrackerChangeHistory {
                 Attribute attributeBefore = Attribute.of(umlAttributeBefore, parentVersion);
                 attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(changeType).refactoring(refactoring));
                 leftAttributeSet.add(attributeBefore);
+                AbstractExpression leftInitializer = umlAttributeBefore.getVariableDeclaration().getInitializer();
+				AbstractExpression rightInitializer = umlAttributeAfter.getVariableDeclaration().getInitializer();
+				if (leftInitializer != null && rightInitializer != null) {
+                	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
+                		attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
+                	}
+                }
+				else if (leftInitializer == null && rightInitializer != null) {
+					attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
+				}
+				else if (leftInitializer != null && rightInitializer == null) {
+					attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
+				}
                 return true;
             }
         }
