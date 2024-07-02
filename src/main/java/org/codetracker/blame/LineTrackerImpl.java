@@ -1,13 +1,15 @@
 package org.codetracker.blame;
 
 import org.codetracker.api.*;
+import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
-import org.codetracker.element.Variable;
+import org.codetracker.element.Class;
+import org.codetracker.element.Method;
 import org.eclipse.jgit.lib.Repository;
 
 /* Created by pourya on 2024-06-26*/
 public class LineTrackerImpl implements LineTracker {
-    public History<? extends CodeElement> track(
+    public History.HistoryInfo<? extends CodeElement> blame(
             Repository repository,
             String filePath,
             String commitId,
@@ -16,45 +18,43 @@ public class LineTrackerImpl implements LineTracker {
             CodeElement codeElement
     ) {
         try {
-            History<? extends CodeElement> history = null;
+            History.HistoryInfo<? extends CodeElement> blame = null;
             switch (codeElement.getClass().getSimpleName()) {
+                case "Class" :
+                    String className = ((Class) codeElement).getUmlClass().getNonQualifiedName();
+                    ClassTracker classTracker = CodeTracker
+                            .classTracker()
+                            .repository(repository)
+                            .filePath(filePath)
+                            .startCommitId(commitId)
+                            .className(className)
+                            .classDeclarationLineNumber(lineNumber)
+                            .build();
+                    blame = classTracker.blame();
+                    break;
                 case "Method":
+                    String methodName = ((Method) codeElement).getUmlOperation().getName();
                     MethodTracker methodTracker = CodeTracker
                             .methodTracker()
                             .repository(repository)
                             .filePath(filePath)
                             .startCommitId(commitId)
-                            .methodName(name)
+                            .methodName(methodName)
                             .methodDeclarationLineNumber(lineNumber)
                             .build();
-                    history = methodTracker.track();
-                    break;
-                case "Variable":
-                    Variable variable = (Variable) codeElement;
-                    VariableTracker variableTracker = CodeTracker
-                            .variableTracker()
-                            .repository(repository)
-                            .filePath(filePath)
-                            .startCommitId(commitId)
-                            .methodName(variable.getOperation().getName())
-                            .methodDeclarationLineNumber(
-                                    variable.getOperation().getLocationInfo().getStartLine()
-                            )
-                            .variableName(name)
-                            .variableDeclarationLineNumber(lineNumber)
-                            .build();
-                    history = variableTracker.track();
+                    blame = methodTracker.blame();
                     break;
                 case "Attribute":
+                    String attrName = ((Attribute) codeElement).getUmlAttribute().getName();
                     AttributeTracker attributeTracker = CodeTracker
                             .attributeTracker()
                             .repository(repository)
                             .filePath(filePath)
                             .startCommitId(commitId)
-                            .attributeName(name)
+                            .attributeName(attrName)
                             .attributeDeclarationLineNumber(lineNumber)
                             .build();
-                    history = attributeTracker.track();
+                    blame = attributeTracker.blame();
                     break;
                 case "Block":
                     Block block = (Block) codeElement;
@@ -71,12 +71,12 @@ public class LineTrackerImpl implements LineTracker {
                             .blockStartLineNumber(codeElement.getLocation().getStartLine())
                             .blockEndLineNumber(codeElement.getLocation().getEndLine())
                             .build();
-                    history = blockTracker.track();
+                    blame = blockTracker.blame();
                     break;
                 default:
                     break;
             }
-            return history;
+            return blame;
         }
         catch (Exception e) {
             throw new RuntimeException(e);

@@ -8,6 +8,9 @@ import org.codetracker.element.Method;
 public interface MethodTracker extends CodeTracker {
 
     History<Method> track() throws Exception;
+    default History.HistoryInfo<Method> blame() throws Exception{
+        throw new UnsupportedOperationException();
+    }
 
     class Builder {
         private Repository repository;
