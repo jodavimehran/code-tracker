@@ -6,7 +6,7 @@ import org.eclipse.jgit.lib.Repository;
 
 /* Created by pourya on 2024-06-26*/
 public interface LineTracker {
-    History<? extends CodeElement> track(
+    History.HistoryInfo<? extends CodeElement> blame(
             Repository repository,
             String filePath,
             String commitId,
