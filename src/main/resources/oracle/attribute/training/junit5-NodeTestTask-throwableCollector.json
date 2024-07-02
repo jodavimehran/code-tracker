@@ -19,6 +19,17 @@
       "comment": "Remove Attribute Modifier final in attribute private throwableCollector : ThrowableCollector from class org.junit.platform.engine.support.hierarchical.NodeTestTask"
     },
     {
+      "parentCommitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
+      "commitId": "137f831bba9d0f45085d64fad47947cbc91a30e9",
+      "commitTime": 1530994538,
+      "changeType": "initializer removed",
+      "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
+      "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(private)throwableCollector:ThrowableCollector(51)",
+      "comment": "initializer removed"
+    },
+    {
       "parentCommitId": "3dedce4fd9abfa4162a2c55b16c970057fb69abe",
       "commitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
       "commitTime": 1530994538,
@@ -41,15 +52,15 @@
       "comment": "Change Attribute Type executionErrors : List<Throwable> to throwableCollector : ThrowableCollector in class org.junit.platform.engine.support.hierarchical.NodeTestTask"
     },
     {
-      "parentCommitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
-      "commitId": "137f831bba9d0f45085d64fad47947cbc91a30e9",
+      "parentCommitId": "3dedce4fd9abfa4162a2c55b16c970057fb69abe",
+      "commitId": "c1d682aee5da5738fc3be071df45330c005f4cf1",
       "commitTime": 1530994538,
-      "changeType": "initializer removed",
+      "changeType": "initializer change",
       "elementFileBefore": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
+      "elementNameBefore": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)executionErrors:List<Throwable>(39)",
       "elementFileAfter": "junit-platform-engine/src/main/java/org/junit/platform/engine/support/hierarchical/NodeTestTask.java",
-      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(private)throwableCollector:ThrowableCollector(51)",
-      "comment": "initializer removed"
+      "elementNameAfter": "junit-platform-engine/src/main/java/org.junit.platform.engine.support.hierarchical.NodeTestTask@(final)(private)throwableCollector:ThrowableCollector(34)",
+      "comment": "initializer change"
     },
     {
       "parentCommitId": "948841c03c646c98866d0121bc3c89ad4ddbf277",
