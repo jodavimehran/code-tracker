@@ -17,6 +17,8 @@ import org.codetracker.element.Class;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 import java.util.function.Predicate;
@@ -25,6 +27,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
     private final ChangeHistory<Class> classChangeHistory = new ChangeHistory<>();
     private final String className;
     private final int classDeclarationLineNumber;
+    Logger logger = LoggerFactory.getLogger(ClassTrackerImpl.class);
 
     public ClassTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber) {
         super(repository, startCommitId, filePath);
@@ -81,7 +84,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
                         continue;
-                    System.out.println("processing " + commitId);
+                    logger.debug("processing " + commitId);
                     analysedCommits.add(commitId);
 
                     Version currentVersion = gitRepository.getVersion(commitId);
@@ -351,7 +354,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
                         continue;
-                    System.out.println("processing " + commitId);
+                    logger.debug("processing " + commitId);
                     analysedCommits.add(commitId);
 
                     Version currentVersion = gitRepository.getVersion(commitId);
