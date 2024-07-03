@@ -15,8 +15,8 @@ import org.codetracker.api.Version;
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.function.Predicate;
 
 public class Attribute extends BaseCodeElement {
@@ -59,17 +59,16 @@ public class Attribute extends BaseCodeElement {
         	                }
                     	}
                     }
-                	Set<Block> matches = new LinkedHashSet<Block>();
+                	Map<CodeElementType, Block> matches = new LinkedHashMap<CodeElementType, Block>();
                     for (CompositeStatementObject composite : operation.getBody().getCompositeStatement().getInnerNodes()) {
                         Block block = Block.of(composite, this);
                         if (block != null && equalOperator.test(block)) {
-                        	matches.add(block);
+                        	matches.put(block.getLocation().getCodeElementType(), block);
                         }
                     }
-                    for (Block match : matches) {
-                    	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
-                    		return match;
-                    	}
+                    Block block = promotionStrategy(matches);
+                    if (block != null) {
+                    	return block;
                     }
                 }
             }
@@ -85,22 +84,37 @@ public class Attribute extends BaseCodeElement {
     	                }
                 	}
                 }
-            	Set<Block> matches = new LinkedHashSet<Block>();
+            	Map<CodeElementType, Block> matches = new LinkedHashMap<CodeElementType, Block>();
                 for (CompositeStatementObject composite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
                     Block block = Block.of(composite, this);
                     if (block != null && equalOperator.test(block)) {
-                    	matches.add(block);
+                    	matches.put(block.getLocation().getCodeElementType(), block);
                     }
                 }
-                for (Block match : matches) {
-                	if (!match.getLocation().getCodeElementType().equals(CodeElementType.BLOCK)) {
-                		return match;
-                	}
+                Block block = promotionStrategy(matches);
+                if (block != null) {
+                	return block;
                 }
             }
         }
         return null;
     }
+
+	private Block promotionStrategy(Map<CodeElementType, Block> matches) {
+		//promote catch over try
+		if (matches.containsKey(CodeElementType.CATCH_CLAUSE)) {
+			return matches.get(CodeElementType.CATCH_CLAUSE);
+		}
+		if (matches.containsKey(CodeElementType.FINALLY_BLOCK)) {
+			return matches.get(CodeElementType.FINALLY_BLOCK);
+		}
+		for (CodeElementType key : matches.keySet()) {
+			if (!key.equals(CodeElementType.BLOCK)) {
+				return matches.get(key);
+			}
+		}
+		return null;
+	}
 
     public UMLAttribute getUmlAttribute() {
         return umlAttribute;

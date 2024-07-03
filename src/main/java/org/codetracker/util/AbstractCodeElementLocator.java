@@ -95,6 +95,11 @@ public abstract class AbstractCodeElementLocator {
 	            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
+	protected boolean endLineBlockPredicate(Block block) {
+	    return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
+	            block.getComposite().getLocationInfo().getEndLine() == lineNumber;
+	}
+
 	private static Method getMethod(Version version, Predicate<Method> predicate, List<UMLOperation> operations) {
 	    for (UMLOperation umlOperation : operations) {
 	        Method method = Method.of(umlOperation, version);
@@ -166,7 +171,6 @@ public abstract class AbstractCodeElementLocator {
                 }
                 Block block = method.findBlock(this::blockPredicate);
                 if (block != null) {
-                	checkClosingBracket(block);
                     return block;
                 }
             }
@@ -179,8 +183,14 @@ public abstract class AbstractCodeElementLocator {
         if (method != null) {
             Block block = method.findBlockWithoutName(this::blockPredicate);
             if (block != null) {
-            	checkClosingBracket(block);
                 return block;
+            }
+            else {
+            	block = method.findBlockWithoutName(this::endLineBlockPredicate);
+            	if (block != null) {
+            		checkClosingBracket(block);
+                    return block;
+                }
             }
             Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
             if (attribute != null) {
@@ -192,8 +202,14 @@ public abstract class AbstractCodeElementLocator {
         if (attribute != null) {
         	Block block = attribute.findBlockWithoutName(this::blockPredicate);
             if (block != null) {
-            	checkClosingBracket(block);
                 return block;
+            }
+            else {
+            	block = attribute.findBlockWithoutName(this::endLineBlockPredicate);
+            	if (block != null) {
+            		checkClosingBracket(block);
+                    return block;
+                }
             }
             return attribute;
         }
