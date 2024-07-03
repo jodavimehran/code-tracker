@@ -1,4 +1,4 @@
-package org.codetracker.blame;
+package org.codetracker.blame.adaptor;
 
 import org.codetracker.api.*;
 import org.codetracker.element.Attribute;
@@ -8,12 +8,11 @@ import org.codetracker.element.Method;
 import org.eclipse.jgit.lib.Repository;
 
 /* Created by pourya on 2024-06-26*/
-public class LineTrackerImpl implements LineTracker {
+public class LineTrackerFromCodeTracker {
     public History.HistoryInfo<? extends CodeElement> blame(
             Repository repository,
             String filePath,
             String commitId,
-            String name,
             Integer lineNumber,
             CodeElement codeElement
     ) {

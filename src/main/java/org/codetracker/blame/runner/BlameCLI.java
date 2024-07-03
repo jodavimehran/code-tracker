@@ -1,5 +1,10 @@
-package org.codetracker.blame;
+package org.codetracker.blame.runner;
 
+import org.codetracker.blame.impl.CodeTrackerBlame;
+import org.codetracker.blame.model.LineBlameResult;
+import org.codetracker.blame.util.BlameFormatter;
+import org.codetracker.blame.util.TabularPrint;
+import org.codetracker.blame.util.Utils;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepositoryBuilder;
@@ -24,20 +29,18 @@ public class BlameCLI {
     private static void cmdApp(String filePath) throws Exception {
         Repository workingDirRepo = getWorkingDirRepo();
         String commitId = getWorkingDirCommit(workingDirRepo);
-        List<String[]> blameResult = new CodeTrackerBlame().blameFile(workingDirRepo, commitId, filePath);
-        TabularPrint.printTabularData(blameResult);
+        List<LineBlameResult> lineBlameResults = new CodeTrackerBlame().blameFile(workingDirRepo, commitId, filePath);
+        List<String[]> out = new BlameFormatter(Utils.getFileContentByCommit(workingDirRepo, commitId, filePath)).make(lineBlameResults);
+        TabularPrint.printTabularData(out);
     }
 
 
     static Repository getWorkingDirRepo() throws IOException {
         File currentDir = new File(System.getProperty("user.dir"));
-
-        // Build the repository from the current directory
         FileRepositoryBuilder builder = new FileRepositoryBuilder();
-        Repository repository = builder
+        return builder
                 .findGitDir(currentDir)
                 .build();
-        return repository;
     }
     static String getWorkingDirCommit(Repository repository) throws IOException {
         ObjectId head = repository.resolve("HEAD");

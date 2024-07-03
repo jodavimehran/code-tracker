@@ -1,4 +1,4 @@
-package org.codetracker.blame;
+package org.codetracker.blame.util;
 
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
