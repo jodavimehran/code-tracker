@@ -6,8 +6,6 @@ import org.codetracker.api.History;
 import org.codetracker.blame.impl.CodeTrackerBlame;
 import org.codetracker.blame.impl.GitBlame;
 import org.codetracker.blame.model.LineBlameResult;
-import org.codetracker.blame.util.BlameFormatter;
-import org.codetracker.blame.util.TabularPrint;
 import org.eclipse.jgit.lib.Repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -21,11 +19,11 @@ import org.refactoringminer.util.GitServiceImpl;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import static org.codetracker.blame.util.Utils.getFileContentByCommit;
+import static org.codetracker.blame.util.Utils.getBlameOutput;
+import static org.codetracker.blame.util.Utils.getProject;
 
 /* Created by pourya on 2024-06-26*/
 @Disabled
@@ -35,12 +33,7 @@ public class CodeTrackerBlameTest {
     @ParameterizedTest
     @MethodSource("testBlamerInputProvider")
     public void testBlameWithFormatting(String url, String filePath, IBlame blamer, String expectedPath) throws Exception {
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getProject(url), URLHelper.getRepo(url));
-        List<String> lines = getFileContentByCommit(repository, commitId, filePath);
-        BlameFormatter formatter = new BlameFormatter(lines);
-        List<LineBlameResult> blameResult = apply(commitId, filePath, blamer, repository);
-        String actual = TabularPrint.make(formatter.make(blameResult));
+        String actual = getBlameOutput(url, filePath, blamer, REPOS_PATH, gitService);
         assertEqualWithFile(expectedPath, actual);
     }
 
@@ -59,12 +52,8 @@ public class CodeTrackerBlameTest {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
         String expectedPath = "/blame/blameTestWithLocalRepo.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getProject(url), URLHelper.getRepo(url));
-        List<LineBlameResult> blameResult = new CodeTrackerBlame().blameFile(repository, commitId, filePath);
-        List<String> lines = getFileContentByCommit(repository, commitId, filePath);
-        BlameFormatter formatter = new BlameFormatter(lines);
-        String actual = TabularPrint.make(formatter.make(blameResult));
+
+        String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
         assertEqualWithFile(expectedPath, actual);
     }
 
@@ -89,18 +78,6 @@ public class CodeTrackerBlameTest {
                 new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
         LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
         Assertions.assertEquals(expected, lineBlameResult.toString());
-    }
-
-    private List<LineBlameResult> apply(String commitId, String filePath, IBlame blamer, Repository repository) throws Exception {
-        return blamer.blameFile(repository, commitId, filePath);
-    }
-
-
-    private static String getOwner(String gitURL){
-        return gitURL.split("/")[3];
-    }
-    private static String getProject(String gitURL){
-        return gitURL.split("/")[4];
     }
 
 }

@@ -1,5 +1,7 @@
 package org.codetracker.blame.util;
 
+import org.codetracker.blame.IBlame;
+import org.codetracker.blame.model.LineBlameResult;
 import org.eclipse.jgit.lib.ObjectId;
 import org.eclipse.jgit.lib.ObjectLoader;
 import org.eclipse.jgit.lib.Repository;
@@ -7,6 +9,8 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.treewalk.TreeWalk;
 import org.eclipse.jgit.treewalk.filter.PathFilter;
+import org.refactoringminer.api.GitService;
+import org.refactoringminer.astDiff.utils.URLHelper;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
@@ -57,5 +61,24 @@ public class Utils {
             }
         }
         return lines;
+    }
+    public static String getBlameOutput(String url, String filePath, IBlame blamer, String reposPath, GitService gitService) throws Exception {
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(reposPath + "/" + getProject(url), URLHelper.getRepo(url));
+        List<String> lines = getFileContentByCommit(repository, commitId, filePath);
+        BlameFormatter formatter = new BlameFormatter(lines);
+        List<LineBlameResult> blameResult = apply(commitId, filePath, blamer, repository);
+        return TabularPrint.make(formatter.make(blameResult));
+    }
+
+
+    private static List<LineBlameResult> apply(String commitId, String filePath, IBlame blamer, Repository repository) throws Exception {
+        return blamer.blameFile(repository, commitId, filePath);
+    }
+    public static String getOwner(String gitURL){
+        return gitURL.split("/")[3];
+    }
+    public static String getProject(String gitURL){
+        return gitURL.split("/")[4];
     }
 }
