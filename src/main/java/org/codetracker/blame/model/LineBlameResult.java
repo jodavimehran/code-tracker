@@ -77,8 +77,8 @@ public class LineBlameResult {
     public static LineBlameResult of(BlameResult blameResult, int i) {
         if (blameResult == null || i < 0 || i >= blameResult.getResultContents().size()) return null;
         String commitId = blameResult.getSourceCommit(i).getId().name();
-        String committerName = blameResult.getSourceCommit(i).getCommitterIdent().getName();
-        long commitTime = blameResult.getSourceCommit(i).getCommitterIdent().getWhen().getTime();
+        String committerName = blameResult.getSourceCommit(i).getAuthorIdent().getName();
+        long commitTime = blameResult.getSourceCommit(i).getCommitTime();
         String filePath = blameResult.getSourcePath(i);
         return new LineBlameResult(commitId, blameResult.getResultPath(), filePath, committerName, commitTime, i + 1);
     }

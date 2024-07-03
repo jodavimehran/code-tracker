@@ -19,14 +19,12 @@ import org.refactoringminer.astDiff.utils.URLHelper;
 import org.refactoringminer.util.GitServiceImpl;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.codetracker.blame.util.Utils.getFileContentByCommit;
-import static org.junit.Assert.assertEquals;
 
 /* Created by pourya on 2024-06-26*/
 public class CodeTrackerBlameTest {
@@ -69,9 +67,8 @@ public class CodeTrackerBlameTest {
     }
 
     private void assertEqualWithFile(String expectedResultPath, String actual) throws IOException {
-        InputStream resourceAsStream = this.getClass().getResourceAsStream(expectedResultPath);
         String expected = IOUtils.toString(
-                this.getClass().getResourceAsStream(expectedResultPath),
+                Objects.requireNonNull(this.getClass().getResourceAsStream(expectedResultPath)),
                 StandardCharsets.UTF_8
         );
         Assertions.assertEquals(expected, actual);
