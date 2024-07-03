@@ -31,7 +31,9 @@ public class TabularPrint {
                 sb.append(" ");
             }
         }
-        return sb.toString() + "\n";
+        String string = sb.toString();
+        String trimmedString = string.replaceAll("\\s+$", "");
+        return trimmedString + "\n";
     }
 
     private static void printSeparatorLine(int[] columnWidths, boolean showBorders) {
