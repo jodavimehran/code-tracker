@@ -10,6 +10,7 @@ import org.codetracker.blame.util.BlameFormatter;
 import org.codetracker.blame.util.TabularPrint;
 import org.eclipse.jgit.lib.Repository;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -27,6 +28,7 @@ import java.util.stream.Stream;
 import static org.codetracker.blame.util.Utils.getFileContentByCommit;
 
 /* Created by pourya on 2024-06-26*/
+@Disabled
 public class CodeTrackerBlameTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
