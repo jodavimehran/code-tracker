@@ -13,20 +13,11 @@ import java.util.stream.Collectors;
 public class Block extends BaseCodeElement {
     private final AbstractStatement composite;
     private final VariableDeclarationContainer operation;
-    private boolean closingCurlyBracket;
 
     private Block(AbstractStatement composite, VariableDeclarationContainer operation, String identifierIgnoringVersion, String name, String filePath, Version version) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.composite = composite;
         this.operation = operation;
-    }
-
-    public boolean isClosingCurlyBracket() {
-    	return closingCurlyBracket;
-    }
-
-    public void setClosingCurlyBracket(boolean closingCurlyBracket) {
-    	this.closingCurlyBracket = closingCurlyBracket;
     }
 
     public AbstractStatement getComposite() {

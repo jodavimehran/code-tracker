@@ -17,9 +17,9 @@ import org.refactoringminer.api.GitService;
 import org.refactoringminer.astDiff.utils.URLHelper;
 import org.refactoringminer.util.GitServiceImpl;
 
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.stream.Stream;
 
 import static org.codetracker.blame.util.Utils.getBlameOutput;
@@ -30,6 +30,7 @@ import static org.codetracker.blame.util.Utils.getProject;
 public class CodeTrackerBlameTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
+    private static final String EXPECTED = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
     @ParameterizedTest
     @MethodSource("testBlamerInputProvider")
     public void testBlameWithFormatting(String url, String filePath, IBlame blamer, String expectedPath) throws Exception {
@@ -49,15 +50,15 @@ public class CodeTrackerBlameTest {
     public void testBlameWithLocalRepo() throws Exception {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
-        String expectedPath = "/blame/blameTestWithLocalRepo.txt";
+        //String expectedPath = "/blame/blameTestWithLocalRepo.txt";
 
         String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
-        assertEqualWithFile(expectedPath, actual);
+        assertEqualWithFile(EXPECTED, actual);
     }
 
     private void assertEqualWithFile(String expectedResultPath, String actual) throws IOException {
         String expected = IOUtils.toString(
-                Objects.requireNonNull(this.getClass().getResourceAsStream(expectedResultPath)),
+                new FileInputStream(expectedResultPath),
                 StandardCharsets.UTF_8
         );
         Assertions.assertEquals(expected, actual);

@@ -3,6 +3,7 @@ package org.codetracker.util;
 import org.codetracker.api.CodeElement;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
+import org.codetracker.element.Class;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 import static org.junit.jupiter.api.Assertions.*;
@@ -551,5 +552,20 @@ public class CodeElementLocatorWithLocalFilesTest {
         assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.FINALLY_BLOCK);
         assertEquals(codeElement.getLocation().getStartLine(), 229);
         assertTrue(((Block)codeElement).isClosingCurlyBracket());
+    }
+
+    @Test
+    public void testClosingBracketClassLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 627;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Class.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.TYPE_DECLARATION);
+        assertEquals(codeElement.getLocation().getStartLine(), 60);
+        assertTrue(((Class)codeElement).isClosingCurlyBracket());
     }
 }

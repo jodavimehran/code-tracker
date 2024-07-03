@@ -196,6 +196,7 @@ public abstract class AbstractCodeElementLocator {
             if (attribute != null) {
             	return attribute;
             }
+            checkClosingBracket(method);
             return method;
         }
         Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
@@ -215,9 +216,22 @@ public abstract class AbstractCodeElementLocator {
         }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {
+        	checkClosingBracket(clazz);
         	return clazz;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
+	}
+
+	private void checkClosingBracket(Class clazz) {
+		if (clazz.getLocation().getEndLine() == lineNumber) {
+			clazz.setClosingCurlyBracket(true);
+		}
+	}
+
+	private void checkClosingBracket(Method method) {
+		if (method.getLocation().getEndLine() == lineNumber) {
+			method.setClosingCurlyBracket(true);
+		}
 	}
 
 	private void checkClosingBracket(Block block) {

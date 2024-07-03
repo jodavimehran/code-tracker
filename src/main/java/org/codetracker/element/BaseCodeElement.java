@@ -15,6 +15,7 @@ public abstract class BaseCodeElement implements CodeElement {
     protected boolean isRemoved;
     protected boolean isAdded;
     protected boolean isStart;
+    private boolean closingCurlyBracket;
 
     public BaseCodeElement(String identifierIgnoringVersion, String name, String filePath, Version version) {
         this.identifier = version != null ? identifierIgnoringVersion + version : identifierIgnoringVersion;
@@ -24,6 +25,13 @@ public abstract class BaseCodeElement implements CodeElement {
         this.version = version;
     }
 
+    public boolean isClosingCurlyBracket() {
+    	return closingCurlyBracket;
+    }
+
+    public void setClosingCurlyBracket(boolean closingCurlyBracket) {
+    	this.closingCurlyBracket = closingCurlyBracket;
+    }
 
     @Override
     public final int compareTo(CodeElement o) {

@@ -239,6 +239,9 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             if (start == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getMethodName(), changeHistory.getMethodDeclarationLineNumber());
             }
+            if (start.getLocation().getEndLine() == this.changeHistory.getMethodDeclarationLineNumber()) {
+            	start.setClosingCurlyBracket(true);
+            }
             changeHistory.get().addNode(start);
 
             ArrayDeque<Method> methods = new ArrayDeque<>();
@@ -247,7 +250,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!methods.isEmpty()) {
-            	History.HistoryInfo<Method> blame = blameReturn();
+            	History.HistoryInfo<Method> blame = blameReturn(start);
             	if (blame != null) return blame;
                 Method currentMethod = methods.poll();
                 if (currentMethod.isAdded() || currentMethod.getVersion().getId().equals("0")) {
@@ -431,13 +434,20 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
         return null;
     }
 
-    private History.HistoryInfo<Method> blameReturn() {
+    private History.HistoryInfo<Method> blameReturn(Method startMethod) {
     	List<HistoryInfo<Method>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
         Collections.reverse(history); 
 		for (History.HistoryInfo<Method> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (change instanceof MethodSignatureChange || change instanceof Introduced) {
-					return historyInfo;
+				if (startMethod.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (change instanceof MethodSignatureChange || change instanceof Introduced) {
+						return historyInfo;
+					}
 				}
 			}
 		}

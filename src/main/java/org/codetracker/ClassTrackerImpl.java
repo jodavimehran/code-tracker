@@ -11,6 +11,7 @@ import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
 import org.codetracker.change.clazz.ClassContainerChange;
 import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
@@ -327,6 +328,9 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             if (start == null) {
                 return null;
             }
+            if (start.getLocation().getEndLine() == classDeclarationLineNumber) {
+            	start.setClosingCurlyBracket(true);
+        	}
             start.setStart(true);
             classChangeHistory.addNode(start);
 
@@ -336,7 +340,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!classes.isEmpty()) {
-            	History.HistoryInfo<Class> blame = blameReturn();
+            	History.HistoryInfo<Class> blame = blameReturn(start);
             	if (blame != null) return blame;
                 Class currentClass = classes.poll();
                 if (currentClass.isAdded()) {
@@ -427,13 +431,20 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
         return null;
     }
 
-    private History.HistoryInfo<Class> blameReturn() {
+    private History.HistoryInfo<Class> blameReturn(Class startClass) {
     	List<HistoryInfo<Class>> history = HistoryImpl.processHistory(classChangeHistory.getCompleteGraph());
         Collections.reverse(history); 
 		for (History.HistoryInfo<Class> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
-					return historyInfo;
+				if (startClass.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
+						return historyInfo;
+					}
 				}
 			}
 		}

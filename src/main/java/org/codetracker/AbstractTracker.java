@@ -303,7 +303,17 @@ public abstract class AbstractTracker {
 	            continue;
 	        toBeAddedFileNamesIfTheyAreNewFiles.add(parameterType + ".java");
 	    }
-	    return getRightSideFileNames(currentFilePath, currentClassName, toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff);
+	    Set<String> rightSideFileNames = getRightSideFileNames(currentFilePath, currentClassName, toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff);
+		//add all right side files having a main method
+	    if (currentMethod.getUmlOperation().isMain()) {
+	    	for (String filePath : commitModel.fileContentsCurrentOriginal.keySet()) {
+	    		String fileContents = commitModel.fileContentsCurrentOriginal.get(filePath);
+	    		if (fileContents.contains("public static void main(String")) {
+	    			rightSideFileNames.add(filePath);
+	    		}
+	    	}
+		}
+	    return rightSideFileNames;
 	}
 
 	protected static Set<String> getRightSideFileNames(String currentFilePath, String currentClassName, Set<String> toBeAddedFileNamesIfTheyAreNewFiles, CommitModel commitModel, UMLModelDiff umlModelDiff) {
