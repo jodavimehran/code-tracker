@@ -1,4 +1,4 @@
-package org.codetracker.blame;
+package org.codetracker.blame.util;
 
 import java.util.List;
 
