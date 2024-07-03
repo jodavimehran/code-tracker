@@ -52,9 +52,6 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             if (startBlock == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
-            if (startBlock.getLocation().getEndLine() == changeHistory.getBlockEndLineNumber() && startBlock.getComposite() instanceof CompositeStatementObject) {
-            	startBlock.setClosingCurlyBracket(true);
-    		}
             changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();
@@ -340,6 +337,9 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             if (startBlock == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
+            if (startBlock.getLocation().getEndLine() == changeHistory.getBlockEndLineNumber() && startBlock.getComposite() instanceof CompositeStatementObject) {
+            	startBlock.setClosingCurlyBracket(true);
+    		}
             changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();

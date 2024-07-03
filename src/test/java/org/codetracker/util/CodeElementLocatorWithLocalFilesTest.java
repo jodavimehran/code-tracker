@@ -510,6 +510,21 @@ public class CodeElementLocatorWithLocalFilesTest {
     }
 
     @Test
+    public void testClosingBracketTryLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 322;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.TRY_STATEMENT);
+        assertEquals(codeElement.getLocation().getStartLine(), 317);
+        assertTrue(((Block)codeElement).isClosingCurlyBracket());
+    }
+
+    @Test
     public void testClosingBracketCatchLocator() throws Exception {
     	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
         final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
