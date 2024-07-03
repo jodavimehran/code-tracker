@@ -7,31 +7,21 @@ public class TabularPrint {
     static final boolean ENABLE_BORDERS = false;
     private static final int PADDING = 1;
 
-    public static void printTabularData(List<String[]> data) {
-        // Assuming data is not null and has consistent length for each row
-        if (data.isEmpty()) {
-            System.out.println("No data to print.");
-            return;
-        }
+    public static String make(List<String[]> data) {
+        StringBuilder sb = new StringBuilder();
+        if (data.isEmpty())
+            return "No data to print";
 
-        // Determine column widths based on data
         int[] columnWidths = calculateColumnWidths(data);
 
-        // Print table header
-//        printSeparatorLine(columnWidths, ENABLE_BORDERS);
-        printRow(data.get(0), columnWidths, ENABLE_BORDERS);
-//        printSeparatorLine(columnWidths, ENABLE_BORDERS);
-
-        // Print table rows
+        sb.append(printRow(data.get(0), columnWidths, ENABLE_BORDERS));
         for (int i = 1; i < data.size(); i++) {
-            printRow(data.get(i), columnWidths, ENABLE_BORDERS);
+            sb.append(printRow(data.get(i), columnWidths, ENABLE_BORDERS));
         }
-
-        // Print bottom separator line
-//        printSeparatorLine(columnWidths, ENABLE_BORDERS);
+        return sb.toString();
     }
 
-    private static void printRow(String[] row, int[] columnWidths, boolean showBorders) {
+    private static String printRow(String[] row, int[] columnWidths, boolean showBorders) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < row.length; i++) {
             sb.append(String.format("%-" + (columnWidths[i] - 1) + "s", row[i]));
@@ -41,7 +31,7 @@ public class TabularPrint {
                 sb.append(" ");
             }
         }
-        System.out.println(sb.toString());
+        return sb.toString() + "\n";
     }
 
     private static void printSeparatorLine(int[] columnWidths, boolean showBorders) {

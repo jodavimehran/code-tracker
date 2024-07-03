@@ -31,7 +31,7 @@ public class BlameCLI {
         String commitId = getWorkingDirCommit(workingDirRepo);
         List<LineBlameResult> lineBlameResults = new CodeTrackerBlame().blameFile(workingDirRepo, commitId, filePath);
         List<String[]> out = new BlameFormatter(Utils.getFileContentByCommit(workingDirRepo, commitId, filePath)).make(lineBlameResults);
-        TabularPrint.printTabularData(out);
+        System.out.println(TabularPrint.make(out));
     }
 
 
