@@ -23,6 +23,7 @@ public interface BlockTracker extends CodeTracker {
         private CodeElementType codeElementType;
         private int blockStartLineNumber;
         private int blockEndLineNumber;
+        private int blameLineNumber;
 
         public BlockTracker.Builder repository(Repository repository) {
             this.repository = repository;
@@ -69,6 +70,11 @@ public interface BlockTracker extends CodeTracker {
             return this;
         }
 
+        public BlockTracker.Builder blameLineNumber(int blameLineNumber) {
+            this.blameLineNumber = blameLineNumber;
+            return this;
+        }
+
         private void checkInput() {
 
         }
@@ -76,7 +82,7 @@ public interface BlockTracker extends CodeTracker {
         public BlockTracker build() {
             checkInput();
             return new BlockTrackerImpl(repository, startCommitId, filePath, methodName, methodDeclarationLineNumber,
-                    codeElementType, blockStartLineNumber, blockEndLineNumber);
+                    codeElementType, blockStartLineNumber, blockEndLineNumber, blameLineNumber);
         }
 
         public BlockTracker buildWithLocalFiles() {

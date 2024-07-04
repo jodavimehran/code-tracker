@@ -69,6 +69,7 @@ public class LineTrackerFromCodeTracker {
                             .codeElementType(codeElement.getLocation().getCodeElementType())
                             .blockStartLineNumber(codeElement.getLocation().getStartLine())
                             .blockEndLineNumber(codeElement.getLocation().getEndLine())
+                            .blameLineNumber(lineNumber)
                             .build();
                     blame = blockTracker.blame();
                     break;

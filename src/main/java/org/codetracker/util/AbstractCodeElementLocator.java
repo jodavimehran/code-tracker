@@ -18,6 +18,7 @@ import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
+import gr.uom.java.xmi.decomposition.TryStatementObject;
 
 public abstract class AbstractCodeElementLocator {
 	protected final String commitId;
@@ -96,6 +97,21 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean endLineBlockPredicate(Block block) {
+		if (block.getComposite() instanceof TryStatementObject) {
+			TryStatementObject tryStatement = (TryStatementObject)block.getComposite();
+			if (tryStatement.getCatchClauses().size() > 0) {
+				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
+				if (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+				}
+			}
+			else if (tryStatement.getFinallyClause() != null) {
+				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
+				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+				}
+			}
+		}
 	    return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() == lineNumber;
 	}
@@ -235,6 +251,21 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	private void checkClosingBracket(Block block) {
+		if (block.getComposite() instanceof TryStatementObject) {
+			TryStatementObject tryStatement = (TryStatementObject)block.getComposite();
+			if (tryStatement.getCatchClauses().size() > 0) {
+				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
+				if (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					block.setClosingCurlyBracket(true);
+				}
+			}
+			else if (tryStatement.getFinallyClause() != null) {
+				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
+				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					block.setClosingCurlyBracket(true);
+				}
+			}
+		}
 		if (block.getLocation().getEndLine() == lineNumber && block.getComposite() instanceof CompositeStatementObject) {
 			block.setClosingCurlyBracket(true);
 		}

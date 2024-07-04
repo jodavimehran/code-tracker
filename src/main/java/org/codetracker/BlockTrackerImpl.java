@@ -30,12 +30,14 @@ import java.util.function.Predicate;
 
 public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
     private final BlockTrackerChangeHistory changeHistory;
+    private final int blameLineNumber;
 
     public BlockTrackerImpl(Repository repository, String startCommitId, String filePath,
                             String methodName, int methodDeclarationLineNumber,
-                            CodeElementType blockType, int blockStartLineNumber, int blockEndLineNumber) {
+                            CodeElementType blockType, int blockStartLineNumber, int blockEndLineNumber, int blameLineNumber) {
         super(repository, startCommitId, filePath);
         this.changeHistory = new BlockTrackerChangeHistory(methodName, methodDeclarationLineNumber, blockType, blockStartLineNumber, blockEndLineNumber);
+        this.blameLineNumber = blameLineNumber;
     }
 
     @Override
@@ -337,7 +339,22 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             if (startBlock == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
-            if (startBlock.getLocation().getEndLine() == changeHistory.getBlockEndLineNumber() && startBlock.getComposite() instanceof CompositeStatementObject) {
+            if (startBlock.getComposite() instanceof TryStatementObject) {
+    			TryStatementObject tryStatement = (TryStatementObject)startBlock.getComposite();
+    			if (tryStatement.getCatchClauses().size() > 0) {
+    				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
+    				if (catchClause.getLocationInfo().getStartLine() == blameLineNumber || catchClause.getLocationInfo().getStartLine() == blameLineNumber + 1) {
+    					startBlock.setClosingCurlyBracket(true);
+    				}
+    			}
+    			else if (tryStatement.getFinallyClause() != null) {
+    				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
+    				if (finnalyClause.getLocationInfo().getStartLine() == blameLineNumber || finnalyClause.getLocationInfo().getStartLine() == blameLineNumber + 1) {
+    					startBlock.setClosingCurlyBracket(true);
+    				}
+    			}
+    		}
+            if (startBlock.getLocation().getEndLine() == blameLineNumber && startBlock.getComposite() instanceof CompositeStatementObject) {
             	startBlock.setClosingCurlyBracket(true);
     		}
             changeHistory.get().addNode(startBlock);
