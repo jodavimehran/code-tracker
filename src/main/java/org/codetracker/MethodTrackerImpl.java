@@ -239,9 +239,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             if (start == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getMethodName(), changeHistory.getMethodDeclarationLineNumber());
             }
-            if (start.getLocation().getEndLine() == this.changeHistory.getMethodDeclarationLineNumber()) {
-            	start.setClosingCurlyBracket(true);
-            }
+            start.checkClosingBracket(changeHistory.getMethodDeclarationLineNumber());
             changeHistory.get().addNode(start);
 
             ArrayDeque<Method> methods = new ArrayDeque<>();

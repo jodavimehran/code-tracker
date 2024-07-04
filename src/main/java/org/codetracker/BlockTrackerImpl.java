@@ -339,24 +339,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             if (startBlock == null) {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
-            if (startBlock.getComposite() instanceof TryStatementObject) {
-    			TryStatementObject tryStatement = (TryStatementObject)startBlock.getComposite();
-    			if (tryStatement.getCatchClauses().size() > 0) {
-    				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
-    				if (catchClause.getLocationInfo().getStartLine() == blameLineNumber || catchClause.getLocationInfo().getStartLine() == blameLineNumber + 1) {
-    					startBlock.setClosingCurlyBracket(true);
-    				}
-    			}
-    			else if (tryStatement.getFinallyClause() != null) {
-    				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
-    				if (finnalyClause.getLocationInfo().getStartLine() == blameLineNumber || finnalyClause.getLocationInfo().getStartLine() == blameLineNumber + 1) {
-    					startBlock.setClosingCurlyBracket(true);
-    				}
-    			}
-    		}
-            if (startBlock.getLocation().getEndLine() == blameLineNumber && startBlock.getComposite() instanceof CompositeStatementObject) {
-            	startBlock.setClosingCurlyBracket(true);
-    		}
+            startBlock.checkClosingBracket(blameLineNumber);
             changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();

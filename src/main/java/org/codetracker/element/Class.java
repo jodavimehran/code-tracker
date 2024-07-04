@@ -34,6 +34,12 @@ public class Class extends BaseCodeElement {
         return umlClass;
     }
 
+	public void checkClosingBracket(int lineNumber) {
+		if (getLocation().getEndLine() == lineNumber) {
+			setClosingCurlyBracket(true);
+		}
+	}
+
     @Override
     public LocationInfo getLocation() {
         return umlClass.getLocationInfo();

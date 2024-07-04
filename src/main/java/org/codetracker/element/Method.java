@@ -313,6 +313,12 @@ public class Method extends BaseCodeElement {
         return Util.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
     }
 
+	public void checkClosingBracket(int lineNumber) {
+		if (getLocation().getEndLine() == lineNumber) {
+			setClosingCurlyBracket(true);
+		}
+	}
+
     @Override
     public LocationInfo getLocation() {
         return umlOperation.getLocationInfo();

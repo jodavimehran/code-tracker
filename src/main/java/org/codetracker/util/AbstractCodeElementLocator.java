@@ -204,7 +204,7 @@ public abstract class AbstractCodeElementLocator {
             else {
             	block = method.findBlockWithoutName(this::endLineBlockPredicate);
             	if (block != null) {
-            		checkClosingBracket(block);
+            		block.checkClosingBracket(lineNumber);
                     return block;
                 }
             }
@@ -212,7 +212,7 @@ public abstract class AbstractCodeElementLocator {
             if (attribute != null) {
             	return attribute;
             }
-            checkClosingBracket(method);
+            method.checkClosingBracket(lineNumber);
             return method;
         }
         Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
@@ -224,7 +224,7 @@ public abstract class AbstractCodeElementLocator {
             else {
             	block = attribute.findBlockWithoutName(this::endLineBlockPredicate);
             	if (block != null) {
-            		checkClosingBracket(block);
+            		block.checkClosingBracket(lineNumber);
                     return block;
                 }
             }
@@ -232,42 +232,9 @@ public abstract class AbstractCodeElementLocator {
         }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {
-        	checkClosingBracket(clazz);
+        	clazz.checkClosingBracket(lineNumber);
         	return clazz;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
-	}
-
-	private void checkClosingBracket(Class clazz) {
-		if (clazz.getLocation().getEndLine() == lineNumber) {
-			clazz.setClosingCurlyBracket(true);
-		}
-	}
-
-	private void checkClosingBracket(Method method) {
-		if (method.getLocation().getEndLine() == lineNumber) {
-			method.setClosingCurlyBracket(true);
-		}
-	}
-
-	private void checkClosingBracket(Block block) {
-		if (block.getComposite() instanceof TryStatementObject) {
-			TryStatementObject tryStatement = (TryStatementObject)block.getComposite();
-			if (tryStatement.getCatchClauses().size() > 0) {
-				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
-				if (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1) {
-					block.setClosingCurlyBracket(true);
-				}
-			}
-			else if (tryStatement.getFinallyClause() != null) {
-				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
-				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
-					block.setClosingCurlyBracket(true);
-				}
-			}
-		}
-		if (block.getLocation().getEndLine() == lineNumber && block.getComposite() instanceof CompositeStatementObject) {
-			block.setClosingCurlyBracket(true);
-		}
 	}
 }

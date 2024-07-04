@@ -178,6 +178,27 @@ public class Block extends BaseCodeElement {
             return of((CompositeStatementObject) statement, method);
     }
 
+	public void checkClosingBracket(int lineNumber) {
+		if (getComposite() instanceof TryStatementObject) {
+			TryStatementObject tryStatement = (TryStatementObject)getComposite();
+			if (tryStatement.getCatchClauses().size() > 0) {
+				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
+				if (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					setClosingCurlyBracket(true);
+				}
+			}
+			else if (tryStatement.getFinallyClause() != null) {
+				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
+				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					setClosingCurlyBracket(true);
+				}
+			}
+		}
+		if (getLocation().getEndLine() == lineNumber && getComposite() instanceof CompositeStatementObject) {
+			setClosingCurlyBracket(true);
+		}
+	}
+
     @Override
     public LocationInfo getLocation() {
         return composite.getLocationInfo();

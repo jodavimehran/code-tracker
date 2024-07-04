@@ -328,9 +328,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             if (start == null) {
                 return null;
             }
-            if (start.getLocation().getEndLine() == classDeclarationLineNumber) {
-            	start.setClosingCurlyBracket(true);
-        	}
+            start.checkClosingBracket(classDeclarationLineNumber);
             start.setStart(true);
             classChangeHistory.addNode(start);
 
