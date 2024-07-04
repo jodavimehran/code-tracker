@@ -126,7 +126,7 @@ public class BlockTrackerChangeHistory {
                     ExtractOperationRefactoring extractOperationRefactoring = (ExtractOperationRefactoring) refactoring;
                     Method extractedMethod = Method.of(extractOperationRefactoring.getExtractedOperation(), currentVersion);
                     if (equalMethod.test(extractedMethod)) {
-                        CompositeStatementObject matchedBlockFromSourceMethod = null;
+                        AbstractCodeFragment matchedBlockFromSourceMethod = null;
                         UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
                         for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
                             if (mapping instanceof CompositeStatementObjectMapping) {
@@ -145,6 +145,19 @@ public class BlockTrackerChangeHistory {
                                         if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
                                             blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
                                         }
+                                    }
+                                    break;
+                                }
+                            }
+                            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    matchedBlockFromSourceMethod = mapping.getFragment1();
+                                    Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                    List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                        blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
                                     }
                                     break;
                                 }
@@ -187,6 +200,16 @@ public class BlockTrackerChangeHistory {
                                     return true;
                                 }
                             }
+                            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                Block matchedBlockInsideInlinedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideInlinedMethodBody, inlineOperationRefactoring.toString());
+                                    blocks.add(blockBefore);
+                                    blockChangeHistory.connectRelatedNodes();
+                                    return true;
+                                }
+                            }
                         }
                     }
                     break;
@@ -204,6 +227,26 @@ public class BlockTrackerChangeHistory {
                                         // implementation for introduced
                                         /*
                                         Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        	mergeMatches++;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        	mergeMatches++;
+                                    }
+                                }
+                                else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                    Block matchedBlockInsideMergedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
+                                        Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
                                         blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
                                         blocks.add(blockBefore);
                                         blockChangeHistory.connectRelatedNodes();
@@ -239,6 +282,26 @@ public class BlockTrackerChangeHistory {
                                         // implementation for introduced
                                         /*
                                         Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
+                                        blocks.add(blockBefore);
+                                        blockChangeHistory.connectRelatedNodes();
+                                        return true;
+                                        */
+                                        Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
+                                        //Check if refactored
+                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        // check if it is in the matched
+                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                            return true;
+                                        }
+                                    }
+                                    else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                        Block matchedBlockInsideSplitMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                        if (matchedBlockInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        // implementation for introduced
+                                        /*
+                                        Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
                                         blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideMergedMethodBody, mergeOperationRefactoring.toString());
                                         blocks.add(blockBefore);
                                         blockChangeHistory.connectRelatedNodes();
@@ -559,7 +622,7 @@ public class BlockTrackerChangeHistory {
                     matches++;
                 }
             }
-            else if (mapping instanceof LeafMapping && mapping.getFragment2() instanceof StatementObject) {
+            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
                 Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
                 if (blockAfter != null && equalOperator.test(blockAfter)) {
                     Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
