@@ -173,7 +173,7 @@ public class BlockTrackerChangeHistory {
                         else {
                             VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
-                            Block leftBlock = Block.of(matchedBlockFromSourceMethod, sourceMethod);
+                            Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
                             	blocks.add(leftBlock);
                             }
