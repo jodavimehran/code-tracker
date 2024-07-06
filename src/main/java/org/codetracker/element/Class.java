@@ -2,10 +2,14 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
+import gr.uom.java.xmi.UMLComment;
+
 import org.codetracker.api.Version;
 
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
+
+import java.util.function.Predicate;
 
 public class Class extends BaseCodeElement {
     private final UMLAbstractClass umlClass;
@@ -28,6 +32,16 @@ public class Class extends BaseCodeElement {
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
+    }
+
+    public Comment findComment(Predicate<Comment> equalOperator) {
+        for (UMLComment umlComment : umlClass.getComments()) {
+            Comment comment = Comment.of(umlComment, this);
+            if (comment != null && equalOperator.test(comment)) {
+                return comment;
+            }
+        }
+        return null;
     }
 
     public UMLAbstractClass getUmlClass() {

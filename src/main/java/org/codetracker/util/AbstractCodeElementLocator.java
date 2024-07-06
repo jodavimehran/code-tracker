@@ -9,6 +9,7 @@ import org.codetracker.api.Version;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
+import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 
@@ -89,6 +90,11 @@ public abstract class AbstractCodeElementLocator {
 	protected boolean attributePredicateWithoutName(Attribute attribute) {
 	    return attribute.getUmlAttribute().getLocationInfo().getStartLine() <= lineNumber &&
 	            attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
+	}
+
+	protected boolean commentPredicate(Comment comment) {
+	    return comment.getComment().getLocationInfo().getStartLine() == lineNumber &&
+	    		comment.getComment().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
 	protected boolean blockPredicate(Block block) {
@@ -208,6 +214,10 @@ public abstract class AbstractCodeElementLocator {
                     return block;
                 }
             }
+            Comment comment = method.findComment(this::commentPredicate);
+            if (comment != null) {
+            	return comment;
+            }
             Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
             if (attribute != null) {
             	return attribute;
@@ -228,10 +238,18 @@ public abstract class AbstractCodeElementLocator {
                     return block;
                 }
             }
+            Comment comment = attribute.findComment(this::commentPredicate);
+            if (comment != null) {
+            	return comment;
+            }
             return attribute;
         }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {
+        	Comment comment = clazz.findComment(this::commentPredicate);
+            if (comment != null) {
+            	return comment;
+            }
         	clazz.checkClosingBracket(lineNumber);
         	return clazz;
         }

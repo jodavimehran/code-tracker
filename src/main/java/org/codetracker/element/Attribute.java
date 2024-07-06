@@ -3,6 +3,7 @@ package org.codetracker.element;
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
@@ -94,6 +95,34 @@ public class Attribute extends BaseCodeElement {
                 Block block = promotionStrategy(matches);
                 if (block != null) {
                 	return block;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Comment findComment(Predicate<Comment> equalOperator) {
+        for (UMLComment umlComment : umlAttribute.getComments()) {
+            Comment comment = Comment.of(umlComment, this);
+            if (comment != null && equalOperator.test(comment)) {
+                return comment;
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlAttribute.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                for (UMLComment umlComment : operation.getComments()) {
+                    Comment comment = Comment.of(umlComment, this);
+                    if (comment != null && equalOperator.test(comment)) {
+                        return comment;
+                    }
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlAttribute.getAllLambdas()) {
+            for (UMLComment umlComment : lambda.getComments()) {
+                Comment comment = Comment.of(umlComment, this);
+                if (comment != null && equalOperator.test(comment)) {
+                    return comment;
                 }
             }
         }

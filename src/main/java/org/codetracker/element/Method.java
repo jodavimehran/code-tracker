@@ -200,6 +200,34 @@ public class Method extends BaseCodeElement {
 		return null;
 	}
 
+    public Comment findComment(Predicate<Comment> equalOperator) {
+        for (UMLComment umlComment : umlOperation.getComments()) {
+            Comment comment = Comment.of(umlComment, this);
+            if (comment != null && equalOperator.test(comment)) {
+                return comment;
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                for (UMLComment umlComment : operation.getComments()) {
+                    Comment comment = Comment.of(umlComment, this);
+                    if (comment != null && equalOperator.test(comment)) {
+                        return comment;
+                    }
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            for (UMLComment umlComment : lambda.getComments()) {
+                Comment comment = Comment.of(umlComment, this);
+                if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+            }
+        }
+        return null;
+    }
+
     public VariableDeclarationContainer getUmlOperation() {
         return umlOperation;
     }
