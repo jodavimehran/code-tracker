@@ -338,7 +338,7 @@ public class Method extends BaseCodeElement {
     public static String getDocumentsSha512(VariableDeclarationContainer info) {
         if (info.getComments().isEmpty())
             return null;
-        return Util.getSHA512(info.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
+        return Util.getSHA512(info.getComments().stream().map(UMLComment::getFullText).collect(Collectors.joining(";")));
     }
 
 	public void checkClosingBracket(int lineNumber) {

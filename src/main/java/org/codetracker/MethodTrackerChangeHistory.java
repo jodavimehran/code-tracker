@@ -384,8 +384,8 @@ public class MethodTrackerChangeHistory {
     }
 
     private static boolean checkOperationDocumentationChanged(VariableDeclarationContainer operation1, VariableDeclarationContainer operation2) {
-        String comments1 = Util.getSHA512(operation1.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
-        String comments2 = Util.getSHA512(operation2.getComments().stream().map(UMLComment::getText).collect(Collectors.joining(";")));
+        String comments1 = Util.getSHA512(operation1.getComments().stream().map(UMLComment::getFullText).collect(Collectors.joining(";")));
+        String comments2 = Util.getSHA512(operation2.getComments().stream().map(UMLComment::getFullText).collect(Collectors.joining(";")));
         return !comments1.equals(comments2);
     }
 

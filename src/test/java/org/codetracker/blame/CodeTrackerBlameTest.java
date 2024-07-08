@@ -43,8 +43,8 @@ public class CodeTrackerBlameTest {
         String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
         String filePath = "servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java";
         return Stream.of(
-                Arguments.of(url, filePath, new CodeTrackerBlame(), "/blame/formatting/codetracker.txt"),
-                Arguments.of(url, filePath, new GitBlame(), "/blame/formatting/git.txt")
+                Arguments.of(url, filePath, new CodeTrackerBlame(), System.getProperty("user.dir") + "/src/test/resources/blame/formatting/codetracker.txt"),
+                Arguments.of(url, filePath, new GitBlame(), System.getProperty("user.dir") + "/src/test/resources/blame/formatting/git.txt")
         );
     }
     @Test
