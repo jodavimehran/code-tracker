@@ -4,6 +4,7 @@ import org.codetracker.api.*;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
+import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.eclipse.jgit.lib.Repository;
 
@@ -72,6 +73,23 @@ public class LineTrackerFromCodeTracker {
                             .blameLineNumber(lineNumber)
                             .build();
                     blame = blockTracker.blame();
+                    break;
+                case "Comment":
+                    Comment comment = (Comment) codeElement;
+                    CommentTracker commentTracker = CodeTracker
+                            .commentTracker()
+                            .repository(repository)
+                            .filePath(filePath)
+                            .startCommitId(commitId)
+                            .methodName(comment.getOperation().get().getName())
+                            .methodDeclarationLineNumber(
+                                    comment.getOperation().get().getLocationInfo().getStartLine()
+                            )
+                            .codeElementType(codeElement.getLocation().getCodeElementType())
+                            .commentStartLineNumber(codeElement.getLocation().getStartLine())
+                            .commentEndLineNumber(codeElement.getLocation().getEndLine())
+                            .build();
+                    blame = commentTracker.blame();
                     break;
                 default:
                     break;

@@ -43,6 +43,16 @@ public class Comment extends BaseCodeElement {
 		return clazz != null ? Optional.of(clazz) : Optional.empty();
 	}
 
+    public static Comment of(UMLComment comment, VariableDeclarationContainer operation, Version version) {
+        Method method = Method.of(operation, version);
+        return of(comment, method);
+    }
+
+    public static Comment of(UMLComment comment, UMLAbstractClass clazz, Version version) {
+        Class method = Class.of(clazz, version);
+        return of(comment, method);
+    }
+
 	public static Comment of(UMLComment comment, Class clazz) {
 		LocationInfo commentLocationInfo = comment.getLocationInfo();
 		String statementType = commentLocationInfo.getCodeElementType().name();

@@ -64,7 +64,7 @@ public class Utils {
     }
     public static String getBlameOutput(String url, String filePath, IBlame blamer, String reposPath, GitService gitService) throws Exception {
         String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(reposPath + "/" + getProject(url), URLHelper.getRepo(url));
+        Repository repository = gitService.cloneIfNotExists(reposPath + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         List<String> lines = getFileContentByCommit(repository, commitId, filePath);
         BlameFormatter formatter = new BlameFormatter(lines);
         List<LineBlameResult> blameResult = apply(commitId, filePath, blamer, repository);

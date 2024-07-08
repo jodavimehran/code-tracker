@@ -23,6 +23,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.stream.Stream;
 
 import static org.codetracker.blame.util.Utils.getBlameOutput;
+import static org.codetracker.blame.util.Utils.getOwner;
 import static org.codetracker.blame.util.Utils.getProject;
 
 /* Created by pourya on 2024-06-26*/
@@ -72,7 +73,7 @@ public class CodeTrackerBlameTest {
         String expected = "LineBlameResult{commitId='ae3a4f8a50b1d25b2d3db50495a50feaa0b2b872', filePath='src/main/java/dat/MakeIntels.java', shortCommitId='ae3a4f8a5', beforeFilePath='src/main/java/dat/Make.java', committer='Pouryafard75', commitDate='1719280029', lineNumber=18}";
 
         String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getProject(url), URLHelper.getRepo(url));
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         History.HistoryInfo<? extends CodeElement> lineBlame =
                 new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
         LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
@@ -84,30 +85,28 @@ public class CodeTrackerBlameTest {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
         int lineNumber = 24;
-        String expected = "LineBlameResult{commitId='ae3a4f8a50b1d25b2d3db50495a50feaa0b2b872', filePath='src/main/java/dat/MakeIntels.java', shortCommitId='ae3a4f8a5', beforeFilePath='src/main/java/dat/Make.java', committer='Pouryafard75', commitDate='1719280029', lineNumber=18}";
+        String expected = "LineBlameResult{commitId='e5e209d526b49544b2fb899bde8856290cf209a0', filePath='src/main/java/dat/Make.java', shortCommitId='e5e209d52', beforeFilePath='src/main/java/dat/Make.java', committer='Pouryafard75', commitDate='1709775227', lineNumber=20}";
 
         String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getProject(url), URLHelper.getRepo(url));
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         History.HistoryInfo<? extends CodeElement> lineBlame =
                 new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
         LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
-//        Assertions.assertEquals(expected, lineBlameResult.toString()); //TODO: Update this one
+        Assertions.assertEquals(expected, lineBlameResult.toString());
     }
 
     @Test
-    public void blameTestSingleLine_3() throws Exception {
+    public void blameTestSingleLine3() throws Exception {
         String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
         String filePath = "servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java";
         int lineNumber = 78;
-        String expected = "???";
+        String expected = "LineBlameResult{commitId='68514f3fe653a87899b0e0e7c9d2e67c85afefe0', filePath='servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java', shortCommitId='68514f3fe', beforeFilePath='servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java', committer='Carson Wang', commitDate='1435366348', lineNumber=49}";
 
         String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getProject(url), URLHelper.getRepo(url));
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         History.HistoryInfo<? extends CodeElement> lineBlame =
                 new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
         LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
-//        Assertions.assertEquals(expected, lineBlameResult.toString()); //TODO: Update this one
+        Assertions.assertEquals(expected, lineBlameResult.toString());
     }
-
-
 }
