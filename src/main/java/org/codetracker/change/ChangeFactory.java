@@ -37,6 +37,10 @@ public final class ChangeFactory {
         return new ChangeFactory(type, "block");
     }
 
+    public static ChangeFactory forComment(Change.Type type) {
+        return new ChangeFactory(type, "comment");
+    }
+
     public static ChangeFactory forAttribute(Change.Type type) {
         return new ChangeFactory(type, "attribute");
     }
