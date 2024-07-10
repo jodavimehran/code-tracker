@@ -4,6 +4,7 @@ import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
@@ -108,6 +109,13 @@ public class Attribute extends BaseCodeElement {
                 return comment;
             }
         }
+        UMLJavadoc javadoc = umlAttribute.getJavadoc();
+    	if (javadoc != null) {
+    		Comment comment = Comment.of(javadoc, this);
+    		if (comment != null && equalOperator.test(comment)) {
+                return comment;
+            }
+    	}
         for (UMLAnonymousClass anonymousClass : umlAttribute.getAnonymousClassList()) {
             for (UMLOperation operation : anonymousClass.getOperations()) {
                 for (UMLComment umlComment : operation.getComments()) {

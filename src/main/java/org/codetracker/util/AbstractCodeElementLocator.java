@@ -136,7 +136,7 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean commentPredicate(Comment comment) {
-	    return comment.getComment().getLocationInfo().getStartLine() == lineNumber &&
+	    return comment.getComment().getLocationInfo().getStartLine() <= lineNumber &&
 	    		comment.getComment().getLocationInfo().getEndLine() >= lineNumber;
 	}
 

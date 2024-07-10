@@ -25,10 +25,10 @@
                                                                                                                             25) import tachyon.worker.block.meta.StorageTier;
                                                                                                                             26) import tachyon.worker.block.meta.TempBlockMeta;
                                                                                                                             27)
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 28) /**
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 29)  * An allocator that allocates a block in the storage dir with most free space. It always allocates
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 30)  * to the highest tier if the requested block store location is any tier.
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 31)  */
+9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 28) /**
+9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 29)  * An allocator that allocates a block in the storage dir with most free space. It always allocates
+9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 30)  * to the highest tier if the requested block store location is any tier.
+9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 31)  */
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 32) public class MaxFreeAllocator implements Allocator {
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 33)   private final BlockMetadataManager mMetaManager;
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 34)

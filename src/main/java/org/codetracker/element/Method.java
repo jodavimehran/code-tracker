@@ -207,6 +207,15 @@ public class Method extends BaseCodeElement {
                 return comment;
             }
         }
+        if (umlOperation instanceof UMLOperation) {
+        	UMLJavadoc javadoc = ((UMLOperation) umlOperation).getJavadoc();
+        	if (javadoc != null) {
+        		Comment comment = Comment.of(javadoc, this);
+        		if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+        	}
+        }
         for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
             for (UMLOperation operation : anonymousClass.getOperations()) {
                 for (UMLComment umlComment : operation.getComments()) {

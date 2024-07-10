@@ -2,7 +2,9 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
+import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLJavadoc;
 
 import org.codetracker.api.Version;
 
@@ -40,6 +42,15 @@ public class Class extends BaseCodeElement {
             if (comment != null && equalOperator.test(comment)) {
                 return comment;
             }
+        }
+        if (umlClass instanceof UMLClass) {
+        	UMLJavadoc javadoc = ((UMLClass) umlClass).getJavadoc();
+        	if (javadoc != null) {
+        		Comment comment = Comment.of(javadoc, this);
+        		if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+        	}
         }
         return null;
     }
