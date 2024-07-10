@@ -76,19 +76,29 @@ public class LineTrackerFromCodeTracker {
                     break;
                 case "Comment":
                     Comment comment = (Comment) codeElement;
-                    CommentTracker commentTracker = CodeTracker
+                    CommentTracker.Builder builder = CodeTracker
                             .commentTracker()
                             .repository(repository)
                             .filePath(filePath)
                             .startCommitId(commitId)
-                            .methodName(comment.getOperation().get().getName())
-                            .methodDeclarationLineNumber(
-                                    comment.getOperation().get().getLocationInfo().getStartLine()
-                            )
                             .codeElementType(codeElement.getLocation().getCodeElementType())
                             .commentStartLineNumber(codeElement.getLocation().getStartLine())
-                            .commentEndLineNumber(codeElement.getLocation().getEndLine())
-                            .build();
+                            .commentEndLineNumber(codeElement.getLocation().getEndLine());
+                    if (comment.getOperation().isPresent()) {
+                    	builder
+                    	.methodName(comment.getOperation().get().getName())
+                        .methodDeclarationLineNumber(
+                                comment.getOperation().get().getLocationInfo().getStartLine()
+                        );
+                    }
+                    else if (comment.getClazz().isPresent()) {
+                    	builder
+                    	.methodName(comment.getClazz().get().getName())
+                        .methodDeclarationLineNumber(
+                                comment.getClazz().get().getLocationInfo().getStartLine()
+                        );
+                    }
+                    CommentTracker commentTracker = builder.build();
                     blame = commentTracker.blame();
                     break;
                 default:

@@ -16,6 +16,7 @@ import org.codetracker.element.Variable;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
+import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
@@ -60,6 +61,21 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean classPredicateWithoutName(Class clazz) {
+		for (UMLComment comment : clazz.getUmlClass().getComments()) {
+			if (comment.getLocationInfo().getStartLine() <= lineNumber &&
+					comment.getLocationInfo().getEndLine() >= lineNumber) {
+				return true;
+			}
+		}
+		if (clazz.getUmlClass() instanceof UMLClass) {
+			UMLClass umlClass = (UMLClass) clazz.getUmlClass();
+			if (umlClass.getJavadoc() != null) {
+				if (umlClass.getJavadoc().getLocationInfo().getStartLine() <= lineNumber &&
+						umlClass.getJavadoc().getLocationInfo().getEndLine() >= lineNumber) {
+					return true;
+				}
+			}
+		}
 		return clazz.getUmlClass().getLocationInfo().getStartLine() <= lineNumber &&
 	            clazz.getUmlClass().getLocationInfo().getEndLine() >= lineNumber;
 	}
@@ -71,6 +87,21 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean methodPredicateWithoutName(Method method) {
+		for (UMLComment comment : method.getUmlOperation().getComments()) {
+			if (comment.getLocationInfo().getStartLine() <= lineNumber &&
+					comment.getLocationInfo().getEndLine() >= lineNumber) {
+				return true;
+			}
+		}
+		if (method.getUmlOperation() instanceof UMLOperation) {
+			UMLOperation umlOperation = (UMLOperation) method.getUmlOperation();
+			if (umlOperation.getJavadoc() != null) {
+				if (umlOperation.getJavadoc().getLocationInfo().getStartLine() <= lineNumber &&
+						umlOperation.getJavadoc().getLocationInfo().getEndLine() >= lineNumber) {
+					return true;
+				}
+			}
+		}
 	    return method.getUmlOperation().getLocationInfo().getStartLine() <= lineNumber &&
 	            method.getUmlOperation().getLocationInfo().getEndLine() >= lineNumber;
 	}
@@ -88,6 +119,18 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean attributePredicateWithoutName(Attribute attribute) {
+		for (UMLComment comment : attribute.getUmlAttribute().getComments()) {
+			if (comment.getLocationInfo().getStartLine() <= lineNumber &&
+					comment.getLocationInfo().getEndLine() >= lineNumber) {
+				return true;
+			}
+		}
+		if (attribute.getUmlAttribute().getJavadoc() != null) {
+			if (attribute.getUmlAttribute().getJavadoc().getLocationInfo().getStartLine() <= lineNumber &&
+					attribute.getUmlAttribute().getJavadoc().getLocationInfo().getEndLine() >= lineNumber) {
+				return true;
+			}
+		}
 	    return attribute.getUmlAttribute().getLocationInfo().getStartLine() <= lineNumber &&
 	            attribute.getUmlAttribute().getLocationInfo().getEndLine() >= lineNumber;
 	}

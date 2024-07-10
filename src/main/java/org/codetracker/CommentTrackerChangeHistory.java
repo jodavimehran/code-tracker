@@ -10,6 +10,7 @@ import org.codetracker.api.Version;
 import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
@@ -29,6 +30,7 @@ import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 
 public class CommentTrackerChangeHistory {
@@ -82,6 +84,12 @@ public class CommentTrackerChangeHistory {
         return method.getUmlOperation().getName().equals(methodName) &&
                 method.getUmlOperation().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
+    }
+
+    public boolean isStartClass(Class clazz) {
+        return clazz.getUmlClass().getName().equals(methodName) &&
+        		clazz.getUmlClass().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
+        		clazz.getUmlClass().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
     public boolean checkClassDiffForCommentChange(ArrayDeque<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
@@ -279,6 +287,55 @@ public class CommentTrackerChangeHistory {
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "commented code");
                 else
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
+                comments.add(commentBefore);
+                commentChangeHistory.connectRelatedNodes();
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean checkBodyOfMatchedClasses(Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+        if (classDiff == null)
+            return false;
+        // check if it is in the matched
+        if (isMatched(classDiff, comments, currentVersion, parentVersion, equalOperator))
+            return true;
+        //Check if is added
+        return isAdded(classDiff, comments, currentVersion, parentVersion, equalOperator);
+    }
+
+    public boolean isMatched(UMLAbstractClassDiff classDiff, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    	int matches = 0;
+    	for (Pair<UMLComment, UMLComment> mapping : classDiff.getCommentListDiff().getCommonComments()) {
+            Comment commentAfter = Comment.of(mapping.getRight(), classDiff.getNextClass(), currentVersion);
+            if (commentAfter != null && equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
+                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                }
+                else {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                }
+                if(matches == 0) {
+                	comments.add(commentBefore);
+                }
+                commentChangeHistory.connectRelatedNodes();
+                matches++;
+            }
+        }
+    	if(matches > 0) {
+    		return true;
+    	}
+        return false;
+    }
+
+    private boolean isAdded(UMLAbstractClassDiff classDiff, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+        for (UMLComment composite : classDiff.getCommentListDiff().getAddedComments()) {
+            Comment commentAfter = Comment.of(composite, classDiff.getNextClass(), currentVersion);
+            if (equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(composite, classDiff.getNextClass(), parentVersion);
+                commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
                 comments.add(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;

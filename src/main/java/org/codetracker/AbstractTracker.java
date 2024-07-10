@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
+import org.codetracker.element.Class;
 import org.codetracker.element.Method;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
@@ -45,6 +46,17 @@ public abstract class AbstractTracker {
 	protected AbstractTracker(String startCommitId, String filePath) {
 		this.startCommitId = startCommitId;
 		this.filePath = filePath;
+	}
+
+	protected static UMLClassBaseDiff lightweightClassDiff(UMLAbstractClass leftClass, UMLAbstractClass rightClass) {
+	    if (leftClass instanceof UMLClass && rightClass instanceof UMLClass) {
+	        UMLClassDiff classDiff = new UMLClassDiff((UMLClass)leftClass, (UMLClass)rightClass, null);
+	        return classDiff;
+	    }
+	    else if (leftClass instanceof UMLAnonymousClass && rightClass instanceof UMLAnonymousClass) {
+	    	//TODO
+	    }
+	    return null;
 	}
 
 	protected static UMLClassBaseDiff lightweightClassDiff(UMLModel leftModel, UMLModel rightModel, VariableDeclarationContainer leftOperation, VariableDeclarationContainer rightOperation) {
@@ -422,6 +434,14 @@ public abstract class AbstractTracker {
 	    return fileNames;
 	}
 
+	protected static boolean isClassAdded(UMLModelDiff modelDiff, String className) {
+		UMLClass addedClass = modelDiff.getAddedClass(className);
+		if (addedClass != null) {
+			return true;
+		}
+		return false;
+	}
+
 	protected static boolean isMethodAdded(UMLModelDiff modelDiff, String className, Predicate<Method> equalOperator, Consumer<Method> addedMethodHandler, Version currentVersion) {
 	    List<UMLOperation> addedOperations = getAllClassesDiff(modelDiff)
 	            .stream()
@@ -470,6 +490,16 @@ public abstract class AbstractTracker {
 	                method = getMethod(version, predicate, anonymousClass.getOperations());
 	                if (method != null) return method;
 	            }
+	        }
+	    return null;
+	}
+
+	protected static Class getClass(UMLModel umlModel, Version version, Predicate<Class> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	            Class clazz = Class.of(umlClass, version);
+	            if (predicate.test(clazz))
+		            return clazz;
 	        }
 	    return null;
 	}
