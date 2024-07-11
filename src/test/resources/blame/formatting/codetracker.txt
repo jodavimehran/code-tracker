@@ -15,15 +15,15 @@
                                                                                                                             15)
                                                                                                                             16) package tachyon.worker.block.allocator;
                                                                                                                             17)
-                                                                                                                            18) import java.io.IOException;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 18) import java.io.IOException;
                                                                                                                             19)
-                                                                                                                            20) import com.google.common.base.Preconditions;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 20) import com.google.common.base.Preconditions;
                                                                                                                             21)
-                                                                                                                            22) import tachyon.worker.block.BlockStoreLocation;
-                                                                                                                            23) import tachyon.worker.block.BlockMetadataManager;
-                                                                                                                            24) import tachyon.worker.block.meta.StorageDir;
-                                                                                                                            25) import tachyon.worker.block.meta.StorageTier;
-                                                                                                                            26) import tachyon.worker.block.meta.TempBlockMeta;
+e390964c2 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Bin Fan     2015-06-29 16:18:56 -0400 22) import tachyon.worker.block.BlockStoreLocation;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 23) import tachyon.worker.block.BlockMetadataManager;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 24) import tachyon.worker.block.meta.StorageDir;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 25) import tachyon.worker.block.meta.StorageTier;
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 26) import tachyon.worker.block.meta.TempBlockMeta;
                                                                                                                             27)
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 28) /**
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 29)  * An allocator that allocates a block in the storage dir with most free space. It always allocates

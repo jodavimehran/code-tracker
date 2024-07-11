@@ -21,6 +21,10 @@ public interface CodeTracker {
         return new CommentTracker.Builder();
     }
 
+    static ImportTracker.Builder importTracker() {
+        return new ImportTracker.Builder();
+    }
+
     static ClassTracker.Builder classTracker() {
         return new ClassTracker.Builder();
     }

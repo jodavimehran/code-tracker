@@ -41,6 +41,10 @@ public final class ChangeFactory {
         return new ChangeFactory(type, "comment");
     }
 
+    public static ChangeFactory forImport(Change.Type type) {
+        return new ChangeFactory(type, "import");
+    }
+
     public static ChangeFactory forAttribute(Change.Type type) {
         return new ChangeFactory(type, "attribute");
     }

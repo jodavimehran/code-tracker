@@ -5,6 +5,7 @@ import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
+import org.codetracker.element.Import;
 import org.codetracker.element.Method;
 import org.eclipse.jgit.lib.Repository;
 
@@ -100,6 +101,23 @@ public class LineTrackerFromCodeTracker {
                     }
                     CommentTracker commentTracker = builder.build();
                     blame = commentTracker.blame();
+                    break;
+                case "Import":
+                    Import imp = (Import) codeElement;
+                    ImportTracker importTracker = CodeTracker
+                            .importTracker()
+                            .repository(repository)
+                            .filePath(filePath)
+                            .startCommitId(commitId)
+                            .className(imp.getClazz().getName())
+                            .classDeclarationLineNumber(
+                                    imp.getClazz().getLocationInfo().getStartLine()
+                            )
+                            .codeElementType(codeElement.getLocation().getCodeElementType())
+                            .importStartLineNumber(codeElement.getLocation().getStartLine())
+                            .importEndLineNumber(codeElement.getLocation().getEndLine())
+                            .build();
+                    blame = importTracker.blame();
                     break;
                 default:
                     break;
