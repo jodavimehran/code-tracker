@@ -10,6 +10,7 @@ import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
+import org.codetracker.element.Import;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 
@@ -17,6 +18,7 @@ import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
@@ -140,6 +142,11 @@ public abstract class AbstractCodeElementLocator {
 	    		comment.getComment().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
+	protected boolean importPredicate(Import imp) {
+	    return imp.getUmlImport().getLocationInfo().getStartLine() <= lineNumber &&
+	    		imp.getUmlImport().getLocationInfo().getEndLine() >= lineNumber;
+	}
+
 	protected boolean blockPredicate(Block block) {
 	    return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
@@ -209,6 +216,20 @@ public abstract class AbstractCodeElementLocator {
 		            Class clazz = Class.of(umlClass, version);
 		            if (predicate.test(clazz))
 		                return clazz;
+	        	}
+	        }
+	    return null;
+	}
+
+	protected static Import getImport(UMLModel umlModel, Version version, String filePath, Predicate<Import> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	        	if (umlClass.getSourceFile().equals(filePath)) {
+		            for (UMLImport umlImport : umlClass.getImportedTypes()) {
+		        		Import imp = Import.of(umlImport, umlClass, version);
+			            if (predicate.test(imp))
+			                return imp;
+		            }
 	        	}
 	        }
 	    return null;
@@ -286,6 +307,10 @@ public abstract class AbstractCodeElementLocator {
             	return comment;
             }
             return attribute;
+        }
+        Import imp = getImport(umlModel, version, filePath, this::importPredicate);
+        if (imp != null) {
+        	return imp;
         }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {

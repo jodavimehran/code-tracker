@@ -49,8 +49,8 @@ public class Comment extends BaseCodeElement {
     }
 
     public static Comment of(UMLAbstractDocumentation comment, UMLAbstractClass clazz, Version version) {
-        Class method = Class.of(clazz, version);
-        return of(comment, method);
+        Class c = Class.of(clazz, version);
+        return of(comment, c);
     }
 
 	public static Comment of(UMLAbstractDocumentation comment, Class clazz) {
