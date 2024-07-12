@@ -259,8 +259,8 @@ public abstract class AbstractCodeElementLocator {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
 	        	if (umlClass.getSourceFile().equals(filePath)) {
-		            if (umlClass.getPackageDeclaration() != null) {
-		            	UMLPackage umlPackage = umlClass.getPackageDeclaration();
+		            if (umlClass.getPackageDeclaration().isPresent()) {
+		            	UMLPackage umlPackage = umlClass.getPackageDeclaration().get();
 		        		Package pack = Package.of(umlPackage, umlClass, version);
 			            if (predicate.test(pack))
 			                return pack;

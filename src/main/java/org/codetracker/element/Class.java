@@ -13,6 +13,7 @@ import org.codetracker.api.Version;
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 public class Class extends BaseCodeElement {
@@ -40,9 +41,9 @@ public class Class extends BaseCodeElement {
 
     public Package findPackage(Predicate<Package> equalOperator) {
     	if (umlClass instanceof UMLClass) {
-        	UMLPackage umlPackage = ((UMLClass) umlClass).getPackageDeclaration();
-        	if (umlPackage != null) {
-	        	Package pack = Package.of(umlPackage, this);
+        	Optional<UMLPackage> umlPackage = ((UMLClass) umlClass).getPackageDeclaration();
+        	if (umlPackage.isPresent()) {
+	        	Package pack = Package.of(umlPackage.get(), this);
 	        	if (pack != null && equalOperator.test(pack)) {
 	                return pack;
 	            }
