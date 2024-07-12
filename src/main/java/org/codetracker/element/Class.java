@@ -62,6 +62,19 @@ public class Class extends BaseCodeElement {
                     return comment;
                 }
         	}
+        	UMLJavadoc packageJavadoc = ((UMLClass) umlClass).getPackageDeclarationJavadoc();
+        	if (packageJavadoc != null) {
+        		Comment comment = Comment.of(packageJavadoc, this);
+        		if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+        	}
+        	for (UMLComment umlComment : ((UMLClass) umlClass).getPackageDeclarationComments()) {
+                Comment comment = Comment.of(umlComment, this);
+                if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+            }
         }
         return null;
     }

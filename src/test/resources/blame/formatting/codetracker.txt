@@ -1,17 +1,17 @@
-                                                                                                                            1)  /*
-                                                                                                                            2)   * Licensed to the University of California, Berkeley under one or more contributor license
-                                                                                                                            3)   * agreements. See the NOTICE file distributed with this work for additional information regarding
-                                                                                                                            4)   * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
-                                                                                                                            5)   * "License"); you may not use this file except in compliance with the License. You may obtain a
-                                                                                                                            6)   * copy of the License at
-                                                                                                                            7)   *
-                                                                                                                            8)   * http://www.apache.org/licenses/LICENSE-2.0
-                                                                                                                            9)   *
-                                                                                                                            10)  * Unless required by applicable law or agreed to in writing, software distributed under the License
-                                                                                                                            11)  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
-                                                                                                                            12)  * or implied. See the License for the specific language governing permissions and limitations under
-                                                                                                                            13)  * the License.
-                                                                                                                            14)  */
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 1)  /*
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 2)   * Licensed to the University of California, Berkeley under one or more contributor license
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 3)   * agreements. See the NOTICE file distributed with this work for additional information regarding
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 4)   * copyright ownership. The ASF licenses this file to You under the Apache License, Version 2.0 (the
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 5)   * "License"); you may not use this file except in compliance with the License. You may obtain a
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 6)   * copy of the License at
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 7)   *
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 8)   * http://www.apache.org/licenses/LICENSE-2.0
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 9)   *
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 10)  * Unless required by applicable law or agreed to in writing, software distributed under the License
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 11)  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 12)  * or implied. See the License for the specific language governing permissions and limitations under
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 13)  * the License.
+68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 14)  */
                                                                                                                             15)
                                                                                                                             16) package tachyon.worker.block.allocator;
                                                                                                                             17)

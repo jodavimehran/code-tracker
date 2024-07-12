@@ -77,6 +77,18 @@ public abstract class AbstractCodeElementLocator {
 					return true;
 				}
 			}
+			if (umlClass.getPackageDeclarationJavadoc() != null) {
+				if (umlClass.getPackageDeclarationJavadoc().getLocationInfo().getStartLine() <= lineNumber &&
+						umlClass.getPackageDeclarationJavadoc().getLocationInfo().getEndLine() >= lineNumber) {
+					return true;
+				}
+			}
+			for (UMLComment comment : umlClass.getPackageDeclarationComments()) {
+				if (comment.getLocationInfo().getStartLine() <= lineNumber &&
+						comment.getLocationInfo().getEndLine() >= lineNumber) {
+					return true;
+				}
+			}
 		}
 		return clazz.getUmlClass().getLocationInfo().getStartLine() <= lineNumber &&
 	            clazz.getUmlClass().getLocationInfo().getEndLine() >= lineNumber;

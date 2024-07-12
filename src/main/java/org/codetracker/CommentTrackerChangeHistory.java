@@ -356,8 +356,43 @@ public class CommentTrackerChangeHistory {
                 matches++;
             }
         }
+    	for (Pair<UMLComment, UMLComment> mapping : classDiff.getPackageDeclarationCommentListDiff().getCommonComments()) {
+            Comment commentAfter = Comment.of(mapping.getRight(), classDiff.getNextClass(), currentVersion);
+            if (commentAfter != null && equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
+                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                }
+                else {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                }
+                if(matches == 0) {
+                	comments.add(commentBefore);
+                }
+                commentChangeHistory.connectRelatedNodes();
+                matches++;
+            }
+        }
     	if (classDiff.getJavadocDiff().isPresent()) {
     		UMLJavadocDiff javadocDiff = classDiff.getJavadocDiff().get();
+    		Comment commentAfter = Comment.of(javadocDiff.getJavadocAfter(), classDiff.getNextClass(), currentVersion);
+    		if (commentAfter != null && equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), classDiff.getOriginalClass(), parentVersion);
+                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                }
+                else {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                }
+                if(matches == 0) {
+                	comments.add(commentBefore);
+                }
+                commentChangeHistory.connectRelatedNodes();
+                matches++;
+    		}
+    	}
+    	if (classDiff.getPackageDeclarationJavadocDiff().isPresent()) {
+    		UMLJavadocDiff javadocDiff = classDiff.getPackageDeclarationJavadocDiff().get();
     		Comment commentAfter = Comment.of(javadocDiff.getJavadocAfter(), classDiff.getNextClass(), currentVersion);
     		if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), classDiff.getOriginalClass(), parentVersion);
@@ -391,12 +426,33 @@ public class CommentTrackerChangeHistory {
                 return true;
             }
         }
+        for (UMLComment comment : classDiff.getPackageDeclarationCommentListDiff().getAddedComments()) {
+            Comment commentAfter = Comment.of(comment, classDiff.getNextClass(), currentVersion);
+            if (equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(comment, classDiff.getNextClass(), parentVersion);
+                commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
+                comments.add(commentBefore);
+                commentChangeHistory.connectRelatedNodes();
+                return true;
+            }
+        }
         if (classDiff.getNextClass() instanceof UMLClass) {
         	UMLJavadoc javadoc = ((UMLClass) classDiff.getNextClass()).getJavadoc();
         	if (javadoc != null) {
         		Comment commentAfter = Comment.of(javadoc, classDiff.getNextClass(), currentVersion);
                 if (equalOperator.test(commentAfter)) {
                     Comment commentBefore = Comment.of(javadoc, classDiff.getNextClass(), parentVersion);
+                    commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
+                    comments.add(commentBefore);
+                    commentChangeHistory.connectRelatedNodes();
+                    return true;
+                }
+        	}
+        	UMLJavadoc packageDeclarationJavadoc = ((UMLClass) classDiff.getNextClass()).getPackageDeclarationJavadoc();
+        	if (packageDeclarationJavadoc != null) {
+        		Comment commentAfter = Comment.of(packageDeclarationJavadoc, classDiff.getNextClass(), currentVersion);
+                if (equalOperator.test(commentAfter)) {
+                    Comment commentBefore = Comment.of(packageDeclarationJavadoc, classDiff.getNextClass(), parentVersion);
                     commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
                     comments.add(commentBefore);
                     commentChangeHistory.connectRelatedNodes();
