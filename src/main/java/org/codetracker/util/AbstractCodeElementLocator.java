@@ -12,6 +12,7 @@ import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Import;
 import org.codetracker.element.Method;
+import org.codetracker.element.Package;
 import org.codetracker.element.Variable;
 
 import gr.uom.java.xmi.UMLAnonymousClass;
@@ -21,6 +22,7 @@ import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.UMLPackage;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.TryStatementObject;
 
@@ -154,6 +156,12 @@ public abstract class AbstractCodeElementLocator {
 	    		comment.getComment().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
+	protected boolean packagePredicate(Package pack) {
+	    return pack.getUmlPackage().getLocationInfo().getStartLine() <= lineNumber &&
+	    		pack.getUmlPackage().getLocationInfo().getEndLine() >= lineNumber;
+	}
+
+
 	protected boolean importPredicate(Import imp) {
 	    return imp.getUmlImport().getLocationInfo().getStartLine() <= lineNumber &&
 	    		imp.getUmlImport().getLocationInfo().getEndLine() >= lineNumber;
@@ -247,6 +255,21 @@ public abstract class AbstractCodeElementLocator {
 	    return null;
 	}
 
+	protected static Package getPackage(UMLModel umlModel, Version version, String filePath, Predicate<Package> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	        	if (umlClass.getSourceFile().equals(filePath)) {
+		            if (umlClass.getPackageDeclaration() != null) {
+		            	UMLPackage umlPackage = umlClass.getPackageDeclaration();
+		        		Package pack = Package.of(umlPackage, umlClass, version);
+			            if (predicate.test(pack))
+			                return pack;
+		            }
+	        	}
+	        }
+	    return null;
+	}
+
 	protected CodeElement locateWithName(Version version, UMLModel umlModel) throws CodeElementNotFoundException {
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithName);
         if (clazz != null) {
@@ -323,6 +346,10 @@ public abstract class AbstractCodeElementLocator {
         Import imp = getImport(umlModel, version, filePath, this::importPredicate);
         if (imp != null) {
         	return imp;
+        }
+        Package pack = getPackage(umlModel, version, filePath, this::packagePredicate);
+        if (pack != null) {
+        	return pack;
         }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {

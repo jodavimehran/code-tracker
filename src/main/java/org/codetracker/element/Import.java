@@ -31,9 +31,9 @@ public class Import extends BaseCodeElement {
     }
 
 	public static Import of(UMLImport umlImport, Class clazz) {
-		LocationInfo commentLocationInfo = umlImport.getLocationInfo();
-		String statementType = commentLocationInfo.getCodeElementType().name();
-		String name = String.format("%s$%s(%d-%d)", clazz.getName(), statementType, commentLocationInfo.getStartLine(), commentLocationInfo.getEndLine());
+		LocationInfo importLocationInfo = umlImport.getLocationInfo();
+		String statementType = importLocationInfo.getCodeElementType().name();
+		String name = String.format("%s$%s(%d-%d)", clazz.getName(), statementType, importLocationInfo.getStartLine(), importLocationInfo.getEndLine());
 		String sha512 = Util.getSHA512(umlImport.getName());
 		String identifierExcludeVersion = String.format(
 				"%s$%s:{%s}",
@@ -41,7 +41,7 @@ public class Import extends BaseCodeElement {
 				statementType,
 				sha512
 				);
-		return new Import(umlImport, clazz.getUmlClass(), identifierExcludeVersion, name, commentLocationInfo.getFilePath(), clazz.getVersion());
+		return new Import(umlImport, clazz.getUmlClass(), identifierExcludeVersion, name, importLocationInfo.getFilePath(), clazz.getVersion());
 	}
 
 	@Override

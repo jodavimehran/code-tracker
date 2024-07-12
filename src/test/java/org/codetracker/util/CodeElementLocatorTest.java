@@ -7,6 +7,7 @@ import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Import;
 import org.codetracker.element.Method;
+import org.codetracker.element.Package;
 import org.codetracker.element.Variable;
 import org.eclipse.jgit.lib.Repository;
 import static org.junit.jupiter.api.Assertions.*;
@@ -766,6 +767,24 @@ public class CodeElementLocatorTest {
 	        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IMPORT_DECLARATION);
 	        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
 	        assertEquals(((Import)codeElement).getUmlImport().getName(), "com.puppycrawl.tools.checkstyle.utils.CommonUtils");
+        }
+    }
+    // Package tests
+    @Test
+    public void testPackageLocator() throws Exception {
+    	GitService gitService = new GitServiceImpl();
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 20;
+        try (Repository repository = gitService.cloneIfNotExists(FOLDER_TO_CLONE + "checkstyle\\checkstyle",
+                "https://github.com/checkstyle/checkstyle.git")){
+        	CodeElementLocator locator = new CodeElementLocator(repository, commitId, filePath, lineNumber);
+	        CodeElement codeElement = locator.locate();
+	        assertNotNull(codeElement);
+	        assertEquals(codeElement.getClass(), Package.class);
+	        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.PACKAGE_DECLARATION);
+	        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+	        assertEquals(((Package)codeElement).getUmlPackage().getName(), "com.puppycrawl.tools.checkstyle");
         }
     }
 }

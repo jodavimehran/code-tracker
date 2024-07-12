@@ -6,6 +6,7 @@ import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.UMLJavadoc;
+import gr.uom.java.xmi.UMLPackage;
 
 import org.codetracker.api.Version;
 
@@ -35,6 +36,19 @@ public class Class extends BaseCodeElement {
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
+    }
+
+    public Package findPackage(Predicate<Package> equalOperator) {
+    	if (umlClass instanceof UMLClass) {
+        	UMLPackage umlPackage = ((UMLClass) umlClass).getPackageDeclaration();
+        	if (umlPackage != null) {
+	        	Package pack = Package.of(umlPackage, this);
+	        	if (pack != null && equalOperator.test(pack)) {
+	                return pack;
+	            }
+        	}
+    	}
+    	return null;
     }
 
     public Import findImport(Predicate<Import> equalOperator) {
