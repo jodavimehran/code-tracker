@@ -15,6 +15,7 @@ import org.codetracker.change.Introduced;
 import org.codetracker.change.clazz.ClassContainerChange;
 import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
+import org.codetracker.element.Package;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
@@ -48,6 +49,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
 
     private boolean isStartClass(Class clazz) {
         return clazz.getUmlClass().getNonQualifiedName().equals(className);
+    }
+
+    private boolean isStartComment(Package pack) {
+    	return pack.getUmlClass().getName().endsWith(className) &&
+    			pack.getUmlPackage().getLocationInfo().getStartLine() == classDeclarationLineNumber &&
+    			pack.getUmlPackage().getLocationInfo().getEndLine() == classDeclarationLineNumber;
     }
 
     @Override
@@ -324,21 +331,22 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
-            Class start = getClass(umlModel, startVersion, this::isStartClass);
-            if (start == null) {
+            Class startClass = getClass(umlModel, startVersion, this::isStartClass);
+            if (startClass == null) {
                 return null;
             }
-            start.checkClosingBracket(classDeclarationLineNumber);
-            start.setStart(true);
-            classChangeHistory.addNode(start);
+            startClass.checkClosingBracket(classDeclarationLineNumber);
+            Package startPackage = startClass.findPackage(this::isStartComment);
+            startClass.setStart(true);
+            classChangeHistory.addNode(startClass);
 
             ArrayDeque<Class> classes = new ArrayDeque<>();
-            classes.addFirst(start);
+            classes.addFirst(startClass);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
             while (!classes.isEmpty()) {
-            	History.HistoryInfo<Class> blame = blameReturn(start);
+            	History.HistoryInfo<Class> blame = startPackage != null ? blameReturn(startPackage) : blameReturn(startClass);
             	if (blame != null) return blame;
                 Class currentClass = classes.poll();
                 if (currentClass.isAdded()) {
@@ -443,6 +451,19 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
 					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
 						return historyInfo;
 					}
+				}
+			}
+		}
+		return null;
+    }
+
+    private History.HistoryInfo<Class> blameReturn(Package startPackage) {
+    	List<HistoryInfo<Class>> history = HistoryImpl.processHistory(classChangeHistory.getCompleteGraph());
+        Collections.reverse(history); 
+		for (History.HistoryInfo<Class> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (change instanceof Introduced || change instanceof ClassMove) {
+					return historyInfo;
 				}
 			}
 		}

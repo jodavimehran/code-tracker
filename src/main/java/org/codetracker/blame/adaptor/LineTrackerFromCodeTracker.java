@@ -7,6 +7,7 @@ import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Import;
 import org.codetracker.element.Method;
+import org.codetracker.element.Package;
 import org.eclipse.jgit.lib.Repository;
 
 /* Created by pourya on 2024-06-26*/
@@ -118,6 +119,19 @@ public class LineTrackerFromCodeTracker {
                             .importEndLineNumber(codeElement.getLocation().getEndLine())
                             .build();
                     blame = importTracker.blame();
+                    break;
+                case "Package":
+                    Package pack = (Package) codeElement;
+                    className = pack.getUmlClass().getNonQualifiedName();
+                    classTracker = CodeTracker
+                            .classTracker()
+                            .repository(repository)
+                            .filePath(filePath)
+                            .startCommitId(commitId)
+                            .className(className)
+                            .classDeclarationLineNumber(lineNumber)
+                            .build();
+                    blame = classTracker.blame();
                     break;
                 default:
                     break;

@@ -9,20 +9,20 @@ import gr.uom.java.xmi.UMLPackage;
 
 public class Package extends BaseCodeElement {
 	private final UMLPackage umlPackage;
-	private final UMLAbstractClass clazz;
+	private final UMLAbstractClass umlClass;
 	
-	public Package(UMLPackage umlPackage, UMLAbstractClass clazz, String identifierIgnoringVersion, String name, String filePath, Version version) {
+	public Package(UMLPackage umlPackage, UMLAbstractClass umlClass, String identifierIgnoringVersion, String name, String filePath, Version version) {
 		super(identifierIgnoringVersion, name, filePath, version);
 		this.umlPackage = umlPackage;
-		this.clazz = clazz;
+		this.umlClass = umlClass;
 	}
 
     public UMLPackage getUmlPackage() {
 		return umlPackage;
 	}
 
-	public UMLAbstractClass getClazz() {
-		return clazz;
+	public UMLAbstractClass getUmlClass() {
+		return umlClass;
 	}
 
 	public static Package of(UMLPackage umlPackage, UMLAbstractClass clazz, Version version) {
