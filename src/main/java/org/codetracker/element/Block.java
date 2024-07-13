@@ -2,6 +2,7 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.VariableDeclarationContainer;
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.*;
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
@@ -190,6 +191,25 @@ public class Block extends BaseCodeElement {
 			else if (tryStatement.getFinallyClause() != null) {
 				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
 				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					setClosingCurlyBracket(true);
+				}
+			}
+		}
+		if (getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+			CompositeStatementObject ifComp = (CompositeStatementObject)getComposite();
+			if (ifComp.getStatements().size() == 2) {
+				// if statement has an else branch
+				AbstractStatement ifBranch = ifComp.getStatements().get(0);
+				AbstractStatement elseBranch = ifComp.getStatements().get(1);
+				if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+						elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+						!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+					setClosingCurlyBracket(true);
+				}
+				if(ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+						elseBranch.getLocationInfo().getStartLine() == lineNumber + 1) {
 					setClosingCurlyBracket(true);
 				}
 			}

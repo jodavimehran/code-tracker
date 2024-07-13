@@ -23,6 +23,8 @@ import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLPackage;
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.decomposition.AbstractStatement;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.TryStatementObject;
 
@@ -184,6 +186,25 @@ public abstract class AbstractCodeElementLocator {
 			else if (tryStatement.getFinallyClause() != null) {
 				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
 				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+				}
+			}
+		}
+		if (block.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+			CompositeStatementObject ifComp = (CompositeStatementObject)block.getComposite();
+			if (ifComp.getStatements().size() == 2) {
+				// if statement has an else branch
+				AbstractStatement ifBranch = ifComp.getStatements().get(0);
+				AbstractStatement elseBranch = ifComp.getStatements().get(1);
+				if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+						elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+						!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+				}
+				if(ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+						elseBranch.getLocationInfo().getStartLine() == lineNumber + 1) {
 					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
 				}
 			}
