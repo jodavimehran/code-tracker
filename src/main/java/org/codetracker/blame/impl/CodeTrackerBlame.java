@@ -33,6 +33,17 @@ public class CodeTrackerBlame implements IBlame {
         return result;
     }
 
+    public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine, int toLine) throws Exception {
+        List<LineBlameResult> result = new ArrayList<>();
+        for (int lineNumber = fromLine; lineNumber <= toLine; lineNumber++) {
+            try {
+                result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
+            } catch (Exception e) {
+                logger.error(e.getMessage());
+            }
+        }
+        return result;
+    }
 
     private LineBlameResult getBlameInfo(Repository repository, String commitId, String filePath, int lineNumber) {
         History.HistoryInfo<? extends CodeElement> latestChange = getLineBlame(repository, commitId, filePath, lineNumber);

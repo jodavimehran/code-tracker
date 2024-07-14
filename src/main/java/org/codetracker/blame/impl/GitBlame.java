@@ -39,4 +39,29 @@ public class GitBlame implements IBlame {
 
         return blameList;
     }
+
+	@Override
+	public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine,
+			int toLine) throws Exception {
+		List<LineBlameResult> blameList = new ArrayList<>();
+        try (Git git = new Git(repository)) {
+            ObjectId commit = repository.resolve(commitId);
+
+            BlameCommand blameCommand = git.blame();
+            blameCommand.setStartCommit(commit);
+            blameCommand.setFilePath(filePath);
+
+            BlameResult blameResult = blameCommand.call();
+
+            if (blameResult != null) {
+                for (int i = fromLine; i <= toLine; i++) {
+                    blameList.add(LineBlameResult.of(blameResult, i));
+                }
+            }
+        } catch (RevisionSyntaxException | MissingObjectException e) {
+            throw new Exception("Failed to resolve the commit ID", e);
+        }
+
+        return blameList;
+	}
 }

@@ -11,10 +11,15 @@ public class BlameFormatter {
     private final String NOT_FOUND_PLACEHOLDER;
     private final List<String> lines;
     private final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss Z");
+    private int fromLine;
 
     public BlameFormatter(List<String> lines) {
-        this.lines = lines;
-        NOT_FOUND_PLACEHOLDER = "";
+    	this("", lines);
+    }
+
+    public BlameFormatter(List<String> lines, int fromLine) {
+    	this("", lines);
+    	this.fromLine = fromLine;
     }
 
     public BlameFormatter(String NOT_FOUND_PLACEHOLDER, List<String> lines) {
@@ -29,7 +34,7 @@ public class BlameFormatter {
             if (lineBlameResults != null && lineNumber <= lineBlameResults.size()) {
                 lineBlameResult = lineBlameResults.get(lineNumber - 1);
             }
-            result.add(make(lineBlameResult, lineNumber, lines.get(lineNumber - 1)));
+            result.add(make(lineBlameResult, fromLine > 0 ? fromLine + lineNumber - 1 : lineNumber, lines.get(lineNumber - 1)));
         }
         return result;
     }

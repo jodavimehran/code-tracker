@@ -31,7 +31,7 @@ import static org.codetracker.blame.util.Utils.getProject;
 public class CodeTrackerBlameTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
-    private static final String EXPECTED = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
+
     @ParameterizedTest
     @MethodSource("testBlamerInputProvider")
     public void testBlameWithFormatting(String url, String filePath, IBlame blamer, String expectedPath) throws Exception {
@@ -51,10 +51,20 @@ public class CodeTrackerBlameTest {
     public void testBlameWithLocalRepo() throws Exception {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
-        //String expectedPath = "/blame/blameTestWithLocalRepo.txt";
-
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
         String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
-        assertEqualWithFile(EXPECTED, actual);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
+    @Test
+    public void testBlameLineRangeWithLocalRepo() throws Exception {
+        String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
+        String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        int fromLine = 443;
+        int toLine = 487;
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameLineRangeTestWithLocalRepo.txt";
+        String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService, fromLine, toLine);
+        assertEqualWithFile(expectedFilePath, actual);
     }
 
     private void assertEqualWithFile(String expectedResultPath, String actual) throws IOException {

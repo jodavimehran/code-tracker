@@ -71,9 +71,21 @@ public class Utils {
         return TabularPrint.make(formatter.make(blameResult));
     }
 
+    public static String getBlameOutput(String url, String filePath, IBlame blamer, String reposPath, GitService gitService, int fromLine, int toLine) throws Exception {
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(reposPath + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        List<String> lines = getFileContentByCommit(repository, commitId, filePath);
+        List<String> lineRange = lines.subList(fromLine-1, toLine);
+        BlameFormatter formatter = new BlameFormatter(lineRange, fromLine);
+        List<LineBlameResult> blameResult = apply(commitId, filePath, blamer, repository, fromLine, toLine);
+        return TabularPrint.make(formatter.make(blameResult));
+    }
 
     private static List<LineBlameResult> apply(String commitId, String filePath, IBlame blamer, Repository repository) throws Exception {
         return blamer.blameFile(repository, commitId, filePath);
+    }
+    private static List<LineBlameResult> apply(String commitId, String filePath, IBlame blamer, Repository repository, int fromLine, int toLine) throws Exception {
+        return blamer.blameFile(repository, commitId, filePath, fromLine, toLine);
     }
     public static String getOwner(String gitURL){
         return gitURL.split("/")[3];
