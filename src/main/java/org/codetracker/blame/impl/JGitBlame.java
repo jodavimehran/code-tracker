@@ -13,7 +13,7 @@ import org.eclipse.jgit.lib.Repository;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GitBlame implements IBlame {
+public class JGitBlame implements IBlame {
 
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
         List<LineBlameResult> blameList = new ArrayList<>();

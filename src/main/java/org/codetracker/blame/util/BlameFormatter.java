@@ -50,7 +50,7 @@ public class BlameFormatter {
             HistoryInfo<? extends BaseCodeElement> historyInfo = blameInfo.get(lineNumber);
             LineBlameResult lineBlameResult = null;
             if (historyInfo != null) {
-                lineBlameResult = LineBlameResult.of(historyInfo);
+                lineBlameResult = LineBlameResult.of(historyInfo, lineNumber);
             }
             result.add(make(lineBlameResult, fromLine > 0 ? fromLine + lineNumber - 1 : lineNumber, lines.get(lineNumber - 1)));
         }

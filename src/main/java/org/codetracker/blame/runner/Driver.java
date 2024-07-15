@@ -3,7 +3,7 @@ package org.codetracker.blame.runner;
 import org.apache.commons.io.FileUtils;
 import org.codetracker.blame.IBlame;
 import org.codetracker.blame.impl.CodeTrackerBlame;
-import org.codetracker.blame.impl.GitBlame;
+import org.codetracker.blame.impl.JGitBlame;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
 
@@ -21,7 +21,7 @@ public class Driver {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
         writeBlameToFile(url, filePath, new CodeTrackerBlame(), "cd-blame.txt");
-        writeBlameToFile(url, filePath, new GitBlame(), "git-blame.txt");
+        writeBlameToFile(url, filePath, new JGitBlame(), "git-blame.txt");
     }
 
     private static void writeBlameToFile(String url, String filePath, IBlame blamer, String outputFile) throws Exception {

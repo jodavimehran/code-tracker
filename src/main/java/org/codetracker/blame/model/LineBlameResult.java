@@ -64,9 +64,8 @@ public class LineBlameResult {
     public int getLineNumber() {
         return lineNumber;
     }
-    public static LineBlameResult of(History.HistoryInfo<? extends CodeElement> latestChange){
+    public static LineBlameResult of(History.HistoryInfo<? extends CodeElement> latestChange, int lineNumber){
         if (latestChange == null) return null;
-        int lineNumber = latestChange.getElementAfter().getLocation().getStartLine();
         return new LineBlameResult(latestChange.getCommitId(),
                 latestChange.getElementAfter().getFilePath(),
                 latestChange.getElementBefore().getFilePath(),
