@@ -494,7 +494,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         assertEquals(codeElement.getClass(), Block.class);
         assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), 527);
-        assertTrue(((Block)codeElement).isClosingCurlyBracket());
+        assertTrue(((Block)codeElement).isElseBlockEnd());
     }
 
     @Test
@@ -509,7 +509,7 @@ public class CodeElementLocatorWithLocalFilesTest {
         assertEquals(codeElement.getClass(), Block.class);
         assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
         assertEquals(codeElement.getLocation().getStartLine(), 534);
-        assertTrue(((Block)codeElement).isClosingCurlyBracket());
+        assertTrue(((Block)codeElement).isElseBlockEnd());
     }
 
     @Test
@@ -646,4 +646,35 @@ public class CodeElementLocatorWithLocalFilesTest {
         assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
         assertEquals(((Package)codeElement).getUmlPackage().getName(), "com.puppycrawl.tools.checkstyle");
     }
+    // Opening Else Bracket tests
+    @Test
+    public void testOpeningBracketElseBlockLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 530;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
+        assertEquals(codeElement.getLocation().getStartLine(), 527);
+        assertTrue(((Block)codeElement).isElseBlockStart());
+    }
+
+    @Test
+    public void testOpeningBracketElseBlockLocator2() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 537;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Block.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.IF_STATEMENT);
+        assertEquals(codeElement.getLocation().getStartLine(), 534);
+        assertTrue(((Block)codeElement).isElseBlockStart());
+    }
+
 }
