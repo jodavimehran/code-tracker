@@ -26,7 +26,7 @@ public class CodeTrackerBlame implements IBlame {
         for (int lineNumber = 1; lineNumber <= maxLine; lineNumber++) {
             try {
             	if (lines.get(lineNumber- 1).isBlank()) 
-            		result.add(LineBlameResult.of(null));
+            		result.add(null);
             	else
             		result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
             } catch (Exception e) {
@@ -42,7 +42,7 @@ public class CodeTrackerBlame implements IBlame {
         for (int lineNumber = fromLine; lineNumber <= toLine; lineNumber++) {
             try {
             	if (lines.get(lineNumber- 1).isBlank()) 
-            		result.add(LineBlameResult.of(null));
+            		result.add(null);
             	else
             		result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
             } catch (Exception e) {
@@ -54,7 +54,7 @@ public class CodeTrackerBlame implements IBlame {
 
     private LineBlameResult getBlameInfo(Repository repository, String commitId, String filePath, int lineNumber) {
         History.HistoryInfo<? extends CodeElement> latestChange = getLineBlame(repository, commitId, filePath, lineNumber);
-        return LineBlameResult.of(latestChange);
+        return LineBlameResult.of(latestChange, lineNumber);
     }
 
 
