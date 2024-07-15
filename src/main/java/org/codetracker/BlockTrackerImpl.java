@@ -12,6 +12,7 @@ import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.change.Change;
 import org.codetracker.change.Introduced;
+import org.codetracker.change.block.ElseBlockAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
 import org.codetracker.change.block.ReplaceLoopWithPipeline;
@@ -340,6 +341,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                 throw new CodeElementNotFoundException(filePath, changeHistory.getBlockType().getName(), changeHistory.getBlockStartLineNumber());
             }
             startBlock.checkClosingBracket(blameLineNumber);
+            startBlock.checkElseBlockStart(blameLineNumber);
             changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();
@@ -619,7 +621,12 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         Collections.reverse(history); 
 		for (History.HistoryInfo<Block> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (startBlock.isClosingCurlyBracket()) {
+				if (startBlock.isElseBlockStart()) {
+					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
+						return historyInfo;
+					}
+				}
+				else if (startBlock.isClosingCurlyBracket()) {
 					if (change instanceof Introduced) {
 						return historyInfo;
 					}

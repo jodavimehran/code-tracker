@@ -25,6 +25,8 @@ public interface Change {
         FINALLY_BLOCK_CHANGE("finally block change"),
         FINALLY_BLOCK_ADDED("finally block added"),
         FINALLY_BLOCK_REMOVED("finally block removed"),
+        ELSE_BLOCK_ADDED("else block added"),
+        ELSE_BLOCK_REMOVED("else block removed"),
         BLOCK_SPLIT("block split"),
         BLOCK_MERGE("block merge"),
         METHOD_SPLIT("method split"),

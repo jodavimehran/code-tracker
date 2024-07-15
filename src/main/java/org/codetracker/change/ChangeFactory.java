@@ -157,6 +157,14 @@ public final class ChangeFactory {
                 change = new FinallyBlockRemoved();
                 break;
             }
+            case ELSE_BLOCK_ADDED: {
+                change = new ElseBlockAdded();
+                break;
+            }
+            case ELSE_BLOCK_REMOVED: {
+                change = new ElseBlockRemoved();
+                break;
+            }
             case BLOCK_SPLIT: {
                 if (refactoring == null)
                     throw new NullPointerException();

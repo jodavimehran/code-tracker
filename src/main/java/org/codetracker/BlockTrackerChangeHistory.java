@@ -525,6 +525,7 @@ public class BlockTrackerChangeHistory {
                 if (equalOperator.test(blockAfter)) {
                     boolean bodyChange = false;
                     boolean catchOrFinallyChange = false;
+                    boolean elseChange = false;
                     Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                     List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
@@ -612,7 +613,20 @@ public class BlockTrackerChangeHistory {
                             catchOrFinallyChange = true;
                         }
                     }
-                    if (!bodyChange && !catchOrFinallyChange) {
+                    if (blockBefore.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT) && 
+                    		blockAfter.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+                    	CompositeStatementObject ifBefore = (CompositeStatementObject) blockBefore.getComposite();
+                    	CompositeStatementObject ifAfter = (CompositeStatementObject) blockAfter.getComposite();
+                    	if (ifBefore.getStatements().size() == 1 && ifAfter.getStatements().size() == 2) {
+                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_ADDED));
+                    		elseChange = true;
+                    	}
+                    	else if (ifBefore.getStatements().size() == 2 && ifAfter.getStatements().size() == 1) {
+                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_REMOVED));
+                    		elseChange = true;
+                    	}
+                    }
+                    if (!bodyChange && !catchOrFinallyChange && !elseChange) {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
                     if(matches == 0) {

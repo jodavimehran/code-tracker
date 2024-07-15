@@ -193,15 +193,9 @@ public abstract class AbstractCodeElementLocator {
 		if (block.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
 			CompositeStatementObject ifComp = (CompositeStatementObject)block.getComposite();
 			if (ifComp.getStatements().size() == 2) {
-				// if statement has an else branch
+				// if statement has an else branch, line number is the closing bracket before else branch
 				AbstractStatement ifBranch = ifComp.getStatements().get(0);
 				AbstractStatement elseBranch = ifComp.getStatements().get(1);
-				if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
-						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
-						elseBranch.getLocationInfo().getStartLine() == lineNumber &&
-						!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
-					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
-				}
 				if(ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
 						ifBranch.getLocationInfo().getEndLine() == lineNumber &&
 						elseBranch.getLocationInfo().getStartLine() == lineNumber + 1) {
@@ -211,6 +205,39 @@ public abstract class AbstractCodeElementLocator {
 		}
 	    return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() == lineNumber;
+	}
+
+	protected boolean startLineElseBlockPredicate(Block block) {
+		// in case of if-else-if chain, this method should return true only for the first if in the chain
+		// we assume the first if in the chain, introduced the else
+		if (block.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+			CompositeStatementObject ifComp = (CompositeStatementObject)block.getComposite();
+			CompositeStatementObject parent = ifComp.getParent();
+			if (parent != null && !parent.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+				// find the last else-if in the chain
+				while (ifComp.getStatements().size() == 2 && ifComp.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+					ifComp = (CompositeStatementObject) ifComp.getStatements().get(1);
+				}
+				if (ifComp.getStatements().size() == 2) {
+					// lineNumber is else branch
+					AbstractStatement ifBranch = ifComp.getStatements().get(0);
+					AbstractStatement elseBranch = ifComp.getStatements().get(1);
+					if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+							ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+						return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+					}
+					if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+							ifBranch.getLocationInfo().getEndLine() == lineNumber - 1 &&
+							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+						return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	private static Method getMethod(Version version, Predicate<Method> predicate, List<UMLOperation> operations) {
@@ -328,6 +355,11 @@ public abstract class AbstractCodeElementLocator {
                 return block;
             }
             else {
+            	block = method.findBlockWithoutName(this::startLineElseBlockPredicate);
+            	if (block != null) {
+            		block.checkElseBlockStart(lineNumber);
+            		return block;
+            	}
             	block = method.findBlockWithoutName(this::endLineBlockPredicate);
             	if (block != null) {
             		block.checkClosingBracket(lineNumber);
