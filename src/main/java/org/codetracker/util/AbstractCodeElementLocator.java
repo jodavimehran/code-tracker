@@ -437,10 +437,6 @@ public abstract class AbstractCodeElementLocator {
         if (imp != null) {
         	return imp;
         }
-        Package pack = getPackage(umlModel, version, filePath, this::packagePredicate);
-        if (pack != null) {
-        	return pack;
-        }
         Class clazz = getClass(umlModel, version, filePath, this::classPredicateWithoutName);
         if (clazz != null) {
         	Comment comment = clazz.findComment(this::commentPredicate);
@@ -449,6 +445,10 @@ public abstract class AbstractCodeElementLocator {
             }
         	clazz.checkClosingBracket(lineNumber);
         	return clazz;
+        }
+        Package pack = getPackage(umlModel, version, filePath, this::packagePredicate);
+        if (pack != null) {
+        	return pack;
         }
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
 	}

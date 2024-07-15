@@ -119,4 +119,34 @@ public class CodeTrackerBlameTest {
         LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
         Assertions.assertEquals(expected, lineBlameResult.toString());
     }
+
+    @Test
+    public void blameTestPackageDeclarationJavadoc() throws Exception {
+        String url = "https://github.com/structr/structr/commit/6c59050b8b03adf6d8043f3fb7add0496f447edf";
+        String filePath = "structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java";
+        int lineNumber = 1;
+        String expected = "LineBlameResult{commitId='2572fd72d96812328b1439434f8b42fccec694f8', filePath='structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java', shortCommitId='2572fd72d', beforeFilePath='structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java', committer='Axel Morgner', commitDate='1428756399', lineNumber=1}";
+
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        History.HistoryInfo<? extends CodeElement> lineBlame =
+                new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+        LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
+        Assertions.assertEquals(expected, lineBlameResult.toString());
+    }
+
+    @Test
+    public void blameTestPackageDeclaration() throws Exception {
+        String url = "https://github.com/structr/structr/commit/6c59050b8b03adf6d8043f3fb7add0496f447edf";
+        String filePath = "structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java";
+        int lineNumber = 19;
+        String expected = "LineBlameResult{commitId='4aefa2bab5f8cda021a05de29ccf046bbdc90b52', filePath='structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java', shortCommitId='4aefa2bab', beforeFilePath='structr-rest/src/main/java/org/structr/rest/resource/SchemaTypeResource.java', committer='amorgner', commitDate='1356007184', lineNumber=48}";
+
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        History.HistoryInfo<? extends CodeElement> lineBlame =
+                new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+        LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
+        Assertions.assertEquals(expected, lineBlameResult.toString());
+    }
 }
