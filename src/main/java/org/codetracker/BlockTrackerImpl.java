@@ -342,6 +342,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             }
             startBlock.checkClosingBracket(blameLineNumber);
             startBlock.checkElseBlockStart(blameLineNumber);
+            startBlock.checkElseBlockEnd(blameLineNumber);
             changeHistory.get().addNode(startBlock);
 
             ArrayDeque<Block> blocks = new ArrayDeque<>();
@@ -621,7 +622,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
         Collections.reverse(history); 
 		for (History.HistoryInfo<Block> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (startBlock.isElseBlockStart()) {
+				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
 					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
 						return historyInfo;
 					}

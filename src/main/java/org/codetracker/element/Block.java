@@ -228,17 +228,38 @@ public class Block extends BaseCodeElement {
 					// lineNumber is else branch
 					AbstractStatement ifBranch = ifComp.getStatements().get(0);
 					AbstractStatement elseBranch = ifComp.getStatements().get(1);
-					if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
-							ifBranch.getLocationInfo().getEndLine() == lineNumber &&
+					if (ifBranch.getLocationInfo().getEndLine() == lineNumber &&
 							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
 							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
 						setElseBlockStart(true);
 					}
-					if (ifBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
-							ifBranch.getLocationInfo().getEndLine() == lineNumber - 1 &&
+					if (ifBranch.getLocationInfo().getEndLine() == lineNumber - 1 &&
 							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
 							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
 						setElseBlockStart(true);
+					}
+				}
+			}
+		}
+	}
+
+	public void checkElseBlockEnd(int lineNumber) {
+		// in case of if-else-if chain, this method should return true only for the first if in the chain
+		// we assume the first if in the chain, introduced the else
+		if (getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+			CompositeStatementObject ifComp = (CompositeStatementObject)getComposite();
+			CompositeStatementObject parent = ifComp.getParent();
+			if (parent != null && !parent.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+				// find the last else-if in the chain
+				while (ifComp.getStatements().size() == 2 && ifComp.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+					ifComp = (CompositeStatementObject) ifComp.getStatements().get(1);
+				}
+				if (ifComp.getStatements().size() == 2) {
+					// lineNumber is else branch
+					AbstractStatement elseBranch = ifComp.getStatements().get(1);
+					if (elseBranch.getLocationInfo().getEndLine() == lineNumber &&
+							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+						setElseBlockEnd(true);
 					}
 				}
 			}
