@@ -123,6 +123,14 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    //NO CHANGE
 	                    Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 	                    if (leftMethod != null) {
+	                    	if (leftMethod.getUmlOperation().getJavadoc() == null && rightMethod.getUmlOperation().getJavadoc() != null &&
+	                    			rightComment.getComment().getLocationInfo().getCodeElementType().equals(CodeElementType.JAVADOC)) {
+	                    		Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+                                changeHistory.get().handleAdd(commentBefore, rightComment, "new javadoc");
+                                comments.add(commentBefore);
+                                changeHistory.get().connectRelatedNodes();
+                                break;
+	                    	}
 	                        historyReport.step2PlusPlus();
 	                        continue;
 	                    }
