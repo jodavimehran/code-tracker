@@ -454,8 +454,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
     }
 
     private History.HistoryInfo<Attribute> blameReturn() {
-    	List<HistoryInfo<Attribute>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Attribute>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Attribute> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (!(change instanceof AttributeCrossFileChange)) {

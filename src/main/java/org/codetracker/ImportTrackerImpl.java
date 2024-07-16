@@ -207,8 +207,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
     }
 
     private History.HistoryInfo<Import> blameReturn() {
-    	List<HistoryInfo<Import>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Import>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Import> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (change instanceof BodyChange || change instanceof Introduced) {

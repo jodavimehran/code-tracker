@@ -433,8 +433,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
     }
 
     private History.HistoryInfo<Method> blameReturn(Method startMethod) {
-    	List<HistoryInfo<Method>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Method>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Method> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (startMethod.isClosingCurlyBracket()) {

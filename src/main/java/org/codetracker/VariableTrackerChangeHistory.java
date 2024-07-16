@@ -48,7 +48,7 @@ import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitVariableRefactoring;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 
-public class VariableTrackerChangeHistory {
+public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable> {
 	private final ChangeHistory<Variable> variableChangeHistory = new ChangeHistory<>();
     private final String methodName;
     private final int methodDeclarationLineNumber;

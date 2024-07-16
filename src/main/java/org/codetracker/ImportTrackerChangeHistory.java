@@ -18,7 +18,7 @@ import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLImportListDiff;
 
-public class ImportTrackerChangeHistory {
+public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
 	private final ChangeHistory<Import> importChangeHistory = new ChangeHistory<>();
 	private final String className;
 	private final int classDeclarationLineNumber; 

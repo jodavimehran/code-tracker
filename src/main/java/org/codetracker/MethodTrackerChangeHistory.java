@@ -64,7 +64,7 @@ import gr.uom.java.xmi.diff.UMLClassMoveDiff;
 import gr.uom.java.xmi.diff.UMLClassRenameDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
-public class MethodTrackerChangeHistory {
+public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 	private final ChangeHistory<Method> methodChangeHistory = new ChangeHistory<>();
     private final String methodName;
     private final int methodDeclarationLineNumber;

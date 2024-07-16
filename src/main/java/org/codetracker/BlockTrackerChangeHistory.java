@@ -47,7 +47,7 @@ import gr.uom.java.xmi.diff.SplitConditionalRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 
-public class BlockTrackerChangeHistory {
+public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	private final ChangeHistory<Block> blockChangeHistory = new ChangeHistory<>();
     private final String methodName;
     private final int methodDeclarationLineNumber;

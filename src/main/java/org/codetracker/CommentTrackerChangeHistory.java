@@ -36,7 +36,7 @@ import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLJavadocDiff;
 
-public class CommentTrackerChangeHistory {
+public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> {
 	private final ChangeHistory<Comment> commentChangeHistory = new ChangeHistory<>();
     private final String methodName;
     private final int methodDeclarationLineNumber;

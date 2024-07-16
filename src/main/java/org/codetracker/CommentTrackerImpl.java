@@ -458,8 +458,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
     }
 
     private History.HistoryInfo<Comment> blameReturn() {
-    	List<HistoryInfo<Comment>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Comment>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Comment> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (change instanceof BodyChange || change instanceof Introduced) {

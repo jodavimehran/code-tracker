@@ -46,7 +46,7 @@ import gr.uom.java.xmi.diff.UMLClassMoveDiff;
 import gr.uom.java.xmi.diff.UMLClassRenameDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
-public class AttributeTrackerChangeHistory {
+public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribute> {
 	private final ChangeHistory<Attribute> attributeChangeHistory = new ChangeHistory<>();
     private final String attributeName;
     private final int attributeDeclarationLineNumber;

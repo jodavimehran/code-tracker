@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.lang3.StringUtils;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.Version;
@@ -53,7 +54,7 @@ public class FileTrackerImpl extends BaseTracker {
 					try {
 						codeElement = locator.locateWithoutName(startVersion, umlModel);
 					} catch (CodeElementNotFoundException e) {}
-					if (codeElement != null) {
+					if (codeElement != null && !StringUtils.isBlank(line)) {
 						programElements.add(codeElement);
 						lineNumberToCodeElementMap.put(lineNumber, codeElement);
 					}

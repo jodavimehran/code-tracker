@@ -618,8 +618,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
     }
 
     private History.HistoryInfo<Block> blameReturn(Block startBlock) {
-    	List<HistoryInfo<Block>> history = HistoryImpl.processHistory(changeHistory.get().getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Block>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Block> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {

@@ -1,7 +1,5 @@
 package org.codetracker;
 
-import gr.uom.java.xmi.UMLAbstractClass;
-import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
@@ -10,7 +8,6 @@ import org.codetracker.api.ClassTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
 import org.codetracker.change.clazz.ClassContainerChange;
 import org.codetracker.change.clazz.ClassMove;
@@ -23,38 +20,24 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
-import java.util.function.Predicate;
 
 public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
-    private final ChangeHistory<Class> classChangeHistory = new ChangeHistory<>();
-    private final String className;
-    private final int classDeclarationLineNumber;
+	private final ClassTrackerChangeHistory changeHistory;
     Logger logger = LoggerFactory.getLogger(ClassTrackerImpl.class);
 
     public ClassTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber) {
         super(repository, startCommitId, filePath);
-        this.className = className;
-        this.classDeclarationLineNumber = classDeclarationLineNumber;
-    }
-
-    protected static Class getClass(UMLModel umlModel, Version version, Predicate<Class> predicate) {
-        if (umlModel != null)
-            for (UMLClass umlClass : umlModel.getClassList()) {
-                Class clazz = Class.of(umlClass, version);
-                if (predicate.test(clazz))
-                    return clazz;
-            }
-        return null;
+        this.changeHistory = new ClassTrackerChangeHistory(className, classDeclarationLineNumber);
     }
 
     private boolean isStartClass(Class clazz) {
-        return clazz.getUmlClass().getNonQualifiedName().equals(className);
+        return clazz.getUmlClass().getNonQualifiedName().equals(changeHistory.getClassName());
     }
 
     private boolean isStartComment(Package pack) {
-    	return pack.getUmlClass().getName().endsWith(className) &&
-    			pack.getUmlPackage().getLocationInfo().getStartLine() == classDeclarationLineNumber &&
-    			pack.getUmlPackage().getLocationInfo().getEndLine() == classDeclarationLineNumber;
+    	return pack.getUmlClass().getName().endsWith(changeHistory.getClassName()) &&
+    			pack.getUmlPackage().getLocationInfo().getStartLine() == changeHistory.getClassDeclarationLineNumber() &&
+    			pack.getUmlPackage().getLocationInfo().getEndLine() == changeHistory.getClassDeclarationLineNumber();
     }
 
     @Override
@@ -68,7 +51,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                 return null;
             }
             start.setStart(true);
-            classChangeHistory.addNode(start);
+            changeHistory.get().addNode(start);
 
             ArrayDeque<Class> classes = new ArrayDeque<>();
             classes.addFirst(start);
@@ -108,8 +91,8 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     historyReport.analysedCommitsPlusPlus();
                     if ("0".equals(parentCommitId)) {
                         Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
-                        classChangeHistory.handleAdd(leftClass, rightClass, "Initial commit!");
-                        classChangeHistory.connectRelatedNodes();
+                        changeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
+                        changeHistory.get().connectRelatedNodes();
                         classes.add(leftClass);
                         break;
                     }
@@ -143,7 +126,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
                             UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                             List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-                            Set<Class> classRefactored = analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+                            Set<Class> classRefactored = changeHistory.analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -159,7 +142,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
-                            Set<Class> classRefactored = analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+                            Set<Class> classRefactored = changeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -168,7 +151,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                                 break;
                             }
 
-                            if (isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+                            if (changeHistory.isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -176,154 +159,8 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     }
                 }
             }
-            return new HistoryImpl<>(classChangeHistory.getCompleteGraph(), historyReport);
+            return new HistoryImpl<>(changeHistory.get().getCompleteGraph(), historyReport);
         }
-    }
-
-    public Set<Class> analyseClassRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator) {
-        Set<Class> leftClassSet = new HashSet<>();
-        for (Refactoring refactoring : refactorings) {
-            UMLAbstractClass leftUMLClass = null;
-            UMLAbstractClass rightUMLClass = null;
-            Change.Type changeType = null;
-            Change.Type changeType2 = null;
-            switch (refactoring.getRefactoringType()) {
-                case MOVE_SOURCE_FOLDER: {
-                    MoveSourceFolderRefactoring moveSourceFolderRefactoring = (MoveSourceFolderRefactoring) refactoring;
-                    for (MovedClassToAnotherSourceFolder movedClassToAnotherSourceFolder : moveSourceFolderRefactoring.getMovedClassesToAnotherSourceFolder()) {
-                        Class classAfter = Class.of(movedClassToAnotherSourceFolder.getMovedClass(), currentVersion);
-                        if (equalOperator.test(classAfter)) {
-                            leftUMLClass = movedClassToAnotherSourceFolder.getOriginalClass();
-                            rightUMLClass = movedClassToAnotherSourceFolder.getMovedClass();
-                            changeType = Change.Type.CONTAINER_CHANGE;
-                            break;
-                        }
-                    }
-                    break;
-                }
-                case MOVE_CLASS: {
-                    MoveClassRefactoring moveClassRefactoring = (MoveClassRefactoring) refactoring;
-                    leftUMLClass = moveClassRefactoring.getOriginalClass();
-                    rightUMLClass = moveClassRefactoring.getMovedClass();
-                    changeType = Change.Type.MOVED;
-                    break;
-                }
-                case RENAME_CLASS: {
-                    RenameClassRefactoring renameClassRefactoring = (RenameClassRefactoring) refactoring;
-                    leftUMLClass = renameClassRefactoring.getOriginalClass();
-                    rightUMLClass = renameClassRefactoring.getRenamedClass();
-                    changeType = Change.Type.RENAME;
-                    break;
-                }
-                case MOVE_RENAME_CLASS: {
-                    MoveAndRenameClassRefactoring moveAndRenameClassRefactoring = (MoveAndRenameClassRefactoring) refactoring;
-                    leftUMLClass = moveAndRenameClassRefactoring.getOriginalClass();
-                    rightUMLClass = moveAndRenameClassRefactoring.getRenamedClass();
-                    changeType = Change.Type.RENAME;
-                    changeType2 = Change.Type.MOVED;
-                    break;
-                }
-                case ADD_CLASS_ANNOTATION: {
-                    AddClassAnnotationRefactoring addClassAnnotationRefactoring = (AddClassAnnotationRefactoring) refactoring;
-                    leftUMLClass = addClassAnnotationRefactoring.getClassBefore();
-                    rightUMLClass = addClassAnnotationRefactoring.getClassAfter();
-                    changeType = Change.Type.ANNOTATION_CHANGE;
-                    break;
-                }
-                case REMOVE_CLASS_ANNOTATION: {
-                    RemoveClassAnnotationRefactoring removeClassAnnotationRefactoring = (RemoveClassAnnotationRefactoring) refactoring;
-                    leftUMLClass = removeClassAnnotationRefactoring.getClassBefore();
-                    rightUMLClass = removeClassAnnotationRefactoring.getClassAfter();
-                    changeType = Change.Type.ANNOTATION_CHANGE;
-                    break;
-                }
-                case MODIFY_CLASS_ANNOTATION: {
-                    ModifyClassAnnotationRefactoring modifyClassAnnotationRefactoring = (ModifyClassAnnotationRefactoring) refactoring;
-                    leftUMLClass = modifyClassAnnotationRefactoring.getClassBefore();
-                    rightUMLClass = modifyClassAnnotationRefactoring.getClassAfter();
-                    changeType = Change.Type.ANNOTATION_CHANGE;
-                    break;
-                }
-                case ADD_CLASS_MODIFIER: {
-                    AddClassModifierRefactoring addClassModifierRefactoring = (AddClassModifierRefactoring) refactoring;
-                    leftUMLClass = addClassModifierRefactoring.getClassBefore();
-                    rightUMLClass = addClassModifierRefactoring.getClassAfter();
-                    changeType = Change.Type.MODIFIER_CHANGE;
-                    break;
-                }
-                case REMOVE_CLASS_MODIFIER: {
-                    RemoveClassModifierRefactoring removeClassModifierRefactoring = (RemoveClassModifierRefactoring) refactoring;
-                    leftUMLClass = removeClassModifierRefactoring.getClassBefore();
-                    rightUMLClass = removeClassModifierRefactoring.getClassAfter();
-                    changeType = Change.Type.MODIFIER_CHANGE;
-                    break;
-                }
-                case CHANGE_CLASS_ACCESS_MODIFIER: {
-                    ChangeClassAccessModifierRefactoring changeClassAccessModifierRefactoring = (ChangeClassAccessModifierRefactoring) refactoring;
-                    leftUMLClass = changeClassAccessModifierRefactoring.getClassBefore();
-                    rightUMLClass = changeClassAccessModifierRefactoring.getClassAfter();
-                    changeType = Change.Type.ACCESS_MODIFIER_CHANGE;
-                    break;
-                }
-                case EXTRACT_INTERFACE:
-                case EXTRACT_SUPERCLASS: {
-                    ExtractSuperclassRefactoring extractSuperclassRefactoring = (ExtractSuperclassRefactoring) refactoring;
-                    leftUMLClass = extractSuperclassRefactoring.getExtractedClass();
-                    rightUMLClass = extractSuperclassRefactoring.getExtractedClass();
-                    changeType = Change.Type.INTRODUCED;
-                    break;
-                }
-                case EXTRACT_SUBCLASS:
-                case EXTRACT_CLASS: {
-                    ExtractClassRefactoring extractClassRefactoring = (ExtractClassRefactoring) refactoring;
-                    leftUMLClass = extractClassRefactoring.getExtractedClass();
-                    rightUMLClass = extractClassRefactoring.getExtractedClass();
-                    changeType = Change.Type.INTRODUCED;
-                    break;
-                }
-                case CHANGE_TYPE_DECLARATION_KIND: {
-                    ChangeTypeDeclarationKindRefactoring changeTypeDeclarationKindRefactoring = (ChangeTypeDeclarationKindRefactoring)refactoring;
-                    leftUMLClass = changeTypeDeclarationKindRefactoring.getClassBefore();
-                    rightUMLClass = changeTypeDeclarationKindRefactoring.getClassAfter();
-                    changeType = Change.Type.TYPE_CHANGE;
-                    break;
-                }
-            }
-
-            if (rightUMLClass != null) {
-                Class classAfter = Class.of(rightUMLClass, currentVersion);
-                if (equalOperator.test(classAfter)) {
-                    Class classBefore = Class.of(leftUMLClass, parentVersion);
-                    if (Change.Type.INTRODUCED.equals(changeType)) {
-                        classChangeHistory.handleAdd(classBefore, classAfter, refactoring.toString());
-                    } else {
-                        classChangeHistory.addChange(classBefore, classAfter, ChangeFactory.forClass(changeType).refactoring(refactoring));
-                    }
-                    if (changeType2 != null)
-                        classChangeHistory.addChange(classBefore, classAfter, ChangeFactory.forClass(changeType2).refactoring(refactoring));
-                    leftClassSet.add(classBefore);
-                }
-            }
-        }
-
-        if (!leftClassSet.isEmpty())
-            classChangeHistory.connectRelatedNodes();
-        return leftClassSet;
-    }
-
-    private boolean isClassAdded(UMLModelDiff modelDiff, ArrayDeque<Class> classes, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator) {
-        List<UMLClass> addedClasses = modelDiff.getAddedClasses();
-        for (UMLClass umlClass : addedClasses) {
-            Class rightClass = Class.of(umlClass, currentVersion);
-            if (equalOperator.test(rightClass)) {
-                Class leftClass = Class.of(umlClass, parentVersion);
-                classChangeHistory.handleAdd(leftClass, rightClass, "new class");
-                classChangeHistory.connectRelatedNodes();
-                classes.addFirst(leftClass);
-                return true;
-            }
-        }
-        return false;
     }
 
     public HistoryInfo<Class> blame() throws Exception {
@@ -335,10 +172,10 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             if (startClass == null) {
                 return null;
             }
-            startClass.checkClosingBracket(classDeclarationLineNumber);
+            startClass.checkClosingBracket(changeHistory.getClassDeclarationLineNumber());
             Package startPackage = startClass.findPackage(this::isStartComment);
             startClass.setStart(true);
-            classChangeHistory.addNode(startClass);
+            changeHistory.get().addNode(startClass);
 
             ArrayDeque<Class> classes = new ArrayDeque<>();
             classes.addFirst(startClass);
@@ -380,8 +217,8 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     historyReport.analysedCommitsPlusPlus();
                     if ("0".equals(parentCommitId)) {
                         Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
-                        classChangeHistory.handleAdd(leftClass, rightClass, "Initial commit!");
-                        classChangeHistory.connectRelatedNodes();
+                        changeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
+                        changeHistory.get().connectRelatedNodes();
                         classes.add(leftClass);
                         break;
                     }
@@ -401,7 +238,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
                             UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                             List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-                            Set<Class> classRefactored = analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+                            Set<Class> classRefactored = changeHistory.analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -416,7 +253,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
 
                             List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
 
-                            Set<Class> classRefactored = analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+                            Set<Class> classRefactored = changeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -425,7 +262,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                                 break;
                             }
 
-                            if (isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+                            if (changeHistory.isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -438,8 +275,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
     }
 
     private History.HistoryInfo<Class> blameReturn(Class startClass) {
-    	List<HistoryInfo<Class>> history = HistoryImpl.processHistory(classChangeHistory.getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Class>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Class> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (startClass.isClosingCurlyBracket()) {
@@ -458,8 +294,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
     }
 
     private History.HistoryInfo<Class> blameReturn(Package startPackage) {
-    	List<HistoryInfo<Class>> history = HistoryImpl.processHistory(classChangeHistory.getCompleteGraph());
-        Collections.reverse(history); 
+    	List<HistoryInfo<Class>> history = changeHistory.getHistory();
 		for (History.HistoryInfo<Class> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (change instanceof Introduced || change instanceof ClassMove) {
