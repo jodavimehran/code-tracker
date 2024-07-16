@@ -369,7 +369,7 @@ public abstract class AbstractCodeElementLocator {
         throw new CodeElementNotFoundException(filePath, name, lineNumber);
 	}
 
-	protected CodeElement locateWithoutName(Version version, UMLModel umlModel) throws CodeElementNotFoundException {
+	public CodeElement locateWithoutName(Version version, UMLModel umlModel) throws CodeElementNotFoundException {
         Method method = getMethod(umlModel, version, filePath, this::methodPredicateWithoutName);
         if (method != null) {
             Block block = method.findBlockWithoutName(this::blockPredicate);

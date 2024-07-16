@@ -15,6 +15,10 @@ public class GitRepository implements IRepository {
     this.repository = repository;
   }
 
+  public Repository getRepository() {
+    return repository;
+  }
+
   protected RevCommit getRevCommit(String commitId) {
     RevCommit revCommit = null;
     try {

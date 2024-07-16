@@ -25,6 +25,12 @@ public class CodeElementLocator extends AbstractCodeElementLocator {
         this.gitRepository = new GitRepository(repository);
     }
 
+    public CodeElementLocator(GitRepository repository, String commitId, String filePath, int lineNumber) {
+        super(commitId, filePath, lineNumber);
+        this.repository = repository.getRepository();
+        this.gitRepository = repository;
+    }
+
     @Override
 	public CodeElement locate() throws Exception {
     	if (name == null) {
