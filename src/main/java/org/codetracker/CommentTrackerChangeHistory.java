@@ -1,8 +1,6 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.List;
-import java.util.Queue;
 import java.util.function.Predicate;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -95,22 +93,22 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForCommentChange(ArrayDeque<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
                 // check if it is in the matched
-                if (isMatched(operationBodyMapper, comments, currentVersion, parentVersion, equalComment))
+                if (isMatched(operationBodyMapper, currentVersion, parentVersion, equalComment))
                     return true;
                 //Check if is added
-                if (isAdded(operationBodyMapper, comments, currentVersion, parentVersion, equalComment))
+                if (isAdded(operationBodyMapper, currentVersion, parentVersion, equalComment))
                     return true;
             }
         }
         return false;
     }
 
-    public boolean checkForExtractionOrInline(ArrayDeque<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         int extractMatches = 0;
     	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
@@ -140,7 +138,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                         if (matchedCommentFromSourceMethod == null) {
                             commentChangeHistory.handleAdd(commentBefore, rightComment, extractOperationRefactoring.toString());
                             if(extractMatches == 0) {
-                            	comments.add(commentBefore);
+                            	elements.add(commentBefore);
                             }
                         }
                         else {
@@ -148,7 +146,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
-                            	comments.add(leftComment);
+                            	elements.add(leftComment);
                             }
                         }
                         commentChangeHistory.connectRelatedNodes();
@@ -167,7 +165,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                             if (matchedCommentInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
                                 Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
                                 commentChangeHistory.handleAdd(commentBefore, matchedCommentInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                comments.add(commentBefore);
+                                elements.add(commentBefore);
                                 commentChangeHistory.connectRelatedNodes();
                                 return true;
                             }
@@ -193,7 +191,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                                     return true;
                                     */
                                     // check if it is in the matched
-                                    if (isMatched(bodyMapper, comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion))
+                                    if (isMatched(bodyMapper, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion))
                                     	mergeMatches++;
                                 }
                             }
@@ -222,7 +220,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                                     return true;
                                     */
                                     // check if it is in the matched
-                                    if (isMatched(bodyMapper, comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion))
+                                    if (isMatched(bodyMapper, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion))
                                         return true;
                                     }
                                 }
@@ -239,17 +237,17 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkBodyOfMatchedOperations(Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
         if (umlOperationBodyMapper == null)
             return false;
         // check if it is in the matched
-        if (isMatched(umlOperationBodyMapper, comments, currentVersion, parentVersion, equalOperator))
+        if (isMatched(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator))
             return true;
         //Check if is added
-        return isAdded(umlOperationBodyMapper, comments, currentVersion, parentVersion, equalOperator);
+        return isAdded(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
     	int matches = 0;
     	for (Pair<UMLComment, UMLComment> mapping : umlOperationBodyMapper.getCommentListDiff().getCommonComments()) {
             Comment commentAfter = Comment.of(mapping.getRight(), umlOperationBodyMapper.getContainer2(), currentVersion);
@@ -262,7 +260,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -280,7 +278,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -292,7 +290,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
         for (UMLComment comment : umlOperationBodyMapper.getCommentListDiff().getAddedComments()) {
             Comment commentAfter = Comment.of(comment, umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(commentAfter)) {
@@ -308,7 +306,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "commented code");
                 else
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                comments.add(commentBefore);
+                elements.add(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -319,7 +317,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadoc, umlOperationBodyMapper.getContainer2(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                comments.add(commentBefore);
+                elements.add(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -327,17 +325,17 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkBodyOfMatchedClasses(Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
         if (classDiff == null)
             return false;
         // check if it is in the matched
-        if (isMatched(classDiff, comments, currentVersion, parentVersion, equalOperator))
+        if (isMatched(classDiff, currentVersion, parentVersion, equalOperator))
             return true;
         //Check if is added
-        return isAdded(classDiff, comments, currentVersion, parentVersion, equalOperator);
+        return isAdded(classDiff, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean isMatched(UMLAbstractClassDiff classDiff, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    public boolean isMatched(UMLAbstractClassDiff classDiff, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
     	int matches = 0;
     	for (Pair<UMLComment, UMLComment> mapping : classDiff.getCommentListDiff().getCommonComments()) {
             Comment commentAfter = Comment.of(mapping.getRight(), classDiff.getNextClass(), currentVersion);
@@ -350,7 +348,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -367,7 +365,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -385,7 +383,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -403,7 +401,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	comments.add(commentBefore);
+                	elements.add(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -415,13 +413,13 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    private boolean isAdded(UMLAbstractClassDiff classDiff, Queue<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    private boolean isAdded(UMLAbstractClassDiff classDiff, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
         for (UMLComment comment : classDiff.getCommentListDiff().getAddedComments()) {
             Comment commentAfter = Comment.of(comment, classDiff.getNextClass(), currentVersion);
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(comment, classDiff.getNextClass(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                comments.add(commentBefore);
+                elements.add(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -431,7 +429,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(comment, classDiff.getNextClass(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                comments.add(commentBefore);
+                elements.add(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -443,7 +441,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 if (equalOperator.test(commentAfter)) {
                     Comment commentBefore = Comment.of(javadoc, classDiff.getNextClass(), parentVersion);
                     commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                    comments.add(commentBefore);
+                    elements.add(commentBefore);
                     commentChangeHistory.connectRelatedNodes();
                     return true;
                 }
@@ -454,7 +452,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 if (equalOperator.test(commentAfter)) {
                     Comment commentBefore = Comment.of(packageDeclarationJavadoc, classDiff.getNextClass(), parentVersion);
                     commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                    comments.add(commentBefore);
+                    elements.add(commentBefore);
                     commentChangeHistory.connectRelatedNodes();
                     return true;
                 }
@@ -463,7 +461,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkRefactoredMethod(ArrayDeque<Comment> comments, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
@@ -502,7 +500,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (operationAfter != null) {
                 Method methodAfter = Method.of(operationAfter, currentVersion);
                 if (equalMethod.test(methodAfter)) {
-                    boolean found = checkBodyOfMatchedOperations(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
+                    boolean found = checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
                     if (found)
                         return true;
                 }

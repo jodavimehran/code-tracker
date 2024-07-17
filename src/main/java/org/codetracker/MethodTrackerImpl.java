@@ -42,13 +42,12 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             }
             changeHistory.get().addNode(start);
 
-            ArrayDeque<Method> methods = new ArrayDeque<>();
-            methods.addFirst(start);
+            changeHistory.addFirst(start);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!methods.isEmpty()) {
-                Method currentMethod = methods.poll();
+            while (!changeHistory.isEmpty()) {
+                Method currentMethod = changeHistory.poll();
                 if (currentMethod.isAdded() || currentMethod.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
@@ -83,7 +82,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
                         changeHistory.get().handleAdd(leftMethod, rightMethod, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        methods.add(leftMethod);
+                        changeHistory.add(leftMethod);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethodFilePath));
@@ -116,7 +115,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         Set<Method> leftSideMethods = changeHistory.analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                         boolean refactored = !leftSideMethods.isEmpty();
                         if (refactored) {
-                            leftSideMethods.forEach(methods::addFirst);
+                            leftSideMethods.forEach(changeHistory::addFirst);
                             historyReport.step4PlusPlus();
                             break;
                         }
@@ -160,7 +159,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 }
                             }
                             if (containerChanged) {
-                                methodContainerChanged.forEach(methods::addFirst);
+                                methodContainerChanged.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -180,7 +179,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 }
                                 Set<Method> leftMethods = new HashSet<>();
                                 leftMethods.addAll(methodContainerChanged);
-                                leftMethods.forEach(methods::addFirst);
+                                leftMethods.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -213,12 +212,12 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 Set<Method> leftMethods = new HashSet<>();
                                 leftMethods.addAll(methodContainerChanged);
                                 leftMethods.addAll(methodRefactored);
-                                leftMethods.forEach(methods::addFirst);
+                                leftMethods.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isMethodAdded(umlModelDiffAll, methods, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -242,15 +241,14 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
             start.checkClosingBracket(changeHistory.getMethodDeclarationLineNumber());
             changeHistory.get().addNode(start);
 
-            ArrayDeque<Method> methods = new ArrayDeque<>();
-            methods.addFirst(start);
+            changeHistory.addFirst(start);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!methods.isEmpty()) {
+            while (!changeHistory.isEmpty()) {
             	History.HistoryInfo<Method> blame = blameReturn(start);
             	if (blame != null) return blame;
-                Method currentMethod = methods.poll();
+                Method currentMethod = changeHistory.poll();
                 if (currentMethod.isAdded() || currentMethod.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
@@ -285,7 +283,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
                         changeHistory.get().handleAdd(leftMethod, rightMethod, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        methods.add(leftMethod);
+                        changeHistory.add(leftMethod);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethodFilePath));
@@ -318,7 +316,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         Set<Method> leftSideMethods = changeHistory.analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                         boolean refactored = !leftSideMethods.isEmpty();
                         if (refactored) {
-                            leftSideMethods.forEach(methods::addFirst);
+                            leftSideMethods.forEach(changeHistory::addFirst);
                             historyReport.step4PlusPlus();
                             break;
                         }
@@ -362,7 +360,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 }
                             }
                             if (containerChanged) {
-                                methodContainerChanged.forEach(methods::addFirst);
+                                methodContainerChanged.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -382,7 +380,7 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 }
                                 Set<Method> leftMethods = new HashSet<>();
                                 leftMethods.addAll(methodContainerChanged);
-                                leftMethods.forEach(methods::addFirst);
+                                leftMethods.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -415,12 +413,12 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                                 Set<Method> leftMethods = new HashSet<>();
                                 leftMethods.addAll(methodContainerChanged);
                                 leftMethods.addAll(methodRefactored);
-                                leftMethods.forEach(methods::addFirst);
+                                leftMethods.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isMethodAdded(umlModelDiffAll, methods, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }

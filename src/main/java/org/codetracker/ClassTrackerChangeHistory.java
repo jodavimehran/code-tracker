@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -195,7 +194,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
         return leftClassSet;
     }
 
-    public boolean isClassAdded(UMLModelDiff modelDiff, ArrayDeque<Class> classes, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator) {
+    public boolean isClassAdded(UMLModelDiff modelDiff, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator) {
         List<UMLClass> addedClasses = modelDiff.getAddedClasses();
         for (UMLClass umlClass : addedClasses) {
             Class rightClass = Class.of(umlClass, currentVersion);
@@ -203,7 +202,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
                 Class leftClass = Class.of(umlClass, parentVersion);
                 classChangeHistory.handleAdd(leftClass, rightClass, "new class");
                 classChangeHistory.connectRelatedNodes();
-                classes.addFirst(leftClass);
+                elements.addFirst(leftClass);
                 return true;
             }
         }

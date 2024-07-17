@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.Queue;
 import java.util.function.Predicate;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -71,17 +70,17 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= classDeclarationLineNumber;
     }
 
-    public boolean checkBodyOfMatchedClasses(Queue<Import> comments, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Import> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
         if (classDiff == null)
             return false;
         // check if it is in the matched
-        if (isMatched(classDiff, comments, currentVersion, parentVersion, equalOperator))
+        if (isMatched(classDiff, currentVersion, parentVersion, equalOperator))
             return true;
         //Check if is added
-        return isAdded(classDiff, comments, currentVersion, parentVersion, equalOperator);
+        return isAdded(classDiff, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean isMatched(UMLAbstractClassDiff classDiff, Queue<Import> imports, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator) {
+    public boolean isMatched(UMLAbstractClassDiff classDiff, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator) {
     	int matches = 0;
     	if (classDiff instanceof UMLClassBaseDiff) {
     		UMLImportListDiff diff = ((UMLClassBaseDiff) classDiff).getImportDiffList();
@@ -91,7 +90,7 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
 	            	Import importBefore = Import.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
 	                importChangeHistory.addChange(importBefore, importAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
 	                if(matches == 0) {
-	                	imports.add(importBefore);
+	                	elements.add(importBefore);
 	                }
 	                importChangeHistory.connectRelatedNodes();
 	                matches++;
@@ -103,7 +102,7 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
 	            	Import importBefore = Import.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
 	                importChangeHistory.addChange(importBefore, importAfter, ChangeFactory.forImport(Change.Type.BODY_CHANGE));
 	                if(matches == 0) {
-	                	imports.add(importBefore);
+	                	elements.add(importBefore);
 	                }
 	                importChangeHistory.connectRelatedNodes();
 	                matches++;
@@ -116,7 +115,7 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
         return false;
     }
 
-    private boolean isAdded(UMLAbstractClassDiff classDiff, Queue<Import> imports, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator) {
+    private boolean isAdded(UMLAbstractClassDiff classDiff, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator) {
     	if (classDiff instanceof UMLClassBaseDiff) {
     		UMLImportListDiff diff = ((UMLClassBaseDiff) classDiff).getImportDiffList();
 	    	for (UMLImport imp : diff.getAddedImports()) {
@@ -124,7 +123,7 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
 	            if (equalOperator.test(importAfter)) {
 	                Import importBefore = Import.of(imp, classDiff.getNextClass(), parentVersion);
 	                importChangeHistory.handleAdd(importBefore, importAfter, "new import");
-	                imports.add(importBefore);
+	                elements.add(importBefore);
 	                importChangeHistory.connectRelatedNodes();
 	                return true;
 	            }

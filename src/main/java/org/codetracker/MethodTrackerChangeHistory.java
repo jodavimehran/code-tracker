@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -501,21 +500,21 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         return Collections.emptySet();
     }
 
-    public boolean isMethodAdded(UMLModelDiff modelDiff, ArrayDeque<Method> methods, String className, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
+    public boolean isMethodAdded(UMLModelDiff modelDiff, String className, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
         List<UMLOperation> addedOperations = allClassesDiff
                 .stream()
                 .map(UMLClassBaseDiff::getAddedOperations)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
         for (UMLOperation operation : addedOperations) {
-            if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "new method"))
+            if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "new method"))
                 return true;
         }
 
         UMLClass addedClass = modelDiff.getAddedClass(className);
         if (addedClass != null) {
             for (UMLOperation operation : addedClass.getOperations()) {
-                if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new class"))
+                if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;
             }
         }
@@ -523,7 +522,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
             for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
                 for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
-                    if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
             }
@@ -532,7 +531,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
             for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
                 for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
-                    if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
             }
@@ -541,7 +540,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
             for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
                 for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
-                    if (handleAddOperation(methods, currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
             }
@@ -549,13 +548,13 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         return false;
     }
 
-    private boolean handleAddOperation(ArrayDeque<Method> methods, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, UMLOperation operation, String comment) {
+    private boolean handleAddOperation( Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, UMLOperation operation, String comment) {
         Method rightMethod = Method.of(operation, currentVersion);
         if (equalOperator.test(rightMethod)) {
             Method leftMethod = Method.of(operation, parentVersion);
             methodChangeHistory.handleAdd(leftMethod, rightMethod, comment);
             methodChangeHistory.connectRelatedNodes();
-            methods.addFirst(leftMethod);
+            elements.addFirst(leftMethod);
             return true;
         }
         return false;

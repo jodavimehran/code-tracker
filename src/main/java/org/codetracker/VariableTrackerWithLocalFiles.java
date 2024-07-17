@@ -1,7 +1,6 @@
 package org.codetracker;
 
 import java.io.File;
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -64,13 +63,12 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
 
         changeHistory.get().addNode(startVariable);
 
-        ArrayDeque<Variable> variables = new ArrayDeque<>();
-        variables.addFirst(startVariable);
+        changeHistory.addFirst(startVariable);
         HashSet<String> analysedCommits = new HashSet<>();
         List<String> commits = null;
         String lastFileName = null;
-        while (!variables.isEmpty()) {
-            Variable currentVariable = variables.poll();
+        while (!changeHistory.isEmpty()) {
+            Variable currentVariable = changeHistory.poll();
             if (currentVariable.isAdded()) {
                 commits = null;
                 continue;
@@ -124,7 +122,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                     Variable leftVariable = Variable.of(rightVariable.getVariableDeclaration(), leftMethod);
                     changeHistory.get().handleAdd(leftVariable, rightVariable, "Initial commit!");
                     changeHistory.get().connectRelatedNodes();
-                    variables.add(leftVariable);
+                    changeHistory.add(leftVariable);
                     break;
                 }
                 //NO CHANGE
@@ -156,7 +154,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                             bodyMapper = null;
                         }
                     }
-                    if (changeHistory.checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, refactorings)) {
+                    if (changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, refactorings)) {
                         historyReport.step3PlusPlus();
                         break;
                     }
@@ -165,20 +163,20 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                 {
                     //Local Refactoring
                     List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                    boolean found = changeHistory.checkForExtractionOrInline(variables, currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
+                    boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
                     }
 
-                    found = changeHistory.checkRefactoredMethod(variables, currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
+                    found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
                     }
                     UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
                     Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
-                    found = changeHistory.checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
+                    found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
@@ -210,7 +208,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                                 if (umlClass.getSourceFile().equals(leftFilePath)) {
                                     for (UMLOperation operation : umlClass.getOperations()) {
                                         if (operation.equals(rightMethod.getUmlOperation())) {
-                                            found = changeHistory.isMatched(operation, rightVariable, variables, parentVersion);
+                                            found = changeHistory.isMatched(operation, rightVariable, parentVersion);
                                             if (found) {
                                                 break;
                                             }
@@ -233,7 +231,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                             boolean found;
                             UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
                             Set<Refactoring> bodyMapperRefactorings = bodyMapper != null ? bodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
-                            found = changeHistory.checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
+                            found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, bodyMapper, bodyMapperRefactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
@@ -249,25 +247,25 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                         UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethodClassName);
                         if (classDiff != null) {
                             List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
-                            boolean found = changeHistory.checkForExtractionOrInline(variables, currentVersion, parentVersion, equalMethod, rightVariable, classLevelRefactorings);
+                            boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightVariable, classLevelRefactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.isVariableRefactored(classLevelRefactorings, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion);
+                            found = changeHistory.isVariableRefactored(classLevelRefactorings, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.checkRefactoredMethod(variables, currentVersion, parentVersion, equalMethod, rightVariable, classLevelRefactorings);
+                            found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightVariable, classLevelRefactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.checkClassDiffForVariableChange(variables, currentVersion, parentVersion, equalMethod, equalVariable, classDiff);
+                            found = changeHistory.checkClassDiffForVariableChange(currentVersion, parentVersion, equalMethod, equalVariable, classDiff);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
@@ -291,19 +289,19 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                             refactorings = umlModelDiffAll.getRefactorings();
                         }
 
-                        boolean found = changeHistory.checkForExtractionOrInline(variables, currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
+                        boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        found = changeHistory.isVariableRefactored(refactorings, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion);
+                        found = changeHistory.isVariableRefactored(refactorings, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        found = changeHistory.checkRefactoredMethod(variables, currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
+                        found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightVariable, refactorings);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
@@ -312,7 +310,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
 
                         UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                         if (umlClassDiff != null) {
-                            found = changeHistory.checkClassDiffForVariableChange(variables, currentVersion, parentVersion, equalMethod, equalVariable, umlClassDiff);
+                            found = changeHistory.checkClassDiffForVariableChange(currentVersion, parentVersion, equalMethod, equalVariable, umlClassDiff);
 
                             if (found) {
                                 historyReport.step5PlusPlus();
@@ -324,7 +322,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                         }, currentVersion)) {
                             Variable variableBefore = Variable.of(rightVariable.getVariableDeclaration(), rightVariable.getOperation(), parentVersion);
                             changeHistory.get().handleAdd(variableBefore, rightVariable, "added with method");
-                            variables.add(variableBefore);
+                            changeHistory.add(variableBefore);
                             changeHistory.get().connectRelatedNodes();
                             historyReport.step5PlusPlus();
                             break;

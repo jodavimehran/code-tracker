@@ -1,12 +1,10 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -100,24 +98,24 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForBlockChange(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForBlockChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
-                if (isBlockRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), blocks, currentVersion, parentVersion, equalBlock))
+                if (isBlockRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, equalBlock))
                     return true;
                 // check if it is in the matched
-                if (isMatched(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
+                if (isMatched(operationBodyMapper, currentVersion, parentVersion, equalBlock))
                     return true;
                 //Check if is added
-                if (isAdded(operationBodyMapper, blocks, currentVersion, parentVersion, equalBlock))
+                if (isAdded(operationBodyMapper, currentVersion, parentVersion, equalBlock))
                     return true;
             }
         }
         return false;
     }
 
-    public boolean checkForExtractionOrInline(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         int extractMatches = 0;
     	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
@@ -167,7 +165,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         if (matchedBlockFromSourceMethod == null) {
                             blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
                             if(extractMatches == 0) {
-                            	blocks.add(blockBefore);
+                            	elements.add(blockBefore);
                             }
                         }
                         else {
@@ -175,7 +173,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
-                            	blocks.add(leftBlock);
+                            	elements.add(leftBlock);
                             }
                         }
                         blockChangeHistory.connectRelatedNodes();
@@ -195,7 +193,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                 if (matchedBlockInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
                                     Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
                                     blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                    blocks.add(blockBefore);
+                                    elements.add(blockBefore);
                                     blockChangeHistory.connectRelatedNodes();
                                     return true;
                                 }
@@ -205,7 +203,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                 if (matchedBlockInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
                                     Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
                                     blockChangeHistory.handleAdd(blockBefore, matchedBlockInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                    blocks.add(blockBefore);
+                                    elements.add(blockBefore);
                                     blockChangeHistory.connectRelatedNodes();
                                     return true;
                                 }
@@ -234,10 +232,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                         */
                                         Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isBlockRefactored(mapperRefactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                         	mergeMatches++;
                                         // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isMatched(bodyMapper, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                         	mergeMatches++;
                                     }
                                 }
@@ -254,10 +252,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                         */
                                         Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isBlockRefactored(mapperRefactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                         	mergeMatches++;
                                         // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isMatched(bodyMapper, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                         	mergeMatches++;
                                     }
                                 }
@@ -289,10 +287,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                         */
                                         Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isBlockRefactored(mapperRefactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
                                         // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isMatched(bodyMapper, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
                                         }
                                     }
@@ -309,10 +307,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                         */
                                         Set<Refactoring> mapperRefactorings = bodyMapper.getRefactoringsAfterPostProcessing();
                                         //Check if refactored
-                                        if (isBlockRefactored(mapperRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isBlockRefactored(mapperRefactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
                                         // check if it is in the matched
-                                        if (isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
+                                        if (isMatched(bodyMapper, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion))
                                             return true;
                                         }
                                     }
@@ -330,24 +328,24 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    public boolean checkBodyOfMatchedOperations(Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
         if (umlOperationBodyMapper == null)
             return false;
         Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactoringsAfterPostProcessing();
         //Check if refactored
-        if (isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, equalOperator))
+        if (isBlockRefactored(refactorings, currentVersion, parentVersion, equalOperator))
             return true;
         // check if it is in the matched
-        if (isMatched(umlOperationBodyMapper, blocks, currentVersion, parentVersion, equalOperator))
+        if (isMatched(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator))
             return true;
         //Check if is added
-        return isAdded(umlOperationBodyMapper, blocks, currentVersion, parentVersion, equalOperator);
+        return isAdded(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean isBlockRefactored(Collection<Refactoring> refactorings, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
+    public boolean isBlockRefactored(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
         Set<Block> leftBlockSet = analyseBlockRefactorings(refactorings, currentVersion, parentVersion, equalOperator);
         for (Block leftBlock : leftBlockSet) {
-            blocks.add(leftBlock);
+            elements.add(leftBlock);
             blockChangeHistory.connectRelatedNodes();
             return true;
         }
@@ -517,7 +515,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return leftBlockSet;
     }
 
-    public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
+    public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
     	int matches = 0;
     	for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
             if (mapping instanceof CompositeStatementObjectMapping) {
@@ -630,7 +628,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
                     if(matches == 0) {
-                    	blocks.add(blockBefore);
+                    	elements.add(blockBefore);
                     }
                     blockChangeHistory.connectRelatedNodes();
                     matches++;
@@ -647,7 +645,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                     }
                     if(matches == 0) {
-                    	blocks.add(blockBefore);
+                    	elements.add(blockBefore);
                     }
                     blockChangeHistory.connectRelatedNodes();
                     matches++;
@@ -660,13 +658,13 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
+    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
         for (CompositeStatementObject composite : umlOperationBodyMapper.getNonMappedInnerNodesT2()) {
             Block blockAfter = Block.of(composite, umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(blockAfter)) {
                 Block blockBefore = Block.of(composite, umlOperationBodyMapper.getContainer2(), parentVersion);
                 blockChangeHistory.handleAdd(blockBefore, blockAfter, "new block");
-                blocks.add(blockBefore);
+                elements.add(blockBefore);
                 blockChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -677,7 +675,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	            if (equalOperator.test(blockAfter)) {
 	                Block blockBefore = Block.of((StatementObject)composite, umlOperationBodyMapper.getContainer2(), parentVersion);
 	                blockChangeHistory.handleAdd(blockBefore, blockAfter, "new statement");
-	                blocks.add(blockBefore);
+	                elements.add(blockBefore);
 	                blockChangeHistory.connectRelatedNodes();
 	                return true;
 	            }
@@ -686,7 +684,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    public boolean checkRefactoredMethod(ArrayDeque<Block> blocks, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
@@ -725,7 +723,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
             if (operationAfter != null) {
                 Method methodAfter = Method.of(operationAfter, currentVersion);
                 if (equalMethod.test(methodAfter)) {
-                    boolean found = checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
+                    boolean found = checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, umlOperationBodyMapper);
                     if (found)
                         return true;
                 }

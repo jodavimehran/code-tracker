@@ -45,13 +45,12 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
         }
         changeHistory.get().addNode(start);
 
-        ArrayDeque<Method> methods = new ArrayDeque<>();
-        methods.addFirst(start);
+        changeHistory.addFirst(start);
         HashSet<String> analysedCommits = new HashSet<>();
         List<String> commits = null;
         String lastFileName = null;
-        while (!methods.isEmpty()) {
-            Method currentMethod = methods.poll();
+        while (!changeHistory.isEmpty()) {
+            Method currentMethod = changeHistory.poll();
             if (currentMethod.isAdded() || currentMethod.getVersion().getId().equals("0")) {
                 commits = null;
                 continue;
@@ -94,7 +93,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                     Method leftMethod = Method.of(rightMethod.getUmlOperation(), parentVersion);
                     changeHistory.get().handleAdd(leftMethod, rightMethod, "Initial commit!");
                     changeHistory.get().connectRelatedNodes();
-                    methods.add(leftMethod);
+                    changeHistory.add(leftMethod);
                     break;
                 }
 
@@ -126,7 +125,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                     Set<Method> leftSideMethods = changeHistory.analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                     boolean refactored = !leftSideMethods.isEmpty();
                     if (refactored) {
-                        leftSideMethods.forEach(methods::addFirst);
+                        leftSideMethods.forEach(changeHistory::addFirst);
                         historyReport.step4PlusPlus();
                         break;
                     }
@@ -170,7 +169,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                             }
                         }
                         if (containerChanged) {
-                            methodContainerChanged.forEach(methods::addFirst);
+                            methodContainerChanged.forEach(changeHistory::addFirst);
                             historyReport.step5PlusPlus();
                             break;
                         }
@@ -190,7 +189,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                             }
                             Set<Method> leftMethods = new HashSet<>();
                             leftMethods.addAll(methodContainerChanged);
-                            leftMethods.forEach(methods::addFirst);
+                            leftMethods.forEach(changeHistory::addFirst);
                             historyReport.step5PlusPlus();
                             break;
                         }
@@ -223,12 +222,12 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                             Set<Method> leftMethods = new HashSet<>();
                             leftMethods.addAll(methodContainerChanged);
                             leftMethods.addAll(methodRefactored);
-                            leftMethods.forEach(methods::addFirst);
+                            leftMethods.forEach(changeHistory::addFirst);
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        if (changeHistory.isMethodAdded(umlModelDiffAll, methods, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                        if (changeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                             historyReport.step5PlusPlus();
                             break;
                         }

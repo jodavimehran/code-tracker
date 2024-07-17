@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -240,21 +239,21 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         return false;
     }
 
-    public boolean isAttributeAdded(UMLModelDiff modelDiff, ArrayDeque<Attribute> attributes, String className, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
+    public boolean isAttributeAdded(UMLModelDiff modelDiff, String className, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
         List<UMLAttribute> addedAttributes = allClassesDiff
                 .stream()
                 .map(UMLClassBaseDiff::getAddedAttributes)
                 .flatMap(List::stream)
                 .collect(Collectors.toList());
         for (UMLAttribute umlAttribute : addedAttributes) {
-            if (handleAddAttribute(attributes, currentVersion, parentVersion, equalOperator, umlAttribute, "new attribute"))
+            if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "new attribute"))
                 return true;
         }
 
         UMLClass addedClass = modelDiff.getAddedClass(className);
         if (addedClass != null) {
             for (UMLAttribute umlAttribute : addedClass.getAttributes()) {
-                if (handleAddAttribute(attributes, currentVersion, parentVersion, equalOperator, umlAttribute, "added with new class"))
+                if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new class"))
                     return true;
             }
         }
@@ -262,7 +261,7 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         for (UMLClassRenameDiff classRenameDiffList : modelDiff.getClassRenameDiffList()) {
             for (UMLAnonymousClass addedAnonymousClasses : classRenameDiffList.getAddedAnonymousClasses()) {
                 for (UMLAttribute umlAttribute : addedAnonymousClasses.getAttributes()) {
-                    if (handleAddAttribute(attributes, currentVersion, parentVersion, equalOperator, umlAttribute, "added with new anonymous class"))
+                    if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new anonymous class"))
                         return true;
                 }
             }
@@ -270,13 +269,13 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         return false;
     }
 
-    private boolean handleAddAttribute(ArrayDeque<Attribute> attributes, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, UMLAttribute umlAttribute, String comment) {
+    private boolean handleAddAttribute(Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, UMLAttribute umlAttribute, String comment) {
         Attribute rightAttribute = Attribute.of(umlAttribute, currentVersion);
         if (equalOperator.test(rightAttribute)) {
             Attribute leftAttribute = Attribute.of(umlAttribute, parentVersion);
             attributeChangeHistory.handleAdd(leftAttribute, rightAttribute, comment);
             attributeChangeHistory.connectRelatedNodes();
-            attributes.addFirst(leftAttribute);
+            elements.addFirst(leftAttribute);
             return true;
         }
         return false;

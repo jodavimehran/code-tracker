@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -53,15 +52,14 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
             }
             changeHistory.get().addNode(startImport);
             
-            ArrayDeque<Import> imports = new ArrayDeque<>();
-            imports.addFirst(startImport);
+            changeHistory.addFirst(startImport);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!imports.isEmpty()) {
+            while (!changeHistory.isEmpty()) {
             	History.HistoryInfo<Import> blame = blameReturn();
             	if (blame != null) return blame;
-                Import currentImport = imports.poll();
+                Import currentImport = changeHistory.poll();
                 if (currentImport.isAdded()) {
                     commits = null;
                     continue;
@@ -98,7 +96,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                         Import leftImport = Import.of(rightImport.getUmlImport(), leftClass);
                         changeHistory.get().handleAdd(leftImport, rightImport, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        imports.add(leftImport);
+                        changeHistory.add(leftImport);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentClass.getFilePath()));
@@ -107,14 +105,14 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                     if (leftClass != null) {
                         historyReport.step2PlusPlus();
                         UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-                        changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                        changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, lightweightClassDiff);
                         continue;
                     }
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
                     	UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
-                        boolean found = changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
+                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
                         if (found) {
                             historyReport.step4PlusPlus();
                             break;
@@ -144,7 +142,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                                 for (UMLClass umlClass : umlModelPairPartial.getLeft().getClassList()) {
                                     if (umlClass.getSourceFile().equals(leftFilePath)) {
                                         UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlClass, rightClass.getUmlClass());
-                                        found = changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                                        found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, lightweightClassDiff);
                                         if (found) {
                                             break;
                                         }
@@ -159,7 +157,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                                 UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                                 //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
                                 UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
-    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
+    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
     	                        if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -174,7 +172,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                             Set<Refactoring> moveRenameClassRefactorings = umlModelDiffAll.getMoveRenameClassRefactorings();
                             UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightClass.getUmlClass().getName());
                             if (classDiff != null) {
-                                boolean found = changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
+                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -183,7 +181,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
 
                             UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
                             if (umlClassDiff != null) {
-                                boolean found = changeHistory.checkBodyOfMatchedClasses(imports, currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, umlClassDiff);
+                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, umlClassDiff);
                                 if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
@@ -193,7 +191,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                             if (isClassAdded(umlModelDiffAll, rightClass.getUmlClass().getName())) {
                                 Import importBefore = Import.of(rightImport.getUmlImport(), rightImport.getClazz(), parentVersion);
                                 changeHistory.get().handleAdd(importBefore, rightImport, "added with class");
-                                imports.add(importBefore);
+                                changeHistory.add(importBefore);
                                 changeHistory.get().connectRelatedNodes();
                                 historyReport.step5PlusPlus();
                                 break;

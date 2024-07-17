@@ -16,14 +16,11 @@ import org.codetracker.element.Package;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
 public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
 	private final ClassTrackerChangeHistory changeHistory;
-    Logger logger = LoggerFactory.getLogger(ClassTrackerImpl.class);
 
     public ClassTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber) {
         super(repository, startCommitId, filePath);
@@ -53,13 +50,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             start.setStart(true);
             changeHistory.get().addNode(start);
 
-            ArrayDeque<Class> classes = new ArrayDeque<>();
-            classes.addFirst(start);
+            changeHistory.addFirst(start);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!classes.isEmpty()) {
-                Class currentClass = classes.poll();
+            while (!changeHistory.isEmpty()) {
+                Class currentClass = changeHistory.poll();
                 if (currentClass.isAdded()) {
                     commits = null;
                     continue;
@@ -75,7 +71,6 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
                         continue;
-                    logger.debug("processing " + commitId);
                     analysedCommits.add(commitId);
 
                     Version currentVersion = gitRepository.getVersion(commitId);
@@ -93,7 +88,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
                         changeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        classes.add(leftClass);
+                        changeHistory.add(leftClass);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
@@ -130,7 +125,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-                                leftSideClasses.forEach(classes::addFirst);
+                                leftSideClasses.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -146,12 +141,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-                                leftSideClasses.forEach(classes::addFirst);
+                                leftSideClasses.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+                            if (changeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -177,15 +172,14 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             startClass.setStart(true);
             changeHistory.get().addNode(startClass);
 
-            ArrayDeque<Class> classes = new ArrayDeque<>();
-            classes.addFirst(startClass);
+            changeHistory.addFirst(startClass);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!classes.isEmpty()) {
+            while (!changeHistory.isEmpty()) {
             	History.HistoryInfo<Class> blame = startPackage != null ? blameReturn(startPackage) : blameReturn(startClass);
             	if (blame != null) return blame;
-                Class currentClass = classes.poll();
+                Class currentClass = changeHistory.poll();
                 if (currentClass.isAdded()) {
                     commits = null;
                     continue;
@@ -201,7 +195,6 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                 for (String commitId : commits) {
                     if (analysedCommits.contains(commitId))
                         continue;
-                    logger.debug("processing " + commitId);
                     analysedCommits.add(commitId);
 
                     Version currentVersion = gitRepository.getVersion(commitId);
@@ -219,7 +212,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
                         changeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        classes.add(leftClass);
+                        changeHistory.add(leftClass);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
@@ -242,7 +235,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-                                leftSideClasses.forEach(classes::addFirst);
+                                leftSideClasses.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -257,12 +250,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             boolean refactored = !classRefactored.isEmpty();
                             if (refactored) {
                                 Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-                                leftSideClasses.forEach(classes::addFirst);
+                                leftSideClasses.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isClassAdded(umlModelDiffAll, classes, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+                            if (changeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }

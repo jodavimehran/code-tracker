@@ -3,7 +3,6 @@ package org.codetracker;
 import static org.codetracker.AttributeTrackerChangeHistory.getAttribute;
 
 import java.io.File;
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -57,13 +56,12 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
         start.setStart(true);
         changeHistory.get().addNode(start);
 
-        ArrayDeque<Attribute> attributes = new ArrayDeque<>();
-        attributes.addFirst(start);
+        changeHistory.addFirst(start);
         HashSet<String> analysedCommits = new HashSet<>();
         List<String> commits = null;
         String lastFileName = null;
-        while (!attributes.isEmpty()) {
-            Attribute currentAttribute = attributes.poll();
+        while (!changeHistory.isEmpty()) {
+            Attribute currentAttribute = changeHistory.poll();
             if (currentAttribute.isAdded()) {
                 commits = null;
                 continue;
@@ -107,7 +105,7 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                     Attribute leftAttribute = Attribute.of(rightAttribute.getUmlAttribute(), parentVersion);
                     changeHistory.get().handleAdd(leftAttribute, rightAttribute, "Initial commit!");
                     changeHistory.get().connectRelatedNodes();
-                    attributes.add(leftAttribute);
+                    changeHistory.add(leftAttribute);
                     break;
                 }
                 //NO CHANGE
@@ -120,16 +118,16 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
 					if (leftInitializer != null && rightInitializer != null) {
                     	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
                             changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
-                            attributes.add(leftAttribute);
+                            changeHistory.add(leftAttribute);
                     	}
                     }
 					else if (leftInitializer == null && rightInitializer != null) {
 						changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
-                        attributes.add(leftAttribute);
+						changeHistory.add(leftAttribute);
 					}
 					else if (leftInitializer != null && rightInitializer == null) {
 						changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
-                        attributes.add(leftAttribute);
+						changeHistory.add(leftAttribute);
 					}
                     continue;
                 }
@@ -171,7 +169,7 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                         Set<Attribute> leftSideAttributes = new HashSet<>();
                         leftSideAttributes.addAll(attributeContainerChanged);
                         leftSideAttributes.addAll(attributeRefactored);
-                        leftSideAttributes.forEach(attributes::addFirst);
+                        leftSideAttributes.forEach(changeHistory::addFirst);
                         historyReport.step4PlusPlus();
                         break;
                     }
@@ -193,7 +191,7 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                             Set<Attribute> leftSideAttributes = new HashSet<>();
                             leftSideAttributes.addAll(attributeContainerChanged);
                             leftSideAttributes.addAll(attributeRefactored);
-                            leftSideAttributes.forEach(attributes::addFirst);
+                            leftSideAttributes.forEach(changeHistory::addFirst);
                             historyReport.step5PlusPlus();
                             break;
                         }
@@ -241,12 +239,12 @@ public class AttributeTrackerWithLocalFiles extends BaseTrackerWithLocalFiles im
                             Set<Attribute> leftAttributes = new HashSet<>();
                             leftAttributes.addAll(attributeContainerChanged);
                             leftAttributes.addAll(attributeRefactored);
-                            leftAttributes.forEach(attributes::addFirst);
+                            leftAttributes.forEach(changeHistory::addFirst);
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        if (changeHistory.isAttributeAdded(umlModelDiffAll, attributes, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                        if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                             historyReport.step5PlusPlus();
                             break;
                         }

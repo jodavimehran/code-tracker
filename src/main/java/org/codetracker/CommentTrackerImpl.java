@@ -1,6 +1,5 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -67,15 +66,14 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
             }
             changeHistory.get().addNode(startComment);
 
-            ArrayDeque<Comment> comments = new ArrayDeque<>();
-            comments.addFirst(startComment);
+            changeHistory.addFirst(startComment);
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!comments.isEmpty()) {
+            while (!changeHistory.isEmpty()) {
             	History.HistoryInfo<Comment> blame = blameReturn();
             	if (blame != null) return blame;
-                Comment currentComment = comments.poll();
+                Comment currentComment = changeHistory.poll();
                 if (currentComment.isAdded()) {
                     commits = null;
                     continue;
@@ -116,7 +114,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                        Comment leftComment = Comment.of(rightComment.getComment(), leftMethod);
 	                        changeHistory.get().handleAdd(leftComment, rightComment, "Initial commit!");
 	                        changeHistory.get().connectRelatedNodes();
-	                        comments.add(leftComment);
+	                        changeHistory.add(leftComment);
 	                        break;
 	                    }
 	                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethod.getFilePath()));
@@ -127,7 +125,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    			rightComment.getComment().getLocationInfo().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 	                    		Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
                                 changeHistory.get().handleAdd(commentBefore, rightComment, "new javadoc");
-                                comments.add(commentBefore);
+                                changeHistory.add(commentBefore);
                                 changeHistory.get().connectRelatedNodes();
                                 break;
 	                    	}
@@ -169,7 +167,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                bodyMapper = null;
 	                            }
 	                        }
-	                        if (changeHistory.checkBodyOfMatchedOperations(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
+	                        if (changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
 	                            historyReport.step3PlusPlus();
 	                            break;
 	                        }
@@ -178,17 +176,17 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    {
 	                        //Local Refactoring
 	                        List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-	                        boolean found = changeHistory.checkForExtractionOrInline(comments, currentVersion, parentVersion, equalMethod, rightComment, refactorings);
+	                        boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightComment, refactorings);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
 	                            break;
 	                        }
-	                        found = changeHistory.checkRefactoredMethod(comments, currentVersion, parentVersion, equalMethod, rightComment, refactorings);
+	                        found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightComment, refactorings);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
 	                            break;
 	                        }
-	                        found = changeHistory.checkBodyOfMatchedOperations(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
+	                        found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
 	                            break;
@@ -222,7 +220,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                                VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
 	                                                UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlModelPairPartial.getLeft(), umlModelPairPartial.getRight(), operation, rightOperation);
 	                                                UMLOperationBodyMapper bodyMapper = new UMLOperationBodyMapper(operation, (UMLOperation) rightOperation, lightweightClassDiff);
-	                                                found = changeHistory.isMatched(bodyMapper, comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion);
+	                                                found = changeHistory.isMatched(bodyMapper, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion);
 	                                                if (found) {
 	                                                    break;
 	                                                }
@@ -244,7 +242,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	
 	                                boolean found;
 	                                UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
-	                                found = changeHistory.checkBodyOfMatchedOperations(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper);
+	                                found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
@@ -260,19 +258,19 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethodClassName);
 	                            if (classDiff != null) {
 	                                List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
-	                                boolean found = changeHistory.checkForExtractionOrInline(comments, currentVersion, parentVersion, equalMethod, rightComment, classLevelRefactorings);
+	                                boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightComment, classLevelRefactorings);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
 	                                }
 	
-	                                found = changeHistory.checkRefactoredMethod(comments, currentVersion, parentVersion, equalMethod, rightComment, classLevelRefactorings);
+	                                found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightComment, classLevelRefactorings);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
 	                                }
 	
-	                                found = changeHistory.checkClassDiffForCommentChange(comments, currentVersion, parentVersion, equalMethod, equalComment, classDiff);
+	                                found = changeHistory.checkClassDiffForCommentChange(currentVersion, parentVersion, equalMethod, equalComment, classDiff);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
@@ -296,13 +294,13 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                refactorings = umlModelDiffAll.getRefactorings();
 	                            }
 	
-	                            boolean found = changeHistory.checkForExtractionOrInline(comments, currentVersion, parentVersion, equalMethod, rightComment, refactorings);
+	                            boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightComment, refactorings);
 	                            if (found) {
 	                                historyReport.step5PlusPlus();
 	                                break;
 	                            }
 	
-	                            found = changeHistory.checkRefactoredMethod(comments, currentVersion, parentVersion, equalMethod, rightComment, refactorings);
+	                            found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightComment, refactorings);
 	                            if (found) {
 	                                historyReport.step5PlusPlus();
 	                                break;
@@ -311,7 +309,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	
 	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
 	                            if (umlClassDiff != null) {
-	                                found = changeHistory.checkClassDiffForCommentChange(comments, currentVersion, parentVersion, equalMethod, equalComment, umlClassDiff);
+	                                found = changeHistory.checkClassDiffForCommentChange(currentVersion, parentVersion, equalMethod, equalComment, umlClassDiff);
 	
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
@@ -323,7 +321,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            }, currentVersion)) {
 	                                Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
 	                                changeHistory.get().handleAdd(commentBefore, rightComment, "added with method");
-	                                comments.add(commentBefore);
+	                                changeHistory.add(commentBefore);
 	                                changeHistory.get().connectRelatedNodes();
 	                                historyReport.step5PlusPlus();
 	                                break;
@@ -348,7 +346,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                        Comment leftComment = Comment.of(rightComment.getComment(), leftClass);
 	                        changeHistory.get().handleAdd(leftComment, rightComment, "Initial commit!");
 	                        changeHistory.get().connectRelatedNodes();
-	                        comments.add(leftComment);
+	                        changeHistory.add(leftComment);
 	                        break;
 	                    }
 	                    UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentClass.getFilePath()));
@@ -357,14 +355,14 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    if (leftClass != null) {
 	                        historyReport.step2PlusPlus();
 	                        UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-	                        changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
+	                        changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
 	                        continue;
 	                    }
 	                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 	                    {
 	                        //Local Refactoring
 	                    	UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
-	                        boolean found = changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
+	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
 	                            break;
@@ -394,7 +392,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                for (UMLClass umlClass : umlModelPairPartial.getLeft().getClassList()) {
 	                                    if (umlClass.getSourceFile().equals(leftFilePath)) {
                                             UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlClass, rightClass.getUmlClass());
-                                            found = changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                                            found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
                                             if (found) {
                                                 break;
                                             }
@@ -409,7 +407,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
 	                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
 	                                UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
-	    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
+	    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 	    	                        if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
@@ -424,7 +422,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            Set<Refactoring> moveRenameClassRefactorings = umlModelDiffAll.getMoveRenameClassRefactorings();
 	                            UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightClass.getUmlClass().getName());
 	                            if (classDiff != null) {
-	                                boolean found = changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
+	                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
@@ -433,7 +431,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	
 	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
 	                            if (umlClassDiff != null) {
-	                                boolean found = changeHistory.checkBodyOfMatchedClasses(comments, currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, umlClassDiff);
+	                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, umlClassDiff);
 	                                if (found) {
 	                                    historyReport.step5PlusPlus();
 	                                    break;
@@ -443,7 +441,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            if (isClassAdded(umlModelDiffAll, rightClass.getUmlClass().getName())) {
 	                                Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
 	                                changeHistory.get().handleAdd(commentBefore, rightComment, "added with class");
-	                                comments.add(commentBefore);
+	                                changeHistory.add(commentBefore);
 	                                changeHistory.get().connectRelatedNodes();
 	                                historyReport.step5PlusPlus();
 	                                break;

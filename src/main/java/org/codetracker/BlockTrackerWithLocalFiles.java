@@ -1,7 +1,6 @@
 package org.codetracker;
 
 import java.io.File;
-import java.util.ArrayDeque;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
@@ -66,13 +65,12 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
         }
         changeHistory.get().addNode(startBlock);
 
-        ArrayDeque<Block> blocks = new ArrayDeque<>();
-        blocks.addFirst(startBlock);
+        changeHistory.addFirst(startBlock);
         HashSet<String> analysedCommits = new HashSet<>();
         List<String> commits = null;
         String lastFileName = null;
-        while (!blocks.isEmpty()) {
-            Block currentBlock = blocks.poll();
+        while (!changeHistory.isEmpty()) {
+            Block currentBlock = changeHistory.poll();
             if (currentBlock.isAdded()) {
                 commits = null;
                 continue;
@@ -123,7 +121,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                     Block leftBlock = Block.of(rightBlock.getComposite(), leftMethod);
                     changeHistory.get().handleAdd(leftBlock, rightBlock, "Initial commit!");
                     changeHistory.get().connectRelatedNodes();
-                    blocks.add(leftBlock);
+                    changeHistory.add(leftBlock);
                     break;
                 }
                 //NO CHANGE
@@ -167,7 +165,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                             bodyMapper = null;
                         }
                     }
-                    if (changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+                    if (changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
                         historyReport.step3PlusPlus();
                         break;
                     }
@@ -176,17 +174,17 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                 {
                     //Local Refactoring
                     List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                    boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                    boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
                     }
-                    found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                    found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
                     }
-                    found = changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
+                    found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;
@@ -220,7 +218,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                                             VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
                                             UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(umlModelPairPartial.getLeft(), umlModelPairPartial.getRight(), operation, rightOperation);
                                             UMLOperationBodyMapper bodyMapper = new UMLOperationBodyMapper(operation, (UMLOperation) rightOperation, lightweightClassDiff);
-                                            found = changeHistory.isMatched(bodyMapper, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                                            found = changeHistory.isMatched(bodyMapper, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                                             if (found) {
                                                 break;
                                             }
@@ -242,7 +240,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
 
                             boolean found;
                             UMLOperationBodyMapper bodyMapper = findBodyMapper(umlModelDiffPartial, rightMethod, currentVersion, parentVersion);
-                            found = changeHistory.checkBodyOfMatchedOperations(blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper);
+                            found = changeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
@@ -258,25 +256,25 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                         UMLClassBaseDiff classDiff = umlModelDiffAll.getUMLClassDiff(rightMethodClassName);
                         if (classDiff != null) {
                             List<Refactoring> classLevelRefactorings = classDiff.getRefactorings();
-                            boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                            boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.isBlockRefactored(classLevelRefactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                            found = changeHistory.isBlockRefactored(classLevelRefactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
+                            found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightBlock, classLevelRefactorings);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            found = changeHistory.checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, classDiff);
+                            found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, classDiff);
                             if (found) {
                                 historyReport.step5PlusPlus();
                                 break;
@@ -300,19 +298,19 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                             refactorings = umlModelDiffAll.getRefactorings();
                         }
 
-                        boolean found = changeHistory.checkForExtractionOrInline(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                        boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        found = changeHistory.isBlockRefactored(refactorings, blocks, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
+                        found = changeHistory.isBlockRefactored(refactorings, currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
                         }
 
-                        found = changeHistory.checkRefactoredMethod(blocks, currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                        found = changeHistory.checkRefactoredMethod(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                         if (found) {
                             historyReport.step5PlusPlus();
                             break;
@@ -321,7 +319,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
 
                         UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                         if (umlClassDiff != null) {
-                            found = changeHistory.checkClassDiffForBlockChange(blocks, currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
+                            found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 
                             if (found) {
                                 historyReport.step5PlusPlus();
@@ -333,7 +331,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                         }, currentVersion)) {
                             Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
                             changeHistory.get().handleAdd(blockBefore, rightBlock, "added with method");
-                            blocks.add(blockBefore);
+                            changeHistory.add(blockBefore);
                             changeHistory.get().connectRelatedNodes();
                             historyReport.step5PlusPlus();
                             break;

@@ -43,14 +43,13 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             start.setStart(true);
             changeHistory.get().addNode(start);
 
-            ArrayDeque<Attribute> attributes = new ArrayDeque<>();
-            attributes.addFirst(start);
+            changeHistory.addFirst(start);
             Map<String, List<String>> commitMap = new LinkedHashMap<>();
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!attributes.isEmpty()) {
-                Attribute currentAttribute = attributes.poll();
+            while (!changeHistory.isEmpty()) {
+                Attribute currentAttribute = changeHistory.poll();
                 if (currentAttribute.isAdded() || currentAttribute.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
@@ -88,7 +87,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         Attribute leftAttribute = Attribute.of(rightAttribute.getUmlAttribute(), parentVersion);
                         changeHistory.get().handleAdd(leftAttribute, rightAttribute, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        attributes.add(leftAttribute);
+                        changeHistory.add(leftAttribute);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightAttribute.getFilePath()));
@@ -103,16 +102,16 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 						if (leftInitializer != null && rightInitializer != null) {
                         	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
                                 changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
-                                attributes.add(leftAttribute);
+                                changeHistory.add(leftAttribute);
                         	}
                         }
 						else if (leftInitializer == null && rightInitializer != null) {
 							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
-                            attributes.add(leftAttribute);
+							changeHistory.add(leftAttribute);
 						}
 						else if (leftInitializer != null && rightInitializer == null) {
 							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
-                            attributes.add(leftAttribute);
+							changeHistory.add(leftAttribute);
 						}
                         continue;
                     }
@@ -154,7 +153,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             Set<Attribute> leftSideAttributes = new HashSet<>();
                             leftSideAttributes.addAll(attributeContainerChanged);
                             leftSideAttributes.addAll(attributeRefactored);
-                            leftSideAttributes.forEach(attributes::addFirst);
+                            leftSideAttributes.forEach(changeHistory::addFirst);
                             historyReport.step4PlusPlus();
                             break;
                         }
@@ -176,7 +175,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 Set<Attribute> leftSideAttributes = new HashSet<>();
                                 leftSideAttributes.addAll(attributeContainerChanged);
                                 leftSideAttributes.addAll(attributeRefactored);
-                                leftSideAttributes.forEach(attributes::addFirst);
+                                leftSideAttributes.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -224,12 +223,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 Set<Attribute> leftAttributes = new HashSet<>();
                                 leftAttributes.addAll(attributeContainerChanged);
                                 leftAttributes.addAll(attributeRefactored);
-                                leftAttributes.forEach(attributes::addFirst);
+                                leftAttributes.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isAttributeAdded(umlModelDiffAll, attributes, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -253,16 +252,15 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             start.setStart(true);
             changeHistory.get().addNode(start);
 
-            ArrayDeque<Attribute> attributes = new ArrayDeque<>();
-            attributes.addFirst(start);
+            changeHistory.addFirst(start);
             Map<String, List<String>> commitMap = new LinkedHashMap<>();
             HashSet<String> analysedCommits = new HashSet<>();
             List<String> commits = null;
             String lastFileName = null;
-            while (!attributes.isEmpty()) {
+            while (!changeHistory.isEmpty()) {
             	History.HistoryInfo<Attribute> blame = blameReturn();
             	if (blame != null) return blame;
-                Attribute currentAttribute = attributes.poll();
+                Attribute currentAttribute = changeHistory.poll();
                 if (currentAttribute.isAdded() || currentAttribute.getVersion().getId().equals("0")) {
                     commits = null;
                     continue;
@@ -300,7 +298,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         Attribute leftAttribute = Attribute.of(rightAttribute.getUmlAttribute(), parentVersion);
                         changeHistory.get().handleAdd(leftAttribute, rightAttribute, "Initial commit!");
                         changeHistory.get().connectRelatedNodes();
-                        attributes.add(leftAttribute);
+                        changeHistory.add(leftAttribute);
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightAttribute.getFilePath()));
@@ -315,16 +313,16 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
 						if (leftInitializer != null && rightInitializer != null) {
                         	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
                                 changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
-                                attributes.add(leftAttribute);
+                                changeHistory.add(leftAttribute);
                         	}
                         }
 						else if (leftInitializer == null && rightInitializer != null) {
 							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
-                            attributes.add(leftAttribute);
+							changeHistory.add(leftAttribute);
 						}
 						else if (leftInitializer != null && rightInitializer == null) {
 							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
-                            attributes.add(leftAttribute);
+							changeHistory.add(leftAttribute);
 						}
                         continue;
                     }
@@ -366,7 +364,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             Set<Attribute> leftSideAttributes = new HashSet<>();
                             leftSideAttributes.addAll(attributeContainerChanged);
                             leftSideAttributes.addAll(attributeRefactored);
-                            leftSideAttributes.forEach(attributes::addFirst);
+                            leftSideAttributes.forEach(changeHistory::addFirst);
                             historyReport.step4PlusPlus();
                             break;
                         }
@@ -388,7 +386,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 Set<Attribute> leftSideAttributes = new HashSet<>();
                                 leftSideAttributes.addAll(attributeContainerChanged);
                                 leftSideAttributes.addAll(attributeRefactored);
-                                leftSideAttributes.forEach(attributes::addFirst);
+                                leftSideAttributes.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -436,12 +434,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 Set<Attribute> leftAttributes = new HashSet<>();
                                 leftAttributes.addAll(attributeContainerChanged);
                                 leftAttributes.addAll(attributeRefactored);
-                                leftAttributes.forEach(attributes::addFirst);
+                                leftAttributes.forEach(changeHistory::addFirst);
                                 historyReport.step5PlusPlus();
                                 break;
                             }
 
-                            if (changeHistory.isAttributeAdded(umlModelDiffAll, attributes, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }

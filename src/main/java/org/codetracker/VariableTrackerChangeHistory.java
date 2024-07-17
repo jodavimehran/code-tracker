@@ -1,12 +1,10 @@
 package org.codetracker;
 
-import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -94,26 +92,26 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForVariableChange(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForVariableChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
-                if (isVariableRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, equalVariable))
+                if (isVariableRefactored(operationBodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, equalVariable))
                     return true;
 
                 // check if it is in the matched
-                if (isMatched(operationBodyMapper, variables, currentVersion, parentVersion, equalVariable))
+                if (isMatched(operationBodyMapper, currentVersion, parentVersion, equalVariable))
                     return true;
 
                 //Check if is added
-                if (isAdded(operationBodyMapper, variables, currentVersion, parentVersion, equalVariable))
+                if (isAdded(operationBodyMapper, currentVersion, parentVersion, equalVariable))
                     return true;
             }
         }
         return false;
     }
 
-    public boolean checkForExtractionOrInline(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
                 case EXTRACT_AND_MOVE_OPERATION:
@@ -141,7 +139,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                                     .refactoring(extractOperationRefactoring).codeElement(rightVariable).hookedElement(Variable.of(matchedVariableFromSourceMethod, sourceMethod)));
                             variableBefore.setAdded(true);
                         }
-                        variables.add(variableBefore);
+                        elements.add(variableBefore);
                         variableChangeHistory.connectRelatedNodes();
                         return true;
                     }
@@ -158,7 +156,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                             if (matchedVariableInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
                                 Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), bodyMapper.getContainer1(), parentVersion);
                                 variableChangeHistory.handleAdd(variableBefore, matchedVariableInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                variables.add(variableBefore);
+                                elements.add(variableBefore);
                                 variableChangeHistory.connectRelatedNodes();
                                 return true;
                             }
@@ -174,16 +172,16 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                             for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
                                 Variable matchedVariableInsideMergedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
                                 if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                    if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                    if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                         return true;
-                                    if (isMatched(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                    if (isMatched(bodyMapper, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                         return true;
                                 }
                             }
                             for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
                                 Variable matchedVariableInsideMergedMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
                                 if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                    if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                    if (isAdded(bodyMapper, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
                                         return true;
                                     }
                                 }
@@ -193,7 +191,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                                     RenameVariableRefactoring rename = (RenameVariableRefactoring) r;
                                     Variable matchedVariableInsideMergedMethodBody = Variable.of(rename.getRenamedVariable(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                        if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                        if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                             return true;
                                     }
                                 }
@@ -211,16 +209,16 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                                 for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
                                     Variable matchedVariableInsideSplitMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedVariableInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                        if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                        if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                             return true;
-                                        if (isMatched(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                        if (isMatched(bodyMapper, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                             return true;
                                     }
                                 }
                                 for (VariableDeclaration addedVariable : bodyMapper.getAddedVariables()) {
                                     Variable matchedVariableInsideSplitMethodBody = Variable.of(addedVariable, bodyMapper.getContainer2(), currentVersion);
                                     if (matchedVariableInsideSplitMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                        if (isAdded(bodyMapper, variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
+                                        if (isAdded(bodyMapper, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion)) {
                                             return true;
                                         }
                                     }
@@ -230,7 +228,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                                         RenameVariableRefactoring rename = (RenameVariableRefactoring) r;
                                         Variable matchedVariableInsideMergedMethodBody = Variable.of(rename.getRenamedVariable(), bodyMapper.getContainer2(), currentVersion);
                                         if (matchedVariableInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
-                                            if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
+                                            if (isVariableRefactored(bodyMapper.getRefactoringsAfterPostProcessing(), currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion))
                                                 return true;
                                         }
                                     }
@@ -245,36 +243,36 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
         return false;
     }
 
-    public boolean checkBodyOfMatchedOperations(Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper, Set<Refactoring> refactorings) {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper, Set<Refactoring> refactorings) {
         if (umlOperationBodyMapper == null)
             return false;
         //Check if refactored
-        if (isVariableRefactored(refactorings, variables, currentVersion, parentVersion, equalOperator))
+        if (isVariableRefactored(refactorings, currentVersion, parentVersion, equalOperator))
             return true;
         // check if it is in the matched
-        if (isMatched(umlOperationBodyMapper, variables, currentVersion, parentVersion, equalOperator))
+        if (isMatched(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator))
             return true;
         //Check if is added
-        return isAdded(umlOperationBodyMapper, variables, currentVersion, parentVersion, equalOperator);
+        return isAdded(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean isVariableRefactored(Collection<Refactoring> refactorings, Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
+    public boolean isVariableRefactored(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         Set<Variable> leftVariableSet = analyseVariableRefactorings(refactorings, currentVersion, parentVersion, equalOperator);
         for (Variable leftVariable : leftVariableSet) {
-            variables.add(leftVariable);
+            elements.add(leftVariable);
             variableChangeHistory.connectRelatedNodes();
             return true;
         }
         return false;
     }
 
-    private boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
+    private boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : umlOperationBodyMapper.getMatchedVariables()) {
             Variable variableAfter = Variable.of(matchedVariablePair.getRight(), umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(variableAfter)) {
                 Variable variableBefore = Variable.of(matchedVariablePair.getLeft(), umlOperationBodyMapper.getContainer1(), parentVersion);
                 variableChangeHistory.addChange(variableBefore, variableAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                variables.add(variableBefore);
+                elements.add(variableBefore);
                 variableChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -282,26 +280,26 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
         return false;
     }
 
-    public boolean isMatched(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion) {
+    public boolean isMatched(VariableDeclarationContainer leftMethod, Variable rightVariable, Version parentVersion) {
         for (VariableDeclaration leftVariable : leftMethod.getAllVariableDeclarations()) {
-            if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+            if (matchingVariables(leftMethod, rightVariable, parentVersion, leftVariable)) return true;
         }
         for (UMLAnonymousClass anonymousClass : leftMethod.getAnonymousClassList()) {
             for (UMLOperation operation : anonymousClass.getOperations()) {
                 for (VariableDeclaration leftVariable : operation.getAllVariableDeclarations()) {
-                    if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+                    if (matchingVariables(leftMethod, rightVariable, parentVersion, leftVariable)) return true;
                 }
             }
         }
         for (LambdaExpressionObject lambda : leftMethod.getAllLambdas()) {
             for (VariableDeclaration leftVariable : lambda.getParameters()) {
-                if (matchingVariables(leftMethod, rightVariable, variables, parentVersion, leftVariable)) return true;
+                if (matchingVariables(leftMethod, rightVariable, parentVersion, leftVariable)) return true;
             }
         }
         return false;
     }
 
-    private boolean matchingVariables(VariableDeclarationContainer leftMethod, Variable rightVariable, Queue<Variable> variables, Version parentVersion, VariableDeclaration leftVariable) {
+    private boolean matchingVariables(VariableDeclarationContainer leftMethod, Variable rightVariable, Version parentVersion, VariableDeclaration leftVariable) {
         if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
             Set<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
             Set<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
@@ -322,7 +320,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
             if (identicalStatementsInScope) {
                 Variable variableBefore = Variable.of(leftVariable, leftMethod, parentVersion);
                 variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                variables.add(variableBefore);
+                elements.add(variableBefore);
                 variableChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -330,13 +328,13 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
         return false;
     }
 
-    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Queue<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
+    private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Variable> equalOperator) {
         for (VariableDeclaration addedVariable : umlOperationBodyMapper.getAddedVariables()) {
             Variable variableAfter = Variable.of(addedVariable, umlOperationBodyMapper.getContainer2(), currentVersion);
             if (equalOperator.test(variableAfter)) {
                 Variable variableBefore = Variable.of(addedVariable, umlOperationBodyMapper.getContainer2(), parentVersion);
                 variableChangeHistory.handleAdd(variableBefore, variableAfter, "new variable");
-                variables.add(variableBefore);
+                elements.add(variableBefore);
                 variableChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -513,7 +511,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
         return leftVariableSet;
     }
 
-    public boolean checkRefactoredMethod(ArrayDeque<Variable> variables, Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
@@ -548,7 +546,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                 Method methodAfter = Method.of(operationAfter, currentVersion);
                 if (equalMethod.test(methodAfter)) {
                     Set<Refactoring> bodyMapperRefactorings = umlOperationBodyMapper != null ? umlOperationBodyMapper.getRefactoringsAfterPostProcessing() : Collections.emptySet();
-                    boolean found = checkBodyOfMatchedOperations(variables, currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, umlOperationBodyMapper, bodyMapperRefactorings);
+                    boolean found = checkBodyOfMatchedOperations(currentVersion, parentVersion, rightVariable::equalIdentifierIgnoringVersion, umlOperationBodyMapper, bodyMapperRefactorings);
                     if (found)
                         return true;
                 }
