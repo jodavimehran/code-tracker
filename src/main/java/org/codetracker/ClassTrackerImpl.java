@@ -27,23 +27,13 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
         this.changeHistory = new ClassTrackerChangeHistory(className, classDeclarationLineNumber);
     }
 
-    private boolean isStartClass(Class clazz) {
-        return clazz.getUmlClass().getNonQualifiedName().equals(changeHistory.getClassName());
-    }
-
-    private boolean isStartComment(Package pack) {
-    	return pack.getUmlClass().getName().endsWith(changeHistory.getClassName()) &&
-    			pack.getUmlPackage().getLocationInfo().getStartLine() == changeHistory.getClassDeclarationLineNumber() &&
-    			pack.getUmlPackage().getLocationInfo().getEndLine() == changeHistory.getClassDeclarationLineNumber();
-    }
-
     @Override
     public History<Class> track() throws Exception {
         HistoryImpl.HistoryReportImpl historyReport = new HistoryImpl.HistoryReportImpl();
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
-            Class start = getClass(umlModel, startVersion, this::isStartClass);
+            Class start = getClass(umlModel, startVersion, changeHistory::isStartClass);
             if (start == null) {
                 return null;
             }
@@ -163,12 +153,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
         try (Git git = new Git(repository)) {
             Version startVersion = gitRepository.getVersion(startCommitId);
             UMLModel umlModel = getUMLModel(startCommitId, Collections.singleton(filePath));
-            Class startClass = getClass(umlModel, startVersion, this::isStartClass);
+            Class startClass = getClass(umlModel, startVersion, changeHistory::isStartClass);
             if (startClass == null) {
                 return null;
             }
             startClass.checkClosingBracket(changeHistory.getClassDeclarationLineNumber());
-            Package startPackage = startClass.findPackage(this::isStartComment);
+            Package startPackage = startClass.findPackage(changeHistory::isStartComment);
             startClass.setStart(true);
             changeHistory.get().addNode(startClass);
 

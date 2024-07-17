@@ -10,6 +10,7 @@ import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Class;
+import org.codetracker.element.Package;
 import org.refactoringminer.api.Refactoring;
 
 import gr.uom.java.xmi.UMLAbstractClass;
@@ -52,6 +53,16 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
 	public int getClassDeclarationLineNumber() {
 		return classDeclarationLineNumber;
 	}
+
+    boolean isStartClass(Class clazz) {
+        return clazz.getUmlClass().getNonQualifiedName().equals(getClassName());
+    }
+
+    boolean isStartComment(Package pack) {
+    	return pack.getUmlClass().getName().endsWith(getClassName()) &&
+    			pack.getUmlPackage().getLocationInfo().getStartLine() == getClassDeclarationLineNumber() &&
+    			pack.getUmlPackage().getLocationInfo().getEndLine() == getClassDeclarationLineNumber();
+    }
 
     protected static Class getClass(UMLModel umlModel, Version version, Predicate<Class> predicate) {
         if (umlModel != null)
