@@ -1,10 +1,13 @@
 package org.codetracker.blame.util;
 
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.blame.model.LineBlameResult;
+import org.codetracker.element.BaseCodeElement;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /* Created by pourya on 2024-07-02*/
 public class BlameFormatter {
@@ -33,6 +36,19 @@ public class BlameFormatter {
             LineBlameResult lineBlameResult = null;
             if (lineBlameResults != null && lineNumber <= lineBlameResults.size()) {
                 lineBlameResult = lineBlameResults.get(lineNumber - 1);
+            }
+            result.add(make(lineBlameResult, fromLine > 0 ? fromLine + lineNumber - 1 : lineNumber, lines.get(lineNumber - 1)));
+        }
+        return result;
+    }
+
+    public List<String[]> make(Map<Integer, HistoryInfo<? extends BaseCodeElement>> blameInfo) {
+        List<String[]> result = new java.util.ArrayList<>();
+        for (int lineNumber = 1; lineNumber <= lines.size(); lineNumber++) {
+            HistoryInfo<? extends BaseCodeElement> historyInfo = blameInfo.get(lineNumber);
+            LineBlameResult lineBlameResult = null;
+            if (historyInfo != null) {
+                lineBlameResult = LineBlameResult.of(historyInfo);
             }
             result.add(make(lineBlameResult, fromLine > 0 ? fromLine + lineNumber - 1 : lineNumber, lines.get(lineNumber - 1)));
         }
