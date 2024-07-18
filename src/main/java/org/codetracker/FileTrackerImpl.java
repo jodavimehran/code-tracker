@@ -203,6 +203,8 @@ public class FileTrackerImpl extends BaseTracker {
 							UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion);
 						}
+						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
+						processImports(lightweightClassDiff, rightClass, currentVersion, parentVersion);
 						continue;
 					}
 					//All refactorings
@@ -237,6 +239,7 @@ public class FileTrackerImpl extends BaseTracker {
 
 						if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
 							processAddedMethods(umlModelDiffAll, currentVersion, parentVersion);
+							processAddedImports(rightClass, parentVersion);
 							break;
 						}
 					}
@@ -274,9 +277,50 @@ public class FileTrackerImpl extends BaseTracker {
 					HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn();
 					blameInfo.put(lineNumber, historyInfo);
 				}
+				else if (startElement instanceof Import) {
+					Import startImport = (Import)startElement;
+					ImportTrackerChangeHistory importChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
+					HistoryInfo<Import> historyInfo = importChangeHistory.blameReturn();
+					blameInfo.put(lineNumber, historyInfo);
+				}
 				else {
 					blameInfo.put(lineNumber, null);
 				}
+			}
+		}
+	}
+
+	private void processAddedImports(Class rightClass, Version parentVersion) {
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Import) {
+				Import startImport = (Import)key;
+				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
+				Import currentImport = startImportChangeHistory.poll();
+				if (currentImport == null) {
+					continue;
+				}
+				Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
+				if (rightImport != null) {
+					Import importBefore = Import.of(rightImport.getUmlImport(), rightImport.getClazz(), parentVersion);
+					startImportChangeHistory.get().handleAdd(importBefore, rightImport, "added with class");
+					startImportChangeHistory.add(importBefore);
+					startImportChangeHistory.get().connectRelatedNodes();
+				}
+			}
+		}
+	}
+
+	private void processImports(UMLClassBaseDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Import) {
+				Import startImport = (Import)key;
+				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
+				Import currentImport = startImportChangeHistory.poll();
+				Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
+				if (rightImport == null) {
+					continue;
+				}
+				startImportChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
 			}
 		}
 	}
