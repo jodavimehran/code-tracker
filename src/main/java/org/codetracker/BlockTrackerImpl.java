@@ -9,16 +9,6 @@ import org.codetracker.api.BlockTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
-import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.Change;
-import org.codetracker.change.Introduced;
-import org.codetracker.change.block.ElseBlockAdded;
-import org.codetracker.change.block.ExpressionChange;
-import org.codetracker.change.block.MergeBlock;
-import org.codetracker.change.block.ReplaceLoopWithPipeline;
-import org.codetracker.change.block.ReplacePipelineWithLoop;
-import org.codetracker.change.block.SplitBlock;
-import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.eclipse.jgit.api.Git;
@@ -349,7 +339,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Block> blame = blameReturn(startBlock);
+            	History.HistoryInfo<Block> blame = changeHistory.blameReturn(startBlock);
             	if (blame != null) return blame;
                 Block currentBlock = changeHistory.poll();
                 if (currentBlock.isAdded()) {
@@ -613,33 +603,5 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             }
         }
         return null;
-    }
-
-    private History.HistoryInfo<Block> blameReturn(Block startBlock) {
-    	List<HistoryInfo<Block>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Block> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
-					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
-						return historyInfo;
-					}
-				}
-				else if (startBlock.isClosingCurlyBracket()) {
-					if (change instanceof Introduced) {
-						return historyInfo;
-					}
-				}
-				else {
-					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
-							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop) {
-						return historyInfo;
-					}
-					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
-						return historyInfo;
-					}
-				}
-			}
-		}
-		return null;
     }
 }

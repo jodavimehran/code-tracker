@@ -4,10 +4,14 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
+import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
@@ -508,4 +512,16 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         }
         return false;
     }
+
+	public HistoryInfo<Comment> blameReturn() {
+		List<HistoryInfo<Comment>> history = getHistory();
+		for (History.HistoryInfo<Comment> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (change instanceof BodyChange || change instanceof Introduced) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
 }

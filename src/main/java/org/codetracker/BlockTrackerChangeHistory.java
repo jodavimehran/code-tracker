@@ -8,10 +8,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
+import org.codetracker.change.block.ElseBlockAdded;
+import org.codetracker.change.block.ExpressionChange;
+import org.codetracker.change.block.MergeBlock;
+import org.codetracker.change.block.ReplaceLoopWithPipeline;
+import org.codetracker.change.block.ReplacePipelineWithLoop;
+import org.codetracker.change.block.SplitBlock;
+import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
@@ -731,4 +741,32 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         }
         return false;
     }
+
+	public HistoryInfo<Block> blameReturn(Block startBlock) {
+		List<HistoryInfo<Block>> history = getHistory();
+		for (History.HistoryInfo<Block> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
+					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
+						return historyInfo;
+					}
+				}
+				else if (startBlock.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop) {
+						return historyInfo;
+					}
+					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
+						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }

@@ -8,9 +8,13 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
+import org.codetracker.change.method.MethodSignatureChange;
 import org.codetracker.element.Method;
 import org.codetracker.util.Util;
 import org.refactoringminer.api.Refactoring;
@@ -559,4 +563,23 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         }
         return false;
     }
+
+	public HistoryInfo<Method> blameReturn(Method startMethod) {
+		List<HistoryInfo<Method>> history = getHistory();
+		for (History.HistoryInfo<Method> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (startMethod.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (change instanceof MethodSignatureChange || change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
 }

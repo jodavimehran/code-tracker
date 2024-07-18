@@ -9,9 +9,7 @@ import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
-import org.codetracker.change.attribute.AttributeCrossFileChange;
 import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.eclipse.jgit.api.Git;
@@ -258,7 +256,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Attribute> blame = blameReturn();
+            	History.HistoryInfo<Attribute> blame = changeHistory.blameReturn();
             	if (blame != null) return blame;
                 Attribute currentAttribute = changeHistory.poll();
                 if (currentAttribute.isAdded() || currentAttribute.getVersion().getId().equals("0")) {
@@ -449,17 +447,5 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
             }
         }
         return null;
-    }
-
-    private History.HistoryInfo<Attribute> blameReturn() {
-    	List<HistoryInfo<Attribute>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Attribute> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (!(change instanceof AttributeCrossFileChange)) {
-					return historyInfo;
-				}
-			}
-		}
-		return null;
     }
 }

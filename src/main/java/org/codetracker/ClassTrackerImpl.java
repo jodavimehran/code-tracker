@@ -3,14 +3,10 @@ package org.codetracker;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
-import org.codetracker.change.Change;
 import org.codetracker.api.ClassTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.Introduced;
-import org.codetracker.change.clazz.ClassContainerChange;
-import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
 import org.codetracker.element.Package;
 import org.eclipse.jgit.api.Git;
@@ -167,7 +163,7 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Class> blame = startPackage != null ? blameReturn(startPackage) : blameReturn(startClass);
+            	History.HistoryInfo<Class> blame = startPackage != null ? changeHistory.blameReturn(startPackage) : changeHistory.blameReturn(startClass);
             	if (blame != null) return blame;
                 Class currentClass = changeHistory.poll();
                 if (currentClass.isAdded()) {
@@ -255,36 +251,5 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             }
         }
         return null;
-    }
-
-    private History.HistoryInfo<Class> blameReturn(Class startClass) {
-    	List<HistoryInfo<Class>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Class> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (startClass.isClosingCurlyBracket()) {
-					if (change instanceof Introduced) {
-						return historyInfo;
-					}
-				}
-				else {
-					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
-						return historyInfo;
-					}
-				}
-			}
-		}
-		return null;
-    }
-
-    private History.HistoryInfo<Class> blameReturn(Package startPackage) {
-    	List<HistoryInfo<Class>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Class> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (change instanceof Introduced || change instanceof ClassMove) {
-					return historyInfo;
-				}
-			}
-		}
-		return null;
     }
 }

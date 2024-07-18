@@ -6,9 +6,14 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
+import org.codetracker.change.clazz.ClassContainerChange;
+import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
 import org.codetracker.element.Package;
 import org.refactoringminer.api.Refactoring;
@@ -219,4 +224,35 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
         }
         return false;
     }
+
+	public HistoryInfo<Class> blameReturn(Class startClass) {
+		List<HistoryInfo<Class>> history = getHistory();
+		for (History.HistoryInfo<Class> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (startClass.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
+						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public HistoryInfo<Class> blameReturn(Package startPackage) {
+		List<HistoryInfo<Class>> history = getHistory();
+		for (History.HistoryInfo<Class> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (change instanceof Introduced || change instanceof ClassMove) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
 }

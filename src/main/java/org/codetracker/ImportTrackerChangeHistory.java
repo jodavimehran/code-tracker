@@ -1,12 +1,17 @@
 package org.codetracker;
 
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
+import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Class;
 import org.codetracker.element.Import;
 import org.refactoringminer.api.RefactoringMinerTimedOutException;
@@ -131,4 +136,16 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
     	}
         return false;
     }
+
+	public HistoryInfo<Import> blameReturn() {
+		List<HistoryInfo<Import>> history = getHistory();
+		for (History.HistoryInfo<Import> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (change instanceof BodyChange || change instanceof Introduced) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
 }

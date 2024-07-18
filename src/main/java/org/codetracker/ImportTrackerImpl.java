@@ -11,10 +11,6 @@ import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.ImportTracker;
 import org.codetracker.api.Version;
-import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.Change;
-import org.codetracker.change.Introduced;
-import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Class;
 import org.codetracker.element.Import;
 import org.eclipse.jgit.api.Git;
@@ -57,7 +53,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Import> blame = blameReturn();
+            	History.HistoryInfo<Import> blame = changeHistory.blameReturn();
             	if (blame != null) return blame;
                 Import currentImport = changeHistory.poll();
                 if (currentImport.isAdded()) {
@@ -202,17 +198,5 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
             }
         }
         return null;
-    }
-
-    private History.HistoryInfo<Import> blameReturn() {
-    	List<HistoryInfo<Import>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Import> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (change instanceof BodyChange || change instanceof Introduced) {
-					return historyInfo;
-				}
-			}
-		}
-		return null;
     }
 }

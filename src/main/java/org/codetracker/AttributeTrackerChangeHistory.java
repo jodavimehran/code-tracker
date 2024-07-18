@@ -8,9 +8,12 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.codetracker.api.History;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.attribute.AttributeCrossFileChange;
 import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.refactoringminer.api.Refactoring;
@@ -366,4 +369,16 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         }
         return false;
     }
+
+	public HistoryInfo<Attribute> blameReturn() {
+		List<HistoryInfo<Attribute>> history = getHistory();
+		for (History.HistoryInfo<Attribute> historyInfo : history) {
+			for (Change change : historyInfo.getChangeList()) {
+				if (!(change instanceof AttributeCrossFileChange)) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
 }

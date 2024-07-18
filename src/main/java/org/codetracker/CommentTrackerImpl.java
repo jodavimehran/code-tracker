@@ -12,10 +12,6 @@ import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.CommentTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
-import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.Change;
-import org.codetracker.change.Introduced;
-import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
@@ -71,7 +67,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Comment> blame = blameReturn();
+            	History.HistoryInfo<Comment> blame = changeHistory.blameReturn();
             	if (blame != null) return blame;
                 Comment currentComment = changeHistory.poll();
                 if (currentComment.isAdded()) {
@@ -453,17 +449,5 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
             }
         }
         return null;
-    }
-
-    private History.HistoryInfo<Comment> blameReturn() {
-    	List<HistoryInfo<Comment>> history = changeHistory.getHistory();
-		for (History.HistoryInfo<Comment> historyInfo : history) {
-			for (Change change : historyInfo.getChangeList()) {
-				if (change instanceof BodyChange || change instanceof Introduced) {
-					return historyInfo;
-				}
-			}
-		}
-		return null;
     }
 }
