@@ -283,6 +283,11 @@ public class FileTrackerImpl extends BaseTracker {
 					HistoryInfo<Import> historyInfo = importChangeHistory.blameReturn();
 					blameInfo.put(lineNumber, historyInfo);
 				}
+				else if (startElement instanceof Package) {
+					Package startPackage = (Package)startElement;
+					HistoryInfo<Class> historyInfo = startClassChangeHistory.blameReturn(startPackage);
+					blameInfo.put(lineNumber, historyInfo);
+				}
 				else {
 					blameInfo.put(lineNumber, null);
 				}
