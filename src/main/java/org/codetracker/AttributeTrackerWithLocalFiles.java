@@ -1,7 +1,5 @@
 package org.codetracker;
 
-import static org.codetracker.AttributeTrackerChangeHistory.getAttribute;
-
 import java.io.File;
 import java.util.Collections;
 import java.util.HashSet;

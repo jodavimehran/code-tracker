@@ -22,7 +22,6 @@ import org.refactoringminer.api.RefactoringType;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
-import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.AddAttributeModifierRefactoring;
@@ -69,32 +68,6 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 	public int getAttributeDeclarationLineNumber() {
 		return attributeDeclarationLineNumber;
 	}
-
-    public static Attribute getAttribute(UMLModel umlModel, Version version, Predicate<Attribute> predicate) {
-        if (umlModel != null)
-            for (UMLClass umlClass : umlModel.getClassList()) {
-                Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
-                if (attribute != null) return attribute;
-                attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
-                if (attribute != null) return attribute;
-                for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-                    attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
-                    if (attribute != null) return attribute;
-                    attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
-                    if (attribute != null) return attribute;
-                }
-            }
-        return null;
-    }
-
-    private static Attribute getAttribute(Version version, Predicate<Attribute> predicate, List<? extends UMLAttribute> attributes) {
-        for (UMLAttribute umlAttribute : attributes) {
-            Attribute attribute = Attribute.of(umlAttribute, version);
-            if (predicate.test(attribute))
-                return attribute;
-        }
-        return null;
-    }
 
     public boolean isStartAttribute(Attribute attribute) {
         return attribute.getUmlAttribute().getName().equals(attributeName) &&

@@ -16,7 +16,6 @@ import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
-import static org.codetracker.AttributeTrackerChangeHistory.getAttribute;
 
 import java.util.*;
 

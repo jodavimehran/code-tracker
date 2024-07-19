@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
+import org.codetracker.element.Attribute;
 import org.codetracker.element.Class;
 import org.codetracker.element.Method;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
@@ -512,6 +513,32 @@ public abstract class AbstractTracker {
 	    }
 	    return null;
 	}
+
+    protected static Attribute getAttribute(UMLModel umlModel, Version version, Predicate<Attribute> predicate) {
+        if (umlModel != null)
+            for (UMLClass umlClass : umlModel.getClassList()) {
+                Attribute attribute = getAttribute(version, predicate, umlClass.getAttributes());
+                if (attribute != null) return attribute;
+                attribute = getAttribute(version, predicate, umlClass.getEnumConstants());
+                if (attribute != null) return attribute;
+                for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+                    attribute = getAttribute(version, predicate, anonymousClass.getAttributes());
+                    if (attribute != null) return attribute;
+                    attribute = getAttribute(version, predicate, anonymousClass.getEnumConstants());
+                    if (attribute != null) return attribute;
+                }
+            }
+        return null;
+    }
+
+    private static Attribute getAttribute(Version version, Predicate<Attribute> predicate, List<? extends UMLAttribute> attributes) {
+        for (UMLAttribute umlAttribute : attributes) {
+            Attribute attribute = Attribute.of(umlAttribute, version);
+            if (predicate.test(attribute))
+                return attribute;
+        }
+        return null;
+    }
 
 	public static List<UMLClassBaseDiff> getAllClassesDiff(UMLModelDiff modelDiff) {
 	    List<UMLClassBaseDiff> allClassesDiff = new ArrayList<>();
