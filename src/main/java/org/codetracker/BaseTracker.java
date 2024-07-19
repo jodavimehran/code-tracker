@@ -78,6 +78,20 @@ public abstract class BaseTracker extends AbstractTracker {
         return getUMLModel(repository, commitId, fileNames);
     }
 
+    public void populateFileSets(String commitId, Set<String> filePathsBefore, Set<String> filePathsCurrent, Map<String, String> renamedFilesHint) throws Exception {
+    	try (RevWalk walk = new RevWalk(repository)) {
+            RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));
+            RevCommit parentCommit1 = null;
+            if (currentCommit.getParentCount() == 1 || currentCommit.getParentCount() == 2) {
+                walk.parseCommit(currentCommit.getParent(0));
+                parentCommit1 = currentCommit.getParent(0);
+            }
+            if (parentCommit1 != null) {
+                gitService.fileTreeDiff(repository, currentCommit, filePathsBefore, filePathsCurrent, renamedFilesHint);
+            }
+    	}
+    }
+
     public CommitModel getCommitModel(String commitId) throws Exception {
         try (RevWalk walk = new RevWalk(repository)) {
             RevCommit currentCommit = walk.parseCommit(repository.resolve(commitId));

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -35,10 +36,12 @@ import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringMinerTimedOutException;
+import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 import gr.uom.java.xmi.UMLClass;
@@ -199,9 +202,12 @@ public class FileTrackerImpl extends BaseTracker {
 					// No class signature change
 					if (leftClass != null) {
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
-						if (notFoundMethods.size() > 0) {
+						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+						if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0) {
 							UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
-							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion);
+							List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
+							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 						}
 						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
 						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
@@ -239,6 +245,7 @@ public class FileTrackerImpl extends BaseTracker {
 
 						if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
 							processAddedMethods(umlModelDiffAll, currentVersion, parentVersion);
+							processAddedAttributes(umlModelDiffAll, currentVersion, parentVersion);
 							processAddedImportsAndClassComments(rightClass, parentVersion);
 							break;
 						}
@@ -286,6 +293,12 @@ public class FileTrackerImpl extends BaseTracker {
 				else if (startElement instanceof Package) {
 					Package startPackage = (Package)startElement;
 					HistoryInfo<Class> historyInfo = startClassChangeHistory.blameReturn(startPackage);
+					blameInfo.put(lineNumber, historyInfo);
+				}
+				else if (startElement instanceof Attribute) {
+					Attribute startAttribute = (Attribute)startElement;
+					AttributeTrackerChangeHistory attributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
+					HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn();
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else {
@@ -360,6 +373,42 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
+	private void processAddedAttributes(UMLModelDiff umlModelDiffAll, Version currentVersion, Version parentVersion) {
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Attribute) {
+				Attribute startAttribute = (Attribute)key;
+				AttributeTrackerChangeHistory startAttributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
+				Attribute currentAttribute = startAttributeChangeHistory.poll();
+				if (currentAttribute == null) {
+					currentAttribute = startAttributeChangeHistory.getCurrent();
+				}
+				if (currentAttribute == null || currentAttribute.isAdded()) {
+					continue;
+				}
+				Attribute rightAttribute = currentAttribute;
+				if (startAttributeChangeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+					for (CodeElement key2 : programElementMap.keySet()) {
+						if (key2 instanceof Comment) {
+							Comment startComment = (Comment)key2;
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startAttribute.getUmlAttribute())) ||
+									(startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								Comment currentComment = startCommentChangeHistory.poll();
+								Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
+								if (rightComment != null) {
+									Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+									startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with method");
+									startCommentChangeHistory.add(commentBefore);
+									startCommentChangeHistory.get().connectRelatedNodes();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
 	private void processAddedMethods(UMLModelDiff umlModelDiffAll, Version currentVersion, Version parentVersion) {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Method) {
@@ -410,8 +459,51 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiffLocal, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
-		List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
+	private void processLocallyRefactoredAttributes(Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes, UMLModelDiff umlModelDiffLocal, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws Exception {
+		for (Attribute rightAttribute : notFoundAttributes.keySet()) {
+			AttributeTrackerChangeHistory startAttributeChangeHistory = notFoundAttributes.get(rightAttribute);
+			Set<Attribute> attributeContainerChanged = startAttributeChangeHistory.isAttributeContainerChanged(umlModelDiffLocal, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiffLocal));
+			boolean containerChanged = !attributeContainerChanged.isEmpty();
+
+			String renamedAttributeClassType = null;
+			String extractedClassFilePath = null;
+			for (Refactoring r : refactorings) {
+				if (r.getRefactoringType().equals(RefactoringType.RENAME_ATTRIBUTE)) {
+					RenameAttributeRefactoring renameAttributeRefactoring = (RenameAttributeRefactoring)r;
+					if (renameAttributeRefactoring.getRenamedAttribute().getType() != null) {
+						renamedAttributeClassType = renameAttributeRefactoring.getRenamedAttribute().getType().getClassType();
+					}
+					if (renamedAttributeClassType != null) {
+						Map<String, String> renamedFilesHint = new HashMap<>();
+						Set<String> filePathsBefore = new HashSet<>();
+						Set<String> filePathsCurrent = new HashSet<>();
+						populateFileSets(currentVersion.getId(), filePathsBefore, filePathsCurrent, renamedFilesHint);
+						for (String filePath : filePathsCurrent) {
+							if (filePath.endsWith(renamedAttributeClassType + ".java") && !filePathsBefore.contains(filePath)) {
+								extractedClassFilePath = filePath;
+								break;
+							}
+						}
+					}
+				}
+			}
+			Set<Attribute> attributeRefactored = null;
+			if (extractedClassFilePath == null)
+				attributeRefactored = startAttributeChangeHistory.analyseAttributeRefactorings(refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+			else
+				attributeRefactored = Collections.emptySet();
+			boolean refactored = !attributeRefactored.isEmpty();
+
+			if (containerChanged || refactored) {
+				Set<Attribute> leftSideAttributes = new HashSet<>();
+				leftSideAttributes.addAll(attributeContainerChanged);
+				leftSideAttributes.addAll(attributeRefactored);
+				leftSideAttributes.forEach(startAttributeChangeHistory::addFirst);
+			}
+		}
+	}
+
+	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiffLocal, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
 		for (Method rightMethod : notFoundMethods.keySet()) {
 			MethodTrackerChangeHistory startMethodChangeHistory = notFoundMethods.get(rightMethod);
 			Method startMethod = startMethodChangeHistory.getStart();
@@ -469,6 +561,53 @@ public class FileTrackerImpl extends BaseTracker {
 				}
 			}
 		}
+	}
+
+	private Map<Attribute, AttributeTrackerChangeHistory> processAttributesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion) throws RefactoringMinerTimedOutException {
+		Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = new LinkedHashMap<>();
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Attribute) {
+				Attribute startAttribute = (Attribute)key;
+				AttributeTrackerChangeHistory startAttributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
+				Attribute currentAttribute = startAttributeChangeHistory.poll();
+				if (currentAttribute == null) {
+					currentAttribute = startAttributeChangeHistory.getCurrent();
+				}
+				if (currentAttribute == null || currentAttribute.isAdded()) {
+					continue;
+				}
+				Attribute rightAttribute = getAttribute(rightModel, currentVersion, currentAttribute::equalIdentifierIgnoringVersion);
+				if (rightAttribute == null) {
+					continue;
+				}
+				Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
+				if (leftAttribute != null) {
+					startAttributeChangeHistory.setCurrent(leftAttribute);
+					startAttributeChangeHistory.checkInitializerChange(rightAttribute, leftAttribute);
+					/*for (CodeElement key2 : programElementMap.keySet()) {
+						if (key2 instanceof Comment) {
+							Comment startComment = (Comment)key2;
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startAttribute.getUmlAttribute())) ||
+									(startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								Comment currentComment = startCommentChangeHistory.poll();
+								Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
+								if (rightComment == null) {
+									continue;
+								}
+								if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
+									continue;
+								}
+							}
+						}
+					}*/
+				}
+				else {
+					notFoundAttributes.put(rightAttribute, startAttributeChangeHistory);
+				}
+			}
+		}
+		return notFoundAttributes;
 	}
 
 	private Map<Method, MethodTrackerChangeHistory> processMethodsWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion) throws RefactoringMinerTimedOutException {

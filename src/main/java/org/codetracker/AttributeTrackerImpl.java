@@ -111,9 +111,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                     renamedAttributeClassType = renameAttributeRefactoring.getRenamedAttribute().getType().getClassType();
                                 }
                                 if (renamedAttributeClassType != null) {
-                                    CommitModel commitModel = getCommitModel(currentVersion.getId());
-                                    for (String filePath : commitModel.fileContentsCurrentOriginal.keySet()) {
-                                        if (filePath.endsWith(renamedAttributeClassType + ".java") && !commitModel.fileContentsBeforeOriginal.keySet().contains(filePath)) {
+                                	Map<String, String> renamedFilesHint = new HashMap<>();
+                                    Set<String> filePathsBefore = new HashSet<>();
+                                    Set<String> filePathsCurrent = new HashSet<>();
+                                    populateFileSets(currentVersion.getId(), filePathsBefore, filePathsCurrent, renamedFilesHint);
+                                    for (String filePath : filePathsCurrent) {
+                                        if (filePath.endsWith(renamedAttributeClassType + ".java") && !filePathsBefore.contains(filePath)) {
                                             extractedClassFilePath = filePath;
                                             break;
                                         }
@@ -306,9 +309,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                     renamedAttributeClassType = renameAttributeRefactoring.getRenamedAttribute().getType().getClassType();
                                 }
                                 if (renamedAttributeClassType != null) {
-                                    CommitModel commitModel = getCommitModel(currentVersion.getId());
-                                    for (String filePath : commitModel.fileContentsCurrentOriginal.keySet()) {
-                                        if (filePath.endsWith(renamedAttributeClassType + ".java") && !commitModel.fileContentsBeforeOriginal.keySet().contains(filePath)) {
+                                    Map<String, String> renamedFilesHint = new HashMap<>();
+                                    Set<String> filePathsBefore = new HashSet<>();
+                                    Set<String> filePathsCurrent = new HashSet<>();
+                                    populateFileSets(currentVersion.getId(), filePathsBefore, filePathsCurrent, renamedFilesHint);
+                                    for (String filePath : filePathsCurrent) {
+                                        if (filePath.endsWith(renamedAttributeClassType + ".java") && !filePathsBefore.contains(filePath)) {
                                             extractedClassFilePath = filePath;
                                             break;
                                         }
