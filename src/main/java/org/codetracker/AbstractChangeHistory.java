@@ -50,4 +50,8 @@ public abstract class AbstractChangeHistory<T extends BaseCodeElement> {
 	public T poll() {
 		return elements.poll();
 	}
+
+	public T peek() {
+		return elements.peek();
+	}
 }

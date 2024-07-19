@@ -377,8 +377,8 @@ public class FileTrackerImpl extends BaseTracker {
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Block) {
 							Block startBlock = (Block)key2;
-							if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
-								BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
 								Block currentBlock = startBlockChangeHistory.poll();
 								Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
 								if (rightBlock != null) {
@@ -391,8 +391,9 @@ public class FileTrackerImpl extends BaseTracker {
 						}
 						else if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
-							if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
-								CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
 								if (rightComment != null) {
@@ -540,8 +541,8 @@ public class FileTrackerImpl extends BaseTracker {
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Block) {
 							Block startBlock = (Block)key2;
-							if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
-								BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
 								Block currentBlock = startBlockChangeHistory.poll();
 								Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
 								if (rightBlock == null) {
@@ -554,8 +555,9 @@ public class FileTrackerImpl extends BaseTracker {
 						}
 						else if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
-							if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
-								CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
 								if (rightComment == null) {
