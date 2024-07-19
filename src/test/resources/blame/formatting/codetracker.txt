@@ -31,16 +31,16 @@ e390964c2 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 31)  */
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 32) public class MaxFreeAllocator implements Allocator {
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 33)   private final BlockMetadataManager mMetaManager;
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 34)
+                                                                                                                            34)
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 35)   public MaxFreeAllocator(BlockMetadataManager metadata) {
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 36)     mMetaManager = Preconditions.checkNotNull(metadata);
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 37)   }
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 38)
+                                                                                                                            38)
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 39)   @Override
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 40)   public TempBlockMeta allocateBlock(long userId, long blockId, long blockSize,
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 41)       BlockStoreLocation location) throws IOException {
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 42)     StorageDir candidateDir = null;
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 43)
+                                                                                                                            43)
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 44)     if (location.equals(BlockStoreLocation.anyTier())) {
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 45)       for (StorageTier tier : mMetaManager.getTiers()) {
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 46)         candidateDir = getCandidateDirInTier(tier, blockSize);
@@ -58,11 +58,11 @@ e390964c2 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 58)         candidateDir = dir;
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 59)       }
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 60)     }
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 61)
+                                                                                                                            61)
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 62)     return candidateDir != null ? new TempBlockMeta(userId, blockId, blockSize, candidateDir)
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 63)         : null;
 68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 64)   }
-68514f3fe servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-06-26 20:52:28 -0400 65)
+                                                                                                                            65)
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 66)   /**
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 67)    * Find a directory in a tier that has max free space and is able to store the block.
 9aeefcd81 servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java (Carson Wang 2015-07-09 00:34:26 -0400 68)    *

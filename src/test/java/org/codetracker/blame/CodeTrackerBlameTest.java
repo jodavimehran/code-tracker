@@ -1,11 +1,14 @@
 package org.codetracker.blame;
 
 import org.apache.commons.io.IOUtils;
+import org.codetracker.FileTrackerImpl;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.History;
 import org.codetracker.blame.impl.CodeTrackerBlame;
 import org.codetracker.blame.impl.GitBlame;
 import org.codetracker.blame.model.LineBlameResult;
+import org.codetracker.blame.util.BlameFormatter;
+import org.codetracker.blame.util.TabularPrint;
 import org.eclipse.jgit.lib.Repository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -20,6 +23,7 @@ import org.refactoringminer.util.GitServiceImpl;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 import java.util.stream.Stream;
 
 import static org.codetracker.blame.util.Utils.getBlameOutput;
@@ -47,6 +51,22 @@ public class CodeTrackerBlameTest {
                 Arguments.of(url, filePath, new GitBlame(), System.getProperty("user.dir") + "/src/test/resources/blame/formatting/git.txt")
         );
     }
+
+    @Test
+    public void testBlameWithLocalRepoUsingFileTracker() throws Exception {
+    	String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
+        String filePath = "servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/formatting/codetracker.txt";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+        fileTracker.blame();
+		BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+		List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+		String actual = TabularPrint.make(results);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
     @Test
     public void testBlameWithLocalRepo() throws Exception {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";

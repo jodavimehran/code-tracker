@@ -25,7 +25,10 @@ public class CodeTrackerBlame implements IBlame {
         List<LineBlameResult> result = new ArrayList<>();
         for (int lineNumber = 1; lineNumber <= maxLine; lineNumber++) {
             try {
-                result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
+            	if (lines.get(lineNumber- 1).isBlank()) 
+            		result.add(LineBlameResult.of(null));
+            	else
+            		result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }
@@ -34,10 +37,14 @@ public class CodeTrackerBlame implements IBlame {
     }
 
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine, int toLine) throws Exception {
-        List<LineBlameResult> result = new ArrayList<>();
+    	List<String> lines = getFileContentByCommit(repository, commitId, filePath);
+    	List<LineBlameResult> result = new ArrayList<>();
         for (int lineNumber = fromLine; lineNumber <= toLine; lineNumber++) {
             try {
-                result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
+            	if (lines.get(lineNumber- 1).isBlank()) 
+            		result.add(LineBlameResult.of(null));
+            	else
+            		result.add(getBlameInfo(repository, commitId, filePath, lineNumber));
             } catch (Exception e) {
                 logger.error(e.getMessage());
             }

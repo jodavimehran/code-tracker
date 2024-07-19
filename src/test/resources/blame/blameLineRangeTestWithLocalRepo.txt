@@ -7,10 +7,10 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 449)             throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 450)         final String name = childConf.getName();
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 01:02:37 -0400 451)         final Object child;
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 452)
+                                                                                                                  452)
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 453)         try {
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 01:02:37 -0400 454)             child = moduleFactory.createModule(name);
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 455)
+                                                                                                                  455)
 a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 456)             if (child instanceof AutomaticBean) {
 a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 457)                 final AutomaticBean bean = (AutomaticBean) child;
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 458)                 bean.contextualize(childContext);
