@@ -354,4 +354,26 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 		}
 		return null;
 	}
+
+	public void checkInitializerChange(Attribute rightAttribute, Attribute leftAttribute) {
+		AbstractExpression leftInitializer = leftAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
+		AbstractExpression rightInitializer = rightAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
+		if (leftInitializer != null && rightInitializer != null) {
+			if (!leftInitializer.getString().equals(rightInitializer.getString())) {
+				attributeChangeHistory.addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
+		        add(leftAttribute);
+		        attributeChangeHistory.connectRelatedNodes();
+			}
+		}
+		else if (leftInitializer == null && rightInitializer != null) {
+			attributeChangeHistory.addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
+			add(leftAttribute);
+			attributeChangeHistory.connectRelatedNodes();
+		}
+		else if (leftInitializer != null && rightInitializer == null) {
+			attributeChangeHistory.addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
+			add(leftAttribute);
+			attributeChangeHistory.connectRelatedNodes();
+		}
+	}
 }

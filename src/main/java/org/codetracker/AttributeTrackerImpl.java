@@ -1,7 +1,6 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.AttributeTracker;
@@ -9,8 +8,6 @@ import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
-import org.codetracker.change.ChangeFactory;
-import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
@@ -94,22 +91,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     if (leftAttribute != null) {
                         historyReport.step2PlusPlus();
                         //check if initializer changed
-                        AbstractExpression leftInitializer = leftAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
-						AbstractExpression rightInitializer = rightAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
-						if (leftInitializer != null && rightInitializer != null) {
-                        	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
-                                changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
-                                changeHistory.add(leftAttribute);
-                        	}
-                        }
-						else if (leftInitializer == null && rightInitializer != null) {
-							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
-							changeHistory.add(leftAttribute);
-						}
-						else if (leftInitializer != null && rightInitializer == null) {
-							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
-							changeHistory.add(leftAttribute);
-						}
+                        changeHistory.checkInitializerChange(rightAttribute, leftAttribute);
                         continue;
                     }
 
@@ -304,23 +286,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                     if (leftAttribute != null) {
                         historyReport.step2PlusPlus();
-                        //check if initializer changed
-                        AbstractExpression leftInitializer = leftAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
-						AbstractExpression rightInitializer = rightAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
-						if (leftInitializer != null && rightInitializer != null) {
-                        	if (!leftInitializer.getString().equals(rightInitializer.getString())) {
-                                changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
-                                changeHistory.add(leftAttribute);
-                        	}
-                        }
-						else if (leftInitializer == null && rightInitializer != null) {
-							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_ADDED));
-							changeHistory.add(leftAttribute);
-						}
-						else if (leftInitializer != null && rightInitializer == null) {
-							changeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
-							changeHistory.add(leftAttribute);
-						}
+                        changeHistory.checkInitializerChange(rightAttribute, leftAttribute);
                         continue;
                     }
 
