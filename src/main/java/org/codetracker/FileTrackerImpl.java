@@ -204,7 +204,7 @@ public class FileTrackerImpl extends BaseTracker {
 							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion);
 						}
 						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-						processImports(lightweightClassDiff, rightClass, currentVersion, parentVersion);
+						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
 						continue;
 					}
 					//All refactorings
@@ -239,7 +239,7 @@ public class FileTrackerImpl extends BaseTracker {
 
 						if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
 							processAddedMethods(umlModelDiffAll, currentVersion, parentVersion);
-							processAddedImports(rightClass, parentVersion);
+							processAddedImportsAndClassComments(rightClass, parentVersion);
 							break;
 						}
 					}
@@ -295,37 +295,67 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processAddedImports(Class rightClass, Version parentVersion) {
+	private void processAddedImportsAndClassComments(Class rightClass, Version parentVersion) {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
-				Import currentImport = startImportChangeHistory.poll();
-				if (currentImport == null) {
-					continue;
+				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
+					Import currentImport = startImportChangeHistory.poll();
+					if (currentImport == null) {
+						continue;
+					}
+					Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
+					if (rightImport != null) {
+						Import importBefore = Import.of(rightImport.getUmlImport(), rightImport.getClazz(), parentVersion);
+						startImportChangeHistory.get().handleAdd(importBefore, rightImport, "added with class");
+						startImportChangeHistory.add(importBefore);
+						startImportChangeHistory.get().connectRelatedNodes();
+					}
 				}
-				Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
-				if (rightImport != null) {
-					Import importBefore = Import.of(rightImport.getUmlImport(), rightImport.getClazz(), parentVersion);
-					startImportChangeHistory.get().handleAdd(importBefore, rightImport, "added with class");
-					startImportChangeHistory.add(importBefore);
-					startImportChangeHistory.get().connectRelatedNodes();
+			}
+			else if (key instanceof Comment) {
+				Comment startComment = (Comment)key;
+				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+				if (startComment.getClazz().isPresent()) {
+					Comment currentComment = startCommentChangeHistory.poll();
+					Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);
+					if (rightComment != null) {
+						Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
+						startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with class");
+						startCommentChangeHistory.add(commentBefore);
+						startCommentChangeHistory.get().connectRelatedNodes();
+					}
 				}
 			}
 		}
 	}
 
-	private void processImports(UMLClassBaseDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
+	private void processImportsAndClassComments(UMLClassBaseDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
-				Import currentImport = startImportChangeHistory.poll();
-				Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
-				if (rightImport == null) {
-					continue;
+				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
+					Import currentImport = startImportChangeHistory.poll();
+					Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
+					if (rightImport == null) {
+						continue;
+					}
+					startImportChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
 				}
-				startImportChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
+			}
+			else if (key instanceof Comment) {
+				Comment startComment = (Comment)key;
+				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+				if (startComment.getClazz().isPresent()) {
+					Comment currentComment = startCommentChangeHistory.poll();
+					Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);
+					if (rightComment == null) {
+						continue;
+					}
+					startCommentChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
+				}
 			}
 		}
 	}
