@@ -440,7 +440,8 @@ public class FileTrackerImpl extends BaseTracker {
 						if (key2 instanceof Block) {
 							Block startBlock = (Block)key2;
 							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
-							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
+							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+									(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
 								Block currentBlock = startBlockChangeHistory.poll();
 								if (currentBlock == null) {
 									continue;
@@ -458,7 +459,7 @@ public class FileTrackerImpl extends BaseTracker {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								if (currentComment == null) {
 									continue;
@@ -714,7 +715,8 @@ public class FileTrackerImpl extends BaseTracker {
 						if (key2 instanceof Block) {
 							Block startBlock = (Block)key2;
 							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
-							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
+							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+									(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
 								Block currentBlock = startBlockChangeHistory.poll();
 								if (currentBlock == null) {
 									continue;
@@ -732,7 +734,7 @@ public class FileTrackerImpl extends BaseTracker {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								if (currentComment == null) {
 									continue;
