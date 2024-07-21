@@ -54,16 +54,31 @@ public class CodeTrackerBlameTest {
 
     @Test
     public void testBlameWithLocalRepoUsingFileTracker() throws Exception {
-    	String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
+        String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
         String filePath = "servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java";
         String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/formatting/codetracker.txt";
         String commitId = URLHelper.getCommit(url);
         Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
         fileTracker.blame();
-		BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-		List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-		String actual = TabularPrint.make(results);
+        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+        String actual = TabularPrint.make(results);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
+    @Test
+    public void testBlameWithLocalRepoUsingFileTracker2() throws Exception {
+        String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
+        String filePath = "src/main/java/dat/MakeIntels.java";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+        fileTracker.blame();
+        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+        String actual = TabularPrint.make(results);
         assertEqualWithFile(expectedFilePath, actual);
     }
 

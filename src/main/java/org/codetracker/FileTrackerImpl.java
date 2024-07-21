@@ -237,7 +237,14 @@ public class FileTrackerImpl extends BaseTracker {
 						Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 						boolean refactored = !classRefactored.isEmpty();
 						if (refactored) {
-							//TODO Handle methods and blocks
+							Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
+							Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
+							if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0) {
+								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffAll, currentVersion, parentVersion, refactorings);
+								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
+							}
+							UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
 							break;
@@ -351,6 +358,9 @@ public class FileTrackerImpl extends BaseTracker {
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
 				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
 					Import currentImport = startImportChangeHistory.poll();
+					if (currentImport == null) {
+						continue;
+					}
 					Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
 					if (rightImport == null) {
 						continue;
@@ -363,6 +373,9 @@ public class FileTrackerImpl extends BaseTracker {
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 				if (startComment.getClazz().isPresent()) {
 					Comment currentComment = startCommentChangeHistory.poll();
+					if (currentComment == null) {
+						continue;
+					}
 					Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);
 					if (rightComment == null) {
 						continue;
@@ -392,12 +405,12 @@ public class FileTrackerImpl extends BaseTracker {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startAttribute.getUmlAttribute())) ||
-									(startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
 								if (rightComment != null) {
 									Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
-									startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with method");
+									startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with attribute");
 									startCommentChangeHistory.add(commentBefore);
 									startCommentChangeHistory.get().connectRelatedNodes();
 								}
@@ -429,6 +442,9 @@ public class FileTrackerImpl extends BaseTracker {
 							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
 								Block currentBlock = startBlockChangeHistory.poll();
+								if (currentBlock == null) {
+									continue;
+								}
 								Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
 								if (rightBlock != null) {
 									Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
@@ -444,6 +460,9 @@ public class FileTrackerImpl extends BaseTracker {
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
 									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
+								if (currentComment == null) {
+									continue;
+								}
 								Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
 								if (rightComment != null) {
 									Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
@@ -459,10 +478,10 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processLocallyRefactoredAttributes(Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes, UMLModelDiff umlModelDiffLocal, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws Exception {
+	private void processLocallyRefactoredAttributes(Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws Exception {
 		for (Attribute rightAttribute : notFoundAttributes.keySet()) {
 			AttributeTrackerChangeHistory startAttributeChangeHistory = notFoundAttributes.get(rightAttribute);
-			Set<Attribute> attributeContainerChanged = startAttributeChangeHistory.isAttributeContainerChanged(umlModelDiffLocal, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiffLocal));
+			Set<Attribute> attributeContainerChanged = startAttributeChangeHistory.isAttributeContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
 			boolean containerChanged = !attributeContainerChanged.isEmpty();
 
 			String renamedAttributeClassType = null;
@@ -500,65 +519,79 @@ public class FileTrackerImpl extends BaseTracker {
 				leftSideAttributes.addAll(attributeRefactored);
 				leftSideAttributes.forEach(startAttributeChangeHistory::addFirst);
 			}
+			else {
+				startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff));
+			}
 		}
 	}
 
-	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiffLocal, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
 		for (Method rightMethod : notFoundMethods.keySet()) {
 			MethodTrackerChangeHistory startMethodChangeHistory = notFoundMethods.get(rightMethod);
 			Method startMethod = startMethodChangeHistory.getStart();
 			Set<Method> leftSideMethods = startMethodChangeHistory.analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+			Set<Method> methodContainerChanged = startMethodChangeHistory.isMethodContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
+			leftSideMethods.addAll(methodContainerChanged);
 			boolean refactored = !leftSideMethods.isEmpty();
 			if (refactored) {
 				leftSideMethods.forEach(startMethodChangeHistory::addFirst);
+				for (CodeElement key2 : programElementMap.keySet()) {
+					if (key2 instanceof Block) {
+						Block startBlock = (Block)key2;
+						if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
+							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+							Block currentBlock = startBlockChangeHistory.poll();
+							if (currentBlock == null) {
+								continue;
+							}
+							Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+							if (rightBlock == null) {
+								continue;
+							}
+							boolean found = startBlockChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startBlockChangeHistory.checkRefactoredMethod(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiff, rightMethod, currentVersion, parentVersion));
+							if (found) {
+								continue;
+							}
+						}
+					}
+					else if (key2 instanceof Comment) {
+						Comment startComment = (Comment)key2;
+						if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							Comment currentComment = startCommentChangeHistory.poll();
+							if (currentComment == null) {
+								continue;
+							}
+							Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
+							if (rightComment == null) {
+								continue;
+							}
+							boolean found = startCommentChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startCommentChangeHistory.checkRefactoredMethod(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiff, rightMethod, currentVersion, parentVersion));
+							if (found) {
+								continue;
+							}
+						}
+					}
+				}
 			}
-			for (CodeElement key2 : programElementMap.keySet()) {
-				if (key2 instanceof Block) {
-					Block startBlock = (Block)key2;
-					if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
-						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
-						Block currentBlock = startBlockChangeHistory.poll();
-						Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
-						if (rightBlock == null) {
-							continue;
-						}
-						boolean found = startBlockChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
-						if (found) {
-							continue;
-						}
-						found = startBlockChangeHistory.checkRefactoredMethod(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
-						if (found) {
-							continue;
-						}
-						found = startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
-						if (found) {
-							continue;
-						}
-					}
-				}
-				else if (key2 instanceof Comment) {
-					Comment startComment = (Comment)key2;
-					if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
-						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						Comment currentComment = startCommentChangeHistory.poll();
-						Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
-						if (rightComment == null) {
-							continue;
-						}
-						boolean found = startCommentChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
-						if (found) {
-							continue;
-						}
-						found = startCommentChangeHistory.checkRefactoredMethod(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
-						if (found) {
-							continue;
-						}
-						found = startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion));
-						if (found) {
-							continue;
-						}
-					}
-				}
+			else {
+				startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff));
 			}
 		}
 	}
@@ -683,6 +716,9 @@ public class FileTrackerImpl extends BaseTracker {
 							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) || rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation())) {
 								Block currentBlock = startBlockChangeHistory.poll();
+								if (currentBlock == null) {
+									continue;
+								}
 								Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
 								if (rightBlock == null) {
 									continue;
@@ -698,6 +734,9 @@ public class FileTrackerImpl extends BaseTracker {
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
 									(startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
+								if (currentComment == null) {
+									continue;
+								}
 								Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
 								if (rightComment == null) {
 									continue;
