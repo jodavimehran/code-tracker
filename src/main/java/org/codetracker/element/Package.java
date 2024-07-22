@@ -17,6 +17,10 @@ public class Package extends BaseCodeElement {
 		this.umlClass = umlClass;
 	}
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.umlPackage, this.umlClass, version);
+    }
+
     public UMLPackage getUmlPackage() {
 		return umlPackage;
 	}

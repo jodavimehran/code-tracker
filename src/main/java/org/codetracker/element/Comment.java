@@ -24,6 +24,14 @@ public class Comment extends BaseCodeElement {
 		this.clazz = null;
 	}
 
+	public BaseCodeElement of(Version version) {
+		if (operation != null)
+			return of(this.comment, this.operation, version);
+		if (clazz != null)
+			return of(this.comment, this.clazz, version);
+		return null;
+	}
+
 	public Comment(UMLAbstractDocumentation comment, UMLAbstractClass clazz, String identifierIgnoringVersion, String name, String filePath, Version version) {
 		super(identifierIgnoringVersion, name, filePath, version);
 		this.comment = comment;

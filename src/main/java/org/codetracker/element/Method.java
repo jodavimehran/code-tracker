@@ -27,6 +27,10 @@ public class Method extends BaseCodeElement {
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
     }
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.umlOperation, version);
+    }
+
     public static Method of(VariableDeclarationContainer umlOperation, Version version) {
         String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
         String identifierIgnoringVersion = null;

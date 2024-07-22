@@ -21,6 +21,10 @@ public class Block extends BaseCodeElement {
         this.operation = operation;
     }
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.composite, this.operation, version);
+    }
+
     public AbstractStatement getComposite() {
         return composite;
     }

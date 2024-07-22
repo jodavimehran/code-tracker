@@ -24,6 +24,10 @@ public class Class extends BaseCodeElement {
         this.umlClass = umlClass;
     }
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.umlClass, version);
+    }
+
     public static Class of(UMLAbstractClass umlClass, Version version) {
         String sourceFolder = getPath(umlClass.getLocationInfo().getFilePath(), umlClass.getName());
         String packageName = umlClass.getPackageName();

@@ -19,6 +19,10 @@ public class Variable extends BaseCodeElement {
         this.operation = operation;
     }
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.variableDeclaration, this.operation, version);
+    }
+
     public static Variable of(VariableDeclaration variableDeclaration, VariableDeclarationContainer operation, Version version) {
         Method method = Method.of(operation, version);
         return of(variableDeclaration, method);

@@ -27,6 +27,8 @@ public abstract class BaseCodeElement implements CodeElement {
         this.version = version;
     }
 
+    public abstract BaseCodeElement of(Version anotherVersion);
+
     public boolean isClosingCurlyBracket() {
     	return closingCurlyBracket;
     }

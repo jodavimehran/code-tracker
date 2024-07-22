@@ -29,6 +29,10 @@ public class Attribute extends BaseCodeElement {
         this.umlAttribute = umlAttribute;
     }
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.umlAttribute, version);
+    }
+
     public static Attribute of(UMLAttribute umlAttribute, Version version) {
         String sourceFolder = getPath(umlAttribute.getLocationInfo().getFilePath(), umlAttribute.getClassName());
         String name = umlAttribute.getName();

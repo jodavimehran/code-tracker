@@ -17,6 +17,10 @@ public class Import extends BaseCodeElement {
 		this.clazz = clazz;
 	}
 
+    public BaseCodeElement of(Version version) {
+    	return of(this.umlImport, this.clazz,  version);
+    }
+
     public UMLImport getUmlImport() {
 		return umlImport;
 	}
