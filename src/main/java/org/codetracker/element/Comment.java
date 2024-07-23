@@ -10,6 +10,7 @@ import org.codetracker.util.Util;
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLAbstractDocumentation;
+import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 
 public class Comment extends BaseCodeElement {
@@ -52,6 +53,10 @@ public class Comment extends BaseCodeElement {
 	}
 
     public static Comment of(UMLAbstractDocumentation comment, VariableDeclarationContainer operation, Version version) {
+    	if (operation instanceof UMLAttribute) {
+    		Attribute attribute = Attribute.of((UMLAttribute) operation, version);
+    		return of(comment, attribute);
+    	}
         Method method = Method.of(operation, version);
         return of(comment, method);
     }

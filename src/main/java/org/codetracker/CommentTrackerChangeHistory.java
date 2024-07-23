@@ -12,6 +12,7 @@ import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
 import org.codetracker.change.method.BodyChange;
+import org.codetracker.element.Attribute;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
@@ -21,6 +22,7 @@ import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLJavadoc;
@@ -36,6 +38,7 @@ import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLCommentListDiff;
 import gr.uom.java.xmi.diff.UMLJavadocDiff;
 
 public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> {
@@ -241,6 +244,16 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
+    public boolean checkBodyOfMatchedAttributes(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, Pair<UMLAttribute, UMLAttribute> pair) {
+    	if (pair == null)
+    		return false;
+    	// check if it is in the matched
+        if (isMatched(pair, currentVersion, parentVersion, equalOperator))
+            return true;
+        //Check if is added
+        return isAdded(pair, currentVersion, parentVersion, equalOperator);
+    }
+
     public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
         if (umlOperationBodyMapper == null)
             return false;
@@ -249,6 +262,50 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             return true;
         //Check if is added
         return isAdded(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator);
+    }
+
+    public boolean isMatched(Pair<UMLAttribute, UMLAttribute> pair, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    	int matches = 0;
+    	UMLCommentListDiff commentDiff = new UMLCommentListDiff(pair.getLeft().getComments(), pair.getRight().getComments());
+    	for (Pair<UMLComment, UMLComment> mapping : commentDiff.getCommonComments()) {
+            Comment commentAfter = Comment.of(mapping.getRight(), pair.getRight(), currentVersion);
+            if (commentAfter != null && equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(mapping.getLeft(), pair.getLeft(), parentVersion);
+                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                }
+                else {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                }
+                if(matches == 0) {
+                	elements.add(commentBefore);
+                }
+                commentChangeHistory.connectRelatedNodes();
+                matches++;
+            }
+        }
+    	if (pair.getLeft().getJavadoc() != null && pair.getRight().getJavadoc() != null) {
+    		UMLJavadocDiff javadocDiff = new UMLJavadocDiff(pair.getLeft().getJavadoc(), pair.getRight().getJavadoc());
+    		Comment commentAfter = Comment.of(javadocDiff.getJavadocAfter(), pair.getRight(), currentVersion);
+    		if (commentAfter != null && equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), pair.getLeft(), parentVersion);
+                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                }
+                else {
+                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                }
+                if(matches == 0) {
+                	elements.add(commentBefore);
+                }
+                commentChangeHistory.connectRelatedNodes();
+                matches++;
+    		}
+    	}
+    	if(matches > 0) {
+    		return true;
+    	}
+        return false;
     }
 
     public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
@@ -290,6 +347,39 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     	}
     	if(matches > 0) {
     		return true;
+    	}
+        return false;
+    }
+
+    public void addedAttribute(Attribute rightAttribute, Comment rightComment, Version parentVersion) {
+    	Comment commentBefore = Comment.of(rightComment.getComment(), rightAttribute.getUmlAttribute(), parentVersion);
+        commentChangeHistory.handleAdd(commentBefore, rightComment, "new comment");
+        elements.add(commentBefore);
+        commentChangeHistory.connectRelatedNodes();
+    }
+
+    private boolean isAdded(Pair<UMLAttribute, UMLAttribute> pair, Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator) {
+    	UMLCommentListDiff commentDiff = new UMLCommentListDiff(pair.getLeft().getComments(), pair.getRight().getComments());
+    	for (UMLComment comment : commentDiff.getAddedComments()) {
+            Comment commentAfter = Comment.of(comment, pair.getRight(), currentVersion);
+            if (equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(comment, pair.getRight(), parentVersion);
+                commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
+                elements.add(commentBefore);
+                commentChangeHistory.connectRelatedNodes();
+                return true;
+            }
+        }
+        UMLJavadoc javadoc = pair.getRight().getJavadoc();
+    	if (javadoc != null) {
+    		Comment commentAfter = Comment.of(javadoc, pair.getRight(), currentVersion);
+            if (equalOperator.test(commentAfter)) {
+                Comment commentBefore = Comment.of(javadoc, pair.getRight(), parentVersion);
+                commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
+                elements.add(commentBefore);
+                commentChangeHistory.connectRelatedNodes();
+                return true;
+            }
     	}
         return false;
     }

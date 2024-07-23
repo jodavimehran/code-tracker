@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
 import org.codetracker.element.Attribute;
+import org.codetracker.element.BaseCodeElement;
 import org.codetracker.element.Class;
 import org.codetracker.element.Method;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
@@ -480,6 +481,13 @@ public abstract class AbstractTracker {
 	        return true;
 	    }
 	    return false;
+	}
+
+	protected static BaseCodeElement getCodeElement(UMLModel umlModel, Version version, BaseCodeElement current) {
+		if (current instanceof Attribute) {
+			return getAttribute(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
+		return current;
 	}
 
 	protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {

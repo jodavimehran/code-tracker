@@ -40,6 +40,7 @@ import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
@@ -193,7 +194,23 @@ public class FileTrackerImpl extends BaseTracker {
 						startClassChangeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
 						startClassChangeHistory.get().connectRelatedNodes();
 						startClassChangeHistory.add(leftClass);
-						// TODO terminate all blamed program element change histories
+						for (CodeElement key : programElementMap.keySet()) {
+							AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) programElementMap.get(key);
+							BaseCodeElement codeElement = changeHistory.poll();
+							if (codeElement == null) {
+								codeElement = changeHistory.getCurrent();
+							}
+							if (codeElement != null) {
+								BaseCodeElement right = getCodeElement(rightModel, currentVersion, codeElement);
+								if (right == null) {
+									continue;
+								}
+								BaseCodeElement left = right.of(parentVersion);
+								changeHistory.get().handleAdd(left, right, "Initial commit!");
+								changeHistory.get().connectRelatedNodes();
+								changeHistory.add(left);
+							}
+						}
 						break;
 					}
 					UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
@@ -519,9 +536,50 @@ public class FileTrackerImpl extends BaseTracker {
 				leftSideAttributes.addAll(attributeContainerChanged);
 				leftSideAttributes.addAll(attributeRefactored);
 				leftSideAttributes.forEach(startAttributeChangeHistory::addFirst);
+				for (CodeElement key2 : programElementMap.keySet()) {
+					if (key2 instanceof Comment) {
+						Comment startComment = (Comment)key2;
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							Comment currentComment = startCommentChangeHistory.poll();
+							if (currentComment == null) {
+								continue;
+							}
+							UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
+						    if (umlClassDiff != null) {
+						    	Pair<UMLAttribute, UMLAttribute> foundPair = null;
+						    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {
+						    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+						    			foundPair = pair;
+						    			break;
+						    		}
+						    	}
+						    	startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, currentComment::equalIdentifierIgnoringVersion, foundPair);
+						    }
+						}
+					}
+				}
 			}
-			else {
-				startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff));
+			else if(startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
+				for (CodeElement key2 : programElementMap.keySet()) {
+					if (key2 instanceof Comment) {
+						Comment startComment = (Comment)key2;
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							Comment currentComment = startCommentChangeHistory.poll();
+							if (currentComment == null) {
+								continue;
+							}
+							Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
+							if (rightComment == null) {
+								continue;
+							}
+							startCommentChangeHistory.addedAttribute(rightAttribute, rightComment, parentVersion);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -622,16 +680,14 @@ public class FileTrackerImpl extends BaseTracker {
 						if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startAttribute.getUmlAttribute())) ||
-									(startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 								Comment currentComment = startCommentChangeHistory.poll();
-								Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
-								if (rightComment == null) {
+								if (currentComment == null) {
 									continue;
 								}
-								if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
-									continue;
-								}
+								Pair<UMLAttribute, UMLAttribute> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
+							    startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, currentComment::equalIdentifierIgnoringVersion, pair);
 							}
 						}
 					}*/
