@@ -126,16 +126,19 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     if (equalMethod.test(extractedMethod)) {
                         UMLComment matchedCommentFromSourceMethod = null;
                         UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
-                        for (Pair<UMLComment, UMLComment> mapping : bodyMapper.getCommentListDiff().getCommonComments()) {
-                            Comment matchedCommentInsideExtractedMethodBody = Comment.of(mapping.getRight(), bodyMapper.getContainer2(), currentVersion);
-                            if (matchedCommentInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
-                                matchedCommentFromSourceMethod = mapping.getLeft();
-                                Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
-                                if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
-                                    commentChangeHistory.addChange(commentBefore, matchedCommentInsideExtractedMethodBody, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
-                                }
-                                break;
-                            }
+                        UMLCommentListDiff commentListDiff = bodyMapper.getCommentListDiff();
+                        if (commentListDiff != null) {
+							for (Pair<UMLComment, UMLComment> mapping : commentListDiff.getCommonComments()) {
+	                            Comment matchedCommentInsideExtractedMethodBody = Comment.of(mapping.getRight(), bodyMapper.getContainer2(), currentVersion);
+	                            if (matchedCommentInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
+	                                matchedCommentFromSourceMethod = mapping.getLeft();
+	                                Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
+	                                if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
+	                                    commentChangeHistory.addChange(commentBefore, matchedCommentInsideExtractedMethodBody, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+	                                }
+	                                break;
+	                            }
+	                        }
                         }
                         Comment commentBefore;
                         if (rightComment.getOperation().isPresent())
@@ -351,9 +354,16 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
+    public void addedMethod(Method rightMethod, Comment rightComment, Version parentVersion) {
+    	Comment commentBefore = Comment.of(rightComment.getComment(), rightMethod.getUmlOperation(), parentVersion);
+        commentChangeHistory.handleAdd(commentBefore, rightComment, "added with method");
+        elements.add(commentBefore);
+        commentChangeHistory.connectRelatedNodes();
+    }
+
     public void addedAttribute(Attribute rightAttribute, Comment rightComment, Version parentVersion) {
     	Comment commentBefore = Comment.of(rightComment.getComment(), rightAttribute.getUmlAttribute(), parentVersion);
-        commentChangeHistory.handleAdd(commentBefore, rightComment, "new comment");
+        commentChangeHistory.handleAdd(commentBefore, rightComment, "added with attribute");
         elements.add(commentBefore);
         commentChangeHistory.connectRelatedNodes();
     }

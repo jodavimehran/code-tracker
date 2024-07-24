@@ -668,6 +668,13 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
+    public void addedMethod(Method rightMethod, Block rightBlock, Version parentVersion) {
+    	Block blockBefore = Block.of(rightBlock.getComposite(), rightMethod.getUmlOperation(), parentVersion);
+    	blockChangeHistory.handleAdd(blockBefore, rightBlock, "added with method");
+        elements.add(blockBefore);
+        blockChangeHistory.connectRelatedNodes();
+    }
+
     private boolean isAdded(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
         for (CompositeStatementObject composite : umlOperationBodyMapper.getNonMappedInnerNodesT2()) {
             Block blockAfter = Block.of(composite, umlOperationBodyMapper.getContainer2(), currentVersion);

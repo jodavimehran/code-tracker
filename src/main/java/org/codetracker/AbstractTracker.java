@@ -15,7 +15,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.BaseCodeElement;
+import org.codetracker.element.Block;
 import org.codetracker.element.Class;
+import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
@@ -487,7 +489,76 @@ public abstract class AbstractTracker {
 		if (current instanceof Attribute) {
 			return getAttribute(umlModel, version, current::equalIdentifierIgnoringVersion);
 		}
+		else if (current instanceof Method) {
+			return getMethod(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
+		else if (current instanceof Block) {
+			return getBlock(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
+		else if (current instanceof Comment) {
+			return getComment(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
 		return current;
+	}
+
+	protected static Block getBlock(UMLModel umlModel, Version version, Predicate<Block> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	            for (UMLOperation operation : umlClass.getOperations()) {
+	            	Method method = Method.of(operation, version);
+	            	Block block = method.findBlock(predicate);
+	            	if (block != null) {
+	            		return block;
+	            	}
+	            }
+	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+	            	for (UMLOperation operation : anonymousClass.getOperations()) {
+		            	Method method = Method.of(operation, version);
+		            	Block block = method.findBlock(predicate);
+		            	if (block != null) {
+		            		return block;
+		            	}
+		            }
+	            }
+	        }
+	    return null;
+	}
+
+	protected static Comment getComment(UMLModel umlModel, Version version, Predicate<Comment> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	            for (UMLOperation operation : umlClass.getOperations()) {
+	            	Method method = Method.of(operation, version);
+	            	Comment comment = method.findComment(predicate);
+	            	if (comment != null) {
+	            		return comment;
+	            	}
+	            }
+	            for (UMLAttribute umlAttribute : umlClass.getAttributes()) {
+	            	Attribute attribute = Attribute.of(umlAttribute, version);
+	            	Comment comment = attribute.findComment(predicate);
+	            	if (comment != null) {
+	            		return comment;
+	            	}
+	            }
+	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+	            	for (UMLOperation operation : anonymousClass.getOperations()) {
+		            	Method method = Method.of(operation, version);
+		            	Comment comment = method.findComment(predicate);
+		            	if (comment != null) {
+		            		return comment;
+		            	}
+		            }
+	            	for (UMLAttribute umlAttribute : anonymousClass.getAttributes()) {
+		            	Attribute attribute = Attribute.of(umlAttribute, version);
+		            	Comment comment = attribute.findComment(predicate);
+		            	if (comment != null) {
+		            		return comment;
+		            	}
+		            }
+	            }
+	        }
+	    return null;
 	}
 
 	protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {

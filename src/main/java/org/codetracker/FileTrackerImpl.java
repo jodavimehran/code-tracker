@@ -597,8 +597,9 @@ public class FileTrackerImpl extends BaseTracker {
 				for (CodeElement key2 : programElementMap.keySet()) {
 					if (key2 instanceof Block) {
 						Block startBlock = (Block)key2;
-						if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
-							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+						if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+								(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
 							Block currentBlock = startBlockChangeHistory.poll();
 							if (currentBlock == null) {
 								continue;
@@ -623,8 +624,9 @@ public class FileTrackerImpl extends BaseTracker {
 					}
 					else if (key2 instanceof Comment) {
 						Comment startComment = (Comment)key2;
-						if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
-							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
 							Comment currentComment = startCommentChangeHistory.poll();
 							if (currentComment == null) {
 								continue;
@@ -649,8 +651,41 @@ public class FileTrackerImpl extends BaseTracker {
 					}
 				}
 			}
-			else {
-				startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff));
+			else if(startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
+				for (CodeElement key2 : programElementMap.keySet()) {
+					if (key2 instanceof Block) {
+						Block startBlock = (Block)key2;
+						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+						if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+								(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+							Block currentBlock = startBlockChangeHistory.poll();
+							if (currentBlock == null) {
+								continue;
+							}
+							Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+							if (rightBlock == null) {
+								continue;
+							}
+							startBlockChangeHistory.addedMethod(rightMethod, rightBlock, parentVersion);
+						}
+					}
+					else if (key2 instanceof Comment) {
+						Comment startComment = (Comment)key2;
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightMethod.getUmlOperation())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							Comment currentComment = startCommentChangeHistory.poll();
+							if (currentComment == null) {
+								continue;
+							}
+							Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
+							if (rightComment == null) {
+								continue;
+							}
+							startCommentChangeHistory.addedMethod(rightMethod, rightComment, parentVersion);
+						}
+					}
+				}
 			}
 		}
 	}
@@ -750,64 +785,65 @@ public class FileTrackerImpl extends BaseTracker {
 						startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
 					startMethodChangeHistory.get().connectRelatedNodes();
 					startMethodChangeHistory.setCurrent(leftMethod);
-					VariableDeclarationContainer leftOperation = leftMethod.getUmlOperation();
-					VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
-					UMLOperationBodyMapper bodyMapper = null;
-					if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
-						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
-						bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
-						if (containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
-							bodyMapper = null;
-						}
-					}
-					else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
-						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
-						bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
-						if (containsCallToExtractedMethod(bodyMapper, bodyMapper.getClassDiff())) {
-							bodyMapper = null;
-						}
-					}
-					for (CodeElement key2 : programElementMap.keySet()) {
-						if (key2 instanceof Block) {
-							Block startBlock = (Block)key2;
-							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
-							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-									(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
-								Block currentBlock = startBlockChangeHistory.poll();
-								if (currentBlock == null) {
-									continue;
-								}
-								Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
-								if (rightBlock == null) {
-									continue;
-								}
-								if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
-									continue;
-								}
-							}
-						}
-						else if (key2 instanceof Comment) {
-							Comment startComment = (Comment)key2;
-							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
-								Comment currentComment = startCommentChangeHistory.poll();
-								if (currentComment == null) {
-									continue;
-								}
-								Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
-								if (rightComment == null) {
-									continue;
-								}
-								if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
-									continue;
-								}
-							}
-						}
-					}
+					processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
+							startMethod, rightMethod, leftMethod);
 				}
 			}
 		}
 		return notFoundMethods;
+	}
+
+	private void processNestedStatementsAndComments(UMLModel rightModel, Version currentVersion, UMLModel leftModel,
+			Version parentVersion, Method startMethod, Method rightMethod, Method leftMethod)
+			throws RefactoringMinerTimedOutException {
+		VariableDeclarationContainer leftOperation = leftMethod.getUmlOperation();
+		VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
+		UMLOperationBodyMapper bodyMapper = null;
+		if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
+			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+			bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+		}
+		else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
+			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+			bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
+		}
+		for (CodeElement key2 : programElementMap.keySet()) {
+			if (key2 instanceof Block) {
+				Block startBlock = (Block)key2;
+				BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+				if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+						(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+					Block currentBlock = startBlockChangeHistory.poll();
+					if (currentBlock == null) {
+						continue;
+					}
+					Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+					if (rightBlock == null) {
+						continue;
+					}
+					if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+						continue;
+					}
+				}
+			}
+			else if (key2 instanceof Comment) {
+				Comment startComment = (Comment)key2;
+				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+				if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+					Comment currentComment = startCommentChangeHistory.poll();
+					if (currentComment == null) {
+						continue;
+					}
+					Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
+					if (rightComment == null) {
+						continue;
+					}
+					if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
+						continue;
+					}
+				}
+			}
+		}
 	}
 }
