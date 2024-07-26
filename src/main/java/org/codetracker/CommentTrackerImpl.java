@@ -12,6 +12,8 @@ import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.CommentTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
+import org.codetracker.change.Change;
+import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
@@ -22,6 +24,7 @@ import org.refactoringminer.api.RefactoringType;
 
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLInitializer;
+import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
@@ -117,7 +120,9 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    //NO CHANGE
 	                    Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 	                    if (leftMethod != null) {
-	                    	if (leftMethod.getUmlOperation().getJavadoc() == null && rightMethod.getUmlOperation().getJavadoc() != null &&
+	                    	UMLJavadoc leftJavadoc = leftMethod.getUmlOperation().getJavadoc();
+							UMLJavadoc rightJavadoc = rightMethod.getUmlOperation().getJavadoc();
+							if (leftJavadoc == null && rightJavadoc != null &&
 	                    			rightComment.getComment().getLocationInfo().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 	                    		Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
                                 changeHistory.get().handleAdd(commentBefore, rightComment, "new javadoc");
@@ -125,6 +130,14 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                                 changeHistory.get().connectRelatedNodes();
                                 break;
 	                    	}
+							else if (leftJavadoc != null && rightJavadoc != null && !leftJavadoc.getFullText().equals(rightJavadoc.getFullText()) &&
+	                    			rightComment.getComment().getLocationInfo().getCodeElementType().equals(CodeElementType.JAVADOC)) {
+								Comment commentBefore = Comment.of(leftJavadoc, leftMethod.getUmlOperation(), parentVersion);
+								Comment commentAfter = Comment.of(rightJavadoc, rightMethod.getUmlOperation(), currentVersion);
+								changeHistory.get().addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+								changeHistory.addFirst(commentBefore);
+								changeHistory.get().connectRelatedNodes();
+							}
 	                        historyReport.step2PlusPlus();
 	                        continue;
 	                    }

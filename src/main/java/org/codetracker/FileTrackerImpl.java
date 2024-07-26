@@ -48,6 +48,7 @@ import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLInitializer;
+import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
@@ -762,6 +763,7 @@ public class FileTrackerImpl extends BaseTracker {
 						//NO CHANGE
 						Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 						if (leftMethod != null) {
+							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 							continue;
 						}
 						//CHANGE BODY OR DOCUMENT
@@ -815,6 +817,7 @@ public class FileTrackerImpl extends BaseTracker {
 					//NO CHANGE
 					Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 					if (leftMethod != null) {
+						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 						startMethodChangeHistory.setCurrent(leftMethod);
 						continue;
 					}
@@ -852,6 +855,58 @@ public class FileTrackerImpl extends BaseTracker {
 			}
 		}
 		return notFoundMethods;
+	}
+
+	private void checkIfJavadocChanged(Version currentVersion, Version parentVersion, Method startMethod,
+			Method rightMethod, Method leftMethod) {
+		UMLJavadoc leftJavadoc = leftMethod.getUmlOperation().getJavadoc();
+		UMLJavadoc rightJavadoc = rightMethod.getUmlOperation().getJavadoc();
+		if (leftJavadoc != null && rightJavadoc != null && !leftJavadoc.getFullText().equals(rightJavadoc.getFullText())) {
+			Comment leftComment = Comment.of(leftJavadoc, leftMethod.getUmlOperation(), parentVersion);
+			Comment rightComment = Comment.of(rightJavadoc, rightMethod.getUmlOperation(), currentVersion);
+			for (CodeElement key2 : programElementMap.keySet()) {
+				if (key2 instanceof Comment) {
+					Comment startComment = (Comment)key2;
+					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							Comment currentComment = startCommentChangeHistory.peek();
+							if (currentComment == null) {
+								continue;
+							}
+							startCommentChangeHistory.poll();
+							startCommentChangeHistory.get().addChange(leftComment, rightComment, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+							startCommentChangeHistory.addFirst(leftComment);
+							startCommentChangeHistory.get().connectRelatedNodes();
+						}
+					}
+				}
+			}
+		}
+		else if (leftJavadoc == null && rightJavadoc != null) {
+			Comment rightComment = Comment.of(rightJavadoc, rightMethod.getUmlOperation(), currentVersion);
+			for (CodeElement key2 : programElementMap.keySet()) {
+				if (key2 instanceof Comment) {
+					Comment startComment = (Comment)key2;
+					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
+						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							Comment currentComment = startCommentChangeHistory.peek();
+							if (currentComment == null) {
+								continue;
+							}
+							startCommentChangeHistory.poll();
+							Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+							startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "new javadoc");
+							startCommentChangeHistory.add(commentBefore);
+							startCommentChangeHistory.get().connectRelatedNodes();
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void processNestedStatementsAndComments(UMLModel rightModel, Version currentVersion, UMLModel leftModel,
@@ -944,7 +999,7 @@ public class FileTrackerImpl extends BaseTracker {
 				BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 				if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
 						(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
-					Block currentBlock = startBlockChangeHistory.poll();
+					Block currentBlock = startBlockChangeHistory.peek();
 					if (currentBlock == null) {
 						continue;
 					}
@@ -952,6 +1007,7 @@ public class FileTrackerImpl extends BaseTracker {
 					if (rightBlock == null) {
 						continue;
 					}
+					startBlockChangeHistory.poll();
 					if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
 						continue;
 					}
@@ -962,7 +1018,7 @@ public class FileTrackerImpl extends BaseTracker {
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 				if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
 						(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
-					Comment currentComment = startCommentChangeHistory.poll();
+					Comment currentComment = startCommentChangeHistory.peek();
 					if (currentComment == null) {
 						continue;
 					}
@@ -970,6 +1026,7 @@ public class FileTrackerImpl extends BaseTracker {
 					if (rightComment == null) {
 						continue;
 					}
+					startCommentChangeHistory.poll();
 					if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
 						continue;
 					}
