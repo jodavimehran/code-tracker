@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -585,6 +586,7 @@ public class FileTrackerImpl extends BaseTracker {
 	}
 
 	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+		Set<CodeElement> alreadyProcessed = new HashSet<>();
 		for (Method rightMethod : notFoundMethods.keySet()) {
 			MethodTrackerChangeHistory startMethodChangeHistory = notFoundMethods.get(rightMethod);
 			Method startMethod = startMethodChangeHistory.getStart();
@@ -595,12 +597,15 @@ public class FileTrackerImpl extends BaseTracker {
 			if (refactored) {
 				leftSideMethods.forEach(startMethodChangeHistory::addFirst);
 				for (CodeElement key2 : programElementMap.keySet()) {
+					if (alreadyProcessed.contains(key2)) {
+						continue;
+					}
 					if (key2 instanceof Block) {
 						Block startBlock = (Block)key2;
 						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 						if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
 								(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
-							Block currentBlock = startBlockChangeHistory.poll();
+							Block currentBlock = startBlockChangeHistory.peek();
 							if (currentBlock == null) {
 								continue;
 							}
@@ -608,6 +613,8 @@ public class FileTrackerImpl extends BaseTracker {
 							if (rightBlock == null) {
 								continue;
 							}
+							startBlockChangeHistory.poll();
+							alreadyProcessed.add(startBlock);
 							boolean found = startBlockChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
 							if (found) {
 								continue;
@@ -627,7 +634,7 @@ public class FileTrackerImpl extends BaseTracker {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
 								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
-							Comment currentComment = startCommentChangeHistory.poll();
+							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
 								continue;
 							}
@@ -635,6 +642,8 @@ public class FileTrackerImpl extends BaseTracker {
 							if (rightComment == null) {
 								continue;
 							}
+							startCommentChangeHistory.poll();
+							alreadyProcessed.add(startComment);
 							boolean found = startCommentChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
 							if (found) {
 								continue;
@@ -741,56 +750,178 @@ public class FileTrackerImpl extends BaseTracker {
 			if (key instanceof Method) {
 				Method startMethod = (Method)key;
 				MethodTrackerChangeHistory startMethodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(startMethod);
-				Method currentMethod = startMethodChangeHistory.poll();
-				if (currentMethod == null) {
-					currentMethod = startMethodChangeHistory.getCurrent();
-				}
-				if (currentMethod == null || currentMethod.isAdded()) {
-					continue;
-				}
-				Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
-				if (rightMethod == null) {
-					continue;
-				}
-				//NO CHANGE
-				Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
-				if (leftMethod != null) {
-					startMethodChangeHistory.setCurrent(leftMethod);
-					continue;
-				}
-				//CHANGE BODY OR DOCUMENT
-				leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
-				//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
-				boolean otherExactMatchFound = false;
-				if (leftMethod != null) {
-					for (UMLClass leftClass : leftModel.getClassList()) {
-						for (UMLOperation leftOperation : leftClass.getOperations()) {
-							if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
-								otherExactMatchFound = true;
-								break;
+				if (startMethodChangeHistory.elements.size() > 1) {
+					Iterator<Method> iterator = startMethodChangeHistory.elements.iterator();
+					Set<Pair<Method, Method>> methodPairs = new LinkedHashSet<Pair<Method,Method>>();
+					while (iterator.hasNext()) {
+						Method currentMethod = iterator.next();
+						Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
+						if (rightMethod == null) {
+							continue;
+						}
+						//NO CHANGE
+						Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+						if (leftMethod != null) {
+							continue;
+						}
+						//CHANGE BODY OR DOCUMENT
+						leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+						//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
+						boolean otherExactMatchFound = false;
+						if (leftMethod != null) {
+							for (UMLClass leftClass : leftModel.getClassList()) {
+								for (UMLOperation leftOperation : leftClass.getOperations()) {
+									if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
+										otherExactMatchFound = true;
+										break;
+									}
+								}
+								if(otherExactMatchFound) {
+									break;
+								}
 							}
 						}
-						if(otherExactMatchFound) {
-							break;
+						else {
+							notFoundMethods.put(rightMethod, startMethodChangeHistory);
 						}
+						if (leftMethod != null && !otherExactMatchFound) {
+							if (!leftMethod.equalBody(rightMethod))
+								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
+							if (!leftMethod.equalDocuments(rightMethod))
+								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+							startMethodChangeHistory.get().connectRelatedNodes();
+							startMethodChangeHistory.elements.remove(currentMethod);
+							startMethodChangeHistory.elements.add(leftMethod);
+							methodPairs.add(Pair.of(leftMethod, rightMethod));
+						}
+					}
+					if (methodPairs.size() > 0) {
+						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
+								startMethod, methodPairs);
 					}
 				}
 				else {
-					notFoundMethods.put(rightMethod, startMethodChangeHistory);
-				}
-				if (leftMethod != null && !otherExactMatchFound) {
-					if (!leftMethod.equalBody(rightMethod))
-						startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
-					if (!leftMethod.equalDocuments(rightMethod))
-						startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
-					startMethodChangeHistory.get().connectRelatedNodes();
-					startMethodChangeHistory.setCurrent(leftMethod);
-					processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
-							startMethod, rightMethod, leftMethod);
+					Method currentMethod = startMethodChangeHistory.poll();
+					if (currentMethod == null) {
+						currentMethod = startMethodChangeHistory.getCurrent();
+					}
+					if (currentMethod == null || currentMethod.isAdded()) {
+						continue;
+					}
+					Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
+					if (rightMethod == null) {
+						continue;
+					}
+					//NO CHANGE
+					Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+					if (leftMethod != null) {
+						startMethodChangeHistory.setCurrent(leftMethod);
+						continue;
+					}
+					//CHANGE BODY OR DOCUMENT
+					leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+					//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
+					boolean otherExactMatchFound = false;
+					if (leftMethod != null) {
+						for (UMLClass leftClass : leftModel.getClassList()) {
+							for (UMLOperation leftOperation : leftClass.getOperations()) {
+								if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
+									otherExactMatchFound = true;
+									break;
+								}
+							}
+							if(otherExactMatchFound) {
+								break;
+							}
+						}
+					}
+					else {
+						notFoundMethods.put(rightMethod, startMethodChangeHistory);
+					}
+					if (leftMethod != null && !otherExactMatchFound) {
+						if (!leftMethod.equalBody(rightMethod))
+							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
+						if (!leftMethod.equalDocuments(rightMethod))
+							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+						startMethodChangeHistory.get().connectRelatedNodes();
+						startMethodChangeHistory.setCurrent(leftMethod);
+						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
+								startMethod, rightMethod, leftMethod);
+					}
 				}
 			}
 		}
 		return notFoundMethods;
+	}
+
+	private void processNestedStatementsAndComments(UMLModel rightModel, Version currentVersion, UMLModel leftModel,
+			Version parentVersion, Method startMethod, Set<Pair<Method, Method>> methodPairs)
+			throws RefactoringMinerTimedOutException {
+		Map<Pair<Method, Method>, UMLOperationBodyMapper> mappers = new LinkedHashMap<Pair<Method,Method>, UMLOperationBodyMapper>();
+		for (Pair<Method, Method> pair : methodPairs) {
+			VariableDeclarationContainer leftOperation = pair.getLeft().getUmlOperation();
+			VariableDeclarationContainer rightOperation = pair.getRight().getUmlOperation();
+			UMLOperationBodyMapper bodyMapper = null;
+			if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
+				UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+				bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+			}
+			else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
+				UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+				bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
+			}
+			mappers.put(pair, bodyMapper);
+		}
+		Set<CodeElement> alreadyProcessed = new HashSet<>();
+		for (Pair<Method, Method> pair : methodPairs) {
+			Method rightMethod = pair.getRight();
+			UMLOperationBodyMapper bodyMapper = mappers.get(pair);
+			for (CodeElement key2 : programElementMap.keySet()) {
+				if (alreadyProcessed.contains(key2)) {
+					continue;
+				}
+				if (key2 instanceof Block) {
+					Block startBlock = (Block)key2;
+					BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+					if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
+							(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+						Block currentBlock = startBlockChangeHistory.peek();
+						if (currentBlock == null) {
+							continue;
+						}
+						Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+						if (rightBlock == null) {
+							continue;
+						}
+						startBlockChangeHistory.poll();
+						alreadyProcessed.add(startBlock);
+						if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+							continue;
+						}
+					}
+				}
+				else if (key2 instanceof Comment) {
+					Comment startComment = (Comment)key2;
+					CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+					if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+							(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+						Comment currentComment = startCommentChangeHistory.peek();
+						if (currentComment == null) {
+							continue;
+						}
+						Comment rightComment = rightMethod.findComment(currentComment::equalIdentifierIgnoringVersion);
+						if (rightComment == null) {
+							continue;
+						}
+						startCommentChangeHistory.poll();
+						alreadyProcessed.add(startComment);
+						if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
+							continue;
+						}
+					}
+				}
+			}
+		}
 	}
 
 	private void processNestedStatementsAndComments(UMLModel rightModel, Version currentVersion, UMLModel leftModel,

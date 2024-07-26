@@ -1445,7 +1445,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1445) 		otp.clearDeltaBase();
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1446) 		otp.clearReuseAsIs();
 5d446f410 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 13:07:14 -0400 1447) 		boolean old = reuseDeltas;
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1448) 		reuseDeltas = false;
+8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1448) 		reuseDeltas = false;
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1449) 		reuseSupport.selectObjectRepresentation(this,
 5d446f410 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 13:07:14 -0400 1450) 				NullProgressMonitor.INSTANCE,
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1451) 				Collections.singleton(otp));
@@ -1630,61 +1630,61 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1630) 			// was chosen, forcing a cycle. Select something other than a
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1631) 			// delta, and write this object.
 5d446f410 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 13:07:14 -0400 1632) 			reselectNonDelta(otp);
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1633) 		}
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1634) 		otp.markWantWrite();
+8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1633) 		}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1634) 		otp.markWantWrite();
                                                                                                                                            1635)
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1636) 		while (otp.isReuseAsIs()) {
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1636) 		while (otp.isReuseAsIs()) {
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1637) 			writeBase(out, otp.getDeltaBase());
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1638) 			if (otp.isWritten())
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1639) 				return; // Delta chain cycle caused this to write already.
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1638) 			if (otp.isWritten())
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1639) 				return; // Delta chain cycle caused this to write already.
                                                                                                                                            1640)
 eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 15:58:50 -0400 1641) 			crc32.reset();
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1642) 			otp.setOffset(out.length());
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1643) 			try {
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1644) 				reuseSupport.copyObjectAsIs(out, otp, reuseValidate);
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1645) 				out.endObject();
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1642) 			otp.setOffset(out.length());
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1643) 			try {
+1b2062fe3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-02 15:23:58 -0500 1644) 				reuseSupport.copyObjectAsIs(out, otp, reuseValidate);
+6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 14:47:28 -0400 1645) 				out.endObject();
 eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 15:58:50 -0400 1646) 				otp.setCRC((int) crc32.getValue());
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1647) 				typeStats.reusedObjects++;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1648) 				if (otp.isDeltaRepresentation()) {
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1649) 					typeStats.reusedDeltas++;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1650) 					typeStats.deltaBytes += out.length() - otp.getOffset();
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1651) 				}
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1652) 				return;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1653) 			} catch (StoredObjectRepresentationNotAvailableException gone) {
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1654) 				if (otp.getOffset() == out.length()) {
+bb1956e64 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-18 14:31:12 -0400 1647) 				typeStats.reusedObjects++;
+71f168fcd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-02 20:17:57 -0500 1648) 				if (otp.isDeltaRepresentation()) {
+bb1956e64 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-18 14:31:12 -0400 1649) 					typeStats.reusedDeltas++;
+bb1956e64 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-18 14:31:12 -0400 1650) 					typeStats.deltaBytes += out.length() - otp.getOffset();
+71f168fcd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-02 20:17:57 -0500 1651) 				}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1652) 				return;
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1653) 			} catch (StoredObjectRepresentationNotAvailableException gone) {
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1654) 				if (otp.getOffset() == out.length()) {
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1655) 					otp.setOffset(0);
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1656) 					otp.clearDeltaBase();
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1657) 					otp.clearReuseAsIs();
+8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1656) 					otp.clearDeltaBase();
+8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1657) 					otp.clearReuseAsIs();
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1658) 					reuseSupport.selectObjectRepresentation(this,
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1659) 							NullProgressMonitor.INSTANCE,
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1660) 							Collections.singleton(otp));
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1661) 					continue;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1662) 				} else {
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1663) 					// Object writing already started, we cannot recover.
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1661) 					continue;
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1662) 				} else {
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1663) 					// Object writing already started, we cannot recover.
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1664) 					//
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1665) 					CorruptObjectException coe;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1666) 					coe = new CorruptObjectException(otp, ""); //$NON-NLS-1$
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1667) 					coe.initCause(gone);
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1668) 					throw coe;
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1669) 				}
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1670) 			}
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1671) 		}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1665) 					CorruptObjectException coe;
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1666) 					coe = new CorruptObjectException(otp, ""); //$NON-NLS-1$
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1667) 					coe.initCause(gone);
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1668) 					throw coe;
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1669) 				}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1670) 			}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1671) 		}
                                                                                                                                            1672)
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1673) 		// If we reached here, reuse wasn't possible.
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1673) 		// If we reached here, reuse wasn't possible.
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1674) 		//
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1675) 		if (otp.isDeltaRepresentation())
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1676) 			writeDeltaObjectDeflate(out, otp);
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1675) 		if (otp.isDeltaRepresentation())
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1676) 			writeDeltaObjectDeflate(out, otp);
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1677) 		else
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1678) 			writeWholeObjectDeflate(out, otp);
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1679) 		out.endObject();
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1678) 			writeWholeObjectDeflate(out, otp);
+6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 14:47:28 -0400 1679) 		out.endObject();
 eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 15:58:50 -0400 1680) 		otp.setCRC((int) crc32.getValue());
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1681) 	}
+8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1681) 	}
                                                                                                                                            1682)
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 18:55:52 -0500 1683) 	private void writeBase(PackOutputStream out, ObjectToPack base)
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 18:55:52 -0500 1684) 			throws IOException {
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 18:55:52 -0500 1685) 		if (base != null && !base.isWritten() && !base.isEdge())
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 18:55:52 -0500 1686) 			writeObjectImpl(out, base);
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 17:40:33 -0400 1687) 	}
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 17:46:05 -0400 1687) 	}
                                                                                                                                            1688)
 f288c27e4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 14:47:28 -0400 1689) 	private void writeWholeObjectDeflate(PackOutputStream out,
 f288c27e4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 14:47:28 -0400 1690) 			final ObjectToPack otp) throws IOException {
