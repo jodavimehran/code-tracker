@@ -1,6 +1,7 @@
 package org.codetracker.util;
 
 import org.codetracker.api.CodeElement;
+import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
@@ -676,5 +677,46 @@ public class CodeElementLocatorWithLocalFilesTest {
         assertEquals(codeElement.getLocation().getStartLine(), 534);
         assertTrue(((Block)codeElement).isElseBlockStart());
     }
+    // Annotation tests
+    @Test
+    public void testMethodAnnotationLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 205;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Annotation.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ANNOTATION);
+        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+    }
 
+    @Test
+    public void testAnonymousMethodAnnotationLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Main.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 423;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Annotation.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ANNOTATION);
+        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+    }
+
+    @Test
+    public void testInnerClassMethodAnnotationLocator() throws Exception {
+    	final String cloneURL = "https://github.com/checkstyle/checkstyle.git";
+        final String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/ConfigurationLoader.java";
+        final String commitId = "119fd4fb33bef9f5c66fc950396669af842c21a3";
+        final int lineNumber = 600;
+        CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, commitId, filePath, lineNumber);
+        CodeElement codeElement = locator.locate();
+        assertNotNull(codeElement);
+        assertEquals(codeElement.getClass(), Annotation.class);
+        assertEquals(codeElement.getLocation().getCodeElementType(), CodeElementType.ANNOTATION);
+        assertEquals(codeElement.getLocation().getStartLine(), lineNumber);
+    }
 }

@@ -2344,8 +2344,8 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2344) 		}
                                                                                                                                            2345)
 c310fa0c8 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Robin Rosenberg           2012-12-27 10:57:38 -0500 2346) 		@SuppressWarnings("nls")
-c310fa0c8 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Robin Rosenberg           2012-12-27 10:57:38 -0500 2347) 		@Override
-c310fa0c8 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Robin Rosenberg           2012-12-27 10:57:38 -0500 2348) 		public String toString() {
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2347) 		@Override
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2348) 		public String toString() {
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2349) 			return "PackWriter.State[" + phase + ", memory=" + bytesUsed + "]";
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2350) 		}
                                                                                                                                            2351) 	}

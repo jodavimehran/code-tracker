@@ -148,7 +148,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                         if (matchedCommentFromSourceMethod == null) {
                             commentChangeHistory.handleAdd(commentBefore, rightComment, extractOperationRefactoring.toString());
                             if(extractMatches == 0) {
-                            	elements.add(commentBefore);
+                            	elements.addFirst(commentBefore);
                             }
                         }
                         else {
@@ -156,7 +156,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
-                            	elements.add(leftComment);
+                            	elements.addFirst(leftComment);
                             }
                         }
                         commentChangeHistory.connectRelatedNodes();
@@ -175,7 +175,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                             if (matchedCommentInsideInlinedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
                                 Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
                                 commentChangeHistory.handleAdd(commentBefore, matchedCommentInsideInlinedMethodBody, inlineOperationRefactoring.toString());
-                                elements.add(commentBefore);
+                                elements.addFirst(commentBefore);
                                 commentChangeHistory.connectRelatedNodes();
                                 return true;
                             }
@@ -281,7 +281,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -299,7 +299,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -324,7 +324,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -342,7 +342,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -357,14 +357,14 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     public void addedMethod(Method rightMethod, Comment rightComment, Version parentVersion) {
     	Comment commentBefore = Comment.of(rightComment.getComment(), rightMethod.getUmlOperation(), parentVersion);
         commentChangeHistory.handleAdd(commentBefore, rightComment, "added with method");
-        elements.add(commentBefore);
+        elements.addFirst(commentBefore);
         commentChangeHistory.connectRelatedNodes();
     }
 
     public void addedAttribute(Attribute rightAttribute, Comment rightComment, Version parentVersion) {
     	Comment commentBefore = Comment.of(rightComment.getComment(), rightAttribute.getUmlAttribute(), parentVersion);
         commentChangeHistory.handleAdd(commentBefore, rightComment, "added with attribute");
-        elements.add(commentBefore);
+        elements.addFirst(commentBefore);
         commentChangeHistory.connectRelatedNodes();
     }
 
@@ -375,7 +375,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(comment, pair.getRight(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -386,7 +386,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadoc, pair.getRight(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -410,7 +410,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "commented code");
                 else
                 	commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -421,7 +421,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadoc, umlOperationBodyMapper.getContainer2(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -452,7 +452,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -469,7 +469,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -487,7 +487,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -505,7 +505,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
                 }
                 if(matches == 0) {
-                	elements.add(commentBefore);
+                	elements.addFirst(commentBefore);
                 }
                 commentChangeHistory.connectRelatedNodes();
                 matches++;
@@ -523,7 +523,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(comment, classDiff.getNextClass(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -533,7 +533,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(comment, classDiff.getNextClass(), parentVersion);
                 commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
-                elements.add(commentBefore);
+                elements.addFirst(commentBefore);
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
@@ -545,7 +545,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 if (equalOperator.test(commentAfter)) {
                     Comment commentBefore = Comment.of(javadoc, classDiff.getNextClass(), parentVersion);
                     commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                    elements.add(commentBefore);
+                    elements.addFirst(commentBefore);
                     commentChangeHistory.connectRelatedNodes();
                     return true;
                 }
@@ -556,7 +556,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 if (equalOperator.test(commentAfter)) {
                     Comment commentBefore = Comment.of(packageDeclarationJavadoc, classDiff.getNextClass(), parentVersion);
                     commentChangeHistory.handleAdd(commentBefore, commentAfter, "new javadoc");
-                    elements.add(commentBefore);
+                    elements.addFirst(commentBefore);
                     commentChangeHistory.connectRelatedNodes();
                     return true;
                 }

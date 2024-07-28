@@ -1,6 +1,7 @@
 package org.codetracker.blame.adaptor;
 
 import org.codetracker.api.*;
+import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
@@ -102,6 +103,33 @@ public class LineTrackerFromCodeTracker {
                     }
                     CommentTracker commentTracker = builder.build();
                     blame = commentTracker.blame();
+                    break;
+                case "Annotation":
+                	Annotation annotation = (Annotation) codeElement;
+                	AnnotationTracker.Builder annotationBuilder = CodeTracker
+                            .annotationTracker()
+                            .repository(repository)
+                            .filePath(filePath)
+                            .startCommitId(commitId)
+                            .codeElementType(codeElement.getLocation().getCodeElementType())
+                            .annotationStartLineNumber(codeElement.getLocation().getStartLine())
+                            .annotationEndLineNumber(codeElement.getLocation().getEndLine());
+                    if (annotation.getOperation().isPresent()) {
+                    	annotationBuilder
+                    	.methodName(annotation.getOperation().get().getName())
+                        .methodDeclarationLineNumber(
+                        		annotation.getOperation().get().getLocationInfo().getStartLine()
+                        );
+                    }
+                    else if (annotation.getClazz().isPresent()) {
+                    	annotationBuilder
+                    	.methodName(annotation.getClazz().get().getName())
+                        .methodDeclarationLineNumber(
+                        		annotation.getClazz().get().getLocationInfo().getStartLine()
+                        );
+                    }
+                    AnnotationTracker annotationTracker = annotationBuilder.build();
+                    blame = annotationTracker.blame();
                     break;
                 case "Import":
                     Import imp = (Import) codeElement;

@@ -1,6 +1,7 @@
 package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
+import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLComment;
@@ -135,6 +136,26 @@ public class Attribute extends BaseCodeElement {
                 Comment comment = Comment.of(umlComment, this);
                 if (comment != null && equalOperator.test(comment)) {
                     return comment;
+                }
+            }
+        }
+        return null;
+    }
+
+    public Annotation findAnnotation(Predicate<Annotation> equalOperator) {
+        for (UMLAnnotation umlAnnotation : umlAttribute.getAnnotations()) {
+        	Annotation annotation = Annotation.of(umlAnnotation, this);
+            if (annotation != null && equalOperator.test(annotation)) {
+                return annotation;
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlAttribute.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                for (UMLAnnotation umlAnnotation : operation.getAnnotations()) {
+                	Annotation annotation = Annotation.of(umlAnnotation, this);
+                    if (annotation != null && equalOperator.test(annotation)) {
+                        return annotation;
+                    }
                 }
             }
         }

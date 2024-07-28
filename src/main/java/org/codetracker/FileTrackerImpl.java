@@ -21,6 +21,7 @@ import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.BaseCodeElement;
 import org.codetracker.element.Block;
@@ -110,6 +111,21 @@ public class FileTrackerImpl extends BaseTracker {
 			CommentTrackerChangeHistory commentTrackerChangeHistory = new CommentTrackerChangeHistory(containerName, containerStartLine, type, startLine, endLine);
 			commentTrackerChangeHistory.setStart(comment);
 			return commentTrackerChangeHistory;
+		case "Annotation":
+			Annotation annotation = (Annotation) codeElement;
+			String annotationContainerName = null;
+			int annotationContainerStartLine = 0;
+			if (annotation.getOperation().isPresent()) {
+				annotationContainerName = annotation.getOperation().get().getName();
+				annotationContainerStartLine = annotation.getOperation().get().getLocationInfo().getStartLine();
+			}
+			else if (annotation.getClazz().isPresent()) {
+				annotationContainerName = annotation.getClazz().get().getName();
+				annotationContainerStartLine = annotation.getClazz().get().getLocationInfo().getStartLine();
+			}
+			AnnotationTrackerChangeHistory annotationTrackerChangeHistory = new AnnotationTrackerChangeHistory(annotationContainerName, annotationContainerStartLine, type, startLine, endLine);
+			annotationTrackerChangeHistory.setStart(annotation);
+			return annotationTrackerChangeHistory;
 		case "Import":
 			Import imp = (Import) codeElement;
 			ImportTrackerChangeHistory importTrackerChangeHistory = new ImportTrackerChangeHistory(imp.getClazz().getName(), imp.getClazz().getLocationInfo().getStartLine(), type, startLine, endLine);
@@ -202,7 +218,7 @@ public class FileTrackerImpl extends BaseTracker {
 							if (codeElement == null) {
 								codeElement = changeHistory.getCurrent();
 							}
-							if (codeElement != null) {
+							if (codeElement != null && !codeElement.isAdded()) {
 								BaseCodeElement right = getCodeElement(rightModel, currentVersion, codeElement);
 								if (right == null) {
 									continue;
@@ -325,6 +341,12 @@ public class FileTrackerImpl extends BaseTracker {
 					Attribute startAttribute = (Attribute)startElement;
 					AttributeTrackerChangeHistory attributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
 					HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn();
+					blameInfo.put(lineNumber, historyInfo);
+				}
+				else if (startElement instanceof Annotation) {
+					Annotation startAnnotation = (Annotation)startElement;
+					AnnotationTrackerChangeHistory annotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+					HistoryInfo<Annotation> historyInfo = annotationChangeHistory.blameReturn();
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else {
@@ -489,6 +511,24 @@ public class FileTrackerImpl extends BaseTracker {
 									startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with method");
 									startCommentChangeHistory.add(commentBefore);
 									startCommentChangeHistory.get().connectRelatedNodes();
+								}
+							}
+						}
+						else if (key2 instanceof Annotation) {
+							Annotation startAnnotation = (Annotation)key2;
+							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+							if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+									(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+								Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+								if (currentAnnotation == null) {
+									continue;
+								}
+								Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+								if (rightAnnotation != null) {
+									Annotation commentBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getOperation().get(), parentVersion);
+									startAnnotationChangeHistory.get().handleAdd(commentBefore, rightAnnotation, "added with method");
+									startAnnotationChangeHistory.add(commentBefore);
+									startAnnotationChangeHistory.get().connectRelatedNodes();
 								}
 							}
 						}
@@ -659,6 +699,35 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 						}
 					}
+					else if (key2 instanceof Annotation) {
+						Annotation startAnnotation = (Annotation)key2;
+						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+							Annotation currentAnnotation = startAnnotationChangeHistory.peek();
+							if (currentAnnotation == null) {
+								continue;
+							}
+							Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+							if (rightAnnotation == null) {
+								continue;
+							}
+							startAnnotationChangeHistory.poll();
+							alreadyProcessed.add(startAnnotation);
+							boolean found = startAnnotationChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightAnnotation, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startAnnotationChangeHistory.checkRefactoredMethod(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightAnnotation, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startAnnotationChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiff, rightMethod, currentVersion, parentVersion));
+							if (found) {
+								continue;
+							}
+						}
+					}
 				}
 			}
 			else if(startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
@@ -693,6 +762,22 @@ public class FileTrackerImpl extends BaseTracker {
 								continue;
 							}
 							startCommentChangeHistory.addedMethod(rightMethod, rightComment, parentVersion);
+						}
+					}
+					else if (key2 instanceof Annotation) {
+						Annotation startAnnotation = (Annotation)key2;
+						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightMethod.getUmlOperation())) ||
+								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+							if (currentAnnotation == null) {
+								continue;
+							}
+							Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+							if (rightAnnotation == null) {
+								continue;
+							}
+							startAnnotationChangeHistory.addedMethod(rightMethod, rightAnnotation, parentVersion);
 						}
 					}
 				}
@@ -975,6 +1060,26 @@ public class FileTrackerImpl extends BaseTracker {
 						}
 					}
 				}
+				else if (key2 instanceof Annotation) {
+					Annotation startAnnotation = (Annotation)key2;
+					AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+					if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+							(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+						Annotation currentAnnotation = startAnnotationChangeHistory.peek();
+						if (currentAnnotation == null) {
+							continue;
+						}
+						Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+						if (rightAnnotation == null) {
+							continue;
+						}
+						startAnnotationChangeHistory.poll();
+						alreadyProcessed.add(startAnnotation);
+						if (startAnnotationChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, bodyMapper)) {
+							continue;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -1028,6 +1133,25 @@ public class FileTrackerImpl extends BaseTracker {
 					}
 					startCommentChangeHistory.poll();
 					if (startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, bodyMapper)) {
+						continue;
+					}
+				}
+			}
+			else if (key2 instanceof Annotation) {
+				Annotation startAnnotation = (Annotation)key2;
+				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+				if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+					Annotation currentAnnotation = startAnnotationChangeHistory.peek();
+					if (currentAnnotation == null) {
+						continue;
+					}
+					Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+					if (rightAnnotation == null) {
+						continue;
+					}
+					startAnnotationChangeHistory.poll();
+					if (startAnnotationChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, bodyMapper)) {
 						continue;
 					}
 				}

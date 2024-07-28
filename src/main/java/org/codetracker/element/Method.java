@@ -241,6 +241,26 @@ public class Method extends BaseCodeElement {
         return null;
     }
 
+    public Annotation findAnnotation(Predicate<Annotation> equalOperator) {
+        for (UMLAnnotation umlAnnotation : umlOperation.getAnnotations()) {
+        	Annotation annotation = Annotation.of(umlAnnotation, this);
+            if (annotation != null && equalOperator.test(annotation)) {
+                return annotation;
+            }
+        }
+        for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                for (UMLAnnotation umlAnnotation : operation.getAnnotations()) {
+                	Annotation annotation = Annotation.of(umlAnnotation, this);
+                    if (annotation != null && equalOperator.test(annotation)) {
+                        return annotation;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
     public VariableDeclarationContainer getUmlOperation() {
         return umlOperation;
     }

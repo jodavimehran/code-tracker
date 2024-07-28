@@ -41,6 +41,10 @@ public final class ChangeFactory {
         return new ChangeFactory(type, "comment");
     }
 
+    public static ChangeFactory forAnnotation(Change.Type type) {
+        return new ChangeFactory(type, "annotation");
+    }
+
     public static ChangeFactory forImport(Change.Type type) {
         return new ChangeFactory(type, "import");
     }

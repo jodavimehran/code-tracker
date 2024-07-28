@@ -14,6 +14,7 @@ import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
+import org.codetracker.change.method.MethodAnnotationChange;
 import org.codetracker.change.method.MethodSignatureChange;
 import org.codetracker.element.Method;
 import org.codetracker.util.Util;
@@ -574,7 +575,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 					}
 				}
 				else {
-					if (change instanceof MethodSignatureChange || change instanceof Introduced) {
+					if ((change instanceof MethodSignatureChange && !(change instanceof MethodAnnotationChange)) || change instanceof Introduced) {
 						return historyInfo;
 					}
 				}

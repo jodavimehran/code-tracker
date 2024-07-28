@@ -2,6 +2,7 @@ package org.codetracker.element;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
+import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLImport;
@@ -64,6 +65,17 @@ public class Class extends BaseCodeElement {
             }
         }
     	return null;
+    }
+
+
+    public Annotation findAnnotation(Predicate<Annotation> equalOperator) {
+        for (UMLAnnotation umlAnnotation : umlClass.getAnnotations()) {
+        	Annotation annotation = Annotation.of(umlAnnotation, this);
+            if (annotation != null && equalOperator.test(annotation)) {
+                return annotation;
+            }
+        }
+        return null;
     }
 
     public Comment findComment(Predicate<Comment> equalOperator) {

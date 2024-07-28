@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.Version;
+import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
@@ -156,6 +157,11 @@ public abstract class AbstractCodeElementLocator {
 	protected boolean commentPredicate(Comment comment) {
 	    return comment.getComment().getLocationInfo().getStartLine() <= lineNumber &&
 	    		comment.getComment().getLocationInfo().getEndLine() >= lineNumber;
+	}
+
+	protected boolean annotationPredicate(Annotation annotation) {
+	    return annotation.getAnnotation().getLocationInfo().getStartLine() <= lineNumber &&
+	    		annotation.getAnnotation().getLocationInfo().getEndLine() >= lineNumber;
 	}
 
 	protected boolean packagePredicate(Package pack) {
@@ -397,6 +403,10 @@ public abstract class AbstractCodeElementLocator {
             if (comment != null) {
             	return comment;
             }
+            Annotation annotation = method.findAnnotation(this::annotationPredicate);
+            if (annotation != null) {
+            	return annotation;
+            }
             Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
             if (attribute != null) {
             	return attribute;
@@ -431,6 +441,10 @@ public abstract class AbstractCodeElementLocator {
             if (comment != null) {
             	return comment;
             }
+            Annotation annotation = attribute.findAnnotation(this::annotationPredicate);
+            if (annotation != null) {
+            	return annotation;
+            }
             return attribute;
         }
         Import imp = getImport(umlModel, version, filePath, this::importPredicate);
@@ -442,6 +456,10 @@ public abstract class AbstractCodeElementLocator {
         	Comment comment = clazz.findComment(this::commentPredicate);
             if (comment != null) {
             	return comment;
+            }
+            Annotation annotation = clazz.findAnnotation(this::annotationPredicate);
+            if (annotation != null) {
+            	return annotation;
             }
         	clazz.checkClosingBracket(lineNumber);
         	return clazz;

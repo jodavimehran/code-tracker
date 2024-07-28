@@ -2,7 +2,7 @@
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 444)      * {@inheritDoc} Creates child module.
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 445)      * @noinspection ChainOfInstanceofChecks
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 446)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 447)     @Override
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn      2007-12-15 03:14:40 -0500 447)     @Override
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 448)     protected void setupChild(Configuration childConf)
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 449)             throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 450)         final String name = childConf.getName();
