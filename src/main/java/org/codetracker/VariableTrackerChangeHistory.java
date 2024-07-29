@@ -44,7 +44,7 @@ import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameVariableRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitVariableRefactoring;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 
 public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable> {
 	private final ChangeHistory<Variable> variableChangeHistory = new ChangeHistory<>();
@@ -92,7 +92,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForVariableChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForVariableChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {

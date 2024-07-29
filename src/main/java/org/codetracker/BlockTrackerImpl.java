@@ -289,7 +289,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             }
 
 
-                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 
@@ -578,7 +578,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             }
 
 
-                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 

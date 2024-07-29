@@ -45,6 +45,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 import gr.uom.java.xmi.UMLClass;
@@ -278,7 +279,7 @@ public class FileTrackerImpl extends BaseTracker {
 								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 							}
-							UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
 							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
@@ -392,7 +393,7 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processImportsAndClassComments(UMLClassBaseDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
+	private void processImportsAndClassComments(UMLAbstractClassDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
@@ -588,7 +589,7 @@ public class FileTrackerImpl extends BaseTracker {
 							if (currentComment == null) {
 								continue;
 							}
-							UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
 						    if (umlClassDiff != null) {
 						    	Pair<UMLAttribute, UMLAttribute> foundPair = null;
 						    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {

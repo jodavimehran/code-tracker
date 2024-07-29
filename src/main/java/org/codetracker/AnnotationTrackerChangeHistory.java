@@ -199,7 +199,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return false;
     }
 
-    public boolean checkClassDiffForAnnotationChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Annotation> equalAnnotation, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForAnnotationChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Annotation> equalAnnotation, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {

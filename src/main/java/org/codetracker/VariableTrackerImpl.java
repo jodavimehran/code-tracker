@@ -280,7 +280,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                             }
 
 
-                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForVariableChange(currentVersion, parentVersion, equalMethod, equalVariable, umlClassDiff);
 

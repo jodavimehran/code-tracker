@@ -53,7 +53,7 @@ import gr.uom.java.xmi.diff.ReplaceLoopWithPipelineRefactoring;
 import gr.uom.java.xmi.diff.ReplacePipelineWithLoopRefactoring;
 import gr.uom.java.xmi.diff.SplitConditionalRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 
 public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	private final ChangeHistory<Block> blockChangeHistory = new ChangeHistory<>();
@@ -108,7 +108,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForBlockChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForBlockChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {

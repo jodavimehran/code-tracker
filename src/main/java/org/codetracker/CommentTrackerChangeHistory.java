@@ -37,7 +37,6 @@ import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLCommentListDiff;
 import gr.uom.java.xmi.diff.UMLJavadocDiff;
 
@@ -100,7 +99,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLClassBaseDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {

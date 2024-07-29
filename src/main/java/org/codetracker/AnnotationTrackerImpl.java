@@ -12,8 +12,6 @@ import org.codetracker.api.AnnotationTracker;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
-import org.codetracker.change.Change;
-import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Annotation;
 import org.codetracker.element.Class;
 import org.codetracker.element.Method;
@@ -24,7 +22,6 @@ import org.refactoringminer.api.RefactoringType;
 
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLInitializer;
-import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
@@ -32,6 +29,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
@@ -294,7 +292,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                            }
 	
 	
-	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
 	                            if (umlClassDiff != null) {
 	                                found = changeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, equalMethod, equalAnnotation, umlClassDiff);
 	
@@ -348,7 +346,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 	                    {
 	                        //Local Refactoring
-	                    	UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
+	                    	UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
 	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
@@ -393,7 +391,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                            else {
 	                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
 	                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-	                                UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+	                                UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
 	    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 	    	                        if (found) {
 	                                    historyReport.step5PlusPlus();
@@ -416,7 +414,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                                }
 	                            }
 	
-	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
 	                            if (umlClassDiff != null) {
 	                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, umlClassDiff);
 	                                if (found) {

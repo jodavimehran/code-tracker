@@ -1,5 +1,6 @@
 package org.codetracker;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -445,24 +446,66 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     RenameClassRefactoring renameClassRefactoring = (RenameClassRefactoring) refactoring;
                     UMLClass originalClass = renameClassRefactoring.getOriginalClass();
                     UMLClass renamedClass = renameClassRefactoring.getRenamedClass();
+                    List<UMLOperation> leftOperations = new ArrayList<UMLOperation>();
+                    leftOperations.addAll(originalClass.getOperations());
+                    for (UMLAnonymousClass anonymous : originalClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		leftOperations.add(operation);
+                    	}
+                    }
+                    List<UMLOperation> rightOperations = new ArrayList<UMLOperation>();
+                    rightOperations.addAll(renamedClass.getOperations());
+                    for (UMLAnonymousClass anonymous : renamedClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		rightOperations.add(operation);
+                    	}
+                    }
 
-                    found = isMethodMatched(originalClass.getOperations(), renamedClass.getOperations(), leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
+                    found = isMethodMatched(leftOperations, rightOperations, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                     break;
                 }
                 case MOVE_CLASS: {
                     MoveClassRefactoring moveClassRefactoring = (MoveClassRefactoring) refactoring;
                     UMLClass originalClass = moveClassRefactoring.getOriginalClass();
                     UMLClass movedClass = moveClassRefactoring.getMovedClass();
+                    List<UMLOperation> leftOperations = new ArrayList<UMLOperation>();
+                    leftOperations.addAll(originalClass.getOperations());
+                    for (UMLAnonymousClass anonymous : originalClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		leftOperations.add(operation);
+                    	}
+                    }
+                    List<UMLOperation> rightOperations = new ArrayList<UMLOperation>();
+                    rightOperations.addAll(movedClass.getOperations());
+                    for (UMLAnonymousClass anonymous : movedClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		rightOperations.add(operation);
+                    	}
+                    }
 
-                    found = isMethodMatched(originalClass.getOperations(), movedClass.getOperations(), leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
+                    found = isMethodMatched(leftOperations, rightOperations, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                     break;
                 }
                 case MOVE_RENAME_CLASS: {
                     MoveAndRenameClassRefactoring moveAndRenameClassRefactoring = (MoveAndRenameClassRefactoring) refactoring;
                     UMLClass originalClass = moveAndRenameClassRefactoring.getOriginalClass();
                     UMLClass renamedClass = moveAndRenameClassRefactoring.getRenamedClass();
+                    List<UMLOperation> leftOperations = new ArrayList<UMLOperation>();
+                    leftOperations.addAll(originalClass.getOperations());
+                    for (UMLAnonymousClass anonymous : originalClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		leftOperations.add(operation);
+                    	}
+                    }
+                    List<UMLOperation> rightOperations = new ArrayList<UMLOperation>();
+                    rightOperations.addAll(renamedClass.getOperations());
+                    for (UMLAnonymousClass anonymous : renamedClass.getAnonymousClassList()) {
+                    	for (UMLOperation operation : anonymous.getOperations()) {
+                    		rightOperations.add(operation);
+                    	}
+                    }
 
-                    found = isMethodMatched(originalClass.getOperations(), renamedClass.getOperations(), leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
+                    found = isMethodMatched(leftOperations, rightOperations, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                     break;
                 }
                 case MOVE_SOURCE_FOLDER: {
@@ -470,7 +513,22 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     for (MovedClassToAnotherSourceFolder movedClassToAnotherSourceFolder : moveSourceFolderRefactoring.getMovedClassesToAnotherSourceFolder()) {
                         UMLClass originalClass = movedClassToAnotherSourceFolder.getOriginalClass();
                         UMLClass movedClass = movedClassToAnotherSourceFolder.getMovedClass();
-                        found = isMethodMatched(originalClass.getOperations(), movedClass.getOperations(), leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
+                        List<UMLOperation> leftOperations = new ArrayList<UMLOperation>();
+                        leftOperations.addAll(originalClass.getOperations());
+                        for (UMLAnonymousClass anonymous : originalClass.getAnonymousClassList()) {
+                        	for (UMLOperation operation : anonymous.getOperations()) {
+                        		leftOperations.add(operation);
+                        	}
+                        }
+                        List<UMLOperation> rightOperations = new ArrayList<UMLOperation>();
+                        rightOperations.addAll(movedClass.getOperations());
+                        for (UMLAnonymousClass anonymous : movedClass.getAnonymousClassList()) {
+                        	for (UMLOperation operation : anonymous.getOperations()) {
+                        		rightOperations.add(operation);
+                        	}
+                        }
+
+                        found = isMethodMatched(leftOperations, rightOperations, leftMethodSet, currentVersion, parentVersion, equalOperator, refactoring, changeType);
                         if (found)
                             break;
                     }

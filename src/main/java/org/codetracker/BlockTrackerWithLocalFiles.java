@@ -29,6 +29,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
@@ -317,7 +318,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                         }
 
 
-                        UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
                         if (umlClassDiff != null) {
                             found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 

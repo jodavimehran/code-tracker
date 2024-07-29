@@ -36,6 +36,8 @@ import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
+import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLClassDiff;
 import gr.uom.java.xmi.diff.UMLClassMoveDiff;
@@ -150,7 +152,7 @@ public abstract class AbstractTracker {
 	}
 
 	protected static UMLOperationBodyMapper findBodyMapper(UMLModelDiff umlModelDiff, Method method, Version currentVersion, Version parentVersion) {
-	    UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
+		UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
 	    if (umlClassDiff != null) {
 	        for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
 	            Method methodLeft = Method.of(operationBodyMapper.getContainer1(), parentVersion);
@@ -166,10 +168,10 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
-	protected static UMLClassBaseDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
+	protected static UMLAbstractClassDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
 	    int maxMatchedMembers = 0;
-	    UMLClassBaseDiff maxRenameDiff = null;
-	    UMLClassBaseDiff sameNameDiff = null;
+	    UMLAbstractClassDiff maxRenameDiff = null;
+	    UMLAbstractClassDiff sameNameDiff = null;
 	    for (UMLClassBaseDiff classDiff : getAllClassesDiff(umlModelDiff)) {
 	        if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className)) {
 	            if (classDiff instanceof UMLClassRenameDiff) {
@@ -192,8 +194,52 @@ public abstract class AbstractTracker {
 	                sameNameDiff = classDiff;
 	            }
 	        }
+	        else if (className.startsWith(classDiff.getOriginalClass() + ".") || className.startsWith(classDiff.getNextClass() + ".")) {
+	        	//find anonymous method mapper
+	        	for (UMLOperationBodyMapper mapper : classDiff.getOperationBodyMapperList()) {
+	        		Set<UMLAnonymousClassDiff> anonymousClassDiffs = mapper.getAnonymousClassDiffs();
+	        		for (UMLAnonymousClassDiff anonymousClassDiff : anonymousClassDiffs) {
+	        			UMLAbstractClassDiff result = searchRecursively(className, anonymousClassDiff);
+	        			if (result != null) {
+	        				sameNameDiff = result;
+	        				break;
+	        			}
+	        		}
+	        	}
+	        	for (UMLAttributeDiff attributeDiff : classDiff.getAttributeDiffList()) {
+	        		if (attributeDiff.getInitializerMapper().isPresent()) {
+	        			Set<UMLAnonymousClassDiff> anonymousClassDiffs = attributeDiff.getInitializerMapper().get().getAnonymousClassDiffs();
+		        		for (UMLAnonymousClassDiff anonymousClassDiff : anonymousClassDiffs) {
+		        			UMLAbstractClassDiff result = searchRecursively(className, anonymousClassDiff);
+		        			if (result != null) {
+		        				sameNameDiff = result;
+		        				break;
+		        			}
+		        		}
+	        		}
+	        	}
+	        }
 	    }
 	    return sameNameDiff != null ? sameNameDiff : maxRenameDiff;
+	}
+
+	private static UMLAbstractClassDiff searchRecursively(String className, UMLAnonymousClassDiff anonymousClassDiff) {
+		UMLAbstractClass originalClass = anonymousClassDiff.getOriginalClass();
+		UMLAbstractClass nextClass = anonymousClassDiff.getNextClass();
+		if ((originalClass instanceof UMLAnonymousClass && className.equals(((UMLAnonymousClass)originalClass).getCodePath())) || 
+				(nextClass instanceof UMLAnonymousClass && className.equals(((UMLAnonymousClass)nextClass).getCodePath()))) {
+			return anonymousClassDiff;
+		}
+		for (UMLOperationBodyMapper mapper : anonymousClassDiff.getOperationBodyMapperList()) {
+			Set<UMLAnonymousClassDiff> nestedAnonymousClassDiffs = mapper.getAnonymousClassDiffs();
+			for(UMLAnonymousClassDiff nestedAnonymousClassDiff : nestedAnonymousClassDiffs) {
+				UMLAbstractClassDiff result = searchRecursively(className, nestedAnonymousClassDiff);
+				if (result != null) {
+					return result;
+				}
+			}
+		}
+		return null;
 	}
 
 	protected static Pair<UMLModel, UMLModel> getUMLModelPair(final CommitModel commitModel, final String rightSideFileName, final Predicate<String> rightSideFileNamePredicate, final boolean filterLeftSide) throws Exception {

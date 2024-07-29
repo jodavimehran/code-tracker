@@ -32,6 +32,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
@@ -310,7 +311,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            }
 	
 	
-	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
 	                            if (umlClassDiff != null) {
 	                                found = changeHistory.checkClassDiffForCommentChange(currentVersion, parentVersion, equalMethod, equalComment, umlClassDiff);
 	
@@ -364,7 +365,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 	                    {
 	                        //Local Refactoring
-	                    	UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
+	                    	UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
 	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
@@ -409,7 +410,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                            else {
 	                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
 	                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-	                                UMLClassBaseDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+	                                UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
 	    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 	    	                        if (found) {
 	                                    historyReport.step5PlusPlus();
@@ -432,7 +433,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 	                                }
 	                            }
 	
-	                            UMLClassBaseDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
 	                            if (umlClassDiff != null) {
 	                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, umlClassDiff);
 	                                if (found) {
