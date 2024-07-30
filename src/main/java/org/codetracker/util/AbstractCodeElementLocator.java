@@ -407,6 +407,10 @@ public abstract class AbstractCodeElementLocator {
             if (annotation != null) {
             	return annotation;
             }
+            Attribute attribute = getAttribute(umlModel, version, filePath, this::attributePredicateWithoutName);
+            if (attribute != null && method.getLocation().subsumes(attribute.getLocation())) {
+            	return attribute;
+            }
             method.checkClosingBracket(lineNumber);
             return method;
         }

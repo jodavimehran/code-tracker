@@ -19,6 +19,7 @@ import org.codetracker.element.Block;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
+import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.UMLAbstractClass;
@@ -151,7 +152,7 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
-	protected static UMLOperationBodyMapper findBodyMapper(UMLModelDiff umlModelDiff, Method method, Version currentVersion, Version parentVersion) {
+	protected static UMLOperationBodyMapper findBodyMapper(UMLModelDiff umlModelDiff, Method method, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
 		UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
 	    if (umlClassDiff != null) {
 	        for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
@@ -168,7 +169,7 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
-	protected static UMLAbstractClassDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) {
+	protected static UMLAbstractClassDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) throws RefactoringMinerTimedOutException {
 	    int maxMatchedMembers = 0;
 	    UMLAbstractClassDiff maxRenameDiff = null;
 	    UMLAbstractClassDiff sameNameDiff = null;
@@ -216,6 +217,28 @@ public abstract class AbstractTracker {
 		        				break;
 		        			}
 		        		}
+	        		}
+	        	}
+	        	for (Pair<UMLAttribute, UMLAttribute> pair : classDiff.getCommonAtrributes()) {
+	        		if (pair.getLeft().getAnonymousClassList().size() > 0 && pair.getRight().getAnonymousClassList().size() > 0) {
+	        			boolean match = false;
+	        			for (UMLAnonymousClass right : pair.getRight().getAnonymousClassList()) {
+	        				if (right.getCodePath().equals(className)) {
+	        					match = true;
+	        					break;
+	        				}
+	        			}
+	        			if (match) {
+	        				UMLOperationBodyMapper mapper = new UMLOperationBodyMapper(pair.getLeft(), pair.getRight(), classDiff, umlModelDiff);
+	        				Set<UMLAnonymousClassDiff> anonymousClassDiffs = mapper.getAnonymousClassDiffs();
+	        				for (UMLAnonymousClassDiff anonymousClassDiff : anonymousClassDiffs) {
+			        			UMLAbstractClassDiff result = searchRecursively(className, anonymousClassDiff);
+			        			if (result != null) {
+			        				sameNameDiff = result;
+			        				break;
+			        			}
+			        		}
+	        			}
 	        		}
 	        	}
 	        }

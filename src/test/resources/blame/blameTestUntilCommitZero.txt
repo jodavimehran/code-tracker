@@ -174,42 +174,42 @@ f32b86124 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            174)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 175)  	private static final Iterable<PackWriter> instancesIterable = new Iterable<PackWriter>() {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 176)  		@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 177)  		public Iterator<PackWriter> iterator() {
-                                                                                                                                           178)  			return new Iterator<PackWriter>() {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 177)  		public Iterator<PackWriter> iterator() {
+7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 178)  			return new Iterator<PackWriter>() {
                                                                                                                                            179)  				private final Iterator<WeakReference<PackWriter>> it =
                                                                                                                                            180)  						instances.keySet().iterator();
                                                                                                                                            181)  				private PackWriter next;
                                                                                                                                            182)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 183)  				@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 184)  				public boolean hasNext() {
-                                                                                                                                           185)  					if (next != null)
-                                                                                                                                           186)  						return true;
-                                                                                                                                           187)  					while (it.hasNext()) {
-                                                                                                                                           188)  						WeakReference<PackWriter> ref = it.next();
-                                                                                                                                           189)  						next = ref.get();
-                                                                                                                                           190)  						if (next != null)
-                                                                                                                                           191)  							return true;
-                                                                                                                                           192)  						it.remove();
-                                                                                                                                           193)  					}
-                                                                                                                                           194)  					return false;
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 195)  				}
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 184)  				public boolean hasNext() {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 185)  					if (next != null)
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 186)  						return true;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 187)  					while (it.hasNext()) {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 188)  						WeakReference<PackWriter> ref = it.next();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 189)  						next = ref.get();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 190)  						if (next != null)
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 191)  							return true;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 192)  						it.remove();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 193)  					}
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 194)  					return false;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 195)  				}
                                                                                                                                            196)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 197)  				@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 198)  				public PackWriter next() {
-                                                                                                                                           199)  					if (hasNext()) {
-                                                                                                                                           200)  						PackWriter result = next;
-                                                                                                                                           201)  						next = null;
-                                                                                                                                           202)  						return result;
-                                                                                                                                           203)  					}
-                                                                                                                                           204)  					throw new NoSuchElementException();
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 205)  				}
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 198)  				public PackWriter next() {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 199)  					if (hasNext()) {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 200)  						PackWriter result = next;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 201)  						next = null;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 202)  						return result;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 203)  					}
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 204)  					throw new NoSuchElementException();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 205)  				}
                                                                                                                                            206)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 207)  				@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 208)  				public void remove() {
-                                                                                                                                           209)  					throw new UnsupportedOperationException();
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 210)  				}
-                                                                                                                                           211)  			};
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 212)  		}
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 208)  				public void remove() {
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 209)  					throw new UnsupportedOperationException();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 210)  				}
+7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 211)  			};
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 212)  		}
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 213)  	};
                                                                                                                                            214)
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 07:39:09 -0500 215)  	/**
@@ -1383,30 +1383,30 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1383) 		//
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1384) 		Arrays.sort(list, 0, cnt, new Comparator<ObjectToPack>() {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1385) 			@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1386) 			public int compare(ObjectToPack a, ObjectToPack b) {
-                                                                                                                                           1387) 				int cmp = (a.isDoNotDelta() ? 1 : 0)
-                                                                                                                                           1388) 						- (b.isDoNotDelta() ? 1 : 0);
-                                                                                                                                           1389) 				if (cmp != 0)
-                                                                                                                                           1390) 					return cmp;
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1386) 			public int compare(ObjectToPack a, ObjectToPack b) {
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1387) 				int cmp = (a.isDoNotDelta() ? 1 : 0)
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1388) 						- (b.isDoNotDelta() ? 1 : 0);
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1389) 				if (cmp != 0)
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1390) 					return cmp;
                                                                                                                                            1391)
-                                                                                                                                           1392) 				cmp = a.getType() - b.getType();
-                                                                                                                                           1393) 				if (cmp != 0)
-                                                                                                                                           1394) 					return cmp;
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1392) 				cmp = a.getType() - b.getType();
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1393) 				if (cmp != 0)
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1394) 					return cmp;
                                                                                                                                            1395)
-                                                                                                                                           1396) 				cmp = (a.getPathHash() >>> 1) - (b.getPathHash() >>> 1);
-                                                                                                                                           1397) 				if (cmp != 0)
-                                                                                                                                           1398) 					return cmp;
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1396) 				cmp = (a.getPathHash() >>> 1) - (b.getPathHash() >>> 1);
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1397) 				if (cmp != 0)
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1398) 					return cmp;
                                                                                                                                            1399)
-                                                                                                                                           1400) 				cmp = (a.getPathHash() & 1) - (b.getPathHash() & 1);
-                                                                                                                                           1401) 				if (cmp != 0)
-                                                                                                                                           1402) 					return cmp;
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1400) 				cmp = (a.getPathHash() & 1) - (b.getPathHash() & 1);
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1401) 				if (cmp != 0)
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1402) 					return cmp;
                                                                                                                                            1403)
-                                                                                                                                           1404) 				cmp = (a.isEdge() ? 0 : 1) - (b.isEdge() ? 0 : 1);
-                                                                                                                                           1405) 				if (cmp != 0)
-                                                                                                                                           1406) 					return cmp;
+13bcf05a9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 10:12:06 -0500 1404) 				cmp = (a.isEdge() ? 0 : 1) - (b.isEdge() ? 0 : 1);
+13bcf05a9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 10:12:06 -0500 1405) 				if (cmp != 0)
+13bcf05a9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 10:12:06 -0500 1406) 					return cmp;
                                                                                                                                            1407)
-                                                                                                                                           1408) 				return b.getWeight() - a.getWeight();
-                                                                                                                                           1409) 			}
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1408) 				return b.getWeight() - a.getWeight();
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:14:18 -0400 1409) 			}
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1410) 		});
                                                                                                                                            1411)
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1412) 		// Above we stored the objects we cannot delta onto the end.
