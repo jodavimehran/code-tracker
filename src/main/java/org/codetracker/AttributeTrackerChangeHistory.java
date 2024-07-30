@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
@@ -43,6 +44,7 @@ import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameClassRefactoring;
 import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLClassDiff;
 import gr.uom.java.xmi.diff.UMLClassMoveDiff;
 import gr.uom.java.xmi.diff.UMLClassRenameDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
@@ -234,8 +236,26 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
             }
         }
 
-        for (UMLClassRenameDiff classRenameDiffList : modelDiff.getClassRenameDiffList()) {
-            for (UMLAnonymousClass addedAnonymousClasses : classRenameDiffList.getAddedAnonymousClasses()) {
+        for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
+                for (UMLAttribute umlAttribute : addedAnonymousClasses.getAttributes()) {
+                    if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new anonymous class"))
+                        return true;
+                }
+            }
+        }
+
+        for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
+                for (UMLAttribute umlAttribute : addedAnonymousClasses.getAttributes()) {
+                    if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new anonymous class"))
+                        return true;
+                }
+            }
+        }
+
+        for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
+            for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
                 for (UMLAttribute umlAttribute : addedAnonymousClasses.getAttributes()) {
                     if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new anonymous class"))
                         return true;
@@ -268,6 +288,12 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                     return leftAttributeSet;
                 }
             }
+            for (Pair<UMLAttribute, UMLAttribute> pair : umlClassMoveDiff.getCommonAtrributes()) {
+            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass()), pair.getLeft(), pair.getRight(), changeType)) {
+                    attributeChangeHistory.connectRelatedNodes();
+                    return leftAttributeSet;
+                }
+            }
         }
 
         for (UMLClassRenameDiff umlClassRenameDiff : umlModelDiffAll.getClassRenameDiffList()) {
@@ -277,10 +303,22 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                     return leftAttributeSet;
                 }
             }
+            for (Pair<UMLAttribute, UMLAttribute> pair : umlClassRenameDiff.getCommonAtrributes()) {
+            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), pair.getLeft(), pair.getRight(), changeType)) {
+                    attributeChangeHistory.connectRelatedNodes();
+                    return leftAttributeSet;
+                }
+            }
         }
         for (UMLClassMoveDiff umlClassMoveDiff : umlModelDiffAll.getInnerClassMoveDiffList()) {
             for (UMLAttributeDiff attributeDiff : umlClassMoveDiff.getAttributeDiffList()) {
                 if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass()), attributeDiff.getRemovedAttribute(), attributeDiff.getAddedAttribute(), changeType)) {
+                    attributeChangeHistory.connectRelatedNodes();
+                    return leftAttributeSet;
+                }
+            }
+            for (Pair<UMLAttribute, UMLAttribute> pair : umlClassMoveDiff.getCommonAtrributes()) {
+            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass()), pair.getLeft(), pair.getRight(), changeType)) {
                     attributeChangeHistory.connectRelatedNodes();
                     return leftAttributeSet;
                 }
@@ -333,12 +371,28 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                         attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Change.Type.CONTAINER_CHANGE).refactoring(refactoring));
                         attributeChangeHistory.connectRelatedNodes();
                         leftAttributeSet.add(attributeBefore);
-
                         return true;
                     }
                 }
             }
-
+        }
+        for (UMLAnonymousClass anonymousClassAfter : movedClass.getAnonymousClassList()) {
+        	for (UMLAttribute umlAttributeAfter : anonymousClassAfter.getAttributes()) {
+                Attribute attributeAfter = Attribute.of(umlAttributeAfter, currentVersion);
+                if (equalOperator.test(attributeAfter)) {
+                	for (UMLAnonymousClass anonymousClassBefore : originalClass.getAnonymousClassList()) {
+	                	for (UMLAttribute umlAttributeBefore : anonymousClassBefore.getAttributes()) {
+	                        if (umlAttributeAfter.equals(umlAttributeBefore)) {
+	                            Attribute attributeBefore = Attribute.of(umlAttributeBefore, parentVersion);
+	                            attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Change.Type.CONTAINER_CHANGE).refactoring(refactoring));
+	                            attributeChangeHistory.connectRelatedNodes();
+	                            leftAttributeSet.add(attributeBefore);
+	                            return true;
+	                        }
+	                    }
+                	}
+                }
+            }
         }
         return false;
     }

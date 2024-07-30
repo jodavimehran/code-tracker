@@ -176,9 +176,9 @@ f32b86124 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 176)  		@Override
 2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 177)  		public Iterator<PackWriter> iterator() {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 178)  			return new Iterator<PackWriter>() {
-                                                                                                                                           179)  				private final Iterator<WeakReference<PackWriter>> it =
-                                                                                                                                           180)  						instances.keySet().iterator();
-                                                                                                                                           181)  				private PackWriter next;
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 179)  				private final Iterator<WeakReference<PackWriter>> it =
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 180)  						instances.keySet().iterator();
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 181)  				private PackWriter next;
                                                                                                                                            182)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 183)  				@Override
 2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 184)  				public boolean hasNext() {
@@ -2251,19 +2251,19 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 751c329b3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-01 13:07:08 -0500 2251) 	}
                                                                                                                                            2252)
                                                                                                                                            2253) 	private class MutableState {
-                                                                                                                                           2254) 		/** Estimated size of a single ObjectToPack instance. */
-                                                                                                                                           2255) 		// Assume 64-bit pointers, since this is just an estimate.
-                                                                                                                                           2256) 		private static final long OBJECT_TO_PACK_SIZE =
-                                                                                                                                           2257) 				(2 * 8)               // Object header
-                                                                                                                                           2258) 				+ (2 * 8) + (2 * 8)   // ObjectToPack fields
-                                                                                                                                           2259) 				+ (8 + 8)             // PackedObjectInfo fields
-                                                                                                                                           2260) 				+ 8                   // ObjectIdOwnerMap fields
-                                                                                                                                           2261) 				+ 40                  // AnyObjectId fields
-                                                                                                                                           2262) 				+ 8;                  // Reference in BlockList
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2254) 		/** Estimated size of a single ObjectToPack instance. */
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2255) 		// Assume 64-bit pointers, since this is just an estimate.
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2256) 		private static final long OBJECT_TO_PACK_SIZE =
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2257) 				(2 * 8)               // Object header
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2258) 				+ (2 * 8) + (2 * 8)   // ObjectToPack fields
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2259) 				+ (8 + 8)             // PackedObjectInfo fields
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2260) 				+ 8                   // ObjectIdOwnerMap fields
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2261) 				+ 40                  // AnyObjectId fields
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2262) 				+ 8;                  // Reference in BlockList
                                                                                                                                            2263)
-                                                                                                                                           2264) 		private final long totalDeltaSearchBytes;
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2264) 		private final long totalDeltaSearchBytes;
                                                                                                                                            2265)
-                                                                                                                                           2266) 		private volatile PackingPhase phase;
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2266) 		private volatile PackingPhase phase;
                                                                                                                                            2267)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2268) 		MutableState() {
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2269) 			phase = PackingPhase.COUNTING;
@@ -2319,9 +2319,9 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            2319)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2320) 	/** Summary of the current state of a PackWriter. */
                                                                                                                                            2321) 	public class State {
-                                                                                                                                           2322) 		private final PackingPhase phase;
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2322) 		private final PackingPhase phase;
                                                                                                                                            2323)
-                                                                                                                                           2324) 		private final long bytesUsed;
+f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2324) 		private final long bytesUsed;
                                                                                                                                            2325)
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2326) 		State(PackingPhase phase, long bytesUsed) {
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2327) 			this.phase = phase;
