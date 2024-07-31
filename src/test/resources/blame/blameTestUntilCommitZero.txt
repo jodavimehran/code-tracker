@@ -2299,22 +2299,22 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2299) 	/** Possible states that a PackWriter can be in. */
                                                                                                                                            2300) 	public static enum PackingPhase {
                                                                                                                                            2301) 		/** Counting objects phase. */
-                                                                                                                                           2302) 		COUNTING,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2302) 		COUNTING,
                                                                                                                                            2303)
                                                                                                                                            2304) 		/** Getting sizes phase. */
-                                                                                                                                           2305) 		GETTING_SIZES,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2305) 		GETTING_SIZES,
                                                                                                                                            2306)
                                                                                                                                            2307) 		/** Finding sources phase. */
-                                                                                                                                           2308) 		FINDING_SOURCES,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2308) 		FINDING_SOURCES,
                                                                                                                                            2309)
                                                                                                                                            2310) 		/** Compressing objects phase. */
-                                                                                                                                           2311) 		COMPRESSING,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2311) 		COMPRESSING,
                                                                                                                                            2312)
                                                                                                                                            2313) 		/** Writing objects phase. */
-                                                                                                                                           2314) 		WRITING,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2314) 		WRITING,
                                                                                                                                            2315)
                                                                                                                                            2316) 		/** Building bitmaps phase. */
-                                                                                                                                           2317) 		BUILDING_BITMAPS;
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2317) 		BUILDING_BITMAPS;
                                                                                                                                            2318) 	}
                                                                                                                                            2319)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2320) 	/** Summary of the current state of a PackWriter. */
