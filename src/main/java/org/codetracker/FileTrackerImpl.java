@@ -46,9 +46,13 @@ import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
+import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 import gr.uom.java.xmi.UMLClass;
+import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLModel;
@@ -591,14 +595,34 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
 						    if (umlClassDiff != null) {
-						    	Pair<UMLAttribute, UMLAttribute> foundPair = null;
+						    	Pair<? extends UMLAttribute, ? extends UMLAttribute> foundPair = null;
 						    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {
 						    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
 						    			foundPair = pair;
 						    			break;
 						    		}
 						    	}
+						    	for (Pair<UMLEnumConstant, UMLEnumConstant> pair : umlClassDiff.getCommonEnumConstants()) {
+						    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+						    			foundPair = pair;
+						    			break;
+						    		}
+						    	}
+						    	UMLDocumentationDiffProvider provider = null;
+						    	for (UMLAttributeDiff attributeDiff : umlClassDiff.getAttributeDiffList()) {
+						    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+						    			provider = attributeDiff;
+						    			break;
+						    		}
+						    	}
+						    	for (UMLEnumConstantDiff attributeDiff : umlClassDiff.getEnumConstantDiffList()) {
+						    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+						    			provider = attributeDiff;
+						    			break;
+						    		}
+						    	}
 						    	startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, currentComment::equalIdentifierIgnoringVersion, foundPair);
+						    	startCommentChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, currentComment::equalIdentifierIgnoringVersion, provider);
 						    }
 						}
 					}

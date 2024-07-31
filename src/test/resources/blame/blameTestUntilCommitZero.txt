@@ -166,7 +166,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 166)  public class PackWriter implements AutoCloseable {
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 167)  	private static final int PACK_VERSION_GENERATED = 2;
                                                                                                                                            168)
-                                                                                                                                           169)  	/** Empty set of objects for {@code preparePack()}. */
+4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-12 19:30:32 -0500 169)  	/** Empty set of objects for {@code preparePack()}. */
 5dc30db56 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2016-12-29 19:19:58 -0500 170)  	public static final Set<ObjectId> NONE = Collections.emptySet();
                                                                                                                                            171)
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 172)  	private static final Map<WeakReference<PackWriter>, Boolean> instances =
@@ -232,7 +232,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            232)
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 233)  	private ObjectIdOwnerMap<ObjectToPack> objectsMap = new ObjectIdOwnerMap<>();
                                                                                                                                            234)
-                                                                                                                                           235)  	// edge objects for thin packs
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 235)  	// edge objects for thin packs
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 236)  	private List<ObjectToPack> edgeObjects = new BlockList<>();
                                                                                                                                            237)
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 238)  	// Objects the client is known to have already.
@@ -2298,22 +2298,22 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            2298)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2299) 	/** Possible states that a PackWriter can be in. */
                                                                                                                                            2300) 	public static enum PackingPhase {
-                                                                                                                                           2301) 		/** Counting objects phase. */
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2301) 		/** Counting objects phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2302) 		COUNTING,
                                                                                                                                            2303)
-                                                                                                                                           2304) 		/** Getting sizes phase. */
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2304) 		/** Getting sizes phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2305) 		GETTING_SIZES,
                                                                                                                                            2306)
-                                                                                                                                           2307) 		/** Finding sources phase. */
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2307) 		/** Finding sources phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2308) 		FINDING_SOURCES,
                                                                                                                                            2309)
-                                                                                                                                           2310) 		/** Compressing objects phase. */
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2310) 		/** Compressing objects phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2311) 		COMPRESSING,
                                                                                                                                            2312)
-                                                                                                                                           2313) 		/** Writing objects phase. */
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2313) 		/** Writing objects phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2314) 		WRITING,
                                                                                                                                            2315)
-                                                                                                                                           2316) 		/** Building bitmaps phase. */
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2316) 		/** Building bitmaps phase. */
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2317) 		BUILDING_BITMAPS;
                                                                                                                                            2318) 	}
                                                                                                                                            2319)
