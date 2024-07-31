@@ -400,7 +400,7 @@ public class FileTrackerImpl extends BaseTracker {
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
 				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
 					Import currentImport = startImportChangeHistory.poll();
-					if (currentImport == null) {
+					if (currentImport == null || currentImport.isAdded()) {
 						continue;
 					}
 					Import rightImport = rightClass.findImport(currentImport::equalIdentifierIgnoringVersion);
@@ -415,7 +415,7 @@ public class FileTrackerImpl extends BaseTracker {
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 				if (startComment.getClazz().isPresent()) {
 					Comment currentComment = startCommentChangeHistory.poll();
-					if (currentComment == null) {
+					if (currentComment == null || currentComment.isAdded()) {
 						continue;
 					}
 					Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);

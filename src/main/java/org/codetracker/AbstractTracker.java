@@ -18,6 +18,7 @@ import org.codetracker.element.BaseCodeElement;
 import org.codetracker.element.Block;
 import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
+import org.codetracker.element.Import;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
@@ -567,7 +568,24 @@ public abstract class AbstractTracker {
 		else if (current instanceof Comment) {
 			return getComment(umlModel, version, current::equalIdentifierIgnoringVersion);
 		}
+		else if (current instanceof Import) {
+			return getImport(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
 		return current;
+	}
+
+	protected static Import getImport(UMLModel umlModel, Version version, Predicate<Import> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	        	if (umlClass.isTopLevel()) {
+	        		Class clazz = Class.of(umlClass, version);
+	        		Import im = clazz.findImport(predicate);
+	        		if (im != null) {
+	        			return im;
+	        		}
+	        	}
+	        }
+	    return null;
 	}
 
 	protected static Block getBlock(UMLModel umlModel, Version version, Predicate<Block> predicate) {

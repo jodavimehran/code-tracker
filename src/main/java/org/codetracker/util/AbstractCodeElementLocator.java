@@ -320,7 +320,7 @@ public abstract class AbstractCodeElementLocator {
 	protected static Import getImport(UMLModel umlModel, Version version, String filePath, Predicate<Import> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
-	        	if (umlClass.getSourceFile().equals(filePath)) {
+	        	if (umlClass.getSourceFile().equals(filePath) && umlClass.isTopLevel()) {
 		            for (UMLImport umlImport : umlClass.getImportedTypes()) {
 		        		Import imp = Import.of(umlImport, umlClass, version);
 			            if (predicate.test(imp))
