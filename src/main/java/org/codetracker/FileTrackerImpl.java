@@ -831,21 +831,26 @@ public class FileTrackerImpl extends BaseTracker {
 				if (leftAttribute != null) {
 					startAttributeChangeHistory.setCurrent(leftAttribute);
 					startAttributeChangeHistory.checkInitializerChange(rightAttribute, leftAttribute);
-					/*for (CodeElement key2 : programElementMap.keySet()) {
+					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
 									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
-								Comment currentComment = startCommentChangeHistory.poll();
+								Comment currentComment = startCommentChangeHistory.peek();
 								if (currentComment == null) {
 									continue;
 								}
+								Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
+								if (rightComment == null) {
+									continue;
+								}
+								startCommentChangeHistory.poll();
 								Pair<UMLAttribute, UMLAttribute> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
-							    startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, currentComment::equalIdentifierIgnoringVersion, pair);
+							    startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, pair);
 							}
 						}
-					}*/
+					}
 				}
 				else {
 					notFoundAttributes.put(rightAttribute, startAttributeChangeHistory);
