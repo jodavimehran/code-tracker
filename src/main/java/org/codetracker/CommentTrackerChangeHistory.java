@@ -354,6 +354,13 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
+    public void addedClass(Class rightClass, Comment rightComment, Version parentVersion) {
+    	Comment commentBefore = Comment.of(rightComment.getComment(), rightClass.getUmlClass(), parentVersion);
+        commentChangeHistory.handleAdd(commentBefore, rightComment, "added with class");
+        elements.addFirst(commentBefore);
+        commentChangeHistory.connectRelatedNodes();
+    }
+
     public void addedMethod(Method rightMethod, Comment rightComment, Version parentVersion) {
     	Comment commentBefore = Comment.of(rightComment.getComment(), rightMethod.getUmlOperation(), parentVersion);
         commentChangeHistory.handleAdd(commentBefore, rightComment, "added with method");
