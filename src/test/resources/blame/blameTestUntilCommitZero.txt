@@ -2250,7 +2250,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 751c329b3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-01 13:07:08 -0500 2250) 		return true;
 751c329b3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-01 13:07:08 -0500 2251) 	}
                                                                                                                                            2252)
-                                                                                                                                           2253) 	private class MutableState {
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2253) 	private class MutableState {
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2254) 		/** Estimated size of a single ObjectToPack instance. */
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2255) 		// Assume 64-bit pointers, since this is just an estimate.
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2256) 		private static final long OBJECT_TO_PACK_SIZE =
@@ -2294,10 +2294,10 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2294) 				bytesUsed += totalDeltaSearchBytes;
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2295) 			return new State(curr, bytesUsed);
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2296) 		}
-                                                                                                                                           2297) 	}
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2297) 	}
                                                                                                                                            2298)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2299) 	/** Possible states that a PackWriter can be in. */
-                                                                                                                                           2300) 	public static enum PackingPhase {
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2300) 	public static enum PackingPhase {
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2301) 		/** Counting objects phase. */
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2302) 		COUNTING,
                                                                                                                                            2303)
@@ -2315,10 +2315,10 @@ f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            2315)
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2316) 		/** Building bitmaps phase. */
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2317) 		BUILDING_BITMAPS;
-                                                                                                                                           2318) 	}
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2318) 	}
                                                                                                                                            2319)
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2320) 	/** Summary of the current state of a PackWriter. */
-                                                                                                                                           2321) 	public class State {
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2321) 	public class State {
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2322) 		private final PackingPhase phase;
                                                                                                                                            2323)
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2324) 		private final long bytesUsed;
@@ -2348,5 +2348,5 @@ c310fa0c8 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2348) 		public String toString() {
 f26b79d04 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2349) 			return "PackWriter.State[" + phase + ", memory=" + bytesUsed + "]";
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2350) 		}
-                                                                                                                                           2351) 	}
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 13:27:45 -0500 2351) 	}
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 2352) }

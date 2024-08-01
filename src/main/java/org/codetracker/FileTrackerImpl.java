@@ -243,11 +243,13 @@ public class FileTrackerImpl extends BaseTracker {
 					if (leftClass != null) {
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass);
 						if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0) {
 							UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 							List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
 							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 						}
 						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
 						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
@@ -279,9 +281,11 @@ public class FileTrackerImpl extends BaseTracker {
 						if (refactored) {
 							Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
 							Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
+							Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass);
 							if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0) {
 								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
+								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
 							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
@@ -366,7 +370,7 @@ public class FileTrackerImpl extends BaseTracker {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
-				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
+				if (rightClass.getUmlClass().getImportedTypes().size() > 0 && rightClass.getUmlClass().isTopLevel()) {
 					Import currentImport = startImportChangeHistory.poll();
 					if (currentImport == null) {
 						continue;
@@ -402,7 +406,7 @@ public class FileTrackerImpl extends BaseTracker {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
-				if (rightClass.getUmlClass().getImportedTypes().size() > 0) {
+				if (rightClass.getUmlClass().getImportedTypes().size() > 0 && rightClass.getUmlClass().isTopLevel()) {
 					Import currentImport = startImportChangeHistory.poll();
 					if (currentImport == null || currentImport.isAdded()) {
 						continue;
@@ -806,6 +810,54 @@ public class FileTrackerImpl extends BaseTracker {
 						}
 					}
 				}
+			}
+		}
+	}
+
+	private Map<Class, ClassTrackerChangeHistory> processInnerClassesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion, Class startClass) throws RefactoringMinerTimedOutException {
+		Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Class && !key.equals(startClass)) {
+				Class startInnerClass = (Class)key;
+				ClassTrackerChangeHistory startInnerClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startInnerClass);
+				Class currentClass = startInnerClassChangeHistory.poll();
+				if (currentClass == null) {
+					currentClass = startInnerClassChangeHistory.getCurrent();
+				}
+				if (currentClass == null || currentClass.isAdded()) {
+					continue;
+				}
+				Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
+				if (rightClass == null) {
+					continue;
+				}
+				Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+				if (leftClass != null) {
+					startInnerClassChangeHistory.setCurrent(leftClass);
+					//UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
+					//processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
+				}
+				else {
+					notFoundInnerClasses.put(startInnerClass, startInnerClassChangeHistory);
+				}
+			}
+		}
+		return notFoundInnerClasses;
+	}
+
+	private void processLocallyRefactoredInnerClasses(Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) {
+		for (Class rightInnerClass : notFoundInnerClasses.keySet()) {
+			ClassTrackerChangeHistory startInnerClassChangeHistory = notFoundInnerClasses.get(rightInnerClass);
+			Set<Class> classRefactored = startInnerClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightInnerClass::equalIdentifierIgnoringVersion);
+			Set<Class> innerClassContainerChanged = startInnerClassChangeHistory.isInnerClassContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightInnerClass::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
+			classRefactored.addAll(innerClassContainerChanged);
+			boolean refactored = !classRefactored.isEmpty();
+			if (refactored) {
+				Set<Class> leftSideClasses = new HashSet<>(classRefactored);
+				leftSideClasses.forEach(startInnerClassChangeHistory::addFirst);
+			}
+			else if (startInnerClassChangeHistory.isClassAdded(umlModelDiff, currentVersion, parentVersion, rightInnerClass::equalIdentifierIgnoringVersion)) {
+				
 			}
 		}
 	}

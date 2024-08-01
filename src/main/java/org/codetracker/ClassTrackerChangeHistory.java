@@ -1,6 +1,7 @@
 package org.codetracker;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -35,6 +36,7 @@ import gr.uom.java.xmi.diff.MovedClassToAnotherSourceFolder;
 import gr.uom.java.xmi.diff.RemoveClassAnnotationRefactoring;
 import gr.uom.java.xmi.diff.RemoveClassModifierRefactoring;
 import gr.uom.java.xmi.diff.RenameClassRefactoring;
+import gr.uom.java.xmi.diff.UMLClassMoveDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
 public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
@@ -223,6 +225,22 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
             }
         }
         return false;
+    }
+
+    public Set<Class> isInnerClassContainerChanged(UMLModelDiff umlModelDiffAll, Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Class> equalOperator, List<UMLClassMoveDiff> classMoveDiffList) {
+        Set<Class> leftClassSet = new HashSet<>();
+        Change.Type changeType = Change.Type.CONTAINER_CHANGE;
+        for (UMLClassMoveDiff umlClassMoveDiff : classMoveDiffList) {
+            Class innerClassAfter = Class.of(umlClassMoveDiff.getMovedClass(), currentVersion);
+            if (equalOperator.test(innerClassAfter)) {
+                Class innerClassBefore = Class.of(umlClassMoveDiff.getOriginalClass(), parentVersion);
+                classChangeHistory.addChange(innerClassBefore, innerClassAfter, ChangeFactory.forClass(changeType).refactoring(new MoveClassRefactoring(umlClassMoveDiff.getOriginalClass(), umlClassMoveDiff.getMovedClass())));
+                leftClassSet.add(innerClassBefore);
+                classChangeHistory.connectRelatedNodes();
+                return leftClassSet;
+            }
+        }
+        return Collections.emptySet();
     }
 
 	public HistoryInfo<Class> blameReturn(Class startClass) {
