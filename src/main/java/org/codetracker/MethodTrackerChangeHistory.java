@@ -63,6 +63,7 @@ import gr.uom.java.xmi.diff.RenameVariableRefactoring;
 import gr.uom.java.xmi.diff.ReorderParameterRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitVariableRefactoring;
+import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLClassDiff;
 import gr.uom.java.xmi.diff.UMLClassMoveDiff;
@@ -369,6 +370,32 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                         leftMethodSet.add(extractedOperationBefore);
                         return leftMethodSet;
                     }
+                    UMLOperationBodyMapper mapper = extractOperationRefactoring.getBodyMapper();
+                    Set<UMLAnonymousClassDiff> anonymousClassDiffs = mapper.getAnonymousClassDiffs();
+                    for (UMLAnonymousClassDiff diff : anonymousClassDiffs) {
+                        for (UMLOperationBodyMapper anonymousMapper : diff.getOperationBodyMapperList()) {
+                            Method anonymousExtractedOperationAfter = Method.of(anonymousMapper.getContainer2(), currentVersion);
+                            if (equalOperator.test(anonymousExtractedOperationAfter)) {
+                            	Method anonymousExtractedOperationBefore = Method.of(anonymousMapper.getContainer1(), parentVersion);
+                            	boolean bodyChange = false;
+                            	if (checkOperationBodyChanged(anonymousExtractedOperationBefore.getUmlOperation().getBody(), anonymousExtractedOperationAfter.getUmlOperation().getBody())) {
+                                    methodChangeHistory.addChange(anonymousExtractedOperationBefore, anonymousExtractedOperationAfter, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
+                                    bodyChange = true;
+                                }
+                            	boolean docChange = false;
+                                if (checkOperationDocumentationChanged(anonymousExtractedOperationBefore.getUmlOperation(), anonymousExtractedOperationAfter.getUmlOperation())) {
+                                    methodChangeHistory.addChange(anonymousExtractedOperationBefore, anonymousExtractedOperationAfter, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                                    docChange = true;
+                                }
+                                if (!docChange && !bodyChange) {
+                                	methodChangeHistory.addChange(anonymousExtractedOperationBefore, anonymousExtractedOperationAfter, ChangeFactory.forMethod(Change.Type.NO_CHANGE));
+                                }
+                            	methodChangeHistory.connectRelatedNodes();
+                            	leftMethodSet.add(anonymousExtractedOperationBefore);
+                                return leftMethodSet;
+                            }
+                        }
+                    }
                     break;
                 }
             }
@@ -583,8 +610,14 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         }
 
         for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
-            for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
-                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+            for (UMLAnonymousClass addedAnonymousClass : classRenameDiff.getAddedAnonymousClasses()) {
+                for (UMLOperation operation : addedAnonymousClass.getOperations()) {
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                        return true;
+                }
+            }
+            for (UMLAnonymousClass addedAnonymousClass : classRenameDiff.getNextClass().getAnonymousClassList()) {
+            	for (UMLOperation operation : addedAnonymousClass.getOperations()) {
                     if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
@@ -592,8 +625,14 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         }
 
         for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
-            for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
-                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+            for (UMLAnonymousClass addedAnonymousClass : classMoveDiff.getAddedAnonymousClasses()) {
+                for (UMLOperation operation : addedAnonymousClass.getOperations()) {
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                        return true;
+                }
+            }
+            for (UMLAnonymousClass addedAnonymousClass : classMoveDiff.getNextClass().getAnonymousClassList()) {
+            	for (UMLOperation operation : addedAnonymousClass.getOperations()) {
                     if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
@@ -601,8 +640,14 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         }
 
         for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
-            for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
-                for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+            for (UMLAnonymousClass addedAnonymousClass : classDiff.getAddedAnonymousClasses()) {
+                for (UMLOperation operation : addedAnonymousClass.getOperations()) {
+                    if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                        return true;
+                }
+            }
+            for (UMLAnonymousClass addedAnonymousClass : classDiff.getNextClass().getAnonymousClassList()) {
+            	for (UMLOperation operation : addedAnonymousClass.getOperations()) {
                     if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }

@@ -1511,8 +1511,8 @@ d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1511) 			try {
 d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 14:34:50 -0400 1512) 				runTasks(pool, pm, taskBlock, errors);
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1513) 			} finally {
-1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1514) 				pool.shutdown();
-1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1515) 				for (;;) {
+74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1514) 				pool.shutdown();
+74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1515) 				for (;;) {
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1516) 					try {
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1517) 						if (pool.awaitTermination(60, TimeUnit.SECONDS))
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1518) 							break;
@@ -1520,7 +1520,7 @@ d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1520) 						throw new IOException(
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1521) 								JGitText.get().packingCancelledDuringObjectsWriting);
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1522) 					}
-1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1523) 				}
+74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-09 22:17:30 -0400 1523) 				}
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1524) 			}
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1525) 		} else {
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1526) 			// The caller gave us an executor, but it might not do
@@ -1529,13 +1529,13 @@ d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 f3ec7cf3f org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-18 11:59:45 -0400 1529) 			for (DeltaTask task : taskBlock.tasks) {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1530) 				executor.execute(new Runnable() {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1531) 					@Override
-7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1532) 					public void run() {
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1532) 					public void run() {
                                                                                                                                            1533) 						try {
                                                                                                                                            1534) 							task.call();
                                                                                                                                            1535) 						} catch (Throwable failure) {
                                                                                                                                            1536) 							errors.add(failure);
                                                                                                                                            1537) 						}
-                                                                                                                                           1538) 					}
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1538) 					}
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1539) 				});
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1540) 			}
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1541) 			try {
