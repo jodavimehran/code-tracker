@@ -54,6 +54,7 @@ import gr.uom.java.xmi.diff.ReplacePipelineWithLoopRefactoring;
 import gr.uom.java.xmi.diff.SplitConditionalRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
+import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
 
 public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	private final ChangeHistory<Block> blockChangeHistory = new ChangeHistory<>();
@@ -188,6 +189,68 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         }
                         blockChangeHistory.connectRelatedNodes();
                         extractMatches++;
+                    }
+                    UMLOperationBodyMapper mapper = extractOperationRefactoring.getBodyMapper();
+                    Set<UMLAnonymousClassDiff> anonymousClassDiffs = mapper.getAnonymousClassDiffs();
+                    for (UMLAnonymousClassDiff diff : anonymousClassDiffs) {
+                        for (UMLOperationBodyMapper anonymousMapper : diff.getOperationBodyMapperList()) {
+                            Method anonymousExtractedOperationAfter = Method.of(anonymousMapper.getContainer2(), currentVersion);
+                            if (equalMethod.test(anonymousExtractedOperationAfter)) {
+                                AbstractCodeFragment matchedBlockFromSourceMethod = null;
+                                for (AbstractCodeMapping mapping : anonymousMapper.getMappings()) {
+                                    if (mapping instanceof CompositeStatementObjectMapping) {
+                                        Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), anonymousMapper.getContainer2(), currentVersion);
+                                        if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                            matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
+                                            Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), anonymousMapper.getContainer1(), parentVersion);
+                                            List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                            List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                            if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                                if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+                                                    blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+                                                }
+                                                List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+                                                List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+                                                if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+                                                    blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                                }
+                                            }
+                                            break;
+                                        }
+                                    }
+                                    else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                        Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), anonymousMapper.getContainer2(), currentVersion);
+                                        if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                            matchedBlockFromSourceMethod = mapping.getFragment1();
+                                            Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), anonymousMapper.getContainer1(), parentVersion);
+                                            List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                            List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                            if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                                blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                            }
+                                            break;
+                                        }
+                                    }
+                                }
+                                if (matchedBlockFromSourceMethod == null) {
+                                    Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
+                                    blockChangeHistory.handleAdd(blockBefore, rightBlock, extractOperationRefactoring.toString());
+                                    if(extractMatches == 0) {
+                                        elements.add(blockBefore);
+                                    }
+                                }
+                                else {
+                                    VariableDeclarationContainer sourceOperation = anonymousMapper.getContainer1();
+                                    Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                                    Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
+                                    if(extractMatches == 0) {
+                                        elements.add(leftBlock);
+                                    }
+                                }
+                                blockChangeHistory.connectRelatedNodes();
+                                extractMatches++;
+                            }
+                        }
                     }
                     break;
                 }

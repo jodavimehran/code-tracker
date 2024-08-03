@@ -1530,11 +1530,11 @@ f3ec7cf3f org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1530) 				executor.execute(new Runnable() {
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1531) 					@Override
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1532) 					public void run() {
-                                                                                                                                           1533) 						try {
-                                                                                                                                           1534) 							task.call();
-                                                                                                                                           1535) 						} catch (Throwable failure) {
-                                                                                                                                           1536) 							errors.add(failure);
-                                                                                                                                           1537) 						}
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1533) 						try {
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1534) 							task.call();
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1535) 						} catch (Throwable failure) {
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1536) 							errors.add(failure);
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1537) 						}
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1538) 					}
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-19 19:05:08 -0500 1539) 				});
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 13:50:28 -0400 1540) 			}
