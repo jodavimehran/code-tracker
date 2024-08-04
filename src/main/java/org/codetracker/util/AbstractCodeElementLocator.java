@@ -177,9 +177,44 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean blockPredicate(Block block) {
+		List<UMLComment> comments = block.getOperation().getComments();
 		if (block.getComposite() instanceof StatementObject && block.getComposite().getAnonymousClassDeclarations().size() == 0) {
 			return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
 		            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
+		}
+		else if (block.getComposite() instanceof CompositeStatementObject) {
+			CompositeStatementObject comp = (CompositeStatementObject)block.getComposite();
+			List<AbstractStatement> statements = comp.getStatements();
+			int firstCommentStartLine = -1;
+			for (UMLComment comment : comments) {
+				if (comp.getLocationInfo().subsumes(comment.getLocationInfo())) {
+					firstCommentStartLine = comment.getLocationInfo().getStartLine();
+					break;
+				}
+			}
+			if (statements.size() > 0) {
+				AbstractStatement statement = statements.get(0);
+				int firstStatementStartLine = statement.getLocationInfo().getStartLine();
+				if (statement.getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK)) {
+					CompositeStatementObject blockComp = (CompositeStatementObject)statement;
+					List<AbstractStatement> blockStatements = blockComp.getStatements();
+					if (blockStatements.size() > 0) {
+						firstStatementStartLine = blockStatements.get(0).getLocationInfo().getStartLine();
+						if (firstCommentStartLine != -1 && firstCommentStartLine < firstStatementStartLine) {
+							firstStatementStartLine = firstCommentStartLine;
+						}
+						return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
+								firstStatementStartLine > lineNumber;
+					}
+				}
+				else {
+					if (firstCommentStartLine != -1 && firstCommentStartLine < firstStatementStartLine) {
+						firstStatementStartLine = firstCommentStartLine;
+					}
+					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
+							firstStatementStartLine > lineNumber;
+				}
+			}
 		}
 	    return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;

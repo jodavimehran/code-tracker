@@ -1841,7 +1841,7 @@ f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 461b012e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-03 16:20:22 -0500 1841) 					}
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1842) 				} catch (MissingObjectException e) {
 2fbcba41e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 10:03:24 -0500 1843) 					if (ignoreMissingUninteresting
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 18:25:21 -0400 1844) 							&& have.contains(e.getObjectId()))
+2fbcba41e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 10:03:24 -0500 1844) 							&& have.contains(e.getObjectId()))
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 1845) 						continue;
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-20 20:41:27 -0400 1846) 					throw e;
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 1847) 				}
@@ -1932,7 +1932,7 @@ a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 733780e8a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 00:32:03 -0500 1932) 				for (int i = 0; i < cmit.getParentCount(); i++) {
 733780e8a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 00:32:03 -0500 1933) 					RevCommit p = cmit.getParent(i);
 0f84b86e0 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Christian Halstrick       2012-06-04 10:52:36 -0400 1934) 					if (!p.has(added) && !p.has(RevFlag.UNINTERESTING)
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 18:25:21 -0400 1935) 							&& !exclude(p)) {
+0f84b86e0 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Christian Halstrick       2012-06-04 10:52:36 -0400 1935) 							&& !exclude(p)) {
 733780e8a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 00:32:03 -0500 1936) 						p.add(added);
 733780e8a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 00:32:03 -0500 1937) 						addObject(p, 0);
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1938) 						commitCnt++;
@@ -1943,9 +1943,9 @@ c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1943) 					for (ObjectId id : tagTargets) {
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1944) 						RevObject obj = walker.lookupOrNull(id);
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1945) 						if (obj instanceof RevCommit
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 18:25:21 -0400 1946) 								&& obj.has(include)
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 18:25:21 -0400 1947) 								&& !obj.has(RevFlag.UNINTERESTING)
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 18:25:21 -0400 1948) 								&& !obj.has(added)) {
+8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1946) 								&& obj.has(include)
+8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1947) 								&& !obj.has(RevFlag.UNINTERESTING)
+8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1948) 								&& !obj.has(added)) {
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1949) 							obj.add(added);
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1950) 							addObject(obj, 0);
 8f865bfff org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 21:15:26 -0500 1951) 						}
@@ -2003,7 +2003,7 @@ ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2003) 		BitmapBuilder needBitmap = wantBitmap.andNot(haveBitmap);
                                                                                                                                            2004)
 6e5c71b35 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-04-24 14:31:22 -0400 2005) 		if (useCachedPacks && reuseSupport != null && !reuseValidate
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 18:41:31 -0500 2006) 				&& (excludeInPacks == null || excludeInPacks.length == 0))
+6e5c71b35 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-04-24 14:31:22 -0400 2006) 				&& (excludeInPacks == null || excludeInPacks.length == 0))
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2007) 			cachedPacks.addAll(
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2008) 					reuseSupport.getCachedPacksAndUpdate(needBitmap));
                                                                                                                                            2009)
@@ -2194,7 +2194,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 07:39:09 -0500 2194) 	 */
 f82821728 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:15:19 -0500 2195) 	public boolean prepareBitmapIndex(ProgressMonitor pm) throws IOException {
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2196) 		if (!canBuildBitmaps || getObjectCount() > Integer.MAX_VALUE
-f82821728 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:15:19 -0500 2197) 				|| !cachedPacks.isEmpty())
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2197) 				|| !cachedPacks.isEmpty())
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2198) 			return false;
                                                                                                                                            2199)
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 14:14:45 -0500 2200) 		if (pm == null)
