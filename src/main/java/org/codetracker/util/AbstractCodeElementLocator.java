@@ -27,6 +27,7 @@ import gr.uom.java.xmi.UMLPackage;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractStatement;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
+import gr.uom.java.xmi.decomposition.StatementObject;
 import gr.uom.java.xmi.decomposition.TryStatementObject;
 
 public abstract class AbstractCodeElementLocator {
@@ -176,6 +177,10 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean blockPredicate(Block block) {
+		if (block.getComposite() instanceof StatementObject && block.getComposite().getAnonymousClassDeclarations().size() == 0) {
+			return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
+		            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
+		}
 	    return block.getComposite().getLocationInfo().getStartLine() == lineNumber &&
 	            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
 	}
