@@ -74,10 +74,19 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 	private final ChangeHistory<Method> methodChangeHistory = new ChangeHistory<>();
     private final String methodName;
     private final int methodDeclarationLineNumber;
+    private Method sourceOperation;
 
 	public MethodTrackerChangeHistory(String methodName, int methodDeclarationLineNumber) {
 		this.methodName = methodName;
 		this.methodDeclarationLineNumber = methodDeclarationLineNumber;
+	}
+
+	public Method getSourceOperation() {
+		return sourceOperation;
+	}
+
+	public void setSourceOperation(Method sourceOperation) {
+		this.sourceOperation = sourceOperation;
 	}
 
 	public ChangeHistory<Method> get() {
@@ -368,6 +377,8 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                                 .refactoring(extractOperationRefactoring).codeElement(extractedOperationAfter).hookedElement(Method.of(operationBefore, parentVersion)));
                         methodChangeHistory.connectRelatedNodes();
                         leftMethodSet.add(extractedOperationBefore);
+                        Method sourceOperationBefore = Method.of(operationBefore, parentVersion);
+                        setSourceOperation(sourceOperationBefore);
                         return leftMethodSet;
                     }
                     UMLOperationBodyMapper mapper = extractOperationRefactoring.getBodyMapper();

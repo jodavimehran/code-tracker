@@ -143,6 +143,33 @@ public class FileTrackerImpl extends BaseTracker {
 		return null;
 	}
 
+	private Set<CodeElement> remainingBlames(Method startMethod) {
+		Set<CodeElement> remaining = new LinkedHashSet<CodeElement>();
+		for (CodeElement key2 : programElementMap.keySet()) {
+			if (key2 instanceof Block) {
+				Block startBlock = (Block)key2;
+				BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+				if (startBlock.getOperation().equals(startMethod.getUmlOperation())) {
+					HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
+					if (historyInfo == null) {
+						remaining.add(startBlock);
+					}
+				}
+			}
+			else if (key2 instanceof Comment) {
+				Comment startComment = (Comment)key2;
+				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+				if (startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) {
+					HistoryInfo<Comment> historyInfo = startCommentChangeHistory.blameReturn();
+					if (historyInfo == null) {
+						remaining.add(startComment);
+					}
+				}
+			}
+		}
+		return remaining;
+	}
+
 	public void blame() throws Exception {
 		try (Git git = new Git(repository); RevWalk walk = new RevWalk(repository)) {
 			Version startVersion = gitRepository.getVersion(startCommitId);
@@ -770,6 +797,35 @@ public class FileTrackerImpl extends BaseTracker {
 								continue;
 							}
 						}
+					}
+				}
+				if (startMethodChangeHistory.peek().isAdded() && startMethodChangeHistory.getSourceOperation() != null) {
+					Method codeElement = startMethodChangeHistory.getSourceOperation();
+					boolean found = false;
+					for (CodeElement key2 : programElementMap.keySet()) {
+						if (key2 instanceof Method) {
+							Method method = (Method)key2;
+							MethodTrackerChangeHistory methodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(method);
+							if (codeElement.getUmlOperation().equals(method.getUmlOperation())) {
+								found = true;
+								break;
+							}
+							if (codeElement.getUmlOperation() instanceof UMLOperation && method.getUmlOperation() instanceof UMLOperation &&
+									((UMLOperation)codeElement.getUmlOperation()).equalSignature((UMLOperation)method.getUmlOperation())) {
+								found = true;
+								break;
+							}
+							if (!methodChangeHistory.isEmpty() && codeElement.getUmlOperation().equals(methodChangeHistory.peek().getUmlOperation())) {
+								found = true;
+								break;
+							}
+						}
+					}
+					if (!found && remainingBlames(startMethod).size() > 0) {
+						AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) factory(codeElement);
+						changeHistory.addFirst((BaseCodeElement) codeElement);
+						changeHistory.get().addNode((BaseCodeElement) codeElement);
+						programElementMap.put(codeElement, changeHistory);
 					}
 				}
 			}

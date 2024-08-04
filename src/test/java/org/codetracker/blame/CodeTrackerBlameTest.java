@@ -83,6 +83,21 @@ public class CodeTrackerBlameTest {
     }
 
     @Test
+    public void testBlameWithLocalRepoUsingFileTrackerUntilCommitZero() throws Exception {
+        String url = "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386";
+        String filePath = "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestUntilCommitZero.txt";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+        fileTracker.blame();
+        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+        String actual = TabularPrint.make(results);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
+    @Test
     public void testBlameWithLocalRepo() throws Exception {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
