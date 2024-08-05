@@ -210,7 +210,6 @@ public class FileTrackerImpl extends BaseTracker {
 			HashSet<String> analysedCommits = new HashSet<>();
 			List<String> commits = null;
 			String lastFileName = null;
-			// TODO check all blamed program elements if they have an empty element queue
 			ClassTrackerChangeHistory startClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startClass);
 			while (!startClassChangeHistory.isEmpty()) {
 				Class currentClass = startClassChangeHistory.poll();
@@ -297,7 +296,22 @@ public class FileTrackerImpl extends BaseTracker {
 						Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 						boolean refactored = !classRefactored.isEmpty();
 						if (refactored) {
-							//TODO Handle methods and blocks
+							Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
+							Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
+							Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
+							Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
+							processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
+							if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
+								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
+								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
+								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
+							}
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+							for (Pair<Class, Class> pair : foundInnerClasses) {
+								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, pair.getRight().getUmlClass().getName());
+								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
 							break;
