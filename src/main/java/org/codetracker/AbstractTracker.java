@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.Version;
+import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.BaseCodeElement;
 import org.codetracker.element.Block;
@@ -28,6 +29,7 @@ import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLClassMatcher;
+import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLParameter;
@@ -516,6 +518,87 @@ public abstract class AbstractTracker {
 		return false;
 	}
 
+	protected static boolean isAttributeAdded(UMLModelDiff modelDiff, String className, Predicate<Attribute> equalOperator, Version currentVersion) {
+	    List<UMLAttribute> addedAttributes = getAllClassesDiff(modelDiff)
+	            .stream()
+	            .map(UMLClassBaseDiff::getAddedAttributes)
+	            .flatMap(List::stream)
+	            .collect(Collectors.toList());
+	    for (UMLAttribute operation : addedAttributes) {
+	        if (isAttributeAdded(operation, equalOperator, currentVersion))
+	            return true;
+	    }
+	    List<UMLEnumConstant> addedEnumConstants = getAllClassesDiff(modelDiff)
+	            .stream()
+	            .map(UMLClassBaseDiff::getAddedEnumConstants)
+	            .flatMap(List::stream)
+	            .collect(Collectors.toList());
+	    for (UMLEnumConstant operation : addedEnumConstants) {
+	        if (isAttributeAdded(operation, equalOperator, currentVersion))
+	            return true;
+	    }
+	
+	    UMLClass addedClass = modelDiff.getAddedClass(className);
+	    if (addedClass != null) {
+	        for (UMLAttribute attribute : addedClass.getAttributes()) {
+	            if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                return true;
+	        }
+	        for (UMLEnumConstant attribute : addedClass.getEnumConstants()) {
+	            if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                return true;
+	        }
+	    }
+
+	    for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
+	            for (UMLAttribute attribute : addedAnonymousClasses.getAttributes()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	            for (UMLEnumConstant attribute : addedAnonymousClasses.getEnumConstants()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	        }
+	    }
+
+	    for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
+	            for (UMLAttribute attribute : addedAnonymousClasses.getAttributes()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	            for (UMLEnumConstant attribute : addedAnonymousClasses.getEnumConstants()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	        }
+	    }
+
+	    for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
+	            for (UMLAttribute attribute : addedAnonymousClasses.getAttributes()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	            for (UMLEnumConstant attribute : addedAnonymousClasses.getEnumConstants()) {
+	                if (isAttributeAdded(attribute, equalOperator, currentVersion))
+	                    return true;
+	            }
+	        }
+	    }
+	    return false;
+	}
+
+	protected static boolean isAttributeAdded(UMLAttribute addedAttribute, Predicate<Attribute> equalOperator, Version currentVersion) {
+	    Attribute rightAttribute = Attribute.of(addedAttribute, currentVersion);
+	    if (equalOperator.test(rightAttribute)) {
+	        return true;
+	    }
+	    return false;
+	}
+
 	protected static boolean isMethodAdded(UMLModelDiff modelDiff, String className, Predicate<Method> equalOperator, Consumer<Method> addedMethodHandler, Version currentVersion) {
 	    List<UMLOperation> addedOperations = getAllClassesDiff(modelDiff)
 	            .stream()
@@ -535,8 +618,26 @@ public abstract class AbstractTracker {
 	        }
 	    }
 	
-	    for (UMLClassRenameDiff classRenameDiffList : modelDiff.getClassRenameDiffList()) {
-	        for (UMLAnonymousClass addedAnonymousClasses : classRenameDiffList.getAddedAnonymousClasses()) {
+	    for (UMLClassDiff classDiff : modelDiff.getCommonClassDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classDiff.getAddedAnonymousClasses()) {
+	            for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+	                if (isMethodAdded(operation, equalOperator, addedMethodHandler, currentVersion))
+	                    return true;
+	            }
+	        }
+	    }
+
+	    for (UMLClassMoveDiff classMoveDiff : modelDiff.getClassMoveDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classMoveDiff.getAddedAnonymousClasses()) {
+	            for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
+	                if (isMethodAdded(operation, equalOperator, addedMethodHandler, currentVersion))
+	                    return true;
+	            }
+	        }
+	    }
+
+	    for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {
+	        for (UMLAnonymousClass addedAnonymousClasses : classRenameDiff.getAddedAnonymousClasses()) {
 	            for (UMLOperation operation : addedAnonymousClasses.getOperations()) {
 	                if (isMethodAdded(operation, equalOperator, addedMethodHandler, currentVersion))
 	                    return true;
@@ -570,6 +671,9 @@ public abstract class AbstractTracker {
 		}
 		else if (current instanceof Import) {
 			return getImport(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
+		else if (current instanceof Annotation) {
+			return getAnnotation(umlModel, version, current::equalIdentifierIgnoringVersion);
 		}
 		return current;
 	}
@@ -611,6 +715,57 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
+	protected static Annotation getAnnotation(UMLModel umlModel, Version version, Predicate<Annotation> predicate) {
+	    if (umlModel != null)
+	        for (UMLClass umlClass : umlModel.getClassList()) {
+	            for (UMLOperation operation : umlClass.getOperations()) {
+	            	Method method = Method.of(operation, version);
+	            	Annotation annotation = method.findAnnotation(predicate);
+	            	if (annotation != null) {
+	            		return annotation;
+	            	}
+	            }
+	            for (UMLAttribute umlAttribute : umlClass.getAttributes()) {
+	            	Attribute attribute = Attribute.of(umlAttribute, version);
+	            	Annotation annotation = attribute.findAnnotation(predicate);
+	            	if (annotation != null) {
+	            		return annotation;
+	            	}
+	            }
+	            for (UMLEnumConstant umlAttribute : umlClass.getEnumConstants()) {
+	            	Attribute attribute = Attribute.of(umlAttribute, version);
+	            	Annotation annotation = attribute.findAnnotation(predicate);
+	            	if (annotation != null) {
+	            		return annotation;
+	            	}
+	            }
+	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+	            	for (UMLOperation operation : anonymousClass.getOperations()) {
+		            	Method method = Method.of(operation, version);
+		            	Annotation annotation = method.findAnnotation(predicate);
+		            	if (annotation != null) {
+		            		return annotation;
+		            	}
+		            }
+	            	for (UMLAttribute umlAttribute : anonymousClass.getAttributes()) {
+		            	Attribute attribute = Attribute.of(umlAttribute, version);
+		            	Annotation annotation = attribute.findAnnotation(predicate);
+		            	if (annotation != null) {
+		            		return annotation;
+		            	}
+		            }
+	            	for (UMLEnumConstant umlAttribute : anonymousClass.getEnumConstants()) {
+		            	Attribute attribute = Attribute.of(umlAttribute, version);
+		            	Annotation annotation = attribute.findAnnotation(predicate);
+		            	if (annotation != null) {
+		            		return annotation;
+		            	}
+		            }
+	            }
+	        }
+	    return null;
+	}
+
 	protected static Comment getComment(UMLModel umlModel, Version version, Predicate<Comment> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
@@ -628,6 +783,13 @@ public abstract class AbstractTracker {
 	            		return comment;
 	            	}
 	            }
+	            for (UMLEnumConstant umlAttribute : umlClass.getEnumConstants()) {
+	            	Attribute attribute = Attribute.of(umlAttribute, version);
+	            	Comment comment = attribute.findComment(predicate);
+	            	if (comment != null) {
+	            		return comment;
+	            	}
+	            }
 	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
 	            	for (UMLOperation operation : anonymousClass.getOperations()) {
 		            	Method method = Method.of(operation, version);
@@ -637,6 +799,13 @@ public abstract class AbstractTracker {
 		            	}
 		            }
 	            	for (UMLAttribute umlAttribute : anonymousClass.getAttributes()) {
+		            	Attribute attribute = Attribute.of(umlAttribute, version);
+		            	Comment comment = attribute.findComment(predicate);
+		            	if (comment != null) {
+		            		return comment;
+		            	}
+		            }
+	            	for (UMLEnumConstant umlAttribute : anonymousClass.getEnumConstants()) {
 		            	Attribute attribute = Attribute.of(umlAttribute, version);
 		            	Comment comment = attribute.findComment(predicate);
 		            	if (comment != null) {

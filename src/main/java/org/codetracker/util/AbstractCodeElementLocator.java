@@ -24,7 +24,9 @@ import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLPackage;
+import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.decomposition.AbstractStatement;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.StatementObject;
@@ -59,6 +61,8 @@ public abstract class AbstractCodeElementLocator {
 		            }
 		            Method method = getMethod(version, predicate, umlClass.getOperations());
 		            if (method != null) return method;
+		            Method initializerBlock = getMethod(version, predicate, umlClass.getInitializers());
+		            if (initializerBlock != null) return initializerBlock;
 	        	}
 	        }
 	    return null;
@@ -148,6 +152,12 @@ public abstract class AbstractCodeElementLocator {
 		if (attribute.getUmlAttribute().getJavadoc() != null) {
 			if (attribute.getUmlAttribute().getJavadoc().getLocationInfo().getStartLine() <= lineNumber &&
 					attribute.getUmlAttribute().getJavadoc().getLocationInfo().getEndLine() >= lineNumber) {
+				return true;
+			}
+		}
+		for (UMLAnnotation annotation : attribute.getUmlAttribute().getAnnotations()) {
+			if (annotation.getLocationInfo().getStartLine() <= lineNumber &&
+					annotation.getLocationInfo().getEndLine() >= lineNumber) {
 				return true;
 			}
 		}
@@ -308,8 +318,8 @@ public abstract class AbstractCodeElementLocator {
 		return false;
 	}
 
-	private static Method getMethod(Version version, Predicate<Method> predicate, List<UMLOperation> operations) {
-	    for (UMLOperation umlOperation : operations) {
+	private static Method getMethod(Version version, Predicate<Method> predicate, List<? extends VariableDeclarationContainer> operations) {
+	    for (VariableDeclarationContainer umlOperation : operations) {
 	        Method method = Method.of(umlOperation, version);
 	        if (predicate.test(method))
 	            return method;

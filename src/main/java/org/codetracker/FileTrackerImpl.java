@@ -57,6 +57,7 @@ import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
+import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 
 public class FileTrackerImpl extends BaseTracker {
@@ -267,6 +268,26 @@ public class FileTrackerImpl extends BaseTracker {
 					Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 					// No class signature change
 					if (leftClass != null) {
+						UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+						if (leftSuperclass != null && rightSuperclass != null) {
+                    		if (!leftSuperclass.equals(rightSuperclass)) {
+                    			startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                    			startClassChangeHistory.get().connectRelatedNodes();
+                    		}
+                    	}
+						else if (leftSuperclass != null && rightSuperclass == null) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
+						else if (leftSuperclass == null && rightSuperclass != null) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
+						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
@@ -521,6 +542,21 @@ public class FileTrackerImpl extends BaseTracker {
 								}
 							}
 						}
+						else if (key2 instanceof Annotation) {
+							Annotation startAnnotation = (Annotation)key2;
+							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+							if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startAttribute.getUmlAttribute())) ||
+									(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+								Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+								Annotation rightAnnotation = rightAttribute.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+								if (rightAnnotation != null) {
+									Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getOperation().get(), parentVersion);
+									startAnnotationChangeHistory.get().handleAdd(annotationBefore, rightAnnotation, "added with attribute");
+									startAnnotationChangeHistory.add(annotationBefore);
+									startAnnotationChangeHistory.get().connectRelatedNodes();
+								}
+							}
+						}
 					}
 				}
 			}
@@ -685,6 +721,19 @@ public class FileTrackerImpl extends BaseTracker {
 						    }
 						}
 					}
+					else if (key2 instanceof Annotation) {
+						Annotation startAnnotation = (Annotation)key2;
+						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+							if (currentAnnotation == null) {
+								continue;
+							}
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
+							startAnnotationChangeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, rightAttribute, currentAnnotation::equalIdentifierIgnoringVersion, umlClassDiff);
+						}
+					}
 				}
 			}
 			else if(startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
@@ -703,6 +752,22 @@ public class FileTrackerImpl extends BaseTracker {
 								continue;
 							}
 							startCommentChangeHistory.addedAttribute(rightAttribute, rightComment, parentVersion);
+						}
+					}
+					else if (key2 instanceof Annotation) {
+						Annotation startAnnotation = (Annotation)key2;
+						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+							if (currentAnnotation == null) {
+								continue;
+							}
+							Annotation rightAnnotation = rightAttribute.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+							if (rightAnnotation == null) {
+								continue;
+							}
+							startAnnotationChangeHistory.addedAttribute(rightAttribute, rightAnnotation, parentVersion);
 						}
 					}
 				}
@@ -1042,6 +1107,24 @@ public class FileTrackerImpl extends BaseTracker {
 								startCommentChangeHistory.poll();
 								Pair<UMLAttribute, UMLAttribute> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
 							    startCommentChangeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, pair);
+							}
+						}
+						else if (key2 instanceof Annotation) {
+							Annotation startAnnotation = (Annotation)key2;
+							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+							if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
+									(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+								Annotation currentAnnotation = startAnnotationChangeHistory.peek();
+								if (currentAnnotation == null) {
+									continue;
+								}
+								Annotation rightAnnotation = rightAttribute.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+								if (rightAnnotation == null) {
+									continue;
+								}
+								startAnnotationChangeHistory.poll();
+								Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
+							    startAnnotationChangeHistory.checkBodyOfMatched(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, pair);
 							}
 						}
 					}

@@ -14,6 +14,7 @@ import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.attribute.AttributeAnnotationChange;
 import org.codetracker.change.attribute.AttributeCrossFileChange;
 import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
@@ -490,7 +491,7 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 		List<HistoryInfo<Attribute>> history = getHistory();
 		for (History.HistoryInfo<Attribute> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
-				if (!(change instanceof AttributeCrossFileChange)) {
+				if (!(change instanceof AttributeCrossFileChange) && !(change instanceof AttributeAnnotationChange)) {
 					return historyInfo;
 				}
 			}

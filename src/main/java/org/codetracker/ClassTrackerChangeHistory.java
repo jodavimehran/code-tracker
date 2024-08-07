@@ -13,6 +13,7 @@ import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
+import org.codetracker.change.clazz.ClassAnnotationChange;
 import org.codetracker.change.clazz.ClassContainerChange;
 import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
@@ -253,7 +254,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
 					}
 				}
 				else {
-					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange)) {
+					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange) && !(change instanceof ClassAnnotationChange)) {
 						return historyInfo;
 					}
 				}

@@ -15,27 +15,43 @@ import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Annotation;
 import org.codetracker.element.Attribute;
 import org.codetracker.element.Class;
-import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAnnotation;
+import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.AddAttributeModifierRefactoring;
+import gr.uom.java.xmi.diff.ChangeAttributeAccessModifierRefactoring;
+import gr.uom.java.xmi.diff.ChangeAttributeTypeRefactoring;
+import gr.uom.java.xmi.diff.ExtractAttributeRefactoring;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
+import gr.uom.java.xmi.diff.ModifyAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.MoveAndRenameAttributeRefactoring;
+import gr.uom.java.xmi.diff.MoveAttributeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
+import gr.uom.java.xmi.diff.PullUpAttributeRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
+import gr.uom.java.xmi.diff.PushDownAttributeRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
+import gr.uom.java.xmi.diff.RemoveAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.RemoveAttributeModifierRefactoring;
+import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLAnnotationDiff;
 import gr.uom.java.xmi.diff.UMLAnnotationListDiff;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
+import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
+import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
 
 public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annotation> {
 	private final ChangeHistory<Annotation> annotationChangeHistory = new ChangeHistory<>();
@@ -88,6 +104,12 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return method.getUmlOperation().getName().equals(methodName) &&
                 method.getUmlOperation().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
+    }
+
+    public boolean isStartAttribute(Attribute attribute) {
+        return attribute.getUmlAttribute().getName().equals(methodName) &&
+        		attribute.getUmlAttribute().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
+        		attribute.getUmlAttribute().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
     public boolean isStartClass(Class clazz) {
@@ -214,6 +236,47 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return false;
     }
 
+    public boolean checkClassDiffForAnnotationChange(Version currentVersion, Version parentVersion, Attribute rightAttribute, Predicate<Annotation> equalAnnotation, UMLAbstractClassDiff umlClassDiff) {
+    	if (umlClassDiff == null)
+    		return false;
+    	boolean found = false;
+    	Pair<? extends UMLAttribute, ? extends UMLAttribute> foundPair = null;
+    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {
+    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+    			foundPair = pair;
+    			break;
+    		}
+    	}
+    	for (Pair<UMLEnumConstant, UMLEnumConstant> pair : umlClassDiff.getCommonEnumConstants()) {
+    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+    			foundPair = pair;
+    			break;
+    		}
+    	}
+    	UMLDocumentationDiffProvider provider = null;
+    	for (UMLAttributeDiff attributeDiff : umlClassDiff.getAttributeDiffList()) {
+    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+    			provider = attributeDiff;
+    			break;
+    		}
+    	}
+    	for (UMLEnumConstantDiff attributeDiff : umlClassDiff.getEnumConstantDiffList()) {
+    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+    			provider = attributeDiff;
+    			break;
+    		}
+    	}
+    	if (foundPair != null) {
+    		Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(foundPair.getLeft(), foundPair.getRight());
+    		found = checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+    	}
+    	if (provider != null) {
+    		Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(provider.getContainer1(), provider.getContainer2());
+    		found = checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+    	}
+    	return found;
+    }
+
     public void addedMethod(Method rightMethod, Annotation rightAnnotation, Version parentVersion) {
     	Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightMethod.getUmlOperation(), parentVersion);
         annotationChangeHistory.handleAdd(annotationBefore, rightAnnotation, "added with method");
@@ -221,9 +284,9 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         annotationChangeHistory.connectRelatedNodes();
     }
 
-    public void addedAttribute(Attribute rightAttribute, Annotation rightComment, Version parentVersion) {
-    	Annotation annotationBefore = Annotation.of(rightComment.getAnnotation(), rightAttribute.getUmlAttribute(), parentVersion);
-    	annotationChangeHistory.handleAdd(annotationBefore, rightComment, "added with attribute");
+    public void addedAttribute(Attribute rightAttribute, Annotation rightAnnotation, Version parentVersion) {
+    	Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAttribute.getUmlAttribute(), parentVersion);
+    	annotationChangeHistory.handleAdd(annotationBefore, rightAnnotation, "added with attribute");
         elements.addFirst(annotationBefore);
         annotationChangeHistory.connectRelatedNodes();
     }
@@ -448,6 +511,120 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
             }
         }
         return false;
+    }
+
+    public boolean checkRefactoredAttribute(Version currentVersion, Version parentVersion, Predicate<Attribute> equalAttribute, Annotation rightAnnotation, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    	for (Refactoring refactoring : refactorings) {
+            UMLAttribute attributeBefore = null;
+            UMLAttribute attributeAfter = null;
+            Change.Type changeType = null;
+
+            switch (refactoring.getRefactoringType()) {
+                case PULL_UP_ATTRIBUTE: {
+                    PullUpAttributeRefactoring pullUpAttributeRefactoring = (PullUpAttributeRefactoring) refactoring;
+                    attributeBefore = pullUpAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = pullUpAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case PUSH_DOWN_ATTRIBUTE: {
+                    PushDownAttributeRefactoring pushDownAttributeRefactoring = (PushDownAttributeRefactoring) refactoring;
+                    attributeBefore = pushDownAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = pushDownAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case MOVE_ATTRIBUTE: {
+                    MoveAttributeRefactoring moveAttributeRefactoring = (MoveAttributeRefactoring) refactoring;
+                    attributeBefore = moveAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = moveAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case MOVE_RENAME_ATTRIBUTE: {
+                    MoveAndRenameAttributeRefactoring moveAndRenameAttributeRefactoring = (MoveAndRenameAttributeRefactoring) refactoring;
+                    attributeBefore = moveAndRenameAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = moveAndRenameAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case RENAME_ATTRIBUTE: {
+                    RenameAttributeRefactoring renameAttributeRefactoring = (RenameAttributeRefactoring) refactoring;
+                    attributeBefore = renameAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = renameAttributeRefactoring.getRenamedAttribute();
+                    changeType = Change.Type.RENAME;
+                    break;
+                }
+                case ADD_ATTRIBUTE_ANNOTATION: {
+                    AddAttributeAnnotationRefactoring addAttributeAnnotationRefactoring = (AddAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = addAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = addAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case MODIFY_ATTRIBUTE_ANNOTATION: {
+                    ModifyAttributeAnnotationRefactoring modifyAttributeAnnotationRefactoring = (ModifyAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = modifyAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = modifyAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case REMOVE_ATTRIBUTE_ANNOTATION: {
+                    RemoveAttributeAnnotationRefactoring removeAttributeAnnotationRefactoring = (RemoveAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = removeAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = removeAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case CHANGE_ATTRIBUTE_TYPE: {
+                    ChangeAttributeTypeRefactoring changeAttributeTypeRefactoring = (ChangeAttributeTypeRefactoring) refactoring;
+                    attributeBefore = changeAttributeTypeRefactoring.getOriginalAttribute();
+                    attributeAfter = changeAttributeTypeRefactoring.getChangedTypeAttribute();
+                    changeType = Change.Type.TYPE_CHANGE;
+                    break;
+                }
+                case ADD_ATTRIBUTE_MODIFIER: {
+                    AddAttributeModifierRefactoring addAttributeModifierRefactoring = (AddAttributeModifierRefactoring) refactoring;
+                    attributeBefore = addAttributeModifierRefactoring.getAttributeBefore();
+                    attributeAfter = addAttributeModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.MODIFIER_CHANGE;
+                    break;
+                }
+                case REMOVE_ATTRIBUTE_MODIFIER: {
+                    RemoveAttributeModifierRefactoring removeAttributeModifierRefactoring = (RemoveAttributeModifierRefactoring) refactoring;
+                    attributeBefore = removeAttributeModifierRefactoring.getAttributeBefore();
+                    attributeAfter = removeAttributeModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.MODIFIER_CHANGE;
+                    break;
+                }
+                case CHANGE_ATTRIBUTE_ACCESS_MODIFIER: {
+                    ChangeAttributeAccessModifierRefactoring changeAttributeAccessModifierRefactoring = (ChangeAttributeAccessModifierRefactoring) refactoring;
+                    attributeBefore = changeAttributeAccessModifierRefactoring.getAttributeBefore();
+                    attributeAfter = changeAttributeAccessModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ACCESS_MODIFIER_CHANGE;
+                    break;
+                }
+                case EXTRACT_ATTRIBUTE: {
+                    ExtractAttributeRefactoring extractAttributeRefactoring = (ExtractAttributeRefactoring) refactoring;
+                    Attribute rightAttribute = Attribute.of(extractAttributeRefactoring.getVariableDeclaration(), currentVersion);
+                    if (equalAttribute.test(rightAttribute)) {
+                    	addedAttribute(rightAttribute, rightAnnotation, parentVersion);
+                    	return true;
+                    }
+                    break;
+                }
+            }
+            if (attributeAfter != null) {
+            	Attribute fieldAfter = Attribute.of(attributeAfter, currentVersion);
+                if (equalAttribute.test(fieldAfter)) {
+                	Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(attributeBefore, attributeAfter);
+                	boolean found = checkBodyOfMatched(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, pair);
+                	if (found)
+                        return true;
+                }
+        	}
+    	}
+    	return false;
     }
 
 	public HistoryInfo<Annotation> blameReturn() {

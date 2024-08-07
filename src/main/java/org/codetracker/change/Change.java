@@ -46,7 +46,9 @@ public interface Change {
         EXPRESSION_CHANGE("expression change"),
         INITIALIZER_CHANGE("initializer change"),
         INITIALIZER_ADDED("initializer added"),
-        INITIALIZER_REMOVED("initializer removed");
+        INITIALIZER_REMOVED("initializer removed"),
+        SUPERCLASS_CHANGE("superclass change"),
+        INTERFACE_LIST_CHANGE("interface list change");
 
         private static final Map<String, Type> lookup = new HashMap<>();
 

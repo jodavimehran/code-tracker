@@ -1,12 +1,15 @@
 package org.codetracker;
 
 import gr.uom.java.xmi.UMLModel;
+import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.diff.*;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.ClassTracker;
 import org.codetracker.api.History;
 import org.codetracker.api.Version;
 import org.codetracker.api.History.HistoryInfo;
+import org.codetracker.change.Change;
+import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Class;
 import org.codetracker.element.Package;
 import org.eclipse.jgit.api.Git;
@@ -82,6 +85,26 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                     if (leftClass != null) {
+                    	UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+						if (leftSuperclass != null && rightSuperclass != null) {
+                    		if (!leftSuperclass.equals(rightSuperclass)) {
+                    			changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                    			changeHistory.get().connectRelatedNodes();
+                    		}
+                    	}
+						else if (leftSuperclass != null && rightSuperclass == null) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
+						else if (leftSuperclass == null && rightSuperclass != null) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
+						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
                         historyReport.step2PlusPlus();
                         continue;
                     }
@@ -206,6 +229,26 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                     if (leftClass != null) {
+                    	UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+						if (leftSuperclass != null && rightSuperclass != null) {
+                    		if (!leftSuperclass.equals(rightSuperclass)) {
+                    			changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                    			changeHistory.get().connectRelatedNodes();
+                    		}
+                    	}
+						else if (leftSuperclass != null && rightSuperclass == null) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
+						else if (leftSuperclass == null && rightSuperclass != null) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
+						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+						}
                         historyReport.step2PlusPlus();
                         continue;
                     }

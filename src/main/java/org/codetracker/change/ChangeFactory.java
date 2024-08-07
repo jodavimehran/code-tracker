@@ -169,6 +169,14 @@ public final class ChangeFactory {
                 change = new ElseBlockRemoved();
                 break;
             }
+            case INTERFACE_LIST_CHANGE: {
+                change = new ClassInterfaceListChange();
+                break;
+            }
+            case SUPERCLASS_CHANGE: {
+                change = new ClassSuperclassChange();
+                break;
+            }
             case BLOCK_SPLIT: {
                 if (refactoring == null)
                     throw new NullPointerException();
