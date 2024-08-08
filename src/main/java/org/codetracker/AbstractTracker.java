@@ -820,12 +820,14 @@ public abstract class AbstractTracker {
 	protected static Method getMethod(UMLModel umlModel, Version version, Predicate<Method> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
-	            Method method = getMethod(version, predicate, umlClass.getOperations());
-	            if (method != null) return method;
-	            for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
-	                method = getMethod(version, predicate, anonymousClass.getOperations());
+	        	for (UMLAnonymousClass anonymousClass : umlClass.getAnonymousClassList()) {
+	                Method method = getMethod(version, predicate, anonymousClass.getOperations());
 	                if (method != null) return method;
 	            }
+	            Method method = getMethod(version, predicate, umlClass.getOperations());
+	            if (method != null) return method;
+	            Method initializerBlock = getMethod(version, predicate, umlClass.getInitializers());
+	            if (initializerBlock != null) return initializerBlock;
 	        }
 	    return null;
 	}
@@ -840,8 +842,8 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
-	private static Method getMethod(Version version, Predicate<Method> predicate, List<UMLOperation> operations) {
-	    for (UMLOperation umlOperation : operations) {
+	private static Method getMethod(Version version, Predicate<Method> predicate, List<? extends VariableDeclarationContainer> operations) {
+	    for (VariableDeclarationContainer umlOperation : operations) {
 	        Method method = Method.of(umlOperation, version);
 	        if (predicate.test(method))
 	            return method;

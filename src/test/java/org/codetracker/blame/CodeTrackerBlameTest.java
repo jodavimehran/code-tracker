@@ -107,6 +107,35 @@ public class CodeTrackerBlameTest {
     }
 
     @Test
+    public void testBlameWithLocalRepoUsingFileTracker3() throws Exception {
+        String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
+        String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo3.txt";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+        fileTracker.blame();
+        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+        String actual = TabularPrint.make(results);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
+    @Test
+    public void blameTestAttributeAnnotation() throws Exception {
+        String url = "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386";
+        String filePath = "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java";
+        int lineNumber = 224;
+        String expected = "LineBlameResult{commitId='1a6964c8274c50f0253db75f010d78ef0e739343', filePath='org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java', shortCommitId='1a6964c82', beforeFilePath='org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java', committer='Git Development Community', commitDate='1254268023', lineNumber=156}";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        History.HistoryInfo<? extends CodeElement> lineBlame =
+                new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+        LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
+        Assertions.assertEquals(expected, lineBlameResult.toString());
+    }
+
+    @Test
     public void testBlameLineRangeWithLocalRepo() throws Exception {
         String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
         String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";

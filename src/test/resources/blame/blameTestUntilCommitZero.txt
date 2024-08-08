@@ -224,10 +224,10 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 224)  	@SuppressWarnings("unchecked")
 79a7dd026 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Andrey Loskutov           2015-10-27 19:02:41 -0400 225)  	BlockList<ObjectToPack> objectsLists[] = new BlockList[OBJ_TAG + 1];
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 226)  	{
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 227)  		objectsLists[OBJ_COMMIT] = new BlockList<>();
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 228)  		objectsLists[OBJ_TREE] = new BlockList<>();
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 229)  		objectsLists[OBJ_BLOB] = new BlockList<>();
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 230)  		objectsLists[OBJ_TAG] = new BlockList<>();
+3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 227)  		objectsLists[OBJ_COMMIT] = new BlockList<>();
+3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 228)  		objectsLists[OBJ_TREE] = new BlockList<>();
+3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 229)  		objectsLists[OBJ_BLOB] = new BlockList<>();
+3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 230)  		objectsLists[OBJ_TAG] = new BlockList<>();
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 19:47:03 -0400 231)  	}
                                                                                                                                            232)
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 16:47:23 -0500 233)  	private ObjectIdOwnerMap<ObjectToPack> objectsMap = new ObjectIdOwnerMap<>();
