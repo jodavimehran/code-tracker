@@ -493,6 +493,9 @@ public abstract class AbstractCodeElementLocator {
             }
             Annotation annotation = attribute.findAnnotation(this::annotationPredicate);
             if (annotation != null) {
+            	if (annotation.getLocation().getStartLine() == attribute.getLocation().getStartLine()) {
+            		return attribute;
+            	}
             	return annotation;
             }
             return attribute;

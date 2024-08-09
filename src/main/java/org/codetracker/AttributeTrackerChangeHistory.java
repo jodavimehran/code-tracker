@@ -21,6 +21,7 @@ import org.codetracker.element.Attribute;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
 
+import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
@@ -493,6 +494,33 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 			for (Change change : historyInfo.getChangeList()) {
 				if (!(change instanceof AttributeCrossFileChange) && !(change instanceof AttributeAnnotationChange)) {
 					return historyInfo;
+				}
+				//handle case where annotation is in the same line with the attribute declaration
+				if (change instanceof AttributeAnnotationChange) {
+					UMLAttribute attributeAfter = historyInfo.getElementAfter().getUmlAttribute();
+					if (attributeAfter.getAnnotations().size() > 0) {
+						int sameLineAnnotations = 0;
+						for (UMLAnnotation annotation : attributeAfter.getAnnotations()) {
+							if (annotation.getLocationInfo().getStartLine() == historyInfo.getElementAfter().getLocation().getStartLine()) {
+								sameLineAnnotations++;
+							}
+						}
+						if (sameLineAnnotations == attributeAfter.getAnnotations().size()) {
+							return historyInfo;
+						}
+					}
+					UMLAttribute attributeBefore = historyInfo.getElementBefore().getUmlAttribute();
+					if (attributeBefore.getAnnotations().size() > 0) {
+						int sameLineAnnotations = 0;
+						for (UMLAnnotation annotation : attributeBefore.getAnnotations()) {
+							if (annotation.getLocationInfo().getStartLine() == historyInfo.getElementBefore().getLocation().getStartLine()) {
+								sameLineAnnotations++;
+							}
+						}
+						if (sameLineAnnotations == attributeBefore.getAnnotations().size()) {
+							return historyInfo;
+						}
+					}
 				}
 			}
 		}
