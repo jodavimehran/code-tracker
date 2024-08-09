@@ -688,6 +688,14 @@ public class FileTrackerImpl extends BaseTracker {
 							if (currentComment == null) {
 								continue;
 							}
+							Comment rightComment = rightAttribute.findComment(currentComment::equalIdentifierIgnoringVersion);
+							if (rightComment == null) {
+								continue;
+							}
+							boolean found = startCommentChangeHistory.checkRefactoredAttribute(currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, rightComment, refactorings);
+							if (found) {
+								continue;
+							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
 						    if (umlClassDiff != null) {
 						    	Pair<? extends UMLAttribute, ? extends UMLAttribute> foundPair = null;
@@ -728,6 +736,14 @@ public class FileTrackerImpl extends BaseTracker {
 								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
 							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
 							if (currentAnnotation == null) {
+								continue;
+							}
+							Annotation rightAnnotation = rightAttribute.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+							if (rightAnnotation == null) {
+								continue;
+							}
+							boolean found = startAnnotationChangeHistory.checkRefactoredAttribute(currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, rightAnnotation, refactorings);
+							if (found) {
 								continue;
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
