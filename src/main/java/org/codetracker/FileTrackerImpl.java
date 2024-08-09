@@ -481,7 +481,7 @@ public class FileTrackerImpl extends BaseTracker {
 				Import startImport = (Import)key;
 				ImportTrackerChangeHistory startImportChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
 				if (rightClass.getUmlClass().getImportedTypes().size() > 0 && rightClass.getUmlClass().isTopLevel()) {
-					Import currentImport = startImportChangeHistory.poll();
+					Import currentImport = startImportChangeHistory.peek();
 					if (currentImport == null || currentImport.isAdded()) {
 						continue;
 					}
@@ -489,6 +489,7 @@ public class FileTrackerImpl extends BaseTracker {
 					if (rightImport == null) {
 						continue;
 					}
+					startImportChangeHistory.poll();
 					startImportChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
@@ -684,7 +685,7 @@ public class FileTrackerImpl extends BaseTracker {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
 								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startCommentChangeHistory.peek().getOperation().get()))) {
-							Comment currentComment = startCommentChangeHistory.poll();
+							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
 								continue;
 							}
@@ -692,6 +693,7 @@ public class FileTrackerImpl extends BaseTracker {
 							if (rightComment == null) {
 								continue;
 							}
+							startCommentChangeHistory.poll();
 							boolean found = startCommentChangeHistory.checkRefactoredAttribute(currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, rightComment, refactorings);
 							if (found) {
 								continue;
@@ -734,7 +736,7 @@ public class FileTrackerImpl extends BaseTracker {
 						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightAttribute.getUmlAttribute())) ||
 								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightAttribute.getUmlAttribute().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
-							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+							Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 							if (currentAnnotation == null) {
 								continue;
 							}
@@ -742,6 +744,7 @@ public class FileTrackerImpl extends BaseTracker {
 							if (rightAnnotation == null) {
 								continue;
 							}
+							startAnnotationChangeHistory.poll();
 							boolean found = startAnnotationChangeHistory.checkRefactoredAttribute(currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, rightAnnotation, refactorings);
 							if (found) {
 								continue;
@@ -985,7 +988,7 @@ public class FileTrackerImpl extends BaseTracker {
 			if (key instanceof Class && !key.equals(startClass)) {
 				Class startInnerClass = (Class)key;
 				ClassTrackerChangeHistory startInnerClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startInnerClass);
-				Class currentClass = startInnerClassChangeHistory.poll();
+				Class currentClass = startInnerClassChangeHistory.peek();
 				if (currentClass == null) {
 					currentClass = startInnerClassChangeHistory.getCurrent();
 				}
@@ -996,6 +999,7 @@ public class FileTrackerImpl extends BaseTracker {
 				if (rightClass == null) {
 					continue;
 				}
+				startInnerClassChangeHistory.poll();
 				Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 				if (leftClass != null) {
 					startInnerClassChangeHistory.setCurrent(leftClass);
