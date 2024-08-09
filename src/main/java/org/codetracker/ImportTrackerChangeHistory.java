@@ -1,6 +1,7 @@
 package org.codetracker;
 
 import java.util.List;
+import java.util.Set;
 import java.util.function.Predicate;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -112,6 +113,30 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
 	                matches++;
 	            }
 	        }
+	    	for (Set<UMLImport> key : diff.getGroupedImports().keySet()) {
+	    		UMLImport value = diff.getGroupedImports().get(key);
+	    		Import importAfter = Import.of(value, classDiff.getNextClass(), currentVersion);
+	    		if (importAfter != null && equalOperator.test(importAfter)) {
+	    			Import importBefore = Import.of(value, classDiff.getNextClass(), parentVersion);
+	                importChangeHistory.handleAdd(importBefore, importAfter, "grouped import");
+	                elements.add(importBefore);
+	                importChangeHistory.connectRelatedNodes();
+	                return true;
+	    		}
+	    	}
+	    	for (UMLImport key : diff.getUnGroupedImports().keySet()) {
+	    		Set<UMLImport> value = diff.getUnGroupedImports().get(key);
+	    		for (UMLImport imp : value) {
+	    			Import importAfter = Import.of(imp, classDiff.getNextClass(), currentVersion);
+	    			if (importAfter != null && equalOperator.test(importAfter)) {
+		    			Import importBefore = Import.of(imp, classDiff.getNextClass(), parentVersion);
+		                importChangeHistory.handleAdd(importBefore, importAfter, "ungrouped import");
+		                elements.add(importBefore);
+		                importChangeHistory.connectRelatedNodes();
+		                return true;
+		    		}
+	    		}
+	    	}
     	}
     	if(matches > 0) {
     		return true;
