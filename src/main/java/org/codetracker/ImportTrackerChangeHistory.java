@@ -14,7 +14,6 @@ import org.codetracker.change.Introduced;
 import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Class;
 import org.codetracker.element.Import;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.UMLImport;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
@@ -75,7 +74,7 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= classDeclarationLineNumber;
     }
 
-    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Import> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Import> equalOperator, UMLAbstractClassDiff classDiff) {
         if (classDiff == null)
             return false;
         // check if it is in the matched

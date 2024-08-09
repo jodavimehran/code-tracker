@@ -17,7 +17,6 @@ import org.codetracker.element.Attribute;
 import org.codetracker.element.Class;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAnnotation;
@@ -118,7 +117,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Annotation rightAnnotation, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Annotation rightAnnotation, List<Refactoring> refactorings) {
         int extractMatches = 0;
     	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
@@ -221,7 +220,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return false;
     }
 
-    public boolean checkClassDiffForAnnotationChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Annotation> equalAnnotation, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForAnnotationChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Annotation> equalAnnotation, UMLAbstractClassDiff umlClassDiff) {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
@@ -291,7 +290,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         annotationChangeHistory.connectRelatedNodes();
     }
 
-    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Annotation> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Annotation> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) {
         if (umlOperationBodyMapper == null)
             return false;
         // check if it is in the matched
@@ -351,7 +350,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return false;
     }
 
-    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Annotation> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Annotation> equalOperator, UMLAbstractClassDiff classDiff) {
         if (classDiff == null)
             return false;
         // check if it is in the matched
@@ -465,7 +464,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
     	return false;
     }
 
-    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Annotation rightAnnotation, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Annotation rightAnnotation, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
@@ -513,7 +512,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
         return false;
     }
 
-    public boolean checkRefactoredAttribute(Version currentVersion, Version parentVersion, Predicate<Attribute> equalAttribute, Annotation rightAnnotation, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredAttribute(Version currentVersion, Version parentVersion, Predicate<Attribute> equalAttribute, Annotation rightAnnotation, List<Refactoring> refactorings) {
     	for (Refactoring refactoring : refactorings) {
             UMLAttribute attributeBefore = null;
             UMLAttribute attributeAfter = null;

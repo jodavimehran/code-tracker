@@ -18,7 +18,6 @@ import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
@@ -26,21 +25,37 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.AddAttributeModifierRefactoring;
+import gr.uom.java.xmi.diff.ChangeAttributeAccessModifierRefactoring;
+import gr.uom.java.xmi.diff.ChangeAttributeTypeRefactoring;
+import gr.uom.java.xmi.diff.ExtractAttributeRefactoring;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.InlineOperationRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
+import gr.uom.java.xmi.diff.ModifyAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.MoveAndRenameAttributeRefactoring;
+import gr.uom.java.xmi.diff.MoveAttributeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
+import gr.uom.java.xmi.diff.PullUpAttributeRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
+import gr.uom.java.xmi.diff.PushDownAttributeRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
+import gr.uom.java.xmi.diff.RemoveAttributeAnnotationRefactoring;
+import gr.uom.java.xmi.diff.RemoveAttributeModifierRefactoring;
+import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLCommentListDiff;
 import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
+import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
 import gr.uom.java.xmi.diff.UMLJavadocDiff;
 
 public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> {
@@ -96,13 +111,19 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
+    public boolean isStartAttribute(Attribute attribute) {
+        return attribute.getUmlAttribute().getName().equals(methodName) &&
+        		attribute.getUmlAttribute().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
+        		attribute.getUmlAttribute().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
+    }
+
     public boolean isStartClass(Class clazz) {
         return clazz.getUmlClass().getName().equals(methodName) &&
         		clazz.getUmlClass().getLocationInfo().getStartLine() <= methodDeclarationLineNumber &&
         		clazz.getUmlClass().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Comment> equalComment, UMLAbstractClassDiff umlClassDiff) {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
@@ -117,7 +138,47 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForCommentChange(Version currentVersion, Version parentVersion, Attribute rightAttribute, Predicate<Comment> equalComment, UMLAbstractClassDiff umlClassDiff) {
+    	if (umlClassDiff == null)
+    		return false;
+    	boolean found = false;
+    	Pair<? extends UMLAttribute, ? extends UMLAttribute> foundPair = null;
+    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {
+    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+    			foundPair = pair;
+    			break;
+    		}
+    	}
+    	for (Pair<UMLEnumConstant, UMLEnumConstant> pair : umlClassDiff.getCommonEnumConstants()) {
+    		if (pair.getRight().equals(rightAttribute.getUmlAttribute())) {
+    			foundPair = pair;
+    			break;
+    		}
+    	}
+    	UMLDocumentationDiffProvider provider = null;
+    	for (UMLAttributeDiff attributeDiff : umlClassDiff.getAttributeDiffList()) {
+    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+    			provider = attributeDiff;
+    			break;
+    		}
+    	}
+    	for (UMLEnumConstantDiff attributeDiff : umlClassDiff.getEnumConstantDiffList()) {
+    		if (attributeDiff.getContainer2().equals(rightAttribute.getUmlAttribute())) {
+    			provider = attributeDiff;
+    			break;
+    		}
+    	}
+    	if (foundPair != null) {
+    		Pair<UMLAttribute, UMLAttribute> pair = Pair.of(foundPair.getLeft(), foundPair.getRight());
+    		found = checkBodyOfMatchedAttributes(currentVersion, parentVersion, equalComment, pair);
+    	}
+    	if (provider != null) {
+    		found = checkBodyOfMatchedOperations(currentVersion, parentVersion, equalComment, provider);
+    	}
+    	return found;
+    }
+
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) {
         int extractMatches = 0;
     	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
@@ -304,7 +365,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return isAdded(pair, currentVersion, parentVersion, equalOperator);
     }
 
-    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLDocumentationDiffProvider umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLDocumentationDiffProvider umlOperationBodyMapper) {
         if (umlOperationBodyMapper == null)
             return false;
         // check if it is in the matched
@@ -485,7 +546,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLAbstractClassDiff classDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedClasses(Version currentVersion, Version parentVersion, Predicate<Comment> equalOperator, UMLAbstractClassDiff classDiff) {
         if (classDiff == null)
             return false;
         // check if it is in the matched
@@ -621,7 +682,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
         return false;
     }
 
-    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;
@@ -667,6 +728,120 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             }
         }
         return false;
+    }
+
+    public boolean checkRefactoredAttribute(Version currentVersion, Version parentVersion, Predicate<Attribute> equalAttribute, Comment rightComment, List<Refactoring> refactorings) {
+    	for (Refactoring refactoring : refactorings) {
+            UMLAttribute attributeBefore = null;
+            UMLAttribute attributeAfter = null;
+            Change.Type changeType = null;
+
+            switch (refactoring.getRefactoringType()) {
+                case PULL_UP_ATTRIBUTE: {
+                    PullUpAttributeRefactoring pullUpAttributeRefactoring = (PullUpAttributeRefactoring) refactoring;
+                    attributeBefore = pullUpAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = pullUpAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case PUSH_DOWN_ATTRIBUTE: {
+                    PushDownAttributeRefactoring pushDownAttributeRefactoring = (PushDownAttributeRefactoring) refactoring;
+                    attributeBefore = pushDownAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = pushDownAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case MOVE_ATTRIBUTE: {
+                    MoveAttributeRefactoring moveAttributeRefactoring = (MoveAttributeRefactoring) refactoring;
+                    attributeBefore = moveAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = moveAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case MOVE_RENAME_ATTRIBUTE: {
+                    MoveAndRenameAttributeRefactoring moveAndRenameAttributeRefactoring = (MoveAndRenameAttributeRefactoring) refactoring;
+                    attributeBefore = moveAndRenameAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = moveAndRenameAttributeRefactoring.getMovedAttribute();
+                    changeType = Change.Type.MOVED;
+                    break;
+                }
+                case RENAME_ATTRIBUTE: {
+                    RenameAttributeRefactoring renameAttributeRefactoring = (RenameAttributeRefactoring) refactoring;
+                    attributeBefore = renameAttributeRefactoring.getOriginalAttribute();
+                    attributeAfter = renameAttributeRefactoring.getRenamedAttribute();
+                    changeType = Change.Type.RENAME;
+                    break;
+                }
+                case ADD_ATTRIBUTE_ANNOTATION: {
+                    AddAttributeAnnotationRefactoring addAttributeAnnotationRefactoring = (AddAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = addAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = addAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case MODIFY_ATTRIBUTE_ANNOTATION: {
+                    ModifyAttributeAnnotationRefactoring modifyAttributeAnnotationRefactoring = (ModifyAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = modifyAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = modifyAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case REMOVE_ATTRIBUTE_ANNOTATION: {
+                    RemoveAttributeAnnotationRefactoring removeAttributeAnnotationRefactoring = (RemoveAttributeAnnotationRefactoring) refactoring;
+                    attributeBefore = removeAttributeAnnotationRefactoring.getAttributeBefore();
+                    attributeAfter = removeAttributeAnnotationRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ANNOTATION_CHANGE;
+                    break;
+                }
+                case CHANGE_ATTRIBUTE_TYPE: {
+                    ChangeAttributeTypeRefactoring changeAttributeTypeRefactoring = (ChangeAttributeTypeRefactoring) refactoring;
+                    attributeBefore = changeAttributeTypeRefactoring.getOriginalAttribute();
+                    attributeAfter = changeAttributeTypeRefactoring.getChangedTypeAttribute();
+                    changeType = Change.Type.TYPE_CHANGE;
+                    break;
+                }
+                case ADD_ATTRIBUTE_MODIFIER: {
+                    AddAttributeModifierRefactoring addAttributeModifierRefactoring = (AddAttributeModifierRefactoring) refactoring;
+                    attributeBefore = addAttributeModifierRefactoring.getAttributeBefore();
+                    attributeAfter = addAttributeModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.MODIFIER_CHANGE;
+                    break;
+                }
+                case REMOVE_ATTRIBUTE_MODIFIER: {
+                    RemoveAttributeModifierRefactoring removeAttributeModifierRefactoring = (RemoveAttributeModifierRefactoring) refactoring;
+                    attributeBefore = removeAttributeModifierRefactoring.getAttributeBefore();
+                    attributeAfter = removeAttributeModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.MODIFIER_CHANGE;
+                    break;
+                }
+                case CHANGE_ATTRIBUTE_ACCESS_MODIFIER: {
+                    ChangeAttributeAccessModifierRefactoring changeAttributeAccessModifierRefactoring = (ChangeAttributeAccessModifierRefactoring) refactoring;
+                    attributeBefore = changeAttributeAccessModifierRefactoring.getAttributeBefore();
+                    attributeAfter = changeAttributeAccessModifierRefactoring.getAttributeAfter();
+                    changeType = Change.Type.ACCESS_MODIFIER_CHANGE;
+                    break;
+                }
+                case EXTRACT_ATTRIBUTE: {
+                    ExtractAttributeRefactoring extractAttributeRefactoring = (ExtractAttributeRefactoring) refactoring;
+                    Attribute rightAttribute = Attribute.of(extractAttributeRefactoring.getVariableDeclaration(), currentVersion);
+                    if (equalAttribute.test(rightAttribute)) {
+                    	addedAttribute(rightAttribute, rightComment, parentVersion);
+                    	return true;
+                    }
+                    break;
+                }
+            }
+            if (attributeAfter != null) {
+            	Attribute fieldAfter = Attribute.of(attributeAfter, currentVersion);
+                if (equalAttribute.test(fieldAfter)) {
+                	Pair<UMLAttribute, UMLAttribute> pair = Pair.of(attributeBefore, attributeAfter);
+                	boolean found = checkBodyOfMatchedAttributes(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, pair);
+                	if (found)
+                        return true;
+                }
+        	}
+    	}
+    	return false;
     }
 
 	public HistoryInfo<Comment> blameReturn() {

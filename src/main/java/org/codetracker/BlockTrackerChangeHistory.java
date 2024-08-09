@@ -25,7 +25,6 @@ import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLType;
@@ -42,8 +41,6 @@ import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.InlineOperationRefactoring;
-import gr.uom.java.xmi.diff.MergeCatchRefactoring;
-import gr.uom.java.xmi.diff.MergeConditionalRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
@@ -109,7 +106,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForBlockChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForBlockChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Block> equalBlock, UMLAbstractClassDiff umlClassDiff) {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
@@ -126,7 +123,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
         int extractMatches = 0;
     	for (Refactoring refactoring : refactorings) {
             switch (refactoring.getRefactoringType()) {
@@ -401,7 +398,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) throws RefactoringMinerTimedOutException {
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Predicate<Block> equalOperator, UMLOperationBodyMapper umlOperationBodyMapper) {
         if (umlOperationBodyMapper == null)
             return false;
         Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactoringsAfterPostProcessing();
@@ -764,7 +761,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
-    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationBefore = null;
             UMLOperation operationAfter = null;

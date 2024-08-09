@@ -136,6 +136,20 @@ public class CodeTrackerBlameTest {
     }
 
     @Test
+    public void blameTestAttributeComment() throws Exception {
+        String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
+        String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+        int lineNumber = 69;
+        String expected = "LineBlameResult{commitId='b61daf7f44e5b3a817e712b6af84d6bca796fb28', filePath='src/main/java/com/puppycrawl/tools/checkstyle/Checker.java', shortCommitId='b61daf7f4', beforeFilePath='src/main/java/com/puppycrawl/tools/checkstyle/Checker.java', committer='rnveach', commitDate='1481152863', lineNumber=68}";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        History.HistoryInfo<? extends CodeElement> lineBlame =
+                new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+        LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame);
+        Assertions.assertEquals(expected, lineBlameResult.toString());
+    }
+
+    @Test
     public void testBlameLineRangeWithLocalRepo() throws Exception {
         String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
         String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";

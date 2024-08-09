@@ -16,7 +16,6 @@ import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Method;
 import org.codetracker.element.Variable;
 import org.refactoringminer.api.Refactoring;
-import org.refactoringminer.api.RefactoringMinerTimedOutException;
 
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLOperation;
@@ -92,7 +91,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                 method.getUmlOperation().getLocationInfo().getEndLine() >= methodDeclarationLineNumber;
     }
 
-    public boolean checkClassDiffForVariableChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLAbstractClassDiff umlClassDiff) throws RefactoringMinerTimedOutException {
+    public boolean checkClassDiffForVariableChange(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Predicate<Variable> equalVariable, UMLAbstractClassDiff umlClassDiff) {
         for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
             Method method2 = Method.of(operationBodyMapper.getContainer2(), currentVersion);
             if (equalMethod.test(method2)) {
@@ -511,7 +510,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
         return leftVariableSet;
     }
 
-    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
+    public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
             UMLOperation operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;

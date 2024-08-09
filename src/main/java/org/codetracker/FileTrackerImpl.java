@@ -475,7 +475,7 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processImportsAndClassComments(UMLAbstractClassDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
+	private void processImportsAndClassComments(UMLAbstractClassDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
@@ -964,7 +964,7 @@ public class FileTrackerImpl extends BaseTracker {
 	}
 
 	private void processInnerClassesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion, Class startClass, 
-			Set<Pair<Class, Class>> foundInnerClasses, Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses) throws RefactoringMinerTimedOutException {	
+			Set<Pair<Class, Class>> foundInnerClasses, Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses) {	
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Class && !key.equals(startClass)) {
 				Class startInnerClass = (Class)key;
@@ -1069,7 +1069,7 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private Map<Attribute, AttributeTrackerChangeHistory> processAttributesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion) throws RefactoringMinerTimedOutException {
+	private Map<Attribute, AttributeTrackerChangeHistory> processAttributesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion) {
 		Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = new LinkedHashMap<>();
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Attribute) {
