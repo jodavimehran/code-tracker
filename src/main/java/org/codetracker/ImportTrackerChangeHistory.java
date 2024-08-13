@@ -89,6 +89,10 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
     	int matches = 0;
     	if (classDiff instanceof UMLClassBaseDiff) {
     		UMLImportListDiff diff = ((UMLClassBaseDiff) classDiff).getImportDiffList();
+    		if(diff == null) {
+    			//possible scenario if an inner class is moved to its own file
+    			return false;
+    		}
 	    	for (Pair<UMLImport, UMLImport> mapping : diff.getCommonImports()) {
 	            Import importAfter = Import.of(mapping.getRight(), classDiff.getNextClass(), currentVersion);
 	            if (importAfter != null && equalOperator.test(importAfter)) {
@@ -147,16 +151,30 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
     private boolean isAdded(UMLAbstractClassDiff classDiff, Version currentVersion, Version parentVersion, Predicate<Import> equalOperator) {
     	if (classDiff instanceof UMLClassBaseDiff) {
     		UMLImportListDiff diff = ((UMLClassBaseDiff) classDiff).getImportDiffList();
-	    	for (UMLImport imp : diff.getAddedImports()) {
-	            Import importAfter = Import.of(imp, classDiff.getNextClass(), currentVersion);
-	            if (equalOperator.test(importAfter)) {
-	                Import importBefore = Import.of(imp, classDiff.getNextClass(), parentVersion);
-	                importChangeHistory.handleAdd(importBefore, importAfter, "new import");
-	                elements.add(importBefore);
-	                importChangeHistory.connectRelatedNodes();
-	                return true;
-	            }
-	        }
+    		if (diff == null) {
+    			for (UMLImport imp : classDiff.getNextClass().getImportedTypes()) {
+    				Import importAfter = Import.of(imp, classDiff.getNextClass(), currentVersion);
+    	            if (equalOperator.test(importAfter)) {
+    	                Import importBefore = Import.of(imp, classDiff.getNextClass(), parentVersion);
+    	                importChangeHistory.handleAdd(importBefore, importAfter, "new import");
+    	                elements.add(importBefore);
+    	                importChangeHistory.connectRelatedNodes();
+    	                return true;
+    	            }
+    			}
+    		}
+    		else {
+		    	for (UMLImport imp : diff.getAddedImports()) {
+		            Import importAfter = Import.of(imp, classDiff.getNextClass(), currentVersion);
+		            if (equalOperator.test(importAfter)) {
+		                Import importBefore = Import.of(imp, classDiff.getNextClass(), parentVersion);
+		                importChangeHistory.handleAdd(importBefore, importAfter, "new import");
+		                elements.add(importBefore);
+		                importChangeHistory.connectRelatedNodes();
+		                return true;
+		            }
+		        }
+    		}
     	}
         return false;
     }
