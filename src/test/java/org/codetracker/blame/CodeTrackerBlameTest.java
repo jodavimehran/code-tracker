@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.astDiff.utils.URLHelper;
@@ -52,116 +53,20 @@ public class CodeTrackerBlameTest {
         );
     }
 
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker() throws Exception {
-        String url = "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825";
-        String filePath = "servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/formatting/codetracker.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker2() throws Exception {
-        String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
-        String filePath = "src/main/java/dat/MakeIntels.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker4() throws Exception {
-        String url = "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6";
-        String filePath = "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo4.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker5() throws Exception {
-        String url = "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6";
-        String filePath = "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo5.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker6() throws Exception {
-        String url = "https://github.com/spring-projects/spring-framework/commit/b325c74216fd9564a36602158fa1269e2e832874";
-        String filePath = "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo6.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTrackerUntilCommitZero() throws Exception {
-        String url = "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386";
-        String filePath = "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestUntilCommitZero.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTrackerUntilCommitZero2() throws Exception {
-        String url = "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356";
-        String filePath = "java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestUntilCommitZero2.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTrackerUntilCommitZero3() throws Exception {
-        String url = "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356";
-        String filePath = "java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestUntilCommitZero3.txt";
+    @ParameterizedTest
+    @CsvSource({
+        "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825, servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java, /src/test/resources/blame/formatting/codetracker.txt",
+        "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76, src/main/java/dat/MakeIntels.java, /src/test/resources/blame/blameTestWithLocalRepo.txt",
+        "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3, src/main/java/com/puppycrawl/tools/checkstyle/Checker.java, /src/test/resources/blame/blameTestWithLocalRepo3.txt",
+        "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6, javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java, /src/test/resources/blame/blameTestWithLocalRepo4.txt",
+        "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6, javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java, /src/test/resources/blame/blameTestWithLocalRepo5.txt",
+        "https://github.com/spring-projects/spring-framework/commit/b325c74216fd9564a36602158fa1269e2e832874, spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java, /src/test/resources/blame/blameTestWithLocalRepo6.txt",
+        "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386, org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java, /src/test/resources/blame/blameTestUntilCommitZero.txt",
+        "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356, java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java, /src/test/resources/blame/blameTestUntilCommitZero2.txt",
+        "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356, java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java, /src/test/resources/blame/blameTestUntilCommitZero3.txt"
+    })
+    public void testBlameWithLocalRepoUsingFileTracker(String url, String filePath, String testResultFileName) throws Exception {
+        String expectedFilePath = System.getProperty("user.dir") + testResultFileName;
         String commitId = URLHelper.getCommit(url);
         Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
@@ -178,21 +83,6 @@ public class CodeTrackerBlameTest {
         String filePath = "src/main/java/dat/MakeIntels.java";
         String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
         String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
-    public void testBlameWithLocalRepoUsingFileTracker3() throws Exception {
-        String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
-        String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo3.txt";
-        String commitId = URLHelper.getCommit(url);
-        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
-        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
-        fileTracker.blame();
-        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
-        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
-        String actual = TabularPrint.make(results);
         assertEqualWithFile(expectedFilePath, actual);
     }
 
