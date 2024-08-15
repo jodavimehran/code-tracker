@@ -113,6 +113,21 @@ public class CodeTrackerBlameTest {
     }
 
     @Test
+    public void testBlameWithLocalRepoUsingFileTracker6() throws Exception {
+        String url = "https://github.com/spring-projects/spring-framework/commit/b325c74216fd9564a36602158fa1269e2e832874";
+        String filePath = "spring-webmvc/src/main/java/org/springframework/web/servlet/mvc/method/annotation/AbstractMessageConverterMethodProcessor.java";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo6.txt";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+        fileTracker.blame();
+        BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+        List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+        String actual = TabularPrint.make(results);
+        assertEqualWithFile(expectedFilePath, actual);
+    }
+
+    @Test
     public void testBlameWithLocalRepoUsingFileTrackerUntilCommitZero() throws Exception {
         String url = "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386";
         String filePath = "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java";

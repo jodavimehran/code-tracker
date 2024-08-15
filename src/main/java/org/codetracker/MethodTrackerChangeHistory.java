@@ -24,6 +24,7 @@ import org.refactoringminer.api.Refactoring;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.OperationBody;
@@ -664,10 +665,26 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 }
             }
         }
+        
+        List<UMLInitializer> addedInitializers = allClassesDiff
+                .stream()
+                .map(UMLClassBaseDiff::getAddedInitializers)
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+        for (UMLInitializer operation : addedInitializers) {
+            if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "new initializer"))
+                return true;
+        }
+        if (addedClass != null) {
+            for (UMLInitializer operation : addedClass.getInitializers()) {
+                if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
+                    return true;
+            }
+        }
         return false;
     }
 
-    private boolean handleAddOperation( Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, UMLOperation operation, String comment) {
+    private boolean handleAddOperation( Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, VariableDeclarationContainer operation, String comment) {
         Method rightMethod = Method.of(operation, currentVersion);
         if (equalOperator.test(rightMethod)) {
             Method leftMethod = Method.of(operation, parentVersion);
