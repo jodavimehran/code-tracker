@@ -37,6 +37,20 @@ public abstract class BaseTrackerWithLocalFiles extends AbstractTracker {
     	return Collections.emptyList();
     }
 
+    public void populateFileSets(String commitId, Set<String> filePathsBefore, Set<String> filePathsCurrent, Map<String, String> renamedFilesHint) throws Exception {
+    	File rootFolder = new File(REPOS);
+    	String repoName = cloneURL.substring(cloneURL.lastIndexOf('/') + 1, cloneURL.lastIndexOf('.'));
+		String jsonFilePath = repoName + "-" + commitId + ".json";
+		File jsonFile = new File(rootFolder, jsonFilePath);
+		if(jsonFile.exists()) {
+			final ObjectMapper mapper = new ObjectMapper();
+			ChangedFileInfo changedFileInfo = mapper.readValue(jsonFile, ChangedFileInfo.class);
+			filePathsBefore.addAll(changedFileInfo.getFilesBefore());
+			filePathsCurrent.addAll(changedFileInfo.getFilesCurrent());
+			renamedFilesHint.putAll(changedFileInfo.getRenamedFilesHint());
+		}
+    }
+
     public CommitModel getLightCommitModel(String commitId, String currentMethodFilePath) throws Exception {
     	File rootFolder = new File(REPOS);
     	final String systemFileSeparator = Matcher.quoteReplacement(File.separator);
@@ -69,7 +83,8 @@ public abstract class BaseTrackerWithLocalFiles extends AbstractTracker {
 					fileContentsCurrent.put(filePathCurrent, contents);
 				}
 			}
-			return new CommitModel(parentCommitId, repositoryDirectoriesBefore, fileContentsBefore, fileContentsBefore, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrent, renamedFilesHint, Collections.emptyList());
+			return new CommitModel(parentCommitId, repositoryDirectoriesBefore, fileContentsBefore, fileContentsBefore, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrent, renamedFilesHint, Collections.emptyList(),
+					changedFileInfo.getCommitTime(), changedFileInfo.getAuthoredTime(), changedFileInfo.getCommitAuthorName());
 		}
 		return null;
     }
@@ -88,6 +103,7 @@ public abstract class BaseTrackerWithLocalFiles extends AbstractTracker {
         Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
         List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed, renamedFilesHint, false);
 
-        return new CommitModel(info.getParentCommitId(), repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
+        return new CommitModel(info.getParentCommitId(), repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings,
+        		info.getCommitTime(), info.getAuthoredTime(), info.getCommitAuthorName());
     }
 }

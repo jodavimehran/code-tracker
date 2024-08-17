@@ -144,8 +144,11 @@ public abstract class BaseTracker extends AbstractTracker {
         Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(fileContentsBefore);
         Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(fileContentsCurrent);
         List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings = GitHistoryRefactoringMinerImpl.processIdenticalFiles(fileContentsBeforeTrimmed, fileContentsCurrentTrimmed, renamedFilesHint, false);
-
-        return new CommitModel(parentCommit1.getId().getName(), repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings);
+        long commitTime = currentCommit.getCommitTime();
+        long authoredTime = currentCommit.getAuthorIdent().getWhen().getTime() / 1000L;
+        String commitAuthorName = currentCommit.getAuthorIdent().getName();
+        return new CommitModel(parentCommit1.getId().getName(), repositoryDirectoriesBefore, fileContentsBefore, fileContentsBeforeTrimmed, repositoryDirectoriesCurrent, fileContentsCurrent, fileContentsCurrentTrimmed, renamedFilesHint, moveSourceFolderRefactorings,
+        		commitTime, authoredTime, commitAuthorName);
     }
     /*
     private static final String REPOS = System.getProperty("user.dir") + "/oracle/commits";

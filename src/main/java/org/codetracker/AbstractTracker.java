@@ -898,8 +898,15 @@ public abstract class AbstractTracker {
 	
 	    public final Map<String, String> renamedFilesHint;
 	    public final List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings;
+	    
+	    public final long commitTime;
+	    public final long authoredTime;
+	    public final String commitAuthorName;
 	
-	    public CommitModel(String parentCommitId, Set<String> repositoryDirectoriesBefore, Map<String, String> fileContentsBeforeOriginal, Map<String, String> fileContentsBeforeTrimmed, Set<String> repositoryDirectoriesCurrent, Map<String, String> fileContentsCurrentOriginal, Map<String, String> fileContentsCurrentTrimmed, Map<String, String> renamedFilesHint, List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings) {
+	    public CommitModel(String parentCommitId, Set<String> repositoryDirectoriesBefore, Map<String, String> fileContentsBeforeOriginal, Map<String, String> fileContentsBeforeTrimmed, 
+	    		Set<String> repositoryDirectoriesCurrent, Map<String, String> fileContentsCurrentOriginal, Map<String, String> fileContentsCurrentTrimmed, 
+	    		Map<String, String> renamedFilesHint, List<MoveSourceFolderRefactoring> moveSourceFolderRefactorings,
+	    		long commitTime, long authoredTime, String commitAuthorName) {
 	        this.parentCommitId = parentCommitId;
 	        this.repositoryDirectoriesBefore = repositoryDirectoriesBefore;
 	        this.fileContentsBeforeOriginal = fileContentsBeforeOriginal;
@@ -909,6 +916,9 @@ public abstract class AbstractTracker {
 	        this.fileContentsCurrentTrimmed = fileContentsCurrentTrimmed;
 	        this.renamedFilesHint = renamedFilesHint;
 	        this.moveSourceFolderRefactorings = moveSourceFolderRefactorings;
+	        this.commitTime = commitTime;
+	        this.authoredTime = authoredTime;
+	        this.commitAuthorName = commitAuthorName;
 	    }
 	}
 

@@ -1,6 +1,7 @@
 package org.codetracker;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,8 +18,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.CodeElementNotFoundException;
-import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
+import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.element.Annotation;
@@ -30,27 +31,13 @@ import org.codetracker.element.Comment;
 import org.codetracker.element.Import;
 import org.codetracker.element.Method;
 import org.codetracker.element.Package;
-import org.codetracker.util.CodeElementLocator;
-import org.codetracker.util.GitRepository;
-import org.eclipse.jgit.api.Git;
-import org.eclipse.jgit.lib.Repository;
-import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.revwalk.RevWalk;
+import org.codetracker.util.CodeElementLocatorWithLocalFiles;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringMinerTimedOutException;
 import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
-import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAttribute;
-import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
-import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
-import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
-import gr.uom.java.xmi.diff.UMLAttributeDiff;
-import gr.uom.java.xmi.diff.UMLClassBaseDiff;
-import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
-import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
-import gr.uom.java.xmi.diff.UMLModelDiff;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLInitializer;
@@ -59,14 +46,23 @@ import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
+import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
+import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
+import gr.uom.java.xmi.diff.UMLClassBaseDiff;
+import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
+import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
+import gr.uom.java.xmi.diff.UMLModelDiff;
 
-public class FileTrackerImpl extends BaseTracker {
+public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 	private final List<String> lines = new ArrayList<>();
 	private final Map<CodeElement, AbstractChangeHistory<? extends BaseCodeElement>> programElementMap = new LinkedHashMap<>();
 	private final Map<Integer, HistoryInfo<? extends BaseCodeElement>> blameInfo = new LinkedHashMap<>();
 
-	public FileTrackerImpl(Repository repository, String startCommitId, String filePath) {
-		super(repository, startCommitId, filePath);
+	public FileTrackerWithLocalFilesImpl(String cloneURL, String startCommitId, String filePath) {
+		super(cloneURL, startCommitId, filePath);
 	}
 
 	public List<String> getLines() {
@@ -172,269 +168,280 @@ public class FileTrackerImpl extends BaseTracker {
 	}
 
 	public void blame() throws Exception {
-		try (Git git = new Git(repository); RevWalk walk = new RevWalk(repository)) {
-			Version startVersion = gitRepository.getVersion(startCommitId);
-			RevCommit revCommit = walk.parseCommit(repository.resolve(startCommitId));
-			Set<String> repositoryDirectories = new LinkedHashSet<>();
-			Map<String, String> fileContents = new LinkedHashMap<>();
-			GitHistoryRefactoringMinerImpl.populateFileContents(repository, revCommit, Collections.singleton(filePath), fileContents, repositoryDirectories);
-			UMLModel umlModel = GitHistoryRefactoringMinerImpl.createModel(fileContents, repositoryDirectories);
-			umlModel.setPartial(true);
-			// extract program elements to be blamed
-			String fileContentAsString = fileContents.get(filePath);
-			Map<Integer, CodeElement> lineNumberToCodeElementMap = new LinkedHashMap<>();
-			Class startClass = null;
-			try (BufferedReader reader = new BufferedReader(new StringReader(fileContentAsString))) {
-				String line;
-				int lineNumber = 1;
-				while ((line = reader.readLine()) != null) {
-					lines.add(line);
-					CodeElementLocator locator = new CodeElementLocator((GitRepository) gitRepository, startCommitId, filePath, lineNumber);
-					CodeElement codeElement = null;
-					try {
-						codeElement = locator.locateWithoutName(startVersion, umlModel);
-					} catch (CodeElementNotFoundException e) {}
-					if (codeElement != null && !StringUtils.isBlank(line)) {
-						AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) factory(codeElement);
-						changeHistory.addFirst((BaseCodeElement) codeElement);
-						changeHistory.get().addNode((BaseCodeElement) codeElement);
-						programElementMap.put(codeElement, changeHistory);
-						if (startClass == null && codeElement instanceof Class) {
-							startClass = (Class)codeElement;
-							startClass.setStart(true);
-						}
-						lineNumberToCodeElementMap.put(lineNumber, codeElement);
+		CommitModel startModel = getCommitModel(startCommitId);
+		Version startVersion = new VersionImpl(startCommitId, startModel.commitTime, startModel.authoredTime, startModel.commitAuthorName);
+        Set<String> startFileNames = Collections.singleton(filePath);
+    	Map<String, String> fileContents = new LinkedHashMap<>();
+    	for(String rightFileName : startFileNames) {
+    		fileContents.put(rightFileName, startModel.fileContentsCurrentOriginal.get(rightFileName));
+    	}
+    	UMLModel umlModel = GitHistoryRefactoringMinerImpl.createModel(fileContents, startModel.repositoryDirectoriesCurrent);
+    	umlModel.setPartial(true);
+		// extract program elements to be blamed
+		String fileContentAsString = fileContents.get(filePath);
+		Map<Integer, CodeElement> lineNumberToCodeElementMap = new LinkedHashMap<>();
+		Class startClass = null;
+		try (BufferedReader reader = new BufferedReader(new StringReader(fileContentAsString))) {
+			String line;
+			int lineNumber = 1;
+			while ((line = reader.readLine()) != null) {
+				lines.add(line);
+				CodeElementLocatorWithLocalFiles locator = new CodeElementLocatorWithLocalFiles(cloneURL, startCommitId, filePath, lineNumber);
+				CodeElement codeElement = null;
+				try {
+					codeElement = locator.locateWithoutName(startVersion, umlModel);
+				} catch (CodeElementNotFoundException e) {}
+				if (codeElement != null && !StringUtils.isBlank(line)) {
+					AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) factory(codeElement);
+					changeHistory.addFirst((BaseCodeElement) codeElement);
+					changeHistory.get().addNode((BaseCodeElement) codeElement);
+					programElementMap.put(codeElement, changeHistory);
+					if (startClass == null && codeElement instanceof Class) {
+						startClass = (Class)codeElement;
+						startClass.setStart(true);
 					}
-					lineNumber++;
+					lineNumberToCodeElementMap.put(lineNumber, codeElement);
 				}
+				lineNumber++;
 			}
-			HashSet<String> analysedCommits = new HashSet<>();
-			List<String> commits = null;
-			String lastFileName = null;
-			ClassTrackerChangeHistory startClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startClass);
-			while (!startClassChangeHistory.isEmpty()) {
-				Class currentClass = startClassChangeHistory.poll();
-				if (currentClass.isAdded()) {
-					commits = null;
+		}
+		HashSet<String> analysedCommits = new HashSet<>();
+		List<String> commits = null;
+		String lastFileName = null;
+		String startFilePath = startClass.getFilePath();
+		ClassTrackerChangeHistory startClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startClass);
+		while (!startClassChangeHistory.isEmpty()) {
+			Class currentClass = startClassChangeHistory.poll();
+			
+			if (currentClass.isAdded()) {
+				commits = null;
+				continue;
+			}
+			final String currentClassFilePath = currentClass.getFilePath();
+			if (commits == null || !currentClass.getFilePath().equals(lastFileName)) {
+				lastFileName = currentClass.getFilePath();
+				String repoName = cloneURL.substring(cloneURL.lastIndexOf('/') + 1, cloneURL.lastIndexOf('.'));
+        		String className = startFilePath.substring(startFilePath.lastIndexOf("/") + 1);
+        		className = className.endsWith(".java") ? className.substring(0, className.length()-5) : className;
+                String jsonPath = System.getProperty("user.dir") + "/src/test/resources/class/" + repoName + "-" + className + ".json";
+                File jsonFile = new File(jsonPath);
+                commits = getCommits(currentClass.getVersion().getId(), jsonFile);
+				analysedCommits.clear();
+			}
+			if (analysedCommits.containsAll(commits))
+				break;
+			for (String commitId : commits) {
+				if (analysedCommits.contains(commitId))
+					continue;
+				analysedCommits.add(commitId);
+
+				CommitModel lightCommitModel = getLightCommitModel(commitId, currentClassFilePath);
+                String parentCommitId = lightCommitModel.parentCommitId;
+                Version currentVersion = new VersionImpl(commitId, lightCommitModel.commitTime, lightCommitModel.authoredTime, lightCommitModel.commitAuthorName);
+                Version parentVersion = new VersionImpl(parentCommitId, 0, 0, "");
+
+                UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsBeforeOriginal, lightCommitModel.repositoryDirectoriesBefore);
+            	leftModel.setPartial(true);
+            	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsCurrentOriginal, lightCommitModel.repositoryDirectoriesCurrent);
+            	rightModel.setPartial(true);
+				Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
+				if (rightClass == null) {
 					continue;
 				}
-				if (commits == null || !currentClass.getFilePath().equals(lastFileName)) {
-					lastFileName = currentClass.getFilePath();
-					commits = getCommits(repository, currentClass.getVersion().getId(), lastFileName, git);
-					analysedCommits.clear();
-				}
-				if (analysedCommits.containsAll(commits))
+				if ("0".equals(parentCommitId)) {
+					Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
+					startClassChangeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
+					startClassChangeHistory.get().connectRelatedNodes();
+					startClassChangeHistory.add(leftClass);
+					for (CodeElement key : programElementMap.keySet()) {
+						AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) programElementMap.get(key);
+						BaseCodeElement codeElement = changeHistory.poll();
+						if (codeElement == null) {
+							codeElement = changeHistory.getCurrent();
+						}
+						if (codeElement != null && !codeElement.isAdded()) {
+							BaseCodeElement right = getCodeElement(rightModel, currentVersion, codeElement);
+							if (right == null) {
+								continue;
+							}
+							BaseCodeElement left = right.of(parentVersion);
+							changeHistory.get().handleAdd(left, right, "Initial commit!");
+							changeHistory.get().connectRelatedNodes();
+							changeHistory.add(left);
+						}
+					}
 					break;
-				for (String commitId : commits) {
-					if (analysedCommits.contains(commitId))
-						continue;
-					analysedCommits.add(commitId);
+				}
 
-					Version currentVersion = gitRepository.getVersion(commitId);
-					String parentCommitId = gitRepository.getParentId(commitId);
-					Version parentVersion = gitRepository.getVersion(parentCommitId);
-
-					UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentClass.getFilePath()));
-					Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
-					if (rightClass == null) {
-						continue;
-					}
-					if ("0".equals(parentCommitId)) {
-						Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
-						startClassChangeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
+				Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+				// No class signature change
+				if (leftClass != null) {
+					UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+					UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+					if (leftSuperclass != null && rightSuperclass != null) {
+                		if (!leftSuperclass.equals(rightSuperclass)) {
+                			startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			startClassChangeHistory.get().connectRelatedNodes();
+                		}
+                	}
+					else if (leftSuperclass != null && rightSuperclass == null) {
+						startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
 						startClassChangeHistory.get().connectRelatedNodes();
-						startClassChangeHistory.add(leftClass);
-						for (CodeElement key : programElementMap.keySet()) {
-							AbstractChangeHistory<BaseCodeElement> changeHistory = (AbstractChangeHistory<BaseCodeElement>) programElementMap.get(key);
-							BaseCodeElement codeElement = changeHistory.poll();
-							if (codeElement == null) {
-								codeElement = changeHistory.getCurrent();
-							}
-							if (codeElement != null && !codeElement.isAdded()) {
-								BaseCodeElement right = getCodeElement(rightModel, currentVersion, codeElement);
-								if (right == null) {
-									continue;
-								}
-								BaseCodeElement left = right.of(parentVersion);
-								changeHistory.get().handleAdd(left, right, "Initial commit!");
-								changeHistory.get().connectRelatedNodes();
-								changeHistory.add(left);
-							}
-						}
-						break;
 					}
-					UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
-
-					Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
-					// No class signature change
-					if (leftClass != null) {
-						UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
-						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
-						if (leftSuperclass != null && rightSuperclass != null) {
-                    		if (!leftSuperclass.equals(rightSuperclass)) {
-                    			startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                    			startClassChangeHistory.get().connectRelatedNodes();
-                    		}
-                    	}
-						else if (leftSuperclass != null && rightSuperclass == null) {
-							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-							startClassChangeHistory.get().connectRelatedNodes();
-						}
-						else if (leftSuperclass == null && rightSuperclass != null) {
-							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-							startClassChangeHistory.get().connectRelatedNodes();
-						}
-						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
-							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
-							startClassChangeHistory.get().connectRelatedNodes();
-						}
-						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
-						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+					else if (leftSuperclass == null && rightSuperclass != null) {
+						startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+						startClassChangeHistory.get().connectRelatedNodes();
+					}
+					if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+						startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+						startClassChangeHistory.get().connectRelatedNodes();
+					}
+					Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+					Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+					Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
+					Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
+					processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
+					if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
+						UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
+						List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
+						processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+						processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+						processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+					}
+					UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
+					processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
+					for (Pair<Class, Class> pair : foundInnerClasses) {
+						UMLClassBaseDiff lightweightInnerClassDiff = lightweightClassDiff(pair.getLeft().getUmlClass(), pair.getRight().getUmlClass());
+						processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion);
+					}
+					continue;
+				}
+				//All refactorings
+				CommitModel commitModel = getCommitModel(commitId);
+				if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
+					Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
+					UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
+					List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
+					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+					boolean refactored = !classRefactored.isEmpty();
+					if (refactored) {
+						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
+						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
 						Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
 						processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
 						if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
-							UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
-							List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
-							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
-							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
+							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
+							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
 						}
-						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
 						for (Pair<Class, Class> pair : foundInnerClasses) {
-							UMLClassBaseDiff lightweightInnerClassDiff = lightweightClassDiff(pair.getLeft().getUmlClass(), pair.getRight().getUmlClass());
-							processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion);
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, pair.getRight().getUmlClass().getName());
+							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
 						}
-						continue;
+						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
+						leftSideClasses.forEach(startClassChangeHistory::addFirst);
+						break;
 					}
-					//All refactorings
-					CommitModel commitModel = getCommitModel(commitId);
-					if (!commitModel.moveSourceFolderRefactorings.isEmpty()) {
-						Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
-						UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
-						List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-						Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactoringsPartial, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
-						boolean refactored = !classRefactored.isEmpty();
-						if (refactored) {
-							Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
-							Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairPartial.getRight(), currentVersion, umlModelPairPartial.getLeft(), parentVersion);
-							Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
-							Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
-							processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
-							if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
-								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
-								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
-								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
-							}
-							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
-							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
-							for (Pair<Class, Class> pair : foundInnerClasses) {
-								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, pair.getRight().getUmlClass().getName());
-								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
-							}
-							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-							leftSideClasses.forEach(startClassChangeHistory::addFirst);
-							break;
+				}
+				{
+					Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
+					UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
+
+					List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
+
+					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+					boolean refactored = !classRefactored.isEmpty();
+					if (refactored) {
+						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
+						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
+						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
+						Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
+						processInnerClassesWithSameSignature(umlModelPairAll.getRight(), currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
+						if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
+							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffAll, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 						}
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+						for (Pair<Class, Class> pair : foundInnerClasses) {
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffAll, pair.getRight().getUmlClass().getName());
+							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+						}
+						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
+						leftSideClasses.forEach(startClassChangeHistory::addFirst);
+						break;
 					}
-					{
-						Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
-						UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
-						List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
-
-						Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
-						boolean refactored = !classRefactored.isEmpty();
-						if (refactored) {
-							Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
-							Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
-							Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
-							Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
-							processInnerClassesWithSameSignature(umlModelPairAll.getRight(), currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
-							if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
-								processLocallyRefactoredMethods(notFoundMethods, umlModelDiffAll, currentVersion, parentVersion, refactorings);
-								processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
-								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffAll, currentVersion, parentVersion, refactorings);
-							}
-							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
-							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
-							for (Pair<Class, Class> pair : foundInnerClasses) {
-								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffAll, pair.getRight().getUmlClass().getName());
-								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
-							}
-							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
-							leftSideClasses.forEach(startClassChangeHistory::addFirst);
-							break;
-						}
-
-						if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
-							processAddedMethods(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
-							processAddedAttributes(umlModelDiffAll, currentVersion, parentVersion);
-							processAddedImportsAndClassComments(rightClass, parentVersion);
-							break;
-						}
+					if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+						processAddedMethods(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
+						processAddedAttributes(umlModelDiffAll, currentVersion, parentVersion);
+						processAddedImportsAndClassComments(rightClass, parentVersion);
+						break;
 					}
 				}
 			}
-			// compute blame information
-			for (Integer lineNumber : lineNumberToCodeElementMap.keySet()) {
-				CodeElement startElement = lineNumberToCodeElementMap.get(lineNumber);
-				if (startElement instanceof Method) {
-					Method startMethod = (Method)startElement;
-					MethodTrackerChangeHistory startMethodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(startMethod);
-					startMethod.checkClosingBracket(lineNumber);
-					HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod);
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Block) {
-					Block startBlock = (Block)startElement;
-					BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
-					startBlock.checkClosingBracket(lineNumber);
-					startBlock.checkElseBlockStart(lineNumber);
-					startBlock.checkElseBlockEnd(lineNumber);
-					HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Class) {
-					Class clazz = (Class)startElement;
-					ClassTrackerChangeHistory classChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(clazz);
-					clazz.checkClosingBracket(lineNumber);
-					HistoryInfo<Class> historyInfo = classChangeHistory.blameReturn(clazz);
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Comment) {
-					Comment startComment = (Comment)startElement;
-					CommentTrackerChangeHistory commentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-					HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn();
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Import) {
-					Import startImport = (Import)startElement;
-					ImportTrackerChangeHistory importChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
-					HistoryInfo<Import> historyInfo = importChangeHistory.blameReturn();
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Package) {
-					Package startPackage = (Package)startElement;
-					HistoryInfo<Class> historyInfo = startClassChangeHistory.blameReturn(startPackage);
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Attribute) {
-					Attribute startAttribute = (Attribute)startElement;
-					AttributeTrackerChangeHistory attributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
-					HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn();
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else if (startElement instanceof Annotation) {
-					Annotation startAnnotation = (Annotation)startElement;
-					AnnotationTrackerChangeHistory annotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-					HistoryInfo<Annotation> historyInfo = annotationChangeHistory.blameReturn();
-					blameInfo.put(lineNumber, historyInfo);
-				}
-				else {
-					blameInfo.put(lineNumber, null);
-				}
+		}
+		// compute blame information
+		for (Integer lineNumber : lineNumberToCodeElementMap.keySet()) {
+			CodeElement startElement = lineNumberToCodeElementMap.get(lineNumber);
+			if (startElement instanceof Method) {
+				Method startMethod = (Method)startElement;
+				MethodTrackerChangeHistory startMethodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(startMethod);
+				startMethod.checkClosingBracket(lineNumber);
+				HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod);
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Block) {
+				Block startBlock = (Block)startElement;
+				BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
+				startBlock.checkClosingBracket(lineNumber);
+				startBlock.checkElseBlockStart(lineNumber);
+				startBlock.checkElseBlockEnd(lineNumber);
+				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Class) {
+				Class clazz = (Class)startElement;
+				ClassTrackerChangeHistory classChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(clazz);
+				clazz.checkClosingBracket(lineNumber);
+				HistoryInfo<Class> historyInfo = classChangeHistory.blameReturn(clazz);
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Comment) {
+				Comment startComment = (Comment)startElement;
+				CommentTrackerChangeHistory commentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+				HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn();
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Import) {
+				Import startImport = (Import)startElement;
+				ImportTrackerChangeHistory importChangeHistory = (ImportTrackerChangeHistory) programElementMap.get(startImport);
+				HistoryInfo<Import> historyInfo = importChangeHistory.blameReturn();
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Package) {
+				Package startPackage = (Package)startElement;
+				HistoryInfo<Class> historyInfo = startClassChangeHistory.blameReturn(startPackage);
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Attribute) {
+				Attribute startAttribute = (Attribute)startElement;
+				AttributeTrackerChangeHistory attributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
+				HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn();
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else if (startElement instanceof Annotation) {
+				Annotation startAnnotation = (Annotation)startElement;
+				AnnotationTrackerChangeHistory annotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+				HistoryInfo<Annotation> historyInfo = annotationChangeHistory.blameReturn();
+				blameInfo.put(lineNumber, historyInfo);
+			}
+			else {
+				blameInfo.put(lineNumber, null);
 			}
 		}
 	}

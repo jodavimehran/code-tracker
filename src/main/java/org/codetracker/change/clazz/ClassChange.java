@@ -22,6 +22,8 @@ public abstract class ClassChange extends AbstractChange {
 
     @Override
     public String toString() {
-        return refactoring.toString();
+    	if (refactoring != null)
+    		return refactoring.toString();
+    	return "";
     }
 }
