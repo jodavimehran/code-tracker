@@ -378,7 +378,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 
 					if (startClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
 						processAddedMethods(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
-						processAddedAttributes(umlModelDiffAll, currentVersion, parentVersion);
+						processAddedAttributes(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
+						processAddedInnerClasses(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion, startClass);
 						processAddedImportsAndClassComments(rightClass, parentVersion);
 						break;
 					}
@@ -520,7 +521,62 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		}
 	}
 
-	private void processAddedAttributes(UMLModelDiff umlModelDiffAll, Version currentVersion, Version parentVersion) {
+	private void processAddedInnerClasses(UMLModel rightModel, UMLModelDiff umlModelDiffAll, Version currentVersion, Version parentVersion, Class startClass) {
+		for (CodeElement key : programElementMap.keySet()) {
+			if (key instanceof Class && !key.equals(startClass)) {
+				Class startInnerClass = (Class)key;
+				ClassTrackerChangeHistory startInnerClassChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(startInnerClass);
+				Class currentClass = startInnerClassChangeHistory.peek();
+				if (currentClass == null) {
+					currentClass = startInnerClassChangeHistory.getCurrent();
+				}
+				if (currentClass == null || currentClass.isAdded()) {
+					continue;
+				}
+				Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
+				if (rightClass == null) {
+					continue;
+				}
+				startInnerClassChangeHistory.poll();
+				if (startInnerClassChangeHistory.isClassAdded(umlModelDiffAll, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion)) {
+					for (CodeElement key2 : programElementMap.keySet()) {
+						if (key2 instanceof Comment) {
+							Comment startComment = (Comment)key2;
+							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
+							if ((startComment.getClazz().isPresent() && startComment.getClazz().get().equals(startInnerClass.getUmlClass())) ||
+									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getClazz().isPresent() && rightClass.getUmlClass().equals(startCommentChangeHistory.peek().getClazz().get()))) {
+								Comment currentComment = startCommentChangeHistory.poll();
+								Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);
+								if (rightComment != null) {
+									Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
+									startCommentChangeHistory.get().handleAdd(commentBefore, rightComment, "added with inner class");
+									startCommentChangeHistory.add(commentBefore);
+									startCommentChangeHistory.get().connectRelatedNodes();
+								}
+							}
+						}
+						else if (key2 instanceof Annotation) {
+							Annotation startAnnotation = (Annotation)key2;
+							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+							if ((startAnnotation.getClazz().isPresent() && startAnnotation.getClazz().get().equals(startInnerClass.getUmlClass())) ||
+									(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getClazz().isPresent() && rightClass.getUmlClass().equals(startAnnotationChangeHistory.peek().getClazz().get()))) {
+								Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+								Annotation rightAnnotation = rightClass.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+								if (rightAnnotation != null) {
+									Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getClazz().get(), parentVersion);
+									startAnnotationChangeHistory.get().handleAdd(annotationBefore, rightAnnotation, "added with inner class");
+									startAnnotationChangeHistory.add(annotationBefore);
+									startAnnotationChangeHistory.get().connectRelatedNodes();
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void processAddedAttributes(UMLModel rightModel, UMLModelDiff umlModelDiffAll, Version currentVersion, Version parentVersion) {
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Attribute) {
 				Attribute startAttribute = (Attribute)key;
@@ -532,7 +588,9 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				if (currentAttribute == null || currentAttribute.isAdded()) {
 					continue;
 				}
-				Attribute rightAttribute = currentAttribute;
+				Attribute rightAttribute = getAttribute(rightModel, currentVersion, currentAttribute::equalIdentifierIgnoringVersion);
+				if (rightAttribute == null)
+					rightAttribute = currentAttribute;
 				if (startAttributeChangeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Comment) {
@@ -688,6 +746,9 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				leftSideAttributes.addAll(attributeContainerChanged);
 				leftSideAttributes.addAll(attributeRefactored);
 				leftSideAttributes.forEach(startAttributeChangeHistory::addFirst);
+				if (leftSideAttributes.size() == 1) {
+					startAttributeChangeHistory.setCurrent(leftSideAttributes.iterator().next());
+				}
 				for (CodeElement key2 : programElementMap.keySet()) {
 					if (key2 instanceof Comment) {
 						Comment startComment = (Comment)key2;
@@ -1035,6 +1096,9 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			if (refactored) {
 				Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 				leftSideClasses.forEach(startInnerClassChangeHistory::addFirst);
+				if (leftSideClasses.size() == 1) {
+					startInnerClassChangeHistory.setCurrent(leftSideClasses.iterator().next());
+				}
 				for (CodeElement key : programElementMap.keySet()) {
 					if (key instanceof Comment) {
 						Comment startComment = (Comment)key;
