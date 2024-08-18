@@ -1012,7 +1012,7 @@ public class FileTrackerImpl extends BaseTracker {
 					foundInnerClasses.add(Pair.of(leftClass, rightClass));
 				}
 				else {
-					notFoundInnerClasses.put(startInnerClass, startInnerClassChangeHistory);
+					notFoundInnerClasses.put(rightClass, startInnerClassChangeHistory);
 				}
 			}
 		}
@@ -1066,27 +1066,6 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							startCommentChangeHistory.poll();
 							startCommentChangeHistory.addedClass(rightInnerClass, rightComment, parentVersion);
-						}
-					}
-				}
-			}
-			else if (startInnerClassChangeHistory.isClassAdded(umlModelDiff, currentVersion, parentVersion, startInnerClassChangeHistory.getCurrent()::equalIdentifierIgnoringVersion)) {
-				for (CodeElement key : programElementMap.keySet()) {
-					if (key instanceof Comment) {
-						Comment startComment = (Comment)key;
-						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						if ((startComment.getClazz().isPresent() && startComment.getClazz().get().equals(startInnerClassChangeHistory.getCurrent().getUmlClass())) ||
-								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getClazz().isPresent() && startInnerClassChangeHistory.getCurrent().getUmlClass().equals(startCommentChangeHistory.peek().getClazz().get()))) {
-							Comment currentComment = startCommentChangeHistory.peek();
-							if (currentComment == null || currentComment.isAdded()) {
-								continue;
-							}
-							Comment rightComment = startInnerClassChangeHistory.getCurrent().findComment(currentComment::equalIdentifierIgnoringVersion);
-							if (rightComment == null) {
-								continue;
-							}
-							startCommentChangeHistory.poll();
-							startCommentChangeHistory.addedClass(startInnerClassChangeHistory.getCurrent(), rightComment, parentVersion);
 						}
 					}
 				}

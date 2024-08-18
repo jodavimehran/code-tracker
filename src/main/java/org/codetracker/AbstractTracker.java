@@ -675,6 +675,9 @@ public abstract class AbstractTracker {
 		else if (current instanceof Annotation) {
 			return getAnnotation(umlModel, version, current::equalIdentifierIgnoringVersion);
 		}
+		else if (current instanceof Class) {
+			return getClass(umlModel, version, current::equalIdentifierIgnoringVersion);
+		}
 		return current;
 	}
 

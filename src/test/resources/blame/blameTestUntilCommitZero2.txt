@@ -514,7 +514,7 @@ d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 04:45:02 -0400 514)     }
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 515)   }
                                                                                                                                516)
-4514588fd compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Maxim Shafirov      2005-10-24 12:30:13 -0400 517)   private class ListenerNotificator implements CompileStatusNotification {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 517)   private class ListenerNotificator implements CompileStatusNotification {
 7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 02:50:33 -0400 518)     @Nullable private final CompileStatusNotification myDelegate;
                                                                                                                                519)
 7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 02:50:33 -0400 520)     private ListenerNotificator(@Nullable CompileStatusNotification delegate) {
@@ -530,7 +530,7 @@ c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          
 03b7b20a5 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Nikolay Chashnikov  2006-02-10 05:55:17 -0500 530)         myDelegate.finished(aborted, errors, warnings, compileContext);
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 531)       }
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 532)     }
-4514588fd compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Maxim Shafirov      2005-10-24 12:30:13 -0400 533)   }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 533)   }
                                                                                                                                534)
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 535)   private static class DiagnosticCollector implements DiagnosticOutputConsumer {
 78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 536)     private final List<Diagnostic<? extends JavaFileObject>> myDiagnostics = new ArrayList<>();
