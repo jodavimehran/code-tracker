@@ -27,6 +27,9 @@ jobs:
         with:
           submodules: true
 
+      - name: Set timezone to Montreal (EST)
+        run: sudo timedatectl set-timezone America/Toronto
+
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
