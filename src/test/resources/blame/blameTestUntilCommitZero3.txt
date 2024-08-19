@@ -1,39 +1,39 @@
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 1)  /*
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 2)   * Copyright 2000-2016 JetBrains s.r.o.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 3)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 4)   * Licensed under the Apache License, Version 2.0 (the "License");
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 5)   * you may not use this file except in compliance with the License.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 6)   * You may obtain a copy of the License at
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 7)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 8)   * http://www.apache.org/licenses/LICENSE-2.0
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 9)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 10)  * Unless required by applicable law or agreed to in writing, software
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 11)  * distributed under the License is distributed on an "AS IS" BASIS,
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 12)  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 13)  * See the License for the specific language governing permissions and
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 14)  * limitations under the License.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 15)  */
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 16) package com.intellij.compiler.actions;
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 1)  /*
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 2)   * Copyright 2000-2016 JetBrains s.r.o.
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 3)   *
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 4)   * Licensed under the Apache License, Version 2.0 (the "License");
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 5)   * you may not use this file except in compliance with the License.
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 6)   * You may obtain a copy of the License at
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 7)   *
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 8)   * http://www.apache.org/licenses/LICENSE-2.0
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 9)   *
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 10)  * Unless required by applicable law or agreed to in writing, software
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 11)  * distributed under the License is distributed on an "AS IS" BASIS,
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 12)  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 13)  * See the License for the specific language governing permissions and
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 14)  * limitations under the License.
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 15)  */
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 16) package com.intellij.compiler.actions;
                                                                                                                                       17)
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 18) import com.intellij.openapi.actionSystem.AnActionEvent;
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 19) import com.intellij.openapi.actionSystem.DataContext;
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 20) import com.intellij.openapi.actionSystem.Presentation;
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 21) import com.intellij.openapi.project.Project;
-53ddd10a4 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 05:30:57 -0400 22) import com.intellij.task.ProjectTaskManager;
-a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Alexey Kudravtsev   2018-08-06 08:29:49 -0400 23) import org.jetbrains.annotations.NotNull;
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 18) import com.intellij.openapi.actionSystem.AnActionEvent;
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 19) import com.intellij.openapi.actionSystem.DataContext;
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 20) import com.intellij.openapi.actionSystem.Presentation;
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 21) import com.intellij.openapi.project.Project;
+53ddd10a4 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 09:30:57 +0000 22) import com.intellij.task.ProjectTaskManager;
+a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Alexey Kudravtsev   2018-08-06 12:29:49 +0000 23) import org.jetbrains.annotations.NotNull;
                                                                                                                                       24)
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 25) public class CompileDirtyAction extends CompileActionBase {
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 25) public class CompileDirtyAction extends CompileActionBase {
                                                                                                                                       26)
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 27)   protected void doAction(DataContext dataContext, Project project) {
-0104f1489 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 05:30:57 -0400 28)     ProjectTaskManager.getInstance(project).buildAllModules();
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 29)   }
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 27)   protected void doAction(DataContext dataContext, Project project) {
+0104f1489 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 09:30:57 +0000 28)     ProjectTaskManager.getInstance(project).buildAllModules();
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 29)   }
                                                                                                                                       30)
-a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Alexey Kudravtsev   2018-08-06 08:29:49 -0400 31)   public void update(@NotNull AnActionEvent e){
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 32)     super.update(e);
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 33)     Presentation presentation = e.getPresentation();
-e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 11:26:21 -0400 34)     if (!presentation.isEnabled()) {
-e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 11:26:21 -0400 35)       return;
-e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 11:26:21 -0400 36)     }
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 19:52:46 -0400 37)     presentation.setEnabled(e.getProject() != null);
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 38)   }
-7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 39) }
+a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Alexey Kudravtsev   2018-08-06 12:29:49 +0000 31)   public void update(@NotNull AnActionEvent e){
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 32)     super.update(e);
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 33)     Presentation presentation = e.getPresentation();
+e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 15:26:21 +0000 34)     if (!presentation.isEnabled()) {
+e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 15:26:21 +0000 35)       return;
+e2bd33e04 compiler/impl/com/intellij/compiler/actions/CompileDirtyAction.java          (Eugene Zhuravlev    2007-05-03 15:26:21 +0000 36)     }
+c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 37)     presentation.setEnabled(e.getProject() != null);
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 38)   }
+7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 39) }

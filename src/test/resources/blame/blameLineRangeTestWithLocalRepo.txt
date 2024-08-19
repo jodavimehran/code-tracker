@@ -1,45 +1,45 @@
-370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 443)     /**
-370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 444)      * {@inheritDoc} Creates child module.
-370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 445)      * @noinspection ChainOfInstanceofChecks
-370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 18:13:49 -0400 446)      */
-f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn      2007-12-15 03:14:40 -0500 447)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 448)     protected void setupChild(Configuration childConf)
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 449)             throws CheckstyleException {
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 450)         final String name = childConf.getName();
-d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 01:02:37 -0400 451)         final Object child;
+370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 22:13:49 +0000 443)     /**
+370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 22:13:49 +0000 444)      * {@inheritDoc} Creates child module.
+370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 22:13:49 +0000 445)      * @noinspection ChainOfInstanceofChecks
+370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva        2017-07-14 22:13:49 +0000 446)      */
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn      2007-12-15 08:14:40 +0000 447)     @Override
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 14:38:32 +0000 448)     protected void setupChild(Configuration childConf)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 14:38:32 +0000 449)             throws CheckstyleException {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 14:38:32 +0000 450)         final String name = childConf.getName();
+d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 05:02:37 +0000 451)         final Object child;
                                                                                                                   452)
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 453)         try {
-d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 01:02:37 -0400 454)             child = moduleFactory.createModule(name);
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 18:29:44 +0000 453)         try {
+d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 05:02:37 +0000 454)             child = moduleFactory.createModule(name);
                                                                                                                   455)
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 456)             if (child instanceof AutomaticBean) {
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 457)                 final AutomaticBean bean = (AutomaticBean) child;
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 458)                 bean.contextualize(childContext);
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 09:38:32 -0500 459)                 bean.configure(childConf);
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 460)             }
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 461)         }
-d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 01:02:37 -0400 462)         catch (final CheckstyleException ex) {
-eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2003-02-04 14:32:47 -0500 463)             throw new CheckstyleException("cannot initialize module " + name
-eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2003-02-04 14:32:47 -0500 464)                     + " - " + ex.getMessage(), ex);
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 465)         }
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 466)         if (child instanceof FileSetCheck) {
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 467)             final FileSetCheck fsc = (FileSetCheck) child;
-864cf936c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov     2015-07-22 18:38:55 -0400 468)             fsc.init();
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 469)             addFileSetCheck(fsc);
-2a71cac7e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-12-26 12:21:44 -0500 470)         }
-fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 18:53:10 -0400 471)         else if (child instanceof BeforeExecutionFileFilter) {
-fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 18:53:10 -0400 472)             final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
-fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 18:53:10 -0400 473)             addBeforeExecutionFileFilter(filter);
-fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 18:53:10 -0400 474)         }
-f55fcd546 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-14 06:58:07 -0400 475)         else if (child instanceof Filter) {
-f55fcd546 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-14 06:58:07 -0400 476)             final Filter filter = (Filter) child;
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 477)             addFilter(filter);
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 478)         }
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 479)         else if (child instanceof AuditListener) {
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 480)             final AuditListener listener = (AuditListener) child;
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 481)             addListener(listener);
-a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 19:00:39 -0400 482)         }
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 483)         else {
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 484)             throw new CheckstyleException(name
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 485)                     + " is not allowed as a child in Checker");
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 14:35:17 -0400 486)         }
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 13:29:44 -0500 487)     }
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 456)             if (child instanceof AutomaticBean) {
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 457)                 final AutomaticBean bean = (AutomaticBean) child;
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 14:38:32 +0000 458)                 bean.contextualize(childContext);
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin       2015-01-19 14:38:32 +0000 459)                 bean.configure(childConf);
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 460)             }
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 18:29:44 +0000 461)         }
+d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko 2015-08-31 05:02:37 +0000 462)         catch (final CheckstyleException ex) {
+eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2003-02-04 19:32:47 +0000 463)             throw new CheckstyleException("cannot initialize module " + name
+eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2003-02-04 19:32:47 +0000 464)                     + " - " + ex.getMessage(), ex);
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 18:29:44 +0000 465)         }
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 466)         if (child instanceof FileSetCheck) {
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 467)             final FileSetCheck fsc = (FileSetCheck) child;
+864cf936c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov     2015-07-22 22:38:55 +0000 468)             fsc.init();
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 18:29:44 +0000 469)             addFileSetCheck(fsc);
+2a71cac7e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-12-26 17:21:44 +0000 470)         }
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 22:53:10 +0000 471)         else if (child instanceof BeforeExecutionFileFilter) {
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 22:53:10 +0000 472)             final BeforeExecutionFileFilter filter = (BeforeExecutionFileFilter) child;
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 22:53:10 +0000 473)             addBeforeExecutionFileFilter(filter);
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach          2016-10-22 22:53:10 +0000 474)         }
+f55fcd546 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-14 10:58:07 +0000 475)         else if (child instanceof Filter) {
+f55fcd546 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-14 10:58:07 +0000 476)             final Filter filter = (Filter) child;
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 477)             addFilter(filter);
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 478)         }
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 479)         else if (child instanceof AuditListener) {
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 480)             final AuditListener listener = (AuditListener) child;
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 481)             addListener(listener);
+a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 23:00:39 +0000 482)         }
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 483)         else {
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 484)             throw new CheckstyleException(name
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 485)                     + " is not allowed as a child in Checker");
+c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles       2003-07-11 18:35:17 +0000 486)         }
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne       2002-11-30 18:29:44 +0000 487)     }

@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.TimeZone;
 
 /* Created by pourya on 2024-07-02*/
 public class BlameFormatter {
@@ -28,6 +29,7 @@ public class BlameFormatter {
     public BlameFormatter(String NOT_FOUND_PLACEHOLDER, List<String> lines) {
         this.NOT_FOUND_PLACEHOLDER = NOT_FOUND_PLACEHOLDER;
         this.lines = lines;
+        this.simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT0:00"));
     }
 
     public List<String[]> make(List<LineBlameResult> lineBlameResults) {

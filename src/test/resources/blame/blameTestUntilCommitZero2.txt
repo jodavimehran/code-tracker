@@ -1,584 +1,584 @@
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 1)   // Copyright 2000-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 2)   package com.intellij.compiler;
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 1)   // Copyright 2000-2018 JetBrains s.r.o. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 2)   package com.intellij.compiler;
                                                                                                                                3)
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 4)   import com.intellij.codeInspection.InspectionManager;
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 5)   import com.intellij.compiler.impl.*;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 6)   import com.intellij.compiler.server.BuildManager;
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 7)   import com.intellij.openapi.Disposable;
-32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 16:57:34 -0400 8)   import com.intellij.openapi.application.ApplicationManager;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 9)   import com.intellij.openapi.compiler.Compiler;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 10)  import com.intellij.openapi.compiler.*;
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 11)  import com.intellij.openapi.compiler.util.InspectionValidator;
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 12)  import com.intellij.openapi.compiler.util.InspectionValidatorWrapper;
-846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 13:28:40 -0500 13)  import com.intellij.openapi.diagnostic.Logger;
-b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 12:54:36 -0400 14)  import com.intellij.openapi.extensions.Extensions;
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 15)  import com.intellij.openapi.fileTypes.FileType;
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 16)  import com.intellij.openapi.fileTypes.StdFileTypes;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 17)  import com.intellij.openapi.module.Module;
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 18)  import com.intellij.openapi.module.ModuleType;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 19)  import com.intellij.openapi.project.Project;
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 20)  import com.intellij.openapi.projectRoots.*;
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 21)  import com.intellij.openapi.util.Disposer;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 22)  import com.intellij.openapi.util.Pair;
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 23)  import com.intellij.openapi.util.io.FileUtil;
-7851e0125 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2008-06-16 11:47:11 -0400 24)  import com.intellij.openapi.vfs.LocalFileSystem;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 25)  import com.intellij.openapi.vfs.VirtualFile;
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 26)  import com.intellij.profile.codeInspection.InspectionProjectProfileManager;
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 27)  import com.intellij.psi.PsiDocumentManager;
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 28)  import com.intellij.psi.PsiManager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 29)  import com.intellij.util.SmartList;
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 30)  import com.intellij.util.messages.MessageBus;
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 31)  import com.intellij.util.messages.MessageBusConnection;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 32)  import com.intellij.util.net.NetUtils;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 33)  import gnu.trove.THashSet;
-18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 10:12:06 -0500 34)  import org.jetbrains.annotations.NotNull;
-808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 06:14:04 -0400 35)  import org.jetbrains.annotations.Nullable;
-023ab8260 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-11-13 07:12:51 -0500 36)  import org.jetbrains.annotations.TestOnly;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 37)  import org.jetbrains.jps.api.CanceledStatus;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 38)  import org.jetbrains.jps.builders.impl.java.JavacCompilerTool;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 39)  import org.jetbrains.jps.incremental.BinaryContent;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 40)  import org.jetbrains.jps.javac.DiagnosticOutputConsumer;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 41)  import org.jetbrains.jps.javac.ExternalJavacManager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 42)  import org.jetbrains.jps.javac.OutputFileConsumer;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 43)  import org.jetbrains.jps.javac.OutputFileObject;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 4)   import com.intellij.codeInspection.InspectionManager;
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 5)   import com.intellij.compiler.impl.*;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 6)   import com.intellij.compiler.server.BuildManager;
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 7)   import com.intellij.openapi.Disposable;
+32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 8)   import com.intellij.openapi.application.ApplicationManager;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 9)   import com.intellij.openapi.compiler.Compiler;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 10)  import com.intellij.openapi.compiler.*;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 11)  import com.intellij.openapi.compiler.util.InspectionValidator;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 12)  import com.intellij.openapi.compiler.util.InspectionValidatorWrapper;
+846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 18:28:40 +0000 13)  import com.intellij.openapi.diagnostic.Logger;
+b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 16:54:36 +0000 14)  import com.intellij.openapi.extensions.Extensions;
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 15)  import com.intellij.openapi.fileTypes.FileType;
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 16)  import com.intellij.openapi.fileTypes.StdFileTypes;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 17)  import com.intellij.openapi.module.Module;
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 18)  import com.intellij.openapi.module.ModuleType;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 19)  import com.intellij.openapi.project.Project;
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 20)  import com.intellij.openapi.projectRoots.*;
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 21)  import com.intellij.openapi.util.Disposer;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 22)  import com.intellij.openapi.util.Pair;
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 23)  import com.intellij.openapi.util.io.FileUtil;
+7851e0125 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2008-06-16 15:47:11 +0000 24)  import com.intellij.openapi.vfs.LocalFileSystem;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 25)  import com.intellij.openapi.vfs.VirtualFile;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 26)  import com.intellij.profile.codeInspection.InspectionProjectProfileManager;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 27)  import com.intellij.psi.PsiDocumentManager;
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 28)  import com.intellij.psi.PsiManager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 29)  import com.intellij.util.SmartList;
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 30)  import com.intellij.util.messages.MessageBus;
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 31)  import com.intellij.util.messages.MessageBusConnection;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 32)  import com.intellij.util.net.NetUtils;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 33)  import gnu.trove.THashSet;
+18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 15:12:06 +0000 34)  import org.jetbrains.annotations.NotNull;
+808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 10:14:04 +0000 35)  import org.jetbrains.annotations.Nullable;
+023ab8260 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-11-13 12:12:51 +0000 36)  import org.jetbrains.annotations.TestOnly;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 37)  import org.jetbrains.jps.api.CanceledStatus;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 38)  import org.jetbrains.jps.builders.impl.java.JavacCompilerTool;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 39)  import org.jetbrains.jps.incremental.BinaryContent;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 40)  import org.jetbrains.jps.javac.DiagnosticOutputConsumer;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 41)  import org.jetbrains.jps.javac.ExternalJavacManager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 42)  import org.jetbrains.jps.javac.OutputFileConsumer;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 43)  import org.jetbrains.jps.javac.OutputFileObject;
                                                                                                                                44)
-0350ddfde java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2017-05-08 12:11:11 -0400 45)  import javax.tools.*;
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 46)  import java.io.File;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 47)  import java.io.IOException;
-468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 11:02:38 -0500 48)  import java.lang.reflect.Array;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 49)  import java.net.URI;
-18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 10:12:06 -0500 50)  import java.util.*;
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 51)  import java.util.concurrent.Semaphore;
-c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 08:14:57 -0400 52)  import java.util.concurrent.TimeUnit;
+0350ddfde java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2017-05-08 16:11:11 +0000 45)  import javax.tools.*;
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 46)  import java.io.File;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 47)  import java.io.IOException;
+468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 16:02:38 +0000 48)  import java.lang.reflect.Array;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 49)  import java.net.URI;
+18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 15:12:06 +0000 50)  import java.util.*;
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 51)  import java.util.concurrent.Semaphore;
+c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 52)  import java.util.concurrent.TimeUnit;
                                                                                                                                53)
-b3e6d4bf7 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Maxim Shafirov      2007-01-31 15:53:27 -0500 54)  public class CompilerManagerImpl extends CompilerManager {
-846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 13:28:40 -0500 55)    private static final Logger LOG = Logger.getInstance("#com.intellij.compiler.CompilerManagerImpl");
+b3e6d4bf7 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Maxim Shafirov      2007-01-31 20:53:27 +0000 54)  public class CompilerManagerImpl extends CompilerManager {
+846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 18:28:40 +0000 55)    private static final Logger LOG = Logger.getInstance("#com.intellij.compiler.CompilerManagerImpl");
                                                                                                                                56)
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 57)    private final Project myProject;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 57)    private final Project myProject;
                                                                                                                                58)
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 59)    private final List<Compiler> myCompilers = new ArrayList<>();
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 59)    private final List<Compiler> myCompilers = new ArrayList<>();
                                                                                                                                60)
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 61)    private final List<CompileTask> myBeforeTasks = new ArrayList<>();
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 62)    private final List<CompileTask> myAfterTasks = new ArrayList<>();
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 63)    private final Set<FileType> myCompilableTypes = new HashSet<>();
-9db1e0090 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-02-19 02:31:09 -0500 64)    private final CompilationStatusListener myEventPublisher;
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 65)    private final Semaphore myCompilationSemaphore = new Semaphore(1, true);
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 66)    private final Set<ModuleType> myValidationDisabledModuleTypes = new HashSet<>();
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 67)    private final Set<LocalFileSystem.WatchRequest> myWatchRoots;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 68)    private volatile ExternalJavacManager myExternalJavacManager;
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 61)    private final List<CompileTask> myBeforeTasks = new ArrayList<>();
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 62)    private final List<CompileTask> myAfterTasks = new ArrayList<>();
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 63)    private final Set<FileType> myCompilableTypes = new HashSet<>();
+9db1e0090 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-02-19 07:31:09 +0000 64)    private final CompilationStatusListener myEventPublisher;
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 65)    private final Semaphore myCompilationSemaphore = new Semaphore(1, true);
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 66)    private final Set<ModuleType> myValidationDisabledModuleTypes = new HashSet<>();
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 67)    private final Set<LocalFileSystem.WatchRequest> myWatchRoots;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 68)    private volatile ExternalJavacManager myExternalJavacManager;
                                                                                                                                69)
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 70)    public CompilerManagerImpl(final Project project, MessageBus messageBus) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 71)      myProject = project;
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 72)      myEventPublisher = messageBus.syncPublisher(CompilerTopics.COMPILATION_STATUS);
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 70)    public CompilerManagerImpl(final Project project, MessageBus messageBus) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 71)      myProject = project;
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 72)      myEventPublisher = messageBus.syncPublisher(CompilerTopics.COMPILATION_STATUS);
                                                                                                                                73)
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 74)      // predefined compilers
-b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 12:54:36 -0400 75)      for(Compiler compiler: Extensions.getExtensions(Compiler.EP_NAME, myProject)) {
-b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 12:54:36 -0400 76)        addCompiler(compiler);
-b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 12:54:36 -0400 77)      }
-55aa55d76 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2018-08-03 10:53:37 -0400 78)      for (CompilerFactory factory : CompilerFactory.EP_NAME.getExtensionList(project)) {
-68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:41:49 -0400 79)        Compiler[] compilers = factory.createCompilers(this);
-68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:41:49 -0400 80)        for (Compiler compiler : compilers) {
-68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:41:49 -0400 81)          addCompiler(compiler);
-68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:41:49 -0400 82)        }
-68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:41:49 -0400 83)      }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 74)      // predefined compilers
+b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 16:54:36 +0000 75)      for(Compiler compiler: Extensions.getExtensions(Compiler.EP_NAME, myProject)) {
+b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 16:54:36 +0000 76)        addCompiler(compiler);
+b3a2e557a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 16:54:36 +0000 77)      }
+55aa55d76 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2018-08-03 14:53:37 +0000 78)      for (CompilerFactory factory : CompilerFactory.EP_NAME.getExtensionList(project)) {
+68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:41:49 +0000 79)        Compiler[] compilers = factory.createCompilers(this);
+68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:41:49 +0000 80)        for (Compiler compiler : compilers) {
+68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:41:49 +0000 81)          addCompiler(compiler);
+68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:41:49 +0000 82)        }
+68bc49a69 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:41:49 +0000 83)      }
                                                                                                                                84)
-55aa55d76 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2018-08-03 10:53:37 -0400 85)      for (InspectionValidator validator : InspectionValidator.EP_NAME.getExtensionList(project)) {
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 86)        addCompiler(new InspectionValidatorWrapper(this, InspectionManager.getInstance(project), InspectionProjectProfileManager.getInstance(project), PsiDocumentManager.getInstance(project), PsiManager.getInstance(project), validator));
-24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 15:18:09 -0500 87)      }
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 88)      addCompilableFileType(StdFileTypes.JAVA);
+55aa55d76 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Vladimir Krivosheev 2018-08-03 14:53:37 +0000 85)      for (InspectionValidator validator : InspectionValidator.EP_NAME.getExtensionList(project)) {
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 86)        addCompiler(new InspectionValidatorWrapper(this, InspectionManager.getInstance(project), InspectionProjectProfileManager.getInstance(project), PsiDocumentManager.getInstance(project), PsiManager.getInstance(project), validator));
+24e35fbdc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-12-16 20:18:09 +0000 87)      }
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 88)      addCompilableFileType(StdFileTypes.JAVA);
                                                                                                                                89)
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 90)      final File projectGeneratedSrcRoot = CompilerPaths.getGeneratedDataDirectory(project);
-72024600d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 10:18:35 -0400 91)      projectGeneratedSrcRoot.mkdirs();
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 92)      final LocalFileSystem lfs = LocalFileSystem.getInstance();
-5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 08:19:11 -0400 93)      myWatchRoots = lfs.addRootsToWatch(Collections.singletonList(FileUtil.toCanonicalPath(projectGeneratedSrcRoot.getPath())), true);
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 94)      Disposer.register(project, () -> {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 95)        final ExternalJavacManager manager = myExternalJavacManager;
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 96)        myExternalJavacManager = null;
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 97)        if (manager != null) {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 98)          manager.stop();
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 99)        }
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 100)       lfs.removeWatchedRoots(myWatchRoots);
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 103)       }
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 104)     });
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 105)   }
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 90)      final File projectGeneratedSrcRoot = CompilerPaths.getGeneratedDataDirectory(project);
+72024600d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 14:18:35 +0000 91)      projectGeneratedSrcRoot.mkdirs();
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 92)      final LocalFileSystem lfs = LocalFileSystem.getInstance();
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 93)      myWatchRoots = lfs.addRootsToWatch(Collections.singletonList(FileUtil.toCanonicalPath(projectGeneratedSrcRoot.getPath())), true);
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 94)      Disposer.register(project, () -> {
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 95)        final ExternalJavacManager manager = myExternalJavacManager;
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 96)        myExternalJavacManager = null;
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 97)        if (manager != null) {
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 98)          manager.stop();
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 99)        }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 100)       lfs.removeWatchedRoots(myWatchRoots);
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 103)       }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 104)     });
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 105)   }
                                                                                                                                106)
-c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 08:14:57 -0400 107)   // returns true if all javacs terminated
-023ab8260 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-11-13 07:12:51 -0500 108)   @TestOnly
-c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 08:14:57 -0400 109)   public boolean waitForExternalJavacToTerminate(long time, @NotNull TimeUnit unit) {
-c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 08:14:57 -0400 110)     ExternalJavacManager externalJavacManager = myExternalJavacManager;
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 111)     return externalJavacManager == null || externalJavacManager.waitForAllProcessHandlers(time, unit);
-c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 08:14:57 -0400 112)   }
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 113)   @TestOnly
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 114)   public boolean awaitNettyThreadPoolTermination(long time, @NotNull TimeUnit unit) {
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 115)     ExternalJavacManager externalJavacManager = myExternalJavacManager;
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 116)     return externalJavacManager == null || externalJavacManager.awaitNettyThreadPoolTermination(time, unit);
-0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 04:52:39 -0500 117)   }
+c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 107)   // returns true if all javacs terminated
+023ab8260 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-11-13 12:12:51 +0000 108)   @TestOnly
+c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 109)   public boolean waitForExternalJavacToTerminate(long time, @NotNull TimeUnit unit) {
+c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 110)     ExternalJavacManager externalJavacManager = myExternalJavacManager;
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 111)     return externalJavacManager == null || externalJavacManager.waitForAllProcessHandlers(time, unit);
+c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 112)   }
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 113)   @TestOnly
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 114)   public boolean awaitNettyThreadPoolTermination(long time, @NotNull TimeUnit unit) {
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 115)     ExternalJavacManager externalJavacManager = myExternalJavacManager;
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 116)     return externalJavacManager == null || externalJavacManager.awaitNettyThreadPoolTermination(time, unit);
+0b8ea180b java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-12-07 09:52:39 +0000 117)   }
                                                                                                                                118)
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 119)   public Semaphore getCompilationSemaphore() {
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 120)     return myCompilationSemaphore;
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 121)   }
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 119)   public Semaphore getCompilationSemaphore() {
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 120)     return myCompilationSemaphore;
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 121)   }
                                                                                                                                122)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 123)   @Override
-ecd7ca1a9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-04 05:21:34 -0400 124)   public boolean isCompilationActive() {
-0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 08:18:45 -0400 125)     return myCompilationSemaphore.availablePermits() == 0;
-ecd7ca1a9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-04 05:21:34 -0400 126)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 123)   @Override
+ecd7ca1a9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-04 09:21:34 +0000 124)   public boolean isCompilationActive() {
+0c176a99e compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-30 12:18:45 +0000 125)     return myCompilationSemaphore.availablePermits() == 0;
+ecd7ca1a9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-04 09:21:34 +0000 126)   }
                                                                                                                                127)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 128)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 129)   public final void addCompiler(@NotNull Compiler compiler) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 130)     myCompilers.add(compiler);
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 131)     // supporting file instrumenting compilers and validators for external build
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 132)     // Since these compilers are IDE-specific and use PSI, it is ok to run them before and after the build in the IDE
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 133)     if (compiler instanceof SourceInstrumentingCompiler) {
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 134)       addBeforeTask(new FileProcessingCompilerAdapterTask((FileProcessingCompiler)compiler));
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 135)     }
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 136)     else if (compiler instanceof Validator) {
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 137)       addAfterTask(new FileProcessingCompilerAdapterTask((FileProcessingCompiler)compiler));
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 138)     }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 139)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 128)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 129)   public final void addCompiler(@NotNull Compiler compiler) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 130)     myCompilers.add(compiler);
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 131)     // supporting file instrumenting compilers and validators for external build
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 132)     // Since these compilers are IDE-specific and use PSI, it is ok to run them before and after the build in the IDE
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 133)     if (compiler instanceof SourceInstrumentingCompiler) {
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 134)       addBeforeTask(new FileProcessingCompilerAdapterTask((FileProcessingCompiler)compiler));
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 135)     }
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 136)     else if (compiler instanceof Validator) {
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 137)       addAfterTask(new FileProcessingCompilerAdapterTask((FileProcessingCompiler)compiler));
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 138)     }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 139)   }
                                                                                                                                140)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 141)   @Override
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 142)   @Deprecated
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 143)   public void addTranslatingCompiler(@NotNull TranslatingCompiler compiler, Set<FileType> inputTypes, Set<FileType> outputTypes) {
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 144)     // empty
-18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 10:12:06 -0500 145)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 141)   @Override
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 142)   @Deprecated
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 143)   public void addTranslatingCompiler(@NotNull TranslatingCompiler compiler, Set<FileType> inputTypes, Set<FileType> outputTypes) {
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 144)     // empty
+18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 15:12:06 +0000 145)   }
                                                                                                                                146)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 147)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 148)   public final void removeCompiler(@NotNull Compiler compiler) {
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 149)     for (List<CompileTask> tasks : Arrays.asList(myBeforeTasks, myAfterTasks)) {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 150)       tasks.removeIf(
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 151)         task -> task instanceof FileProcessingCompilerAdapterTask && ((FileProcessingCompilerAdapterTask)task).getCompiler() == compiler);
-a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 11:17:14 -0500 152)     }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 153)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 147)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 148)   public final void removeCompiler(@NotNull Compiler compiler) {
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 149)     for (List<CompileTask> tasks : Arrays.asList(myBeforeTasks, myAfterTasks)) {
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 150)       tasks.removeIf(
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 151)         task -> task instanceof FileProcessingCompilerAdapterTask && ((FileProcessingCompilerAdapterTask)task).getCompiler() == compiler);
+a015b7987 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-11-14 16:17:14 +0000 152)     }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 153)   }
                                                                                                                                154)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 155)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 156)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 157)   public <T  extends Compiler> T[] getCompilers(@NotNull Class<T> compilerClass) {
-808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 06:14:04 -0400 158)     return getCompilers(compilerClass, CompilerFilter.ALL);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 159)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 155)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 156)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 157)   public <T  extends Compiler> T[] getCompilers(@NotNull Class<T> compilerClass) {
+808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 10:14:04 +0000 158)     return getCompilers(compilerClass, CompilerFilter.ALL);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 159)   }
                                                                                                                                160)
-808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 06:14:04 -0400 161)   @NotNull
-64a465df1 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2018-06-18 06:24:29 -0400 162)   private <T extends Compiler> T[] getCompilers(@NotNull Class<T> compilerClass, CompilerFilter filter) {
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 163)     final List<T> compilers = new ArrayList<>(myCompilers.size());
-87332a495 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-24 12:35:59 -0500 164)     for (final Compiler item : myCompilers) {
-808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 06:14:04 -0400 165)       if (compilerClass.isAssignableFrom(item.getClass()) && filter.acceptCompiler(item)) {
-468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 11:02:38 -0500 166)         compilers.add((T)item);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 167)       }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 168)     }
-18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 10:12:06 -0500 169)     final T[] array = (T[])Array.newInstance(compilerClass, compilers.size());
-468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 11:02:38 -0500 170)     return compilers.toArray(array);
-808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 06:14:04 -0400 171)   }
+808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 10:14:04 +0000 161)   @NotNull
+64a465df1 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2018-06-18 10:24:29 +0000 162)   private <T extends Compiler> T[] getCompilers(@NotNull Class<T> compilerClass, CompilerFilter filter) {
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 163)     final List<T> compilers = new ArrayList<>(myCompilers.size());
+87332a495 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-24 17:35:59 +0000 164)     for (final Compiler item : myCompilers) {
+808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 10:14:04 +0000 165)       if (compilerClass.isAssignableFrom(item.getClass()) && filter.acceptCompiler(item)) {
+468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 16:02:38 +0000 166)         compilers.add((T)item);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 167)       }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 168)     }
+18f91a97a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-12-05 15:12:06 +0000 169)     final T[] array = (T[])Array.newInstance(compilerClass, compilers.size());
+468b65e11 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2005-11-25 16:02:38 +0000 170)     return compilers.toArray(array);
+808648dd9 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2009-07-09 10:14:04 +0000 171)   }
                                                                                                                                172)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 173)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 174)   public void addCompilableFileType(@NotNull FileType type) {
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 175)     myCompilableTypes.add(type);
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 176)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 173)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 174)   public void addCompilableFileType(@NotNull FileType type) {
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 175)     myCompilableTypes.add(type);
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 176)   }
                                                                                                                                177)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 178)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 179)   public void removeCompilableFileType(@NotNull FileType type) {
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 180)     myCompilableTypes.remove(type);
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 181)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 178)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 179)   public void removeCompilableFileType(@NotNull FileType type) {
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 180)     myCompilableTypes.remove(type);
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 181)   }
                                                                                                                                182)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 183)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 184)   public boolean isCompilableFileType(@NotNull FileType type) {
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 185)     return myCompilableTypes.contains(type);
-a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 08:36:12 -0400 186)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 183)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 184)   public boolean isCompilableFileType(@NotNull FileType type) {
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 185)     return myCompilableTypes.contains(type);
+a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 (Eugene Zhuravlev    2005-07-27 12:36:12 +0000 186)   }
                                                                                                                                187)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 188)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 189)   public final void addBeforeTask(@NotNull CompileTask task) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 190)     myBeforeTasks.add(task);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 191)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 188)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 189)   public final void addBeforeTask(@NotNull CompileTask task) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 190)     myBeforeTasks.add(task);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 191)   }
                                                                                                                                192)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 193)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 194)   public final void addAfterTask(@NotNull CompileTask task) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 195)     myAfterTasks.add(task);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 196)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 193)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 194)   public final void addAfterTask(@NotNull CompileTask task) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 195)     myAfterTasks.add(task);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 196)   }
                                                                                                                                197)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 198)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 199)   @NotNull
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 200)   public CompileTask[] getBeforeTasks() {
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 201)     return getCompileTasks(myBeforeTasks, CompileTaskBean.CompileTaskExecutionPhase.BEFORE);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 202)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 198)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 199)   @NotNull
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 200)   public CompileTask[] getBeforeTasks() {
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 201)     return getCompileTasks(myBeforeTasks, CompileTaskBean.CompileTaskExecutionPhase.BEFORE);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 202)   }
                                                                                                                                203)
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 204)   private CompileTask[] getCompileTasks(List<CompileTask> taskList, CompileTaskBean.CompileTaskExecutionPhase phase) {
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 205)     List<CompileTask> beforeTasks = new ArrayList<>(taskList);
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 206)     for (CompileTaskBean extension : CompileTaskBean.EP_NAME.getExtensions(myProject)) {
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 207)       if (extension.myExecutionPhase == phase) {
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 208)         beforeTasks.add(extension.getTaskInstance());
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 209)       }
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 210)     }
-db9200fcd java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Tagir Valeev        2018-01-18 01:41:14 -0500 211)     return beforeTasks.toArray(new CompileTask[0]);
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 212)   }
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 204)   private CompileTask[] getCompileTasks(List<CompileTask> taskList, CompileTaskBean.CompileTaskExecutionPhase phase) {
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 205)     List<CompileTask> beforeTasks = new ArrayList<>(taskList);
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 206)     for (CompileTaskBean extension : CompileTaskBean.EP_NAME.getExtensions(myProject)) {
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 207)       if (extension.myExecutionPhase == phase) {
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 208)         beforeTasks.add(extension.getTaskInstance());
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 209)       }
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 210)     }
+db9200fcd java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Tagir Valeev        2018-01-18 06:41:14 +0000 211)     return beforeTasks.toArray(new CompileTask[0]);
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 212)   }
                                                                                                                                213)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 214)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 215)   @NotNull
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 216)   public CompileTask[] getAfterTasks() {
-df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 09:14:05 -0500 217)     return getCompileTasks(myAfterTasks, CompileTaskBean.CompileTaskExecutionPhase.AFTER);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 218)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 214)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 215)   @NotNull
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 216)   public CompileTask[] getAfterTasks() {
+df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2014-02-06 14:14:05 +0000 217)     return getCompileTasks(myAfterTasks, CompileTaskBean.CompileTaskExecutionPhase.AFTER);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 218)   }
                                                                                                                                219)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 220)   @Override
-0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 12:24:16 -0500 221)   public void compile(@NotNull VirtualFile[] files, CompileStatusNotification callback) {
-0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 12:24:16 -0500 222)     compile(createFilesCompileScope(files), callback);
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 220)   @Override
+0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 221)   public void compile(@NotNull VirtualFile[] files, CompileStatusNotification callback) {
+0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 222)     compile(createFilesCompileScope(files), callback);
                                                                                                                                223)   }
                                                                                                                                224)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 225)   @Override
-0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 12:24:16 -0500 226)   public void compile(@NotNull Module module, CompileStatusNotification callback) {
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 227)     new CompileDriver(myProject).compile(createModuleCompileScope(module, false), new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 228)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 225)   @Override
+0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 226)   public void compile(@NotNull Module module, CompileStatusNotification callback) {
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 227)     new CompileDriver(myProject).compile(createModuleCompileScope(module, false), new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 228)   }
                                                                                                                                229)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 230)   @Override
-0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 12:24:16 -0500 231)   public void compile(@NotNull CompileScope scope, CompileStatusNotification callback) {
-29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 07:14:09 -0400 232)     new CompileDriver(myProject).compile(scope, new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 233)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 230)   @Override
+0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 231)   public void compile(@NotNull CompileScope scope, CompileStatusNotification callback) {
+29b98dbe5 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-28 11:14:09 +0000 232)     new CompileDriver(myProject).compile(scope, new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 233)   }
                                                                                                                                234)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 235)   @Override
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 236)   public void make(CompileStatusNotification callback) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 237)     new CompileDriver(myProject).make(createProjectCompileScope(myProject), new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 238)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 235)   @Override
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 236)   public void make(CompileStatusNotification callback) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 237)     new CompileDriver(myProject).make(createProjectCompileScope(myProject), new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 238)   }
                                                                                                                                239)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 240)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 241)   public void make(@NotNull Module module, CompileStatusNotification callback) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 242)     new CompileDriver(myProject).make(createModuleCompileScope(module, true), new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 243)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 240)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 241)   public void make(@NotNull Module module, CompileStatusNotification callback) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 242)     new CompileDriver(myProject).make(createModuleCompileScope(module, true), new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 243)   }
                                                                                                                                244)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 245)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 246)   public void make(@NotNull Project project, @NotNull Module[] modules, CompileStatusNotification callback) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 247)     new CompileDriver(myProject).make(createModuleGroupCompileScope(project, modules, true), new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 248)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 245)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 246)   public void make(@NotNull Project project, @NotNull Module[] modules, CompileStatusNotification callback) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 247)     new CompileDriver(myProject).make(createModuleGroupCompileScope(project, modules, true), new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 248)   }
                                                                                                                                249)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 250)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 251)   public void make(@NotNull CompileScope scope, CompileStatusNotification callback) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 252)     new CompileDriver(myProject).make(scope, new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 253)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 250)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 251)   public void make(@NotNull CompileScope scope, CompileStatusNotification callback) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 252)     new CompileDriver(myProject).make(scope, new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 253)   }
                                                                                                                                254)
-72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 13:27:04 -0400 255)   @Override
-72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 13:27:04 -0400 256)   public void makeWithModalProgress(@NotNull CompileScope scope, @Nullable CompileStatusNotification callback) {
-72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 13:27:04 -0400 257)     new CompileDriver(myProject).make(scope, true, new ListenerNotificator(callback));
-72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 13:27:04 -0400 258)   }
+72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 17:27:04 +0000 255)   @Override
+72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 17:27:04 +0000 256)   public void makeWithModalProgress(@NotNull CompileScope scope, @Nullable CompileStatusNotification callback) {
+72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 17:27:04 +0000 257)     new CompileDriver(myProject).make(scope, true, new ListenerNotificator(callback));
+72ebbbe01 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2017-10-09 17:27:04 +0000 258)   }
                                                                                                                                259)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 260)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 261)   public boolean isUpToDate(@NotNull final CompileScope scope) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 262)     return new CompileDriver(myProject).isUpToDate(scope);
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 263)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 260)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 261)   public boolean isUpToDate(@NotNull final CompileScope scope) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 262)     return new CompileDriver(myProject).isUpToDate(scope);
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 263)   }
                                                                                                                                264)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 265)   @Override
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 266)   public void rebuild(CompileStatusNotification callback) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 267)     new CompileDriver(myProject).rebuild(new ListenerNotificator(callback));
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 268)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 265)   @Override
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 266)   public void rebuild(CompileStatusNotification callback) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 267)     new CompileDriver(myProject).rebuild(new ListenerNotificator(callback));
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 268)   }
                                                                                                                                269)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 270)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 271)   public void executeTask(@NotNull CompileTask task, @NotNull CompileScope scope, String contentName, Runnable onTaskFinished) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 272)     final CompileDriver compileDriver = new CompileDriver(myProject);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 273)     compileDriver.executeCompileTask(task, scope, contentName, onTaskFinished);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 274)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 270)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 271)   public void executeTask(@NotNull CompileTask task, @NotNull CompileScope scope, String contentName, Runnable onTaskFinished) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 272)     final CompileDriver compileDriver = new CompileDriver(myProject);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 273)     compileDriver.executeCompileTask(task, scope, contentName, onTaskFinished);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 274)   }
                                                                                                                                275)
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 276)   private final Map<CompilationStatusListener, MessageBusConnection> myListenerAdapters = new HashMap<>();
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 276)   private final Map<CompilationStatusListener, MessageBusConnection> myListenerAdapters = new HashMap<>();
                                                                                                                                277)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 278)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 279)   public void addCompilationStatusListener(@NotNull final CompilationStatusListener listener) {
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 280)     final MessageBusConnection connection = myProject.getMessageBus().connect();
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 281)     myListenerAdapters.put(listener, connection);
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 282)     connection.subscribe(CompilerTopics.COMPILATION_STATUS, listener);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 283)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 278)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 279)   public void addCompilationStatusListener(@NotNull final CompilationStatusListener listener) {
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 280)     final MessageBusConnection connection = myProject.getMessageBus().connect();
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 281)     myListenerAdapters.put(listener, connection);
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 282)     connection.subscribe(CompilerTopics.COMPILATION_STATUS, listener);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 283)   }
                                                                                                                                284)
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 285)   @Override
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 286)   public void addCompilationStatusListener(@NotNull CompilationStatusListener listener, @NotNull Disposable parentDisposable) {
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 287)     final MessageBusConnection connection = myProject.getMessageBus().connect(parentDisposable);
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 288)     connection.subscribe(CompilerTopics.COMPILATION_STATUS, listener);
-dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 05:41:04 -0500 289)   }
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 285)   @Override
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 286)   public void addCompilationStatusListener(@NotNull CompilationStatusListener listener, @NotNull Disposable parentDisposable) {
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 287)     final MessageBusConnection connection = myProject.getMessageBus().connect(parentDisposable);
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 288)     connection.subscribe(CompilerTopics.COMPILATION_STATUS, listener);
+dfafa97ab java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2011-01-12 10:41:04 +0000 289)   }
                                                                                                                                290)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 291)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 292)   public void removeCompilationStatusListener(@NotNull final CompilationStatusListener listener) {
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 293)     final MessageBusConnection connection = myListenerAdapters.remove(listener);
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 294)     if (connection != null) {
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 295)       connection.disconnect();
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 296)     }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 297)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 291)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 292)   public void removeCompilationStatusListener(@NotNull final CompilationStatusListener listener) {
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 293)     final MessageBusConnection connection = myListenerAdapters.remove(listener);
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 294)     if (connection != null) {
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 295)       connection.disconnect();
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 296)     }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 297)   }
                                                                                                                                298)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 299)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 300)   public boolean isExcludedFromCompilation(@NotNull VirtualFile file) {
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 301)     return CompilerConfiguration.getInstance(myProject).isExcludedFromCompilation(file);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 302)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 299)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 300)   public boolean isExcludedFromCompilation(@NotNull VirtualFile file) {
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 301)     return CompilerConfiguration.getInstance(myProject).isExcludedFromCompilation(file);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 302)   }
                                                                                                                                303)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 304)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 305)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 306)   public CompileScope createFilesCompileScope(@NotNull final VirtualFile[] files) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 307)     CompileScope[] scopes = new CompileScope[files.length];
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 308)     for(int i = 0; i < files.length; i++){
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 309)       scopes[i] = new OneProjectItemCompileScope(myProject, files[i]);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 310)     }
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 311)     return new CompositeScope(scopes);
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 312)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 304)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 305)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 306)   public CompileScope createFilesCompileScope(@NotNull final VirtualFile[] files) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 307)     CompileScope[] scopes = new CompileScope[files.length];
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 308)     for(int i = 0; i < files.length; i++){
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 309)       scopes[i] = new OneProjectItemCompileScope(myProject, files[i]);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 310)     }
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 311)     return new CompositeScope(scopes);
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 312)   }
                                                                                                                                313)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 314)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 315)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 316)   public CompileScope createModuleCompileScope(@NotNull final Module module, final boolean includeDependentModules) {
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 317)     return createModulesCompileScope(new Module[] {module}, includeDependentModules);
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 318)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 314)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 315)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 316)   public CompileScope createModuleCompileScope(@NotNull final Module module, final boolean includeDependentModules) {
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 317)     return createModulesCompileScope(new Module[] {module}, includeDependentModules);
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 318)   }
                                                                                                                                319)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 320)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 321)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 322)   public CompileScope createModulesCompileScope(@NotNull final Module[] modules, final boolean includeDependentModules) {
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 323)     return createModulesCompileScope(modules, includeDependentModules, false);
-1a2ab71fe compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2007-05-25 10:22:50 -0400 324)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 320)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 321)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 322)   public CompileScope createModulesCompileScope(@NotNull final Module[] modules, final boolean includeDependentModules) {
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 323)     return createModulesCompileScope(modules, includeDependentModules, false);
+1a2ab71fe compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2007-05-25 14:22:50 +0000 324)   }
                                                                                                                                325)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 326)   @Override
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 327)   @NotNull
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 328)   public CompileScope createModulesCompileScope(@NotNull Module[] modules, boolean includeDependentModules, boolean includeRuntimeDependencies) {
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 329)     return new ModuleCompileScope(myProject, modules, includeDependentModules, includeRuntimeDependencies);
-e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 07:32:23 -0400 330)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 326)   @Override
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 327)   @NotNull
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 328)   public CompileScope createModulesCompileScope(@NotNull Module[] modules, boolean includeDependentModules, boolean includeRuntimeDependencies) {
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 329)     return new ModuleCompileScope(myProject, modules, includeDependentModules, includeRuntimeDependencies);
+e5e591593 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-05-08 11:32:23 +0000 330)   }
                                                                                                                                331)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 332)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 333)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 334)   public CompileScope createModuleGroupCompileScope(@NotNull final Project project, @NotNull final Module[] modules, final boolean includeDependentModules) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 335)     return new ModuleCompileScope(project, modules, includeDependentModules);
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 336)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 332)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 333)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 334)   public CompileScope createModuleGroupCompileScope(@NotNull final Project project, @NotNull final Module[] modules, final boolean includeDependentModules) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 335)     return new ModuleCompileScope(project, modules, includeDependentModules);
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 336)   }
                                                                                                                                337)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 338)   @Override
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 339)   @NotNull
-73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 10:09:36 -0400 340)   public CompileScope createProjectCompileScope(@NotNull final Project project) {
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 341)     return new ProjectCompileScope(project);
-f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 15:02:54 -0400 342)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 338)   @Override
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 339)   @NotNull
+73c627243 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Alexey Kudravtsev   2009-04-01 14:09:36 +0000 340)   public CompileScope createProjectCompileScope(@NotNull final Project project) {
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 341)     return new ProjectCompileScope(project);
+f1ae17144 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Eugene Zhuravlev    2007-05-10 19:02:54 +0000 342)   }
                                                                                                                                343)
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 344)   @Override
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 345)   public void setValidationEnabled(ModuleType moduleType, boolean enabled) {
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 346)     if (enabled) {
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 347)       myValidationDisabledModuleTypes.remove(moduleType);
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 348)     }
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 349)     else {
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 350)       myValidationDisabledModuleTypes.add(moduleType);
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 351)     }
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 352)   }
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 344)   @Override
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 345)   public void setValidationEnabled(ModuleType moduleType, boolean enabled) {
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 346)     if (enabled) {
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 347)       myValidationDisabledModuleTypes.remove(moduleType);
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 348)     }
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 349)     else {
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 350)       myValidationDisabledModuleTypes.add(moduleType);
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 351)     }
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 352)   }
                                                                                                                                353)
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 354)   @Override
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 355)   public boolean isValidationEnabled(Module module) {
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 356)     if (myValidationDisabledModuleTypes.isEmpty()) {
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 357)       return true; // optimization
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 358)     }
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 359)     return !myValidationDisabledModuleTypes.contains(ModuleType.get(module));
-a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 05:57:14 -0400 360)   }
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 354)   @Override
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 355)   public boolean isValidationEnabled(Module module) {
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 356)     if (myValidationDisabledModuleTypes.isEmpty()) {
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 357)       return true; // optimization
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 358)     }
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 359)     return !myValidationDisabledModuleTypes.contains(ModuleType.get(module));
+a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 360)   }
                                                                                                                                361)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 362)   @Override
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 363)   public Collection<ClassObject> compileJavaCode(List<String> options,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 364)                                                  Collection<File> platformCp,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 365)                                                  Collection<File> classpath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 366)                                                  Collection<File> upgradeModulePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 367)                                                  Collection<File> modulePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 368)                                                  Collection<File> sourcePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 369)                                                  Collection<File> files,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 370)                                                  File outputDir) throws IOException, CompilationException {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 362)   @Override
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 363)   public Collection<ClassObject> compileJavaCode(List<String> options,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 364)                                                  Collection<File> platformCp,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 365)                                                  Collection<File> classpath,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 366)                                                  Collection<File> upgradeModulePath,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 367)                                                  Collection<File> modulePath,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 368)                                                  Collection<File> sourcePath,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 369)                                                  Collection<File> files,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 370)                                                  File outputDir) throws IOException, CompilationException {
                                                                                                                                371)
-4cacde00f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-10-19 15:23:17 -0400 372)     final Pair<Sdk, JavaSdkVersion> runtime = BuildManager.getJavacRuntimeSdk(myProject);
+4cacde00f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-10-19 19:23:17 +0000 372)     final Pair<Sdk, JavaSdkVersion> runtime = BuildManager.getJavacRuntimeSdk(myProject);
                                                                                                                                373)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 374)     final Sdk sdk = runtime.getFirst();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 375)     final SdkTypeId type = sdk.getSdkType();
-2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:52 -0500 376)     String javaHome = null;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 377)     if (type instanceof JavaSdkType) {
-2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:52 -0500 378)       javaHome = sdk.getHomePath();
-da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 06:21:35 -0500 379)       if (!isJdkOrJre(javaHome)) {
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 380)         // this can be a java-dependent SDK, implementing JavaSdkType
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 381)         // hack, because there is no direct way to obtain the java sdk, this sdk depends on
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 382)         final String binPath = ((JavaSdkType)type).getBinPath(sdk);
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 383)         javaHome = binPath != null? new File(binPath).getParent() : null;
-da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 06:21:35 -0500 384)         if (!isJdkOrJre(javaHome)) {
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 385)           javaHome = null;
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 386)         }
-a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:54 -0500 387)       }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 388)     }
-2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 17:50:52 -0500 389)     if (javaHome == null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 390)       throw new IOException("Was not able to determine JDK for project " + myProject.getName());
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 391)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 374)     final Sdk sdk = runtime.getFirst();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 375)     final SdkTypeId type = sdk.getSdkType();
+2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:52 +0000 376)     String javaHome = null;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 377)     if (type instanceof JavaSdkType) {
+2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:52 +0000 378)       javaHome = sdk.getHomePath();
+da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 11:21:35 +0000 379)       if (!isJdkOrJre(javaHome)) {
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 380)         // this can be a java-dependent SDK, implementing JavaSdkType
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 381)         // hack, because there is no direct way to obtain the java sdk, this sdk depends on
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 382)         final String binPath = ((JavaSdkType)type).getBinPath(sdk);
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 383)         javaHome = binPath != null? new File(binPath).getParent() : null;
+da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 11:21:35 +0000 384)         if (!isJdkOrJre(javaHome)) {
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 385)           javaHome = null;
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 386)         }
+a1c5568e0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:54 +0000 387)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 388)     }
+2e6e3151d java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-01 22:50:52 +0000 389)     if (javaHome == null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 390)       throw new IOException("Was not able to determine JDK for project " + myProject.getName());
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 391)     }
                                                                                                                                392)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 393)     final OutputCollector outputCollector = new OutputCollector();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 394)     DiagnosticCollector diagnostic = new DiagnosticCollector();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 393)     final OutputCollector outputCollector = new OutputCollector();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 394)     DiagnosticCollector diagnostic = new DiagnosticCollector();
                                                                                                                                395)
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 396)     final Set<File> sourceRoots = new THashSet<>(FileUtil.FILE_HASHING_STRATEGY);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 397)     if (!sourcePath.isEmpty()) {
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 396)     final Set<File> sourceRoots = new THashSet<>(FileUtil.FILE_HASHING_STRATEGY);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 397)     if (!sourcePath.isEmpty()) {
                                                                                                                                398)       sourceRoots.addAll(sourcePath);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 399)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 400)     else {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 401)       for (File file : files) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 402)         final File parentFile = file.getParentFile();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 403)         if (parentFile != null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 404)           sourceRoots.add(parentFile);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 405)         }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 406)       }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 407)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 408)     final Map<File, Set<File>> outs = Collections.singletonMap(outputDir, sourceRoots);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 399)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 400)     else {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 401)       for (File file : files) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 402)         final File parentFile = file.getParentFile();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 403)         if (parentFile != null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 404)           sourceRoots.add(parentFile);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 405)         }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 406)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 407)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 408)     final Map<File, Set<File>> outs = Collections.singletonMap(outputDir, sourceRoots);
                                                                                                                                409)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 410)     final ExternalJavacManager javacManager = getJavacManager();
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 411)     boolean compiledOk = javacManager != null && javacManager.forkJavac(
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 412)       javaHome, -1, Collections.emptyList(), options, platformCp, classpath, upgradeModulePath, modulePath, sourcePath, files, outs, diagnostic, outputCollector,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 413)       new JavacCompilerTool(), CanceledStatus.NULL
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 10:38:33 -0400 414)     );
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 410)     final ExternalJavacManager javacManager = getJavacManager();
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 411)     boolean compiledOk = javacManager != null && javacManager.forkJavac(
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 412)       javaHome, -1, Collections.emptyList(), options, platformCp, classpath, upgradeModulePath, modulePath, sourcePath, files, outs, diagnostic, outputCollector,
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 413)       new JavacCompilerTool(), CanceledStatus.NULL
+53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 414)     );
                                                                                                                                415)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 416)     if (!compiledOk) {
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 417)       final List<CompilationException.Message> messages = new SmartList<>();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 418)       for (Diagnostic<? extends JavaFileObject> d : diagnostic.getDiagnostics()) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 419)         final JavaFileObject source = d.getSource();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 420)         final URI uri = source != null ? source.toUri() : null;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 421)         messages.add(new CompilationException.Message(
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 422)           kindToCategory(d.getKind()), d.getMessage(Locale.US), uri != null? uri.toURL().toString() : null, (int)d.getLineNumber(), (int)d.getColumnNumber()
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 423)         ));
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 424)       }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 425)       throw new CompilationException("Compilation failed", messages);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 426)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 416)     if (!compiledOk) {
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 417)       final List<CompilationException.Message> messages = new SmartList<>();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 418)       for (Diagnostic<? extends JavaFileObject> d : diagnostic.getDiagnostics()) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 419)         final JavaFileObject source = d.getSource();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 420)         final URI uri = source != null ? source.toUri() : null;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 421)         messages.add(new CompilationException.Message(
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 422)           kindToCategory(d.getKind()), d.getMessage(Locale.US), uri != null? uri.toURL().toString() : null, (int)d.getLineNumber(), (int)d.getColumnNumber()
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 423)         ));
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 424)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 425)       throw new CompilationException("Compilation failed", messages);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 426)     }
                                                                                                                                427)
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 428)     final List<ClassObject> result = new ArrayList<>();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 429)     for (OutputFileObject fileObject : outputCollector.getCompiledClasses()) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 430)       final BinaryContent content = fileObject.getContent();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 431)       result.add(new CompiledClass(fileObject.getName(), fileObject.getClassName(), content != null ? content.toByteArray() : null));
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 432)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 433)     return result;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 434)   }
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 428)     final List<ClassObject> result = new ArrayList<>();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 429)     for (OutputFileObject fileObject : outputCollector.getCompiledClasses()) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 430)       final BinaryContent content = fileObject.getContent();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 431)       result.add(new CompiledClass(fileObject.getName(), fileObject.getClassName(), content != null ? content.toByteArray() : null));
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 432)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 433)     return result;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 434)   }
                                                                                                                                435)
-da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 06:21:35 -0500 436)   private static boolean isJdkOrJre(@Nullable String path) {
-da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 06:21:35 -0500 437)     return path != null && (JdkUtil.checkForJre(path) || JdkUtil.checkForJdk(path));
-da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 06:21:35 -0500 438)   }
+da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 11:21:35 +0000 436)   private static boolean isJdkOrJre(@Nullable String path) {
+da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 11:21:35 +0000 437)     return path != null && (JdkUtil.checkForJre(path) || JdkUtil.checkForJdk(path));
+da8cc1eac java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-02 11:21:35 +0000 438)   }
                                                                                                                                439)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 440)   private static CompilerMessageCategory kindToCategory(Diagnostic.Kind kind) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 441)     switch (kind) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 442)       case ERROR: return CompilerMessageCategory.ERROR;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 443)       case MANDATORY_WARNING: return CompilerMessageCategory.WARNING;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 444)       case WARNING: return CompilerMessageCategory.WARNING;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 445)       case NOTE: return CompilerMessageCategory.INFORMATION;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 446)       default:
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 447)         return CompilerMessageCategory.INFORMATION;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 448)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 449)   }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 440)   private static CompilerMessageCategory kindToCategory(Diagnostic.Kind kind) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 441)     switch (kind) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 442)       case ERROR: return CompilerMessageCategory.ERROR;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 443)       case MANDATORY_WARNING: return CompilerMessageCategory.WARNING;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 444)       case WARNING: return CompilerMessageCategory.WARNING;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 445)       case NOTE: return CompilerMessageCategory.INFORMATION;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 446)       default:
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 447)         return CompilerMessageCategory.INFORMATION;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 448)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 449)   }
                                                                                                                                450)
                                                                                                                                451)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 452)   @Nullable
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 453)   private ExternalJavacManager getJavacManager() throws IOException {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 454)     ExternalJavacManager manager = myExternalJavacManager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 455)     if (manager == null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 456)       synchronized (this) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 457)         manager = myExternalJavacManager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 458)         if (manager == null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 459)           final File compilerWorkingDir = getJavacCompilerWorkingDir();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 460)           if (compilerWorkingDir == null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 461)             return null; // should not happen for real projects
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 462)           }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 463)           final int listenPort = NetUtils.findAvailableSocketPort();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 464)           manager = new ExternalJavacManager(compilerWorkingDir);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 465)           manager.start(listenPort);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 466)           myExternalJavacManager = manager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 467)         }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 468)       }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 469)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 470)     return manager;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 471)   }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 452)   @Nullable
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 453)   private ExternalJavacManager getJavacManager() throws IOException {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 454)     ExternalJavacManager manager = myExternalJavacManager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 455)     if (manager == null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 456)       synchronized (this) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 457)         manager = myExternalJavacManager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 458)         if (manager == null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 459)           final File compilerWorkingDir = getJavacCompilerWorkingDir();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 460)           if (compilerWorkingDir == null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 461)             return null; // should not happen for real projects
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 462)           }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 463)           final int listenPort = NetUtils.findAvailableSocketPort();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 464)           manager = new ExternalJavacManager(compilerWorkingDir);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 465)           manager.start(listenPort);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 466)           myExternalJavacManager = manager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 467)         }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 468)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 469)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 470)     return manager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 471)   }
                                                                                                                                472)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 473)   @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 474)   @Nullable
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 475)   public File getJavacCompilerWorkingDir() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 476)     final File projectBuildDir = BuildManager.getInstance().getProjectSystemDirectory(myProject);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 477)     if (projectBuildDir == null) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 478)       return null;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 479)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 480)     projectBuildDir.mkdirs();
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 481)     return projectBuildDir;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 482)   }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 473)   @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 474)   @Nullable
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 475)   public File getJavacCompilerWorkingDir() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 476)     final File projectBuildDir = BuildManager.getInstance().getProjectSystemDirectory(myProject);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 477)     if (projectBuildDir == null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 478)       return null;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 479)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 480)     projectBuildDir.mkdirs();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 481)     return projectBuildDir;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 482)   }
                                                                                                                                483)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 484)   private static class CompiledClass implements ClassObject {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 485)     private final String myPath;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 486)     private final String myClassName;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 487)     private final byte[] myBytes;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 484)   private static class CompiledClass implements ClassObject {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 485)     private final String myPath;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 486)     private final String myClassName;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 487)     private final byte[] myBytes;
                                                                                                                                488)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 489)     CompiledClass(String path, String className, byte[] bytes) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 490)       myPath = path;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 491)       myClassName = className;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 492)       myBytes = bytes;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 493)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 489)     CompiledClass(String path, String className, byte[] bytes) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 490)       myPath = path;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 491)       myClassName = className;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 492)       myBytes = bytes;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 493)     }
                                                                                                                                494)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 495)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 496)     public String getPath() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 497)       return myPath;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 498)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 495)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 496)     public String getPath() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 497)       return myPath;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 498)     }
                                                                                                                                499)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 500)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 501)     public String getClassName() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 502)       return myClassName;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 503)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 500)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 501)     public String getClassName() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 502)       return myClassName;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 503)     }
                                                                                                                                504)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 505)     @Nullable
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 506)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 507)     public byte[] getContent() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 508)       return myBytes;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 509)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 505)     @Nullable
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 506)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 507)     public byte[] getContent() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 508)       return myBytes;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 509)     }
                                                                                                                                510)
-d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 04:45:02 -0400 511)     @Override
-d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 04:45:02 -0400 512)     public String toString() {
-d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 04:45:02 -0400 513)       return getClassName();
-d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 04:45:02 -0400 514)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 515)   }
+d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 08:45:02 +0000 511)     @Override
+d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 08:45:02 +0000 512)     public String toString() {
+d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 08:45:02 +0000 513)       return getClassName();
+d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Egor.Ushakov        2017-04-10 08:45:02 +0000 514)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 515)   }
                                                                                                                                516)
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 517)   private class ListenerNotificator implements CompileStatusNotification {
-7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 02:50:33 -0400 518)     @Nullable private final CompileStatusNotification myDelegate;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 517)   private class ListenerNotificator implements CompileStatusNotification {
+7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 06:50:33 +0000 518)     @Nullable private final CompileStatusNotification myDelegate;
                                                                                                                                519)
-7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 02:50:33 -0400 520)     private ListenerNotificator(@Nullable CompileStatusNotification delegate) {
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 521)       myDelegate = delegate;
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 522)     }
+7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 06:50:33 +0000 520)     private ListenerNotificator(@Nullable CompileStatusNotification delegate) {
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 521)       myDelegate = delegate;
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 522)     }
                                                                                                                                523)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 524)     @Override
-03b7b20a5 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Nikolay Chashnikov  2006-02-10 05:55:17 -0500 525)     public void finished(boolean aborted, int errors, int warnings, final CompileContext compileContext) {
-76726e853 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-07-14 08:26:24 -0400 526)       if (!myProject.isDisposed()) {
-c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 13:22:47 -0400 527)         myEventPublisher.compilationFinished(aborted, errors, warnings, compileContext);
-76726e853 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-07-14 08:26:24 -0400 528)       }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 529)       if (myDelegate != null) {
-03b7b20a5 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Nikolay Chashnikov  2006-02-10 05:55:17 -0500 530)         myDelegate.finished(aborted, errors, warnings, compileContext);
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 531)       }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 532)     }
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 533)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 524)     @Override
+03b7b20a5 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Nikolay Chashnikov  2006-02-10 10:55:17 +0000 525)     public void finished(boolean aborted, int errors, int warnings, final CompileContext compileContext) {
+76726e853 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-07-14 12:26:24 +0000 526)       if (!myProject.isDisposed()) {
+c4dbd599a compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Dmitry Jemerov      2008-05-16 17:22:47 +0000 527)         myEventPublisher.compilationFinished(aborted, errors, warnings, compileContext);
+76726e853 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2014-07-14 12:26:24 +0000 528)       }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 529)       if (myDelegate != null) {
+03b7b20a5 compiler/impl/com/intellij/compiler/CompilerManagerImpl.java          (Nikolay Chashnikov  2006-02-10 10:55:17 +0000 530)         myDelegate.finished(aborted, errors, warnings, compileContext);
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 531)       }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 532)     }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 533)   }
                                                                                                                                534)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 535)   private static class DiagnosticCollector implements DiagnosticOutputConsumer {
-78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 11:08:03 -0400 536)     private final List<Diagnostic<? extends JavaFileObject>> myDiagnostics = new ArrayList<>();
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 537)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 538)     public void outputLineAvailable(String line) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 539)       // for debugging purposes uncomment this line
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 540)       //System.out.println(line);
-846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 13:28:40 -0500 541)       if (line != null && line.startsWith(ExternalJavacManager.STDERR_LINE_PREFIX)) {
-846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 13:28:40 -0500 542)         LOG.info(line.trim());
-846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 13:28:40 -0500 543)       }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 544)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 535)   private static class DiagnosticCollector implements DiagnosticOutputConsumer {
+78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 536)     private final List<Diagnostic<? extends JavaFileObject>> myDiagnostics = new ArrayList<>();
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 537)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 538)     public void outputLineAvailable(String line) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 539)       // for debugging purposes uncomment this line
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 540)       //System.out.println(line);
+846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 18:28:40 +0000 541)       if (line != null && line.startsWith(ExternalJavacManager.STDERR_LINE_PREFIX)) {
+846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 18:28:40 +0000 542)         LOG.info(line.trim());
+846cc82c3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-12-14 18:28:40 +0000 543)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 544)     }
                                                                                                                                545)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 546)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 547)     public void registerImports(String className, Collection<String> imports, Collection<String> staticImports) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 548)       // ignore
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 549)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 546)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 547)     public void registerImports(String className, Collection<String> imports, Collection<String> staticImports) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 548)       // ignore
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 549)     }
                                                                                                                                550)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 551)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 552)     public void javaFileLoaded(File file) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 553)       // ignore
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 554)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 551)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 552)     public void javaFileLoaded(File file) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 553)       // ignore
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 554)     }
                                                                                                                                555)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 556)     @Override
-9be319dcc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-11-09 06:52:08 -0500 557)     public void customOutputData(String pluginId, String dataName, byte[] data) {
-9be319dcc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-11-09 06:52:08 -0500 558)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 556)     @Override
+9be319dcc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-11-09 11:52:08 +0000 557)     public void customOutputData(String pluginId, String dataName, byte[] data) {
+9be319dcc java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-11-09 11:52:08 +0000 558)     }
                                                                                                                                559)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 560)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 561)     public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 562)       myDiagnostics.add(diagnostic);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 563)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 560)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 561)     public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 562)       myDiagnostics.add(diagnostic);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 563)     }
                                                                                                                                564)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 565)     public List<Diagnostic<? extends JavaFileObject>> getDiagnostics() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 566)       return myDiagnostics;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 567)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 568)   }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 565)     public List<Diagnostic<? extends JavaFileObject>> getDiagnostics() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 566)       return myDiagnostics;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 567)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 568)   }
                                                                                                                                569)
                                                                                                                                570)
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 571)   private static class OutputCollector implements OutputFileConsumer {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 572)     private final List<OutputFileObject> myClasses = new ArrayList<>();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 571)   private static class OutputCollector implements OutputFileConsumer {
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 572)     private final List<OutputFileObject> myClasses = new ArrayList<>();
                                                                                                                                573)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 574)     @Override
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 575)     public void save(@NotNull OutputFileObject fileObject) {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 576)       myClasses.add(fileObject);
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 577)     }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 574)     @Override
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 575)     public void save(@NotNull OutputFileObject fileObject) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 576)       myClasses.add(fileObject);
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 577)     }
                                                                                                                                578)
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 10:19:19 -0400 579)     List<OutputFileObject> getCompiledClasses() {
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 580)       return myClasses;
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 581)     }
-d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 06:05:18 -0400 582)   }
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 579)     List<OutputFileObject> getCompiledClasses() {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 580)       return myClasses;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 581)     }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 582)   }
                                                                                                                                583)
-7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 15:44:30 -0500 584) }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 584) }
