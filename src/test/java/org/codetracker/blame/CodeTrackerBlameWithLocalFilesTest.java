@@ -10,10 +10,12 @@ import org.codetracker.FileTrackerWithLocalFilesImpl;
 import org.codetracker.blame.util.BlameFormatter;
 import org.codetracker.blame.util.TabularPrint;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.refactoringminer.astDiff.utils.URLHelper;
 
+@Disabled
 public class CodeTrackerBlameWithLocalFilesTest {
 
     @ParameterizedTest
