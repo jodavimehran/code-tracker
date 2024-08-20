@@ -415,7 +415,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			else if (startElement instanceof Comment) {
 				Comment startComment = (Comment)startElement;
 				CommentTrackerChangeHistory commentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-				HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn();
+				HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn(lineNumber);
 				blameInfo.put(lineNumber, historyInfo);
 			}
 			else if (startElement instanceof Import) {
@@ -1343,7 +1343,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 								continue;
 							}
 							startCommentChangeHistory.poll();
-							startCommentChangeHistory.get().addChange(leftComment, rightComment, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+							startCommentChangeHistory.processChange(leftComment, rightComment);
 							startCommentChangeHistory.addFirst(leftComment);
 							startCommentChangeHistory.get().connectRelatedNodes();
 						}

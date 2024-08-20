@@ -1,9 +1,15 @@
 package org.codetracker;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
@@ -18,6 +24,11 @@ import org.codetracker.element.Class;
 import org.codetracker.element.Comment;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
+
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.AbstractDelta;
+import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
@@ -197,7 +208,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                                     matchedCommentFromSourceMethod = mapping.getLeft();
                                     Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
                                     if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
-                                        commentChangeHistory.addChange(commentBefore, matchedCommentInsideExtractedMethodBody, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                                        processChange(commentBefore, matchedCommentInsideExtractedMethodBody);
                                     }
                                     break;
                                 }
@@ -240,7 +251,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                                             matchedCommentFromSourceMethod = mapping.getLeft();
                                             Comment commentBefore = Comment.of(mapping.getLeft(), anonymousMapper.getContainer1(), parentVersion);
                                             if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
-                                                commentChangeHistory.addChange(commentBefore, matchedCommentInsideExtractedMethodBody, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                                                processChange(commentBefore, matchedCommentInsideExtractedMethodBody);
                                             }
                                             break;
                                         }
@@ -383,7 +394,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(mapping.getLeft(), pair.getLeft(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -401,7 +412,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     		if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), pair.getLeft(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -426,7 +437,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(mapping.getLeft(), umlOperationBodyMapper.getContainer1(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -444,7 +455,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     		if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), umlOperationBodyMapper.getContainer1(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -563,7 +574,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -580,7 +591,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
             if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(mapping.getLeft(), classDiff.getOriginalClass(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -598,7 +609,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     		if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), classDiff.getOriginalClass(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -616,7 +627,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     		if (commentAfter != null && equalOperator.test(commentAfter)) {
                 Comment commentBefore = Comment.of(javadocDiff.getJavadocBefore(), classDiff.getOriginalClass(), parentVersion);
                 if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
-                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+                    processChange(commentBefore, commentAfter);
                 }
                 else {
                     commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -844,12 +855,78 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
     	return false;
     }
 
+    private Map<Pair<Comment, Comment>, List<Integer>> lineChangeMap = new LinkedHashMap<>();
+
+	public void processChange(Comment commentBefore, Comment commentAfter) {
+		commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+		if (commentBefore.isMultiLine() && commentAfter.isMultiLine()) {
+			try {
+				Pair<Comment, Comment> pair = Pair.of(commentBefore, commentAfter);
+				Comment startComment = getStart();
+				if (startComment != null) {
+					List<String> start = IOUtils.readLines(new StringReader(startComment.getComment().getFullText()));
+					List<String> original = IOUtils.readLines(new StringReader(commentBefore.getComment().getFullText()));
+					List<String> revised = IOUtils.readLines(new StringReader(commentAfter.getComment().getFullText()));
+		
+					Patch<String> patch = DiffUtils.diff(original, revised);
+					List<AbstractDelta<String>> deltas = patch.getDeltas();
+					for (AbstractDelta<String> delta : deltas) {
+						Chunk<String> target = delta.getTarget();
+						List<String> affectedLines = target.getLines();
+						for (String line : affectedLines) {
+							int index = start.indexOf(line);
+							if (index != -1) {
+								int actualLine = startComment.getLocation().getStartLine() + index;
+								if (lineChangeMap.containsKey(pair)) {
+									lineChangeMap.get(pair).add(actualLine);
+								}
+								else {
+									List list = new ArrayList<>();
+									list.add(actualLine);
+									lineChangeMap.put(pair, list);
+								}
+							}
+						}
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
 	public HistoryInfo<Comment> blameReturn() {
 		List<HistoryInfo<Comment>> history = getHistory();
 		for (History.HistoryInfo<Comment> historyInfo : history) {
 			for (Change change : historyInfo.getChangeList()) {
 				if (change instanceof BodyChange || change instanceof Introduced) {
 					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
+
+	public HistoryInfo<Comment> blameReturn(int exactLineNumber) {
+		List<HistoryInfo<Comment>> history = getHistory();
+		for (History.HistoryInfo<Comment> historyInfo : history) {
+			Pair<Comment, Comment> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
+			boolean multiLine = historyInfo.getElementBefore().isMultiLine() && historyInfo.getElementAfter().isMultiLine();
+			for (Change change : historyInfo.getChangeList()) {
+				if (change instanceof Introduced) {
+					return historyInfo;
+				}
+				else if (change instanceof BodyChange) {
+					if (multiLine) {
+						if (lineChangeMap.containsKey(pair)) {
+							if (lineChangeMap.get(pair).contains(exactLineNumber)) {
+								return historyInfo;
+							}
+						}
+					}
+					else {
+						return historyInfo;
+					}
 				}
 			}
 		}

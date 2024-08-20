@@ -772,6 +772,11 @@ public abstract class AbstractTracker {
 	protected static Comment getComment(UMLModel umlModel, Version version, Predicate<Comment> predicate) {
 	    if (umlModel != null)
 	        for (UMLClass umlClass : umlModel.getClassList()) {
+	        	Class clazz = Class.of(umlClass, version);
+	        	Comment c = clazz.findComment(predicate);
+	        	if (c != null) {
+            		return c;
+            	}
 	            for (UMLOperation operation : umlClass.getOperations()) {
 	            	Method method = Method.of(operation, version);
 	            	Comment comment = method.findComment(predicate);

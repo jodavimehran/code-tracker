@@ -55,8 +55,8 @@ public class CodeTrackerBlameTest {
 
     @ParameterizedTest
     @CsvSource({
-        "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825, servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java, /src/test/resources/blame/formatting/codetracker.txt",
-        "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76, src/main/java/dat/MakeIntels.java, /src/test/resources/blame/blameTestWithLocalRepo.txt",
+        "https://github.com/Alluxio/alluxio/commit/9aeefcd8120bb3b89cdb437d8c32d2ed84b8a825, servers/src/main/java/tachyon/worker/block/allocator/MaxFreeAllocator.java, /src/test/resources/blame/blameTestWithLocalRepo1.txt",
+        "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76, src/main/java/dat/MakeIntels.java, /src/test/resources/blame/blameTestWithLocalRepo2.txt",
         "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3, src/main/java/com/puppycrawl/tools/checkstyle/Checker.java, /src/test/resources/blame/blameTestWithLocalRepo3.txt",
         "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6, javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java, /src/test/resources/blame/blameTestWithLocalRepo4.txt",
         "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6, javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java, /src/test/resources/blame/blameTestWithLocalRepo5.txt",
@@ -81,7 +81,7 @@ public class CodeTrackerBlameTest {
     public void testBlameWithLocalRepo() throws Exception {
         String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
         String filePath = "src/main/java/dat/MakeIntels.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo.txt";
+        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo2.txt";
         String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
         assertEqualWithFile(expectedFilePath, actual);
     }

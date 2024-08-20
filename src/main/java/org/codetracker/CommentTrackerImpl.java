@@ -144,7 +144,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 		                    			rightComment.getComment().getLocationInfo().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 									Comment commentBefore = Comment.of(leftJavadoc, leftMethod.getUmlOperation(), parentVersion);
 									Comment commentAfter = Comment.of(rightJavadoc, rightMethod.getUmlOperation(), currentVersion);
-									changeHistory.get().addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
+									changeHistory.processChange(commentBefore, commentAfter);
 									changeHistory.addFirst(commentBefore);
 									changeHistory.get().connectRelatedNodes();
 								}

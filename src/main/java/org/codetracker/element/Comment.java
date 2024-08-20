@@ -40,6 +40,10 @@ public class Comment extends BaseCodeElement {
 		this.operation = null;
 	}
 
+	public boolean isMultiLine() {
+		return getLocation().getEndLine() > getLocation().getStartLine();
+	}
+
 	public UMLAbstractDocumentation getComment() {
 		return comment;
 	}

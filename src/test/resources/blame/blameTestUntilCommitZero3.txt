@@ -1,18 +1,18 @@
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 1)  /*
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 1)  /*
 c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 2)   * Copyright 2000-2016 JetBrains s.r.o.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 3)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 4)   * Licensed under the Apache License, Version 2.0 (the "License");
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 5)   * you may not use this file except in compliance with the License.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 6)   * You may obtain a copy of the License at
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 7)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 8)   * http://www.apache.org/licenses/LICENSE-2.0
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 9)   *
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 10)  * Unless required by applicable law or agreed to in writing, software
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 11)  * distributed under the License is distributed on an "AS IS" BASIS,
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 12)  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 13)  * See the License for the specific language governing permissions and
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 14)  * limitations under the License.
-c2b11cd90 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Konstantin Bulenkov 2016-05-23 23:52:46 +0000 15)  */
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 3)   *
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 4)   * Licensed under the Apache License, Version 2.0 (the "License");
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 5)   * you may not use this file except in compliance with the License.
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 6)   * You may obtain a copy of the License at
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 7)   *
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 8)   * http://www.apache.org/licenses/LICENSE-2.0
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 9)   *
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 10)  * Unless required by applicable law or agreed to in writing, software
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 11)  * distributed under the License is distributed on an "AS IS" BASIS,
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 12)  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 13)  * See the License for the specific language governing permissions and
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 14)  * limitations under the License.
+0d2b40927 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Dmitry Jemerov      2009-10-11 17:00:23 +0000 15)  */
 7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 16) package com.intellij.compiler.actions;
                                                                                                                                       17)
 7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 18) import com.intellij.openapi.actionSystem.AnActionEvent;
