@@ -3,6 +3,7 @@ package org.codetracker;
 import java.io.IOException;
 import java.io.StringReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +29,7 @@ import org.refactoringminer.api.Refactoring;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.InsertDelta;
 import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLOperation;
@@ -870,20 +872,46 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
 		
 					Patch<String> patch = DiffUtils.diff(original, revised);
 					List<AbstractDelta<String>> deltas = patch.getDeltas();
-					for (AbstractDelta<String> delta : deltas) {
+					for (int i=0; i<deltas.size(); i++) {
+						AbstractDelta<String> delta = deltas.get(i);
 						Chunk<String> target = delta.getTarget();
-						List<String> affectedLines = target.getLines();
-						for (String line : affectedLines) {
-							int index = start.indexOf(line);
+						List<String> affectedLines = new ArrayList<>(target.getLines());
+						boolean subListFound = false;
+						if (affectedLines.size() > 1 && !(delta instanceof InsertDelta)) {
+							int index = Collections.indexOfSubList(start, affectedLines);
 							if (index != -1) {
-								int actualLine = startComment.getLocation().getStartLine() + index;
-								if (lineChangeMap.containsKey(pair)) {
-									lineChangeMap.get(pair).add(actualLine);
+								subListFound = true;
+								for (int j=0; j<affectedLines.size(); j++) {
+									int actualLine = startComment.getLocation().getStartLine() + index + j;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
 								}
-								else {
-									List list = new ArrayList<>();
-									list.add(actualLine);
-									lineChangeMap.put(pair, list);
+							}
+						}
+						if (!subListFound) {
+							for (String line : affectedLines) {
+								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								for (Integer index : matchingIndices) {
+									if (original.size() > index && revised.size() > index &&
+											original.get(index).equals(line) && revised.get(index).equals(line)) {
+										continue;
+									}
+									int actualLine = startComment.getLocation().getStartLine() + index;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+									break;
 								}
 							}
 						}
@@ -893,6 +921,17 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
 				e.printStackTrace();
 			}
 		}
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<startCommentLines.size(); i++) {
+			String element = startCommentLines.get(i);
+			if(line.equals(element)) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
 	}
 
 	public HistoryInfo<Comment> blameReturn() {

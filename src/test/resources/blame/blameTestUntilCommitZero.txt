@@ -125,7 +125,7 @@ f67e5602a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 125)  import org.eclipse.jgit.util.TemporaryBuffer;
                                                                                                                                            126)
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 127)  /**
-32ff57a2b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Robin Rosenberg           2014-03-29 17:34:41 +0000 128)   * <p>
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 128)   * <p>
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 129)   * PackWriter class is responsible for generating pack files from specified set
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 130)   * of objects from repository. This implementation produce pack files in format
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 131)   * version 2.
@@ -139,7 +139,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 139)   * <li>by providing iterator of {@link org.eclipse.jgit.revwalk.RevObject}
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 140)   * specifying exact list and order of objects in pack</li>
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 141)   * </ul>
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 142)   * <p>
+32ff57a2b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Robin Rosenberg           2014-03-29 17:34:41 +0000 142)   * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 143)   * Typical usage consists of creating an instance, configuring options,
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 144)   * preparing the list of objects by calling {@link #preparePack(Iterator)} or
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 145)   * {@link #preparePack(ProgressMonitor, Set, Set)}, and streaming with
@@ -398,7 +398,7 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 53be446f6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Yuxuan 'fishy' Wang       2015-06-09 21:11:13 +0000 398)  	 * <p>
 53be446f6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Yuxuan 'fishy' Wang       2015-06-09 21:11:13 +0000 399)  	 * It should be set before calling
 53be446f6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Yuxuan 'fishy' Wang       2015-06-09 21:11:13 +0000 400)  	 * {@link #writePack(ProgressMonitor, ProgressMonitor, OutputStream)}.
-65ceb23c8 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2015-06-09 23:26:00 +0000 401)  	 *
+53be446f6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Yuxuan 'fishy' Wang       2015-06-09 21:11:13 +0000 401)  	 *
 65ceb23c8 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2015-06-09 23:26:00 +0000 402)  	 * @param callback
 65ceb23c8 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2015-06-09 23:26:00 +0000 403)  	 *            the callback to set
 53be446f6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Yuxuan 'fishy' Wang       2015-06-09 21:11:13 +0000 404)  	 * @return this object for chaining.
@@ -794,7 +794,7 @@ c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 794)  	 * The caller is responsible for filtering out commits that should not be
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 795)  	 * shallow any more ("unshallow" commits as in {@link #setShallowPack}) from
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 796)  	 * the shallow set.
-f28de24fa org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 23:38:21 +0000 797)  	 *
+3b0b7677f org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 20:50:57 +0000 797)  	 *
 f28de24fa org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 23:38:21 +0000 798)  	 * @param countingMonitor
 f28de24fa org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 23:38:21 +0000 799)  	 *            progress during object enumeration.
 f28de24fa org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 23:38:21 +0000 800)  	 * @param want
@@ -811,7 +811,7 @@ c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 811)  	 *            are considered not to be already available. Parents of
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 812)  	 *            {@code shallow} commits and earlier generations will be
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 813)  	 *            included in the pack if requested by {@code want}. Must not be
-3b0b7677f org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 20:50:57 +0000 814)  	 *            {@code null}.
+c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 814)  	 *            {@code null}.
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 815)  	 * @throws java.io.IOException
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 816)  	 *             an I/O problem occurred while reading objects.
 3b0b7677f org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Nieder           2016-08-08 20:50:57 +0000 817)  	 */
@@ -978,10 +978,10 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            978)
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 979)  	/**
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 980)  	 * Create an index file to match the pack file just written.
-4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 981)  	 * <p>
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 981)  	 * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 982)  	 * Called after
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 983)  	 * {@link #writePack(ProgressMonitor, ProgressMonitor, OutputStream)}.
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 984)  	 * <p>
+4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 984)  	 * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 985)  	 * Writing an index is only required for local pack storage. Packs sent on
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 986)  	 * the network do not need to create an index.
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 987)  	 *
@@ -1078,11 +1078,11 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            1078)
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1079) 	/**
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1080) 	 * Write the prepared pack to the supplied stream.
-4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 1081) 	 * <p>
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1081) 	 * <p>
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1082) 	 * Called after
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1083) 	 * {@link #preparePack(ProgressMonitor, ObjectWalk, Set, Set, Set)} or
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1084) 	 * {@link #preparePack(ProgressMonitor, Set, Set)}.
-1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1085) 	 * <p>
+4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 1085) 	 * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 1086) 	 * Performs delta search if enabled and writes the pack stream.
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1087) 	 * <p>
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1088) 	 * All reused objects data checksum (Adler32/CRC32) is computed and
@@ -2179,9 +2179,9 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2179) 	 * Bitmaps can be used to speed up fetches and clones by storing the entire
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2180) 	 * object graph at selected commits. Writing a bitmap index is an optional
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2181) 	 * feature that not all pack users may require.
-dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2182) 	 * <p>
+4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2182) 	 * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2183) 	 * Called after {@link #writeIndex(OutputStream)}.
-dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2184) 	 * <p>
+4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2184) 	 * <p>
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2185) 	 * To reduce memory internal state is cleared during this method, rendering
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2186) 	 * the PackWriter instance useless for anything further than a call to write
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2187) 	 * out the new bitmaps with {@link #writeBitmapIndex(OutputStream)}.
