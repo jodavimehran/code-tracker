@@ -402,6 +402,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				startBlock.checkClosingBracket(lineNumber);
 				startBlock.checkElseBlockStart(lineNumber);
 				startBlock.checkElseBlockEnd(lineNumber);
+				startBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
 				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
 				blameInfo.put(lineNumber, historyInfo);
 			}

@@ -394,6 +394,7 @@ public class FileTrackerImpl extends BaseTracker {
 					startBlock.checkClosingBracket(lineNumber);
 					startBlock.checkElseBlockStart(lineNumber);
 					startBlock.checkElseBlockEnd(lineNumber);
+					startBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
 					HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
 					blameInfo.put(lineNumber, historyInfo);
 				}

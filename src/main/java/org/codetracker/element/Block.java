@@ -183,6 +183,12 @@ public class Block extends BaseCodeElement {
             return of((CompositeStatementObject) statement, method);
     }
 
+    public void checkClosingBracketOfAnonymousClassDeclaration(int lineNumber) {
+    	if (getComposite() instanceof StatementObject && getComposite().getAnonymousClassDeclarations().size() > 0 && getLocation().getEndLine() == lineNumber) {
+    		setClosingCurlyBracket(true);
+    	}
+    }
+
 	public void checkClosingBracket(int lineNumber) {
 		if (getComposite() instanceof TryStatementObject) {
 			TryStatementObject tryStatement = (TryStatementObject)getComposite();

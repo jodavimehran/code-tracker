@@ -50,6 +50,21 @@ public class Method extends BaseCodeElement {
         return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
+    public boolean isMultiLine() {
+    	if (umlOperation.getBody() != null && umlOperation instanceof UMLOperation) {
+    		int bodyStartLine = umlOperation.getBody().getCompositeStatement().getLocationInfo().getStartLine();
+    		UMLOperation method = (UMLOperation) umlOperation;
+    		int methodSignatureStartLine = -1;
+    		if (method.getReturnParameter() != null)
+    			methodSignatureStartLine = method.getReturnParameter().getType().getLocationInfo().getStartLine();
+    		else if (umlOperation.getParameterTypeList().size() > 0)
+    			methodSignatureStartLine = method.getParameterTypeList().get(0).getLocationInfo().getStartLine();
+    		if (methodSignatureStartLine != -1)
+    			return bodyStartLine > methodSignatureStartLine;
+    	}
+    	return false;
+    }
+
     public Variable findVariable(Predicate<Variable> equalOperator) {
         for (VariableDeclaration variableDeclaration : umlOperation.getAllVariableDeclarations()) {
             Variable variable = Variable.of(variableDeclaration, this);
