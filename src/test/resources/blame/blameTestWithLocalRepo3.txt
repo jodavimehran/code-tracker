@@ -166,12 +166,12 @@ fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach  
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 166)      * Removes filter.
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 167)      * @param filter filter to remove.
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 168)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 169)     public void removeFilter(Filter filter) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 169)     public void removeFilter(Filter filter) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 170)         filters.removeFilter(filter);
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 171)     }
                                                                                                                      172)
 8c8fee743 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-11-09 05:30:14 +0000 173)     @Override
-edf2c9563 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2002-01-06 07:40:36 +0000 174)     public void destroy() {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 174)     public void destroy() {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 175)         listeners.clear();
 8ca6e3a6f src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-11-18 01:46:16 +0000 176)         fileSetChecks.clear();
 fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-10-22 22:53:10 +0000 177)         beforeExecutionFileFilters.clear();
@@ -190,7 +190,7 @@ d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Se
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 190)      * Removes a given listener.
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 191)      * @param listener a listener to remove
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 192)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 193)     public void removeListener(AuditListener listener) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 193)     public void removeListener(AuditListener listener) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 194)         listeners.remove(listener);
 778e84408 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oleg Sukhodolsky    2003-11-05 04:26:12 +0000 195)     }
                                                                                                                      196)
@@ -198,7 +198,7 @@ cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali 
 49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 198)      * Sets base directory.
 2b4a02d2c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-09-04 01:06:15 +0000 199)      * @param basedir the base directory to strip off in file names
 cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 200)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 201)     public void setBasedir(String basedir) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 201)     public void setBasedir(String basedir) {
 3a20dbe8e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-03-31 18:25:03 +0000 202)         this.basedir = basedir;
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 203)     }
                                                                                                                      204)
@@ -366,7 +366,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 06b377b34 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2004-12-07 11:49:26 +0000 366)      *            the file to be audited
 0e3fe5643 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2001-08-30 16:13:24 +0000 367)      */
 7aa061665 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2014-12-15 06:33:24 +0000 368)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 369)     public void fireFileStarted(String fileName) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 369)     public void fireFileStarted(String fileName) {
 cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 370)         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
 ce196814d src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-10-16 23:35:09 +0000 371)         final AuditEvent event = new AuditEvent(this, stripped);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 372)         for (final AuditListener listener : listeners) {
@@ -381,7 +381,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 381)      * @param errors the audit errors from the file
 0e3fe5643 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2001-08-30 16:13:24 +0000 382)      */
 7aa061665 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2014-12-15 06:33:24 +0000 383)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 384)     public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 384)     public void fireErrors(String fileName, SortedSet<LocalizedMessage> errors) {
 cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 385)         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
 56cc11416 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-11-10 19:59:54 +0000 386)         boolean hasNonFilteredViolations = false;
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 387)         for (final LocalizedMessage element : errors) {
@@ -405,7 +405,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 06b377b34 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2004-12-07 11:49:26 +0000 405)      *            the audited file
 0e3fe5643 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2001-08-30 16:13:24 +0000 406)      */
 7aa061665 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2014-12-15 06:33:24 +0000 407)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 408)     public void fireFileFinished(String fileName) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 408)     public void fireFileFinished(String fileName) {
 cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 409)         final String stripped = CommonUtils.relativizeAndNormalizePath(basedir, fileName);
 ce196814d src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-10-16 23:35:09 +0000 410)         final AuditEvent event = new AuditEvent(this, stripped);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 411)         for (final AuditListener listener : listeners) {
@@ -446,7 +446,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva           2017-07-14 22:13:49 +0000 446)      */
 f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2007-12-15 08:14:40 +0000 447)     @Override
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 448)     protected void setupChild(Configuration childConf)
-6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 449)             throws CheckstyleException {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 449)             throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 450)         final String name = childConf.getName();
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-31 05:02:37 +0000 451)         final Object child;
                                                                                                                      452)
@@ -491,7 +491,7 @@ abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Küh
 6568a9b88 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-20 05:56:06 +0000 491)      * that is executed in process().
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 492)      * @param fileSetCheck the additional FileSetCheck
 abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-19 20:21:46 +0000 493)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 494)     public void addFileSetCheck(FileSetCheck fileSetCheck) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 494)     public void addFileSetCheck(FileSetCheck fileSetCheck) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 495)         fileSetCheck.setMessageDispatcher(this);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 496)         fileSetChecks.add(fileSetCheck);
 abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-19 20:21:46 +0000 497)     }
@@ -508,12 +508,12 @@ c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Gile
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 508)      * Adds a filter to the end of the audit event filter chain.
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 509)      * @param filter the additional filter
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 510)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 511)     public void addFilter(Filter filter) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 511)     public void addFilter(Filter filter) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 512)         filters.addFilter(filter);
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 513)     }
                                                                                                                      514)
 8c8fee743 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-11-09 05:30:14 +0000 515)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 516)     public final void addListener(AuditListener listener) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 516)     public final void addListener(AuditListener listener) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 517)         listeners.add(listener);
 0e3fe5643 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2001-08-30 16:13:24 +0000 518)     }
                                                                                                                      519)
@@ -523,7 +523,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 523)      * @param extensions the set of file extensions. A missing
 a1128cd74 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-31 17:43:28 +0000 524)      *     initial '.' character of an extension is automatically added.
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 525)      */
-c0446a825 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-04-30 00:21:14 +0000 526)     public final void setFileExtensions(String... extensions) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 526)     public final void setFileExtensions(String... extensions) {
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 527)         if (extensions == null) {
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 528)             fileExtensions = null;
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 529)         }
@@ -546,7 +546,7 @@ cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ilja Dubi
 88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-16 06:26:46 +0000 546)      *
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 547)      * @param moduleFactory the factory for creating FileSetChecks
 88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-16 06:26:46 +0000 548)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 549)     public void setModuleFactory(ModuleFactory moduleFactory) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 549)     public void setModuleFactory(ModuleFactory moduleFactory) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 550)         this.moduleFactory = moduleFactory;
 88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-16 06:26:46 +0000 551)     }
                                                                                                                      552)
@@ -554,7 +554,7 @@ cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali 
 49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 554)      * Sets locale country.
 cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 555)      * @param localeCountry the country to report messages
 cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 556)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 557)     public void setLocaleCountry(String localeCountry) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 557)     public void setLocaleCountry(String localeCountry) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 558)         this.localeCountry = localeCountry;
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 559)     }
                                                                                                                      560)
@@ -562,7 +562,7 @@ cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali 
 49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 562)      * Sets locale language.
 cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 563)      * @param localeLanguage the language to report messages
 cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 564)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 565)     public void setLocaleLanguage(String localeLanguage) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 565)     public void setLocaleLanguage(String localeLanguage) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 566)         this.localeLanguage = localeLanguage;
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 567)     }
                                                                                                                      568)
@@ -573,7 +573,7 @@ d216ec752 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Küh
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 573)      * @param severity  The new severity level
 d216ec752 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-03-26 19:52:30 +0000 574)      * @see SeverityLevel
 d216ec752 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-03-26 19:52:30 +0000 575)      */
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 576)     public final void setSeverity(String severity) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 576)     public final void setSeverity(String severity) {
 327c0bc84 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2018-01-04 01:30:24 +0000 577)         this.severity = SeverityLevel.getInstance(severity);
 d216ec752 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-03-26 19:52:30 +0000 578)     }
                                                                                                                      579)
@@ -589,7 +589,7 @@ e1a27939a src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Iva
 e1a27939a src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov        2015-05-15 17:59:13 +0000 589)     }
                                                                                                                      590)
 8c8fee743 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-11-09 05:30:14 +0000 591)     @Override
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 592)     public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 592)     public final void setModuleClassLoader(ClassLoader moduleClassLoader) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 593)         this.moduleClassLoader = moduleClassLoader;
 fe9057366 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-04-08 01:35:17 +0000 594)     }
                                                                                                                      595)
@@ -599,7 +599,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 599)      * @throws UnsupportedEncodingException if charset is unsupported.
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 600)      */
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 601)     public void setCharset(String charset)
-2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 602)             throws UnsupportedEncodingException {
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 602)             throws UnsupportedEncodingException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 603)         if (!Charset.isSupported(charset)) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 604)             final String message = "unsupported charset: '" + charset + "'";
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 605)             throw new UnsupportedEncodingException(message);

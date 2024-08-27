@@ -1253,6 +1253,8 @@ public class FileTrackerImpl extends BaseTracker {
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 							if (!leftMethod.equalDocuments(rightMethod))
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 							startMethodChangeHistory.get().connectRelatedNodes();
 							startMethodChangeHistory.elements.remove(currentMethod);
 							startMethodChangeHistory.elements.add(leftMethod);
@@ -1309,6 +1311,8 @@ public class FileTrackerImpl extends BaseTracker {
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 						if (!leftMethod.equalDocuments(rightMethod))
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 						startMethodChangeHistory.get().connectRelatedNodes();
 						startMethodChangeHistory.setCurrent(leftMethod);
 						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
@@ -1322,8 +1326,9 @@ public class FileTrackerImpl extends BaseTracker {
 
 	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method rightMethod, Method leftMethod) {
 		if (leftMethod.signatureLines() != rightMethod.signatureLines()) {
-			//startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
-			//startMethodChangeHistory.get().connectRelatedNodes();
+			startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
+			startMethodChangeHistory.processChange(leftMethod, rightMethod);
+			startMethodChangeHistory.get().connectRelatedNodes();
 		}
 	}
 

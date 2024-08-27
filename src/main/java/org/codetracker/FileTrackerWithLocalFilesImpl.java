@@ -1232,6 +1232,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 						if (leftMethod != null) {
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 							continue;
 						}
 						//CHANGE BODY OR DOCUMENT
@@ -1259,6 +1260,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 							if (!leftMethod.equalDocuments(rightMethod))
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 							startMethodChangeHistory.get().connectRelatedNodes();
 							startMethodChangeHistory.elements.remove(currentMethod);
 							startMethodChangeHistory.elements.add(leftMethod);
@@ -1286,6 +1289,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 					if (leftMethod != null) {
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 						startMethodChangeHistory.setCurrent(leftMethod);
 						continue;
 					}
@@ -1314,6 +1318,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 						if (!leftMethod.equalDocuments(rightMethod))
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 						startMethodChangeHistory.get().connectRelatedNodes();
 						startMethodChangeHistory.setCurrent(leftMethod);
 						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
@@ -1323,6 +1329,14 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			}
 		}
 		return notFoundMethods;
+	}
+
+	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method rightMethod, Method leftMethod) {
+		if (leftMethod.signatureLines() != rightMethod.signatureLines()) {
+			startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
+			startMethodChangeHistory.processChange(leftMethod, rightMethod);
+			startMethodChangeHistory.get().connectRelatedNodes();
+		}
 	}
 
 	private void checkIfJavadocChanged(Version currentVersion, Version parentVersion, Method startMethod,
