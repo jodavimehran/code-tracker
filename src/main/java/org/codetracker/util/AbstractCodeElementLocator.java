@@ -284,7 +284,7 @@ public abstract class AbstractCodeElementLocator {
 						return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
 					}
 					if (ifBranch.getLocationInfo().getEndLine() == lineNumber - 1 &&
-							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+							(elseBranch.getLocationInfo().getStartLine() == lineNumber || elseBranch.getLocationInfo().getStartLine() == lineNumber + 1) &&
 							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
 						return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
 					}
