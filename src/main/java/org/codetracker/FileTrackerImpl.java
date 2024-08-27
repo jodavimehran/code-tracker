@@ -385,7 +385,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Method startMethod = (Method)startElement;
 					MethodTrackerChangeHistory startMethodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(startMethod);
 					startMethod.checkClosingBracket(lineNumber);
-					HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod);
+					HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod, lineNumber);
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else if (startElement instanceof Block) {
@@ -1225,6 +1225,7 @@ public class FileTrackerImpl extends BaseTracker {
 						Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 						if (leftMethod != null) {
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 							continue;
 						}
 						//CHANGE BODY OR DOCUMENT
@@ -1279,6 +1280,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 					if (leftMethod != null) {
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
 						startMethodChangeHistory.setCurrent(leftMethod);
 						continue;
 					}
@@ -1316,6 +1318,13 @@ public class FileTrackerImpl extends BaseTracker {
 			}
 		}
 		return notFoundMethods;
+	}
+
+	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method rightMethod, Method leftMethod) {
+		if (leftMethod.signatureLines() != rightMethod.signatureLines()) {
+			//startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
+			//startMethodChangeHistory.get().connectRelatedNodes();
+		}
 	}
 
 	private void checkIfJavadocChanged(Version currentVersion, Version parentVersion, Method startMethod,

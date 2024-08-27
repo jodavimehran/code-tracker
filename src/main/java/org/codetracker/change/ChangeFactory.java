@@ -336,6 +336,10 @@ public final class ChangeFactory {
                 }
                 break;
             }
+            case SIGNATURE_FORMAT_CHANGE: {
+            	change = new MethodSignatureFormatChange();
+            	break;
+            }
             default:
                 throw new RuntimeException("Something is wrong!!!!!!!");
         }

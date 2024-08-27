@@ -50,15 +50,36 @@ public class Method extends BaseCodeElement {
         return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
+    public int signatureLines() {
+    	if (umlOperation.getBody() != null && umlOperation instanceof UMLOperation) {
+    		int bodyStartLine = umlOperation.getBody().getCompositeStatement().getLocationInfo().getStartLine();
+    		int methodSignatureStartLine = methodSignatureStartLine();
+    		if (methodSignatureStartLine != -1)
+    			return bodyStartLine - methodSignatureStartLine + 1;
+    	}
+    	return 1;
+    }
+
+	public int methodSignatureStartLine() {
+		int methodSignatureStartLine = -1;
+		if (umlOperation instanceof UMLOperation) {
+			UMLOperation method = (UMLOperation) umlOperation;
+			if (method.getModifiers().size() > 0)
+				methodSignatureStartLine = method.getModifiers().get(0).getLocationInfo().getStartLine();
+			else if (method.getReturnParameter() != null)
+				methodSignatureStartLine = method.getReturnParameter().getType().getLocationInfo().getStartLine();
+			else if (method.getParameterTypeList().size() > 0)
+				methodSignatureStartLine = method.getParameterTypeList().get(0).getLocationInfo().getStartLine();
+			else if (method.getThrownExceptionTypes().size() > 0)
+				methodSignatureStartLine = method.getThrownExceptionTypes().get(0).getLocationInfo().getStartLine();
+		}
+		return methodSignatureStartLine;
+	}
+
     public boolean isMultiLine() {
     	if (umlOperation.getBody() != null && umlOperation instanceof UMLOperation) {
     		int bodyStartLine = umlOperation.getBody().getCompositeStatement().getLocationInfo().getStartLine();
-    		UMLOperation method = (UMLOperation) umlOperation;
-    		int methodSignatureStartLine = -1;
-    		if (method.getReturnParameter() != null)
-    			methodSignatureStartLine = method.getReturnParameter().getType().getLocationInfo().getStartLine();
-    		else if (umlOperation.getParameterTypeList().size() > 0)
-    			methodSignatureStartLine = method.getParameterTypeList().get(0).getLocationInfo().getStartLine();
+    		int methodSignatureStartLine = methodSignatureStartLine();
     		if (methodSignatureStartLine != -1)
     			return bodyStartLine > methodSignatureStartLine;
     	}

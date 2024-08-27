@@ -393,7 +393,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				Method startMethod = (Method)startElement;
 				MethodTrackerChangeHistory startMethodChangeHistory = (MethodTrackerChangeHistory) programElementMap.get(startMethod);
 				startMethod.checkClosingBracket(lineNumber);
-				HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod);
+				HistoryInfo<Method> historyInfo = startMethodChangeHistory.blameReturn(startMethod, lineNumber);
 				blameInfo.put(lineNumber, historyInfo);
 			}
 			else if (startElement instanceof Block) {

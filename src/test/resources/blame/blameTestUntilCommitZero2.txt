@@ -360,14 +360,14 @@ a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 a4b509006 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-09-26 09:57:14 +0000 360)   }
                                                                                                                                361)
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 362)   @Override
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 363)   public Collection<ClassObject> compileJavaCode(List<String> options,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 364)                                                  Collection<File> platformCp,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 365)                                                  Collection<File> classpath,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 363)   public Collection<ClassObject> compileJavaCode(List<String> options,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 364)                                                  Collection<File> platformCp,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 365)                                                  Collection<File> classpath,
 53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 366)                                                  Collection<File> upgradeModulePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 367)                                                  Collection<File> modulePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 368)                                                  Collection<File> sourcePath,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 369)                                                  Collection<File> files,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 370)                                                  File outputDir) throws IOException, CompilationException {
+d683904c6 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-08-10 15:35:12 +0000 367)                                                  Collection<File> modulePath,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 368)                                                  Collection<File> sourcePath,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 369)                                                  Collection<File> files,
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 370)                                                  File outputDir) throws IOException, CompilationException {
                                                                                                                                371)
 4cacde00f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2016-10-19 19:23:17 +0000 372)     final Pair<Sdk, JavaSdkVersion> runtime = BuildManager.getJavacRuntimeSdk(myProject);
                                                                                                                                373)

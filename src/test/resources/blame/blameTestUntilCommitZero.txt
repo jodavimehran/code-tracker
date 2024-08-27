@@ -380,7 +380,7 @@ eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 515deaf7e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-29 22:12:53 +0000 380)  		this.reader = reader;
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 381)  		if (reader instanceof ObjectReuseAsIs)
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 382)  			reuseSupport = ((ObjectReuseAsIs) reader);
-302596cc6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2018-02-12 21:59:42 +0000 383)  		else
+ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 383)  		else
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 384)  			reuseSupport = null;
                                                                                                                                            385)
 1a06179ea org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 19:13:48 +0000 386)  		deltaBaseAsOffset = config.isDeltaBaseAsOffset();
@@ -749,7 +749,7 @@ a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 749)  	 *             when some I/O problem occur during reading objects.
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 750)  	 */
 4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 751)  	public void preparePack(@NonNull Iterator<RevObject> objectsSource)
-4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 752)  			throws IOException {
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 752)  			throws IOException {
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 753)  		while (objectsSource.hasNext()) {
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 754)  			addObject(objectsSource.next());
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 755)  		}
@@ -780,7 +780,7 @@ a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 780)  	 * @throws java.io.IOException
 74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 781)  	 *             when some I/O problem occur during reading objects.
 74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 782)  	 */
-4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 783)  	public void preparePack(ProgressMonitor countingMonitor,
+74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 783)  	public void preparePack(ProgressMonitor countingMonitor,
 4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 784)  			@NonNull Set<? extends ObjectId> want,
 4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 785)  			@NonNull Set<? extends ObjectId> have) throws IOException {
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 786)  		preparePack(countingMonitor, want, have, NONE, NONE);
@@ -900,12 +900,12 @@ c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 900)  	 * @throws java.io.IOException
 74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 901)  	 *             when some I/O problem occur during reading objects.
 74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 902)  	 */
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 903)  	public void preparePack(ProgressMonitor countingMonitor,
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 904)  			@NonNull ObjectWalk walk,
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 905)  			@NonNull Set<? extends ObjectId> interestingObjects,
+74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 903)  	public void preparePack(ProgressMonitor countingMonitor,
+4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 904)  			@NonNull ObjectWalk walk,
+4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 905)  			@NonNull Set<? extends ObjectId> interestingObjects,
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 906)  			@NonNull Set<? extends ObjectId> uninterestingObjects,
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 907)  			@NonNull Set<? extends ObjectId> noBitmaps)
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 908)  			throws IOException {
+74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 908)  			throws IOException {
 6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 18:47:28 +0000 909)  		if (countingMonitor == null)
 6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 18:47:28 +0000 910)  			countingMonitor = NullProgressMonitor.INSTANCE;
 9952223e0 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Matt Fischer              2011-08-21 21:04:23 +0000 911)  		if (shallowPack && !(walk instanceof DepthWalk.ObjectWalk))
@@ -1014,7 +1014,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1014) 	 *             the index data could not be written to the supplied stream.
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1015) 	 */
 6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 1016) 	public void writeBitmapIndex(OutputStream bitmapIndexStream)
-6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 1017) 			throws IOException {
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1017) 			throws IOException {
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1018) 		if (writeBitmaps == null)
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1019) 			throw new IOException(JGitText.get().bitmapsMustBePrepared);
                                                                                                                                            1020)
@@ -1042,7 +1042,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1042) 		return sortedByName;
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1043) 	}
                                                                                                                                            1044)
-1421106d7 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1045) 	private void beginPhase(PackingPhase phase, ProgressMonitor monitor,
+16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 18:27:45 +0000 1045) 	private void beginPhase(PackingPhase phase, ProgressMonitor monitor,
 1421106d7 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1046) 			long cnt) {
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 18:27:45 +0000 1047) 		state.phase = phase;
 16b8ebf2d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 18:27:45 +0000 1048) 		String task;
@@ -1366,7 +1366,7 @@ f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:41:27 +0000 1366) 				long sz = sizeQueue.getSize();
 93a27ce72 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-04 18:25:57 +0000 1367) 				if (DeltaIndex.BLKSZ < sz && sz < limit)
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:41:27 +0000 1368) 					otp.setWeight((int) sz);
-dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1369) 				else
+f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:41:27 +0000 1369) 				else
 594d4ceb1 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-04 17:56:42 +0000 1370) 					otp.setDoNotDelta(); // too small, or too big
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:41:27 +0000 1371) 				monitor.update(1);
 f048af3fd org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:41:27 +0000 1372) 			}
@@ -1461,7 +1461,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:17:30 +0000 1461) 			threads = Runtime.getRuntime().availableProcessors();
 5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1462) 		if (threads <= 1 || cnt <= config.getDeltaSearchWindowSize())
 5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1463) 			singleThreadDeltaSearch(monitor, list, cnt);
-74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:17:30 +0000 1464) 		else
+5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1464) 		else
 5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1465) 			parallelDeltaSearch(monitor, list, cnt, threads);
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1466) 	}
                                                                                                                                            1467)
@@ -1566,8 +1566,8 @@ bdf535de4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1566) 		endPhase(monitor);
 5d8a9f6f3 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-17 18:43:01 +0000 1567) 	}
                                                                                                                                            1568)
-d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 18:34:50 +0000 1569) 	private static void runTasks(ExecutorService pool,
-d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 18:34:50 +0000 1570) 			ThreadSafeProgressMonitor pm,
+3760e4319 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn Pearce              2013-03-14 23:36:57 +0000 1569) 	private static void runTasks(ExecutorService pool,
+3760e4319 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn Pearce              2013-03-14 23:36:57 +0000 1570) 			ThreadSafeProgressMonitor pm,
 d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 18:34:50 +0000 1571) 			DeltaTask.Block tb, List<Throwable> errors) throws IOException {
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 21:47:23 +0000 1572) 		List<Future<?>> futures = new ArrayList<>(tb.tasks.size());
 d0a533762 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 18:34:50 +0000 1573) 		for (DeltaTask task : tb.tasks)
@@ -1674,14 +1674,14 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1674) 		//
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1675) 		if (otp.isDeltaRepresentation())
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1676) 			writeDeltaObjectDeflate(out, otp);
-8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1677) 		else
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1677) 		else
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1678) 			writeWholeObjectDeflate(out, otp);
 6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 18:47:28 +0000 1679) 		out.endObject();
 eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 19:58:50 +0000 1680) 		otp.setCRC((int) crc32.getValue());
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1681) 	}
                                                                                                                                            1682)
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1683) 	private void writeBase(PackOutputStream out, ObjectToPack base)
-60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1684) 			throws IOException {
+f288c27e4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 18:47:28 +0000 1684) 			throws IOException {
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1685) 		if (base != null && !base.isWritten() && !base.isEdge())
 60e51251d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-11-18 23:55:52 +0000 1686) 			writeObjectImpl(out, base);
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1687) 	}
@@ -1734,7 +1734,7 @@ bb1956e64 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1734) 	}
                                                                                                                                            1735)
 6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 1736) 	private TemporaryBuffer.Heap delta(ObjectToPack otp)
-6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 1737) 			throws IOException {
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1737) 			throws IOException {
 1a06179ea org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 19:13:48 +0000 1738) 		DeltaIndex index = new DeltaIndex(buffer(otp.getDeltaBaseId()));
 1a06179ea org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 19:13:48 +0000 1739) 		byte[] res = buffer(otp);
                                                                                                                                            1740)
@@ -1772,8 +1772,8 @@ f288c27e4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1772) 		out.write(packcsum);
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1773) 	}
                                                                                                                                            1774)
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1775) 	private void findObjectsToPack(@NonNull ProgressMonitor countingMonitor,
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1776) 			@NonNull ObjectWalk walker, @NonNull Set<? extends ObjectId> want,
+4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 1775) 	private void findObjectsToPack(@NonNull ProgressMonitor countingMonitor,
+4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 1776) 			@NonNull ObjectWalk walker, @NonNull Set<? extends ObjectId> want,
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1777) 			@NonNull Set<? extends ObjectId> have,
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 1778) 			@NonNull Set<? extends ObjectId> noBitmaps) throws IOException {
 c8c4524b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-13 21:43:11 +0000 1779) 		final long countingStart = System.currentTimeMillis();
@@ -1992,11 +1992,11 @@ c8c4524b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dd22bc831 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-03 02:49:55 +0000 1992) 		stats.bitmapIndexMisses = -1;
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1993) 	}
                                                                                                                                            1994)
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1995) 	private void findObjectsToPackUsingBitmaps(
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1995) 	private void findObjectsToPackUsingBitmaps(
 ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1996) 			BitmapWalker bitmapWalker, Set<? extends ObjectId> want,
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1997) 			Set<? extends ObjectId> have)
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1998) 			throws MissingObjectException, IncorrectObjectTypeException,
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1999) 			IOException {
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1997) 			Set<? extends ObjectId> have)
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1998) 			throws MissingObjectException, IncorrectObjectTypeException,
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1999) 			IOException {
 9fd1325ec org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2014-09-26 13:45:46 +0000 2000) 		BitmapBuilder haveBitmap = bitmapWalker.findObjects(have, null, true);
 9fd1325ec org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2014-09-26 13:45:46 +0000 2001) 		BitmapBuilder wantBitmap = bitmapWalker.findObjects(want, haveBitmap,
 9fd1325ec org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2014-09-26 13:45:46 +0000 2002) 				false);
@@ -2051,7 +2051,7 @@ f67e5602a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 2051) 	 *             the object is an unsupported type.
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 2052) 	 */
 6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 2053) 	public void addObject(RevObject object)
-6d370d837 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Han-Wen Nienhuys          2018-05-15 21:05:02 +0000 2054) 			throws IncorrectObjectTypeException {
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 2054) 			throws IncorrectObjectTypeException {
 a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-21 20:59:26 +0000 2055) 		if (!exclude(object))
 065a0a812 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-01-28 15:20:26 +0000 2056) 			addObject(object, 0);
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 2057) 	}
@@ -2074,7 +2074,7 @@ be7a135e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            2074)
 901e663a6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2018-03-19 23:28:03 +0000 2075) 	// Adds the given object as an object to be packed, first performing
 901e663a6 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2018-03-19 23:28:03 +0000 2076) 	// filtering on blobs at or exceeding a given size.
-32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2077) 	private void filterAndAddObject(@NonNull AnyObjectId src, int type,
+4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2077) 	private void filterAndAddObject(@NonNull AnyObjectId src, int type,
 32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2078) 			int pathHashCode, @NonNull Set<? extends AnyObjectId> want)
 32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2079) 			throws IOException {
                                                                                                                                            2080)

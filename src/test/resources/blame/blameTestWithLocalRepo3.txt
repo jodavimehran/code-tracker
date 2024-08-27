@@ -446,7 +446,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva           2017-07-14 22:13:49 +0000 446)      */
 f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2007-12-15 08:14:40 +0000 447)     @Override
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 448)     protected void setupChild(Configuration childConf)
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 449)             throws CheckstyleException {
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 449)             throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 450)         final String name = childConf.getName();
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-31 05:02:37 +0000 451)         final Object child;
                                                                                                                      452)
@@ -599,7 +599,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 599)      * @throws UnsupportedEncodingException if charset is unsupported.
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 600)      */
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 601)     public void setCharset(String charset)
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 602)             throws UnsupportedEncodingException {
+2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 602)             throws UnsupportedEncodingException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 603)         if (!Charset.isSupported(charset)) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 604)             final String message = "unsupported charset: '" + charset + "'";
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 605)             throw new UnsupportedEncodingException(message);

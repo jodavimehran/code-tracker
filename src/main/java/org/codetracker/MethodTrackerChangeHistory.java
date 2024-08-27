@@ -1,14 +1,20 @@
 package org.codetracker;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
@@ -20,6 +26,12 @@ import org.codetracker.change.method.MethodSignatureChange;
 import org.codetracker.element.Method;
 import org.codetracker.util.Util;
 import org.refactoringminer.api.Refactoring;
+
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.AbstractDelta;
+import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.InsertDelta;
+import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLClass;
@@ -445,6 +457,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 if (checkOperationDocumentationChanged(methodBefore.getUmlOperation(), methodAfter.getUmlOperation())) {
                     methodChangeHistory.addChange(methodBefore, methodAfter, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
                 }
+                processChange(methodBefore, methodAfter);
                 leftMethodSet.add(methodBefore);
                 return true;
             }
@@ -696,6 +709,82 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         return false;
     }
 
+    private Map<Pair<Method, Method>, List<Integer>> lineChangeMap = new LinkedHashMap<>();
+
+	public void processChange(Method methodBefore, Method methodAfter) {
+		if (methodBefore.isMultiLine() || methodAfter.isMultiLine()) {
+			try {
+				Pair<Method, Method> pair = Pair.of(methodBefore, methodAfter);
+				Method startMethod = getStart();
+				if (startMethod != null) {
+					List<String> start = IOUtils.readLines(new StringReader(((UMLOperation)startMethod.getUmlOperation()).getActualSignature()));
+					List<String> original = IOUtils.readLines(new StringReader(((UMLOperation)methodBefore.getUmlOperation()).getActualSignature()));
+					List<String> revised = IOUtils.readLines(new StringReader(((UMLOperation)methodAfter.getUmlOperation()).getActualSignature()));
+		
+					Patch<String> patch = DiffUtils.diff(original, revised);
+					List<AbstractDelta<String>> deltas = patch.getDeltas();
+					for (int i=0; i<deltas.size(); i++) {
+						AbstractDelta<String> delta = deltas.get(i);
+						Chunk<String> target = delta.getTarget();
+						List<String> affectedLines = new ArrayList<>(target.getLines());
+						boolean subListFound = false;
+						if (affectedLines.size() > 1 && !(delta instanceof InsertDelta)) {
+							int index = Collections.indexOfSubList(start, affectedLines);
+							if (index != -1) {
+								subListFound = true;
+								for (int j=0; j<affectedLines.size(); j++) {
+									int actualLine = startMethod.methodSignatureStartLine() + index + j;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+								}
+							}
+						}
+						if (!subListFound) {
+							for (String line : affectedLines) {
+								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								for (Integer index : matchingIndices) {
+									if (original.size() > index && revised.size() > index &&
+											original.get(index).equals(line) && revised.get(index).equals(line)) {
+										continue;
+									}
+									int actualLine = startMethod.methodSignatureStartLine() + index;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+									break;
+								}
+							}
+						}
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<startCommentLines.size(); i++) {
+			String element = startCommentLines.get(i).trim();
+			if(line.equals(element) || element.contains(line.trim())) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
+	}
+
 	public HistoryInfo<Method> blameReturn(Method startMethod) {
 		List<HistoryInfo<Method>> history = getHistory();
 		for (History.HistoryInfo<Method> historyInfo : history) {
@@ -707,6 +796,39 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 				}
 				else {
 					if ((change instanceof MethodSignatureChange && !(change instanceof MethodAnnotationChange)) || change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public HistoryInfo<Method> blameReturn(Method startMethod, int exactLineNumber) {
+		List<HistoryInfo<Method>> history = getHistory();
+		for (History.HistoryInfo<Method> historyInfo : history) {
+			Pair<Method, Method> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
+			boolean multiLine = startMethod.isMultiLine();
+			for (Change change : historyInfo.getChangeList()) {
+				if (startMethod.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if ((change instanceof MethodSignatureChange && !(change instanceof MethodAnnotationChange))) {
+						if (multiLine) {
+							if (lineChangeMap.containsKey(pair)) {
+								if (lineChangeMap.get(pair).contains(exactLineNumber)) {
+									return historyInfo;
+								}
+							}
+						}
+						else {
+							return historyInfo;
+						}
+					}
+					if (change instanceof Introduced) {
 						return historyInfo;
 					}
 				}

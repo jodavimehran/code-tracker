@@ -861,7 +861,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
 
 	public void processChange(Comment commentBefore, Comment commentAfter) {
 		commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.forComment(Change.Type.BODY_CHANGE));
-		if (commentBefore.isMultiLine() && commentAfter.isMultiLine()) {
+		if (commentBefore.isMultiLine() || commentAfter.isMultiLine()) {
 			try {
 				Pair<Comment, Comment> pair = Pair.of(commentBefore, commentAfter);
 				Comment startComment = getStart();

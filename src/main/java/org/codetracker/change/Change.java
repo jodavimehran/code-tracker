@@ -19,6 +19,7 @@ public interface Change {
         CONTAINER_CHANGE("container change"),
         MULTI_CHANGE("changed multiple times"),
         BODY_CHANGE("body change"),
+        SIGNATURE_FORMAT_CHANGE("signature format change"),
         CATCH_BLOCK_CHANGE("catch block change"),
         CATCH_BLOCK_ADDED("catch block added"),
         CATCH_BLOCK_REMOVED("catch block removed"),

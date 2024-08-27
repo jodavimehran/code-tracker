@@ -244,7 +244,7 @@ public class Block extends BaseCodeElement {
 						setElseBlockStart(true);
 					}
 					if (ifBranch.getLocationInfo().getEndLine() == lineNumber - 1 &&
-							elseBranch.getLocationInfo().getStartLine() == lineNumber &&
+							(elseBranch.getLocationInfo().getStartLine() == lineNumber || elseBranch.getLocationInfo().getStartLine() == lineNumber + 1) &&
 							!elseBranch.getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
 						setElseBlockStart(true);
 					}
