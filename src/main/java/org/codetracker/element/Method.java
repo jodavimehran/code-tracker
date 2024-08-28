@@ -236,6 +236,10 @@ public class Method extends BaseCodeElement {
 			if (!key.equals(CodeElementType.BLOCK)) {
 				return matches.get(key);
 			}
+			else if(matches.size() == 1 && matches.get(key).getComposite().getParent() != null &&
+					!matches.get(key).getComposite().getParent().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+				return matches.get(key);
+			}
 		}
 		return null;
 	}
