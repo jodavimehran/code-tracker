@@ -738,7 +738,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 										lineChangeMap.get(pair).add(actualLine);
 									}
 									else {
-										List list = new ArrayList<>();
+										List<Integer> list = new ArrayList<>();
 										list.add(actualLine);
 										lineChangeMap.put(pair, list);
 									}
@@ -758,7 +758,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 										lineChangeMap.get(pair).add(actualLine);
 									}
 									else {
-										List list = new ArrayList<>();
+										List<Integer> list = new ArrayList<>();
 										list.add(actualLine);
 										lineChangeMap.put(pair, list);
 									}

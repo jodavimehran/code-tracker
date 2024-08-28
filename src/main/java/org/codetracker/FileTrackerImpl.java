@@ -288,6 +288,7 @@ public class FileTrackerImpl extends BaseTracker {
 							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
 							startClassChangeHistory.get().connectRelatedNodes();
 						}
+						startClassChangeHistory.processChange(leftClass, rightClass);
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
@@ -402,7 +403,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Class clazz = (Class)startElement;
 					ClassTrackerChangeHistory classChangeHistory = (ClassTrackerChangeHistory) programElementMap.get(clazz);
 					clazz.checkClosingBracket(lineNumber);
-					HistoryInfo<Class> historyInfo = classChangeHistory.blameReturn(clazz);
+					HistoryInfo<Class> historyInfo = classChangeHistory.blameReturn(clazz, lineNumber);
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else if (startElement instanceof Comment) {
@@ -1069,6 +1070,27 @@ public class FileTrackerImpl extends BaseTracker {
 				startInnerClassChangeHistory.poll();
 				Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 				if (leftClass != null) {
+					UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+					UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+					if (leftSuperclass != null && rightSuperclass != null) {
+                		if (!leftSuperclass.equals(rightSuperclass)) {
+                			startInnerClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                			startInnerClassChangeHistory.get().connectRelatedNodes();
+                		}
+                	}
+					else if (leftSuperclass != null && rightSuperclass == null) {
+						startInnerClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+						startInnerClassChangeHistory.get().connectRelatedNodes();
+					}
+					else if (leftSuperclass == null && rightSuperclass != null) {
+						startInnerClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+						startInnerClassChangeHistory.get().connectRelatedNodes();
+					}
+					if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+						startInnerClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+						startInnerClassChangeHistory.get().connectRelatedNodes();
+					}
+					startInnerClassChangeHistory.processChange(leftClass, rightClass);
 					startInnerClassChangeHistory.setCurrent(leftClass);
 					startInnerClassChangeHistory.addFirst(leftClass);
 					foundInnerClasses.add(Pair.of(leftClass, rightClass));

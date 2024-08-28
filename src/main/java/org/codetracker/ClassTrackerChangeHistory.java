@@ -1,12 +1,19 @@
 package org.codetracker;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
@@ -19,6 +26,12 @@ import org.codetracker.change.clazz.ClassMove;
 import org.codetracker.element.Class;
 import org.codetracker.element.Package;
 import org.refactoringminer.api.Refactoring;
+
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.AbstractDelta;
+import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.InsertDelta;
+import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLClass;
@@ -203,6 +216,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
                     }
                     if (changeType2 != null)
                         classChangeHistory.addChange(classBefore, classAfter, ChangeFactory.forClass(changeType2).refactoring(refactoring));
+                    processChange(classBefore, classAfter);
                     leftClassSet.add(classBefore);
                 }
             }
@@ -244,6 +258,82 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
         return Collections.emptySet();
     }
 
+    private Map<Pair<Class, Class>, List<Integer>> lineChangeMap = new LinkedHashMap<>();
+
+	public void processChange(Class classBefore, Class classAfter) {
+		if (classBefore.isMultiLine() || classAfter.isMultiLine()) {
+			try {
+				Pair<Class, Class> pair = Pair.of(classBefore, classAfter);
+				Class startClass = getStart();
+				if (startClass != null) {
+					List<String> start = IOUtils.readLines(new StringReader(((UMLClass)startClass.getUmlClass()).getActualSignature()));
+					List<String> original = IOUtils.readLines(new StringReader(((UMLClass)classBefore.getUmlClass()).getActualSignature()));
+					List<String> revised = IOUtils.readLines(new StringReader(((UMLClass)classAfter.getUmlClass()).getActualSignature()));
+		
+					Patch<String> patch = DiffUtils.diff(original, revised);
+					List<AbstractDelta<String>> deltas = patch.getDeltas();
+					for (int i=0; i<deltas.size(); i++) {
+						AbstractDelta<String> delta = deltas.get(i);
+						Chunk<String> target = delta.getTarget();
+						List<String> affectedLines = new ArrayList<>(target.getLines());
+						boolean subListFound = false;
+						if (affectedLines.size() > 1 && !(delta instanceof InsertDelta)) {
+							int index = Collections.indexOfSubList(start, affectedLines);
+							if (index != -1) {
+								subListFound = true;
+								for (int j=0; j<affectedLines.size(); j++) {
+									int actualLine = startClass.classSignatureStartLine() + index + j;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+								}
+							}
+						}
+						if (!subListFound) {
+							for (String line : affectedLines) {
+								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								for (Integer index : matchingIndices) {
+									if (original.size() > index && revised.size() > index &&
+											original.get(index).equals(line) && revised.get(index).equals(line)) {
+										continue;
+									}
+									int actualLine = startClass.classSignatureStartLine() + index;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+									break;
+								}
+							}
+						}
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<startCommentLines.size(); i++) {
+			String element = startCommentLines.get(i).trim();
+			if(line.equals(element) || element.contains(line.trim())) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
+	}
+
 	public HistoryInfo<Class> blameReturn(Class startClass) {
 		List<HistoryInfo<Class>> history = getHistory();
 		for (History.HistoryInfo<Class> historyInfo : history) {
@@ -255,6 +345,39 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
 				}
 				else {
 					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange) && !(change instanceof ClassAnnotationChange)) {
+						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public HistoryInfo<Class> blameReturn(Class startClass, int exactLineNumber) {
+		List<HistoryInfo<Class>> history = getHistory();
+		for (History.HistoryInfo<Class> historyInfo : history) {
+			Pair<Class, Class> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
+			boolean multiLine = startClass.isMultiLine();
+			for (Change change : historyInfo.getChangeList()) {
+				if (startClass.isClosingCurlyBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (!(change instanceof ClassMove) && !(change instanceof ClassContainerChange) && !(change instanceof ClassAnnotationChange)) {
+						if (multiLine) {
+							if (lineChangeMap.containsKey(pair)) {
+								if (lineChangeMap.get(pair).contains(exactLineNumber)) {
+									return historyInfo;
+								}
+							}
+						}
+						else {
+							return historyInfo;
+						}
+					}
+					if (change instanceof Introduced) {
 						return historyInfo;
 					}
 				}

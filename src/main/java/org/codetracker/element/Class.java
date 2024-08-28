@@ -44,6 +44,27 @@ public class Class extends BaseCodeElement {
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
+	public int classSignatureStartLine() {
+		int classSignatureStartLine = -1;
+		if (umlClass instanceof UMLClass) {
+			UMLClass clazz = (UMLClass) umlClass;
+			if (clazz.getModifiers().size() > 0)
+				classSignatureStartLine = clazz.getModifiers().get(0).getLocationInfo().getStartLine();
+			else if (clazz.getTypeParameters().size() > 0)
+				classSignatureStartLine = clazz.getTypeParameters().get(0).getLocationInfo().getStartLine();
+			else if (clazz.getSuperclass() != null)
+				classSignatureStartLine = clazz.getSuperclass().getLocationInfo().getStartLine();
+		}
+		return classSignatureStartLine;
+	}
+
+    public boolean isMultiLine() {
+    	if (umlClass instanceof UMLClass && ((UMLClass)umlClass).getActualSignature() != null) {
+    		return ((UMLClass)umlClass).getActualSignature().contains("\n");
+    	}
+    	return false;
+    }
+
     public Package findPackage(Predicate<Package> equalOperator) {
     	if (umlClass instanceof UMLClass) {
         	Optional<UMLPackage> umlPackage = ((UMLClass) umlClass).getPackageDeclaration();
