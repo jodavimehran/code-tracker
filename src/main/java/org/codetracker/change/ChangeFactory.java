@@ -218,6 +218,12 @@ public final class ChangeFactory {
                 change = new ReplaceLoopWithPipeline(refactoring);
                 break;
             }
+            case REPLACE_CONDITIONAL_WITH_TERNARY: {
+                if (refactoring == null)
+                    throw new NullPointerException();
+                change = new ReplaceConditionalWithTernary(refactoring);
+                break;
+            }
             case EXPRESSION_CHANGE: {
                 change = new ExpressionChange();
                 break;

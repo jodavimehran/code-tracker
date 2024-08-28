@@ -18,6 +18,7 @@ import org.codetracker.change.Introduced;
 import org.codetracker.change.block.ElseBlockAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
+import org.codetracker.change.block.ReplaceConditionalWithTernary;
 import org.codetracker.change.block.ReplaceLoopWithPipeline;
 import org.codetracker.change.block.ReplacePipelineWithLoop;
 import org.codetracker.change.block.SplitBlock;
@@ -46,6 +47,7 @@ import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
+import gr.uom.java.xmi.diff.ReplaceConditionalWithTernaryRefactoring;
 import gr.uom.java.xmi.diff.ReplaceLoopWithPipelineRefactoring;
 import gr.uom.java.xmi.diff.ReplacePipelineWithLoopRefactoring;
 import gr.uom.java.xmi.diff.SplitConditionalRefactoring;
@@ -533,6 +535,21 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     }
                     break;
                 }
+                case REPLACE_CONDITIONAL_WITH_TERNARY: {
+                	ReplaceConditionalWithTernaryRefactoring replaceWithTernaryRefactoring = (ReplaceConditionalWithTernaryRefactoring) refactoring;
+                	AbstractCodeFragment ternaryConditional = replaceWithTernaryRefactoring.getTernaryConditional();
+                	if (ternaryConditional instanceof StatementObject) {
+                		Block addedBlockAfter = Block.of((StatementObject) ternaryConditional, replaceWithTernaryRefactoring.getOperationAfter(), currentVersion);
+                        if (equalOperator.test(addedBlockAfter)) {
+                        	if (replaceWithTernaryRefactoring.getOriginalConditional() instanceof CompositeStatementObject) {
+                        		blockBefore = Block.of((CompositeStatementObject) replaceWithTernaryRefactoring.getOriginalConditional(), replaceWithTernaryRefactoring.getOperationBefore(), parentVersion);
+                        	}
+                        	blockAfter = addedBlockAfter;
+                            changeType = Change.Type.REPLACE_CONDITIONAL_WITH_TERNARY;
+                        }
+                	}
+                	break;
+                }
                 /*case MERGE_CONDITIONAL: {
                     MergeConditionalRefactoring mergeConditionalRefactoring = (MergeConditionalRefactoring) refactoring;
                     if (mergeConditionalRefactoring.getNewConditional() instanceof CompositeStatementObject) {
@@ -825,7 +842,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 				}
 				else {
 					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
-							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop) {
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary) {
 						return historyInfo;
 					}
 					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
