@@ -15,7 +15,7 @@ public class LineNumberToCommitIDRecordManager extends BenchmarkRecordManager<In
         for (Map.Entry<BlamerFactory, List<LineBlameResult>> blamerFactoryListEntry : blameResults.entrySet()) {
             for (LineBlameResult result : blamerFactoryListEntry.getValue()) {
                 if (result != null) {
-                    int lineNumber = result.getLineNumber();
+                    int lineNumber = result.getOriginalLineNumber();
                     this.register(blamerFactoryListEntry.getKey(), lineNumber, result.getShortCommitId());
                 }
             }
