@@ -836,7 +836,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 					}
 				}
 				else if (startBlock.isClosingCurlyBracket()) {
-					if (change instanceof Introduced) {
+					if (change instanceof Introduced || change instanceof ReplacePipelineWithLoop) {
 						return historyInfo;
 					}
 				}
