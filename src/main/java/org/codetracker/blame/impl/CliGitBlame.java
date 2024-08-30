@@ -23,7 +23,7 @@ public class CliGitBlame implements IBlame {
 
         try {
             // Construct the git blame command with the commit and file path
-            String[] command = {"git", "blame", "-w", "--follow", commitId, "--", filePath};
+            String[] command = {"git", "blame", "-n", "-w", "--follow", commitId, "--", filePath};
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.directory(repository.getDirectory());
 
@@ -34,14 +34,23 @@ public class CliGitBlame implements IBlame {
             String line;
             int lineNumber = 1;
             while ((line = reader.readLine()) != null) {
-                // Example output line (simplified for parsing):
-                // CommitID (<Author> <Date>) <FilePath> <Code>
-                // e.g., abc12345 (John Doe 2022-07-01 12:34:56 +0000) <old/file/path> line of code
 
                 // Extract commitId, committer, commitDate, filePath, and beforeFilePath from the blame line
                 String[] parts = line.split("\\s+", 3);
                 String blameCommitId = parts[0].trim();  // Extract the commit ID
                 String prevFilePath = parts[1].trim();
+
+                // Find the index of the first space to separate the number
+                int firstSpaceIndex = parts[2].indexOf(" ");
+                int resultLineNumber = -1;
+                try {
+                    resultLineNumber = Integer.parseInt(parts[2].substring(0, firstSpaceIndex));
+                }
+                catch (NumberFormatException e) {
+
+                }
+
+                parts[2] = parts[2].substring(firstSpaceIndex + 1);
 
                 String[] meta = parts[2].split("\\s{2,}"); // Split on at least 2 spaces
                 String commiter = "";
@@ -68,7 +77,7 @@ public class CliGitBlame implements IBlame {
                     Instant instant = offsetDateTime.toInstant();
                     commitTime = instant.toEpochMilli() / 1000;
                 }
-                LineBlameResult result = new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, commitTime, lineNumber);
+                LineBlameResult result = new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, commitTime, resultLineNumber, lineNumber);
                 blameResults.add(result);
 
 
@@ -81,7 +90,7 @@ public class CliGitBlame implements IBlame {
             }
         } finally {
             if (process != null) {
-                process.destroy();
+                    process.destroy();
             }
         }
 
@@ -94,11 +103,4 @@ public class CliGitBlame implements IBlame {
         // This method is optional and can be implemented based on the requirements
         throw new UnsupportedOperationException("Not implemented");
     }
-
-    private String extractOriginalFilePath(String metadata) {
-        // Implement logic to parse and extract the original file path if the file was renamed
-        // This logic will vary based on how the metadata is structured in your git blame output
-        return metadata.contains("<") && metadata.contains(">") ? metadata.substring(metadata.indexOf("<") + 1, metadata.indexOf(">")) : null;
-    }
-
 }

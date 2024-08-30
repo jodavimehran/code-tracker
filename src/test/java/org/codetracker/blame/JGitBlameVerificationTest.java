@@ -21,8 +21,9 @@ public class JGitBlameVerificationTest {
         String path = "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java";
         String jgit = getBlameOutput(url, path, new JGitBlame(), REPOS_PATH, gitService);
         String cgit = getBlameOutput(url, path, new CliGitBlame(), REPOS_PATH, gitService);
+
         Files.write(Path.of("jgit.txt"), jgit.getBytes());
-//        Files.write(Path.of("cgit.txt"), cgit.getBytes());
+        Files.write(Path.of("cgit.txt"), cgit.getBytes());
 
     }
 
