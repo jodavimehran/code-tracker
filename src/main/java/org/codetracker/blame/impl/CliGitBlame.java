@@ -15,7 +15,14 @@ import java.util.regex.Pattern;
 
 /* Created by pourya on 2024-08-22*/
 public class CliGitBlame implements IBlame {
+    private final boolean ignore_whitespace;
 
+    public CliGitBlame() {
+        this(false);
+    }
+    public CliGitBlame(boolean ignore_whitespace) {
+        this.ignore_whitespace = ignore_whitespace;
+    }
     @Override
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
         List<LineBlameResult> blameResults = new ArrayList<>();
@@ -23,7 +30,12 @@ public class CliGitBlame implements IBlame {
 
         try {
             // Construct the git blame command with the commit and file path
-            String[] command = {"git", "blame", "-n", "-w", "--follow", commitId, "--", filePath};
+            String[] command;
+            if (ignore_whitespace) {
+                command = new String[]{"git", "blame", "-w", commitId, "--", filePath};
+            } else {
+                command = new String[]{"git", "blame", commitId, "--", filePath};
+            }
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.directory(repository.getDirectory());
 
