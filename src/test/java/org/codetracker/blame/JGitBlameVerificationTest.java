@@ -9,23 +9,23 @@ import org.refactoringminer.util.GitServiceImpl;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import static org.codetracker.blame.CodeTrackerBlameTest.assertEqualWithFile;
 import static org.codetracker.blame.util.Utils.*;
 
 /* Created by pourya on 2024-08-22*/
 public class JGitBlameVerificationTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
+
     @Test
-    public void testGitBlame() throws Exception {
-        String url = "https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6";
-        String path = "javaparser-symbol-solver-core/src/main/java/com/github/javaparser/symbolsolver/javaparsermodel/contexts/MethodCallExprContext.java";
-        String jgit = getBlameOutput(url, path, new JGitBlame(), REPOS_PATH, gitService);
-        String cgit = getBlameOutput(url, path, new CliGitBlame(), REPOS_PATH, gitService);
-
-        Files.write(Path.of("jgit.txt"), jgit.getBytes());
-        Files.write(Path.of("cgit.txt"), cgit.getBytes());
-
+    public void testCliGitBlame() throws Exception {
+        String url = "https://github.com/hibernate/hibernate-orm/commit/9e063ffa2";
+        String path = "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java";
+        String iw = getBlameOutput(url, path, new CliGitBlame(true), REPOS_PATH, gitService);
+        String def = getBlameOutput(url, path, new CliGitBlame(false), REPOS_PATH, gitService);
+        String expected_iw = System.getProperty("user.dir") + "/src/test/resources/blame/gitcli/9e063ffa2_cgit_iw.txt";
+        String expected_def = System.getProperty("user.dir") + "/src/test/resources/blame/gitcli/9e063ffa2_cgit_def.txt";
+        assertEqualWithFile(expected_iw,iw);
+        assertEqualWithFile(expected_def,def);
     }
-
-
 }
