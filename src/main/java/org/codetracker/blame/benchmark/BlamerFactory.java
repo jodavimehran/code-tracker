@@ -10,7 +10,7 @@ public enum BlamerFactory {
 
     JGitBlameWithFollow(new JGitBlame()),
     CliGitBlameIgnoringWhiteSpace(new CliGitBlame(true)),
-    CliGitBlameDefault(new CliGitBlame()),
+    CliGitBlameDefault(new CliGitBlame(false)),
     CodeTrackerBlame(new CodeTrackerBlame()),
     FileTrackerBlame(new FileTrackerBlame());
     private final IBlame blamer;

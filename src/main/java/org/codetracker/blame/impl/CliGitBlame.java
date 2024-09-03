@@ -16,10 +16,6 @@ import java.util.regex.Pattern;
 /* Created by pourya on 2024-08-22*/
 public class CliGitBlame implements IBlame {
     private final boolean ignore_whitespace;
-
-    public CliGitBlame() {
-        this(false);
-    }
     public CliGitBlame(boolean ignore_whitespace) {
         this.ignore_whitespace = ignore_whitespace;
     }
@@ -29,12 +25,11 @@ public class CliGitBlame implements IBlame {
         Process process = null;
 
         try {
-            // Construct the git blame command with the commit and file path
             String[] command;
             if (ignore_whitespace) {
-                command = new String[]{"git", "blame", "-w", commitId, "--", filePath};
+                command = new String[]{"git", "blame", "-n", "-w", "--follow", commitId, "--", filePath};
             } else {
-                command = new String[]{"git", "blame", commitId, "--", filePath};
+                command = new String[]{"git", "blame", "-n", "--follow", commitId, "--", filePath};
             }
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.directory(repository.getDirectory());
@@ -46,58 +41,9 @@ public class CliGitBlame implements IBlame {
             String line;
             int lineNumber = 1;
             while ((line = reader.readLine()) != null) {
-                if (line.charAt(0) == '^') {
-                    line = line.substring(1);
-                }
-                // Extract commitId, committer, commitDate, filePath, and beforeFilePath from the blame line
-                String[] parts = line.split("\\s+", 3);
-                String blameCommitId = parts[0].trim();  // Extract the commit ID
-                String prevFilePath = parts[1].trim();
-
-                // Find the index of the first space to separate the number
-                int firstSpaceIndex = parts[2].indexOf(" ");
-                int resultLineNumber = -1;
-                try {
-                    resultLineNumber = Integer.parseInt(parts[2].substring(0, firstSpaceIndex));
-                }
-                catch (NumberFormatException e) {
-
-                }
-
-                parts[2] = parts[2].substring(firstSpaceIndex + 1);
-
-                String[] meta = parts[2].split("\\s{2,}"); // Split on at least 2 spaces
-                String commiter = "";
-                long commitTime = 0;
-
-                // Regex to capture the timestamp
-                Pattern pattern = Pattern.compile("(.*?)(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4})");
-                Matcher matcher = pattern.matcher(parts[2]);
-
-                if (matcher.find()) {
-                    // Extract the committer and timestamp
-                    commiter = matcher.group(1).trim(); // Everything before the timestamp
-                    commiter = commiter.substring(1); // Remove the parentheses
-                    String timestamp = matcher.group(2).trim(); // Timestamp
-
-
-                    // Define the formatter for the timestamp
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
-
-                    // Parse the timestamp string
-                    OffsetDateTime offsetDateTime = OffsetDateTime.parse(timestamp, formatter);
-
-                    // Convert to Instant
-                    Instant instant = offsetDateTime.toInstant();
-                    commitTime = instant.toEpochMilli() / 1000;
-                }
-                LineBlameResult result = new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, commitTime, resultLineNumber, lineNumber);
-                blameResults.add(result);
-
-
+                blameResults.add(getLineBlameResult(line, filePath, lineNumber));
                 lineNumber++;
             }
-
             int exitCode = process.waitFor();
             if (exitCode != 0) {
                 throw new Exception("Error executing git blame command");
@@ -109,6 +55,56 @@ public class CliGitBlame implements IBlame {
         }
 
         return blameResults;
+    }
+
+    private static LineBlameResult getLineBlameResult(String line, String filePath, int lineNumber) {
+        if (line.charAt(0) == '^') {
+            line = line.substring(1);
+        }
+        // Extract commitId, committer, commitDate, filePath, and beforeFilePath from the blame line
+        String[] parts = line.split("\\s+", 3);
+        String blameCommitId = parts[0].trim();  // Extract the commit ID
+        String prevFilePath = parts[1].trim();
+
+        // Find the index of the first space to separate the number
+        int firstSpaceIndex = parts[2].indexOf(" ");
+        int resultLineNumber = -1;
+        try {
+            resultLineNumber = Integer.parseInt(parts[2].substring(0, firstSpaceIndex));
+            parts[2] = parts[2].substring(firstSpaceIndex + 1);
+        }
+        catch (NumberFormatException e) {
+//            System.out.println("Error parsing line number: " + parts[2].substring(0, firstSpaceIndex));
+            parts[2] = parts[2].substring(firstSpaceIndex + 1);
+        }
+
+
+        String[] meta = parts[2].split("\\s{2,}"); // Split on at least 2 spaces
+        String commiter = "";
+        long commitTime = 0;
+
+        // Regex to capture the timestamp
+        Pattern pattern = Pattern.compile("(.*?)(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} [+-]\\d{4})");
+        Matcher matcher = pattern.matcher(parts[2]);
+
+        if (matcher.find()) {
+            // Extract the committer and timestamp
+            commiter = matcher.group(1).trim(); // Everything before the timestamp
+            commiter = commiter.substring(1); // Remove the parentheses
+            String timestamp = matcher.group(2).trim(); // Timestamp
+
+
+            // Define the formatter for the timestamp
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z");
+
+            // Parse the timestamp string
+            OffsetDateTime offsetDateTime = OffsetDateTime.parse(timestamp, formatter);
+
+            // Convert to Instant
+            Instant instant = offsetDateTime.toInstant();
+            commitTime = instant.toEpochMilli() / 1000;
+        }
+        return new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, commitTime, resultLineNumber, lineNumber);
     }
 
     @Override

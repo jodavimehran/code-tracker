@@ -17,8 +17,12 @@ public class BlameDifferDriver {
     private static final EnumSet<BlamerFactory> blamerFactories =
             EnumSet.of(
                     BlamerFactory.CliGitBlameIgnoringWhiteSpace,
+                    BlamerFactory.CliGitBlameDefault,
                     BlamerFactory.FileTrackerBlame
             );
+
+    private static final BlameDiffer blameDiffer = new BlameDifferOneWithMany(blamerFactories, BlamerFactory.FileTrackerBlame);
+
     private static final String[][] dummies = {
             {"https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3", "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"},
             {"https://github.com/javaparser/javaparser/commit/97555053af3025556efe1a168fd7943dac28a2a6", "javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java"},
@@ -59,10 +63,10 @@ public class BlameDifferDriver {
             String project = getProject(url);
             String ownerSlashProject = owner + "/" + project;
             Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + ownerSlashProject, URLHelper.getRepo(url));
-            BlameDiffer blameDiffer = new BlameDiffer(blamerFactories);
-            Map<Integer, EnumMap<BlamerFactory, String>> result = blameDiffer.diff(repository, commitId, filePath);
-            statsCollector.process(result, blameDiffer.getLegitSize(), blameDiffer.getCodeElementMap());
-            new CsvWriter(owner, project, commitId, filePath, blameDiffer.getCodeElementMap()).writeToCSV(result);
+            BlameDifferResult blameDifferResult = blameDiffer.diff(repository, commitId, filePath);
+            Map<Integer, EnumMap<BlamerFactory, String>> result = blameDifferResult.getTable();
+            statsCollector.process(result, blameDifferResult.getLegitSize(), blameDifferResult.getCodeElementMap());
+            new CsvWriter(owner, project, commitId, filePath, blameDifferResult.getCodeElementMap()).writeToCSV(result);
             statsCollector.writeInfo();
         }
     }
