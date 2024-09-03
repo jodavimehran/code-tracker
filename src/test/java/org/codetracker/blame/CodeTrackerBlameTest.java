@@ -127,7 +127,7 @@ public class CodeTrackerBlameTest {
         assertEqualWithFile(expectedFilePath, actual);
     }
 
-    private void assertEqualWithFile(String expectedResultPath, String actual) throws IOException {
+    public static void assertEqualWithFile(String expectedResultPath, String actual) throws IOException {
         String expected = IOUtils.toString(
                 new FileInputStream(expectedResultPath),
                 StandardCharsets.UTF_8
