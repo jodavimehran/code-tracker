@@ -9,7 +9,8 @@ import org.codetracker.blame.impl.JGitBlame;
 public enum BlamerFactory {
 
     JGitBlameWithFollow(new JGitBlame()),
-    CliGitBlame(new CliGitBlame()),
+    CliGitBlameIgnoringWhiteSpace(new CliGitBlame(true)),
+    CliGitBlameDefault(new CliGitBlame()),
     CodeTrackerBlame(new CodeTrackerBlame()),
     FileTrackerBlame(new FileTrackerBlame());
     private final IBlame blamer;

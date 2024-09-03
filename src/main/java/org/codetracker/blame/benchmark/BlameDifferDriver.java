@@ -16,7 +16,7 @@ public class BlameDifferDriver {
     private static final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
     private static final EnumSet<BlamerFactory> blamerFactories =
             EnumSet.of(
-                    BlamerFactory.CliGitBlame,
+                    BlamerFactory.CliGitBlameIgnoringWhiteSpace,
                     BlamerFactory.FileTrackerBlame
             );
     private static final String[][] dummies = {
