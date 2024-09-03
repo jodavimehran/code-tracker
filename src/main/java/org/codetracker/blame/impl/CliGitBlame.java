@@ -34,7 +34,9 @@ public class CliGitBlame implements IBlame {
             String line;
             int lineNumber = 1;
             while ((line = reader.readLine()) != null) {
-
+                if (line.charAt(0) == '^') {
+                    line = line.substring(1);
+                }
                 // Extract commitId, committer, commitDate, filePath, and beforeFilePath from the blame line
                 String[] parts = line.split("\\s+", 3);
                 String blameCommitId = parts[0].trim();  // Extract the commit ID
