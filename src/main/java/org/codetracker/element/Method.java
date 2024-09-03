@@ -46,21 +46,21 @@ public class Method extends BaseCodeElement {
             identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLInitializer) umlOperation, false, false);
             name = String.format("%s%s", sourceFolder, umlOperation.getName());
         }
-        //TODO support UMLAttribute in the future
         return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
-    public int signatureLines() {
-    	if (umlOperation.getBody() != null && umlOperation instanceof UMLOperation) {
-    		int bodyStartLine = umlOperation.getBody().getCompositeStatement().getLocationInfo().getStartLine();
-    		int methodSignatureStartLine = methodSignatureStartLine();
-    		if (methodSignatureStartLine != -1)
-    			return bodyStartLine - methodSignatureStartLine + 1;
+    public boolean differInFormatting(Method other) {
+    	if (umlOperation instanceof UMLOperation && other.umlOperation instanceof UMLOperation) {
+	    	String thisSignature = ((UMLOperation) umlOperation).getActualSignature();
+			String otherSignature = ((UMLOperation) other.umlOperation).getActualSignature();
+			if (thisSignature != null && otherSignature != null) {
+	    		return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+	    	}
     	}
-    	return 1;
+    	return false;
     }
 
-	public int methodSignatureStartLine() {
+	public int signatureStartLine() {
 		int methodSignatureStartLine = -1;
 		if (umlOperation instanceof UMLOperation) {
 			UMLOperation method = (UMLOperation) umlOperation;
@@ -79,7 +79,7 @@ public class Method extends BaseCodeElement {
     public boolean isMultiLine() {
     	if (umlOperation.getBody() != null && umlOperation instanceof UMLOperation) {
     		int bodyStartLine = umlOperation.getBody().getCompositeStatement().getLocationInfo().getStartLine();
-    		int methodSignatureStartLine = methodSignatureStartLine();
+    		int methodSignatureStartLine = signatureStartLine();
     		if (methodSignatureStartLine != -1)
     			return bodyStartLine > methodSignatureStartLine;
     	}

@@ -1,25 +1,38 @@
 package org.codetracker;
 
+import java.io.IOException;
+import java.io.StringReader;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
+import org.codetracker.change.Introduced;
 import org.codetracker.change.attribute.AttributeAnnotationChange;
 import org.codetracker.change.attribute.AttributeCrossFileChange;
 import org.codetracker.change.Change.Type;
 import org.codetracker.element.Attribute;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
+
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.AbstractDelta;
+import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.InsertDelta;
+import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAnonymousClass;
@@ -215,6 +228,7 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 				else if (leftInitializer != null && rightInitializer == null) {
 					attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(Type.INITIALIZER_REMOVED));
 				}
+				processChange(attributeBefore, attributeAfter);
                 return true;
             }
         }
@@ -488,6 +502,82 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         return false;
     }
 
+    private Map<Pair<Attribute, Attribute>, List<Integer>> lineChangeMap = new LinkedHashMap<>();
+
+	public void processChange(Attribute attributeBefore, Attribute attributeAfter) {
+		if (attributeBefore.isMultiLine() || attributeAfter.isMultiLine()) {
+			try {
+				Pair<Attribute, Attribute> pair = Pair.of(attributeBefore, attributeAfter);
+				Attribute startAttribute = getStart();
+				if (startAttribute != null) {
+					List<String> start = IOUtils.readLines(new StringReader(startAttribute.getUmlAttribute().getVariableDeclaration().getActualSignature()));
+					List<String> original = IOUtils.readLines(new StringReader(attributeBefore.getUmlAttribute().getVariableDeclaration().getActualSignature()));
+					List<String> revised = IOUtils.readLines(new StringReader(attributeAfter.getUmlAttribute().getVariableDeclaration().getActualSignature()));
+		
+					Patch<String> patch = DiffUtils.diff(original, revised);
+					List<AbstractDelta<String>> deltas = patch.getDeltas();
+					for (int i=0; i<deltas.size(); i++) {
+						AbstractDelta<String> delta = deltas.get(i);
+						Chunk<String> target = delta.getTarget();
+						List<String> affectedLines = new ArrayList<>(target.getLines());
+						boolean subListFound = false;
+						if (affectedLines.size() > 1 && !(delta instanceof InsertDelta)) {
+							int index = Collections.indexOfSubList(start, affectedLines);
+							if (index != -1) {
+								subListFound = true;
+								for (int j=0; j<affectedLines.size(); j++) {
+									int actualLine = startAttribute.signatureStartLine() + index + j;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+								}
+							}
+						}
+						if (!subListFound) {
+							for (String line : affectedLines) {
+								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								for (Integer index : matchingIndices) {
+									if (original.size() > index && revised.size() > index &&
+											original.get(index).equals(line) && revised.get(index).equals(line)) {
+										continue;
+									}
+									int actualLine = startAttribute.signatureStartLine() + index;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+									break;
+								}
+							}
+						}
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<startCommentLines.size(); i++) {
+			String element = startCommentLines.get(i).trim();
+			if(line.equals(element) || element.contains(line.trim())) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
+	}
+
 	public HistoryInfo<Attribute> blameReturn() {
 		List<HistoryInfo<Attribute>> history = getHistory();
 		for (History.HistoryInfo<Attribute> historyInfo : history) {
@@ -527,6 +617,59 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 		return null;
 	}
 
+	public HistoryInfo<Attribute> blameReturn(Attribute startAttribute, int exactLineNumber) {
+		List<HistoryInfo<Attribute>> history = getHistory();
+		for (History.HistoryInfo<Attribute> historyInfo : history) {
+			Pair<Attribute, Attribute> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
+			boolean multiLine = startAttribute.isMultiLine();
+			for (Change change : historyInfo.getChangeList()) {
+				if (!(change instanceof AttributeCrossFileChange) && !(change instanceof AttributeAnnotationChange)) {
+					if (multiLine) {
+						if (lineChangeMap.containsKey(pair)) {
+							if (lineChangeMap.get(pair).contains(exactLineNumber)) {
+								return historyInfo;
+							}
+						}
+					}
+					else {
+						return historyInfo;
+					}
+				}
+				//handle case where annotation is in the same line with the attribute declaration
+				if (change instanceof AttributeAnnotationChange) {
+					UMLAttribute attributeAfter = historyInfo.getElementAfter().getUmlAttribute();
+					if (attributeAfter.getAnnotations().size() > 0) {
+						int sameLineAnnotations = 0;
+						for (UMLAnnotation annotation : attributeAfter.getAnnotations()) {
+							if (annotation.getLocationInfo().getStartLine() == historyInfo.getElementAfter().getLocation().getStartLine()) {
+								sameLineAnnotations++;
+							}
+						}
+						if (sameLineAnnotations == attributeAfter.getAnnotations().size()) {
+							return historyInfo;
+						}
+					}
+					UMLAttribute attributeBefore = historyInfo.getElementBefore().getUmlAttribute();
+					if (attributeBefore.getAnnotations().size() > 0) {
+						int sameLineAnnotations = 0;
+						for (UMLAnnotation annotation : attributeBefore.getAnnotations()) {
+							if (annotation.getLocationInfo().getStartLine() == historyInfo.getElementBefore().getLocation().getStartLine()) {
+								sameLineAnnotations++;
+							}
+						}
+						if (sameLineAnnotations == attributeBefore.getAnnotations().size()) {
+							return historyInfo;
+						}
+					}
+				}
+				if (change instanceof Introduced) {
+					return historyInfo;
+				}
+			}
+		}
+		return null;
+	}
+
 	public void checkInitializerChange(Attribute rightAttribute, Attribute leftAttribute) {
 		AbstractExpression leftInitializer = leftAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
 		AbstractExpression rightInitializer = rightAttribute.getUmlAttribute().getVariableDeclaration().getInitializer();
@@ -535,6 +678,7 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
 				attributeChangeHistory.addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Type.INITIALIZER_CHANGE));
 		        add(leftAttribute);
 		        attributeChangeHistory.connectRelatedNodes();
+		        processChange(leftAttribute, rightAttribute);
 			}
 		}
 		else if (leftInitializer == null && rightInitializer != null) {

@@ -5,6 +5,7 @@ import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLComment;
+import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
@@ -51,6 +52,48 @@ public class Attribute extends BaseCodeElement {
 
         String identifierExcludeVersion = String.format("%s%s@%s(%s)%s:%s%s", sourceFolder, className, modifiersString, visibility, name, type, annotationsToString(umlAttribute.getAnnotations()));
         return new Attribute(umlAttribute, identifierExcludeVersion, String.format("%s%s@%s(%s)%s:%s(%d)", sourceFolder, className, modifiersString, visibility, name, type, startLine), umlAttribute.getLocationInfo().getFilePath(), version);
+    }
+
+    public boolean differInFormatting(Attribute other) {
+    	String thisSignature = umlAttribute.getVariableDeclaration().getActualSignature();
+		String otherSignature = other.umlAttribute.getVariableDeclaration().getActualSignature();
+		if (thisSignature != null && otherSignature != null) {
+    		return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+    	}
+    	return false;
+    }
+
+	public int signatureStartLine() {
+		int signatureStartLine = -1;
+		if (umlAttribute instanceof UMLEnumConstant) {
+			int endLine = -1;
+			if (umlAttribute.getJavadoc() != null) {
+				endLine = umlAttribute.getJavadoc().getLocationInfo().getEndLine();
+			}
+			if (umlAttribute.getAnnotations().size() > 0) {
+				UMLAnnotation lastAnnotation = umlAttribute.getAnnotations().get(umlAttribute.getAnnotations().size()-1);
+				if (lastAnnotation.getLocationInfo().getEndLine() > endLine) {
+					endLine = lastAnnotation.getLocationInfo().getEndLine();
+				}
+			}
+			if (endLine == -1) {
+				signatureStartLine = umlAttribute.getLocationInfo().getStartLine();
+			}
+			else {
+				signatureStartLine = endLine + 1;
+			}
+		}
+		else {
+			signatureStartLine = umlAttribute.getType().getLocationInfo().getStartLine();
+		}
+		return signatureStartLine;		
+	}
+
+    public boolean isMultiLine() {
+    	if (umlAttribute.getVariableDeclaration().getActualSignature() != null) {
+    		return umlAttribute.getVariableDeclaration().getActualSignature().contains("\n");
+    	}
+    	return false;
     }
 
     public Block findBlockWithoutName(Predicate<Block> equalOperator) {

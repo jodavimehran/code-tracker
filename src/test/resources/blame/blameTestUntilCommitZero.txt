@@ -169,7 +169,7 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 4e650c0d7 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2016-01-13 00:30:32 +0000 169)  	/** Empty set of objects for {@code preparePack()}. */
 5dc30db56 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2016-12-30 00:19:58 +0000 170)  	public static final Set<ObjectId> NONE = Collections.emptySet();
                                                                                                                                            171)
-3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 21:47:23 +0000 172)  	private static final Map<WeakReference<PackWriter>, Boolean> instances =
+2b584b921 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Dave Borowitz             2011-11-14 18:27:45 +0000 172)  	private static final Map<WeakReference<PackWriter>, Boolean> instances =
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 21:47:23 +0000 173)  			new ConcurrentHashMap<>();
                                                                                                                                            174)
 7ac182f4e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 00:05:08 +0000 175)  	private static final Iterable<PackWriter> instancesIterable = new Iterable<PackWriter>() {

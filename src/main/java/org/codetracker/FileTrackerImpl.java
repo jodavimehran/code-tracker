@@ -426,7 +426,7 @@ public class FileTrackerImpl extends BaseTracker {
 				else if (startElement instanceof Attribute) {
 					Attribute startAttribute = (Attribute)startElement;
 					AttributeTrackerChangeHistory attributeChangeHistory = (AttributeTrackerChangeHistory) programElementMap.get(startAttribute);
-					HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn();
+					HistoryInfo<Attribute> historyInfo = attributeChangeHistory.blameReturn(startAttribute, lineNumber);
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else if (startElement instanceof Annotation) {
@@ -1181,6 +1181,7 @@ public class FileTrackerImpl extends BaseTracker {
 				if (leftAttribute != null) {
 					startAttributeChangeHistory.setCurrent(leftAttribute);
 					startAttributeChangeHistory.checkInitializerChange(rightAttribute, leftAttribute);
+					checkSignatureFormatChange(startAttributeChangeHistory, rightAttribute, leftAttribute);
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
@@ -1347,10 +1348,18 @@ public class FileTrackerImpl extends BaseTracker {
 	}
 
 	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method rightMethod, Method leftMethod) {
-		if (leftMethod.signatureLines() != rightMethod.signatureLines()) {
+		if (leftMethod.differInFormatting(rightMethod)) {
 			startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
 			startMethodChangeHistory.processChange(leftMethod, rightMethod);
 			startMethodChangeHistory.get().connectRelatedNodes();
+		}
+	}
+
+	private void checkSignatureFormatChange(AttributeTrackerChangeHistory startAtributeChangeHistory, Attribute rightAttribute, Attribute leftAttribute) {
+		if (leftAttribute.differInFormatting(rightAttribute)) {
+			startAtributeChangeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Change.Type.SIGNATURE_FORMAT_CHANGE));
+			startAtributeChangeHistory.processChange(leftAttribute, rightAttribute);
+			startAtributeChangeHistory.get().connectRelatedNodes();
 		}
 	}
 

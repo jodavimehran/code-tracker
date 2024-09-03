@@ -282,7 +282,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
 							if (index != -1) {
 								subListFound = true;
 								for (int j=0; j<affectedLines.size(); j++) {
-									int actualLine = startClass.classSignatureStartLine() + index + j;
+									int actualLine = startClass.signatureStartLine() + index + j;
 									if (lineChangeMap.containsKey(pair)) {
 										lineChangeMap.get(pair).add(actualLine);
 									}
@@ -302,7 +302,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
 											original.get(index).equals(line) && revised.get(index).equals(line)) {
 										continue;
 									}
-									int actualLine = startClass.classSignatureStartLine() + index;
+									int actualLine = startClass.signatureStartLine() + index;
 									if (lineChangeMap.containsKey(pair)) {
 										lineChangeMap.get(pair).add(actualLine);
 									}

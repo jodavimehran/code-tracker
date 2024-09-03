@@ -44,7 +44,7 @@ public class Class extends BaseCodeElement {
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
-	public int classSignatureStartLine() {
+	public int signatureStartLine() {
 		int classSignatureStartLine = -1;
 		if (umlClass instanceof UMLClass) {
 			UMLClass clazz = (UMLClass) umlClass;

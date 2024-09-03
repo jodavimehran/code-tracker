@@ -343,7 +343,10 @@ public final class ChangeFactory {
                 break;
             }
             case SIGNATURE_FORMAT_CHANGE: {
-            	change = new MethodSignatureFormatChange();
+            	if (isMethod())
+            		change = new MethodSignatureFormatChange();
+            	else if (isAttribute())
+            		change = new AttributeSignatureFormatChange();
             	break;
             }
             default:

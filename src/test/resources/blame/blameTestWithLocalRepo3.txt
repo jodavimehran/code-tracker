@@ -74,7 +74,7 @@ b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach  
                                                                                                                      74)
 5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 75)      /** Maintains error count. */
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 76)      private final SeverityLevelCounter counter = new SeverityLevelCounter(
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 77)              SeverityLevel.ERROR);
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 77)              SeverityLevel.ERROR);
                                                                                                                      78)
 5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 79)      /** Vector of listeners. */
 fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 80)      private final List<AuditListener> listeners = new ArrayList<>();
@@ -91,7 +91,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
                                                                                                                      91)
 54ccca186 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Baratali Izmailov   2015-08-18 08:25:29 +0000 92)      /** Class loader to resolve classes with. **/
 3bd699bd5 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-12 05:19:21 +0000 93)      private ClassLoader classLoader = Thread.currentThread()
-3bd699bd5 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-12 05:19:21 +0000 94)              .getContextClassLoader();
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 94)              .getContextClassLoader();
                                                                                                                      95)
 2b4a02d2c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-09-04 01:06:15 +0000 96)      /** The basedir to strip off in file names. */
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 97)      private String basedir;
@@ -446,7 +446,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 370ce0101 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (vasilyeva           2017-07-14 22:13:49 +0000 446)      */
 f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2007-12-15 08:14:40 +0000 447)     @Override
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 448)     protected void setupChild(Configuration childConf)
-0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 449)             throws CheckstyleException {
+6273f2072 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Zuy Alexey          2016-04-26 00:05:30 +0000 449)             throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 450)         final String name = childConf.getName();
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-31 05:02:37 +0000 451)         final Object child;
                                                                                                                      452)
@@ -599,7 +599,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 599)      * @throws UnsupportedEncodingException if charset is unsupported.
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 600)      */
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 601)     public void setCharset(String charset)
-0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 602)             throws UnsupportedEncodingException {
+871b20e88 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-05-07 16:41:13 +0000 602)             throws UnsupportedEncodingException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 603)         if (!Charset.isSupported(charset)) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 604)             final String message = "unsupported charset: '" + charset + "'";
 2e4762f17 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 10:19:43 +0000 605)             throw new UnsupportedEncodingException(message);

@@ -733,7 +733,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 							if (index != -1) {
 								subListFound = true;
 								for (int j=0; j<affectedLines.size(); j++) {
-									int actualLine = startMethod.methodSignatureStartLine() + index + j;
+									int actualLine = startMethod.signatureStartLine() + index + j;
 									if (lineChangeMap.containsKey(pair)) {
 										lineChangeMap.get(pair).add(actualLine);
 									}
@@ -753,7 +753,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
 											original.get(index).equals(line) && revised.get(index).equals(line)) {
 										continue;
 									}
-									int actualLine = startMethod.methodSignatureStartLine() + index;
+									int actualLine = startMethod.signatureStartLine() + index;
 									if (lineChangeMap.containsKey(pair)) {
 										lineChangeMap.get(pair).add(actualLine);
 									}
