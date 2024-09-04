@@ -1525,12 +1525,12 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1525) 		final XAnnotatedElement element = propertyAnnotatedElement.getProperty();
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1526) 		if ( element.isAnnotationPresent( Id.class ) || element.isAnnotationPresent( EmbeddedId.class ) ) {
 a5cbe326d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2016-02-22 22:36:05 +0000 1527) 			inFlightPropertyDataList.add( 0, propertyAnnotatedElement );
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1528) 			/**
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1529) 			 * The property must be put in hibernate.properties as it's a system wide property. Fixable?
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1530) 			 * TODO support true/false/default on the property instead of present / not present
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1531) 			 * TODO is @Column mandatory?
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1532) 			 * TODO add method support
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1533) 			 */
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1528) 			/**
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1529) 			 * The property must be put in hibernate.properties as it's a system wide property. Fixable?
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1530) 			 * TODO support true/false/default on the property instead of present / not present
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1531) 			 * TODO is @Column mandatory?
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1532) 			 * TODO add method support
+368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1533) 			 */
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1534) 			if ( context.getBuildingOptions().isSpecjProprietarySyntaxEnabled() ) {
 368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1535) 				if ( element.isAnnotationPresent( Id.class ) && element.isAnnotationPresent( Column.class ) ) {
 368457612 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Emmanuel Bernard  2010-10-04 09:44:12 +0000 1536) 					String columnName = element.getAnnotation( Column.class ).name();
@@ -2644,11 +2644,11 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2644) 			boolean inSecondPass,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2645) 			MetadataBuildingContext buildingContext,
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2646) 			Map<XClass, InheritanceState> inheritanceStatePerClass) {
-2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2647) 		/**
-2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2648) 		 * inSecondPass can only be used to apply right away the second pass of a composite-element
-2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2649) 		 * Because it's a value type, there is no bidirectional association, hence second pass
-2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2650) 		 * ordering does not matter
-2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2651) 		 */
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2647) 		/**
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2648) 		 * inSecondPass can only be used to apply right away the second pass of a composite-element
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2649) 		 * Because it's a value type, there is no bidirectional association, hence second pass
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2650) 		 * ordering does not matter
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2651) 		 */
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2652) 		Component comp = createComponent( propertyHolder, inferredData, isComponentEmbedded, isIdentifierMapper, buildingContext );
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2653) 		String subpath = BinderHelper.getPath( propertyHolder, inferredData );
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-26 22:24:15 +0000 2654) 		LOG.tracev( "Binding component with path: {0}", subpath );
