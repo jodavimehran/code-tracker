@@ -1,19 +1,15 @@
 package org.codetracker.blame;
 
 import org.codetracker.blame.impl.CliGitBlame;
-import org.codetracker.blame.impl.JGitBlame;
 import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
-
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import static org.codetracker.blame.CodeTrackerBlameTest.assertEqualWithFile;
 import static org.codetracker.blame.util.Utils.*;
 
 /* Created by pourya on 2024-08-22*/
-public class JGitBlameVerificationTest {
+public class CliBlameTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
 
