@@ -141,7 +141,7 @@ cc13f68e3 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpre
 cc13f68e3 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java (Federico Tomassetti 2017-02-23 16:19:33 +0000 141)                 }
 2d3f5e219 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java                  (Thomas Leu          2018-06-07 20:54:17 +0000 142)             }
 cc13f68e3 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java (Federico Tomassetti 2017-02-23 16:19:33 +0000 143)         } while (diffIndex < diffElements.size() || originalIndex < originalElements.size());
-                                                                                                                                                                          144)     }
+c73ae5d79 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/LexicalDifferenceCalculator.java (Federico Tomassetti 2017-02-23 16:19:33 +0000 144)     }
                                                                                                                                                                           145)
 2d3f5e219 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java                  (Thomas Leu          2018-06-07 20:54:17 +0000 146)     private boolean applyLeftOverOriginalElements() {
 2d3f5e219 javaparser-core/src/main/java/com/github/javaparser/printer/lexicalpreservation/Difference.java                  (Thomas Leu          2018-06-07 20:54:17 +0000 147)         boolean isLeftOverElement = false;

@@ -992,6 +992,10 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 								found = true;
 								break;
 							}
+							if (methodChangeHistory.getCurrent() != null && codeElement.getUmlOperation().equals(methodChangeHistory.getCurrent().getUmlOperation())) {
+								found = true;
+								break;
+							}
 						}
 					}
 					if (!found && remainingBlames(startMethod).size() > 0) {

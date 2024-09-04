@@ -301,7 +301,7 @@ fb44ad936 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 8c95a6077 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-05-09 19:47:58 +0000 301)  				}
 8c95a6077 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-05-09 19:47:58 +0000 302)  			}
 8c95a6077 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-05-09 19:47:58 +0000 303)  		}
-                                                                                                                            304)  	}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 304)  	}
                                                                                                                             305)
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 306)  	public static void bindPackage(String packageName, MetadataBuildingContext context) {
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 307)  		XPackage pckg;
@@ -521,9 +521,9 @@ a03d44f29 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 521)  	 *
 8b11d5ecf hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Roland Illig      2018-03-14 12:17:55 +0000 522)  	 * @throws MappingException in case there is a configuration error
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 523)  	 */
-                                                                                                                            524)  	public static void bindClass(
-                                                                                                                            525)  			XClass clazzToProcess,
-                                                                                                                            526)  			Map<XClass, InheritanceState> inheritanceStatePerClass,
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 524)  	public static void bindClass(
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 525)  			XClass clazzToProcess,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 526)  			Map<XClass, InheritanceState> inheritanceStatePerClass,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 527)  			MetadataBuildingContext context) throws MappingException {
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 528)  		//@Entity and @MappedSuperclass on the same class leads to a NPE down the road
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 529)  		if ( clazzToProcess.isAnnotationPresent( Entity.class )
@@ -831,7 +831,7 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 831)  		entityBinder.processComplementaryTableDefinitions( clazzToProcess.getAnnotation( org.hibernate.annotations.Table.class ) );
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 832)  		entityBinder.processComplementaryTableDefinitions( clazzToProcess.getAnnotation( org.hibernate.annotations.Tables.class ) );
 1d9b7a06a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Strong Liu        2013-02-05 16:09:08 +0000 833)  		entityBinder.processComplementaryTableDefinitions( tabAnn );
-                                                                                                                            834)  	}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 834)  	}
                                                                                                                             835)
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 836)  	/**
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 837)  	 * Process all discriminator-related metadata per rules for "single table" inheritance
@@ -1595,17 +1595,17 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 153ad753e annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2010-03-04 21:55:10 +0000 1595) 	 * Process annotation of a particular property
 153ad753e annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2010-03-04 21:55:10 +0000 1596) 	 */
                                                                                                                             1597)
-                                                                                                                            1598) 	private static void processElementAnnotations(
-                                                                                                                            1599) 			PropertyHolder propertyHolder,
-                                                                                                                            1600) 			Nullability nullability,
-                                                                                                                            1601) 			PropertyData inferredData,
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1598) 	private static void processElementAnnotations(
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1599) 			PropertyHolder propertyHolder,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1600) 			Nullability nullability,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1601) 			PropertyData inferredData,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1602) 			HashMap<String, IdentifierGeneratorDefinition> classGenerators,
-                                                                                                                            1603) 			EntityBinder entityBinder,
-                                                                                                                            1604) 			boolean isIdentifierMapper,
-                                                                                                                            1605) 			boolean isComponentEmbedded,
-                                                                                                                            1606) 			boolean inSecondPass,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1603) 			EntityBinder entityBinder,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1604) 			boolean isIdentifierMapper,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1605) 			boolean isComponentEmbedded,
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1606) 			boolean inSecondPass,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1607) 			MetadataBuildingContext context,
-                                                                                                                            1608) 			Map<XClass, InheritanceState> inheritanceStatePerClass) throws MappingException {
+f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 1608) 			Map<XClass, InheritanceState> inheritanceStatePerClass) throws MappingException {
                                                                                                                             1609)
 62bfbf8bd hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2016-08-18 22:44:31 +0000 1610) 		if ( !propertyHolder.isComponent() ) {
 a5cbe326d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2016-02-22 22:36:05 +0000 1611) 			if ( entityBinder.isPropertyDefinedInSuperHierarchy( inferredData.getPropertyName() ) ) {
@@ -2151,7 +2151,7 @@ c7c6981a5 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 c7c6981a5 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2009-10-28 18:14:25 +0000 2151) 				collectionBinder.setDeclaringClass( inferredData.getDeclaringClass() );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2152) 				collectionBinder.bind();
                                                                                                                             2153)
-                                                                                                                            2154) 			}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2154) 			}
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2155) 			//Either a regular property or a basic @Id or @EmbeddedId while not ignoring id annotations
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2156) 			else if ( !isId || !entityBinder.isIgnoreIdAnnotations() ) {
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2157) 				//define whether the type is a component or not
@@ -2337,7 +2337,7 @@ b1a9c816a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2337) 				}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2338) 			}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2339) 		}
-                                                                                                                            2340) 	}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2340) 	}
                                                                                                                             2341)
 6cefa865b hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-04-16 14:47:09 +0000 2342) 	private static boolean isGlobalGeneratorNameGlobal(MetadataBuildingContext context) {
 6cefa865b hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-04-16 14:47:09 +0000 2343) 		return context.getBootstrapContext().getJpaCompliance().isGlobalGeneratorScopeEnabled();
@@ -2632,7 +2632,7 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2632) 		);
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2633) 	}
                                                                                                                             2634)
-                                                                                                                            2635) 	public static Component fillComponent(
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2635) 	public static Component fillComponent(
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2636) 			PropertyHolder propertyHolder,
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2637) 			PropertyData inferredData,
 252299cfe annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-04 17:54:05 +0000 2638) 			PropertyData baseInferredData, //base inferred data correspond to the entity reproducing inferredData's properties (ie IdClass)
@@ -2644,11 +2644,11 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2644) 			boolean inSecondPass,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2645) 			MetadataBuildingContext buildingContext,
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2646) 			Map<XClass, InheritanceState> inheritanceStatePerClass) {
-                                                                                                                            2647) 		/**
-                                                                                                                            2648) 		 * inSecondPass can only be used to apply right away the second pass of a composite-element
-                                                                                                                            2649) 		 * Because it's a value type, there is no bidirectional association, hence second pass
-                                                                                                                            2650) 		 * ordering does not matter
-                                                                                                                            2651) 		 */
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2647) 		/**
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2648) 		 * inSecondPass can only be used to apply right away the second pass of a composite-element
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2649) 		 * Because it's a value type, there is no bidirectional association, hence second pass
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2650) 		 * ordering does not matter
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2651) 		 */
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2652) 		Component comp = createComponent( propertyHolder, inferredData, isComponentEmbedded, isIdentifierMapper, buildingContext );
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2653) 		String subpath = BinderHelper.getPath( propertyHolder, inferredData );
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-26 22:24:15 +0000 2654) 		LOG.tracev( "Binding component with path: {0}", subpath );
@@ -2787,7 +2787,7 @@ b1a9c816a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 2adcb4d92 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Ståle W. Pedersen 2010-01-26 13:39:26 +0000 2787) 			}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2788) 		}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2789) 		return comp;
-                                                                                                                            2790) 	}
+2176af114 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-10-27 15:05:44 +0000 2790) 	}
                                                                                                                             2791)
 421789ddc annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Steve Ebersole    2010-05-01 18:20:26 +0000 2792) 	public static Component createComponent(
 421789ddc annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Steve Ebersole    2010-05-01 18:20:26 +0000 2793) 			PropertyHolder propertyHolder,

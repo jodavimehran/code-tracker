@@ -220,7 +220,7 @@ df9c43479 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 220)   @Override
 0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 221)   public void compile(@NotNull VirtualFile[] files, CompileStatusNotification callback) {
 0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 222)     compile(createFilesCompileScope(files), callback);
-                                                                                                                               223)   }
+7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 223)   }
                                                                                                                                224)
 06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 225)   @Override
 0f4051917 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2011-01-21 17:24:16 +0000 226)   public void compile(@NotNull Module module, CompileStatusNotification callback) {
