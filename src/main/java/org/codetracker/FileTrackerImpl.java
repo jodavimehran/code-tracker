@@ -288,7 +288,7 @@ public class FileTrackerImpl extends BaseTracker {
 							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
 							startClassChangeHistory.get().connectRelatedNodes();
 						}
-						startClassChangeHistory.processChange(leftClass, rightClass);
+						checkSignatureFormatChange(startClassChangeHistory, leftClass, rightClass);
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
@@ -409,7 +409,7 @@ public class FileTrackerImpl extends BaseTracker {
 				else if (startElement instanceof Comment) {
 					Comment startComment = (Comment)startElement;
 					CommentTrackerChangeHistory commentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-					HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn(lineNumber);
+					HistoryInfo<Comment> historyInfo = commentChangeHistory.blameReturn(startComment, lineNumber);
 					blameInfo.put(lineNumber, historyInfo);
 				}
 				else if (startElement instanceof Import) {
@@ -1094,7 +1094,7 @@ public class FileTrackerImpl extends BaseTracker {
 						startInnerClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
 						startInnerClassChangeHistory.get().connectRelatedNodes();
 					}
-					startInnerClassChangeHistory.processChange(leftClass, rightClass);
+					checkSignatureFormatChange(startInnerClassChangeHistory, leftClass, rightClass);
 					startInnerClassChangeHistory.setCurrent(leftClass);
 					startInnerClassChangeHistory.addFirst(leftClass);
 					foundInnerClasses.add(Pair.of(leftClass, rightClass));
@@ -1185,7 +1185,7 @@ public class FileTrackerImpl extends BaseTracker {
 				if (leftAttribute != null) {
 					startAttributeChangeHistory.setCurrent(leftAttribute);
 					startAttributeChangeHistory.checkInitializerChange(rightAttribute, leftAttribute);
-					checkSignatureFormatChange(startAttributeChangeHistory, rightAttribute, leftAttribute);
+					checkSignatureFormatChange(startAttributeChangeHistory, leftAttribute, rightAttribute);
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
@@ -1252,7 +1252,7 @@ public class FileTrackerImpl extends BaseTracker {
 						Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 						if (leftMethod != null) {
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
-							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
 							continue;
 						}
 						//CHANGE BODY OR DOCUMENT
@@ -1281,7 +1281,7 @@ public class FileTrackerImpl extends BaseTracker {
 							if (!leftMethod.equalDocuments(rightMethod))
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
-							checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
+							checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
 							startMethodChangeHistory.get().connectRelatedNodes();
 							startMethodChangeHistory.elements.remove(currentMethod);
 							startMethodChangeHistory.elements.add(leftMethod);
@@ -1309,7 +1309,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 					if (leftMethod != null) {
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
-						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
 						startMethodChangeHistory.setCurrent(leftMethod);
 						continue;
 					}
@@ -1339,7 +1339,7 @@ public class FileTrackerImpl extends BaseTracker {
 						if (!leftMethod.equalDocuments(rightMethod))
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
-						checkSignatureFormatChange(startMethodChangeHistory, rightMethod, leftMethod);
+						checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
 						startMethodChangeHistory.get().connectRelatedNodes();
 						startMethodChangeHistory.setCurrent(leftMethod);
 						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
@@ -1351,7 +1351,15 @@ public class FileTrackerImpl extends BaseTracker {
 		return notFoundMethods;
 	}
 
-	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method rightMethod, Method leftMethod) {
+	private void checkSignatureFormatChange(ClassTrackerChangeHistory startClassChangeHistory, Class leftClass, Class rightClass) {
+		if (leftClass.differInFormatting(rightClass)) {
+			startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SIGNATURE_FORMAT_CHANGE));
+			startClassChangeHistory.get().connectRelatedNodes();
+		}
+		startClassChangeHistory.processChange(leftClass, rightClass);
+	}
+
+	private void checkSignatureFormatChange(MethodTrackerChangeHistory startMethodChangeHistory, Method leftMethod, Method rightMethod) {
 		if (leftMethod.differInFormatting(rightMethod)) {
 			startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.SIGNATURE_FORMAT_CHANGE));
 			startMethodChangeHistory.processChange(leftMethod, rightMethod);
@@ -1359,7 +1367,7 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void checkSignatureFormatChange(AttributeTrackerChangeHistory startAtributeChangeHistory, Attribute rightAttribute, Attribute leftAttribute) {
+	private void checkSignatureFormatChange(AttributeTrackerChangeHistory startAtributeChangeHistory, Attribute leftAttribute, Attribute rightAttribute) {
 		if (leftAttribute.differInFormatting(rightAttribute)) {
 			startAtributeChangeHistory.get().addChange(leftAttribute, rightAttribute, ChangeFactory.forAttribute(Change.Type.SIGNATURE_FORMAT_CHANGE));
 			startAtributeChangeHistory.processChange(leftAttribute, rightAttribute);

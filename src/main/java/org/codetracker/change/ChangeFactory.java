@@ -347,6 +347,8 @@ public final class ChangeFactory {
             		change = new MethodSignatureFormatChange();
             	else if (isAttribute())
             		change = new AttributeSignatureFormatChange();
+            	else if (isClass())
+            		change = new ClassSignatureFormatChange();
             	break;
             }
             default:

@@ -946,11 +946,11 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
 		return null;
 	}
 
-	public HistoryInfo<Comment> blameReturn(int exactLineNumber) {
+	public HistoryInfo<Comment> blameReturn(Comment startComment, int exactLineNumber) {
 		List<HistoryInfo<Comment>> history = getHistory();
 		for (History.HistoryInfo<Comment> historyInfo : history) {
 			Pair<Comment, Comment> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
-			boolean multiLine = historyInfo.getElementBefore().isMultiLine() && historyInfo.getElementAfter().isMultiLine();
+			boolean multiLine = startComment.isMultiLine();
 			for (Change change : historyInfo.getChangeList()) {
 				if (change instanceof Introduced) {
 					return historyInfo;

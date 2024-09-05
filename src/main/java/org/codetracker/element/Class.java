@@ -44,6 +44,17 @@ public class Class extends BaseCodeElement {
         return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
+    public boolean differInFormatting(Class other) {
+    	if (umlClass instanceof UMLClass && other.umlClass instanceof UMLClass) {
+	    	String thisSignature = ((UMLClass) umlClass).getActualSignature();
+			String otherSignature = ((UMLClass) other.umlClass).getActualSignature();
+			if (thisSignature != null && otherSignature != null) {
+	    		return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+	    	}
+    	}
+    	return false;
+    }
+
 	public int signatureStartLine() {
 		int classSignatureStartLine = -1;
 		if (umlClass instanceof UMLClass) {
