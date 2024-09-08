@@ -274,8 +274,13 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				}
 
 				Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+				boolean annotationChanged = false;
+				if(leftClass == null) {
+					leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersionAndAnnotation);
+					annotationChanged = true;
+				}
 				// No class signature change
-				if (leftClass != null) {
+				if (leftClass != null && !annotationChanged) {
 					UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
 					UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
 					if (leftSuperclass != null && rightSuperclass != null) {
@@ -316,6 +321,33 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion);
 					}
 					continue;
+				}
+				else if (leftClass != null && annotationChanged) {
+					UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
+					List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
+					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
+					boolean refactored = !classRefactored.isEmpty();
+					if (refactored) {
+						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
+						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
+						Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
+						processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
+						if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
+							processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
+						}
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
+						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+						for (Pair<Class, Class> pair : foundInnerClasses) {
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffLocal, pair.getRight().getUmlClass().getName());
+							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+						}
+						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
+						leftSideClasses.forEach(startClassChangeHistory::addFirst);
+						break;
+					}
 				}
 				//All refactorings
 				CommitModel commitModel = getCommitModel(commitId);
@@ -1264,6 +1296,9 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						}
 						//CHANGE BODY OR DOCUMENT
 						leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
+						if (leftMethod == null) {
+							leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndAnnotation);
+						}
 						//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
 						boolean otherExactMatchFound = false;
 						if (leftMethod != null) {

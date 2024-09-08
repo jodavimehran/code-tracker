@@ -19,10 +19,12 @@ import java.util.function.Predicate;
 
 public class Class extends BaseCodeElement {
     private final UMLAbstractClass umlClass;
+    private final String identifierIgnoringVersionAndAnnotation;
 
-    private Class(UMLAbstractClass umlClass, String identifierExcludeVersion, String name, String filePath, Version version) {
+    private Class(UMLAbstractClass umlClass, String identifierExcludeVersion, String identifierExcludeVersionAndAnnotation, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.umlClass = umlClass;
+        this.identifierIgnoringVersionAndAnnotation = identifierExcludeVersionAndAnnotation;
     }
 
     public BaseCodeElement of(Version version) {
@@ -40,8 +42,9 @@ public class Class extends BaseCodeElement {
                 .build();
         String visibility = umlClass.getVisibility().toString();
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
+        String identifierExcludeVersionAndAnnotation = String.format("%s%s.(%s)%s(%s)%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name);
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
-        return new Class(umlClass, identifierExcludeVersion, className, umlClass.getLocationInfo().getFilePath(), version);
+        return new Class(umlClass, identifierExcludeVersion, identifierExcludeVersionAndAnnotation, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
     public boolean differInFormatting(Class other) {
@@ -144,6 +147,10 @@ public class Class extends BaseCodeElement {
 
     public UMLAbstractClass getUmlClass() {
         return umlClass;
+    }
+
+    public boolean equalIdentifierIgnoringVersionAndAnnotation(Class clazz) {
+        return this.identifierIgnoringVersionAndAnnotation.equals(clazz.identifierIgnoringVersionAndAnnotation);
     }
 
 	public void checkClosingBracket(int lineNumber) {

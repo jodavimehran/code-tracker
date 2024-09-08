@@ -19,12 +19,14 @@ public class Method extends BaseCodeElement {
     private final VariableDeclarationContainer umlOperation;
     private final String documentsHashCode;
     private final String identifierIgnoringVersionAndDocumentationAndBody;
+    private final String identifierIgnoringVersionAndAnnotation;
 
-    private Method(VariableDeclarationContainer umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String name, String filePath, Version version) {
+    private Method(VariableDeclarationContainer umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String identifierIgnoringVersionAndAnnotation, String name, String filePath, Version version) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.umlOperation = umlOperation;
         this.documentsHashCode = getDocumentsSha512(umlOperation);
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
+        this.identifierIgnoringVersionAndAnnotation = identifierIgnoringVersionAndAnnotation;
     }
 
     public BaseCodeElement of(Version version) {
@@ -35,18 +37,21 @@ public class Method extends BaseCodeElement {
         String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
         String identifierIgnoringVersion = null;
         String identifierIgnoringVersionAndDocumentationAndBody = null;
+        String identifierIgnoringVersionAndAnnotation = null;
         String name = null;
         if (umlOperation instanceof UMLOperation) {
             identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true, true);
             identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false, true);
+            identifierIgnoringVersionAndAnnotation = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true, false);
             name = String.format("%s%s", sourceFolder, ((UMLOperation) umlOperation).getKey());
         }
         else if (umlOperation instanceof UMLInitializer) {
             identifierIgnoringVersion = getIdentifierExcludeVersion((UMLInitializer) umlOperation, true, true);
             identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLInitializer) umlOperation, false, false);
+            identifierIgnoringVersionAndAnnotation = identifierIgnoringVersion;
             name = String.format("%s%s", sourceFolder, umlOperation.getName());
         }
-        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, name, umlOperation.getLocationInfo().getFilePath(), version);
+        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, identifierIgnoringVersionAndAnnotation, name, umlOperation.getLocationInfo().getFilePath(), version);
     }
 
     public boolean differInFormatting(Method other) {
@@ -307,6 +312,10 @@ public class Method extends BaseCodeElement {
 
     public boolean equalIdentifierIgnoringVersionAndDocumentAndBody(Method method) {
         return this.identifierIgnoringVersionAndDocumentationAndBody.equals(method.identifierIgnoringVersionAndDocumentationAndBody);
+    }
+
+    public boolean equalIdentifierIgnoringVersionAndAnnotation(Method method) {
+        return this.identifierIgnoringVersionAndAnnotation.equals(method.identifierIgnoringVersionAndAnnotation);
     }
 
     public boolean equalDocuments(Method method) {
