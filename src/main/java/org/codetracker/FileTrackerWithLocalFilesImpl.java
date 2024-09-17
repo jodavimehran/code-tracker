@@ -684,7 +684,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							Block startBlock = (Block)key2;
 							BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 							if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-									(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+									matchingPeekMethod(rightMethod, startBlockChangeHistory)) {
 								Block currentBlock = startBlockChangeHistory.poll();
 								if (currentBlock == null) {
 									continue;
@@ -702,7 +702,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-									(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+									matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								if (currentComment == null) {
 									continue;
@@ -720,7 +720,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							Annotation startAnnotation = (Annotation)key2;
 							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 							if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
-									(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+									matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 								Annotation currentAnnotation = startAnnotationChangeHistory.poll();
 								if (currentAnnotation == null) {
 									continue;
@@ -920,7 +920,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Block startBlock = (Block)key2;
 						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 						if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-								(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+								matchingPeekMethod(rightMethod, startBlockChangeHistory)) {
 							Block currentBlock = startBlockChangeHistory.peek();
 							if (currentBlock == null) {
 								continue;
@@ -949,7 +949,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Comment startComment = (Comment)key2;
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
 								continue;
@@ -978,7 +978,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Annotation startAnnotation = (Annotation)key2;
 						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
-								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 							Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 							if (currentAnnotation == null) {
 								continue;
@@ -1044,7 +1044,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Block startBlock = (Block)key2;
 						BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 						if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-								(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+								matchingPeekMethod(rightMethod, startBlockChangeHistory)) {
 							Block currentBlock = startBlockChangeHistory.poll();
 							if (currentBlock == null) {
 								continue;
@@ -1060,7 +1060,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Comment startComment = (Comment)key2;
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightMethod.getUmlOperation())) ||
-								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.poll();
 							if (currentComment == null) {
 								continue;
@@ -1076,7 +1076,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						Annotation startAnnotation = (Annotation)key2;
 						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightMethod.getUmlOperation())) ||
-								(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
 							if (currentAnnotation == null) {
 								continue;
@@ -1091,6 +1091,46 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				}
 			}
 		}
+	}
+
+	private boolean matchingPeekMethod(Method rightMethod, BlockTrackerChangeHistory startBlockChangeHistory) {
+		if(!startBlockChangeHistory.isEmpty()) {
+			VariableDeclarationContainer container = startBlockChangeHistory.peek().getOperation();
+			if(rightMethod.getUmlOperation().equals(container)) {
+				return true;
+			}
+			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+			}
+		}
+		return false;
+	}
+
+	private boolean matchingPeekMethod(Method rightMethod, CommentTrackerChangeHistory startCommentChangeHistory) {
+		if(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent()) {
+			VariableDeclarationContainer container = startCommentChangeHistory.peek().getOperation().get();
+			if(rightMethod.getUmlOperation().equals(container)) {
+				return true;
+			}
+			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+			}
+		}
+		return false;
+	}
+
+
+	private boolean matchingPeekMethod(Method rightMethod, AnnotationTrackerChangeHistory startAnnotationChangeHistory) {
+		if(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent()) {
+			VariableDeclarationContainer container = startAnnotationChangeHistory.peek().getOperation().get();
+			if(rightMethod.getUmlOperation().equals(container)) {
+				return true;
+			}
+			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+			}
+		}
+		return false;
 	}
 
 	private void processInnerClassesWithSameSignature(UMLModel rightModel, Version currentVersion, UMLModel leftModel, Version parentVersion, Class startClass, 
@@ -1430,7 +1470,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
 								continue;
@@ -1452,7 +1492,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-								(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
 								continue;
@@ -1499,7 +1539,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Block startBlock = (Block)key2;
 					BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 					if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-							(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+							matchingPeekMethod(rightMethod, startBlockChangeHistory)) {
 						Block currentBlock = startBlockChangeHistory.peek();
 						if (currentBlock == null) {
 							continue;
@@ -1519,7 +1559,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Comment startComment = (Comment)key2;
 					CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 					if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-							(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+							matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 						Comment currentComment = startCommentChangeHistory.peek();
 						if (currentComment == null) {
 							continue;
@@ -1539,7 +1579,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Annotation startAnnotation = (Annotation)key2;
 					AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 					if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
-							(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+							matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 						Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 						if (currentAnnotation == null) {
 							continue;
@@ -1578,7 +1618,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				Block startBlock = (Block)key2;
 				BlockTrackerChangeHistory startBlockChangeHistory = (BlockTrackerChangeHistory) programElementMap.get(startBlock);
 				if (startBlock.getOperation().equals(startMethod.getUmlOperation()) ||
-						(!startBlockChangeHistory.isEmpty() && rightMethod.getUmlOperation().equals(startBlockChangeHistory.peek().getOperation()))) {
+						matchingPeekMethod(rightMethod, startBlockChangeHistory)) {
 					Block currentBlock = startBlockChangeHistory.peek();
 					if (currentBlock == null) {
 						continue;
@@ -1597,7 +1637,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				Comment startComment = (Comment)key2;
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 				if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
-						(!startCommentChangeHistory.isEmpty() && startCommentChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startCommentChangeHistory.peek().getOperation().get()))) {
+						matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 					Comment currentComment = startCommentChangeHistory.peek();
 					if (currentComment == null) {
 						continue;
@@ -1616,7 +1656,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				Annotation startAnnotation = (Annotation)key2;
 				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 				if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
-						(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getOperation().isPresent() && rightMethod.getUmlOperation().equals(startAnnotationChangeHistory.peek().getOperation().get()))) {
+						matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 					Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 					if (currentAnnotation == null) {
 						continue;
