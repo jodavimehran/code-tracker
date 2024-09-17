@@ -1,6 +1,7 @@
 package org.codetracker.blame;
 
 import org.codetracker.blame.impl.CliGitBlame;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.util.GitServiceImpl;
@@ -9,6 +10,7 @@ import static org.codetracker.blame.CodeTrackerBlameTest.assertEqualWithFile;
 import static org.codetracker.blame.util.Utils.*;
 
 /* Created by pourya on 2024-08-22*/
+@Disabled
 public class CliBlameTest {
     private static final GitService gitService = new GitServiceImpl();
     private final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";

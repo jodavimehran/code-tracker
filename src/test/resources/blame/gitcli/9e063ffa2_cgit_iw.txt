@@ -285,7 +285,7 @@ bdba5898c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 1f6daa678 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-09-06 03:30:52 +0000 285)  			return;
 1f6daa678 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-09-06 03:30:52 +0000 286)  		}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 287)  		catch ( ClassNotFoundException cnf ) {
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 288)  			LOG.packageNotFound( packageName );
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 288)  			LOG.packageNotFound( packageName );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 289)  			return;
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 290)  		}
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 291)
@@ -610,7 +610,7 @@ a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 610)  			if ( clazzToProcess.isAnnotationPresent( Table.class ) ) {
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-15 00:40:38 +0000 611)  				LOG.invalidTableAnnotation( clazzToProcess.getName() );
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-15 00:40:38 +0000 612)  			}
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 613)
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 613)
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 614)  			if ( inheritanceState.getType() == InheritanceType.SINGLE_TABLE ) {
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 615)  				// we at least need to properly set up the EntityTableXref
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 616)  				entityBinder.bindTableForDiscriminatedSubclass(
@@ -1236,7 +1236,7 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 1236) 						context
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1237) 				);
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1238) 			}
-3712e1ad7 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2011-01-18 05:49:48 +0000 1239) 			LOG.trace( "Subclass joined column(s) created" );
+3712e1ad7 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2011-01-18 05:49:48 +0000 1239) 			LOG.trace( "Subclass joined column(s) created" );
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1240) 		}
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1241) 		else {
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1242) 			if ( clazzToProcess.isAnnotationPresent( PrimaryKeyJoinColumns.class )
@@ -1277,7 +1277,7 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1277) 				) {
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1278) 			if ( AnnotatedClassType.NONE.equals( classType )
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-15 00:40:38 +0000 1279) 					&& clazzToProcess.isAnnotationPresent( org.hibernate.annotations.Entity.class ) ) {
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 1280) 				LOG.missingEntityAnnotation( clazzToProcess.getName() );
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 1280) 				LOG.missingEntityAnnotation( clazzToProcess.getName() );
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-15 00:40:38 +0000 1281) 			}
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1282) 			return false;
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 1283) 		}

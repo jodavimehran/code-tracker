@@ -484,7 +484,7 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 484)  			Map<XClass, InheritanceState> inheritanceStatePerClass,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 485)  			MetadataBuildingContext context) throws MappingException {
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 486)  		//@Entity and @MappedSuperclass on the same class leads to a NPE down the road
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 487)  		if ( clazzToProcess.isAnnotationPresent( Entity.class )
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 487)  		if ( clazzToProcess.isAnnotationPresent( Entity.class )
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 488)  				&&  clazzToProcess.isAnnotationPresent( MappedSuperclass.class ) ) {
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 489)  			throw new AnnotationException( "An entity cannot be annotated with both @Entity and @MappedSuperclass: "
 422ecc653 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-04-16 10:11:32 +0000 490)  					+ clazzToProcess.getName() );
@@ -618,7 +618,7 @@ bf7607e24 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 618)  				);
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 16:55:51 +0000 619)  			}
 129c0f134 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Sanne Grinovero   2011-10-15 00:40:38 +0000 620)  		}
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 621)
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 621)
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 622)
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 623)  		PropertyHolder propertyHolder = PropertyHolderBuilder.buildPropertyHolder(
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 624)  				clazzToProcess,
@@ -2286,7 +2286,7 @@ ffb14b28b hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2286) 	}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2287)
 e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Hardy Ferentschik 2010-09-28 16:28:30 +0000 2288) 	private static void setVersionInformation(XProperty property, PropertyBinder propertyBinder) {
-a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (John Verhaeg      2010-12-21 21:51:02 +0000 2289) 		propertyBinder.getSimpleValueBinder().setVersion( true );
+a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (JPAV              2010-12-21 21:51:02 +0000 2289) 		propertyBinder.getSimpleValueBinder().setVersion( true );
 e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Hardy Ferentschik 2010-09-28 16:28:30 +0000 2290) 		if(property.isAnnotationPresent( Source.class )) {
 e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Hardy Ferentschik 2010-09-28 16:28:30 +0000 2291) 			Source source = property.getAnnotation( Source.class );
 e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Hardy Ferentschik 2010-09-28 16:28:30 +0000 2292) 			propertyBinder.getSimpleValueBinder().setTimestampVersionType( source.value().typeName() );
