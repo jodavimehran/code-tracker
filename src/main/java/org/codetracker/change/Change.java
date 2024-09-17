@@ -36,6 +36,7 @@ public interface Change {
         REPLACE_LOOP_WITH_PIPELINE("loop replaced with pipeline"),
         REPLACE_CONDITIONAL_WITH_TERNARY("conditional replaced with ternary"),
         DOCUMENTATION_CHANGE("documentation change"),
+        TYPE_PARAMETER_CHANGE("type parameter change"),
         RENAME("rename"),
         MODIFIER_CHANGE("modifier change"),
         ACCESS_MODIFIER_CHANGE("access modifier change"),

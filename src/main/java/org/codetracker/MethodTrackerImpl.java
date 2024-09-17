@@ -87,6 +87,24 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                     if (leftMethod != null) {
+                    	/*
+                    	UMLJavadoc leftJavadoc = leftMethod.getUmlOperation().getJavadoc();
+                		UMLJavadoc rightJavadoc = rightMethod.getUmlOperation().getJavadoc();
+                		if (leftJavadoc != null && rightJavadoc != null && !leftJavadoc.getFullText().equals(rightJavadoc.getFullText())) {
+                			changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+                			currentMethod = leftMethod;
+                		}
+                		*/
+                		if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                    			changeHistory.get().connectRelatedNodes();
+                    			currentMethod = leftMethod;
+                			}
+                		}
                         historyReport.step2PlusPlus();
                         continue;
                     }
@@ -99,6 +117,20 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
                         if (!leftMethod.equalDocuments(rightMethod))
                         	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                        /*
+                        UMLJavadoc leftJavadoc = leftMethod.getUmlOperation().getJavadoc();
+                		UMLJavadoc rightJavadoc = rightMethod.getUmlOperation().getJavadoc();
+                		if (leftJavadoc != null && rightJavadoc != null && !leftJavadoc.getFullText().equals(rightJavadoc.getFullText())) {
+                			changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                		}
+                		*/
+                        if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                			}
+                		}
                         changeHistory.get().connectRelatedNodes();
                         currentMethod = leftMethod;
                         historyReport.step3PlusPlus();

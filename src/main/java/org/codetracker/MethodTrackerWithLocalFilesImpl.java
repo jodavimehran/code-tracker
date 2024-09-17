@@ -100,6 +100,15 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 //NO CHANGE
                 Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                 if (leftMethod != null) {
+                	if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+            			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+            			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+            			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+            				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                			changeHistory.get().connectRelatedNodes();
+                			currentMethod = leftMethod;
+            			}
+            		}
                     historyReport.step2PlusPlus();
                     continue;
                 }
@@ -112,6 +121,13 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                     	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
                     if (!leftMethod.equalDocuments(rightMethod))
                     	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                    if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+            			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+            			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+            			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+            				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+            			}
+            		}
                     changeHistory.get().connectRelatedNodes();
                     currentMethod = leftMethod;
                     historyReport.step3PlusPlus();

@@ -133,6 +133,10 @@ public final class ChangeFactory {
                 change = new DocumentationChange();
                 break;
             }
+            case TYPE_PARAMETER_CHANGE: {
+                change = new MethodTypeParameterChange();
+                break;
+            }
             case BODY_CHANGE: {
                 change = new BodyChange();
                 break;
