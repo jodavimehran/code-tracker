@@ -1325,6 +1325,13 @@ public class FileTrackerImpl extends BaseTracker {
 						if (leftMethod != null) {
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 							checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
+							if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+	                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+	                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+	                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+	                			}
+	                		}
 							continue;
 						}
 						//CHANGE BODY OR DOCUMENT
@@ -1357,6 +1364,13 @@ public class FileTrackerImpl extends BaseTracker {
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
 							checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 							checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
+							if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+	                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+	                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+	                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+	                			}
+	                		}
 							startMethodChangeHistory.get().connectRelatedNodes();
 							startMethodChangeHistory.elements.remove(currentMethod);
 							startMethodChangeHistory.elements.add(leftMethod);
@@ -1385,6 +1399,13 @@ public class FileTrackerImpl extends BaseTracker {
 					if (leftMethod != null) {
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 						checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
+						if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                			}
+                		}
 						startMethodChangeHistory.setCurrent(leftMethod);
 						continue;
 					}
@@ -1415,6 +1436,13 @@ public class FileTrackerImpl extends BaseTracker {
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
 						checkIfJavadocChanged(currentVersion, parentVersion, startMethod, rightMethod, leftMethod);
 						checkSignatureFormatChange(startMethodChangeHistory, leftMethod, rightMethod);
+						if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+                			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                			}
+                		}
 						startMethodChangeHistory.get().connectRelatedNodes();
 						startMethodChangeHistory.setCurrent(leftMethod);
 						processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
