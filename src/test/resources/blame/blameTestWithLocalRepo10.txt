@@ -1,0 +1,532 @@
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 1)   ////////////////////////////////////////////////////////////////////////////////
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 2)   // checkstyle: Checks Java source code for adherence to a set of rules.
+dabb75d43 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2018-01-02 21:24:25 +0000 3)   // Copyright (C) 2001-2018 the original author or authors.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 4)   //
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 5)   // This library is free software; you can redistribute it and/or
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 6)   // modify it under the terms of the GNU Lesser General Public
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 7)   // License as published by the Free Software Foundation; either
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 8)   // version 2.1 of the License, or (at your option) any later version.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 9)   //
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 10)  // This library is distributed in the hope that it will be useful,
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 11)  // but WITHOUT ANY WARRANTY; without even the implied warranty of
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 12)  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 13)  // Lesser General Public License for more details.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 14)  //
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 15)  // You should have received a copy of the GNU Lesser General Public
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 16)  // License along with this library; if not, write to the Free Software
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 17)  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 18)  ////////////////////////////////////////////////////////////////////////////////
+                                                                                                                        19)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 20)  package com.puppycrawl.tools.checkstyle;
+                                                                                                                        21)
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 22)  import java.io.File;
+a2fded8ed src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-02 06:48:52 +0000 23)  import java.util.Arrays;
+7552a0b72 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-04-22 12:28:07 +0000 24)  import java.util.Collection;
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 25)  import java.util.HashSet;
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 26)  import java.util.Locale;
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 27)  import java.util.Set;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 28)  import java.util.SortedSet;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 29)  import java.util.TreeSet;
+                                                                                                                        30)
+17c08660f src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2009-04-25 22:58:37 +0000 31)  import com.google.common.collect.HashMultimap;
+7552a0b72 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-04-22 12:28:07 +0000 32)  import com.google.common.collect.Multimap;
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 33)  import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+42015d3ea src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-01 11:33:42 +0000 34)  import com.puppycrawl.tools.checkstyle.api.AbstractFileSetCheck;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 35)  import com.puppycrawl.tools.checkstyle.api.AutomaticBean;
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 36)  import com.puppycrawl.tools.checkstyle.api.CheckstyleException;
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 37)  import com.puppycrawl.tools.checkstyle.api.Configuration;
+08d6efe49 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-10 19:13:35 +0000 38)  import com.puppycrawl.tools.checkstyle.api.Context;
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 39)  import com.puppycrawl.tools.checkstyle.api.DetailAST;
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 40)  import com.puppycrawl.tools.checkstyle.api.ExternalResourceHolder;
+7af9e82fc src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-10-24 13:34:30 +0000 41)  import com.puppycrawl.tools.checkstyle.api.FileContents;
+3cd664694 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2010-06-28 13:02:13 +0000 42)  import com.puppycrawl.tools.checkstyle.api.FileText;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 43)  import com.puppycrawl.tools.checkstyle.api.LocalizedMessage;
+cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 44)  import com.puppycrawl.tools.checkstyle.utils.CommonUtils;
+cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 45)  import com.puppycrawl.tools.checkstyle.utils.TokenUtils;
+                                                                                                                        46)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 47)  /**
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 48)   * Responsible for walking an abstract syntax tree and notifying interested
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 49)   * checks at each each node.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 50)   *
+768256c32 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2003-06-27 11:04:38 +0000 51)   * @author Oliver Burn
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 52)   */
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 53)  public final class TreeWalker extends AbstractFileSetCheck implements ExternalResourceHolder {
+                                                                                                                        54)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 55)      /** Default distance between tab stops. */
+5cf355fad src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Rick Giles          2003-05-12 09:39:31 +0000 56)      private static final int DEFAULT_TAB_WIDTH = 8;
+                                                                                                                        57)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 58)      /** Maps from token name to ordinary checks. */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 59)      private final Multimap<String, AbstractCheck> tokenToOrdinaryChecks =
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 60)          HashMultimap.create();
+                                                                                                                        61)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 62)      /** Maps from token name to comment checks. */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 63)      private final Multimap<String, AbstractCheck> tokenToCommentChecks =
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 64)              HashMultimap.create();
+                                                                                                                        65)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 66)      /** Registered ordinary checks, that don't use comment nodes. */
+fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 67)      private final Set<AbstractCheck> ordinaryChecks = new HashSet<>();
+                                                                                                                        68)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 69)      /** Registered comment checks. */
+fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 70)      private final Set<AbstractCheck> commentChecks = new HashSet<>();
+                                                                                                                        71)
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 72)      /** The ast filters. */
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 73)      private final Set<TreeWalkerFilter> filters = new HashSet<>();
+                                                                                                                        74)
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 75)      /** The sorted set of messages. */
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 76)      private final SortedSet<LocalizedMessage> messages = new TreeSet<>();
+                                                                                                                        77)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 78)      /** The distance between tab stops. */
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 79)      private int tabWidth = DEFAULT_TAB_WIDTH;
+                                                                                                                        80)
+54ccca186 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-18 08:25:29 +0000 81)      /** Class loader to resolve classes with. **/
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 82)      private ClassLoader classLoader;
+                                                                                                                        83)
+5ca966795 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 17:02:55 +0000 84)      /** Context of child components. */
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 85)      private Context childContext;
+                                                                                                                        86)
+54ccca186 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-18 08:25:29 +0000 87)      /** A factory for creating submodules (i.e. the Checks) */
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 88)      private ModuleFactory moduleFactory;
+                                                                                                                        89)
+d077a402d src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-27 06:41:28 +0000 90)      /**
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 91)       * Creates a new {@code TreeWalker} instance.
+d077a402d src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-27 06:41:28 +0000 92)       */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 93)      public TreeWalker() {
+c0446a825 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-04-30 00:21:14 +0000 94)          setFileExtensions("java");
+672b27dd5 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-17 12:33:30 +0000 95)      }
+                                                                                                                        96)
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 97)      /**
+49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 98)       * Sets tab width.
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 99)       * @param tabWidth the distance between tab stops
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 100)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 101)     public void setTabWidth(int tabWidth) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 102)         this.tabWidth = tabWidth;
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 103)     }
+                                                                                                                        104)
+49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 105)     /**
+49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 106)      * Sets cache file.
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 107)      * @deprecated Use {@link Checker#setCacheFile} instead. It does not do anything now. We just
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 108)      *             keep the setter for transition period to the same option in Checker. The
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 109)      *             method will be completely removed in Checkstyle 8.0. See
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 110)      *             <a href="https://github.com/checkstyle/checkstyle/issues/2883">issue#2883</a>
+49a0ee817 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 19:58:35 +0000 111)      * @param fileName the cache file
+6a9771552 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-07-31 08:20:13 +0000 112)      */
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 113)     @Deprecated
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 114)     public void setCacheFile(String fileName) {
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 115)         // Deprecated
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 116)     }
+                                                                                                                        117)
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 118)     /**
+4a087c020 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (sagar-shah94        2017-06-12 17:11:55 +0000 119)      * Sets classLoader to load class.
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 120)      * @param classLoader class loader to resolve classes with.
+cf85a72f3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 15:49:51 +0000 121)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 122)     public void setClassLoader(ClassLoader classLoader) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 123)         this.classLoader = classLoader;
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 124)     }
+                                                                                                                        125)
+88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-16 06:26:46 +0000 126)     /**
+88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-16 06:26:46 +0000 127)      * Sets the module factory for creating child modules (Checks).
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 128)      * @param moduleFactory the factory
+88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-16 06:26:46 +0000 129)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 130)     public void setModuleFactory(ModuleFactory moduleFactory) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 131)         this.moduleFactory = moduleFactory;
+88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-16 06:26:46 +0000 132)     }
+                                                                                                                        133)
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2007-12-15 08:14:40 +0000 134)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 135)     public void finishLocalSetup() {
+35d167378 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2006-07-07 03:44:16 +0000 136)         final DefaultContext checkContext = new DefaultContext();
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 137)         checkContext.add("classLoader", classLoader);
+d216ec752 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2003-03-26 19:52:30 +0000 138)         checkContext.add("severity", getSeverity());
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 139)         checkContext.add("tabWidth", String.valueOf(tabWidth));
+                                                                                                                        140)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 141)         childContext = checkContext;
+08d6efe49 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-10 19:13:35 +0000 142)     }
+                                                                                                                        143)
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 144)     /**
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 145)      * {@inheritDoc} Creates child module.
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 146)      * @noinspection ChainOfInstanceofChecks
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 147)      */
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2007-12-15 08:14:40 +0000 148)     @Override
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 149)     public void setupChild(Configuration childConf)
+871b20e88 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-05-07 16:41:13 +0000 150)             throws CheckstyleException {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 151)         final String name = childConf.getName();
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 152)         final Object module = moduleFactory.createModule(name);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 153)         if (module instanceof AutomaticBean) {
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 154)             final AutomaticBean bean = (AutomaticBean) module;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 155)             bean.contextualize(childContext);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 156)             bean.configure(childConf);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 157)         }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 158)         if (module instanceof AbstractCheck) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 159)             final AbstractCheck check = (AbstractCheck) module;
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 160)             check.init();
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 161)             registerCheck(check);
+2a71cac7e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-12-26 17:21:44 +0000 162)         }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 163)         else if (module instanceof TreeWalkerFilter) {
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 164)             final TreeWalkerFilter filter = (TreeWalkerFilter) module;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 165)             filters.add(filter);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 166)         }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 167)         else {
+4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 168)             throw new CheckstyleException(
+4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 169)                 "TreeWalker is not allowed as a parent of " + name
+4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 170)                         + " Please review 'Parent Module' section for this Check in web"
+4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 171)                         + " documentation if Check is standard.");
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 172)         }
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-30 18:29:44 +0000 173)     }
+                                                                                                                        174)
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-11-09 09:37:27 +0000 175)     @Override
+82979737c src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-06 20:22:48 +0000 176)     protected void processFiltered(File file, FileText fileText) throws CheckstyleException {
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 177)         // check if already checked and passed the file
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 178)         if (CommonUtils.matchesFileExtension(file, getFileExtensions())
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 179)                 && (!ordinaryChecks.isEmpty() || !commentChecks.isEmpty())) {
+82979737c src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-06 20:22:48 +0000 180)             final FileContents contents = new FileContents(fileText);
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 181)             final DetailAST rootAST = JavaParser.parse(contents);
+27e1e9424 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Piyush Sharma       2017-06-07 13:02:06 +0000 182)             if (!ordinaryChecks.isEmpty()) {
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 183)                 walk(rootAST, contents, AstState.ORDINARY);
+27e1e9424 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Piyush Sharma       2017-06-07 13:02:06 +0000 184)             }
+27e1e9424 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Piyush Sharma       2017-06-07 13:02:06 +0000 185)             if (!commentChecks.isEmpty()) {
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 186)                 final DetailAST astWithComments = JavaParser.appendHiddenCommentNodes(rootAST);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 187)                 walk(astWithComments, contents, AstState.WITH_COMMENTS);
+27e1e9424 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Piyush Sharma       2017-06-07 13:02:06 +0000 188)             }
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 189)             if (filters.isEmpty()) {
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 190)                 addMessages(messages);
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 191)             }
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 192)             else {
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 193)                 final SortedSet<LocalizedMessage> filteredMessages =
+58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 194)                     getFilteredMessages(file.getPath(), contents, rootAST);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 195)                 addMessages(filteredMessages);
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 196)             }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 197)             messages.clear();
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 198)         }
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 199)     }
+                                                                                                                        200)
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 201)     /**
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 202)      * Returns filtered set of {@link LocalizedMessage}.
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 203)      * @param fileName path to the file
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 204)      * @param fileContents the contents of the file
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 205)      * @param rootAST root AST element {@link DetailAST} of the file
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 206)      * @return filtered set of messages
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 207)      */
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 208)     private SortedSet<LocalizedMessage> getFilteredMessages(
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 209)             String fileName, FileContents fileContents, DetailAST rootAST) {
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 210)         final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 211)         for (LocalizedMessage element : messages) {
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 212)             final TreeWalkerAuditEvent event =
+f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 213)                     new TreeWalkerAuditEvent(fileContents, fileName, element, rootAST);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 214)             for (TreeWalkerFilter filter : filters) {
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 215)                 if (!filter.accept(event)) {
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 216)                     result.remove(element);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 217)                     break;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 218)                 }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 219)             }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 220)         }
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 221)         return result;
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 222)     }
+                                                                                                                        223)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 224)     /**
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 225)      * Register a check for a given configuration.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 226)      * @param check the check to register
+256220f85 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Rick Giles          2002-12-06 11:24:21 +0000 227)      * @throws CheckstyleException if an error occurs
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 228)      */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 229)     private void registerCheck(AbstractCheck check)
+871b20e88 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-05-07 16:41:13 +0000 230)             throws CheckstyleException {
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 231)         validateDefaultTokens(check);
+911065320 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-04-26 03:45:31 +0000 232)         final int[] tokens;
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 233)         final Set<String> checkTokens = check.getTokenNames();
+86826e1fa src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-10 06:46:46 +0000 234)         if (checkTokens.isEmpty()) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 235)             tokens = check.getDefaultTokens();
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 236)         }
+0dc5dd977 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Rick Giles          2002-12-18 11:19:02 +0000 237)         else {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 238)             tokens = check.getRequiredTokens();
+                                                                                                                        239)
+95a5040cc src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Rick Giles          2002-12-18 10:55:36 +0000 240)             //register configured tokens
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 241)             final int[] acceptableTokens = check.getAcceptableTokens();
+a2fded8ed src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-02 06:48:52 +0000 242)             Arrays.sort(acceptableTokens);
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2007-12-15 08:14:40 +0000 243)             for (String token : checkTokens) {
+cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 244)                 final int tokenId = TokenUtils.getTokenId(token);
+a2fded8ed src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-02 06:48:52 +0000 245)                 if (Arrays.binarySearch(acceptableTokens, tokenId) >= 0) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 246)                     registerCheck(token, check);
+a2fded8ed src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-02 06:48:52 +0000 247)                 }
+39ce82b92 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-02-08 21:46:27 +0000 248)                 else {
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 249)                     final String message = String.format(Locale.ROOT, "Token \"%s\" was "
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 250)                             + "not found in Acceptable tokens list in check %s",
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 251)                             token, check.getClass().getName());
+085ce12db src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-08-25 23:00:09 +0000 252)                     throw new CheckstyleException(message);
+39ce82b92 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-02-08 21:46:27 +0000 253)                 }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 254)             }
+0dc5dd977 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Rick Giles          2002-12-18 11:19:02 +0000 255)         }
+e50e1fcd1 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2007-12-15 10:28:47 +0000 256)         for (int element : tokens) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 257)             registerCheck(element, check);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 258)         }
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 259)         if (check.isCommentNodesRequired()) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 260)             commentChecks.add(check);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 261)         }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 262)         else {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 263)             ordinaryChecks.add(check);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 264)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 265)     }
+                                                                                                                        266)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 267)     /**
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 268)      * Register a check for a specified token id.
+bf9325be9 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-11-22 01:51:07 +0000 269)      * @param tokenId the id of the token
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 270)      * @param check the check to register
+0bff657f6 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-09-14 01:19:24 +0000 271)      * @throws CheckstyleException if Check is misconfigured
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 272)      */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 273)     private void registerCheck(int tokenId, AbstractCheck check) throws CheckstyleException {
+bf9325be9 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-11-22 01:51:07 +0000 274)         registerCheck(TokenUtils.getTokenName(tokenId), check);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 275)     }
+                                                                                                                        276)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 277)     /**
+2b861bd6e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2015-08-31 18:24:26 +0000 278)      * Register a check for a specified token name.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 279)      * @param token the name of the token
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 280)      * @param check the check to register
+0bff657f6 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-09-14 01:19:24 +0000 281)      * @throws CheckstyleException if Check is misconfigured
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 282)      */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 283)     private void registerCheck(String token, AbstractCheck check) throws CheckstyleException {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 284)         if (check.isCommentNodesRequired()) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 285)             tokenToCommentChecks.put(token, check);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 286)         }
+cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 287)         else if (TokenUtils.isCommentType(token)) {
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 288)             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 289)                     + "token ('%s') and should override 'isCommentNodesRequired()' "
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 290)                     + "method to return 'true'", check.getClass().getName(), token);
+0bff657f6 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-09-14 01:19:24 +0000 291)             throw new CheckstyleException(message);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 292)         }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 293)         else {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 294)             tokenToOrdinaryChecks.put(token, check);
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 295)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 296)     }
+                                                                                                                        297)
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 298)     /**
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 299)      * Validates that check's required tokens are subset of default tokens.
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 300)      * @param check to validate
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 301)      * @throws CheckstyleException when validation of default tokens fails
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 302)      */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 303)     private static void validateDefaultTokens(AbstractCheck check) throws CheckstyleException {
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 304)         if (check.getRequiredTokens().length != 0) {
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 305)             final int[] defaultTokens = check.getDefaultTokens();
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 306)             Arrays.sort(defaultTokens);
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 307)             for (final int token : check.getRequiredTokens()) {
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 308)                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 309)                     final String message = String.format(Locale.ROOT, "Token \"%s\" from required "
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 310)                             + "tokens was not found in default tokens list in check %s",
+be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 311)                             token, check.getClass().getName());
+085ce12db src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-08-25 23:00:09 +0000 312)                     throw new CheckstyleException(message);
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 313)                 }
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 314)             }
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 315)         }
+afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 316)     }
+                                                                                                                        317)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 318)     /**
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 319)      * Initiates the walk of an AST.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 320)      * @param ast the root AST
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 321)      * @param contents the contents of the file the AST was generated from.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 322)      * @param astState state of AST.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 323)      */
+466b1ebb3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-13 16:47:17 +0000 324)     private void walk(DetailAST ast, FileContents contents,
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 325)             AstState astState) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 326)         notifyBegin(ast, contents, astState);
+                                                                                                                        327)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 328)         // empty files are not flagged by javac, will yield ast == null
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 329)         if (ast != null) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 330)             processIter(ast, astState);
+1aa213439 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-03 08:37:00 +0000 331)         }
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 332)         notifyEnd(ast, astState);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 333)     }
+                                                                                                                        334)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 335)     /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 336)      * Notify checks that we are about to begin walking a tree.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 337)      * @param rootAST the root of the tree.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 338)      * @param contents the contents of the file the AST was generated from.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 339)      * @param astState state of AST.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 340)      */
+466b1ebb3 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-13 16:47:17 +0000 341)     private void notifyBegin(DetailAST rootAST, FileContents contents,
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 342)             AstState astState) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 343)         final Set<AbstractCheck> checks;
+                                                                                                                        344)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 345)         if (astState == AstState.WITH_COMMENTS) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 346)             checks = commentChecks;
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 347)         }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 348)         else {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 349)             checks = ordinaryChecks;
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 350)         }
+                                                                                                                        351)
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 352)         for (AbstractCheck check : checks) {
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 353)             check.setFileContents(contents);
+ab548244e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2017-07-04 01:56:01 +0000 354)             check.clearMessages();
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 355)             check.beginTree(rootAST);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 356)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 357)     }
+                                                                                                                        358)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 359)     /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 360)      * Notify checks that we have finished walking a tree.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 361)      * @param rootAST the root of the tree.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 362)      * @param astState state of AST.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 363)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 364)     private void notifyEnd(DetailAST rootAST, AstState astState) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 365)         final Set<AbstractCheck> checks;
+                                                                                                                        366)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 367)         if (astState == AstState.WITH_COMMENTS) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 368)             checks = commentChecks;
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 369)         }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 370)         else {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 371)             checks = ordinaryChecks;
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 372)         }
+                                                                                                                        373)
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 374)         for (AbstractCheck check : checks) {
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 375)             check.finishTree(rootAST);
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 376)             messages.addAll(check.getMessages());
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 377)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 378)     }
+                                                                                                                        379)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 380)     /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 381)      * Notify checks that visiting a node.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 382)      * @param ast the node to notify for.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 383)      * @param astState state of AST.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 384)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 385)     private void notifyVisit(DetailAST ast, AstState astState) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 386)         final Collection<AbstractCheck> visitors = getListOfChecks(ast, astState);
+                                                                                                                        387)
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 388)         if (visitors != null) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 389)             for (AbstractCheck check : visitors) {
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 390)                 check.visitToken(ast);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 391)             }
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 392)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 393)     }
+                                                                                                                        394)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 395)     /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 396)      * Notify checks that leaving a node.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 397)      * @param ast
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 398)      *        the node to notify for
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 399)      * @param astState state of AST.
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 400)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 401)     private void notifyLeave(DetailAST ast, AstState astState) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 402)         final Collection<AbstractCheck> visitors = getListOfChecks(ast, astState);
+                                                                                                                        403)
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 404)         if (visitors != null) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 405)             for (AbstractCheck check : visitors) {
+f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 406)                 check.leaveToken(ast);
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 407)             }
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 408)         }
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 409)     }
+                                                                                                                        410)
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 411)     /**
+4a087c020 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (sagar-shah94        2017-06-12 17:11:55 +0000 412)      * Method returns list of checks.
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 413)      *
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 414)      * @param ast
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 415)      *            the node to notify for
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 416)      * @param astState
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 417)      *            state of AST.
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 418)      * @return list of visitors
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 419)      */
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 420)     private Collection<AbstractCheck> getListOfChecks(DetailAST ast, AstState astState) {
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (rnveach             2016-02-05 14:01:03 +0000 421)         Collection<AbstractCheck> visitors = null;
+cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 422)         final String tokenType = TokenUtils.getTokenName(ast.getType());
+                                                                                                                        423)
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 424)         if (astState == AstState.WITH_COMMENTS) {
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 425)             if (tokenToCommentChecks.containsKey(tokenType)) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 426)                 visitors = tokenToCommentChecks.get(tokenType);
+f2b19f108 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Vladimir Sitnikov   2014-11-05 01:30:14 +0000 427)             }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 428)         }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 429)         else {
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 430)             if (tokenToOrdinaryChecks.containsKey(tokenType)) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 431)                 visitors = tokenToOrdinaryChecks.get(tokenType);
+f2b19f108 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Vladimir Sitnikov   2014-11-05 01:30:14 +0000 432)             }
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 433)         }
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 434)         return visitors;
+0fe31dfdf src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-20 05:01:26 +0000 435)     }
+                                                                                                                        436)
+f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2007-12-15 08:14:40 +0000 437)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 438)     public void destroy() {
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 439)         ordinaryChecks.forEach(AbstractCheck::destroy);
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 440)         commentChecks.forEach(AbstractCheck::destroy);
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 441)         super.destroy();
+abff1a248 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2002-11-19 20:21:46 +0000 442)     }
+                                                                                                                        443)
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 444)     @Override
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 445)     public Set<String> getExternalResourceLocations() {
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 446)         final Set<String> ordinaryChecksResources =
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 447)                 getExternalResourceLocationsOfChecks(ordinaryChecks);
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 448)         final Set<String> commentChecksResources =
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 449)                 getExternalResourceLocationsOfChecks(commentChecks);
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 450)         final Set<String> filtersResources =
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 451)                 getExternalResourceLocationsOfFilters();
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 452)         final int resultListSize = commentChecksResources.size()
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 453)                 + ordinaryChecksResources.size()
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 454)                 + filtersResources.size();
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 455)         final Set<String> resourceLocations = new HashSet<>(resultListSize);
+3bd3a5228 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Vladislav Lisetskii 2017-04-05 12:37:51 +0000 456)         resourceLocations.addAll(ordinaryChecksResources);
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 457)         resourceLocations.addAll(commentChecksResources);
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 458)         resourceLocations.addAll(filtersResources);
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 459)         return resourceLocations;
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 460)     }
+                                                                                                                        461)
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 462)     /**
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 463)      * Returns a set of external configuration resource locations which are used by the filters set.
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 464)      * @return a set of external configuration resource locations which are used by the filters set.
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 465)      */
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 466)     private Set<String> getExternalResourceLocationsOfFilters() {
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 467)         final Set<String> externalConfigurationResources = new HashSet<>();
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 468)         filters.stream().filter(filter -> filter instanceof ExternalResourceHolder)
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 469)                 .forEach(filter -> {
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 470)                     final Set<String> checkExternalResources =
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 471)                         ((ExternalResourceHolder) filter).getExternalResourceLocations();
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 472)                     externalConfigurationResources.addAll(checkExternalResources);
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 473)                 });
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 474)         return externalConfigurationResources;
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 475)     }
+                                                                                                                        476)
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 477)     /**
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 478)      * Returns a set of external configuration resource locations which are used by the checks set.
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 479)      * @param checks a set of checks.
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 480)      * @return a set of external configuration resource locations which are used by the checks set.
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 481)      */
+9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 482)     private static Set<String> getExternalResourceLocationsOfChecks(Set<AbstractCheck> checks) {
+fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 483)         final Set<String> externalConfigurationResources = new HashSet<>();
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 484)         checks.stream().filter(check -> check instanceof ExternalResourceHolder).forEach(check -> {
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 485)             final Set<String> checkExternalResources =
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 486)                 ((ExternalResourceHolder) check).getExternalResourceLocations();
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 487)             externalConfigurationResources.addAll(checkExternalResources);
+de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 488)         });
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 489)         return externalConfigurationResources;
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 490)     }
+                                                                                                                        491)
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 492)     /**
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 493)      * Processes a node calling interested checks at each node.
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 494)      * Uses iterative algorithm.
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 495)      * @param root the root of tree for process
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 496)      * @param astState state of AST.
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 497)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-05-17 11:47:09 +0000 498)     private void processIter(DetailAST root, AstState astState) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 499)         DetailAST curNode = root;
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 500)         while (curNode != null) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 501)             notifyVisit(curNode, astState);
+d62a2cc02 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-09-18 11:34:16 +0000 502)             DetailAST toVisit = curNode.getFirstChild();
+1bd30555e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-03-10 21:36:38 +0000 503)             while (curNode != null && toVisit == null) {
+b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-01-19 14:38:32 +0000 504)                 notifyLeave(curNode, astState);
+d62a2cc02 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2008-09-18 11:34:16 +0000 505)                 toVisit = curNode.getNextSibling();
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 506)                 if (toVisit == null) {
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 507)                     curNode = curNode.getParent();
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 508)                 }
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 509)             }
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 510)             curNode = toVisit;
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 511)         }
+fa9bf2e0e src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oleg Sukhodolsky    2005-07-23 21:18:27 +0000 512)     }
+                                                                                                                        513)
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 514)     /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 515)      * State of AST.
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 516)      * Indicates whether tree contains certain nodes.
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 517)      */
+c8761822c src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-09 02:22:59 +0000 518)     private enum AstState {
+                                                                                                                        519)
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 520)         /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 521)          * Ordinary tree.
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 522)          */
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 523)         ORDINARY,
+                                                                                                                        524)
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 525)         /**
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 526)          * AST contains comment nodes.
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 527)          */
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 528)         WITH_COMMENTS
+                                                                                                                        529)
+a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 530)     }
+                                                                                                                        531)
+19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 532) }
