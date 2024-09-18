@@ -20,11 +20,13 @@ import java.util.function.Predicate;
 public class Class extends BaseCodeElement {
     private final UMLAbstractClass umlClass;
     private final String identifierIgnoringVersionAndAnnotation;
+    private final String identifierIgnoringVersionAndModifiers;
 
-    private Class(UMLAbstractClass umlClass, String identifierExcludeVersion, String identifierExcludeVersionAndAnnotation, String name, String filePath, Version version) {
+    private Class(UMLAbstractClass umlClass, String identifierExcludeVersion, String identifierExcludeVersionAndAnnotation, String identifierIgnoringVersionAndModifiers, String name, String filePath, Version version) {
         super(identifierExcludeVersion, name, filePath, version);
         this.umlClass = umlClass;
         this.identifierIgnoringVersionAndAnnotation = identifierExcludeVersionAndAnnotation;
+        this.identifierIgnoringVersionAndModifiers = identifierIgnoringVersionAndModifiers;
     }
 
     public BaseCodeElement of(Version version) {
@@ -43,8 +45,9 @@ public class Class extends BaseCodeElement {
         String visibility = umlClass.getVisibility().toString();
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String identifierExcludeVersionAndAnnotation = String.format("%s%s.(%s)%s(%s)%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name);
+        String identifierExcludeVersionAndModifiers = String.format("%s%s.(%s)(%s)%s%s", sourceFolder, packageName, visibility, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
-        return new Class(umlClass, identifierExcludeVersion, identifierExcludeVersionAndAnnotation, className, umlClass.getLocationInfo().getFilePath(), version);
+        return new Class(umlClass, identifierExcludeVersion, identifierExcludeVersionAndAnnotation, identifierExcludeVersionAndModifiers, className, umlClass.getLocationInfo().getFilePath(), version);
     }
 
     public boolean differInFormatting(Class other) {
@@ -151,6 +154,10 @@ public class Class extends BaseCodeElement {
 
     public boolean equalIdentifierIgnoringVersionAndAnnotation(Class clazz) {
         return this.identifierIgnoringVersionAndAnnotation.equals(clazz.identifierIgnoringVersionAndAnnotation);
+    }
+
+    public boolean equalIdentifierIgnoringVersionAndModifiers(Class clazz) {
+        return this.identifierIgnoringVersionAndModifiers.equals(clazz.identifierIgnoringVersionAndModifiers);
     }
 
 	public void checkClosingBracket(int lineNumber) {

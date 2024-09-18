@@ -277,10 +277,17 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				boolean annotationChanged = false;
 				if(leftClass == null) {
 					leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersionAndAnnotation);
-					annotationChanged = true;
+					if(leftClass != null)
+						annotationChanged = true;
+				}
+				boolean modifiersChanged = false;
+				if(leftClass == null) {
+					leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersionAndModifiers);
+					if(leftClass != null)
+						modifiersChanged = true;
 				}
 				// No class signature change
-				if (leftClass != null && !annotationChanged) {
+				if (leftClass != null && !annotationChanged && !modifiersChanged) {
 					UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
 					UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
 					if (leftSuperclass != null && rightSuperclass != null) {
@@ -322,7 +329,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					}
 					continue;
 				}
-				else if (leftClass != null && annotationChanged) {
+				else if (leftClass != null && (annotationChanged || modifiersChanged)) {
 					UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 					List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
 					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);

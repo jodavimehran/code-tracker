@@ -15,6 +15,7 @@ import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.StatementObject;
 
 import org.codetracker.api.Version;
+import org.refactoringminer.util.PrefixSuffixUtils;
 
 import static org.codetracker.util.Util.annotationsToString;
 import static org.codetracker.util.Util.getPath;
@@ -58,7 +59,19 @@ public class Attribute extends BaseCodeElement {
     	String thisSignature = umlAttribute.getVariableDeclaration().getActualSignature();
 		String otherSignature = other.umlAttribute.getVariableDeclaration().getActualSignature();
 		if (thisSignature != null && otherSignature != null) {
-    		return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+    		if(!thisSignature.equals(otherSignature)) {
+    			//whitespace change
+    			if(thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""))) {
+    				return true;
+    			}
+    			else {
+    				String prefix = PrefixSuffixUtils.longestCommonPrefix(thisSignature, otherSignature);
+    				String suffix = PrefixSuffixUtils.longestCommonSuffix(thisSignature, otherSignature);
+    				if(!prefix.isEmpty() && !suffix.isEmpty()) {
+    					return true;
+    				}
+    			}
+    		}
     	}
     	return false;
     }
