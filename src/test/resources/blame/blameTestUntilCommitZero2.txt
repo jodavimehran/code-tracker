@@ -515,7 +515,7 @@ d953a0609 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 515)   }
                                                                                                                                516)
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 517)   private class ListenerNotificator implements CompileStatusNotification {
-7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 06:50:33 +0000 518)     @Nullable private final CompileStatusNotification myDelegate;
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 518)     @Nullable private final CompileStatusNotification myDelegate;
                                                                                                                                519)
 7c2ec369e java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (nik                 2012-08-27 06:50:33 +0000 520)     private ListenerNotificator(@Nullable CompileStatusNotification delegate) {
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 521)       myDelegate = delegate;
