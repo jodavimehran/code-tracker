@@ -45,7 +45,7 @@ public class Class extends BaseCodeElement {
         String visibility = umlClass.getVisibility().toString();
         String identifierExcludeVersion = String.format("%s%s.(%s)%s(%s)%s%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String identifierExcludeVersionAndAnnotation = String.format("%s%s.(%s)%s(%s)%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name);
-        String identifierExcludeVersionAndModifiers = String.format("%s%s.(%s)(%s)%s%s", sourceFolder, packageName, visibility, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
+        String identifierExcludeVersionAndModifiers = String.format("%s%s.(%s)%s%s", sourceFolder, packageName, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
         return new Class(umlClass, identifierExcludeVersion, identifierExcludeVersionAndAnnotation, identifierExcludeVersionAndModifiers, className, umlClass.getLocationInfo().getFilePath(), version);
     }

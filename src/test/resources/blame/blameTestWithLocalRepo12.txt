@@ -1,0 +1,692 @@
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 1)   /*
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 2)    * Licensed to the Apache Software Foundation (ASF) under one or more
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 3)    * contributor license agreements.  See the NOTICE file distributed with
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 4)    * this work for additional information regarding copyright ownership.
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 5)    * The ASF licenses this file to You under the Apache License, Version 2.0
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 6)    * (the "License"); you may not use this file except in compliance with
+a5a4f9067 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-08-28 06:21:41 +0000 7)    * the License.  You may obtain a copy of the License at
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 8)    *
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 9)    *      http://www.apache.org/licenses/LICENSE-2.0
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 10)   *
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 11)   * Unless required by applicable law or agreed to in writing, software
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 12)   * distributed under the License is distributed on an "AS IS" BASIS,
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 13)   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 14)   * See the License for the specific language governing permissions and
+43e94f47b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2004-02-18 23:06:54 +0000 15)   * limitations under the License.
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 16)   */
+c6e8f706d src/java/org/apache/commons/lang3/time/DurationFormatUtils.java      (Henri Yandell      2009-12-10 11:56:38 +0000 17)  package org.apache.commons.lang3.time;
+                                                                                                                             18)
+848a8144b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-22 19:51:19 +0000 19)  import java.util.ArrayList;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 20)  import java.util.Calendar;
+dd2a1841f src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-10-02 01:40:30 +0000 21)  import java.util.Date;
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 22)  import java.util.GregorianCalendar;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 23)  import java.util.TimeZone;
+                                                                                                                             24)
+c6e8f706d src/java/org/apache/commons/lang3/time/DurationFormatUtils.java      (Henri Yandell      2009-12-10 11:56:38 +0000 25)  import org.apache.commons.lang3.StringUtils;
+9a16b763d src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-05-13 20:31:02 +0000 26)  import org.apache.commons.lang3.Validate;
+                                                                                                                             27)
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 28)  /**
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 29)   * <p>Duration formatting utilities and constants. The following table describes the tokens
+6850d8888 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (pascalschumacher   2018-05-28 08:55:30 +0000 30)   * used in the pattern language for formatting.</p>
+6850d8888 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (pascalschumacher   2018-05-28 08:55:30 +0000 31)   * <table border="1">
+6850d8888 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (pascalschumacher   2018-05-28 08:55:30 +0000 32)   *  <caption>Pattern Tokens</caption>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 33)   *  <tr><th>character</th><th>duration element</th></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 34)   *  <tr><td>y</td><td>years</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 35)   *  <tr><td>M</td><td>months</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 36)   *  <tr><td>d</td><td>days</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 37)   *  <tr><td>H</td><td>hours</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 38)   *  <tr><td>m</td><td>minutes</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 39)   *  <tr><td>s</td><td>seconds</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 40)   *  <tr><td>S</td><td>milliseconds</td></tr>
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 41)   *  <tr><td>'text'</td><td>arbitrary text content</td></tr>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 42)   * </table>
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 43)   *
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 44)   * <b>Note: It's not currently possible to include a single-quote in a format.</b>
+0e2e37bb8 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Niall Pemberton    2014-03-31 22:54:57 +0000 45)   * <br>
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 46)   * Token values are printed using decimal digits.
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 47)   * A token character can be repeated to ensure that the field occupies a certain minimum
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 48)   * size. Values will be left-padded with 0 unless padding is disabled in the method invocation.
+fc447adfe src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-26 05:45:33 +0000 49)   * @since 2.1
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 50)   */
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 51)  public class DurationFormatUtils {
+                                                                                                                             52)
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 53)      /**
+eadb45d1a src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2003-07-14 22:25:06 +0000 54)       * <p>DurationFormatUtils instances should NOT be constructed in standard programming.</p>
+eadb45d1a src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2003-07-14 22:25:06 +0000 55)       *
+eadb45d1a src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2003-07-14 22:25:06 +0000 56)       * <p>This constructor is public to permit tools that require a JavaBean instance
+eadb45d1a src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2003-07-14 22:25:06 +0000 57)       * to operate.</p>
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 58)       */
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 59)      public DurationFormatUtils() {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 60)          super();
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 61)      }
+                                                                                                                             62)
+b870bcd7c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2003-07-18 17:04:31 +0000 63)      /**
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 64)       * <p>Pattern used with <code>FastDateFormat</code> and <code>SimpleDateFormat</code>
+b4b51a8fc src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-04-30 21:49:35 +0000 65)       * for the ISO 8601 period format used in durations.</p>
+b870bcd7c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2003-07-18 17:04:31 +0000 66)       *
+dc0509f7e src/java/org/apache/commons/lang3/time/DurationFormatUtils.java      (Henri Yandell      2009-12-10 12:02:50 +0000 67)       * @see org.apache.commons.lang3.time.FastDateFormat
+b870bcd7c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2003-07-18 17:04:31 +0000 68)       * @see java.text.SimpleDateFormat
+b870bcd7c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2003-07-18 17:04:31 +0000 69)       */
+7d6e0becc src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-05 18:02:25 +0000 70)      public static final String ISO_EXTENDED_FORMAT_PATTERN = "'P'yyyy'Y'M'M'd'DT'H'H'm'M's.SSS'S'";
+                                                                                                                             71)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 72)      //-----------------------------------------------------------------------
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 73)      /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 74)       * <p>Formats the time gap as a string.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 75)       *
+fd54d42f7 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 15:40:59 +0000 76)       * <p>The format used is ISO 8601-like: {@code HH:mm:ss.SSS}.</p>
+fd54d42f7 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 15:40:59 +0000 77)       *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 78)       * @param durationMillis  the duration to format
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 79)       * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 80)       * @throws java.lang.IllegalArgumentException if durationMillis is negative
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 81)       */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 82)      public static String formatDurationHMS(final long durationMillis) {
+fd54d42f7 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 15:40:59 +0000 83)          return formatDuration(durationMillis, "HH:mm:ss.SSS");
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 84)      }
+                                                                                                                             85)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 86)      /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 87)       * <p>Formats the time gap as a string.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 88)       *
+b4b51a8fc src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-04-30 21:49:35 +0000 89)       * <p>The format used is the ISO 8601 period format.</p>
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 90)       *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 91)       * <p>This method formats durations using the days and lower fields of the
+9f4f79fe3 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-03-06 07:18:01 +0000 92)       * ISO format pattern, such as P7D6TH5M4.321S.</p>
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 93)       *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 94)       * @param durationMillis  the duration to format
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 95)       * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 96)       * @throws java.lang.IllegalArgumentException if durationMillis is negative
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 97)       */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 98)      public static String formatDurationISO(final long durationMillis) {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 99)          return formatDuration(durationMillis, ISO_EXTENDED_FORMAT_PATTERN, false);
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 100)     }
+                                                                                                                             101)
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 102)     /**
+1a97c7efe src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:31:28 +0000 103)      * <p>Formats the time gap as a string, using the specified format, and padding with zeros.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 104)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 105)      * <p>This method formats durations using the days and lower fields of the
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 106)      * format pattern. Months and larger are not used.</p>
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 107)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 108)      * @param durationMillis  the duration to format
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 109)      * @param format  the way in which to format the duration, not null
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 110)      * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 111)      * @throws java.lang.IllegalArgumentException if durationMillis is negative
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 112)      */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 113)     public static String formatDuration(final long durationMillis, final String format) {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 114)         return formatDuration(durationMillis, format, true);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 115)     }
+                                                                                                                             116)
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 117)     /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 118)      * <p>Formats the time gap as a string, using the specified format.
+19120b722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 22:41:13 +0000 119)      * Padding the left hand side of numbers with zeroes is optional.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 120)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 121)      * <p>This method formats durations using the days and lower fields of the
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 122)      * format pattern. Months and larger are not used.</p>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 123)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 124)      * @param durationMillis  the duration to format
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 125)      * @param format  the way in which to format the duration, not null
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 126)      * @param padWithZeros  whether to pad the left hand side of numbers with 0's
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 127)      * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 128)      * @throws java.lang.IllegalArgumentException if durationMillis is negative
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 129)      */
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 130)     public static String formatDuration(final long durationMillis, final String format, final boolean padWithZeros) {
+9a16b763d src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-05-13 20:31:02 +0000 131)         Validate.inclusiveBetween(0, Long.MAX_VALUE, durationMillis, "durationMillis must not be negative");
+                                                                                                                             132)
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 133)         final Token[] tokens = lexx(format);
+                                                                                                                             134)
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 135)         long days         = 0;
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 136)         long hours        = 0;
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 137)         long minutes      = 0;
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 138)         long seconds      = 0;
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 139)         long milliseconds = durationMillis;
+                                                                                                                             140)
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 141)         if (Token.containsTokenWithValue(tokens, d) ) {
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 142)             days = milliseconds / DateUtils.MILLIS_PER_DAY;
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 143)             milliseconds = milliseconds - (days * DateUtils.MILLIS_PER_DAY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 144)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 145)         if (Token.containsTokenWithValue(tokens, H) ) {
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 146)             hours = milliseconds / DateUtils.MILLIS_PER_HOUR;
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 147)             milliseconds = milliseconds - (hours * DateUtils.MILLIS_PER_HOUR);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 148)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 149)         if (Token.containsTokenWithValue(tokens, m) ) {
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 150)             minutes = milliseconds / DateUtils.MILLIS_PER_MINUTE;
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 151)             milliseconds = milliseconds - (minutes * DateUtils.MILLIS_PER_MINUTE);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 152)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 153)         if (Token.containsTokenWithValue(tokens, s) ) {
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 154)             seconds = milliseconds / DateUtils.MILLIS_PER_SECOND;
+8d360ae70 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:36:16 +0000 155)             milliseconds = milliseconds - (seconds * DateUtils.MILLIS_PER_SECOND);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 156)         }
+                                                                                                                             157)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 158)         return format(tokens, 0, 0, days, hours, minutes, seconds, milliseconds, padWithZeros);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 159)     }
+                                                                                                                             160)
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 161)     /**
+8acb1d2b4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Casey Scarborough  2016-05-08 10:50:48 +0000 162)      * <p>Formats an elapsed time into a pluralization correct string.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 163)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 164)      * <p>This method formats durations using the days and lower fields of the
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 165)      * format pattern. Months and larger are not used.</p>
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 166)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 167)      * @param durationMillis  the elapsed time to report in milliseconds
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 168)      * @param suppressLeadingZeroElements  suppresses leading 0 elements
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 169)      * @param suppressTrailingZeroElements  suppresses trailing 0 elements
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 170)      * @return the formatted text in days/hours/minutes/seconds, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 171)      * @throws java.lang.IllegalArgumentException if durationMillis is negative
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 172)      */
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 173)     public static String formatDurationWords(
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 174)         final long durationMillis,
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 175)         final boolean suppressLeadingZeroElements,
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 176)         final boolean suppressTrailingZeroElements) {
+                                                                                                                             177)
+8acb1d2b4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Casey Scarborough  2016-05-08 10:50:48 +0000 178)         // This method is generally replaceable by the format method, but
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 179)         // there are a series of tweaks and special cases that require
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 180)         // trickery to replicate.
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 181)         String duration = formatDuration(durationMillis, "d' days 'H' hours 'm' minutes 's' seconds'");
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 182)         if (suppressLeadingZeroElements) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 183)             // this is a temporary marker on the front. Like ^ in regexp.
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 184)             duration = " " + duration;
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 185)             String tmp = StringUtils.replaceOnce(duration, " 0 days", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 186)             if (tmp.length() != duration.length()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 187)                 duration = tmp;
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 188)                 tmp = StringUtils.replaceOnce(duration, " 0 hours", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 189)                 if (tmp.length() != duration.length()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 190)                     duration = tmp;
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 191)                     tmp = StringUtils.replaceOnce(duration, " 0 minutes", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 192)                     duration = tmp;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 193)                     if (tmp.length() != duration.length()) {
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 194)                         duration = StringUtils.replaceOnce(tmp, " 0 seconds", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 195)                     }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 196)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 197)             }
+214cc7fd5 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Igor Curdvanovschi 2018-06-20 10:05:02 +0000 198)             if (!duration.isEmpty()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 199)                 // strip the space off again
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 200)                 duration = duration.substring(1);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 201)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 202)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 203)         if (suppressTrailingZeroElements) {
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 204)             String tmp = StringUtils.replaceOnce(duration, " 0 seconds", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 205)             if (tmp.length() != duration.length()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 206)                 duration = tmp;
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 207)                 tmp = StringUtils.replaceOnce(duration, " 0 minutes", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 208)                 if (tmp.length() != duration.length()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 209)                     duration = tmp;
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 210)                     tmp = StringUtils.replaceOnce(duration, " 0 hours", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 211)                     if (tmp.length() != duration.length()) {
+15b80753a src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (ggregory           2016-04-13 20:57:35 +0000 212)                         duration = StringUtils.replaceOnce(tmp, " 0 days", StringUtils.EMPTY);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 213)                     }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 214)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 215)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 216)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 217)         // handle plurals
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 218)         duration = " " + duration;
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 219)         duration = StringUtils.replaceOnce(duration, " 1 seconds", " 1 second");
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 220)         duration = StringUtils.replaceOnce(duration, " 1 minutes", " 1 minute");
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 221)         duration = StringUtils.replaceOnce(duration, " 1 hours", " 1 hour");
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 222)         duration = StringUtils.replaceOnce(duration, " 1 days", " 1 day");
+f0f0bf81e src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-11-23 00:19:44 +0000 223)         return duration.trim();
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 224)     }
+                                                                                                                             225)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 226)     //-----------------------------------------------------------------------
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 227)     /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 228)      * <p>Formats the time gap as a string.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 229)      *
+b4b51a8fc src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-04-30 21:49:35 +0000 230)      * <p>The format used is the ISO 8601 period format.</p>
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 231)      *
+8f21c196b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:22:22 +0000 232)      * @param startMillis  the start of the duration to format
+8f21c196b src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:22:22 +0000 233)      * @param endMillis  the end of the duration to format
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 234)      * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 235)      * @throws java.lang.IllegalArgumentException if startMillis is greater than endMillis
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 236)      */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 237)     public static String formatPeriodISO(final long startMillis, final long endMillis) {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 238)         return formatPeriod(startMillis, endMillis, ISO_EXTENDED_FORMAT_PATTERN, false, TimeZone.getDefault());
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 239)     }
+                                                                                                                             240)
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 241)     /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 242)      * <p>Formats the time gap as a string, using the specified format.
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 243)      * Padding the left hand side of numbers with zeroes is optional.
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 244)      *
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 245)      * @param startMillis  the start of the duration
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 246)      * @param endMillis  the end of the duration
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 247)      * @param format  the way in which to format the duration, not null
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 248)      * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 249)      * @throws java.lang.IllegalArgumentException if startMillis is greater than endMillis
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 250)      */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 251)     public static String formatPeriod(final long startMillis, final long endMillis, final String format) {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 252)         return formatPeriod(startMillis, endMillis, format, true, TimeZone.getDefault());
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 253)     }
+                                                                                                                             254)
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 255)     /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 256)      * <p>Formats the time gap as a string, using the specified format.
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 257)      * Padding the left hand side of numbers with zeroes is optional and
+ee4ad2727 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-08 09:05:52 +0000 258)      * the timezone may be specified. </p>
+ee4ad2727 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-08 09:05:52 +0000 259)      *
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 260)      * <p>When calculating the difference between months/days, it chooses to
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 261)      * calculate months first. So when working out the number of months and
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 262)      * days between January 15th and March 10th, it choose 1 month and
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 263)      * 23 days gained by choosing January-&gt;February = 1 month and then
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 264)      * calculating days forwards, and not the 1 month and 26 days gained by
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 265)      * choosing March -&gt; February = 1 month and then calculating days
+ee4ad2727 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-08 09:05:52 +0000 266)      * backwards. </p>
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 267)      *
+a9ff534b3 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2006-12-29 17:44:59 +0000 268)      * <p>For more control, the <a href="http://joda-time.sf.net/">Joda-Time</a>
+a9ff534b3 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2006-12-29 17:44:59 +0000 269)      * library is recommended.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 270)      *
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 271)      * @param startMillis  the start of the duration
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 272)      * @param endMillis  the end of the duration
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 273)      * @param format  the way in which to format the duration, not null
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 274)      * @param padWithZeros  whether to pad the left hand side of numbers with 0's
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 275)      * @param timezone  the millis are defined in
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 276)      * @return the formatted duration, not null
+4b74c3856 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2014-05-04 08:49:27 +0000 277)      * @throws java.lang.IllegalArgumentException if startMillis is greater than endMillis
+a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 278)      */
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 279)     public static String formatPeriod(final long startMillis, final long endMillis, final String format, final boolean padWithZeros,
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 280)             final TimeZone timezone) {
+                                                                                                                             281)         Validate.isTrue(startMillis <= endMillis, "startMillis must not be greater than endMillis");
+                                                                                                                             282)
+                                                                                                                             283)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 284)         // Used to optimise for differences under 28 days and
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 285)         // called formatDuration(millis, format); however this did not work
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 286)         // over leap years.
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 287)         // TODO: Compare performance to see if anything was lost by
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 288)         // losing this optimisation.
+                                                                                                                             289)
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 290)         final Token[] tokens = lexx(format);
+                                                                                                                             291)
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 292)         // timezones get funky around 0, so normalizing everything to GMT
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 293)         // stops the hours being off
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 294)         final Calendar start = Calendar.getInstance(timezone);
+dd2a1841f src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-10-02 01:40:30 +0000 295)         start.setTime(new Date(startMillis));
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 296)         final Calendar end = Calendar.getInstance(timezone);
+dd2a1841f src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-10-02 01:40:30 +0000 297)         end.setTime(new Date(endMillis));
+                                                                                                                             298)
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 299)         // initial estimates
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 300)         int milliseconds = end.get(Calendar.MILLISECOND) - start.get(Calendar.MILLISECOND);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 301)         int seconds = end.get(Calendar.SECOND) - start.get(Calendar.SECOND);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 302)         int minutes = end.get(Calendar.MINUTE) - start.get(Calendar.MINUTE);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 303)         int hours = end.get(Calendar.HOUR_OF_DAY) - start.get(Calendar.HOUR_OF_DAY);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 304)         int days = end.get(Calendar.DAY_OF_MONTH) - start.get(Calendar.DAY_OF_MONTH);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 305)         int months = end.get(Calendar.MONTH) - start.get(Calendar.MONTH);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 306)         int years = end.get(Calendar.YEAR) - start.get(Calendar.YEAR);
+                                                                                                                             307)
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 308)         // each initial estimate is adjusted in case it is under 0
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 309)         while (milliseconds < 0) {
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 310)             milliseconds += 1000;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 311)             seconds -= 1;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 312)         }
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 313)         while (seconds < 0) {
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 314)             seconds += 60;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 315)             minutes -= 1;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 316)         }
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 317)         while (minutes < 0) {
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 318)             minutes += 60;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 319)             hours -= 1;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 320)         }
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 321)         while (hours < 0) {
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 322)             hours += 24;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 323)             days -= 1;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 324)         }
+                                                                                                                             325)
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 326)         if (Token.containsTokenWithValue(tokens, M)) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 327)             while (days < 0) {
+5fb6521ab src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-11 03:33:09 +0000 328)                 days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 329)                 months -= 1;
+5fb6521ab src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-11 03:33:09 +0000 330)                 start.add(Calendar.MONTH, 1);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 331)             }
+                                                                                                                             332)
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 333)             while (months < 0) {
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 334)                 months += 12;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 335)                 years -= 1;
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 336)             }
+                                                                                                                             337)
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 338)             if (!Token.containsTokenWithValue(tokens, y) && years != 0) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 339)                 while (years != 0) {
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 340)                     months += 12 * years;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 341)                     years = 0;
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 342)                 }
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 343)             }
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 344)         } else {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 345)             // there are no M's in the format string
+                                                                                                                             346)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 347)             if( !Token.containsTokenWithValue(tokens, y) ) {
+                                                                                                                             348)                 int target = end.get(Calendar.YEAR);
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 349)                 if (months < 0) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 350)                     // target is end-year -1
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 351)                     target -= 1;
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 352)                 }
+                                                                                                                             353)
+f33fba71c src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-03-13 11:41:02 +0000 354)                 while (start.get(Calendar.YEAR) != target) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 355)                     days += start.getActualMaximum(Calendar.DAY_OF_YEAR) - start.get(Calendar.DAY_OF_YEAR);
+                                                                                                                             356)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 357)                     // Not sure I grok why this is needed, but the brutal tests show it is
+79cddd4ea src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 12:54:18 +0000 358)                     if (start instanceof GregorianCalendar &&
+79cddd4ea src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 12:54:18 +0000 359)                             start.get(Calendar.MONTH) == Calendar.FEBRUARY &&
+79cddd4ea src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 12:54:18 +0000 360)                             start.get(Calendar.DAY_OF_MONTH) == 29) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 361)                         days += 1;
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 362)                     }
+                                                                                                                             363)
+5fb6521ab src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-11 03:33:09 +0000 364)                     start.add(Calendar.YEAR, 1);
+                                                                                                                             365)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 366)                     days += start.get(Calendar.DAY_OF_YEAR);
+5fb6521ab src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-11 03:33:09 +0000 367)                 }
+                                                                                                                             368)
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 369)                 years = 0;
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 370)             }
+                                                                                                                             371)
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 372)             while( start.get(Calendar.MONTH) != end.get(Calendar.MONTH) ) {
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 373)                 days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 374)                 start.add(Calendar.MONTH, 1);
+dd23ae863 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-13 07:09:24 +0000 375)             }
+                                                                                                                             376)
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 377)             months = 0;
+                                                                                                                             378)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 379)             while (days < 0) {
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 380)                 days += start.getActualMaximum(Calendar.DAY_OF_MONTH);
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 381)                 months -= 1;
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 382)                 start.add(Calendar.MONTH, 1);
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 383)             }
+                                                                                                                             384)
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 385)         }
+                                                                                                                             386)
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 387)         // The rest of this code adds in values that
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 388)         // aren't requested. This allows the user to ask for the
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 389)         // number of months and get the real count and not just 0->11.
+                                                                                                                             390)
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 391)         if (!Token.containsTokenWithValue(tokens, d)) {
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 392)             hours += 24 * days;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 393)             days = 0;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 394)         }
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 395)         if (!Token.containsTokenWithValue(tokens, H)) {
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 396)             minutes += 60 * hours;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 397)             hours = 0;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 398)         }
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 399)         if (!Token.containsTokenWithValue(tokens, m)) {
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 400)             seconds += 60 * minutes;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 401)             minutes = 0;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 402)         }
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 403)         if (!Token.containsTokenWithValue(tokens, s)) {
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 404)             milliseconds += 1000 * seconds;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 405)             seconds = 0;
+f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 04:49:07 +0000 406)         }
+                                                                                                                             407)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 408)         return format(tokens, years, months, days, hours, minutes, seconds, milliseconds, padWithZeros);
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 409)     }
+                                                                                                                             410)
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 411)     //-----------------------------------------------------------------------
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 412)     /**
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 413)      * <p>The internal method to do the formatting.</p>
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 414)      *
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 415)      * @param tokens  the tokens
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 416)      * @param years  the number of years
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 417)      * @param months  the number of months
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 418)      * @param days  the number of days
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 419)      * @param hours  the number of hours
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 420)      * @param minutes  the number of minutes
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 421)      * @param seconds  the number of seconds
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 422)      * @param milliseconds  the number of millis
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 423)      * @param padWithZeros  whether to pad
+25ef9a58c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-10-09 16:56:49 +0000 424)      * @return the formatted string
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 425)      */
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 426)     static String format(final Token[] tokens, final long years, final long months, final long days, final long hours, final long minutes, final long seconds,
+96c30e248 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-06-27 12:22:17 +0000 427)             final long milliseconds, final boolean padWithZeros) {
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 428)         final StringBuilder buffer = new StringBuilder();
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 429)         boolean lastOutputSeconds = false;
+e288d39ba src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:37:46 +0000 430)         for (final Token token : tokens) {
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 431)             final Object value = token.getValue();
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 432)             final int count = token.getCount();
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 433)             if (value instanceof StringBuilder) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 434)                 buffer.append(value.toString());
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 435)             } else {
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 436)                 if (value.equals(y)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 437)                     buffer.append(paddedValue(years, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 438)                     lastOutputSeconds = false;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 439)                 } else if (value.equals(M)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 440)                     buffer.append(paddedValue(months, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 441)                     lastOutputSeconds = false;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 442)                 } else if (value.equals(d)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 443)                     buffer.append(paddedValue(days, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 444)                     lastOutputSeconds = false;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 445)                 } else if (value.equals(H)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 446)                     buffer.append(paddedValue(hours, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 447)                     lastOutputSeconds = false;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 448)                 } else if (value.equals(m)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 449)                     buffer.append(paddedValue(minutes, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 450)                     lastOutputSeconds = false;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 451)                 } else if (value.equals(s)) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 452)                     buffer.append(paddedValue(seconds, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 453)                     lastOutputSeconds = true;
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 454)                 } else if (value.equals(S)) {
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 455)                     if (lastOutputSeconds) {
+77f5fe29e src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:32:07 +0000 456)                         // ensure at least 3 digits are displayed even if padding is not selected
+96c30e248 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-06-27 12:22:17 +0000 457)                         final int width = padWithZeros ? Math.max(3, count) : 3;
+77f5fe29e src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:32:07 +0000 458)                         buffer.append(paddedValue(milliseconds, true, width));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 459)                     } else {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 460)                         buffer.append(paddedValue(milliseconds, padWithZeros, count));
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 461)                     }
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 462)                     lastOutputSeconds = false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 463)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 464)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 465)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 466)         return buffer.toString();
+177d40989 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:14:15 +0000 467)     }
+                                                                                                                             468)
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 469)     /**
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 470)      * <p>Converts a {@code long} to a {@code String} with optional
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 471)      * zero padding.</p>
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 472)      *
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 473)      * @param value the value to convert
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 474)      * @param padWithZeros whether to pad with zeroes
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 475)      * @param count the size to pad to (ignored if {@code padWithZeros} is false)
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 476)      * @return the string result
+5d9141e20 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:18:43 +0000 477)      */
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 478)     private static String paddedValue(final long value, final boolean padWithZeros, final int count) {
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 479)         final String longString = Long.toString(value);
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 480)         return padWithZeros ? StringUtils.leftPad(longString, count, '0') : longString;
+cf4138d7b src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:10:40 +0000 481)     }
+                                                                                                                             482)
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 483)     static final Object y = "y";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 484)     static final Object M = "M";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 485)     static final Object d = "d";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 486)     static final Object H = "H";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 487)     static final Object m = "m";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 488)     static final Object s = "s";
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 489)     static final Object S = "S";
+                                                                                                                             490)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 491)     /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 492)      * Parses a classic date format string into Tokens
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 493)      *
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 494)      * @param format  the format to parse, not null
+950def5b6 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Sebastian Bazley   2009-03-16 02:11:38 +0000 495)      * @return array of Token[]
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 496)      */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 497)     static Token[] lexx(final String format) {
+4f82195af src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary Gregory       2016-10-23 17:52:50 +0000 498)         final ArrayList<Token> list = new ArrayList<>(format.length());
+                                                                                                                             499)
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 500)         boolean inLiteral = false;
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 501)         // Although the buffer is stored in a Token, the Tokens are only
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 502)         // used internally, so cannot be accessed by other threads
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 503)         StringBuilder buffer = null;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 504)         Token previous = null;
+1ca3a263e src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 23:31:53 +0000 505)         for (int i = 0; i < format.length(); i++) {
+1ca3a263e src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 23:31:53 +0000 506)             final char ch = format.charAt(i);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 507)             if (inLiteral && ch != '\'') {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 508)                 buffer.append(ch); // buffer can't be null if inLiteral is true
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 509)                 continue;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 510)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 511)             Object value = null;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 512)             switch (ch) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 513)             // TODO: Need to handle escaping of '
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 514)             case '\'':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 515)                 if (inLiteral) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 516)                     buffer = null;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 517)                     inLiteral = false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 518)                 } else {
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 519)                     buffer = new StringBuilder();
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 520)                     list.add(new Token(buffer));
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 521)                     inLiteral = true;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 522)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 523)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 524)             case 'y':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 525)                 value = y;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 526)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 527)             case 'M':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 528)                 value = M;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 529)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 530)             case 'd':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 531)                 value = d;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 532)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 533)             case 'H':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 534)                 value = H;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 535)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 536)             case 'm':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 537)                 value = m;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 538)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 539)             case 's':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 540)                 value = s;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 541)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 542)             case 'S':
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 543)                 value = S;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 544)                 break;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 545)             default:
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 546)                 if (buffer == null) {
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 547)                     buffer = new StringBuilder();
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 548)                     list.add(new Token(buffer));
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 549)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 550)                 buffer.append(ch);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 551)             }
+                                                                                                                             552)
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 553)             if (value != null) {
+20c733229 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Chas Honton        2015-04-08 02:39:05 +0000 554)                 if (previous != null && previous.getValue().equals(value)) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 555)                     previous.increment();
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 556)                 } else {
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 557)                     final Token token = new Token(value);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 558)                     list.add(token);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 559)                     previous = token;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 560)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 561)                 buffer = null;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 562)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 563)         }
+aadd8e172 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:44:15 +0000 564)         if (inLiteral) { // i.e. we have not found the end of the literal
+aadd8e172 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:44:15 +0000 565)             throw new IllegalArgumentException("Unmatched quote in format: " + format);
+aadd8e172 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2014-03-03 21:44:15 +0000 566)         }
+950def5b6 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Sebastian Bazley   2009-03-16 02:11:38 +0000 567)         return list.toArray(new Token[list.size()]);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 568)     }
+                                                                                                                             569)
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 570)     //-----------------------------------------------------------------------
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 571)     /**
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 572)      * Element that is parsed from the format pattern.
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 573)      */
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 574)     static class Token {
+                                                                                                                             575)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 576)         /**
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 577)          * Helper method to determine if a set of tokens contain a value
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 578)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 579)          * @param tokens set to look in
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 580)          * @param value to look for
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 581)          * @return boolean <code>true</code> if contained
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 582)          */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 583)         static boolean containsTokenWithValue(final Token[] tokens, final Object value) {
+96c30e248 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2014-06-27 12:22:17 +0000 584)             for (final Token token : tokens) {
+e288d39ba src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-04-21 08:37:46 +0000 585)                 if (token.getValue() == value) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 586)                     return true;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 587)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 588)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 589)             return false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 590)         }
+                                                                                                                             591)
+782ea5905 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2011-07-11 00:51:16 +0000 592)         private final Object value;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 593)         private int count;
+                                                                                                                             594)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 595)         /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 596)          * Wraps a token around a value. A value would be something like a 'Y'.
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 597)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 598)          * @param value to wrap
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 599)          */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 600)         Token(final Object value) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 601)             this.value = value;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 602)             this.count = 1;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 603)         }
+                                                                                                                             604)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 605)         /**
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 606)          * Wraps a token around a repeated number of a value, for example it would
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 607)          * store 'yyyy' as a value for y and a count of 4.
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 608)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 609)          * @param value to wrap
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 610)          * @param count to wrap
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 611)          */
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 612)         Token(final Object value, final int count) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 613)             this.value = value;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 614)             this.count = count;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 615)         }
+                                                                                                                             616)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 617)         /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 618)          * Adds another one of the value
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 619)          */
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 620)         void increment() {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 621)             count++;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 622)         }
+                                                                                                                             623)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 624)         /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 625)          * Gets the current number of values represented
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 626)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 627)          * @return int number of values represented
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 628)          */
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 629)         int getCount() {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 630)             return count;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 631)         }
+                                                                                                                             632)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 633)         /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 634)          * Gets the particular value this token represents.
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 635)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 636)          * @return Object value
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 637)          */
+5111ae7db src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2004-10-15 23:11:31 +0000 638)         Object getValue() {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 639)             return value;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 640)         }
+                                                                                                                             641)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 642)         /**
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 643)          * Supports equality of this Token to another Token.
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 644)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 645)          * @param obj2 Object to consider equality of
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 646)          * @return boolean <code>true</code> if equal
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 647)          */
+43db58d70 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Sebastian Bazley   2009-03-14 12:58:05 +0000 648)         @Override
+5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 649)         public boolean equals(final Object obj2) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 650)             if (obj2 instanceof Token) {
+5292526e4 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:09:45 +0000 651)                 final Token tok2 = (Token) obj2;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 652)                 if (this.value.getClass() != tok2.value.getClass()) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 653)                     return false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 654)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 655)                 if (this.count != tok2.count) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 656)                     return false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 657)                 }
+89c649722 src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Sebastian Bazley   2012-09-27 17:21:12 +0000 658)                 if (this.value instanceof StringBuilder) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 659)                     return this.value.toString().equals(tok2.value.toString());
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 660)                 } else if (this.value instanceof Number) {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 661)                     return this.value.equals(tok2.value);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 662)                 } else {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 663)                     return this.value == tok2.value;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 664)                 }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 665)             }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 666)             return false;
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 667)         }
+                                                                                                                             668)
+3f84c0412 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-07-05 06:33:33 +0000 669)         /**
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 670)          * Returns a hash code for the token equal to the
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 671)          * hash code for the token's value. Thus 'TT' and 'TTTT'
+1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 672)          * will have the same hash code.
+b9b6b027d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Niall Pemberton    2006-07-10 11:23:57 +0000 673)          *
+f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Stephen Colebourne 2011-03-04 13:41:41 +0000 674)          * @return The hash code for the token
+3f84c0412 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-07-05 06:33:33 +0000 675)          */
+43db58d70 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Sebastian Bazley   2009-03-14 12:58:05 +0000 676)         @Override
+3f84c0412 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-07-05 06:33:33 +0000 677)         public int hashCode() {
+3f84c0412 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-07-05 06:33:33 +0000 678)             return this.value.hashCode();
+3f84c0412 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-07-05 06:33:33 +0000 679)         }
+                                                                                                                             680)
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 681)         /**
+d85ab0c57 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Gary D. Gregory    2005-10-28 19:49:47 +0000 682)          * Represents this token as a String.
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 683)          *
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 684)          * @return String representation of the token
+a6c13872d src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2005-02-04 03:30:51 +0000 685)          */
+43db58d70 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Sebastian Bazley   2009-03-14 12:58:05 +0000 686)         @Override
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 687)         public String toString() {
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 688)             return StringUtils.repeat(this.value.toString(), this.count);
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 689)         }
+11ed4603c src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-08-27 06:45:25 +0000 690)     }
+                                                                                                                             691)
+73ee6c3d2 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Stephen Colebourne 2003-06-08 23:14:23 +0000 692) }
