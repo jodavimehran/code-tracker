@@ -278,7 +278,7 @@ f68bbdbbb src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (
 a1414f529 src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2004-09-27 03:30:10 +0000 278)      */
 1da8ccdbf src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Benedikt Ritter    2017-06-06 13:12:06 +0000 279)     public static String formatPeriod(final long startMillis, final long endMillis, final String format, final boolean padWithZeros,
 5bd622dab src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Gary D. Gregory    2013-01-22 07:07:42 +0000 280)             final TimeZone timezone) {
-                                                                                                                             281)         Validate.isTrue(startMillis <= endMillis, "startMillis must not be greater than endMillis");
+9a16b763d src/main/java/org/apache/commons/lang3/time/DurationFormatUtils.java (Duncan Jones       2014-05-13 20:31:02 +0000 281)         Validate.isTrue(startMillis <= endMillis, "startMillis must not be greater than endMillis");
                                                                                                                              282)
                                                                                                                              283)
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 284)         // Used to optimise for differences under 28 days and

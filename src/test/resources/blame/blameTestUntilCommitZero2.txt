@@ -395,7 +395,7 @@ d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
                                                                                                                                395)
 78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 396)     final Set<File> sourceRoots = new THashSet<>(FileUtil.FILE_HASHING_STRATEGY);
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 397)     if (!sourcePath.isEmpty()) {
-                                                                                                                               398)       sourceRoots.addAll(sourcePath);
+06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 398)       sourceRoots.addAll(sourcePath);
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 399)     }
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 400)     else {
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 401)       for (File file : files) {

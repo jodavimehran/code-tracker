@@ -2240,7 +2240,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2240) 	}
                                                                                                                                            2241)
 751c329b3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-01 18:07:08 +0000 2242) 	private boolean reuseDeltaFor(ObjectToPack otp) {
-                                                                                                                                           2243) 		int type = otp.getType();
+01a0699ac org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 2243) 		int type = otp.getType();
 01a0699ac org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 2244) 		if ((type & 2) != 0) // OBJ_TREE(2) or OBJ_BLOB(3)
 751c329b3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-01 18:07:08 +0000 2245) 			return true;
 01a0699ac org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 2246) 		if (type == OBJ_COMMIT)

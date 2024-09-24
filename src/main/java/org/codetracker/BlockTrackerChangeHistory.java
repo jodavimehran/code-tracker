@@ -33,6 +33,7 @@ import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.AbstractCodeMapping;
+import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.CompositeStatementObjectMapping;
 import gr.uom.java.xmi.decomposition.LeafMapping;
@@ -775,6 +776,19 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	            }
         	}
         }
+		//process mappings between expressions and statements
+		for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+			if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof AbstractExpression && mapping.getFragment2() instanceof StatementObject) {
+                Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
+                if (blockAfter != null && equalOperator.test(blockAfter)) {
+                	Block blockBefore = Block.of((StatementObject)mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), parentVersion);
+	                blockChangeHistory.handleAdd(blockBefore, blockAfter, "new statement");
+	                elements.add(blockBefore);
+	                blockChangeHistory.connectRelatedNodes();
+	                return true;
+                }
+			}
+		}
         return false;
     }
 

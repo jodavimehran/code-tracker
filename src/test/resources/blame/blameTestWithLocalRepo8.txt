@@ -2715,9 +2715,9 @@ f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 8478d5b44 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-05 23:33:28 +0000 2715) 											+ idClassPropertyData.getPropertyName()
 8478d5b44 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-05 23:33:28 +0000 2716) 							);
 5ad11ba2a annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-05 14:37:34 +0000 2717) 						}
-                                                                                                                            2718) 						final boolean hasXToOneAnnotation = entityPropertyData.getProperty()
-                                                                                                                            2719) 								.isAnnotationPresent( ManyToOne.class )
-                                                                                                                            2720) 								|| entityPropertyData.getProperty().isAnnotationPresent( OneToOne.class );
+737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2718) 						final boolean hasXToOneAnnotation = entityPropertyData.getProperty()
+737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2719) 								.isAnnotationPresent( ManyToOne.class )
+737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2720) 								|| entityPropertyData.getProperty().isAnnotationPresent( OneToOne.class );
 737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2721) 						final boolean isOfDifferentType = !entityPropertyData.getClassOrElement()
 737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2722) 								.equals( idClassPropertyData.getClassOrElement() );
 737379690 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 19:14:29 +0000 2723) 						if ( hasXToOneAnnotation && isOfDifferentType ) {
