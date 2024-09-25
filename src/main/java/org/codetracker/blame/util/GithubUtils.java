@@ -1,15 +1,26 @@
 package org.codetracker.blame.util;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+
+import com.github.gumtreediff.utils.Pair;
+import org.eclipse.jgit.lib.Repository;
 import org.json.JSONArray;
 import org.json.JSONObject;
 /* Created by pourya on 2024-09-24*/
 public class GithubUtils {
     private static final String GITHUB_API_TOKEN = System.getenv("OAuthToken");
+    public static boolean areSameConsideringMerge(Repository repo, String commitId1, String commitId2) {
+        Pair<String, String> ownerAndProject = getOwnerAndProject(repo);
+        return areSameConsideringMerge(ownerAndProject.first, ownerAndProject.second, commitId1, commitId2);
+    }
     public static boolean areSameConsideringMerge(String repo, String project, String commitId1, String commitId2) {
+        if (commitId1 == null || commitId2 == null) {
+            return false;
+        }
         try {
             JSONObject commit1Info = getCommitInfo(repo, project, commitId1);
             JSONObject commit2Info = getCommitInfo(repo, project , commitId2);
@@ -66,5 +77,13 @@ public class GithubUtils {
             System.out.println("Failed to fetch commit info, response code: " + responseCode);
         }
         return null;
+    }
+    private static Pair<String, String> getOwnerAndProject(Repository repository) {
+        File repoDir = repository.getDirectory();
+        String repoPath = repoDir.getAbsolutePath();
+        String[] pathParts = repoPath.split(File.separator);
+        String projectName = pathParts[pathParts.length - 2]; // Last segment is the project
+        String ownerName = pathParts[pathParts.length - 3]; // Second to last segment is the owner
+        return new Pair<>(ownerName, projectName);
     }
 }
