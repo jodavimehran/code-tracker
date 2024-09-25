@@ -18,9 +18,8 @@ public class GithubUtils {
         return areSameConsideringMerge(ownerAndProject.first, ownerAndProject.second, commitId1, commitId2);
     }
     public static boolean areSameConsideringMerge(String repo, String project, String commitId1, String commitId2) {
-        if (commitId1 == null || commitId2 == null) {
-            return false;
-        }
+        if (commitId1 == null || commitId2 == null) return false;
+        if (commitId1.isEmpty() || commitId2.isEmpty()) return false;
         try {
             JSONObject commit1Info = getCommitInfo(repo, project, commitId1);
             JSONObject commit2Info = getCommitInfo(repo, project , commitId2);
