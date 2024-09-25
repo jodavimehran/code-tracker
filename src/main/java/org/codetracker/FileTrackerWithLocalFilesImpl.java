@@ -335,6 +335,27 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 					boolean refactored = !classRefactored.isEmpty();
 					if (refactored) {
+						UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+						if (leftSuperclass != null && rightSuperclass != null) {
+                    		if (!leftSuperclass.equals(rightSuperclass)) {
+                    			startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                    			startClassChangeHistory.get().connectRelatedNodes();
+                    		}
+                    	}
+						else if (leftSuperclass != null && rightSuperclass == null) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
+						else if (leftSuperclass == null && rightSuperclass != null) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
+						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+							startClassChangeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+							startClassChangeHistory.get().connectRelatedNodes();
+						}
+						checkSignatureFormatChange(startClassChangeHistory, leftClass, rightClass);
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
@@ -521,6 +542,20 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					}
 				}
 			}
+			else if (key instanceof Annotation) {
+				Annotation startAnnotation = (Annotation)key;
+				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+				if (startAnnotation.getClazz().isPresent()) {
+					Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+					Annotation rightAnnotation = rightClass.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+					if (rightAnnotation != null) {
+						Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getClazz().get(), parentVersion);
+						startAnnotationChangeHistory.get().handleAdd(annotationBefore, rightAnnotation, "added with class");
+						startAnnotationChangeHistory.add(annotationBefore);
+						startAnnotationChangeHistory.get().connectRelatedNodes();
+					}
+				}
+			}
 		}
 	}
 
@@ -557,6 +592,23 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					}
 					startCommentChangeHistory.poll();
 					startCommentChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
+				}
+			}
+			else if (key instanceof Annotation) {
+				Annotation startAnnotation = (Annotation)key;
+				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
+				if ((startAnnotation.getClazz().isPresent() && startAnnotation.getClazz().get().equals(rightClass.getUmlClass())) ||
+						(!startAnnotationChangeHistory.isEmpty() && startAnnotationChangeHistory.peek().getClazz().isPresent() && rightClass.getUmlClass().equals(startAnnotationChangeHistory.peek().getClazz().get()))) {
+					Annotation currentAnnotation = startAnnotationChangeHistory.peek();
+					if (currentAnnotation == null || currentAnnotation.isAdded()) {
+						continue;
+					}
+					Annotation rightAnnotation = rightClass.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
+					if (rightAnnotation == null) {
+						continue;
+					}
+					startAnnotationChangeHistory.poll();
+					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, currentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
 		}
