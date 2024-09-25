@@ -32,7 +32,7 @@ public class LineBlameResult {
     public LineBlameResult(String commitId, String filePath, String beforeFilePath, String committer, long commitDate, int resultLineNumber, int originalLineNumber) {
         this.commitId = commitId;
         this.filePath = filePath;
-        this.shortCommitId = commitId.substring(0, 9);
+        this.shortCommitId = (commitId == null || commitId.isEmpty()) ? "" : commitId.substring(0, 9);
         this.beforeFilePath = beforeFilePath;
         this.committer = committer;
         this.commitDate = commitDate;
@@ -72,8 +72,11 @@ public class LineBlameResult {
         return originalLineNumber;
     }
 
+    public static LineBlameResult Null(int originalLineNumber) {
+        return new LineBlameResult("", "", "", "", 0, -1, originalLineNumber);
+    }
     public static LineBlameResult of(History.HistoryInfo<? extends CodeElement> latestChange, int lineNumber) {
-        if (latestChange == null) return null;
+        if (latestChange == null) return Null(lineNumber);
         int resultLineNumber = latestChange.getElementAfter().getLocation().getStartLine();
         return new LineBlameResult(latestChange.getCommitId(),
                 latestChange.getElementAfter().getFilePath(),
@@ -84,7 +87,7 @@ public class LineBlameResult {
                 lineNumber);
     }
     public static LineBlameResult of(BlameResult blameResult, int i) {
-        if (blameResult == null || i < 0 || i >= blameResult.getResultContents().size()) return null;
+        if (blameResult == null || i < 0 || i >= blameResult.getResultContents().size()) return Null(i);
         String commitId = blameResult.getSourceCommit(i).getId().name();
         String committerName = blameResult.getSourceCommit(i).getAuthorIdent().getName();
         int resultLineNumber = blameResult.getSourceLine(i);
