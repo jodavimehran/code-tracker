@@ -52,6 +52,7 @@ public class BlameDiffer {
 
     protected Map<Integer, EnumMap<BlamerFactory, String>> process(Repository repository, String commitId, String filePath, Map<Integer, EnumMap<BlamerFactory, String>> table) {
         table.entrySet().removeIf(entry -> entry.getValue().values().stream().distinct().count() == 1);
+        //TODO: For this one we dont consider the merge commits;
         return table;
     }
 

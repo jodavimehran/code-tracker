@@ -7,6 +7,9 @@ import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
+
+import static org.codetracker.blame.util.GithubUtils.areSameConsideringMerge;
 
 /* Created by pourya on 2024-09-03*/
 public class BlameDifferOneWithMany extends BlameDiffer {
@@ -22,7 +25,9 @@ public class BlameDifferOneWithMany extends BlameDiffer {
         table.entrySet().removeIf(entry -> {
             EnumMap<BlamerFactory, String> factories = entry.getValue();
             String subject_value = factories.get(subject);
-            return factories.values().stream().filter(value -> value.equals(subject_value)).count() > 1;
+            Predicate<String> stringPredicate = value -> value.equals(subject_value)
+                    || areSameConsideringMerge(repository, value, subject_value);
+            return factories.values().stream().filter(stringPredicate).count() > 1;
         });
         return table;
     }
