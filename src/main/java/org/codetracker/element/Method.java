@@ -266,6 +266,12 @@ public class Method extends BaseCodeElement {
         	}
         }
         for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+        	for (UMLComment umlComment : anonymousClass.getComments()) {
+        		Comment comment = Comment.of(umlComment, this);
+                if (comment != null && equalOperator.test(comment)) {
+                    return comment;
+                }
+        	}
             for (UMLOperation operation : anonymousClass.getOperations()) {
                 for (UMLComment umlComment : operation.getComments()) {
                     Comment comment = Comment.of(umlComment, this);

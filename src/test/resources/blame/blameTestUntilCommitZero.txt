@@ -671,22 +671,22 @@ e426aa8b9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 461b012e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-03 21:20:22 +0000 671)  		return stats.totalObjects;
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 672)  	}
                                                                                                                                            673)
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 674)  	/**
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 674)  	/**
 7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 675)  	 * Returns the object ids in the pack file that was created by this writer.
 f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-14 18:13:34 +0000 676)  	 * <p>
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 677)  	 * This method can only be invoked after
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 678)  	 * {@link #writePack(ProgressMonitor, ProgressMonitor, OutputStream)} has
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 679)  	 * been invoked and completed successfully.
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 680)  	 *
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 677)  	 * This method can only be invoked after
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 678)  	 * {@link #writePack(ProgressMonitor, ProgressMonitor, OutputStream)} has
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 679)  	 * been invoked and completed successfully.
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 680)  	 *
 f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-14 18:13:34 +0000 681)  	 * @return set of objects in pack.
 783dbf1b0 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2017-12-19 12:39:09 +0000 682)  	 * @throws java.io.IOException
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 683)  	 *             a cached pack cannot supply its object ids.
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 684)  	 */
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 683)  	 *             a cached pack cannot supply its object ids.
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 684)  	 */
 7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 685)  	public ObjectIdOwnerMap<ObjectIdOwnerMap.Entry> getObjectSet()
 7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 686)  			throws IOException {
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 687)  		if (!cachedPacks.isEmpty())
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 688)  			throw new IOException(
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 689)  					JGitText.get().cachedPacksPreventsListingObjects);
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 687)  		if (!cachedPacks.isEmpty())
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 688)  			throw new IOException(
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 689)  					JGitText.get().cachedPacksPreventsListingObjects);
                                                                                                                                            690)
 f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-14 18:13:34 +0000 691)  		if (writeBitmaps != null) {
 f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-14 18:13:34 +0000 692)  			return writeBitmaps.getObjectSet();
@@ -702,7 +702,7 @@ f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 702)  			}
 7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 703)  		}
 f9bd6c123 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-14 18:13:34 +0000 704)  		return r;
-7fbd6588b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-22 23:25:15 +0000 705)  	}
+7c58f6282 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-01-19 00:22:10 +0000 705)  	}
                                                                                                                                            706)
 a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-21 20:59:26 +0000 707)  	/**
 a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-21 20:59:26 +0000 708)  	 * Add a pack index whose contents should be excluded from the result.

@@ -188,7 +188,7 @@ fb44ad936 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 188)   * @author Emmanuel Bernard
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 189)   * @author Hardy Ferentschik
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 190)   */
-                                                                                                                            191)  @SuppressWarnings("unchecked")
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 191)  @SuppressWarnings("unchecked")
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 192)  public final class AnnotationBinder {
 9e063ffa2 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-06-04 19:12:17 +0000 193)  	private static final CoreMessageLogger LOG = messageLogger( AnnotationBinder.class );
                                                                                                                             194)
@@ -690,7 +690,7 @@ a9b1425f3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 690)  		boolean onDeleteAppropriate = false;
                                                                                                                             691)
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 692)  		// todo : sucks that this is separate from RootClass distinction
-                                                                                                                            693)  		final boolean isInheritanceRoot = !inheritanceState.hasParents();
+5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 693)  		final boolean isInheritanceRoot = !inheritanceState.hasParents();
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 694)  		final boolean hasSubclasses = inheritanceState.hasSiblings();
                                                                                                                             695)
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 696)  		if ( InheritanceType.JOINED.equals( inheritanceState.getType() ) ) {
@@ -841,7 +841,7 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 841)  			MetadataBuildingContext context,
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 842)  			InheritanceState inheritanceState,
 5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 843)  			EntityBinder entityBinder) {
-                                                                                                                            844)  		final boolean isRoot = !inheritanceState.hasParents();
+5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 844)  		final boolean isRoot = !inheritanceState.hasParents();
                                                                                                                             845)
 bf7607e24 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Hardy Ferentschik 2010-09-29 10:45:08 +0000 846)  		Ejb3DiscriminatorColumn discriminatorColumn = null;
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 847)  		javax.persistence.DiscriminatorColumn discAnn = clazzToProcess.getAnnotation(
@@ -1541,7 +1541,7 @@ a5cbe326d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1541) 							 * and XML configuration processing.
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1542) 							 */
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1543) 							boolean isRequiredAnnotationPresent = false;
-                                                                                                                            1544) 							JoinColumns groupAnnotation = prop.getAnnotation( JoinColumns.class );
+961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1544) 							JoinColumns groupAnnotation = prop.getAnnotation( JoinColumns.class );
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1545) 							if ( (prop.isAnnotationPresent( JoinColumn.class )
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1546) 									&& prop.getAnnotation( JoinColumn.class ).name().equals( columnName )) ) {
 961caf770 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Jeremy Whiting    2012-09-05 17:06:31 +0000 1547) 								isRequiredAnnotationPresent = true;
@@ -1673,9 +1673,9 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-25 17:19:05 +0000 1673) 		propertyBinder.setEntityBinder( entityBinder );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1674) 		propertyBinder.setInheritanceStatePerClass( inheritanceStatePerClass );
                                                                                                                             1675)
-                                                                                                                            1676) 		boolean isId = !entityBinder.isIgnoreIdAnnotations() &&
-                                                                                                                            1677) 				( property.isAnnotationPresent( Id.class )
-                                                                                                                            1678) 						|| property.isAnnotationPresent( EmbeddedId.class ) );
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1676) 		boolean isId = !entityBinder.isIgnoreIdAnnotations() &&
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1677) 				( property.isAnnotationPresent( Id.class )
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1678) 						|| property.isAnnotationPresent( EmbeddedId.class ) );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1679) 		propertyBinder.setId( isId );
                                                                                                                             1680)
 1e44e7420 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-11-16 21:43:11 +0000 1681) 		final LazyGroup lazyGroupAnnotation = property.getAnnotation( LazyGroup.class );
@@ -1753,12 +1753,12 @@ cbbadea53 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1753) 				OnDelete onDeleteAnn = property.getAnnotation( OnDelete.class );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1754) 				boolean onDeleteCascade = onDeleteAnn != null && OnDeleteAction.CASCADE.equals( onDeleteAnn.action() );
 b1f925458 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-12 18:48:42 +0000 1755) 				JoinTable assocTable = propertyHolder.getJoinTable( property );
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1756) 				if ( assocTable != null ) {
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1756) 				if ( assocTable != null ) {
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1757) 					Join join = propertyHolder.addJoin( assocTable, false );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1758) 					for ( Ejb3JoinColumn joinColumn : joinColumns ) {
 1f9c157db hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-09-22 19:41:00 +0000 1759) 						joinColumn.setExplicitTableName( join.getTable().getName() );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1760) 					}
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 1761) 				}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1761) 				}
 3d911bd65 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-02-08 13:22:43 +0000 1762) 				final boolean mandatory = !ann.optional() || forcePersist;
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1763) 				bindManyToOne(
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1764) 						getCascadeStrategy( ann.cascade(), hibernateCascade, false, forcePersist ),
@@ -2542,11 +2542,11 @@ d9a1022f3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2542) 	}
                                                                                                                             2543)
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2544) 	private static PropertyBinder bindComponent(
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2545) 			PropertyData inferredData,
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2546) 			PropertyHolder propertyHolder,
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2545) 			PropertyData inferredData,
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2546) 			PropertyHolder propertyHolder,
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2547) 			AccessType propertyAccessor,
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2548) 			EntityBinder entityBinder,
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2549) 			boolean isIdentifierMapper,
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2549) 			boolean isIdentifierMapper,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2550) 			MetadataBuildingContext buildingContext,
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2551) 			boolean isComponentEmbedded,
 5ee9ba361 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-26 12:57:01 +0000 2552) 			boolean isId, //is a identifier
@@ -2588,14 +2588,14 @@ d9a1022f3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 9f85525e4 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-26 13:26:07 +0000 2588) 				);
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2589) 			}
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2590) 		}
-                                                                                                                            2591) 		XProperty property = inferredData.getProperty();
-                                                                                                                            2592) 		setupComponentTuplizer( property, comp );
-                                                                                                                            2593) 		PropertyBinder binder = new PropertyBinder();
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2591) 		XProperty property = inferredData.getProperty();
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2592) 		setupComponentTuplizer( property, comp );
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2593) 		PropertyBinder binder = new PropertyBinder();
 25d8a66ac hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Hardy Ferentschik 2015-10-28 18:26:06 +0000 2594) 		binder.setDeclaringClass(inferredData.getDeclaringClass());
-                                                                                                                            2595) 		binder.setName( inferredData.getPropertyName() );
-                                                                                                                            2596) 		binder.setValue( comp );
-                                                                                                                            2597) 		binder.setProperty( inferredData.getProperty() );
-                                                                                                                            2598) 		binder.setAccessType( inferredData.getDefaultAccess() );
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2595) 		binder.setName( inferredData.getPropertyName() );
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2596) 		binder.setValue( comp );
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2597) 		binder.setProperty( inferredData.getProperty() );
+4a9d8dcf0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-17 21:14:07 +0000 2598) 		binder.setAccessType( inferredData.getDefaultAccess() );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2599) 		binder.setEmbedded( isComponentEmbedded );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2600) 		binder.setHolder( propertyHolder );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2601) 		binder.setId( isId );
@@ -2604,7 +2604,7 @@ d00f7efb3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2604) 		binder.setBuildingContext( buildingContext );
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2605) 		binder.makePropertyAndBind();
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2606) 		return binder;
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2607) 	}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2607) 	}
                                                                                                                             2608)
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2609) 	public static Component fillComponent(
 f0f82e4f1 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (Steve Ebersole    2010-08-12 19:13:48 +0000 2610) 			PropertyHolder propertyHolder,

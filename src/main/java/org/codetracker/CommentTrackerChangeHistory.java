@@ -35,6 +35,7 @@ import com.github.difflib.patch.Patch;
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
@@ -451,6 +452,33 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 matches++;
             }
         }
+    	if (umlOperationBodyMapper.getContainer1().getAnonymousClassList().size() == umlOperationBodyMapper.getContainer2().getAnonymousClassList().size()) {
+    		for (int i=0; i<umlOperationBodyMapper.getContainer2().getAnonymousClassList().size(); i++) {
+    			UMLAnonymousClass anonymous2 = umlOperationBodyMapper.getContainer2().getAnonymousClassList().get(i);
+    			UMLAnonymousClass anonymous1 = umlOperationBodyMapper.getContainer1().getAnonymousClassList().get(i);
+    			if (anonymous1.getComments().size() == anonymous2.getComments().size()) {
+	    			for (int j=0; j<anonymous2.getComments().size(); j++) {
+	    				UMLComment umlComment2 = anonymous2.getComments().get(j);
+	    				UMLComment umlComment1 = anonymous1.getComments().get(j);
+	    				Comment commentAfter = Comment.of(umlComment2, umlOperationBodyMapper.getContainer2(), currentVersion);
+	    				if (commentAfter != null && equalOperator.test(commentAfter)) {
+	    					Comment commentBefore = Comment.of(umlComment1, umlOperationBodyMapper.getContainer1(), parentVersion);
+	    	                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+	    	                    processChange(commentBefore, commentAfter);
+	    	                }
+	    	                else {
+	    	                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+	    	                }
+	    	                if(matches == 0) {
+	    	                	elements.addFirst(commentBefore);
+	    	                }
+	    	                commentChangeHistory.connectRelatedNodes();
+	    	                matches++;
+	    				}
+	    			}
+    			}
+    		}
+    	}
     	if (umlOperationBodyMapper.getJavadocDiff().isPresent()) {
     		UMLJavadocDiff javadocDiff = umlOperationBodyMapper.getJavadocDiff().get();
     		Comment commentAfter = Comment.of(javadocDiff.getJavadocAfter(), umlOperationBodyMapper.getContainer2(), currentVersion);
@@ -544,6 +572,22 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 commentChangeHistory.connectRelatedNodes();
                 return true;
             }
+        }
+        if (umlOperationBodyMapper.getContainer1().getAnonymousClassList().size() < umlOperationBodyMapper.getContainer2().getAnonymousClassList().size() &&
+        		umlOperationBodyMapper.getContainer1().getAnonymousClassList().size() == 0) {
+        	for (int i=0; i<umlOperationBodyMapper.getContainer2().getAnonymousClassList().size(); i++) {
+    			UMLAnonymousClass anonymous2 = umlOperationBodyMapper.getContainer2().getAnonymousClassList().get(i);
+	    		for (UMLComment umlComment : anonymous2.getComments()) {
+	    			Comment commentAfter = Comment.of(umlComment, umlOperationBodyMapper.getContainer2(), currentVersion);
+	                if (commentAfter != null && equalOperator.test(commentAfter)) {
+	                	Comment commentBefore = Comment.of(umlComment, umlOperationBodyMapper.getContainer2(), parentVersion);
+	                	commentChangeHistory.handleAdd(commentBefore, commentAfter, "new comment");
+	                    elements.addFirst(commentBefore);
+	                    commentChangeHistory.connectRelatedNodes();
+	                    return true;
+	                }
+	    		}
+        	}
         }
         UMLJavadoc javadoc = umlOperationBodyMapper.getContainer2().getJavadoc();
     	if (javadoc != null) {
