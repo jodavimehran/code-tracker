@@ -40,6 +40,7 @@ import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.decomposition.AbstractExpression;
+import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.AddAttributeModifierRefactoring;
 import gr.uom.java.xmi.diff.ChangeAttributeAccessModifierRefactoring;
@@ -58,6 +59,7 @@ import gr.uom.java.xmi.diff.RemoveAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.RemoveAttributeModifierRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameClassRefactoring;
+import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
 import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLClassDiff;
@@ -213,7 +215,10 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
             Attribute attributeAfter = Attribute.of(umlAttributeAfter, currentVersion);
             if (equalOperator.test(attributeAfter)) {
                 Attribute attributeBefore = Attribute.of(umlAttributeBefore, parentVersion);
-                attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(changeType).refactoring(refactoring));
+                if (refactoring != null)
+                	attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(changeType).refactoring(refactoring));
+                else
+                	attributeChangeHistory.addChange(attributeBefore, attributeAfter, ChangeFactory.forAttribute(changeType));
                 leftAttributeSet.add(attributeBefore);
                 AbstractExpression leftInitializer = umlAttributeBefore.getVariableDeclaration().getInitializer();
 				AbstractExpression rightInitializer = umlAttributeAfter.getVariableDeclaration().getInitializer();
@@ -360,19 +365,19 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                 }
             }
             for (Pair<UMLAttribute, UMLAttribute> pair : umlClassRenameDiff.getCommonAtrributes()) {
-            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), pair.getLeft(), pair.getRight(), changeType)) {
+            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new RenameClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), pair.getLeft(), pair.getRight(), changeType)) {
                     attributeChangeHistory.connectRelatedNodes();
                     return leftAttributeSet;
                 }
             }
             for (UMLEnumConstantDiff attributeDiff : umlClassRenameDiff.getEnumConstantDiffList()) {
-                if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), attributeDiff.getRemovedEnumConstant(), attributeDiff.getAddedEnumConstant(), changeType)) {
+                if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new RenameClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), attributeDiff.getRemovedEnumConstant(), attributeDiff.getAddedEnumConstant(), changeType)) {
                     attributeChangeHistory.connectRelatedNodes();
                     return leftAttributeSet;
                 }
             }
             for (Pair<UMLEnumConstant, UMLEnumConstant> pair : umlClassRenameDiff.getCommonEnumConstants()) {
-            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new MoveClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), pair.getLeft(), pair.getRight(), changeType)) {
+            	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, new RenameClassRefactoring(umlClassRenameDiff.getOriginalClass(), umlClassRenameDiff.getRenamedClass()), pair.getLeft(), pair.getRight(), changeType)) {
                     attributeChangeHistory.connectRelatedNodes();
                     return leftAttributeSet;
                 }
@@ -403,6 +408,37 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                     return leftAttributeSet;
                 }
             }
+        }
+        
+        for (UMLClassDiff classDiff : umlModelDiffAll.getCommonClassDiffList()) {
+        	for (UMLOperationBodyMapper umlOperationBodyMapper : classDiff.getOperationBodyMapperList()) {
+        		for (UMLAnonymousClassDiff anonymousClassDiff : umlOperationBodyMapper.getAnonymousClassDiffs()) {
+        			for (UMLAttributeDiff attributeDiff : anonymousClassDiff.getAttributeDiffList()) {
+                        if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, null, attributeDiff.getRemovedAttribute(), attributeDiff.getAddedAttribute(), changeType)) {
+                            attributeChangeHistory.connectRelatedNodes();
+                            return leftAttributeSet;
+                        }
+                    }
+                    for (Pair<UMLAttribute, UMLAttribute> pair : anonymousClassDiff.getCommonAtrributes()) {
+                    	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, null, pair.getLeft(), pair.getRight(), changeType)) {
+                            attributeChangeHistory.connectRelatedNodes();
+                            return leftAttributeSet;
+                        }
+                    }
+                    for (UMLEnumConstantDiff attributeDiff : anonymousClassDiff.getEnumConstantDiffList()) {
+                        if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, null, attributeDiff.getRemovedEnumConstant(), attributeDiff.getAddedEnumConstant(), changeType)) {
+                            attributeChangeHistory.connectRelatedNodes();
+                            return leftAttributeSet;
+                        }
+                    }
+                    for (Pair<UMLEnumConstant, UMLEnumConstant> pair : anonymousClassDiff.getCommonEnumConstants()) {
+                    	if (addAttributeChange(currentVersion, parentVersion, equalOperator, leftAttributeSet, null, pair.getLeft(), pair.getRight(), changeType)) {
+                            attributeChangeHistory.connectRelatedNodes();
+                            return leftAttributeSet;
+                        }
+                    }
+        		}
+        	}
         }
 
         for (Refactoring refactoring : refactorings) {

@@ -450,7 +450,10 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             Method methodAfter = Method.of(operationAfter, currentVersion);
             if (equalOperator.test(methodAfter)) {
                 Method methodBefore = Method.of(operationBefore, parentVersion);
-                methodChangeHistory.addChange(methodBefore, methodAfter, ChangeFactory.forMethod(changeType).refactoring(refactoring));
+                if (refactoring != null)
+                	methodChangeHistory.addChange(methodBefore, methodAfter, ChangeFactory.forMethod(changeType).refactoring(refactoring));
+                else
+                	methodChangeHistory.addChange(methodBefore, methodAfter, ChangeFactory.forMethod(changeType));
                 if (checkOperationBodyChanged(methodBefore.getUmlOperation().getBody(), methodAfter.getUmlOperation().getBody())) {
                     methodChangeHistory.addChange(methodBefore, methodAfter, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
                 }
@@ -606,6 +609,23 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     if (found)
                         break;
                 }
+            }
+            for (UMLClassDiff classDiff : umlModelDiffAll.getCommonClassDiffList()) {
+            	if (found)
+                    break;
+            	for (UMLOperationBodyMapper umlOperationBodyMapper : classDiff.getOperationBodyMapperList()) {
+            		if (found)
+                        break;
+            		for (UMLAnonymousClassDiff anonymousClassDiff : umlOperationBodyMapper.getAnonymousClassDiffs()) {
+            			if (found)
+                            break;
+            			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+            				 found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                             if (found)
+                                 break;
+            			}
+            		}
+            	}
             }
         }
         if (found) {

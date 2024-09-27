@@ -2430,17 +2430,17 @@ b1a9c816a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2430) 		return buildingContext.getBuildingOptions().getIdGenerationTypeInterpreter().determineGeneratorName(
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2431) 				generatedValueAnn.strategy(),
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2432) 				new IdGeneratorStrategyInterpreter.GeneratorNameDeterminationContext() {
-                                                                                                                            2433) 					Class javaType = null;
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2434) 					@Override
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2435) 					public Class getIdType() {
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2436) 						if ( javaType == null ) {
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2433) 					Class javaType = null;
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2434) 					@Override
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2435) 					public Class getIdType() {
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2436) 						if ( javaType == null ) {
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2437) 							javaType = buildingContext
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2438) 									.getBootstrapContext()
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2439) 									.getReflectionManager()
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2440) 									.toClass( javaTypeXClass );
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2441) 						}
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2442) 						return javaType;
-1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2443) 					}
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2441) 						}
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2442) 						return javaType;
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2443) 					}
                                                                                                                             2444)
 99428251c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2445) 					@Override
 99428251c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2446) 					public String getGeneratedValueGeneratorName() {
