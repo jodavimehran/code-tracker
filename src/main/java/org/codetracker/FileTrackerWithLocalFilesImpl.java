@@ -608,7 +608,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						continue;
 					}
 					startAnnotationChangeHistory.poll();
-					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, currentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
+					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
 		}

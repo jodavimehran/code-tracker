@@ -601,7 +601,7 @@ public class FileTrackerImpl extends BaseTracker {
 						continue;
 					}
 					startAnnotationChangeHistory.poll();
-					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, currentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
+					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
 		}
