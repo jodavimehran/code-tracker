@@ -1,6 +1,10 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.benchmark.impl;
 
 import org.codetracker.api.CodeElement;
+import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.benchmark.impl.record.LineNumberToCommitIDRecordManager;
+import org.codetracker.blame.benchmark.model.BlameDifferResult;
+import org.codetracker.blame.model.CodeElementWithRepr;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.Utils;
 import org.codetracker.util.CodeElementLocator;
@@ -8,6 +12,7 @@ import org.eclipse.jgit.lib.Repository;
 
 import java.util.*;
 import java.util.function.BiPredicate;
+import java.util.function.Predicate;
 
 /* Created by pourya on 2024-07-14*/
 public class BlameDiffer {
@@ -15,9 +20,11 @@ public class BlameDiffer {
     protected final EnumSet<BlamerFactory> blamerFactories;
     protected LineNumberToCommitIDRecordManager benchmarkRecordManager;
     protected BiPredicate<Integer, List<String>> emptyLinesCondition = (lineNumber, content) -> content.get(lineNumber-1).trim().isEmpty();
+    protected final Predicate<String> ignoreCondition;
 
-    public BlameDiffer(EnumSet<BlamerFactory> blamerFactories){
+    public BlameDiffer(EnumSet<BlamerFactory> blamerFactories, Predicate<String> ignoreCondition){
         this.blamerFactories = blamerFactories;
+        this.ignoreCondition = ignoreCondition;
     }
 
     private EnumMap<BlamerFactory, List<LineBlameResult>> runBlamers(Repository repository, String commitId, String filePath) throws Exception {
@@ -44,7 +51,7 @@ public class BlameDiffer {
         benchmarkRecordManager = new LineNumberToCommitIDRecordManager();
         benchmarkRecordManager.diff(blameResults);
         Map<Integer, EnumMap<BlamerFactory, String>> table = benchmarkRecordManager.getRegistry();
-        table.entrySet().removeIf(entry -> emptyLinesCondition.test(entry.getKey(), content));
+        table.entrySet().removeIf(entry  -> ignoreCondition.test(content.get(entry.getKey() - 1)));
         int legitSize = table.size();
         table =  process(repository, commitId, filePath, table);
         return new BlameDifferResult(table, makeCodeElementMap(table.keySet(), repository, commitId, filePath), legitSize);
@@ -62,12 +69,12 @@ public class BlameDiffer {
         return blameResults;
     }
 
-    Map<Integer, CodeElement> makeCodeElementMap(Set<Integer> lineNumbers, Repository repository, String commitId, String filePath){
-        Map<Integer, CodeElement> codeElementMap = new LinkedHashMap<>();
+    Map<Integer, CodeElementWithRepr> makeCodeElementMap(Set<Integer> lineNumbers, Repository repository, String commitId, String filePath){
+        Map<Integer, CodeElementWithRepr> codeElementMap = new LinkedHashMap<>();
         for (Integer lineNumber : lineNumbers) {
             try {
-                codeElementMap.put(lineNumber,
-                        new CodeElementLocator(repository, commitId, filePath, lineNumber ).locate());
+                CodeElement locate = new CodeElementLocator(repository, commitId, filePath, lineNumber).locate();
+                codeElementMap.put(lineNumber, new CodeElementWithRepr(locate, Utils.getFileContentByCommit(repository, commitId, filePath).get(lineNumber-1)));
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
@@ -75,3 +82,5 @@ public class BlameDiffer {
         return codeElementMap;
     }
 }
+
+

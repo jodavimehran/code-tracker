@@ -1,6 +1,6 @@
 package org.codetracker.blame.impl;
 
-import org.codetracker.blame.IBlame;
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.Git;

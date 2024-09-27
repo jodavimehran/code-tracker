@@ -1,6 +1,8 @@
 package org.codetracker.blame.impl;
 
-import org.codetracker.blame.IBlame;
+/* Created by pourya on 2024-09-27*/
+
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.eclipse.jgit.lib.Repository;
 
@@ -14,23 +16,18 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /* Created by pourya on 2024-08-22*/
-public class CliGitBlame implements IBlame {
-    private final boolean ignore_whitespace;
-    public CliGitBlame(boolean ignore_whitespace) {
-        this.ignore_whitespace = ignore_whitespace;
+public abstract class AbstractCliGitBlame implements IBlame {
+    public AbstractCliGitBlame() {
+
     }
+
     @Override
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
         List<LineBlameResult> blameResults = new ArrayList<>();
         Process process = null;
 
         try {
-            String[] command;
-            if (ignore_whitespace) {
-                command = new String[]{"git", "blame", "-n", "-w", "--follow", commitId, "--", filePath};
-            } else {
-                command = new String[]{"git", "blame", "-n", "--follow", commitId, "--", filePath};
-            }
+            String[] command = getCommand(commitId, filePath);
             ProcessBuilder processBuilder = new ProcessBuilder(command);
             processBuilder.directory(repository.getDirectory());
 
@@ -50,12 +47,26 @@ public class CliGitBlame implements IBlame {
             }
         } finally {
             if (process != null) {
-                    process.destroy();
+                process.destroy();
             }
         }
 
         return blameResults;
     }
+
+    public String[] getCommand(String commitId, String filePath) {
+        String[] pre_command = new String[]{"git", "blame", "-n"};
+        String[] post_command = new String[] {"--follow", commitId, "--", filePath};
+        String[] addons = getAdditionalCommandOptions();
+        //Merge pre command, addons, and post command
+        String[] result = new String[pre_command.length + addons.length + post_command.length];
+        System.arraycopy(pre_command, 0, result, 0, pre_command.length);
+        System.arraycopy(addons, 0, result, pre_command.length, addons.length);
+        System.arraycopy(post_command, 0, result, pre_command.length + addons.length, post_command.length);
+        return result;
+    }
+
+    public abstract String[] getAdditionalCommandOptions();
 
     private static LineBlameResult getLineBlameResult(String line, String filePath, int lineNumber) {
         if (line.charAt(0) == '^') {
@@ -104,7 +115,7 @@ public class CliGitBlame implements IBlame {
             Instant instant = offsetDateTime.toInstant();
             commitTime = instant.toEpochMilli() / 1000;
         }
-        return new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, commitTime, resultLineNumber, lineNumber);
+        return new LineBlameResult(blameCommitId, filePath, prevFilePath, commiter, "", commitTime, resultLineNumber, lineNumber);
     }
 
     @Override

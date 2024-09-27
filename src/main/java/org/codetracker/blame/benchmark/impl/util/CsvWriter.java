@@ -1,6 +1,8 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.benchmark.impl.util;
 
 import org.codetracker.api.CodeElement;
+import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.model.CodeElementWithRepr;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +15,7 @@ import java.util.Set;
 /* Created by pourya on 2024-07-15*/
 public class CsvWriter {
     private final String filePath;
-    private final Map<Integer, CodeElement> codeElementMap;
+    private final Map<Integer, CodeElementWithRepr> codeElementMap;
     private final String owner;
     private final String project;
     private final String commitId;
@@ -22,7 +24,7 @@ public class CsvWriter {
     public CsvWriter(String owner, String project, String commitId, String filePath) {
         this(owner, project, commitId, filePath, null);
     }
-    public CsvWriter(String owner, String project, String commitId, String filePath, Map<Integer, CodeElement> codeElementMap) {
+    public CsvWriter(String owner, String project, String commitId, String filePath, Map<Integer, CodeElementWithRepr> codeElementMap) {
         this.owner = owner;
         this.project = project;
         this.commitId = commitId;
@@ -42,7 +44,7 @@ public class CsvWriter {
                 if (iterator.hasNext()) writer.print(",");
             }
             if (codeElementMap != null)
-                writer.print(",CodeElement");
+                writer.print(",CodeElement,ActualString");
             writer.println();
             // Write the data
             for (Map.Entry<Integer, EnumMap<BlamerFactory, String>> entry : table.entrySet()) {
@@ -55,8 +57,9 @@ public class CsvWriter {
                     if (valueIterator.hasNext()) writer.print(",");
                 }
                 if (codeElementMap != null) {
-                    CodeElement codeElement = codeElementMap.get(entry.getKey());
-                    writer.print("," + getCodeElementName(codeElement));
+                    CodeElementWithRepr codeElementWithRepr = codeElementMap.get(entry.getKey());
+                    writer.print("," + getCodeElementName(codeElementWithRepr.getCodeElement()));
+                    writer.print("," + escapeCsvField(codeElementWithRepr.getRepresentation()));
                 }
 
                 writer.println();
@@ -71,6 +74,19 @@ public class CsvWriter {
         String additional = "class org.codetracker.element.";
         return className.replace(additional, "");
     }
+    private static String escapeCsvField(String field) {
+        if (field == null) {
+            return "";
+        }
+        // Escape double quotes by replacing them with two double quotes
+        field = field.replace("\"", "\"\"");
+        // Wrap the field in quotes if it contains a comma or double quotes
+        if (field.contains(",") || field.contains("\"")) {
+            field = "\"" + field + "\"";
+        }
+        return field;
+    }
+
 
     private File makeFile() {
         String finalPath = output_folder + owner + "/" + project + "/" + commitId + "/" + filePath.replace("/",".") + ".csv";

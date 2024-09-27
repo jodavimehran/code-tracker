@@ -1,14 +1,11 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.benchmark.model;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 public class BlameCaseInfo implements Serializable {
-    String url;
-    String filePath;
-
-    public BlameCaseInfo() {
-    }
+    public final String url;
+    public final String filePath;
 
     public BlameCaseInfo(String url, String filePath) {
         this.url = url;
@@ -37,15 +34,7 @@ public class BlameCaseInfo implements Serializable {
         return url;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
     public String getFilePath() {
         return filePath;
-    }
-
-    public void setFilePath(String filePath) {
-        this.filePath = filePath;
     }
 }

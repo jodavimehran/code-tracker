@@ -1,11 +1,19 @@
 package org.codetracker.blame.benchmark;
 
+import org.codetracker.blame.benchmark.impl.BlameDiffer;
+import org.codetracker.blame.benchmark.impl.BlameDifferOneWithMany;
+import org.codetracker.blame.benchmark.impl.util.CsvWriter;
+import org.codetracker.blame.benchmark.impl.util.StatsCollector;
+import org.codetracker.blame.benchmark.model.BlameCaseInfo;
+import org.codetracker.blame.benchmark.model.BlameDifferResult;
+import org.codetracker.blame.benchmark.model.CodeLinePredicate;
 import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.GitService;
 import org.refactoringminer.astDiff.utils.URLHelper;
 import org.refactoringminer.util.GitServiceImpl;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 import static org.codetracker.blame.util.Utils.getOwner;
 import static org.codetracker.blame.util.Utils.getProject;
@@ -20,8 +28,9 @@ public class BlameDifferDriver {
                     BlamerFactory.CliGitBlameDefault,
                     BlamerFactory.FileTrackerBlame
             );
-
-    private static final BlameDiffer blameDiffer = new BlameDifferOneWithMany(blamerFactories, BlamerFactory.FileTrackerBlame);
+    private static final Predicate<String> codeElementIgnoreCondition =
+            CodeLinePredicate.BLANK_LINE.or(CodeLinePredicate.OPENING_AND_CLOSING_CURLY_BRACKET);
+    private static final BlameDiffer blameDiffer = new BlameDifferOneWithMany(blamerFactories, BlamerFactory.FileTrackerBlame, codeElementIgnoreCondition);
 
     private static final String[][] dummies = {
             {"https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3", "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"},
@@ -65,8 +74,8 @@ public class BlameDifferDriver {
             Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + ownerSlashProject, URLHelper.getRepo(url));
             BlameDifferResult blameDifferResult = blameDiffer.diff(repository, commitId, filePath);
             Map<Integer, EnumMap<BlamerFactory, String>> result = blameDifferResult.getTable();
-            statsCollector.process(result, blameDifferResult.getLegitSize(), blameDifferResult.getCodeElementMap());
-            new CsvWriter(owner, project, commitId, filePath, blameDifferResult.getCodeElementMap()).writeToCSV(result);
+            statsCollector.process(result, blameDifferResult.getLegitSize(), blameDifferResult.getCodeElementWithReprMap());
+            new CsvWriter(owner, project, commitId, filePath, blameDifferResult.getCodeElementWithReprMap()).writeToCSV(result);
             statsCollector.writeInfo();
         }
     }

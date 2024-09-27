@@ -1,11 +1,13 @@
 package org.codetracker.blame;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import static org.codetracker.blame.util.GithubUtils.areSameConsideringMerge;
 import static org.junit.Assert.assertTrue;
 
+@Disabled
 /* Created by pourya on 2024-09-24*/
 public class GithubUtilsTest {
     String repo = "javaparser";

@@ -2,7 +2,7 @@ package org.codetracker.blame.impl;
 
 import org.codetracker.FileTrackerImpl;
 import org.codetracker.api.History;
-import org.codetracker.blame.IBlame;
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.element.BaseCodeElement;
 import org.eclipse.jgit.lib.Repository;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /* Created by pourya on 2024-08-22*/
 public class FileTrackerBlame implements IBlame {

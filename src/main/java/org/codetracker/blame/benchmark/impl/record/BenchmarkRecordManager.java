@@ -1,4 +1,6 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.benchmark.impl.record;
+
+import org.codetracker.blame.benchmark.BlamerFactory;
 
 import java.util.EnumMap;
 import java.util.HashMap;

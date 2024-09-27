@@ -20,6 +20,7 @@ public class GithubUtils {
     public static boolean areSameConsideringMerge(String repo, String project, String commitId1, String commitId2) {
         if (commitId1 == null || commitId2 == null) return false;
         if (commitId1.isEmpty() || commitId2.isEmpty()) return false;
+        System.out.println("Checking if " + commitId1 + " and " + commitId2 + " are the same considering merge");
         try {
             JSONObject commit1Info = getCommitInfo(repo, project, commitId1);
             JSONObject commit2Info = getCommitInfo(repo, project , commitId2);
@@ -77,7 +78,7 @@ public class GithubUtils {
         }
         return null;
     }
-    private static Pair<String, String> getOwnerAndProject(Repository repository) {
+    public static Pair<String, String> getOwnerAndProject(Repository repository) {
         File repoDir = repository.getDirectory();
         String repoPath = repoDir.getAbsolutePath();
         String[] pathParts = repoPath.split(File.separator);

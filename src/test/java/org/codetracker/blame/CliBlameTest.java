@@ -1,6 +1,6 @@
 package org.codetracker.blame;
 
-import org.codetracker.blame.impl.CliGitBlame;
+import org.codetracker.blame.impl.CliGitBlameCustomizable;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.refactoringminer.api.GitService;
@@ -19,8 +19,8 @@ public class CliBlameTest {
     public void testCliGitBlame() throws Exception {
         String url = "https://github.com/hibernate/hibernate-orm/commit/9e063ffa2";
         String path = "hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java";
-        String iw = getBlameOutput(url, path, new CliGitBlame(true), REPOS_PATH, gitService);
-        String def = getBlameOutput(url, path, new CliGitBlame(false), REPOS_PATH, gitService);
+        String iw = getBlameOutput(url, path, new CliGitBlameCustomizable(true), REPOS_PATH, gitService);
+        String def = getBlameOutput(url, path, new CliGitBlameCustomizable(false), REPOS_PATH, gitService);
         String expected_iw = System.getProperty("user.dir") + "/src/test/resources/blame/gitcli/9e063ffa2_cgit_iw.txt";
         String expected_def = System.getProperty("user.dir") + "/src/test/resources/blame/gitcli/9e063ffa2_cgit_def.txt";
         assertEqualWithFile(expected_iw,iw);
