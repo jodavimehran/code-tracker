@@ -345,7 +345,7 @@ f80cb56da src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 345)             // there are no M's in the format string
                                                                                                                              346)
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 347)             if( !Token.containsTokenWithValue(tokens, y) ) {
-                                                                                                                             348)                 int target = end.get(Calendar.YEAR);
+4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 348)                 int target = end.get(Calendar.YEAR);
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 349)                 if (months < 0) {
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 350)                     // target is end-year -1
 4f514d5eb src/java/org/apache/commons/lang/time/DurationFormatUtils.java       (Henri Yandell      2006-12-20 06:10:26 +0000 351)                     target -= 1;
