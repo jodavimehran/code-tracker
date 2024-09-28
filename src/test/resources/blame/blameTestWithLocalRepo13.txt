@@ -1,0 +1,749 @@
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 1)   ////////////////////////////////////////////////////////////////////////////////
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 2)   // checkstyle: Checks Java source code for adherence to a set of rules.
+dabb75d43 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2018-01-02 21:24:25 +0000 3)   // Copyright (C) 2001-2018 the original author or authors.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 4)   //
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 5)   // This library is free software; you can redistribute it and/or
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 6)   // modify it under the terms of the GNU Lesser General Public
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 7)   // License as published by the Free Software Foundation; either
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 8)   // version 2.1 of the License, or (at your option) any later version.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 9)   //
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 10)  // This library is distributed in the hope that it will be useful,
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 11)  // but WITHOUT ANY WARRANTY; without even the implied warranty of
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 12)  // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 13)  // Lesser General Public License for more details.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 14)  //
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 15)  // You should have received a copy of the GNU Lesser General Public
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 16)  // License along with this library; if not, write to the Free Software
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 17)  // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 18)  ////////////////////////////////////////////////////////////////////////////////
+                                                                                                                                                   19)
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 20)  package com.puppycrawl.tools.checkstyle.checks.coding;
+                                                                                                                                                   21)
+53eddca5d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-04-25 23:35:30 +0000 22)  import java.util.ArrayDeque;
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 23)  import java.util.Arrays;
+53eddca5d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-04-25 23:35:30 +0000 24)  import java.util.Deque;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 25)  import java.util.HashMap;
+53eddca5d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-04-25 23:35:30 +0000 26)  import java.util.Iterator;
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 27)  import java.util.Map;
+eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 28)  import java.util.Optional;
+                                                                                                                                                   29)
+5cdbb191a src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrew Kuchev       2017-10-31 01:16:02 +0000 30)  import com.puppycrawl.tools.checkstyle.FileStatefulCheck;
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-02-05 14:01:03 +0000 31)  import com.puppycrawl.tools.checkstyle.api.AbstractCheck;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 32)  import com.puppycrawl.tools.checkstyle.api.DetailAST;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 33)  import com.puppycrawl.tools.checkstyle.api.TokenTypes;
+ed595de84 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 34)  import com.puppycrawl.tools.checkstyle.utils.ScopeUtils;
+                                                                                                                                                   35)
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 36)  /**
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 37)   * <p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 38)   * Ensures that local variables that never get their values changed,
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 39)   * must be declared final.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 40)   * </p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 41)   * <p>
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 42)   * An example of how to configure the check to validate variable definition is:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 43)   * </p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 44)   * <pre>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 45)   * &lt;module name="FinalLocalVariable"&gt;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 46)   *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+e95d9b668 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Lars Kühne          2004-04-27 04:17:12 +0000 47)   * &lt;/module&gt;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 48)   * </pre>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 49)   * <p>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 50)   * By default, this Check skip final validation on
+5c14f233e src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2017-10-29 13:33:52 +0000 51)   *  <a href = "https://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2">
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 52)   * Enhanced For-Loop</a>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 53)   * </p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 54)   * <p>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 55)   * Option 'validateEnhancedForLoopVariable' could be used to make Check to validate even variable
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 56)   *  from Enhanced For Loop.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 57)   * </p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 58)   * <p>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 59)   * An example of how to configure the check so that it also validates enhanced For Loop Variable is:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 60)   * </p>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 61)   * <pre>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 62)   * &lt;module name="FinalLocalVariable"&gt;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 63)   *     &lt;property name="tokens" value="VARIABLE_DEF"/&gt;
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 64)   *     &lt;property name="validateEnhancedForLoopVariable" value="true"/&gt;
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 65)   * &lt;/module&gt;
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 66)   * </pre>
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 67)   * <p>Example:</p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 68)   * <p>
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 69)   * {@code
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 70)   * for (int number : myNumbers) { // violation
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 71)   *    System.out.println(number);
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 72)   * }
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 73)   * }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 74)   * </p>
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 75)   * @author k_gibbs, r_auckenthaler
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 76)   * @author Vladislav Lisetskiy
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 77)   */
+5cdbb191a src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrew Kuchev       2017-10-31 01:16:02 +0000 78)  @FileStatefulCheck
+cf96dd9ad src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-02-05 14:01:03 +0000 79)  public class FinalLocalVariableCheck extends AbstractCheck {
+                                                                                                                                                   80)
+27149f350 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-20 13:02:47 +0000 81)      /**
+27149f350 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-20 13:02:47 +0000 82)       * A key is pointing to the warning message text in "messages.properties"
+27149f350 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-20 13:02:47 +0000 83)       * file.
+27149f350 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-20 13:02:47 +0000 84)       */
+27149f350 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-20 13:02:47 +0000 85)      public static final String MSG_KEY = "final.variable";
+                                                                                                                                                   86)
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 87)      /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 88)       * Assign operator types.
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 89)       */
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 90)      private static final int[] ASSIGN_OPERATOR_TYPES = {
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 91)          TokenTypes.POST_INC,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 92)          TokenTypes.POST_DEC,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 93)          TokenTypes.ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 94)          TokenTypes.PLUS_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 95)          TokenTypes.MINUS_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 96)          TokenTypes.STAR_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 97)          TokenTypes.DIV_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 98)          TokenTypes.MOD_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 99)          TokenTypes.SR_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 100)         TokenTypes.BSR_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 101)         TokenTypes.SL_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 102)         TokenTypes.BAND_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 103)         TokenTypes.BXOR_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 104)         TokenTypes.BOR_ASSIGN,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 105)         TokenTypes.INC,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 106)         TokenTypes.DEC,
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 107)     };
+                                                                                                                                                   108)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 109)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 110)      * Loop types.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 111)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 112)     private static final int[] LOOP_TYPES = {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 113)         TokenTypes.LITERAL_FOR,
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 114)         TokenTypes.LITERAL_WHILE,
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 115)         TokenTypes.LITERAL_DO,
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 116)     };
+                                                                                                                                                   117)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 118)     /** Scope Deque. */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 119)     private final Deque<ScopeData> scopeStack = new ArrayDeque<>();
+                                                                                                                                                   120)
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 121)     /** Uninitialized variables of previous scope. */
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 122)     private final Deque<Deque<DetailAST>> prevScopeUninitializedVariables =
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 123)             new ArrayDeque<>();
+                                                                                                                                                   124)
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 125)     /** Assigned variables of current scope. */
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 126)     private final Deque<Deque<DetailAST>> currentScopeAssignedVariables =
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 127)             new ArrayDeque<>();
+                                                                                                                                                   128)
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 129)     /** Controls whether to check enhanced for-loop variable. */
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 130)     private boolean validateEnhancedForLoopVariable;
+                                                                                                                                                   131)
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 132)     static {
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 133)         // Array sorting for binary search
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 134)         Arrays.sort(ASSIGN_OPERATOR_TYPES);
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 135)         Arrays.sort(LOOP_TYPES);
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 136)     }
+                                                                                                                                                   137)
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 138)     /**
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 139)      * Whether to check enhanced for-loop variable or not.
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 140)      * @param validateEnhancedForLoopVariable whether to check for-loop variable
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 141)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 142)     public final void setValidateEnhancedForLoopVariable(boolean validateEnhancedForLoopVariable) {
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 143)         this.validateEnhancedForLoopVariable = validateEnhancedForLoopVariable;
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 144)     }
+                                                                                                                                                   145)
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 146)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 147)     public int[] getRequiredTokens() {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 148)         return new int[] {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 149)             TokenTypes.IDENT,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 150)             TokenTypes.CTOR_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 151)             TokenTypes.METHOD_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 152)             TokenTypes.SLIST,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 153)             TokenTypes.OBJBLOCK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 154)             TokenTypes.LITERAL_BREAK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 155)         };
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 156)     }
+                                                                                                                                                   157)
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 158)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 159)     public int[] getDefaultTokens() {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 160)         return new int[] {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 161)             TokenTypes.IDENT,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 162)             TokenTypes.CTOR_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 163)             TokenTypes.METHOD_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 164)             TokenTypes.SLIST,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 165)             TokenTypes.OBJBLOCK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 166)             TokenTypes.LITERAL_BREAK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 167)             TokenTypes.VARIABLE_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 168)         };
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 169)     }
+                                                                                                                                                   170)
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 171)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 172)     public int[] getAcceptableTokens() {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 173)         return new int[] {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 174)             TokenTypes.IDENT,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 175)             TokenTypes.CTOR_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 176)             TokenTypes.METHOD_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 177)             TokenTypes.SLIST,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 178)             TokenTypes.OBJBLOCK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 179)             TokenTypes.LITERAL_BREAK,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 180)             TokenTypes.VARIABLE_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 181)             TokenTypes.PARAMETER_DEF,
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 182)         };
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 183)     }
+                                                                                                                                                   184)
+25a37e504 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-09-14 20:58:34 +0000 185)     // -@cs[CyclomaticComplexity] The only optimization which can be done here is moving CASE-block
+25a37e504 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-09-14 20:58:34 +0000 186)     // expressions to separate methods, but that will not increase readability.
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 187)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 188)     public void visitToken(DetailAST ast) {
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 189)         switch (ast.getType()) {
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 190)             case TokenTypes.OBJBLOCK:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 191)             case TokenTypes.METHOD_DEF:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 192)             case TokenTypes.CTOR_DEF:
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 193)                 scopeStack.push(new ScopeData());
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 194)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 195)             case TokenTypes.SLIST:
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 196)                 currentScopeAssignedVariables.push(new ArrayDeque<>());
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 197)                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 198)                     || ast.getParent().getParent().findFirstToken(TokenTypes.CASE_GROUP)
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 199)                     == ast.getParent()) {
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 200)                     storePrevScopeUninitializedVariableData();
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 201)                     scopeStack.push(new ScopeData());
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 202)                 }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 203)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 204)             case TokenTypes.PARAMETER_DEF:
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 205)                 if (!isInLambda(ast)
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 206)                         && ast.findFirstToken(TokenTypes.MODIFIERS)
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 207)                             .findFirstToken(TokenTypes.FINAL) == null
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 208)                         && !isInAbstractOrNativeMethod(ast)
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 209)                         && !ScopeUtils.isInInterfaceBlock(ast)
+f0ed29b5c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-09 14:45:31 +0000 210)                         && !isMultipleTypeCatch(ast)) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 211)                     insertParameter(ast);
+62179e05f src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-07-25 19:11:26 +0000 212)                 }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 213)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 214)             case TokenTypes.VARIABLE_DEF:
+8fef90609 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-07-30 02:50:11 +0000 215)                 if (ast.getParent().getType() != TokenTypes.OBJBLOCK
+8fef90609 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-07-30 02:50:11 +0000 216)                         && ast.findFirstToken(TokenTypes.MODIFIERS)
+8fef90609 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-07-30 02:50:11 +0000 217)                             .findFirstToken(TokenTypes.FINAL) == null
+8fef90609 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-07-30 02:50:11 +0000 218)                         && !isVariableInForInit(ast)
+8fef90609 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-07-30 02:50:11 +0000 219)                         && shouldCheckEnhancedForLoopVariable(ast)) {
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 220)                     insertVariable(ast);
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 221)                 }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 222)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 223)             case TokenTypes.IDENT:
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 224)                 final int parentType = ast.getParent().getType();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 225)                 if (isAssignOperator(parentType) && isFirstChild(ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 226)                     final Optional<FinalVariableCandidate> candidate = getFinalCandidate(ast);
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 227)                     if (candidate.isPresent()) {
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 228)                         determineAssignmentConditions(ast, candidate.get());
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 229)                         currentScopeAssignedVariables.peek().add(ast);
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 230)                     }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 231)                     removeFinalVariableCandidateFromStack(ast);
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 232)                 }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 233)                 break;
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 234)             case TokenTypes.LITERAL_BREAK:
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 235)                 scopeStack.peek().containsBreak = true;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 236)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 237)             default:
+b097b3f00 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-03 01:27:52 +0000 238)                 throw new IllegalStateException("Incorrect token type");
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 239)         }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 240)     }
+                                                                                                                                                   241)
+08638b5f7 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Oliver Burn         2007-12-15 06:36:58 +0000 242)     @Override
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 243)     public void leaveToken(DetailAST ast) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 244)         Map<String, FinalVariableCandidate> scope = null;
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 245)         switch (ast.getType()) {
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 246)             case TokenTypes.OBJBLOCK:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 247)             case TokenTypes.CTOR_DEF:
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 248)             case TokenTypes.METHOD_DEF:
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 249)                 scope = scopeStack.pop().scope;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 250)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 251)             case TokenTypes.SLIST:
+073c370de src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-05-11 21:56:23 +0000 252)                 // -@cs[MoveVariableInsideIf] assignment value is modified later so it can't be
+073c370de src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-05-11 21:56:23 +0000 253)                 // moved
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 254)                 final Deque<DetailAST> prevScopeUninitializedVariableData =
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 255)                     prevScopeUninitializedVariables.peek();
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 256)                 boolean containsBreak = false;
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 257)                 if (ast.getParent().getType() != TokenTypes.CASE_GROUP
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 258)                     || findLastChildWhichContainsSpecifiedToken(ast.getParent().getParent(),
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 259)                             TokenTypes.CASE_GROUP, TokenTypes.SLIST) == ast.getParent()) {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 260)                     containsBreak = scopeStack.peek().containsBreak;
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 261)                     scope = scopeStack.pop().scope;
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 262)                     prevScopeUninitializedVariables.pop();
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 263)                 }
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 264)                 final DetailAST parent = ast.getParent();
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 265)                 if (containsBreak || shouldUpdateUninitializedVariables(parent)) {
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 266)                     updateAllUninitializedVariables(prevScopeUninitializedVariableData);
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 267)                 }
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 268)                 updateCurrentScopeAssignedVariables();
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 269)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 270)             default:
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 271)                 // do nothing
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 272)         }
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 273)         if (scope != null) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 274)             for (FinalVariableCandidate candidate : scope.values()) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 275)                 final DetailAST ident = candidate.variableIdent;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 276)                 log(ident.getLineNo(), ident.getColumnNo(), MSG_KEY, ident.getText());
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 277)             }
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 278)         }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 279)     }
+                                                                                                                                                   280)
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 281)     /**
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 282)      * Update assigned variables in a temporary stack.
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 283)      */
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 284)     private void updateCurrentScopeAssignedVariables() {
+073c370de src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-05-11 21:56:23 +0000 285)         // -@cs[MoveVariableInsideIf] assignment value is a modification call so it can't be moved
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 286)         final Deque<DetailAST> poppedScopeAssignedVariableData =
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 287)                 currentScopeAssignedVariables.pop();
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 288)         final Deque<DetailAST> currentScopeAssignedVariableData =
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 289)                 currentScopeAssignedVariables.peek();
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 290)         if (currentScopeAssignedVariableData != null) {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 291)             currentScopeAssignedVariableData.addAll(poppedScopeAssignedVariableData);
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 292)         }
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 293)     }
+                                                                                                                                                   294)
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 295)     /**
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 296)      * Determines identifier assignment conditions (assigned or already assigned).
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 297)      * @param ident identifier.
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 298)      * @param candidate final local variable candidate.
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 299)      */
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 300)     private static void determineAssignmentConditions(DetailAST ident,
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 301)                                                       FinalVariableCandidate candidate) {
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 302)         if (candidate.assigned) {
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 303)             if (!isInSpecificCodeBlock(ident, TokenTypes.LITERAL_ELSE)
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 304)                     && !isInSpecificCodeBlock(ident, TokenTypes.CASE_GROUP)) {
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 305)                 candidate.alreadyAssigned = true;
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 306)             }
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 307)         }
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 308)         else {
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 309)             candidate.assigned = true;
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 310)         }
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 311)     }
+                                                                                                                                                   312)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 313)     /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 314)      * Checks whether the scope of a node is restricted to a specific code block.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 315)      * @param node node.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 316)      * @param blockType block type.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 317)      * @return true if the scope of a node is restricted to a specific code block.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 318)      */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 319)     private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
+                                                                                                                                                   320)         boolean returnValue = false;
+                                                                                                                                                   321)         for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+                                                                                                                                                   322)             final int type = token.getType();
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 323)             if (type == blockType) {
+                                                                                                                                                   324)                 returnValue = true;
+                                                                                                                                                   325)                 break;
+                                                                                                                                                   326)             }
+                                                                                                                                                   327)         }
+                                                                                                                                                   328)         return returnValue;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 329)     }
+                                                                                                                                                   330)
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 331)     /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 332)      * Gets final variable candidate for ast.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 333)      * @param ast ast.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 334)      * @return Optional of {@link FinalVariableCandidate} for ast from scopeStack.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 335)      */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 336)     private Optional<FinalVariableCandidate> getFinalCandidate(DetailAST ast) {
+eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 337)         Optional<FinalVariableCandidate> result = Optional.empty();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 338)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 339)         while (iterator.hasNext() && !result.isPresent()) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 340)             final ScopeData scopeData = iterator.next();
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 341)             result = scopeData.findFinalVariableCandidateForAst(ast);
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 342)         }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 343)         return result;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 344)     }
+                                                                                                                                                   345)
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 346)     /**
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 347)      * Store un-initialized variables in a temporary stack for future use.
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 348)      */
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 349)     private void storePrevScopeUninitializedVariableData() {
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 350)         final ScopeData scopeData = scopeStack.peek();
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 351)         final Deque<DetailAST> prevScopeUninitializedVariableData =
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 352)                 new ArrayDeque<>();
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 353)         scopeData.uninitializedVariables.forEach(prevScopeUninitializedVariableData::push);
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 354)         prevScopeUninitializedVariables.push(prevScopeUninitializedVariableData);
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 355)     }
+                                                                                                                                                   356)
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 357)     /**
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 358)      * Update current scope data uninitialized variable according to the whole scope data.
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 359)      * @param prevScopeUninitializedVariableData variable for previous stack of uninitialized
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 360)      *     variables
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 361)      * @noinspection MethodParameterNamingConvention
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 362)      */
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 363)     private void updateAllUninitializedVariables(
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 364)             Deque<DetailAST> prevScopeUninitializedVariableData) {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 365)         // Check for only previous scope
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 366)         updateUninitializedVariables(prevScopeUninitializedVariableData);
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 367)         // Check for rest of the scope
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 368)         prevScopeUninitializedVariables.forEach(this::updateUninitializedVariables);
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 369)     }
+                                                                                                                                                   370)
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 371)     /**
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 372)      * Update current scope data uninitialized variable according to the specific scope data.
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 373)      * @param scopeUninitializedVariableData variable for specific stack of uninitialized variables
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 374)      */
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 375)     private void updateUninitializedVariables(Deque<DetailAST> scopeUninitializedVariableData) {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 376)         final Iterator<DetailAST> iterator = currentScopeAssignedVariables.peek().iterator();
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 377)         while (iterator.hasNext()) {
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 378)             final DetailAST assignedVariable = iterator.next();
+3b531fe99 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Pavel Bludov        2017-12-24 05:13:50 +0000 379)             for (DetailAST variable : scopeUninitializedVariableData) {
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 380)                 for (ScopeData scopeData : scopeStack) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 381)                     final FinalVariableCandidate candidate =
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 382)                         scopeData.scope.get(variable.getText());
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 383)                     DetailAST storedVariable = null;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 384)                     if (candidate != null) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 385)                         storedVariable = candidate.variableIdent;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 386)                     }
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 387)                     if (storedVariable != null
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 388)                             && isSameVariables(storedVariable, variable)
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 389)                             && isSameVariables(assignedVariable, variable)) {
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 390)                         scopeData.uninitializedVariables.push(variable);
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 391)                         iterator.remove();
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 392)                     }
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 393)                 }
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 394)             }
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 395)         }
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 396)     }
+                                                                                                                                                   397)
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 398)     /**
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 399)      * If token is LITERAL_IF and there is an {@code else} following or token is CASE_GROUP and
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 400)      * there is another {@code case} following, then update the uninitialized variables.
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 401)      * @param ast token to be checked
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 402)      * @return true if should be updated, else false
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 403)      */
+7790f3104 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-07-31 14:57:29 +0000 404)     private static boolean shouldUpdateUninitializedVariables(DetailAST ast) {
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 405)         return isIfTokenWithAnElseFollowing(ast) || isCaseTokenWithAnotherCaseFollowing(ast);
+628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 406)     }
+                                                                                                                                                   407)
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 408)     /**
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 409)      * If token is LITERAL_IF and there is an {@code else} following.
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 410)      * @param ast token to be checked
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 411)      * @return true if token is LITERAL_IF and there is an {@code else} following, else false
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 412)      */
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 413)     private static boolean isIfTokenWithAnElseFollowing(DetailAST ast) {
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 414)         return ast.getType() == TokenTypes.LITERAL_IF
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 415)                 && ast.getLastChild().getType() == TokenTypes.LITERAL_ELSE;
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 416)     }
+                                                                                                                                                   417)
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 418)     /**
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 419)      * If token is CASE_GROUP and there is another {@code case} following.
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 420)      * @param ast token to be checked
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 421)      * @return true if token is CASE_GROUP and there is another {@code case} following, else false
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 422)      */
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 423)     private static boolean isCaseTokenWithAnotherCaseFollowing(DetailAST ast) {
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 424)         return ast.getType() == TokenTypes.CASE_GROUP
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 425)                 && findLastChildWhichContainsSpecifiedToken(
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 426)                         ast.getParent(), TokenTypes.CASE_GROUP, TokenTypes.SLIST) != ast;
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 427)     }
+                                                                                                                                                   428)
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 429)     /**
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 430)      * Returns the last child token that makes a specified type and contains containType in
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 431)      * its branch.
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 432)      * @param ast token to be tested
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 433)      * @param childType the token type to match
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 434)      * @param containType the token type which has to be present in the branch
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 435)      * @return the matching token, or null if no match
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 436)      */
+e69ca128d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-03-23 18:12:46 +0000 437)     private static DetailAST findLastChildWhichContainsSpecifiedToken(DetailAST ast, int childType,
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 438)                                                               int containType) {
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 439)         DetailAST returnValue = null;
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 440)         for (DetailAST astIterator = ast.getFirstChild(); astIterator != null;
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 441)                 astIterator = astIterator.getNextSibling()) {
+d56c2c0c1 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-18 23:48:08 +0000 442)             if (astIterator.getType() == childType
+d56c2c0c1 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-11-18 23:48:08 +0000 443)                     && astIterator.findFirstToken(containType) != null) {
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 444)                 returnValue = astIterator;
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 445)             }
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 446)         }
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 447)         return returnValue;
+9c3b17b9d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-12-26 15:31:51 +0000 448)     }
+                                                                                                                                                   449)
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 450)     /**
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 451)      * Determines whether enhanced for-loop variable should be checked or not.
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 452)      * @param ast The ast to compare.
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 453)      * @return true if enhanced for-loop variable should be checked.
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 454)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 455)     private boolean shouldCheckEnhancedForLoopVariable(DetailAST ast) {
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 456)         return validateEnhancedForLoopVariable
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 457)                 || ast.getParent().getType() != TokenTypes.FOR_EACH_CLAUSE;
+93a33df5b src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-03-06 05:39:58 +0000 458)     }
+                                                                                                                                                   459)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 460)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 461)      * Insert a parameter at the topmost scope stack.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 462)      * @param ast the variable to insert.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 463)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 464)     private void insertParameter(DetailAST ast) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 465)         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 466)         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 467)         scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 468)     }
+                                                                                                                                                   469)
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 470)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 471)      * Insert a variable at the topmost scope stack.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 472)      * @param ast the variable to insert.
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 473)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 474)     private void insertVariable(DetailAST ast) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 475)         final Map<String, FinalVariableCandidate> scope = scopeStack.peek().scope;
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 476)         final DetailAST astNode = ast.findFirstToken(TokenTypes.IDENT);
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 477)         scope.put(astNode.getText(), new FinalVariableCandidate(astNode));
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 478)         if (!isInitialized(astNode)) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 479)             scopeStack.peek().uninitializedVariables.add(astNode);
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 480)         }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 481)     }
+                                                                                                                                                   482)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 483)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 484)      * Check if VARIABLE_DEF is initialized or not.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 485)      * @param ast VARIABLE_DEF to be checked
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 486)      * @return true if initialized
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 487)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 488)     private static boolean isInitialized(DetailAST ast) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 489)         return ast.getParent().getLastChild().getType() == TokenTypes.ASSIGN;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 490)     }
+                                                                                                                                                   491)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 492)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 493)      * Whether the ast is the first child of its parent.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 494)      * @param ast the ast to check.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 495)      * @return true if the ast is the first child of its parent.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 496)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 497)     private static boolean isFirstChild(DetailAST ast) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 498)         return ast.getPreviousSibling() == null;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 499)     }
+                                                                                                                                                   500)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 501)     /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 502)      * Removes the final variable candidate from the Stack.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 503)      * @param ast variable to remove.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 504)      */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 505)     private void removeFinalVariableCandidateFromStack(DetailAST ast) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 506)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 507)         while (iterator.hasNext()) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 508)             final ScopeData scopeData = iterator.next();
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 509)             final Map<String, FinalVariableCandidate> scope = scopeData.scope;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 510)             final FinalVariableCandidate candidate = scope.get(ast.getText());
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 511)             DetailAST storedVariable = null;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 512)             if (candidate != null) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 513)                 storedVariable = candidate.variableIdent;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 514)             }
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 515)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 516)                 if (shouldRemoveFinalVariableCandidate(scopeData, ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 517)                     scope.remove(ast.getText());
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 518)                 }
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 519)                 break;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 520)             }
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 521)         }
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 522)     }
+                                                                                                                                                   523)
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 524)     /**
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 525)      * Check if given parameter definition is a multiple type catch.
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 526)      * @param parameterDefAst parameter definition
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 527)      * @return true if it is a multiple type catch, false otherwise
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 528)      */
+359ce65a7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (vasilyeva           2017-07-23 20:48:14 +0000 529)     private static boolean isMultipleTypeCatch(DetailAST parameterDefAst) {
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 530)         final DetailAST typeAst = parameterDefAst.findFirstToken(TokenTypes.TYPE);
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 531)         return typeAst.getFirstChild().getType() == TokenTypes.BOR;
+4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 532)     }
+                                                                                                                                                   533)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 534)     /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 535)      * Whether the final variable candidate should be removed from the list of final local variable
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 536)      * candidates.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 537)      * @param scopeData the scope data of the variable.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 538)      * @param ast the variable ast.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 539)      * @return true, if the variable should be removed.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 540)      */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 541)     private static boolean shouldRemoveFinalVariableCandidate(ScopeData scopeData, DetailAST ast) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 542)         boolean shouldRemove = true;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 543)         for (DetailAST variable : scopeData.uninitializedVariables) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 544)             if (variable.getText().equals(ast.getText())) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 545)                 // if the variable is declared outside the loop and initialized inside
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 546)                 // the loop, then it cannot be declared final, as it can be initialized
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 547)                 // more than once in this case
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 548)                 if (isInTheSameLoop(variable, ast) || !isUseOfExternalVariableInsideLoop(ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 549)                     final FinalVariableCandidate candidate = scopeData.scope.get(ast.getText());
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 550)                     shouldRemove = candidate.alreadyAssigned;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 551)                 }
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 552)                 scopeData.uninitializedVariables.remove(variable);
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 553)                 break;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 554)             }
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 555)         }
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 556)         return shouldRemove;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 557)     }
+                                                                                                                                                   558)
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 559)     /**
+2bf2138d0 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 04:49:20 +0000 560)      * Checks whether a variable which is declared outside loop is used inside loop.
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 561)      * For example:
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 562)      * <p>
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 563)      * {@code
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 564)      * int x;
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 565)      * for (int i = 0, j = 0; i < j; i++) {
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 566)      *     x = 5;
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 567)      * }
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 568)      * }
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 569)      * </p>
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 570)      * @param variable variable.
+3bd3a5228 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskii 2017-04-05 12:37:51 +0000 571)      * @return true if a variable which is declared outside loop is used inside loop.
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 572)      */
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 573)     private static boolean isUseOfExternalVariableInsideLoop(DetailAST variable) {
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 574)         DetailAST loop2 = variable.getParent();
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 575)         while (loop2 != null
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 576)             && !isLoopAst(loop2.getType())) {
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 577)             loop2 = loop2.getParent();
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 578)         }
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 579)         return loop2 != null;
+11210350f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 580)     }
+                                                                                                                                                   581)
+3831aa913 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2015-06-14 06:01:30 +0000 582)     /**
+2b861bd6e src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-31 18:24:26 +0000 583)      * Is Arithmetic operator.
+3831aa913 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2015-06-14 06:01:30 +0000 584)      * @param parentType token AST
+3831aa913 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2015-06-14 06:01:30 +0000 585)      * @return true is token type is in arithmetic operator
+3831aa913 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2015-06-14 06:01:30 +0000 586)      */
+4c078ba71 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-07-18 04:51:24 +0000 587)     private static boolean isAssignOperator(int parentType) {
+f8ba0d727 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-08-01 16:42:45 +0000 588)         return Arrays.binarySearch(ASSIGN_OPERATOR_TYPES, parentType) >= 0;
+3831aa913 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Roman Ivanov        2015-06-14 06:01:30 +0000 589)     }
+                                                                                                                                                   590)
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 591)     /**
+a6b475970 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-19 06:07:04 +0000 592)      * Checks if current variable is defined in
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 593)      *  {@link TokenTypes#FOR_INIT for-loop init}, e.g.:
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 594)      * <p>
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 595)      * {@code
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 596)      * for (int i = 0, j = 0; i < j; i++) { . . . }
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 597)      * }
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 598)      * </p>
+1935bed57 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-11 12:18:59 +0000 599)      * {@code i, j} are defined in {@link TokenTypes#FOR_INIT for-loop init}
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 600)      * @param variableDef variable definition node.
+a6b475970 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-02-19 06:07:04 +0000 601)      * @return true if variable is defined in {@link TokenTypes#FOR_INIT for-loop init}
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 602)      */
+0f58857d7 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-05-17 11:47:09 +0000 603)     private static boolean isVariableInForInit(DetailAST variableDef) {
+b097b3f00 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Baratali Izmailov   2015-08-03 01:27:52 +0000 604)         return variableDef.getParent().getType() == TokenTypes.FOR_INIT;
+c6019cd35 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-27 02:43:49 +0000 605)     }
+                                                                                                                                                   606)
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 607)     /**
+deb4d7a38 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2014-12-16 06:09:33 +0000 608)      * Determines whether an AST is a descendant of an abstract or native method.
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 609)      * @param ast the AST to check.
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 610)      * @return true if ast is a descendant of an abstract or native method.
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 611)      */
+4d2e6647f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-08-27 19:53:59 +0000 612)     private static boolean isInAbstractOrNativeMethod(DetailAST ast) {
+c9c475a6c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-07-20 17:02:21 +0000 613)         boolean abstractOrNative = false;
+bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-01-19 14:20:14 +0000 614)         DetailAST parent = ast.getParent();
+c9c475a6c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-07-20 17:02:21 +0000 615)         while (parent != null && !abstractOrNative) {
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 616)             if (parent.getType() == TokenTypes.METHOD_DEF) {
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 617)                 final DetailAST modifiers =
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 618)                     parent.findFirstToken(TokenTypes.MODIFIERS);
+3bcd2a83a src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-10-26 02:54:54 +0000 619)                 abstractOrNative = modifiers.findFirstToken(TokenTypes.ABSTRACT) != null
+3bcd2a83a src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2017-10-26 02:54:54 +0000 620)                         || modifiers.findFirstToken(TokenTypes.LITERAL_NATIVE) != null;
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 621)             }
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 622)             parent = parent.getParent();
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 623)         }
+c9c475a6c src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2015-07-20 17:02:21 +0000 624)         return abstractOrNative;
+2af259b79 src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2004-08-04 11:17:56 +0000 625)     }
+                                                                                                                                                   626)
+5512e6fdb src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-03-16 03:45:01 +0000 627)     /**
+cc7aeaec9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-08-28 05:29:12 +0000 628)      * Check if current param is lambda's param.
+5512e6fdb src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-03-16 03:45:01 +0000 629)      * @param paramDef {@link TokenTypes#PARAMETER_DEF parameter def}.
+cc7aeaec9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-08-28 05:29:12 +0000 630)      * @return true if current param is lambda's param.
+5512e6fdb src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-03-16 03:45:01 +0000 631)      */
+4d2e6647f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-08-27 19:53:59 +0000 632)     private static boolean isInLambda(DetailAST paramDef) {
+5512e6fdb src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-03-16 03:45:01 +0000 633)         return paramDef.getParent().getParent().getType() == TokenTypes.LAMBDA;
+5512e6fdb src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (alexkravin          2015-03-16 03:45:01 +0000 634)     }
+                                                                                                                                                   635)
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 636)     /**
+dfef8ec6d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-01 12:37:07 +0000 637)      * Find the Class, Constructor, Enum, Method, or Field in which it is defined.
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 638)      * @param ast Variable for which we want to find the scope in which it is defined
+90178ab2e src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-28 16:33:10 +0000 639)      * @return ast The Class or Constructor or Method in which it is defined.
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 640)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 641)     private static DetailAST findFirstUpperNamedBlock(DetailAST ast) {
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 642)         DetailAST astTraverse = ast;
+e79f94539 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-03 01:46:00 +0000 643)         while (astTraverse.getType() != TokenTypes.METHOD_DEF
+e79f94539 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-03 01:46:00 +0000 644)                 && astTraverse.getType() != TokenTypes.CLASS_DEF
+e79f94539 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-03 01:46:00 +0000 645)                 && astTraverse.getType() != TokenTypes.ENUM_DEF
+e79f94539 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-03 01:46:00 +0000 646)                 && astTraverse.getType() != TokenTypes.CTOR_DEF
+e79f94539 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (rnveach             2016-05-03 01:46:00 +0000 647)                 && !ScopeUtils.isClassFieldDef(astTraverse)) {
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 648)             astTraverse = astTraverse.getParent();
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 649)         }
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 650)         return astTraverse;
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 651)     }
+                                                                                                                                                   652)
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 653)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 654)      * Check if both the Variables are same.
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 655)      * @param ast1 Variable to compare
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 656)      * @param ast2 Variable to compare
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 657)      * @return true if both the variables are same, otherwise false
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 658)      */
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 659)     private static boolean isSameVariables(DetailAST ast1, DetailAST ast2) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 660)         final DetailAST classOrMethodOfAst1 =
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 661)             findFirstUpperNamedBlock(ast1);
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 662)         final DetailAST classOrMethodOfAst2 =
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 663)             findFirstUpperNamedBlock(ast2);
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 664)         return classOrMethodOfAst1 == classOrMethodOfAst2 && ast1.getText().equals(ast2.getText());
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 665)     }
+                                                                                                                                                   666)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 667)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 668)      * Check if both the variables are in the same loop.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 669)      * @param ast1 variable to compare.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 670)      * @param ast2 variable to compare.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 671)      * @return true if both the variables are in the same loop.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 672)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 673)     private static boolean isInTheSameLoop(DetailAST ast1, DetailAST ast2) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 674)         DetailAST loop1 = ast1.getParent();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 675)         while (loop1 != null && !isLoopAst(loop1.getType())) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 676)             loop1 = loop1.getParent();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 677)         }
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 678)         DetailAST loop2 = ast2.getParent();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 679)         while (loop2 != null && !isLoopAst(loop2.getType())) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 680)             loop2 = loop2.getParent();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 681)         }
+75499dce1 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 682)         return loop1 != null && loop1 == loop2;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 683)     }
+                                                                                                                                                   684)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 685)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 686)      * Checks whether the ast is a loop.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 687)      * @param ast the ast to check.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 688)      * @return true if the ast is a loop.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 689)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 690)     private static boolean isLoopAst(int ast) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 691)         return Arrays.binarySearch(LOOP_TYPES, ast) >= 0;
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 692)     }
+                                                                                                                                                   693)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 694)     /**
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 695)      * Holder for the scope data.
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 696)      */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 697)     private static class ScopeData {
+                                                                                                                                                   698)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 699)         /** Contains variable definitions. */
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 700)         private final Map<String, FinalVariableCandidate> scope = new HashMap<>();
+                                                                                                                                                   701)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 702)         /** Contains definitions of uninitialized variables. */
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 703)         private final Deque<DetailAST> uninitializedVariables = new ArrayDeque<>();
+                                                                                                                                                   704)
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 705)         /** Whether there is a {@code break} in the scope. */
+5e0ab7577 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Luolc               2017-04-18 19:54:05 +0000 706)         private boolean containsBreak;
+                                                                                                                                                   707)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 708)         /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 709)          * Searches for final local variable candidate for ast in the scope.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 710)          * @param ast ast.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 711)          * @return Optional of {@link FinalVariableCandidate}.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 712)          */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 713)         public Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
+eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 714)             Optional<FinalVariableCandidate> result = Optional.empty();
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 715)             DetailAST storedVariable = null;
+eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 716)             final Optional<FinalVariableCandidate> candidate =
+eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 717)                 Optional.ofNullable(scope.get(ast.getText()));
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 718)             if (candidate.isPresent()) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 719)                 storedVariable = candidate.get().variableIdent;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 720)             }
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 721)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 722)                 result = candidate;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 723)             }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 724)             return result;
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 725)         }
+                                                                                                                                                   726)
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 727)     }
+                                                                                                                                                   728)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 729)     /**Represents information about final local variable candidate. */
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 730)     private static class FinalVariableCandidate {
+                                                                                                                                                   731)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 732)         /** Identifier token. */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 733)         private final DetailAST variableIdent;
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 734)         /** Whether the variable is assigned. */
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 735)         private boolean assigned;
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 736)         /** Whether the variable is already assigned. */
+ed76401d3 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-07-23 05:09:29 +0000 737)         private boolean alreadyAssigned;
+                                                                                                                                                   738)
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 739)         /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 740)          * Creates new instance.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 741)          * @param variableIdent variable identifier.
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 742)          */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 743)         FinalVariableCandidate(DetailAST variableIdent) {
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 744)             this.variableIdent = variableIdent;
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 745)         }
+                                                                                                                                                   746)
+55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 747)     }
+                                                                                                                                                   748)
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 749) }

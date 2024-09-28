@@ -753,7 +753,7 @@ public class FileTrackerImpl extends BaseTracker {
 						else if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
 							CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-							if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+							if (matchingMethod(startMethod, startComment) ||
 									matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 								Comment currentComment = startCommentChangeHistory.poll();
 								if (currentComment == null) {
@@ -771,7 +771,7 @@ public class FileTrackerImpl extends BaseTracker {
 						else if (key2 instanceof Annotation) {
 							Annotation startAnnotation = (Annotation)key2;
 							AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-							if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+							if (matchingMethod(startMethod, startAnnotation) ||
 									matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 								Annotation currentAnnotation = startAnnotationChangeHistory.poll();
 								if (currentAnnotation == null) {
@@ -1000,7 +1000,7 @@ public class FileTrackerImpl extends BaseTracker {
 					else if (key2 instanceof Comment) {
 						Comment startComment = (Comment)key2;
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						if (matchingMethod(startMethod, startComment) ||
 								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
@@ -1029,7 +1029,7 @@ public class FileTrackerImpl extends BaseTracker {
 					else if (key2 instanceof Annotation) {
 						Annotation startAnnotation = (Annotation)key2;
 						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						if (matchingMethod(startMethod, startAnnotation) ||
 								matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 							Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 							if (currentAnnotation == null) {
@@ -1111,8 +1111,7 @@ public class FileTrackerImpl extends BaseTracker {
 					else if (key2 instanceof Comment) {
 						Comment startComment = (Comment)key2;
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(rightMethod.getUmlOperation())) ||
-								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
+						if (matchingMethod(rightMethod, startComment) || matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.poll();
 							if (currentComment == null) {
 								continue;
@@ -1127,7 +1126,7 @@ public class FileTrackerImpl extends BaseTracker {
 					else if (key2 instanceof Annotation) {
 						Annotation startAnnotation = (Annotation)key2;
 						AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-						if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(rightMethod.getUmlOperation())) ||
+						if (matchingMethod(rightMethod, startAnnotation) ||
 								matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 							Annotation currentAnnotation = startAnnotationChangeHistory.poll();
 							if (currentAnnotation == null) {
@@ -1143,6 +1142,36 @@ public class FileTrackerImpl extends BaseTracker {
 				}
 			}
 		}
+	}
+
+	private boolean matchingMethod(Method rightMethod, Comment startComment) {
+		if(startComment.getOperation().isPresent()) {
+			VariableDeclarationContainer container = startComment.getOperation().get();
+			if(container instanceof UMLOperation) {
+				return container.equals(rightMethod.getUmlOperation());
+			}
+			else if(container instanceof UMLInitializer && rightMethod.getUmlOperation() instanceof UMLInitializer) {
+				UMLInitializer init1 = (UMLInitializer)container;
+				UMLInitializer init2 = (UMLInitializer)rightMethod.getUmlOperation();
+				return init1.getClassName().equals(init2.getClassName()) && init1.isStatic() == init2.isStatic();
+			}
+		}
+		return false;
+	}
+
+	private boolean matchingMethod(Method rightMethod, Annotation startAnnotation) {
+		if(startAnnotation.getOperation().isPresent()) {
+			VariableDeclarationContainer container = startAnnotation.getOperation().get();
+			if(container instanceof UMLOperation) {
+				return container.equals(rightMethod.getUmlOperation());
+			}
+			else if(container instanceof UMLInitializer && rightMethod.getUmlOperation() instanceof UMLInitializer) {
+				UMLInitializer init1 = (UMLInitializer)container;
+				UMLInitializer init2 = (UMLInitializer)rightMethod.getUmlOperation();
+				return init1.getClassName().equals(init2.getClassName()) && init1.isStatic() == init2.isStatic();
+			}
+		}
+		return false;
 	}
 
 	private boolean matchingPeekMethod(Method rightMethod, BlockTrackerChangeHistory startBlockChangeHistory) {
@@ -1549,7 +1578,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Comment startComment = (Comment)key2;
 					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						if (matchingMethod(startMethod, startComment) ||
 								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
@@ -1571,7 +1600,7 @@ public class FileTrackerImpl extends BaseTracker {
 					Comment startComment = (Comment)key2;
 					if (startComment.getLocation().getCodeElementType().equals(CodeElementType.JAVADOC)) {
 						CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-						if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+						if (matchingMethod(startMethod, startComment) ||
 								matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 							Comment currentComment = startCommentChangeHistory.peek();
 							if (currentComment == null) {
@@ -1638,7 +1667,7 @@ public class FileTrackerImpl extends BaseTracker {
 				else if (key2 instanceof Comment) {
 					Comment startComment = (Comment)key2;
 					CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-					if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+					if (matchingMethod(startMethod, startComment) ||
 							matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 						Comment currentComment = startCommentChangeHistory.peek();
 						if (currentComment == null) {
@@ -1658,7 +1687,7 @@ public class FileTrackerImpl extends BaseTracker {
 				else if (key2 instanceof Annotation) {
 					Annotation startAnnotation = (Annotation)key2;
 					AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-					if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+					if (matchingMethod(startMethod, startAnnotation) ||
 							matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 						Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 						if (currentAnnotation == null) {
@@ -1716,7 +1745,7 @@ public class FileTrackerImpl extends BaseTracker {
 			else if (key2 instanceof Comment) {
 				Comment startComment = (Comment)key2;
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
-				if ((startComment.getOperation().isPresent() && startComment.getOperation().get().equals(startMethod.getUmlOperation())) ||
+				if (matchingMethod(startMethod, startComment) ||
 						matchingPeekMethod(rightMethod, startCommentChangeHistory)) {
 					Comment currentComment = startCommentChangeHistory.peek();
 					if (currentComment == null) {
@@ -1735,7 +1764,7 @@ public class FileTrackerImpl extends BaseTracker {
 			else if (key2 instanceof Annotation) {
 				Annotation startAnnotation = (Annotation)key2;
 				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
-				if ((startAnnotation.getOperation().isPresent() && startAnnotation.getOperation().get().equals(startMethod.getUmlOperation())) ||
+				if (matchingMethod(startMethod, startAnnotation) ||
 						matchingPeekMethod(rightMethod, startAnnotationChangeHistory)) {
 					Annotation currentAnnotation = startAnnotationChangeHistory.peek();
 					if (currentAnnotation == null) {
