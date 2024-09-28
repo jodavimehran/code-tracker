@@ -1813,7 +1813,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 2fbcba41e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 15:03:24 +0000 1813) 		if (have.isEmpty()) {
 c218a0760 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-01-27 16:58:44 +0000 1814) 			walker.sort(RevSort.COMMIT_TIME_DESC);
 c218a0760 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-01-27 16:58:44 +0000 1815) 		} else {
-                                                                                                                                           1816) 			walker.sort(RevSort.TOPO);
+ba984ba2e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-09-06 19:12:43 +0000 1816) 			walker.sort(RevSort.TOPO);
 2fbcba41e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 15:03:24 +0000 1817) 			if (thin)
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1818) 				walker.sort(RevSort.BOUNDARY, true);
 c218a0760 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-01-27 16:58:44 +0000 1819) 		}
