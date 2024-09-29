@@ -990,7 +990,11 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							}
 							startBlockChangeHistory.poll();
 							alreadyProcessed.add(startBlock);
-							boolean found = startBlockChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
+							boolean found = startBlockChangeHistory.isMergeMultiMapping(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
+							if (found) {
+								continue;
+							}
+							found = startBlockChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
 							if (found) {
 								continue;
 							}

@@ -317,15 +317,15 @@ bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocal
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 317)      * @return true if the scope of a node is restricted to a specific code block.
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 318)      */
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 319)     private static boolean isInSpecificCodeBlock(DetailAST node, int blockType) {
-                                                                                                                                                   320)         boolean returnValue = false;
-                                                                                                                                                   321)         for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
-                                                                                                                                                   322)             final int type = token.getType();
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 320)         boolean returnValue = false;
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 321)         for (DetailAST token = node.getParent(); token != null; token = token.getParent()) {
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 322)             final int type = token.getType();
 0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 323)             if (type == blockType) {
-                                                                                                                                                   324)                 returnValue = true;
-                                                                                                                                                   325)                 break;
-                                                                                                                                                   326)             }
-                                                                                                                                                   327)         }
-                                                                                                                                                   328)         return returnValue;
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 324)                 returnValue = true;
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 325)                 break;
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 326)             }
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 327)         }
+0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 328)         return returnValue;
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 329)     }
                                                                                                                                                    330)
 0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 331)     /**

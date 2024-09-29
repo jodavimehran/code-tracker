@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
 import org.codetracker.api.Version;
@@ -124,6 +125,63 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
             }
         }
         return false;
+    }
+
+    public boolean isMergeMultiMapping(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
+    	Set<Pair<Block, Block>> mappings = new LinkedHashSet<>();
+    	AbstractCodeFragment fragment2 = null;
+    	int fragment2Matches = 0;
+    	MergeOperationRefactoring mergeOperationRefactoring = null;
+    	for (Refactoring refactoring : refactorings) {
+            switch (refactoring.getRefactoringType()) {
+	            case MERGE_OPERATION: {
+	                mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;
+	                Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
+	                if (equalMethod.test(methodAfter)) {
+	                    for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
+	                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+	                            if (mapping instanceof CompositeStatementObjectMapping) {
+	                                Block matchedBlockInsideMergedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+	                                if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                		Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    	mappings.add(Pair.of(blockBefore, matchedBlockInsideMergedMethodBody));
+                                    	if (fragment2 == null) {
+                                    		fragment2 = mapping.getFragment2();
+                                    	}
+                                    	else if (fragment2.equals(mapping.getFragment2())) {
+                                    		fragment2Matches++;
+                                    	}
+	                                }
+	                            }
+	                            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+	                                Block matchedBlockInsideMergedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+	                                if (matchedBlockInsideMergedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    	Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    	mappings.add(Pair.of(blockBefore, matchedBlockInsideMergedMethodBody));
+                                    	if (fragment2 == null) {
+                                    		fragment2 = mapping.getFragment2();
+                                    	}
+                                    	else if (fragment2.equals(mapping.getFragment2())) {
+                                    		fragment2Matches++;
+                                    	}
+	                                }
+	                            }
+	                        }
+	                    }
+	                }
+	                break;
+	            }
+            }
+    	}
+    	if (mappings.size() > 1 && mappings.size() == fragment2Matches + 1) {
+    		for (Pair<Block, Block> pair : mappings) {
+    			blockChangeHistory.handleAdd(pair.getLeft(), pair.getRight(), mergeOperationRefactoring.toString());
+                elements.add(pair.getLeft());
+    		}
+    		blockChangeHistory.connectRelatedNodes();
+    		return true;
+    	}
+    	return false;
     }
 
     public boolean checkForExtractionOrInline(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
