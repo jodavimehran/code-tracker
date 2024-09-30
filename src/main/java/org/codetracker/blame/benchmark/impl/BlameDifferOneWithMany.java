@@ -5,10 +5,7 @@ import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.GithubUtilsWithCache;
 import org.eclipse.jgit.lib.Repository;
 
-import java.util.EnumMap;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Predicate;
 
 import static org.codetracker.blame.util.GithubUtils.areSameConsideringMerge;
@@ -17,7 +14,7 @@ import static org.codetracker.blame.util.GithubUtils.areSameConsideringMerge;
 public class BlameDifferOneWithMany extends BlameDiffer {
 
     protected final BlamerFactory subject;
-    public BlameDifferOneWithMany(EnumSet<BlamerFactory> blamerFactories, BlamerFactory subject, Predicate<String> codeElementFilter) {
+    public BlameDifferOneWithMany(Set<BlamerFactory> blamerFactories, BlamerFactory subject, Predicate<String> codeElementFilter) {
         super(blamerFactories, codeElementFilter);
         this.subject = subject;
     }

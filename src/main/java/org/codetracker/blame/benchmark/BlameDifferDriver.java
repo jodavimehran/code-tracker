@@ -22,10 +22,15 @@ import static org.codetracker.blame.util.Utils.getProject;
 public class BlameDifferDriver {
     private static final GitService gitService = new GitServiceImpl();
     private static final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
-    private static final EnumSet<BlamerFactory> blamerFactories =
+    private static final Set<BlamerFactory> blamerFactories =
             EnumSet.of(
+                    BlamerFactory.JGitBlameWithFollow,
                     BlamerFactory.CliGitBlameIgnoringWhiteSpace,
                     BlamerFactory.CliGitBlameDefault,
+                    BlamerFactory.CliGitBlameCopyAware,
+                    BlamerFactory.CliGitBlameCopyAwareIgnoringWhiteSpace,
+                    BlamerFactory.CliGitBlameMoveAware,
+                    BlamerFactory.CliGitBlameMoveAwareIgnoringWhiteSpace,
                     BlamerFactory.FileTrackerBlame
             );
     private static final Predicate<String> codeElementIgnoreCondition =

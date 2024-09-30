@@ -5,6 +5,7 @@ import org.codetracker.blame.model.LineBlameResult;
 import org.eclipse.jgit.api.BlameCommand;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.blame.BlameResult;
+import org.eclipse.jgit.diff.DiffAlgorithm;
 import org.eclipse.jgit.errors.MissingObjectException;
 import org.eclipse.jgit.errors.RevisionSyntaxException;
 import org.eclipse.jgit.lib.ObjectId;
@@ -15,6 +16,15 @@ import java.util.List;
 
 public class JGitBlame implements IBlame {
 
+    private static final DiffAlgorithm.SupportedAlgorithm DEFAULT_ALGORITHM = DiffAlgorithm.SupportedAlgorithm.MYERS;
+    private final DiffAlgorithm diffAlgo;
+    public JGitBlame(DiffAlgorithm diffAlgo){
+        this.diffAlgo = diffAlgo;
+    }
+    public JGitBlame(){
+        this(DiffAlgorithm.getAlgorithm(DEFAULT_ALGORITHM));
+    }
+
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
         List<LineBlameResult> blameList = new ArrayList<>();
         try (Git git = new Git(repository)) {
@@ -23,6 +33,7 @@ public class JGitBlame implements IBlame {
             BlameCommand blameCommand = git.blame();
             blameCommand.setStartCommit(commit);
             blameCommand.setFilePath(filePath);
+            blameCommand.setDiffAlgorithm(getAlgorithm());;
 
             BlameResult blameResult = blameCommand.call();
 
@@ -40,7 +51,11 @@ public class JGitBlame implements IBlame {
         return blameList;
     }
 
-	@Override
+    public DiffAlgorithm getAlgorithm() {
+        return diffAlgo;
+    }
+
+    @Override
 	public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine,
 			int toLine) throws Exception {
 		List<LineBlameResult> blameList = new ArrayList<>();

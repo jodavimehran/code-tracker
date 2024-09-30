@@ -17,12 +17,12 @@ import java.util.function.Predicate;
 /* Created by pourya on 2024-07-14*/
 public class BlameDiffer {
 
-    protected final EnumSet<BlamerFactory> blamerFactories;
+    protected final Set<BlamerFactory> blamerFactories;
     protected LineNumberToCommitIDRecordManager benchmarkRecordManager;
     protected BiPredicate<Integer, List<String>> emptyLinesCondition = (lineNumber, content) -> content.get(lineNumber-1).trim().isEmpty();
     protected final Predicate<String> ignoreCondition;
 
-    public BlameDiffer(EnumSet<BlamerFactory> blamerFactories, Predicate<String> ignoreCondition){
+    public BlameDiffer(Set<BlamerFactory> blamerFactories, Predicate<String> ignoreCondition){
         this.blamerFactories = blamerFactories;
         this.ignoreCondition = ignoreCondition;
     }
