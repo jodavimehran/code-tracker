@@ -1,0 +1,151 @@
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 1)   /*
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 2)    * Licensed to the Apache Software Foundation (ASF) under one
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 3)    * or more contributor license agreements.  See the NOTICE file
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 4)    * distributed with this work for additional information
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 5)    * regarding copyright ownership.  The ASF licenses this file
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 6)    * to you under the Apache License, Version 2.0 (the
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 7)    * "License"); you may not use this file except in compliance
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 8)    * with the License.  You may obtain a copy of the License at
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 9)    *
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 10)   *     http://www.apache.org/licenses/LICENSE-2.0
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 11)   *
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 12)   * Unless required by applicable law or agreed to in writing, software
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 13)   * distributed under the License is distributed on an "AS IS" BASIS,
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 14)   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 15)   * See the License for the specific language governing permissions and
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 16)   * limitations under the License.
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 17)   */
+                                                                                                                                                     18)
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 19)  package org.apache.flink.runtime.dispatcher;
+                                                                                                                                                     20)
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 21)  import org.apache.flink.api.common.time.Time;
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 22)  import org.apache.flink.api.java.tuple.Tuple2;
+97ff043fd flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Tzu-Li (Gordon) Tai 2017-09-26 16:04:07 +0000 23)  import org.apache.flink.configuration.Configuration;
+39df56d6a flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-02-15 07:44:20 +0000 24)  import org.apache.flink.configuration.WebOptions;
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 25)  import org.apache.flink.runtime.blob.TransientBlobService;
+ac8225fd5 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-01-26 12:50:25 +0000 26)  import org.apache.flink.runtime.leaderelection.LeaderElectionService;
+def87816f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:42 +0000 27)  import org.apache.flink.runtime.resourcemanager.ResourceManagerGateway;
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 28)  import org.apache.flink.runtime.rest.RestServerEndpointConfiguration;
+c6243b8b1 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-21 07:30:50 +0000 29)  import org.apache.flink.runtime.rest.handler.RestHandlerConfiguration;
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 30)  import org.apache.flink.runtime.rest.handler.RestHandlerSpecification;
+ad380463d flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2017-10-09 17:11:44 +0000 31)  import org.apache.flink.runtime.rest.handler.job.JobSubmitHandler;
+ac8225fd5 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-01-26 12:50:25 +0000 32)  import org.apache.flink.runtime.rpc.FatalErrorHandler;
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 33)  import org.apache.flink.runtime.webmonitor.WebMonitorEndpoint;
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 34)  import org.apache.flink.runtime.webmonitor.WebMonitorExtension;
+39df56d6a flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-02-15 07:44:20 +0000 35)  import org.apache.flink.runtime.webmonitor.WebMonitorUtils;
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 36)  import org.apache.flink.runtime.webmonitor.retriever.GatewayRetriever;
+fdf684427 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:42 +0000 37)  import org.apache.flink.runtime.webmonitor.retriever.MetricQueryServiceRetriever;
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 38)  import org.apache.flink.util.ExceptionUtils;
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 39)  import org.apache.flink.util.FlinkException;
+                                                                                                                                                     40)
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 41)  import org.apache.flink.shaded.netty4.io.netty.channel.ChannelInboundHandler;
+                                                                                                                                                     42)
+ab8316f31 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-18 09:12:54 +0000 43)  import java.io.IOException;
+34fdf569d flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-09 09:48:38 +0000 44)  import java.util.List;
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 45)  import java.util.concurrent.CompletableFuture;
+dbabdb1cc flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 15:50:27 +0000 46)  import java.util.concurrent.Executor;
+                                                                                                                                                     47)
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 48)  /**
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 49)   * REST endpoint for the {@link Dispatcher} component.
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 50)   */
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 51)  public class DispatcherRestEndpoint extends WebMonitorEndpoint<DispatcherGateway> {
+                                                                                                                                                     52)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 53)  	private WebMonitorExtension webSubmissionExtension;
+                                                                                                                                                     54)
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 55)  	public DispatcherRestEndpoint(
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 56)  			RestServerEndpointConfiguration endpointConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 57)  			GatewayRetriever<DispatcherGateway> leaderRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 58)  			Configuration clusterConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 59)  			RestHandlerConfiguration restConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 60)  			GatewayRetriever<ResourceManagerGateway> resourceManagerRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 61)  			TransientBlobService transientBlobService,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 62)  			Executor executor,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 63)  			MetricQueryServiceRetriever metricQueryServiceRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 64)  			LeaderElectionService leaderElectionService,
+ab8316f31 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-18 09:12:54 +0000 65)  			FatalErrorHandler fatalErrorHandler) throws IOException {
+                                                                                                                                                     66)
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 67)  		super(
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 68)  			endpointConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 69)  			leaderRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 70)  			clusterConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 71)  			restConfiguration,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 72)  			resourceManagerRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 73)  			transientBlobService,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 74)  			executor,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 75)  			metricQueryServiceRetriever,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 76)  			leaderElectionService,
+5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 77)  			fatalErrorHandler);
+                                                                                                                                                     78)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 79)  		webSubmissionExtension = WebMonitorExtension.empty();
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 80)  	}
+                                                                                                                                                     81)
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 82)  	@Override
+34fdf569d flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-09 09:48:38 +0000 83)  	protected List<Tuple2<RestHandlerSpecification, ChannelInboundHandler>> initializeHandlers(CompletableFuture<String> restAddressFuture) {
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 84)  		List<Tuple2<RestHandlerSpecification, ChannelInboundHandler>> handlers = super.initializeHandlers(restAddressFuture);
+                                                                                                                                                     85)
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 86)  		// Add the Dispatcher specific handlers
+                                                                                                                                                     87)
+c6243b8b1 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-21 07:30:50 +0000 88)  		final Time timeout = restConfiguration.getTimeout();
+                                                                                                                                                     89)
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 90)  		JobSubmitHandler jobSubmitHandler = new JobSubmitHandler(
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 91)  			restAddressFuture,
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 92)  			leaderRetriever,
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 93)  			timeout,
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 94)  			responseHeaders,
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 95)  			executor,
+0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 96)  			clusterConfiguration);
+                                                                                                                                                     97)
+39df56d6a flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-02-15 07:44:20 +0000 98)  		if (clusterConfiguration.getBoolean(WebOptions.SUBMIT_ENABLE)) {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 99)  			try {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 100) 				webSubmissionExtension = WebMonitorUtils.loadWebSubmissionExtension(
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 101) 					leaderRetriever,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 102) 					restAddressFuture,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 103) 					timeout,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 104) 					responseHeaders,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 105) 					uploadDir,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 106) 					executor,
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 107) 					clusterConfiguration);
+                                                                                                                                                     108)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 109) 				// register extension handlers
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 110) 				handlers.addAll(webSubmissionExtension.getHandlers());
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 111) 			} catch (FlinkException e) {
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 112) 				if (log.isDebugEnabled()) {
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 113) 					log.debug("Failed to load web based job submission extension.", e);
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 114) 				} else {
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 115) 					log.info("Failed to load web based job submission extension. " +
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 116) 						"Probable reason: flink-runtime-web is not in the classpath.");
+fc0001c85 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Nico Kruber         2018-03-05 11:22:34 +0000 117) 				}
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 118) 			}
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 119) 		} else {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 120) 			log.info("Web-based job submission is not enabled.");
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 121) 		}
+                                                                                                                                                     122)
+ad380463d flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2017-10-09 17:11:44 +0000 123) 		handlers.add(Tuple2.of(jobSubmitHandler.getMessageHeaders(), jobSubmitHandler));
+                                                                                                                                                     124)
+dbabdb1cc flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 15:50:27 +0000 125) 		return handlers;
+55b76d54f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-20 08:35:30 +0000 126) 	}
+                                                                                                                                                     127)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 128) 	@Override
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 129) 	protected CompletableFuture<Void> shutDownInternal() {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 130) 		final CompletableFuture<Void> shutdownFuture = super.shutDownInternal();
+                                                                                                                                                     131)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 132) 		final CompletableFuture<Void> shutdownResultFuture = new CompletableFuture<>();
+                                                                                                                                                     133)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 134) 		shutdownFuture.whenComplete(
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 135) 			(Void ignored, Throwable throwable) -> {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 136) 				webSubmissionExtension.closeAsync().whenComplete(
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 137) 					(Void innerIgnored, Throwable innerThrowable) -> {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 138) 						if (innerThrowable != null) {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 139) 							shutdownResultFuture.completeExceptionally(
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 140) 								ExceptionUtils.firstOrSuppressed(innerThrowable, throwable));
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 141) 						} else if (throwable != null) {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 142) 							shutdownResultFuture.completeExceptionally(throwable);
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 143) 						} else {
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 144) 							shutdownResultFuture.complete(null);
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 145) 						}
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 146) 					});
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 147) 			});
+                                                                                                                                                     148)
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 149) 		return shutdownResultFuture;
+ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 150) 	}
+6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 151) }

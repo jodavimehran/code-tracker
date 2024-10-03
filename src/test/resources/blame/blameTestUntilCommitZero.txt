@@ -1543,7 +1543,7 @@ bdf535de4 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1543) 			} catch (InterruptedException ie) {
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1544) 				// We can't abort the other tasks as we have no handle.
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1545) 				// Cross our fingers and just break out anyway.
-74e083501 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:17:30 +0000 1546) 				//
+1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1546) 				//
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1547) 				throw new IOException(
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1548) 						JGitText.get().packingCancelledDuringObjectsWriting);
 1b783d037 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-28 17:50:28 +0000 1549) 			}

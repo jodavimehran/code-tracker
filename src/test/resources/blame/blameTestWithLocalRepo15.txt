@@ -1,0 +1,472 @@
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 1)   package org.junit.runners;
+                                                                                                                             2)
+dc23211eb src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Rowan Hill         2014-06-18 19:24:15 +0000 3)   import static org.junit.internal.runners.rules.RuleMemberValidator.RULE_METHOD_VALIDATOR;
+dc23211eb src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Rowan Hill         2014-06-18 19:24:15 +0000 4)   import static org.junit.internal.runners.rules.RuleMemberValidator.RULE_VALIDATOR;
+                                                                                                                             5)
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 6)   import java.util.ArrayList;
+                                                                                                                             7)   import java.util.List;
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 8)   import java.util.concurrent.ConcurrentHashMap;
+82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 9)   import java.util.concurrent.ConcurrentMap;
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 10)  import java.util.concurrent.TimeUnit;
+                                                                                                                             11)
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 12)  import org.junit.After;
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 13)  import org.junit.Before;
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 14)  import org.junit.Ignore;
+ab2395c8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:32:07 +0000 15)  import org.junit.Rule;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 16)  import org.junit.Test;
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 17)  import org.junit.Test.None;
+                                                                                                                             18)  import org.junit.internal.runners.model.ReflectiveCallable;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 19)  import org.junit.internal.runners.statements.ExpectException;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 20)  import org.junit.internal.runners.statements.Fail;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 21)  import org.junit.internal.runners.statements.FailOnTimeout;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 22)  import org.junit.internal.runners.statements.InvokeMethod;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 23)  import org.junit.internal.runners.statements.RunAfters;
+96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 24)  import org.junit.internal.runners.statements.RunBefores;
+99b0ebc70 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Narendra Pathai    2014-11-02 08:06:26 +0000 25)  import org.junit.rules.MethodRule;
+0815c4d61 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2010-10-26 03:13:50 +0000 26)  import org.junit.rules.TestRule;
+                                                                                                                             27)  import org.junit.runner.Description;
+                                                                                                                             28)  import org.junit.runner.notification.RunNotifier;
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 29)  import org.junit.runners.model.FrameworkMember;
+a9815c0f1 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-22 17:50:44 +0000 30)  import org.junit.runners.model.FrameworkMethod;
+a9815c0f1 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-22 17:50:44 +0000 31)  import org.junit.runners.model.InitializationError;
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 32)  import org.junit.runners.model.MemberValueConsumer;
+4610330ca src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2011-01-18 20:26:31 +0000 33)  import org.junit.runners.model.MultipleFailureException;
+a9815c0f1 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-22 17:50:44 +0000 34)  import org.junit.runners.model.Statement;
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 35)  import org.junit.runners.model.TestClass;
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 36)  import org.junit.validator.PublicClassValidator;
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 37)  import org.junit.validator.TestClassValidator;
+                                                                                                                             38)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 39)  /**
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 40)   * Implements the JUnit 4 standard test case class model, as defined by the
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 41)   * annotations in the org.junit package. Many users will never notice this
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 42)   * class: it is now the default test class runner, but it should have exactly
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 43)   * the same behavior as the old test class runner ({@code JUnit4ClassRunner}).
+238eaa761 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2013-06-03 16:53:21 +0000 44)   * <p>
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 45)   * BlockJUnit4ClassRunner has advantages for writers of custom JUnit runners
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 46)   * that are slight changes to the default behavior, however:
+dc44abf52 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 18:58:14 +0000 47)   *
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 48)   * <ul>
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 49)   * <li>It has a much simpler implementation based on {@link Statement}s,
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 50)   * allowing new operations to be inserted into the appropriate point in the
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 51)   * execution flow.
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 52)   *
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 53)   * <li>It is published, and extension and reuse are encouraged, whereas {@code
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 54)   * JUnit4ClassRunner} was in an internal package, and is now deprecated.
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 55)   * </ul>
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 56)   * <p>
+238eaa761 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2013-06-03 16:53:21 +0000 57)   * In turn, in 2009 we introduced {@link Rule}s.  In many cases where extending
+238eaa761 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2013-06-03 16:53:21 +0000 58)   * BlockJUnit4ClassRunner was necessary to add new behavior, {@link Rule}s can
+238eaa761 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2013-06-03 16:53:21 +0000 59)   * be used, which makes the extension more reusable and composable.
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 60)   *
+0e1aca2c2 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2012-06-01 18:55:02 +0000 61)   * @since 4.5
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 62)   */
+421ab3305 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-11-18 22:52:31 +0000 63)  public class BlockJUnit4ClassRunner extends ParentRunner<FrameworkMethod> {
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 64)      private static TestClassValidator PUBLIC_CLASS_VALIDATOR = new PublicClassValidator();
+                                                                                                                             65)
+82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 66)      private final ConcurrentMap<FrameworkMethod, Description> methodDescriptions = new ConcurrentHashMap<FrameworkMethod, Description>();
+                                                                                                                             67)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 68)      /**
+c7300033b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Jorge Gonzalez     2015-01-18 18:23:08 +0000 69)       * Creates a BlockJUnit4ClassRunner to run {@code testClass}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 70)       *
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 71)       * @throws InitializationError if the test class is malformed.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 72)       */
+c7300033b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Jorge Gonzalez     2015-01-18 18:23:08 +0000 73)      public BlockJUnit4ClassRunner(Class<?> testClass) throws InitializationError {
+c7300033b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Jorge Gonzalez     2015-01-18 18:23:08 +0000 74)          super(testClass);
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 75)      }
+                                                                                                                             76)
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 77)      /**
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 78)       * Creates a BlockJUnit4ClassRunner to run {@code testClass}.
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 79)       *
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 80)       * @throws InitializationError if the test class is malformed.
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 81)       * @since 4.13
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 82)       */
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 83)      protected BlockJUnit4ClassRunner(TestClass testClass) throws InitializationError {
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 84)          super(testClass);
+9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 85)      }
+                                                                                                                             86)
+                                                                                                                             87)      //
+                                                                                                                             88)      // Implementation of ParentRunner
+                                                                                                                             89)      //
+                                                                                                                             90)
+                                                                                                                             91)      @Override
+a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 92)      protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
+a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 93)          Description description = describeChild(method);
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 94)          if (isIgnored(method)) {
+a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 95)              notifier.fireTestIgnored(description);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 96)          } else {
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 97)              Statement statement = new Statement() {
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 98)                  @Override
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 99)                  public void evaluate() throws Throwable {
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 100)                     methodBlock(method).evaluate();
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 101)                 }
+3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 102)             };
+a90b496a6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Sam Brannen        2015-03-01 16:54:31 +0000 103)             runLeaf(statement, description, notifier);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 104)         }
+                                                                                                                             105)     }
+                                                                                                                             106)
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 107)     /**
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 108)      * Evaluates whether {@link FrameworkMethod}s are ignored based on the
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 109)      * {@link Ignore} annotation.
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 110)      */
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 111)     @Override
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 112)     protected boolean isIgnored(FrameworkMethod child) {
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 113)         return child.getAnnotation(Ignore.class) != null;
+5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 114)     }
+                                                                                                                             115)
+                                                                                                                             116)     @Override
+                                                                                                                             117)     protected Description describeChild(FrameworkMethod method) {
+df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Yursha        2014-06-18 06:42:20 +0000 118)         Description description = methodDescriptions.get(method);
+                                                                                                                             119)
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 120)         if (description == null) {
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 121)             description = Description.createTestDescription(getTestClass().getJavaClass(),
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 122)                     testName(method), method.getAnnotations());
+df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Yursha        2014-06-18 06:42:20 +0000 123)             methodDescriptions.putIfAbsent(method, description);
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 124)         }
+                                                                                                                             125)
+08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 126)         return description;
+                                                                                                                             127)     }
+                                                                                                                             128)
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 129)     @Override
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 130)     protected List<FrameworkMethod> getChildren() {
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 131)         return computeTestMethods();
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 132)     }
+                                                                                                                             133)
+                                                                                                                             134)     //
+                                                                                                                             135)     // Override in subclasses
+                                                                                                                             136)     //
+                                                                                                                             137)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 138)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 139)      * Returns the methods that run tests. Default implementation returns all
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 140)      * methods annotated with {@code @Test} on this class and superclasses that
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 141)      * are not overridden.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 142)      */
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 143)     protected List<FrameworkMethod> computeTestMethods() {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 144)         return getTestClass().getAnnotatedMethods(Test.class);
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 145)     }
+                                                                                                                             146)
+                                                                                                                             147)     @Override
+                                                                                                                             148)     protected void collectInitializationErrors(List<Throwable> errors) {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 149)         super.collectInitializationErrors(errors);
+                                                                                                                             150)
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 151)         validatePublicConstructor(errors);
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 152)         validateNoNonStaticInnerClass(errors);
+dd9ee989f src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 13:59:08 +0000 153)         validateConstructor(errors);
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 154)         validateInstanceMethods(errors);
+e6769d400 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-27 02:55:58 +0000 155)         validateFields(errors);
+faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 156)         validateMethods(errors);
+                                                                                                                             157)     }
+                                                                                                                             158)
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 159)     private void validatePublicConstructor(List<Throwable> errors) {
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 160)         if (getTestClass().getJavaClass() != null) {
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 161)             errors.addAll(PUBLIC_CLASS_VALIDATOR.validateTestClass(getTestClass()));
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 162)         }
+a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 163)     }
+                                                                                                                             164)
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 165)     protected void validateNoNonStaticInnerClass(List<Throwable> errors) {
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 166)         if (getTestClass().isANonStaticInnerClass()) {
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 167)             String gripe = "The inner class " + getTestClass().getName()
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 168)                     + " is not static.";
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 169)             errors.add(new Exception(gripe));
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 170)         }
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 171)     }
+                                                                                                                             172)
+fc7acc64d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-01 03:19:05 +0000 173)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 174)      * Adds to {@code errors} if the test class has more than one constructor,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 175)      * or if the constructor takes parameters. Override if a subclass requires
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 176)      * different validation rules.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 177)      */
+e6769d400 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-27 02:55:58 +0000 178)     protected void validateConstructor(List<Throwable> errors) {
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 179)         validateOnlyOneConstructor(errors);
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 180)         validateZeroArgConstructor(errors);
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 181)     }
+                                                                                                                             182)
+fc7acc64d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-01 03:19:05 +0000 183)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 184)      * Adds to {@code errors} if the test class has more than one constructor
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 185)      * (do not override)
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 186)      */
+fc7acc64d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-01 03:19:05 +0000 187)     protected void validateOnlyOneConstructor(List<Throwable> errors) {
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 188)         if (!hasOneConstructor()) {
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 189)             String gripe = "Test class should have exactly one public constructor";
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 190)             errors.add(new Exception(gripe));
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 191)         }
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 192)     }
+                                                                                                                             193)
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 194)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 195)      * Adds to {@code errors} if the test class's single constructor takes
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 196)      * parameters (do not override)
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 197)      */
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 198)     protected void validateZeroArgConstructor(List<Throwable> errors) {
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 199)         if (!getTestClass().isANonStaticInnerClass()
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 200)                 && hasOneConstructor()
+101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 201)                 && (getTestClass().getOnlyConstructor().getParameterTypes().length != 0)) {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 202)             String gripe = "Test class should have exactly one public zero-argument constructor";
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 203)             errors.add(new Exception(gripe));
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 204)         }
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 205)     }
+                                                                                                                             206)
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 207)     private boolean hasOneConstructor() {
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 208)         return getTestClass().getJavaClass().getConstructors().length == 1;
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 209)     }
+                                                                                                                             210)
+30a039854 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 20:28:46 +0000 211)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 212)      * Adds to {@code errors} for each method annotated with {@code @Test},
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 213)      * {@code @Before}, or {@code @After} that is not a public, void instance
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 214)      * method with no arguments.
+82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 215)      * @deprecated
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 216)      */
+df8581759 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-21 02:34:15 +0000 217)     @Deprecated
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 218)     protected void validateInstanceMethods(List<Throwable> errors) {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 219)         validatePublicVoidNoArgMethods(After.class, false, errors);
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 220)         validatePublicVoidNoArgMethods(Before.class, false, errors);
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 221)         validateTestMethods(errors);
+                                                                                                                             222)
+82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 223)         if (computeTestMethods().isEmpty()) {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 224)             errors.add(new Exception("No runnable methods"));
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 225)         }
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 226)     }
+                                                                                                                             227)
+cbf46b88c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Jeremy Herault     2012-08-17 12:56:22 +0000 228)     protected void validateFields(List<Throwable> errors) {
+b23ffd790 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-07-13 19:45:28 +0000 229)         RULE_VALIDATOR.validate(getTestClass(), errors);
+e6769d400 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-27 02:55:58 +0000 230)     }
+                                                                                                                             231)
+faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 232)     private void validateMethods(List<Throwable> errors) {
+faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 233)         RULE_METHOD_VALIDATOR.validate(getTestClass(), errors);
+faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 234)     }
+                                                                                                                             235)
+30a039854 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 20:28:46 +0000 236)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 237)      * Adds to {@code errors} for each method annotated with {@code @Test}that
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 238)      * is not a public, void instance method with no arguments.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 239)      */
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 240)     protected void validateTestMethods(List<Throwable> errors) {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 241)         validatePublicVoidNoArgMethods(Test.class, false, errors);
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 242)     }
+                                                                                                                             243)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 244)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 245)      * Returns a new fixture for running a test. Default implementation executes
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 246)      * the test class's no-argument constructor (validation should have ensured
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 247)      * one exists).
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 248)      */
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 249)     protected Object createTest() throws Exception {
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 250)         return getTestClass().getOnlyConstructor().newInstance();
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 251)     }
+                                                                                                                             252)
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 253)     /**
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 254)      * Returns a new fixture to run a particular test {@code method} against.
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 255)      * Default implementation executes the no-argument {@link #createTest()} method.
+0f0152a8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2015-01-25 19:37:01 +0000 256)      *
+0f0152a8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2015-01-25 19:37:01 +0000 257)      * @since 4.13
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 258)      */
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 259)     protected Object createTest(FrameworkMethod method) throws Exception {
+                                                                                                                             260)         return createTest();
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 261)     }
+                                                                                                                             262)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 263)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 264)      * Returns the name that describes {@code method} for {@link Description}s.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 265)      * Default implementation is the method's name
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 266)      */
+                                                                                                                             267)     protected String testName(FrameworkMethod method) {
+                                                                                                                             268)         return method.getName();
+                                                                                                                             269)     }
+                                                                                                                             270)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 271)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 272)      * Returns a Statement that, when executed, either returns normally if
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 273)      * {@code method} passes, or throws an exception if {@code method} fails.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 274)      *
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 275)      * Here is an outline of the default implementation:
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 276)      *
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 277)      * <ul>
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 278)      * <li>Invoke {@code method} on the result of {@link #createTest(org.junit.runners.model.FrameworkMethod)}, and
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 279)      * throw any exceptions thrown by either operation.
+113e8b7c6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:43:38 +0000 280)      * <li>HOWEVER, if {@code method}'s {@code @Test} annotation has the {@link Test#expected()}
+113e8b7c6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:43:38 +0000 281)      * attribute, return normally only if the previous step threw an
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 282)      * exception of the correct type, and throw an exception otherwise.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 283)      * <li>HOWEVER, if {@code method}'s {@code @Test} annotation has the {@code
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 284)      * timeout} attribute, throw an exception if the previous step takes more
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 285)      * than the specified number of milliseconds.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 286)      * <li>ALWAYS run all non-overridden {@code @Before} methods on this class
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 287)      * and superclasses before any of the previous steps; if any throws an
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 288)      * Exception, stop execution and pass the exception on.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 289)      * <li>ALWAYS run all non-overridden {@code @After} methods on this class
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 290)      * and superclasses after any of the previous steps; all After methods are
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 291)      * always executed: exceptions thrown by previous steps are combined, if
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 292)      * necessary, with exceptions from After methods into a
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 293)      * {@link MultipleFailureException}.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 294)      * <li>ALWAYS allow {@code @Rule} fields to modify the execution of the
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 295)      * above steps. A {@code Rule} may prevent all execution of the above steps,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 296)      * or add additional behavior before and after, or modify thrown exceptions.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 297)      * For more information, see {@link TestRule}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 298)      * </ul>
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 299)      *
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 300)      * This can be overridden in subclasses, either by overriding this method,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 301)      * or the implementations creating each sub-statement.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 302)      */
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 303)     protected Statement methodBlock(final FrameworkMethod method) {
+                                                                                                                             304)         Object test;
+                                                                                                                             305)         try {
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 306)             test = new ReflectiveCallable() {
+                                                                                                                             307)                 @Override
+                                                                                                                             308)                 protected Object runReflectiveCall() throws Throwable {
+bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 309)                     return createTest(method);
+                                                                                                                             310)                 }
+                                                                                                                             311)             }.run();
+                                                                                                                             312)         } catch (Throwable e) {
+                                                                                                                             313)             return new Fail(e);
+                                                                                                                             314)         }
+                                                                                                                             315)
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 316)         Statement statement = methodInvoker(method, test);
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 317)         statement = possiblyExpectingExceptions(method, test, statement);
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 318)         statement = withPotentialTimeout(method, test, statement);
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 319)         statement = withBefores(method, test, statement);
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 320)         statement = withAfters(method, test, statement);
+409a8e06c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-07 03:50:14 +0000 321)         statement = withRules(method, test, statement);
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 322)         return statement;
+                                                                                                                             323)     }
+                                                                                                                             324)
+                                                                                                                             325)     //
+                                                                                                                             326)     // Statement builders
+                                                                                                                             327)     //
+                                                                                                                             328)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 329)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 330)      * Returns a {@link Statement} that invokes {@code method} on {@code test}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 331)      */
+1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 332)     protected Statement methodInvoker(FrameworkMethod method, Object test) {
+                                                                                                                             333)         return new InvokeMethod(method, test);
+                                                                                                                             334)     }
+                                                                                                                             335)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 336)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 337)      * Returns a {@link Statement}: if {@code method}'s {@code @Test} annotation
+113e8b7c6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:43:38 +0000 338)      * has the {@link Test#expected()} attribute, return normally only if {@code next}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 339)      * throws an exception of the correct type, and throw an exception
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 340)      * otherwise.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 341)      */
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 342)     protected Statement possiblyExpectingExceptions(FrameworkMethod method,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 343)             Object test, Statement next) {
+30a039854 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 20:28:46 +0000 344)         Test annotation = method.getAnnotation(Test.class);
+6838ac0ec src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:45:28 +0000 345)         Class<? extends Throwable> expectedExceptionClass = getExpectedException(annotation);
+6838ac0ec src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:45:28 +0000 346)         return expectedExceptionClass != null ? new ExpectException(next, expectedExceptionClass) : next;
+                                                                                                                             347)     }
+                                                                                                                             348)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 349)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 350)      * Returns a {@link Statement}: if {@code method}'s {@code @Test} annotation
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 351)      * has the {@code timeout} attribute, throw an exception if {@code next}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 352)      * takes more than the specified number of milliseconds.
+82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 353)      * @deprecated
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 354)      */
+e4c7fac80 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-01 02:55:03 +0000 355)     @Deprecated
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 356)     protected Statement withPotentialTimeout(FrameworkMethod method,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 357)             Object test, Statement next) {
+30a039854 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 20:28:46 +0000 358)         long timeout = getTimeout(method.getAnnotation(Test.class));
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 359)         if (timeout <= 0) {
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 360)             return next;
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 361)         }
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 362)         return FailOnTimeout.builder()
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 363)                .withTimeout(timeout, TimeUnit.MILLISECONDS)
+1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 364)                .build(next);
+                                                                                                                             365)     }
+                                                                                                                             366)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 367)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 368)      * Returns a {@link Statement}: run all non-overridden {@code @Before}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 369)      * methods on this class and superclasses before running {@code next}; if
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 370)      * any throws an Exception, stop execution and pass the exception on.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 371)      */
+                                                                                                                             372)     protected Statement withBefores(FrameworkMethod method, Object target,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 373)             Statement statement) {
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 374)         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 375)                 Before.class);
+198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 376)         return befores.isEmpty() ? statement : new RunBefores(statement,
+198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 377)                 befores, target);
+                                                                                                                             378)     }
+                                                                                                                             379)
+7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 380)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 381)      * Returns a {@link Statement}: run all non-overridden {@code @After}
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 382)      * methods on this class and superclasses before running {@code next}; all
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 383)      * After methods are always executed: exceptions thrown by previous steps
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 384)      * are combined, if necessary, with exceptions from After methods into a
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 385)      * {@link MultipleFailureException}.
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 386)      */
+                                                                                                                             387)     protected Statement withAfters(FrameworkMethod method, Object target,
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 388)             Statement statement) {
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 389)         List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(
+123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 390)                 After.class);
+198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 391)         return afters.isEmpty() ? statement : new RunAfters(statement, afters,
+198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 392)                 target);
+                                                                                                                             393)     }
+                                                                                                                             394)
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 395)     private Statement withRules(FrameworkMethod method, Object target, Statement statement) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 396)         RuleContainer ruleContainer = new RuleContainer();
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 397)         CURRENT_RULE_CONTAINER.set(ruleContainer);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 398)         try {
+faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 399)             List<TestRule> testRules = getTestRules(target);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 400)             for (MethodRule each : rules(target)) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 401)                 if (!(each instanceof TestRule && testRules.contains(each))) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 402)                     ruleContainer.add(each);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 403)                 }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 404)             }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 405)             for (TestRule rule : testRules) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 406)                 ruleContainer.add(rule);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 407)             }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 408)         } finally {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 409)             CURRENT_RULE_CONTAINER.remove();
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 410)         }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 411)         return ruleContainer.apply(method, describeChild(method), target, statement);
+e6769d400 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-27 02:55:58 +0000 412)     }
+                                                                                                                             413)
+8782efa08 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2011-06-24 13:49:19 +0000 414)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 415)      * @param target the test case instance
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 416)      * @return a list of MethodRules that should be applied when executing this
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 417)      *         test
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 418)      */
+99b0ebc70 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Narendra Pathai    2014-11-02 08:06:26 +0000 419)     protected List<MethodRule> rules(Object target) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 420)         RuleCollector<MethodRule> collector = new RuleCollector<MethodRule>();
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 421)         getTestClass().collectAnnotatedMethodValues(target, Rule.class, MethodRule.class,
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 422)                 collector);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 423)         getTestClass().collectAnnotatedFieldValues(target, Rule.class, MethodRule.class,
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 424)                 collector);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 425)         return collector.result;
+8782efa08 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2011-06-24 13:49:19 +0000 426)     }
+                                                                                                                             427)
+8782efa08 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2011-06-24 13:49:19 +0000 428)     /**
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 429)      * @param target the test case instance
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 430)      * @return a list of TestRules that should be applied when executing this
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 431)      *         test
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 432)      */
+8782efa08 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2011-06-24 13:49:19 +0000 433)     protected List<TestRule> getTestRules(Object target) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 434)         RuleCollector<TestRule> collector = new RuleCollector<TestRule>();
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 435)         getTestClass().collectAnnotatedMethodValues(target, Rule.class, TestRule.class, collector);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 436)         getTestClass().collectAnnotatedFieldValues(target, Rule.class, TestRule.class, collector);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 437)         return collector.result;
+a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 438)     }
+                                                                                                                             439)
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 440)     private Class<? extends Throwable> getExpectedException(Test annotation) {
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 441)         if (annotation == null || annotation.expected() == None.class) {
+                                                                                                                             442)             return null;
+                                                                                                                             443)         } else {
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 444)             return annotation.expected();
+                                                                                                                             445)         }
+                                                                                                                             446)     }
+                                                                                                                             447)
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 448)     private long getTimeout(Test annotation) {
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 449)         if (annotation == null) {
+                                                                                                                             450)             return 0;
+                                                                                                                             451)         }
+96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 452)         return annotation.timeout();
+                                                                                                                             453)     }
+                                                                                                                             454)
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 455)     private static final ThreadLocal<RuleContainer> CURRENT_RULE_CONTAINER =
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 456)             new ThreadLocal<RuleContainer>();
+                                                                                                                             457)
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 458)     private static class RuleCollector<T> implements MemberValueConsumer<T> {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 459)         final List<T> result = new ArrayList<T>();
+                                                                                                                             460)
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 461)         public void accept(FrameworkMember member, T value) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 462)             Rule rule = member.getAnnotation(Rule.class);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 463)             if (rule != null) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 464)                 RuleContainer container = CURRENT_RULE_CONTAINER.get();
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 465)                 if (container != null) {
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 466)                     container.setOrder(value, rule.order());
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 467)                 }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 468)             }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 469)             result.add(value);
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 470)         }
+aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 471)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 472) }
