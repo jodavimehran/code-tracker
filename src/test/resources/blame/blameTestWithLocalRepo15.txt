@@ -102,7 +102,7 @@ b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 3f736cf51 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-06-08 16:05:31 +0000 102)             };
 a90b496a6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Sam Brannen        2015-03-01 16:54:31 +0000 103)             runLeaf(statement, description, notifier);
 b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 104)         }
-                                                                                                                             105)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 105)     }
                                                                                                                              106)
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 107)     /**
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 108)      * Evaluates whether {@link FrameworkMethod}s are ignored based on the
@@ -114,7 +114,7 @@ b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 114)     }
                                                                                                                              115)
                                                                                                                              116)     @Override
-                                                                                                                             117)     protected Description describeChild(FrameworkMethod method) {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 117)     protected Description describeChild(FrameworkMethod method) {
 df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Yursha        2014-06-18 06:42:20 +0000 118)         Description description = methodDescriptions.get(method);
                                                                                                                              119)
 08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 120)         if (description == null) {
@@ -124,7 +124,7 @@ df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 124)         }
                                                                                                                              125)
 08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 126)         return description;
-                                                                                                                             127)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 127)     }
                                                                                                                              128)
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 129)     @Override
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 130)     protected List<FrameworkMethod> getChildren() {
@@ -145,7 +145,7 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 145)     }
                                                                                                                              146)
                                                                                                                              147)     @Override
-                                                                                                                             148)     protected void collectInitializationErrors(List<Throwable> errors) {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 148)     protected void collectInitializationErrors(List<Throwable> errors) {
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 149)         super.collectInitializationErrors(errors);
                                                                                                                              150)
 a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 151)         validatePublicConstructor(errors);
@@ -154,7 +154,7 @@ dd9ee989f src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 154)         validateInstanceMethods(errors);
 e6769d400 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-27 02:55:58 +0000 155)         validateFields(errors);
 faba199e3 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Matthew Farwell    2011-09-23 18:52:33 +0000 156)         validateMethods(errors);
-                                                                                                                             157)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 157)     }
                                                                                                                              158)
 a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 159)     private void validatePublicConstructor(List<Throwable> errors) {
 a58d459d7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-02-14 02:11:46 +0000 160)         if (getTestClass().getJavaClass() != null) {
@@ -257,16 +257,16 @@ bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 0f0152a8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2015-01-25 19:37:01 +0000 257)      * @since 4.13
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 258)      */
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 259)     protected Object createTest(FrameworkMethod method) throws Exception {
-                                                                                                                             260)         return createTest();
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 260)         return createTest();
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 261)     }
                                                                                                                              262)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 263)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 264)      * Returns the name that describes {@code method} for {@link Description}s.
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 265)      * Default implementation is the method's name
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 266)      */
-                                                                                                                             267)     protected String testName(FrameworkMethod method) {
-                                                                                                                             268)         return method.getName();
-                                                                                                                             269)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 267)     protected String testName(FrameworkMethod method) {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 268)         return method.getName();
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 269)     }
                                                                                                                              270)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 271)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 272)      * Returns a Statement that, when executed, either returns normally if
@@ -301,17 +301,17 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 301)      * or the implementations creating each sub-statement.
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 302)      */
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 303)     protected Statement methodBlock(final FrameworkMethod method) {
-                                                                                                                             304)         Object test;
-                                                                                                                             305)         try {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 304)         Object test;
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 305)         try {
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 306)             test = new ReflectiveCallable() {
                                                                                                                              307)                 @Override
                                                                                                                              308)                 protected Object runReflectiveCall() throws Throwable {
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 309)                     return createTest(method);
                                                                                                                              310)                 }
-                                                                                                                             311)             }.run();
-                                                                                                                             312)         } catch (Throwable e) {
-                                                                                                                             313)             return new Fail(e);
-                                                                                                                             314)         }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 311)             }.run();
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 312)         } catch (Throwable e) {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 313)             return new Fail(e);
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 314)         }
                                                                                                                              315)
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 316)         Statement statement = methodInvoker(method, test);
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 317)         statement = possiblyExpectingExceptions(method, test, statement);
@@ -320,7 +320,7 @@ bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 320)         statement = withAfters(method, test, statement);
 409a8e06c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-07 03:50:14 +0000 321)         statement = withRules(method, test, statement);
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 322)         return statement;
-                                                                                                                             323)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 323)     }
                                                                                                                              324)
                                                                                                                              325)     //
                                                                                                                              326)     // Statement builders
@@ -330,8 +330,8 @@ bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 330)      * Returns a {@link Statement} that invokes {@code method} on {@code test}
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 331)      */
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 332)     protected Statement methodInvoker(FrameworkMethod method, Object test) {
-                                                                                                                             333)         return new InvokeMethod(method, test);
-                                                                                                                             334)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 333)         return new InvokeMethod(method, test);
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 334)     }
                                                                                                                              335)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 336)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 337)      * Returns a {@link Statement}: if {@code method}'s {@code @Test} annotation
@@ -344,7 +344,7 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 30a039854 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 20:28:46 +0000 344)         Test annotation = method.getAnnotation(Test.class);
 6838ac0ec src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:45:28 +0000 345)         Class<? extends Throwable> expectedExceptionClass = getExpectedException(annotation);
 6838ac0ec src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alberto Scotto     2017-03-02 05:45:28 +0000 346)         return expectedExceptionClass != null ? new ExpectException(next, expectedExceptionClass) : next;
-                                                                                                                             347)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 347)     }
                                                                                                                              348)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 349)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 350)      * Returns a {@link Statement}: if {@code method}'s {@code @Test} annotation
@@ -362,20 +362,20 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 362)         return FailOnTimeout.builder()
 1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 363)                .withTimeout(timeout, TimeUnit.MILLISECONDS)
 1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 364)                .build(next);
-                                                                                                                             365)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 365)     }
                                                                                                                              366)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 367)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 368)      * Returns a {@link Statement}: run all non-overridden {@code @Before}
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 369)      * methods on this class and superclasses before running {@code next}; if
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 370)      * any throws an Exception, stop execution and pass the exception on.
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 371)      */
-                                                                                                                             372)     protected Statement withBefores(FrameworkMethod method, Object target,
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 372)     protected Statement withBefores(FrameworkMethod method, Object target,
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 373)             Statement statement) {
 123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 374)         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
 123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 375)                 Before.class);
 198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 376)         return befores.isEmpty() ? statement : new RunBefores(statement,
 198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 377)                 befores, target);
-                                                                                                                             378)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 378)     }
                                                                                                                              379)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 380)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 381)      * Returns a {@link Statement}: run all non-overridden {@code @After}
@@ -384,13 +384,13 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 384)      * are combined, if necessary, with exceptions from After methods into a
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 385)      * {@link MultipleFailureException}.
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 386)      */
-                                                                                                                             387)     protected Statement withAfters(FrameworkMethod method, Object target,
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 387)     protected Statement withAfters(FrameworkMethod method, Object target,
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 388)             Statement statement) {
 123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 389)         List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(
 123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 390)                 After.class);
 198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 391)         return afters.isEmpty() ? statement : new RunAfters(statement, afters,
 198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 392)                 target);
-                                                                                                                             393)     }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 393)     }
                                                                                                                              394)
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 395)     private Statement withRules(FrameworkMethod method, Object target, Statement statement) {
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 396)         RuleContainer ruleContainer = new RuleContainer();
@@ -438,19 +438,19 @@ aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 438)     }
                                                                                                                              439)
 96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 440)     private Class<? extends Throwable> getExpectedException(Test annotation) {
-96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 441)         if (annotation == null || annotation.expected() == None.class) {
-                                                                                                                             442)             return null;
-                                                                                                                             443)         } else {
-96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 444)             return annotation.expected();
-                                                                                                                             445)         }
-                                                                                                                             446)     }
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 441)         if (annotation == null || annotation.expected() == None.class) {
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 442)             return null;
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 443)         } else {
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 444)             return annotation.expected();
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 445)         }
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 446)     }
                                                                                                                              447)
 96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 448)     private long getTimeout(Test annotation) {
-96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 449)         if (annotation == null) {
-                                                                                                                             450)             return 0;
-                                                                                                                             451)         }
-96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 452)         return annotation.timeout();
-                                                                                                                             453)     }
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 449)         if (annotation == null) {
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 450)             return 0;
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 451)         }
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 452)         return annotation.timeout();
+96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 453)     }
                                                                                                                              454)
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 455)     private static final ThreadLocal<RuleContainer> CURRENT_RULE_CONTAINER =
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 456)             new ThreadLocal<RuleContainer>();

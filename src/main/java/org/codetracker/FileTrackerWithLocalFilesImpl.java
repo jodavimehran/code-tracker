@@ -48,6 +48,7 @@ import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
 import gr.uom.java.xmi.diff.UMLAttributeDiff;
@@ -957,6 +958,17 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		}
 	}
 
+	private boolean isMoved(Method rightMethod, List<Refactoring> refactorings) {
+		for (Refactoring r : refactorings) {
+			if (r instanceof MoveOperationRefactoring) {
+				MoveOperationRefactoring move = (MoveOperationRefactoring) r;
+				if (move.getMovedOperation().equals(rightMethod.getUmlOperation()))
+					return true;
+			}
+		}
+		return false;
+	}
+
 	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
 		Set<CodeElement> alreadyProcessed = new HashSet<>();
 		for (Method rightMethod : notFoundMethods.keySet()) {
@@ -967,6 +979,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			leftSideMethods.addAll(methodContainerChanged);
 			boolean refactored = !leftSideMethods.isEmpty();
 			if (refactored) {
+				boolean moved = isMoved(rightMethod, refactorings);
 				leftSideMethods.forEach(startMethodChangeHistory::addFirst);
 				if (leftSideMethods.size() == 1) {
 					startMethodChangeHistory.setCurrent(leftSideMethods.iterator().next());
@@ -990,6 +1003,10 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							}
 							startBlockChangeHistory.poll();
 							alreadyProcessed.add(startBlock);
+							if (moved) {
+								startBlockChangeHistory.addedMethod(rightMethod, rightBlock, parentVersion);
+								continue;
+							}
 							boolean found = startBlockChangeHistory.isMergeMultiMapping(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightBlock, refactorings);
 							if (found) {
 								continue;
@@ -1099,6 +1116,9 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						changeHistory.get().addNode((BaseCodeElement) codeElement);
 						programElementMap.put(codeElement, changeHistory);
 					}
+				}
+				if (moved) {
+					startMethodChangeHistory.handleAddOperation(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightMethod.getUmlOperation(), "moved method");
 				}
 			}
 			else if(startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {

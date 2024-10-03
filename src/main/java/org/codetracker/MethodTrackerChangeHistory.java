@@ -717,7 +717,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         return false;
     }
 
-    private boolean handleAddOperation( Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, VariableDeclarationContainer operation, String comment) {
+    public boolean handleAddOperation( Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, VariableDeclarationContainer operation, String comment) {
         Method rightMethod = Method.of(operation, currentVersion);
         if (equalOperator.test(rightMethod)) {
             Method leftMethod = Method.of(operation, parentVersion);
