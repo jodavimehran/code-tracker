@@ -34,6 +34,7 @@ import com.github.difflib.patch.InsertDelta;
 import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLAnonymousClass;
+import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLComment;
 import gr.uom.java.xmi.UMLInitializer;
@@ -77,6 +78,7 @@ import gr.uom.java.xmi.diff.ReorderParameterRefactoring;
 import gr.uom.java.xmi.diff.SplitOperationRefactoring;
 import gr.uom.java.xmi.diff.SplitVariableRefactoring;
 import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
+import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLClassDiff;
 import gr.uom.java.xmi.diff.UMLClassMoveDiff;
@@ -592,13 +594,13 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             }
         }
         if (umlModelDiffAll != null) {
-            for (UMLClassRenameDiff classRenameDiffList : umlModelDiffAll.getClassRenameDiffList()) {
+            for (UMLClassRenameDiff classRenameDiff : umlModelDiffAll.getClassRenameDiffList()) {
                 if (found)
                     break;
-                for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
+                for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiff.getOperationBodyMapperList()) {
                 	if (found)
                         break;
-                	found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
+                	found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiff.getOriginalClass(), classRenameDiff.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
                     if (found)
                         break;
                     for (UMLAnonymousClassDiff anonymousClassDiff : umlOperationBodyMapper.getAnonymousClassDiffs()) {
@@ -610,6 +612,40 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                                  break;
             			}
             		}
+                }
+                for (UMLAttributeDiff diff : classRenameDiff.getAttributeDiffList()) {
+                	if (found)
+                        break;
+                	if (diff.getInitializerMapper().isPresent()) {
+                		for (UMLAnonymousClassDiff anonymousClassDiff : diff.getInitializerMapper().get().getAnonymousClassDiffs()) {
+                			if (found)
+                                break;
+                			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+                				found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                                if (found)
+                                    break;
+                			}
+                		}
+                	}
+                }
+                for (Pair<UMLAttribute, UMLAttribute> pair : classRenameDiff.getCommonAtrributes()) {
+                	if (found)
+                        break;
+                	if (pair.getLeft().getAnonymousClassList().size() == pair.getRight().getAnonymousClassList().size() && pair.getLeft().getAnonymousClassList().size() > 0) {
+                		for (int i=0; i<pair.getLeft().getAnonymousClassList().size(); i++) {
+                			UMLAnonymousClass anonymous1 = pair.getLeft().getAnonymousClassList().get(i);
+                			UMLAnonymousClass anonymous2 = pair.getRight().getAnonymousClassList().get(i);
+                			if (anonymous1.getOperations().size() == anonymous2.getOperations().size()) {
+                				for (int j=0; j<anonymous1.getOperations().size(); j++) {
+                					UMLOperation anonymousMethod1 = anonymous1.getOperations().get(j);
+                					UMLOperation anonymousMethod2 = anonymous2.getOperations().get(j);
+                					found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousMethod1, anonymousMethod2, changeType);
+                                    if (found)
+                                        break;
+                				}
+                			}
+                		}
+                	}
                 }
             }
             for (UMLClassMoveDiff classMoveDiff : classMovedDiffList) {
@@ -631,6 +667,40 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             			}
             		}
                 }
+                for (UMLAttributeDiff diff : classMoveDiff.getAttributeDiffList()) {
+                	if (found)
+                        break;
+                	if (diff.getInitializerMapper().isPresent()) {
+                		for (UMLAnonymousClassDiff anonymousClassDiff : diff.getInitializerMapper().get().getAnonymousClassDiffs()) {
+                			if (found)
+                                break;
+                			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+                				found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                                if (found)
+                                    break;
+                			}
+                		}
+                	}
+                }
+                for (Pair<UMLAttribute, UMLAttribute> pair : classMoveDiff.getCommonAtrributes()) {
+                	if (found)
+                        break;
+                	if (pair.getLeft().getAnonymousClassList().size() == pair.getRight().getAnonymousClassList().size() && pair.getLeft().getAnonymousClassList().size() > 0) {
+                		for (int i=0; i<pair.getLeft().getAnonymousClassList().size(); i++) {
+                			UMLAnonymousClass anonymous1 = pair.getLeft().getAnonymousClassList().get(i);
+                			UMLAnonymousClass anonymous2 = pair.getRight().getAnonymousClassList().get(i);
+                			if (anonymous1.getOperations().size() == anonymous2.getOperations().size()) {
+                				for (int j=0; j<anonymous1.getOperations().size(); j++) {
+                					UMLOperation anonymousMethod1 = anonymous1.getOperations().get(j);
+                					UMLOperation anonymousMethod2 = anonymous2.getOperations().get(j);
+                					found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousMethod1, anonymousMethod2, changeType);
+                                    if (found)
+                                        break;
+                				}
+                			}
+                		}
+                	}
+                }
             }
             for (UMLClassDiff classDiff : umlModelDiffAll.getCommonClassDiffList()) {
             	if (found)
@@ -648,6 +718,40 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             			}
             		}
             	}
+            	for (UMLAttributeDiff diff : classDiff.getAttributeDiffList()) {
+                	if (found)
+                        break;
+                	if (diff.getInitializerMapper().isPresent()) {
+                		for (UMLAnonymousClassDiff anonymousClassDiff : diff.getInitializerMapper().get().getAnonymousClassDiffs()) {
+                			if (found)
+                                break;
+                			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+                				found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                                if (found)
+                                    break;
+                			}
+                		}
+                	}
+                }
+            	for (Pair<UMLAttribute, UMLAttribute> pair : classDiff.getCommonAtrributes()) {
+                	if (found)
+                        break;
+                	if (pair.getLeft().getAnonymousClassList().size() == pair.getRight().getAnonymousClassList().size() && pair.getLeft().getAnonymousClassList().size() > 0) {
+                		for (int i=0; i<pair.getLeft().getAnonymousClassList().size(); i++) {
+                			UMLAnonymousClass anonymous1 = pair.getLeft().getAnonymousClassList().get(i);
+                			UMLAnonymousClass anonymous2 = pair.getRight().getAnonymousClassList().get(i);
+                			if (anonymous1.getOperations().size() == anonymous2.getOperations().size()) {
+                				for (int j=0; j<anonymous1.getOperations().size(); j++) {
+                					UMLOperation anonymousMethod1 = anonymous1.getOperations().get(j);
+                					UMLOperation anonymousMethod2 = anonymous2.getOperations().get(j);
+                					found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousMethod1, anonymousMethod2, changeType);
+                                    if (found)
+                                        break;
+                				}
+                			}
+                		}
+                	}
+                }
             }
         }
         if (found) {
@@ -674,6 +778,24 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;
             }
+        }
+        else {
+        	String prefix = new String(className);
+        	while (prefix.contains(".")) {
+        		prefix = prefix.substring(0, prefix.lastIndexOf("."));
+        		addedClass = modelDiff.getAddedClass(prefix);
+        		if (addedClass != null) {
+        			break;
+        		}
+        	}
+        	if (addedClass != null) {
+        		for (UMLAnonymousClass anonymousClass : addedClass.getAnonymousClassList()) {
+        			for (UMLOperation operation : anonymousClass.getOperations()) {
+                        if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
+                            return true;
+                    }
+        		}
+        	}
         }
 
         for (UMLClassRenameDiff classRenameDiff : modelDiff.getClassRenameDiffList()) {

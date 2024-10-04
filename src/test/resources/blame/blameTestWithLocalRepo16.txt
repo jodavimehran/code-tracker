@@ -924,9 +924,9 @@ a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.
 38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 924)   /** Listener of streams and settings initiated by the peer. */
 38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 925)   public abstract static class Listener {
 8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 926)     public static final Listener REFUSE_INCOMING_STREAMS = new Listener() {
-                                                                                                                                         927)       @Override public void onStream(Http2Stream stream) throws IOException {
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 927)       @Override public void onStream(Http2Stream stream) throws IOException {
 8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 928)         stream.close(REFUSED_STREAM);
-                                                                                                                                         929)       }
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 929)       }
 8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 930)     };
                                                                                                                                          931)
 38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 932)     /**
