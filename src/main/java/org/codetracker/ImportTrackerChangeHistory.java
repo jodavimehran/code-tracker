@@ -179,6 +179,13 @@ public class ImportTrackerChangeHistory extends AbstractChangeHistory<Import> {
         return false;
     }
 
+    public void addedClass(Class rightClass, Import rightImport, Version parentVersion) {
+        Import leftImport = Import.of(rightImport.getUmlImport(), rightClass.getUmlClass(), parentVersion);
+        importChangeHistory.handleAdd(leftImport, rightImport, "added with class");
+        importChangeHistory.connectRelatedNodes();
+        elements.addFirst(leftImport);
+    }
+
 	public HistoryInfo<Import> blameReturn() {
 		List<HistoryInfo<Import>> history = getHistory();
 		for (History.HistoryInfo<Import> historyInfo : history) {

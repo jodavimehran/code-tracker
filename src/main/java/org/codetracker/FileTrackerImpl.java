@@ -44,6 +44,8 @@ import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
+import gr.uom.java.xmi.diff.ExtractClassRefactoring;
+import gr.uom.java.xmi.diff.ExtractSuperclassRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
@@ -315,10 +317,10 @@ public class FileTrackerImpl extends BaseTracker {
 							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 						}
 						UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion);
+						processImportsAndClassComments(lightweightClassDiff, rightClass, currentVersion, parentVersion, Collections.emptyList());
 						for (Pair<Class, Class> pair : foundInnerClasses) {
 							UMLClassBaseDiff lightweightInnerClassDiff = lightweightClassDiff(pair.getLeft().getUmlClass(), pair.getRight().getUmlClass());
-							processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion);
+							processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion, Collections.emptyList());
 						}
 						continue;
 					}
@@ -360,10 +362,10 @@ public class FileTrackerImpl extends BaseTracker {
 								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
-							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactorings);
 							for (Pair<Class, Class> pair : foundInnerClasses) {
 								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffLocal, pair.getRight().getUmlClass().getName());
-								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactorings);
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
@@ -390,10 +392,10 @@ public class FileTrackerImpl extends BaseTracker {
 								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
-							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactoringsPartial);
 							for (Pair<Class, Class> pair : foundInnerClasses) {
 								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, pair.getRight().getUmlClass().getName());
-								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactoringsPartial);
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
@@ -420,10 +422,10 @@ public class FileTrackerImpl extends BaseTracker {
 								processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 							}
 							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
-							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion);
+							processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactorings);
 							for (Pair<Class, Class> pair : foundInnerClasses) {
 								UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffAll, pair.getRight().getUmlClass().getName());
-								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion);
+								processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactorings);
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
@@ -553,7 +555,8 @@ public class FileTrackerImpl extends BaseTracker {
 		}
 	}
 
-	private void processImportsAndClassComments(UMLAbstractClassDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion) {
+	private void processImportsAndClassComments(UMLAbstractClassDiff classDiff, Class rightClass, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) {
+		boolean extracted = isExtracted(rightClass, refactorings);
 		for (CodeElement key : programElementMap.keySet()) {
 			if (key instanceof Import) {
 				Import startImport = (Import)key;
@@ -568,6 +571,10 @@ public class FileTrackerImpl extends BaseTracker {
 						continue;
 					}
 					startImportChangeHistory.poll();
+					if (extracted) {
+						startImportChangeHistory.addedClass(rightClass, rightImport, parentVersion);
+						continue;
+					}
 					startImportChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
@@ -585,6 +592,10 @@ public class FileTrackerImpl extends BaseTracker {
 						continue;
 					}
 					startCommentChangeHistory.poll();
+					if (extracted) {
+						startCommentChangeHistory.addedClass(rightClass, rightComment, parentVersion);
+						continue;
+					}
 					startCommentChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
@@ -602,6 +613,10 @@ public class FileTrackerImpl extends BaseTracker {
 						continue;
 					}
 					startAnnotationChangeHistory.poll();
+					if (extracted) {
+						startAnnotationChangeHistory.addedClass(rightClass, rightAnnotation, parentVersion);
+						continue;
+					}
 					startAnnotationChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 				}
 			}
@@ -962,6 +977,22 @@ public class FileTrackerImpl extends BaseTracker {
 		return false;
 	}
 
+	private boolean isExtracted(Class rightClass, List<Refactoring> refactorings) {
+		for (Refactoring r : refactorings) {
+			if (r instanceof ExtractClassRefactoring) {
+				ExtractClassRefactoring move = (ExtractClassRefactoring) r;
+				if (move.getExtractedClass().equals(rightClass.getUmlClass()))
+					return true;
+			}
+			else if (r instanceof ExtractSuperclassRefactoring) {
+				ExtractSuperclassRefactoring move = (ExtractSuperclassRefactoring) r;
+				if (move.getExtractedClass().equals(rightClass.getUmlClass()))
+					return true;
+			}
+		}
+		return false;
+	}
+
 	private void processLocallyRefactoredMethods(Map<Method, MethodTrackerChangeHistory> notFoundMethods, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
 		Set<CodeElement> alreadyProcessed = new HashSet<>();
 		for (Method rightMethod : notFoundMethods.keySet()) {
@@ -1033,6 +1064,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							startCommentChangeHistory.poll();
 							alreadyProcessed.add(startComment);
+							if (moved) {
+								startCommentChangeHistory.addedMethod(rightMethod, rightComment, parentVersion);
+								continue;
+							}
 							boolean found = startCommentChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightComment, refactorings);
 							if (found) {
 								continue;
@@ -1062,6 +1097,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							startAnnotationChangeHistory.poll();
 							alreadyProcessed.add(startAnnotation);
+							if (moved) {
+								startAnnotationChangeHistory.addedMethod(rightMethod, rightAnnotation, parentVersion);
+								continue;
+							}
 							boolean found = startAnnotationChangeHistory.checkForExtractionOrInline(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightAnnotation, refactorings);
 							if (found) {
 								continue;

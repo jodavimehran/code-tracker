@@ -4,7 +4,7 @@ dc23211eb src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 dc23211eb src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Rowan Hill         2014-06-18 19:24:15 +0000 4)   import static org.junit.internal.runners.rules.RuleMemberValidator.RULE_VALIDATOR;
                                                                                                                              5)
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 6)   import java.util.ArrayList;
-                                                                                                                             7)   import java.util.List;
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 7)   import java.util.List;
 08719e9b6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Corey Vaillancourt 2013-02-17 18:21:33 +0000 8)   import java.util.concurrent.ConcurrentHashMap;
 82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 9)   import java.util.concurrent.ConcurrentMap;
 1e55e32ba src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2014-09-04 05:50:08 +0000 10)  import java.util.concurrent.TimeUnit;
@@ -15,7 +15,7 @@ aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 ab2395c8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:32:07 +0000 15)  import org.junit.Rule;
 96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 16)  import org.junit.Test;
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 17)  import org.junit.Test.None;
-                                                                                                                             18)  import org.junit.internal.runners.model.ReflectiveCallable;
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 18)  import org.junit.internal.runners.model.ReflectiveCallable;
 96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 19)  import org.junit.internal.runners.statements.ExpectException;
 96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 20)  import org.junit.internal.runners.statements.Fail;
 96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 21)  import org.junit.internal.runners.statements.FailOnTimeout;
@@ -24,8 +24,8 @@ ab2395c8c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 96d7dd609 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-07-01 18:29:54 +0000 24)  import org.junit.internal.runners.statements.RunBefores;
 99b0ebc70 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Narendra Pathai    2014-11-02 08:06:26 +0000 25)  import org.junit.rules.MethodRule;
 0815c4d61 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2010-10-26 03:13:50 +0000 26)  import org.junit.rules.TestRule;
-                                                                                                                             27)  import org.junit.runner.Description;
-                                                                                                                             28)  import org.junit.runner.notification.RunNotifier;
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 27)  import org.junit.runner.Description;
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 28)  import org.junit.runner.notification.RunNotifier;
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 29)  import org.junit.runners.model.FrameworkMember;
 a9815c0f1 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-22 17:50:44 +0000 30)  import org.junit.runners.model.FrameworkMethod;
 a9815c0f1 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-22 17:50:44 +0000 31)  import org.junit.runners.model.InitializationError;
@@ -84,11 +84,11 @@ c7300033b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 84)          super(testClass);
 9d2fe4efd src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2017-05-25 16:19:03 +0000 85)      }
                                                                                                                              86)
-                                                                                                                             87)      //
-                                                                                                                             88)      // Implementation of ParentRunner
-                                                                                                                             89)      //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 87)      //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 88)      // Implementation of ParentRunner
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 89)      //
                                                                                                                              90)
-                                                                                                                             91)      @Override
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 91)      @Override
 a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 92)      protected void runChild(final FrameworkMethod method, RunNotifier notifier) {
 a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 93)          Description description = describeChild(method);
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 94)          if (isIgnored(method)) {
@@ -113,7 +113,7 @@ b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 113)         return child.getAnnotation(Ignore.class) != null;
 5cdd70271 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (flpa               2013-10-23 21:16:10 +0000 114)     }
                                                                                                                              115)
-                                                                                                                             116)     @Override
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 116)     @Override
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 117)     protected Description describeChild(FrameworkMethod method) {
 df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Yursha        2014-06-18 06:42:20 +0000 118)         Description description = methodDescriptions.get(method);
                                                                                                                              119)
@@ -131,9 +131,9 @@ df00d5ece src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 131)         return computeTestMethods();
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 132)     }
                                                                                                                              133)
-                                                                                                                             134)     //
-                                                                                                                             135)     // Override in subclasses
-                                                                                                                             136)     //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 134)     //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 135)     // Override in subclasses
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 136)     //
                                                                                                                              137)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 138)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 139)      * Returns the methods that run tests. Default implementation returns all
@@ -144,7 +144,7 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 144)         return getTestClass().getAnnotatedMethods(Test.class);
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 145)     }
                                                                                                                              146)
-                                                                                                                             147)     @Override
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 147)     @Override
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 148)     protected void collectInitializationErrors(List<Throwable> errors) {
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 149)         super.collectInitializationErrors(errors);
                                                                                                                              150)
@@ -322,9 +322,9 @@ bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 1fcd990f6 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-29 18:55:58 +0000 322)         return statement;
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 323)     }
                                                                                                                              324)
-                                                                                                                             325)     //
-                                                                                                                             326)     // Statement builders
-                                                                                                                             327)     //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 325)     //
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 326)     // Statement builders
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 327)     //
                                                                                                                              328)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 329)     /**
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 330)      * Returns a {@link Statement} that invokes {@code method} on {@code test}

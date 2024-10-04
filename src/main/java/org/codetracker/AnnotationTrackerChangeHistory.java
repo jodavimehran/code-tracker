@@ -626,6 +626,13 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
     	return false;
     }
 
+    public void addedClass(Class rightClass, Annotation rightAnnotation, Version parentVersion) {
+        Annotation leftAnnotation = Annotation.of(rightAnnotation.getAnnotation(), rightClass.getUmlClass(), parentVersion);
+        annotationChangeHistory.handleAdd(leftAnnotation, rightAnnotation, "added with class");
+        annotationChangeHistory.connectRelatedNodes();
+        elements.addFirst(leftAnnotation);
+    }
+
 	public HistoryInfo<Annotation> blameReturn() {
 		List<HistoryInfo<Annotation>> history = getHistory();
 		for (History.HistoryInfo<Annotation> historyInfo : history) {
