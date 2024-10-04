@@ -804,10 +804,10 @@ d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyC
 b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 804)       }
 06579c5bf src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-06 23:30:16 +0000 805)     }
                                                                                                                                          806)
-                                                                                                                                         807)     @Override public void priority(int streamId, int streamDependency, int weight,
-                                                                                                                                         808)         boolean exclusive) {
-                                                                                                                                         809)       // TODO: honor priority.
-                                                                                                                                         810)     }
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 807)     @Override public void priority(int streamId, int streamDependency, int weight,
+cc38140be okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-04 18:53:15 +0000 808)         boolean exclusive) {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 809)       // TODO: honor priority.
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 810)     }
                                                                                                                                          811)
 4a62aef3f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-21 16:43:41 +0000 812)     @Override
 a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 813)     public void pushPromise(int streamId, int promisedStreamId, List<Header> requestHeaders) {
