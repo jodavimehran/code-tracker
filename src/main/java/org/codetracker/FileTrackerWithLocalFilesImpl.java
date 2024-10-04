@@ -47,6 +47,7 @@ import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.ExtractClassRefactoring;
 import gr.uom.java.xmi.diff.ExtractSuperclassRefactoring;
@@ -974,10 +975,16 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 	}
 
 	private boolean isMoved(Method rightMethod, List<Refactoring> refactorings) {
+		Set<VariableDeclarationContainer> parentContainers = new LinkedHashSet<>();
+		parentContainers.add(rightMethod.getUmlOperation());
+		if (rightMethod.getUmlOperation().getAnonymousClassContainer() != null && rightMethod.getUmlOperation().getAnonymousClassContainer().isPresent()) {
+			UMLAnonymousClass anonymous = rightMethod.getUmlOperation().getAnonymousClassContainer().get();
+			parentContainers.addAll(anonymous.getParentContainers());
+		}
 		for (Refactoring r : refactorings) {
 			if (r instanceof MoveOperationRefactoring) {
 				MoveOperationRefactoring move = (MoveOperationRefactoring) r;
-				if (move.getMovedOperation().equals(rightMethod.getUmlOperation()))
+				if (parentContainers.contains(move.getMovedOperation()))
 					return true;
 			}
 		}
@@ -1005,12 +1012,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		for (Method rightMethod : notFoundMethods.keySet()) {
 			MethodTrackerChangeHistory startMethodChangeHistory = notFoundMethods.get(rightMethod);
 			Method startMethod = startMethodChangeHistory.getStart();
+			boolean moved = isMoved(rightMethod, refactorings);
 			Set<Method> leftSideMethods = startMethodChangeHistory.analyseMethodRefactorings(refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
 			Set<Method> methodContainerChanged = startMethodChangeHistory.isMethodContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
 			leftSideMethods.addAll(methodContainerChanged);
 			boolean refactored = !leftSideMethods.isEmpty();
-			if (refactored) {
-				boolean moved = isMoved(rightMethod, refactorings);
+			if (refactored || moved) {
 				leftSideMethods.forEach(startMethodChangeHistory::addFirst);
 				if (leftSideMethods.size() == 1) {
 					startMethodChangeHistory.setCurrent(leftSideMethods.iterator().next());
@@ -1123,7 +1130,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						}
 					}
 				}
-				if (startMethodChangeHistory.peek().isAdded() && startMethodChangeHistory.getSourceOperation() != null) {
+				if (startMethodChangeHistory.peek() != null && startMethodChangeHistory.peek().isAdded() && startMethodChangeHistory.getSourceOperation() != null) {
 					Method codeElement = startMethodChangeHistory.getSourceOperation();
 					boolean found = false;
 					for (CodeElement key2 : programElementMap.keySet()) {

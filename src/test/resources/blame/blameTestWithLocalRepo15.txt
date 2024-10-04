@@ -304,10 +304,10 @@ bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 304)         Object test;
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 305)         try {
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 306)             test = new ReflectiveCallable() {
-                                                                                                                             307)                 @Override
-                                                                                                                             308)                 protected Object runReflectiveCall() throws Throwable {
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 307)                 @Override
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 308)                 protected Object runReflectiveCall() throws Throwable {
 bd5b90f75 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Peter Wright       2014-12-07 14:18:17 +0000 309)                     return createTest(method);
-                                                                                                                             310)                 }
+078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 310)                 }
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 311)             }.run();
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 312)         } catch (Throwable e) {
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 313)             return new Fail(e);
