@@ -530,6 +530,9 @@ public class FileTrackerImpl extends BaseTracker {
 				CommentTrackerChangeHistory startCommentChangeHistory = (CommentTrackerChangeHistory) programElementMap.get(startComment);
 				if (startComment.getClazz().isPresent()) {
 					Comment currentComment = startCommentChangeHistory.poll();
+					if (currentComment == null) {
+						continue;
+					}
 					Comment rightComment = rightClass.findComment(currentComment::equalIdentifierIgnoringVersion);
 					if (rightComment != null) {
 						Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
@@ -544,6 +547,9 @@ public class FileTrackerImpl extends BaseTracker {
 				AnnotationTrackerChangeHistory startAnnotationChangeHistory = (AnnotationTrackerChangeHistory) programElementMap.get(startAnnotation);
 				if (startAnnotation.getClazz().isPresent()) {
 					Annotation currentAnnotation = startAnnotationChangeHistory.poll();
+					if (currentAnnotation == null) {
+						continue;
+					}
 					Annotation rightAnnotation = rightClass.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
 					if (rightAnnotation != null) {
 						Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getClazz().get(), parentVersion);

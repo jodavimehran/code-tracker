@@ -1,0 +1,950 @@
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 1)   /*
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 2)    * Copyright (C) 2011 The Android Open Source Project
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 3)    *
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 4)    * Licensed under the Apache License, Version 2.0 (the "License");
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 5)    * you may not use this file except in compliance with the License.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 6)    * You may obtain a copy of the License at
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 7)    *
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 8)    *      http://www.apache.org/licenses/LICENSE-2.0
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 9)    *
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 10)   * Unless required by applicable law or agreed to in writing, software
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 11)   * distributed under the License is distributed on an "AS IS" BASIS,
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 12)   * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 13)   * See the License for the specific language governing permissions and
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 14)   * limitations under the License.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 15)   */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 16)  package okhttp3.internal.http2;
+                                                                                                                                         17)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 18)  import java.io.Closeable;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 19)  import java.io.IOException;
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 20)  import java.io.InterruptedIOException;
+8d78da7ce okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-03-12 04:20:14 +0000 21)  import java.net.InetSocketAddress;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 22)  import java.net.Socket;
+c581f5ddc okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jake Wharton   2016-11-13 15:50:10 +0000 23)  import java.util.LinkedHashMap;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 24)  import java.util.LinkedHashSet;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 25)  import java.util.List;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 26)  import java.util.Map;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 27)  import java.util.Set;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 28)  import java.util.concurrent.ExecutorService;
+c85153e6a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-05 15:19:18 +0000 29)  import java.util.concurrent.LinkedBlockingQueue;
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 30)  import java.util.concurrent.RejectedExecutionException;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 31)  import java.util.concurrent.ScheduledExecutorService;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 32)  import java.util.concurrent.ScheduledThreadPoolExecutor;
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 33)  import java.util.concurrent.SynchronousQueue;
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 34)  import java.util.concurrent.ThreadPoolExecutor;
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 35)  import java.util.concurrent.TimeUnit;
+c9a89876d okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-16 06:34:59 +0000 36)  import okhttp3.Protocol;
+c9a89876d okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-16 06:34:59 +0000 37)  import okhttp3.internal.NamedRunnable;
+c9a89876d okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-16 06:34:59 +0000 38)  import okhttp3.internal.Util;
+c5187583b okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-06-27 03:04:30 +0000 39)  import okhttp3.internal.platform.Platform;
+b24202421 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-16 03:59:06 +0000 40)  import okio.Buffer;
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 41)  import okio.BufferedSink;
+2581c3690 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-22 19:23:52 +0000 42)  import okio.BufferedSource;
+2581c3690 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-22 19:23:52 +0000 43)  import okio.ByteString;
+095448552 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-22 21:08:25 +0000 44)  import okio.Okio;
+                                                                                                                                         45)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 46)  import static java.util.concurrent.TimeUnit.MILLISECONDS;
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 47)  import static okhttp3.internal.http2.ErrorCode.REFUSED_STREAM;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 48)  import static okhttp3.internal.http2.Settings.DEFAULT_INITIAL_WINDOW_SIZE;
+c5187583b okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-06-27 03:04:30 +0000 49)  import static okhttp3.internal.platform.Platform.INFO;
+                                                                                                                                         50)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 51)  /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 52)   * A socket connection to a remote peer. A connection hosts streams which can send and receive
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 53)   * data.
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 54)   *
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 55)   * <p>Many methods in this API are <strong>synchronous:</strong> the call is completed before the
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 56)   * method returns. This is typical for Java but atypical for HTTP/2. This is motivated by exception
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 57)   * transparency: an IOException that was triggered by a certain caller can be caught and handled by
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 58)   * that caller.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 59)   */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 60)  public final class Http2Connection implements Closeable {
+                                                                                                                                         61)
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 62)    // Internal state of this connection is guarded by 'this'. No blocking
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 63)    // operations may be performed while holding this lock!
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 64)    //
+2f31d7122 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-15 04:29:49 +0000 65)    // Socket writes are guarded by frameWriter.
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 66)    //
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 67)    // Socket reads are unguarded but are only made by the reader thread.
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 68)    //
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 69)    // Certain operations (like SYN_STREAM) need to synchronize on both the
+2f31d7122 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-15 04:29:49 +0000 70)    // frameWriter (to do blocking I/O) and this (to create streams). Such
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 71)    // operations must synchronize on 'this' last. This ensures that we never
+7e7a3896d src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-02-01 16:13:19 +0000 72)    // wait for a blocking operation while holding 'this'.
+                                                                                                                                         73)
+691a82b58 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-04-08 19:27:05 +0000 74)    static final int OKHTTP_CLIENT_WINDOW_SIZE = 16 * 1024 * 1024;
+                                                                                                                                         75)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 76)    /**
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 77)     * Shared executor to send notifications of incoming streams. This executor requires multiple
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 78)     * threads because listeners are not required to return promptly.
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 79)     */
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 80)    private static final ExecutorService listenerExecutor = new ThreadPoolExecutor(0,
+31ff3d56e okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2013-05-05 13:43:20 +0000 81)        Integer.MAX_VALUE, 60, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(),
+3931dc8df okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2017-01-29 17:09:31 +0000 82)        Util.threadFactory("OkHttp Http2Connection", true));
+                                                                                                                                         83)
+2d45a1324 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-31 22:36:19 +0000 84)    /** True if this peer initiated the connection. */
+99fb98865 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-10-02 22:51:46 +0000 85)    final boolean client;
+                                                                                                                                         86)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 87)    /**
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 88)     * User code to run in response to incoming streams or settings. Calls to this are always invoked
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 89)     * on {@link #listenerExecutor}.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 90)     */
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 91)    final Listener listener;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 92)    final Map<Integer, Http2Stream> streams = new LinkedHashMap<>();
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 93)    final String hostname;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 94)    int lastGoodStreamId;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 95)    int nextStreamId;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 96)    boolean shutdown;
+                                                                                                                                         97)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 98)    /** Asynchronously writes frames to the outgoing socket. */
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 99)    private final ScheduledExecutorService writerExecutor;
+                                                                                                                                         100)
+c85153e6a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-05 15:19:18 +0000 101)   /** Ensures push promise callbacks events are sent in order per stream. */
+c85153e6a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-05 15:19:18 +0000 102)   private final ExecutorService pushExecutor;
+                                                                                                                                         103)
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 104)   /** User code to run in response to push promise events. */
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 105)   final PushObserver pushObserver;
+                                                                                                                                         106)
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 107)   /** True if we have sent a ping that is still awaiting a reply. */
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 108)   private boolean awaitingPong;
+                                                                                                                                         109)
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 110)   /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 111)    * The total number of bytes consumed by the application, but not yet acknowledged by sending a
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 112)    * {@code WINDOW_UPDATE} frame on this connection.
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 113)    */
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 114)   // Visible for testing
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 115)   long unacknowledgedBytesRead = 0;
+                                                                                                                                         116)
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 117)   /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 118)    * Count of bytes that can be written on the connection before receiving a window update.
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 119)    */
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 120)   // Visible for testing
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 121)   long bytesLeftInWriteWindow;
+                                                                                                                                         122)
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 123)   /** Settings we communicate to the peer. */
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 124)   Settings okHttpSettings = new Settings();
+                                                                                                                                         125)
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 126)   /** Settings we receive from the peer. */
+9110ef83b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-20 22:17:35 +0000 127)   // TODO: MWS will need to guard on this setting before attempting to push.
+12ba9103d okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-11 00:10:38 +0000 128)   final Settings peerSettings = new Settings();
+                                                                                                                                         129)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 130)   boolean receivedInitialPeerSettings = false;
+889bc764a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-18 15:58:54 +0000 131)   final Socket socket;
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 132)   final Http2Writer writer;
+                                                                                                                                         133)
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 134)   // Visible for testing
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 135)   final ReaderRunnable readerRunnable;
+                                                                                                                                         136)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 137)   Http2Connection(Builder builder) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 138)     pushObserver = builder.pushObserver;
+99fb98865 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-10-02 22:51:46 +0000 139)     client = builder.client;
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 140)     listener = builder.listener;
+60b1dfc16 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2015-03-11 15:18:00 +0000 141)     // http://tools.ietf.org/html/draft-ietf-httpbis-http2-17#section-5.1.1
+c5f1ebac2 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-06-10 05:10:54 +0000 142)     nextStreamId = builder.client ? 1 : 2;
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 143)     if (builder.client) {
+c5f1ebac2 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-06-10 05:10:54 +0000 144)       nextStreamId += 2; // In HTTP/2, 1 on client is reserved for Upgrade.
+c5f1ebac2 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-06-10 05:10:54 +0000 145)     }
+                                                                                                                                         146)
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 147)     // Flow control was designed more for servers, or proxies than edge clients.
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 148)     // If we are a client, set the flow control window to 16MiB.  This avoids
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 149)     // thrashing window updates every 64KiB, yet small enough to avoid blowing
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 150)     // up the heap.
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 151)     if (builder.client) {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 152)       okHttpSettings.set(Settings.INITIAL_WINDOW_SIZE, OKHTTP_CLIENT_WINDOW_SIZE);
+a3e9485b8 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-20 04:26:41 +0000 153)     }
+                                                                                                                                         154)
+2dade1768 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-02-06 17:38:21 +0000 155)     hostname = builder.hostname;
+                                                                                                                                         156)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 157)     writerExecutor = new ScheduledThreadPoolExecutor(1,
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 158)         Util.threadFactory(Util.format("OkHttp %s Writer", hostname), false));
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 159)     if (builder.pingIntervalMillis != 0) {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 160)       writerExecutor.scheduleAtFixedRate(new PingRunnable(false, 0, 0),
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 161)           builder.pingIntervalMillis, builder.pingIntervalMillis, MILLISECONDS);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 162)     }
+                                                                                                                                         163)
+c85153e6a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-05 15:19:18 +0000 164)     // Like newSingleThreadExecutor, except lazy creates the thread.
+4b0c09eb6 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (Venil Noronha  2016-04-29 02:35:35 +0000 165)     pushExecutor = new ThreadPoolExecutor(0, 1, 60, TimeUnit.SECONDS,
+4b0c09eb6 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (Venil Noronha  2016-04-29 02:35:35 +0000 166)         new LinkedBlockingQueue<Runnable>(),
+4b0c09eb6 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (Venil Noronha  2016-04-29 02:35:35 +0000 167)         Util.threadFactory(Util.format("OkHttp %s Push Observer", hostname), true));
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 168)     peerSettings.set(Settings.INITIAL_WINDOW_SIZE, DEFAULT_INITIAL_WINDOW_SIZE);
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 169)     peerSettings.set(Settings.MAX_FRAME_SIZE, Http2.INITIAL_MAX_FRAME_SIZE);
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 170)     bytesLeftInWriteWindow = peerSettings.getInitialWindowSize();
+889bc764a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-18 15:58:54 +0000 171)     socket = builder.socket;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 172)     writer = new Http2Writer(builder.sink, client);
+                                                                                                                                         173)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 174)     readerRunnable = new ReaderRunnable(new Http2Reader(builder.source, client));
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 175)   }
+                                                                                                                                         176)
+955934836 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-12-26 23:12:57 +0000 177)   /** The protocol as selected using ALPN. */
+9766de54d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-16 16:39:31 +0000 178)   public Protocol getProtocol() {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 179)     return Protocol.HTTP_2;
+d7444f5fc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-06 00:53:13 +0000 180)   }
+                                                                                                                                         181)
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 182)   /**
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 183)    * Returns the number of {@link Http2Stream#isOpen() open streams} on this connection.
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 184)    */
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 185)   public synchronized int openStreamCount() {
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 186)     return streams.size();
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 187)   }
+                                                                                                                                         188)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 189)   synchronized Http2Stream getStream(int id) {
+68ebb704f src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 21:32:28 +0000 190)     return streams.get(id);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 191)   }
+                                                                                                                                         192)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 193)   synchronized Http2Stream removeStream(int streamId) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 194)     Http2Stream stream = streams.remove(streamId);
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 195)     notifyAll(); // The removed stream may be blocked on a connection-wide window update.
+6f6d959fd src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-01-31 22:23:06 +0000 196)     return stream;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 197)   }
+                                                                                                                                         198)
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 199)   public synchronized int maxConcurrentStreams() {
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 200)     return peerSettings.getMaxConcurrentStreams(Integer.MAX_VALUE);
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 201)   }
+                                                                                                                                         202)
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 203)   synchronized void updateConnectionFlowControl(long read) {
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 204)     unacknowledgedBytesRead += read;
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 205)     if (unacknowledgedBytesRead >= okHttpSettings.getInitialWindowSize() / 2) {
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 206)       writeWindowUpdateLater(0, unacknowledgedBytesRead);
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 207)       unacknowledgedBytesRead = 0;
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 208)     }
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 209)   }
+                                                                                                                                         210)
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 211)   /**
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 212)    * Returns a new server-initiated stream.
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 213)    *
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 214)    * @param associatedStreamId the stream that triggered the sender to create this stream.
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 215)    * @param out true to create an output stream that we can use to send data to the remote peer.
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 216)    * Corresponds to {@code FLAG_FIN}.
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 217)    */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 218)   public Http2Stream pushStream(int associatedStreamId, List<Header> requestHeaders, boolean out)
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 219)       throws IOException {
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 220)     if (client) throw new IllegalStateException("Client cannot push requests.");
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 221)     return newStream(associatedStreamId, requestHeaders, out);
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 222)   }
+                                                                                                                                         223)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 224)   /**
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 225)    * Returns a new locally-initiated stream.
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 226)    * @param out true to create an output stream that we can use to send data to the remote peer.
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 227)    * Corresponds to {@code FLAG_FIN}.
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 228)    */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 229)   public Http2Stream newStream(List<Header> requestHeaders, boolean out) throws IOException {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 230)     return newStream(0, requestHeaders, out);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 231)   }
+                                                                                                                                         232)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 233)   private Http2Stream newStream(
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 234)       int associatedStreamId, List<Header> requestHeaders, boolean out) throws IOException {
+39c0d7d56 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-14 11:25:25 +0000 235)     boolean outFinished = !out;
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 236)     boolean inFinished = false;
+1503e362f okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-05-22 14:18:10 +0000 237)     boolean flushHeaders;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 238)     Http2Stream stream;
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 239)     int streamId;
+                                                                                                                                         240)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 241)     synchronized (writer) {
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 242)       synchronized (this) {
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 243)         if (nextStreamId > Integer.MAX_VALUE / 2) {
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 244)           shutdown(REFUSED_STREAM);
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 245)         }
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 246)         if (shutdown) {
+86be1c3ac okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2016-11-20 12:54:58 +0000 247)           throw new ConnectionShutdownException();
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 248)         }
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 249)         streamId = nextStreamId;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 250)         nextStreamId += 2;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 251)         stream = new Http2Stream(streamId, this, outFinished, inFinished, requestHeaders);
+1503e362f okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-05-22 14:18:10 +0000 252)         flushHeaders = !out || bytesLeftInWriteWindow == 0L || stream.bytesLeftInWriteWindow == 0L;
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 253)         if (stream.isOpen()) {
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 254)           streams.put(streamId, stream);
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 255)         }
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 256)       }
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 257)       if (associatedStreamId == 0) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 258)         writer.synStream(outFinished, streamId, associatedStreamId, requestHeaders);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 259)       } else if (client) {
+1ab398fb9 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-05 04:53:13 +0000 260)         throw new IllegalArgumentException("client streams shouldn't have associated stream IDs");
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 261)       } else { // HTTP/2 has a PUSH_PROMISE frame.
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 262)         writer.pushPromise(associatedStreamId, streamId, requestHeaders);
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 263)       }
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 264)     }
+                                                                                                                                         265)
+1503e362f okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-05-22 14:18:10 +0000 266)     if (flushHeaders) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 267)       writer.flush();
+ab78dadb4 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 16:42:59 +0000 268)     }
+                                                                                                                                         269)
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 270)     return stream;
+fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 271)   }
+                                                                                                                                         272)
+b95a0ccbc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 18:35:34 +0000 273)   void writeSynReply(int streamId, boolean outFinished, List<Header> alternating)
+39c0d7d56 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-14 11:25:25 +0000 274)       throws IOException {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 275)     writer.synReply(outFinished, streamId, alternating);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 276)   }
+                                                                                                                                         277)
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 278)   /**
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 279)    * Callers of this method are not thread safe, and sometimes on application threads. Most often,
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 280)    * this method will be called to send a buffer worth of data to the peer.
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 281)    *
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 282)    * <p>Writes are subject to the write window of the stream and the connection. Until there is a
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 283)    * window sufficient to send {@code byteCount}, the caller will block. For example, a user of
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 284)    * {@code HttpURLConnection} who flushes more bytes to the output stream than the connection's
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 285)    * write window will block.
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 286)    *
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 287)    * <p>Zero {@code byteCount} writes are not subject to flow control and will not block. The only
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 288)    * use case for zero {@code byteCount} is closing a flushed output stream.
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 289)    */
+b24202421 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-16 03:59:06 +0000 290)   public void writeData(int streamId, boolean outFinished, Buffer buffer, long byteCount)
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 291)       throws IOException {
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 292)     if (byteCount == 0) { // Empty data frames are not flow-controlled.
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 293)       writer.data(outFinished, streamId, buffer, 0);
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 294)       return;
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 295)     }
+                                                                                                                                         296)
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 297)     while (byteCount > 0) {
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 298)       int toWrite;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 299)       synchronized (Http2Connection.this) {
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 300)         try {
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 301)           while (bytesLeftInWriteWindow <= 0) {
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 302)             // Before blocking, confirm that the stream we're writing is still open. It's possible
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 303)             // that the stream has since been closed (such as if this write timed out.)
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 304)             if (!streams.containsKey(streamId)) {
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 305)               throw new IOException("stream closed");
+a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 306)             }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 307)             Http2Connection.this.wait(); // Wait until we receive a WINDOW_UPDATE.
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 308)           }
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 309)         } catch (InterruptedException e) {
+aac684aea okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-07-06 02:37:24 +0000 310)           Thread.currentThread().interrupt(); // Retain interrupted status.
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 311)           throw new InterruptedIOException();
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 312)         }
+                                                                                                                                         313)
+2a9f9fd92 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-09-22 16:32:26 +0000 314)         toWrite = (int) Math.min(byteCount, bytesLeftInWriteWindow);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 315)         toWrite = Math.min(toWrite, writer.maxDataLength());
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 316)         bytesLeftInWriteWindow -= toWrite;
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 317)       }
+                                                                                                                                         318)
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 319)       byteCount -= toWrite;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 320)       writer.data(outFinished && byteCount == 0, streamId, buffer, toWrite);
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 321)     }
+84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 322)   }
+                                                                                                                                         323)
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 324)   void writeSynResetLater(final int streamId, final ErrorCode errorCode) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 325)     try {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 326)       writerExecutor.execute(new NamedRunnable("OkHttp %s stream %d", hostname, streamId) {
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 327)         @Override public void execute() {
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 328)           try {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 329)             writeSynReset(streamId, errorCode);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 330)           } catch (IOException e) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 331)             failConnection();
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 332)           }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 333)         }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 334)       });
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 335)     } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 336)       // This connection has been closed.
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 337)     }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 338)   }
+                                                                                                                                         339)
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 340)   void writeSynReset(int streamId, ErrorCode statusCode) throws IOException {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 341)     writer.rstStream(streamId, statusCode);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 342)   }
+                                                                                                                                         343)
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 344)   void writeWindowUpdateLater(final int streamId, final long unacknowledgedBytesRead) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 345)     try {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 346)       writerExecutor.execute(
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 347)           new NamedRunnable("OkHttp Window Update %s stream %d", hostname, streamId) {
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 348)             @Override public void execute() {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 349)               try {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 350)                 writer.windowUpdate(streamId, unacknowledgedBytesRead);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 351)               } catch (IOException e) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 352)                 failConnection();
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 353)               }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 354)             }
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 355)           });
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 356)     } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 357)       // This connection has been closed.
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 358)     }
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 359)   }
+                                                                                                                                         360)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 361)   final class PingRunnable extends NamedRunnable {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 362)     final boolean reply;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 363)     final int payload1;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 364)     final int payload2;
+                                                                                                                                         365)
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 366)     PingRunnable(boolean reply, int payload1, int payload2) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 367)       super("OkHttp %s ping %08x%08x", hostname, payload1, payload2);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 368)       this.reply = reply;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 369)       this.payload1 = payload1;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 370)       this.payload2 = payload2;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 371)     }
+                                                                                                                                         372)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 373)     @Override public void execute() {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 374)       writePing(reply, payload1, payload2);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 375)     }
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 376)   }
+                                                                                                                                         377)
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 378)   void writePing(boolean reply, int payload1, int payload2) {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 379)     if (!reply) {
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 380)       boolean failedDueToMissingPong;
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 381)       synchronized (this) {
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 382)         failedDueToMissingPong = awaitingPong;
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 383)         awaitingPong = true;
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 384)       }
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 385)       if (failedDueToMissingPong) {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 386)         failConnection();
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 387)         return;
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 388)       }
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 389)     }
+                                                                                                                                         390)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 391)     try {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 392)       writer.ping(reply, payload1, payload2);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 393)     } catch (IOException e) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 394)       failConnection();
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 395)     }
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 396)   }
+                                                                                                                                         397)
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 398)   /** For testing: sends a ping and waits for a pong. */
+aac684aea okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-07-06 02:37:24 +0000 399)   void writePingAndAwaitPong() throws InterruptedException {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 400)     writePing(false, 0x4f4b6f6b /* "OKok" */, 0xf09f8da9 /* donut */);
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 401)     awaitPong();
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 402)   }
+                                                                                                                                         403)
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 404)   /** For testing: waits until {@code requiredPongCount} pings have been received from the peer. */
+aac684aea okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-07-06 02:37:24 +0000 405)   synchronized void awaitPong() throws InterruptedException {
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 406)     while (awaitingPong) {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 407)       wait();
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 408)     }
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 409)   }
+                                                                                                                                         410)
+60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 411)   public void flush() throws IOException {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 412)     writer.flush();
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 413)   }
+                                                                                                                                         414)
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 415)   /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 416)    * Degrades this connection such that new streams can neither be created locally, nor accepted
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 417)    * from the remote peer. Existing streams are not impacted. This is intended to permit an endpoint
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 418)    * to gracefully stop accepting new requests without harming previously established streams.
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 419)    */
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 420)   public void shutdown(ErrorCode statusCode) throws IOException {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 421)     synchronized (writer) {
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 422)       int lastGoodStreamId;
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 423)       synchronized (this) {
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 424)         if (shutdown) {
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 425)           return;
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 426)         }
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 427)         shutdown = true;
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 428)         lastGoodStreamId = this.lastGoodStreamId;
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 429)       }
+5d70f5f7a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-11-02 00:58:10 +0000 430)       // TODO: propagate exception message into debugData.
+5d70f5f7a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-11-02 00:58:10 +0000 431)       // TODO: configure a timeout on the reader so that it doesn’t block forever.
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 432)       writer.goAway(lastGoodStreamId, statusCode, Util.EMPTY_BYTE_ARRAY);
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 433)     }
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 434)   }
+                                                                                                                                         435)
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 436)   /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 437)    * Closes this connection. This cancels all open streams and unanswered pings. It closes the
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 438)    * underlying input and output streams and shuts down internal executor services.
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 439)    */
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 440)   @Override public void close() throws IOException {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 441)     close(ErrorCode.NO_ERROR, ErrorCode.CANCEL);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 442)   }
+                                                                                                                                         443)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 444)   void close(ErrorCode connectionCode, ErrorCode streamCode) throws IOException {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 445)     assert (!Thread.holdsLock(this));
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 446)     IOException thrown = null;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 447)     try {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 448)       shutdown(connectionCode);
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 449)     } catch (IOException e) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 450)       thrown = e;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 451)     }
+                                                                                                                                         452)
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 453)     Http2Stream[] streamsToClose = null;
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 454)     synchronized (this) {
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 455)       if (!streams.isEmpty()) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 456)         streamsToClose = streams.values().toArray(new Http2Stream[streams.size()]);
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 457)         streams.clear();
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 458)       }
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 459)     }
+                                                                                                                                         460)
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 461)     if (streamsToClose != null) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 462)       for (Http2Stream stream : streamsToClose) {
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 463)         try {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 464)           stream.close(streamCode);
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 465)         } catch (IOException e) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 466)           if (thrown != null) thrown = e;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 467)         }
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 468)       }
+b5719b6d7 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 03:41:15 +0000 469)     }
+                                                                                                                                         470)
+889bc764a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-18 15:58:54 +0000 471)     // Close the writer to release its resources (such as deflaters).
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 472)     try {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 473)       writer.close();
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 474)     } catch (IOException e) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 475)       if (thrown == null) thrown = e;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 476)     }
+                                                                                                                                         477)
+889bc764a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-18 15:58:54 +0000 478)     // Close the socket to break out the reader thread, which will clean up after itself.
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 479)     try {
+889bc764a okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-18 15:58:54 +0000 480)       socket.close();
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 481)     } catch (IOException e) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 482)       thrown = e;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 483)     }
+                                                                                                                                         484)
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 485)     // Release the threads.
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 486)     writerExecutor.shutdown();
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 487)     pushExecutor.shutdown();
+                                                                                                                                         488)
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 489)     if (thrown != null) throw thrown;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 490)   }
+                                                                                                                                         491)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 492)   private void failConnection() {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 493)     try {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 494)       close(ErrorCode.PROTOCOL_ERROR, ErrorCode.PROTOCOL_ERROR);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 495)     } catch (IOException ignored) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 496)     }
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 497)   }
+                                                                                                                                         498)
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 499)   /**
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 500)    * Sends any initial frames and starts reading frames from the remote peer. This should be called
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 501)    * after {@link Builder#build} for all new connections.
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 502)    */
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 503)   public void start() throws IOException {
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 504)     start(true);
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 505)   }
+                                                                                                                                         506)
+21dc92f96 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-11 16:02:54 +0000 507)   /**
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 508)    * @param sendConnectionPreface true to send connection preface frames. This should always be true
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 509)    *     except for in tests that don't check for a connection preface.
+21dc92f96 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-11 16:02:54 +0000 510)    */
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 511)   void start(boolean sendConnectionPreface) throws IOException {
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 512)     if (sendConnectionPreface) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 513)       writer.connectionPreface();
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 514)       writer.settings(okHttpSettings);
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 515)       int windowSize = okHttpSettings.getInitialWindowSize();
+6171f5545 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-06-18 04:34:21 +0000 516)       if (windowSize != Settings.DEFAULT_INITIAL_WINDOW_SIZE) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 517)         writer.windowUpdate(0, windowSize - Settings.DEFAULT_INITIAL_WINDOW_SIZE);
+6171f5545 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-06-18 04:34:21 +0000 518)       }
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 519)     }
+899693474 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-04-10 16:51:38 +0000 520)     new Thread(readerRunnable).start(); // Not a daemon thread.
+21dc92f96 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-11 16:02:54 +0000 521)   }
+                                                                                                                                         522)
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 523)   /** Merges {@code settings} into this peer's settings and sends them to the remote peer. */
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 524)   public void setSettings(Settings settings) throws IOException {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 525)     synchronized (writer) {
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 526)       synchronized (this) {
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 527)         if (shutdown) {
+86be1c3ac okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2016-11-20 12:54:58 +0000 528)           throw new ConnectionShutdownException();
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 529)         }
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 530)         okHttpSettings.merge(settings);
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 531)       }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 532)       writer.settings(settings);
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 533)     }
+c5f58e454 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-02 17:44:41 +0000 534)   }
+                                                                                                                                         535)
+5d70f5f7a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-11-02 00:58:10 +0000 536)   public synchronized boolean isShutdown() {
+5d70f5f7a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-11-02 00:58:10 +0000 537)     return shutdown;
+5d70f5f7a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-11-02 00:58:10 +0000 538)   }
+                                                                                                                                         539)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 540)   public static class Builder {
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 541)     Socket socket;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 542)     String hostname;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 543)     BufferedSource source;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 544)     BufferedSink sink;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 545)     Listener listener = Listener.REFUSE_INCOMING_STREAMS;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 546)     PushObserver pushObserver = PushObserver.CANCEL;
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 547)     boolean client;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 548)     int pingIntervalMillis;
+                                                                                                                                         549)
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 550)     /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 551)      * @param client true if this peer initiated the connection; false if this peer accepted the
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 552)      * connection.
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 553)      */
+a4d3082d2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-06-27 04:47:50 +0000 554)     public Builder(boolean client) {
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 555)       this.client = client;
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 556)     }
+                                                                                                                                         557)
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 558)     public Builder socket(Socket socket) throws IOException {
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 559)       return socket(socket, ((InetSocketAddress) socket.getRemoteSocketAddress()).getHostName(),
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 560)           Okio.buffer(Okio.source(socket)), Okio.buffer(Okio.sink(socket)));
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 561)     }
+                                                                                                                                         562)
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 563)     public Builder socket(
+2dade1768 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-02-06 17:38:21 +0000 564)         Socket socket, String hostname, BufferedSource source, BufferedSink sink) {
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 565)       this.socket = socket;
+2dade1768 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-02-06 17:38:21 +0000 566)       this.hostname = hostname;
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 567)       this.source = source;
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 568)       this.sink = sink;
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 569)       return this;
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 570)     }
+                                                                                                                                         571)
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 572)     public Builder listener(Listener listener) {
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 573)       this.listener = listener;
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 574)       return this;
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 575)     }
+                                                                                                                                         576)
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 577)     public Builder pushObserver(PushObserver pushObserver) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 578)       this.pushObserver = pushObserver;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 579)       return this;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 580)     }
+                                                                                                                                         581)
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 582)     public Builder pingIntervalMillis(int pingIntervalMillis) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 583)       this.pingIntervalMillis = pingIntervalMillis;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 584)       return this;
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 585)     }
+                                                                                                                                         586)
+5fb5ab50a okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2017-06-20 13:14:51 +0000 587)     public Http2Connection build() {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 588)       return new Http2Connection(this);
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 589)     }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 590)   }
+                                                                                                                                         591)
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 592)   /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 593)    * Methods in this class must not lock FrameWriter.  If a method needs to write a frame, create an
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 594)    * async task to do so.
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 595)    */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 596)   class ReaderRunnable extends NamedRunnable implements Http2Reader.Handler {
+7fc2993c4 okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-01 03:57:12 +0000 597)     final Http2Reader reader;
+                                                                                                                                         598)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 599)     ReaderRunnable(Http2Reader reader) {
+2dade1768 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-02-06 17:38:21 +0000 600)       super("OkHttp %s", hostname);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 601)       this.reader = reader;
+749a65b77 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-01-12 14:47:56 +0000 602)     }
+                                                                                                                                         603)
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 604)     @Override protected void execute() {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 605)       ErrorCode connectionErrorCode = ErrorCode.INTERNAL_ERROR;
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 606)       ErrorCode streamErrorCode = ErrorCode.INTERNAL_ERROR;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 607)       try {
+55e3ea042 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-12-11 18:49:24 +0000 608)         reader.readConnectionPreface(this);
+55e3ea042 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-12-11 18:49:24 +0000 609)         while (reader.nextFrame(false, this)) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 610)         }
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 611)         connectionErrorCode = ErrorCode.NO_ERROR;
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 612)         streamErrorCode = ErrorCode.CANCEL;
+8fe27a50c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-05-17 22:05:37 +0000 613)       } catch (IOException e) {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 614)         connectionErrorCode = ErrorCode.PROTOCOL_ERROR;
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 615)         streamErrorCode = ErrorCode.PROTOCOL_ERROR;
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 616)       } finally {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 617)         try {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 618)           close(connectionErrorCode, streamErrorCode);
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 619)         } catch (IOException ignored) {
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 620)         }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 621)         Util.closeQuietly(reader);
+b9580d68e src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-21 19:42:08 +0000 622)       }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 623)     }
+                                                                                                                                         624)
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 625)     @Override public void data(boolean inFinished, int streamId, BufferedSource source, int length)
+2d45a1324 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-31 22:36:19 +0000 626)         throws IOException {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 627)       if (pushedStream(streamId)) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 628)         pushDataLater(streamId, source, length, inFinished);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 629)         return;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 630)       }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 631)       Http2Stream dataStream = getStream(streamId);
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 632)       if (dataStream == null) {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 633)         writeSynResetLater(streamId, ErrorCode.PROTOCOL_ERROR);
+f9cef65e3 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Dave Roberge   2018-05-30 02:34:43 +0000 634)         updateConnectionFlowControl(length);
+cca914290 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-22 05:45:10 +0000 635)         source.skip(length);
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 636)         return;
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 637)       }
+c8507d05b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-12 22:20:18 +0000 638)       dataStream.receiveData(source, length);
+39c0d7d56 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-14 11:25:25 +0000 639)       if (inFinished) {
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 640)         dataStream.receiveFin();
+7f4249625 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2013-01-01 01:55:43 +0000 641)       }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 642)     }
+                                                                                                                                         643)
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 644)     @Override public void headers(boolean inFinished, int streamId, int associatedStreamId,
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 645)         List<Header> headerBlock) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 646)       if (pushedStream(streamId)) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 647)         pushHeadersLater(streamId, headerBlock, inFinished);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 648)         return;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 649)       }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 650)       Http2Stream stream;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 651)       synchronized (Http2Connection.this) {
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 652)         stream = getStream(streamId);
+                                                                                                                                         653)
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 654)         if (stream == null) {
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 655)           // If we're shutdown, don't bother with this stream.
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 656)           if (shutdown) return;
+                                                                                                                                         657)
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 658)           // If the stream ID is less than the last created ID, assume it's already closed.
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 659)           if (streamId <= lastGoodStreamId) return;
+                                                                                                                                         660)
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 661)           // If the stream ID is in the client's namespace, assume it's already closed.
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 662)           if (streamId % 2 == nextStreamId % 2) return;
+                                                                                                                                         663)
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 664)           // Create a stream.
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 665)           final Http2Stream newStream = new Http2Stream(streamId, Http2Connection.this,
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 666)               false, inFinished, headerBlock);
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 667)           lastGoodStreamId = streamId;
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 668)           streams.put(streamId, newStream);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 669)           listenerExecutor.execute(new NamedRunnable("OkHttp %s stream %d", hostname, streamId) {
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 670)             @Override public void execute() {
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 671)               try {
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 672)                 listener.onStream(newStream);
+8fe27a50c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-05-17 22:05:37 +0000 673)               } catch (IOException e) {
+3931dc8df okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2017-01-29 17:09:31 +0000 674)                 Platform.get().log(INFO, "Http2Connection.Listener failure for " + hostname, e);
+c8bd6f834 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2015-05-01 14:54:41 +0000 675)                 try {
+c8bd6f834 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2015-05-01 14:54:41 +0000 676)                   newStream.close(ErrorCode.PROTOCOL_ERROR);
+c8bd6f834 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2015-05-01 14:54:41 +0000 677)                 } catch (IOException ignored) {
+c8bd6f834 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2015-05-01 14:54:41 +0000 678)                 }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 679)               }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 680)             }
+c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (Marcelo Cortes 2013-02-14 21:01:04 +0000 681)           });
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 682)           return;
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 683)         }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 684)       }
+                                                                                                                                         685)
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 686)       // Update an existing stream.
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 687)       stream.receiveHeaders(headerBlock);
+a91124b6d okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-09-01 17:57:20 +0000 688)       if (inFinished) stream.receiveFin();
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 689)     }
+                                                                                                                                         690)
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 691)     @Override public void rstStream(int streamId, ErrorCode errorCode) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 692)       if (pushedStream(streamId)) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 693)         pushResetLater(streamId, errorCode);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 694)         return;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 695)       }
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 696)       Http2Stream rstStream = removeStream(streamId);
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 697)       if (rstStream != null) {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 698)         rstStream.receiveRstStream(errorCode);
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 699)       }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 700)     }
+                                                                                                                                         701)
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 702)     @Override public void settings(boolean clearPrevious, Settings newSettings) {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 703)       long delta = 0;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 704)       Http2Stream[] streamsToNotify = null;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 705)       synchronized (Http2Connection.this) {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 706)         int priorWriteWindowSize = peerSettings.getInitialWindowSize();
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 707)         if (clearPrevious) peerSettings.clear();
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 708)         peerSettings.merge(newSettings);
+1267cb958 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (Dave Roberge   2016-07-07 02:02:40 +0000 709)         applyAndAckSettings(newSettings);
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 710)         int peerInitialWindowSize = peerSettings.getInitialWindowSize();
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 711)         if (peerInitialWindowSize != -1 && peerInitialWindowSize != priorWriteWindowSize) {
+358169b89 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-27 05:54:25 +0000 712)           delta = peerInitialWindowSize - priorWriteWindowSize;
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 713)           if (!receivedInitialPeerSettings) {
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 714)             receivedInitialPeerSettings = true;
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 715)           }
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 716)           if (!streams.isEmpty()) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 717)             streamsToNotify = streams.values().toArray(new Http2Stream[streams.size()]);
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 718)           }
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 719)         }
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 720)         listenerExecutor.execute(new NamedRunnable("OkHttp %s settings", hostname) {
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 721)           @Override public void execute() {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 722)             listener.onSettings(Http2Connection.this);
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 723)           }
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 724)         });
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 725)       }
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 726)       if (streamsToNotify != null && delta != 0) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 727)         for (Http2Stream stream : streamsToNotify) {
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 728)           synchronized (stream) {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 729)             stream.addBytesToWriteWindow(delta);
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 730)           }
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 731)         }
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 732)       }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 733)     }
+                                                                                                                                         734)
+1267cb958 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (Dave Roberge   2016-07-07 02:02:40 +0000 735)     private void applyAndAckSettings(final Settings peerSettings) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 736)       try {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 737)         writerExecutor.execute(new NamedRunnable("OkHttp %s ACK Settings", hostname) {
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 738)           @Override public void execute() {
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 739)             try {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 740)               writer.applyAndAckSettings(peerSettings);
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 741)             } catch (IOException e) {
+abb0a7908 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 01:17:09 +0000 742)               failConnection();
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 743)             }
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 744)           }
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 745)         });
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 746)       } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 747)         // This connection has been closed.
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 748)       }
+ef30f7efc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-19 04:46:50 +0000 749)     }
+                                                                                                                                         750)
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 751)     @Override public void ackSettings() {
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 752)       // TODO: If we don't get this callback after sending settings to the peer, SETTINGS_TIMEOUT.
+d4508141f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 19:48:15 +0000 753)     }
+                                                                                                                                         754)
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 755)     @Override public void ping(boolean reply, int payload1, int payload2) {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 756)       if (reply) {
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 757)         synchronized (Http2Connection.this) {
+cce5ca8ae okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-23 22:04:56 +0000 758)           awaitingPong = false;
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 759)           Http2Connection.this.notifyAll();
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 760)         }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 761)       } else {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 762)         try {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 763)           // Send a reply to a client ping if this is a server and vice versa.
+af6198a1e okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-22 23:37:34 +0000 764)           writerExecutor.execute(new PingRunnable(true, payload1, payload2));
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 765)         } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 766)           // This connection has been closed.
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 767)         }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 768)       }
+961d797e9 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-30 16:05:54 +0000 769)     }
+                                                                                                                                         770)
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 771)     @Override public void goAway(int lastGoodStreamId, ErrorCode errorCode, ByteString debugData) {
+72d5faec9 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-11 22:09:44 +0000 772)       if (debugData.size() > 0) { // TODO: log the debugData
+28017b150 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-22 18:32:40 +0000 773)       }
+                                                                                                                                         774)
+8f1bc30cd okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-10-26 14:28:45 +0000 775)       // Copy the streams first. We don't want to hold a lock when we call receiveRstStream().
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 776)       Http2Stream[] streamsCopy;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 777)       synchronized (Http2Connection.this) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 778)         streamsCopy = streams.values().toArray(new Http2Stream[streams.size()]);
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 779)         shutdown = true;
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 780)       }
+                                                                                                                                         781)
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 782)       // Fail all streams created after the last good stream ID.
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 783)       for (Http2Stream http2Stream : streamsCopy) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 784)         if (http2Stream.getId() > lastGoodStreamId && http2Stream.isLocallyInitiated()) {
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 785)           http2Stream.receiveRstStream(REFUSED_STREAM);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 786)           removeStream(http2Stream.getId());
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 787)         }
+8f1bc30cd okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-10-26 14:28:45 +0000 788)       }
+60d5852c6 src/main/java/com/squareup/okhttp/internal/net/spdy/SpdyConnection.java              (jwilson        2012-12-31 07:35:27 +0000 789)     }
+                                                                                                                                         790)
+06579c5bf src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-06 23:30:16 +0000 791)     @Override public void windowUpdate(int streamId, long windowSizeIncrement) {
+6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 792)       if (streamId == 0) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 793)         synchronized (Http2Connection.this) {
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 794)           bytesLeftInWriteWindow += windowSizeIncrement;
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 795)           Http2Connection.this.notifyAll();
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 796)         }
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 797)       } else {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 798)         Http2Stream stream = getStream(streamId);
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 799)         if (stream != null) {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 800)           synchronized (stream) {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 801)             stream.addBytesToWriteWindow(windowSizeIncrement);
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 802)           }
+1bd9fefb5 src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-18 20:50:22 +0000 803)         }
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 804)       }
+06579c5bf src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java                  (jwilson        2013-01-06 23:30:16 +0000 805)     }
+                                                                                                                                         806)
+                                                                                                                                         807)     @Override public void priority(int streamId, int streamDependency, int weight,
+                                                                                                                                         808)         boolean exclusive) {
+                                                                                                                                         809)       // TODO: honor priority.
+                                                                                                                                         810)     }
+                                                                                                                                         811)
+4a62aef3f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-21 16:43:41 +0000 812)     @Override
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 813)     public void pushPromise(int streamId, int promisedStreamId, List<Header> requestHeaders) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 814)       pushRequestLater(promisedStreamId, requestHeaders);
+4a62aef3f okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-21 16:43:41 +0000 815)     }
+                                                                                                                                         816)
+cc38140be okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-04 18:53:15 +0000 817)     @Override public void alternateService(int streamId, String origin, ByteString protocol,
+cc38140be okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-04 18:53:15 +0000 818)         String host, int port, long maxAge) {
+cc38140be okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-04 18:53:15 +0000 819)       // TODO: register alternate service.
+cc38140be okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-05-04 18:53:15 +0000 820)     }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 821)   }
+                                                                                                                                         822)
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 823)   /** Even, positive numbered streams are pushed streams in HTTP/2. */
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 824)   boolean pushedStream(int streamId) {
+0c04821a2 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 21:19:04 +0000 825)     return streamId != 0 && (streamId & 1) == 0;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 826)   }
+                                                                                                                                         827)
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 828)   // Guarded by this.
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 829)   final Set<Integer> currentPushRequests = new LinkedHashSet<>();
+                                                                                                                                         830)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 831)   void pushRequestLater(final int streamId, final List<Header> requestHeaders) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 832)     synchronized (this) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 833)       if (currentPushRequests.contains(streamId)) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 834)         writeSynResetLater(streamId, ErrorCode.PROTOCOL_ERROR);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 835)         return;
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 836)       }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 837)       currentPushRequests.add(streamId);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 838)     }
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 839)     try {
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 840)       pushExecutorExecute(new NamedRunnable("OkHttp %s Push Request[%s]", hostname, streamId) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 841)         @Override public void execute() {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 842)           boolean cancel = pushObserver.onRequest(streamId, requestHeaders);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 843)           try {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 844)             if (cancel) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 845)               writer.rstStream(streamId, ErrorCode.CANCEL);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 846)               synchronized (Http2Connection.this) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 847)                 currentPushRequests.remove(streamId);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 848)               }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 849)             }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 850)           } catch (IOException ignored) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 851)           }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 852)         }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 853)       });
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 854)     } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 855)       // This connection has been closed.
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 856)     }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 857)   }
+                                                                                                                                         858)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 859)   void pushHeadersLater(final int streamId, final List<Header> requestHeaders,
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 860)       final boolean inFinished) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 861)     try {
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 862)       pushExecutorExecute(new NamedRunnable("OkHttp %s Push Headers[%s]", hostname, streamId) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 863)         @Override public void execute() {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 864)           boolean cancel = pushObserver.onHeaders(streamId, requestHeaders, inFinished);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 865)           try {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 866)             if (cancel) writer.rstStream(streamId, ErrorCode.CANCEL);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 867)             if (cancel || inFinished) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 868)               synchronized (Http2Connection.this) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 869)                 currentPushRequests.remove(streamId);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 870)               }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 871)             }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 872)           } catch (IOException ignored) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 873)           }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 874)         }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 875)       });
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 876)     } catch (RejectedExecutionException ignored) {
+91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 877)       // This connection has been closed.
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 878)     }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 879)   }
+                                                                                                                                         880)
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 881)   /**
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 882)    * Eagerly reads {@code byteCount} bytes from the source before launching a background task to
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 883)    * process the data.  This avoids corrupting the stream.
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 884)    */
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 885)   void pushDataLater(final int streamId, final BufferedSource source, final int byteCount,
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 886)       final boolean inFinished) throws IOException {
+b24202421 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-16 03:59:06 +0000 887)     final Buffer buffer = new Buffer();
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 888)     source.require(byteCount); // Eagerly read the frame before firing client thread.
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 889)     source.read(buffer, byteCount);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 890)     if (buffer.size() != byteCount) throw new IOException(buffer.size() + " != " + byteCount);
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 891)     pushExecutorExecute(new NamedRunnable("OkHttp %s Push Data[%s]", hostname, streamId) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 892)       @Override public void execute() {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 893)         try {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 894)           boolean cancel = pushObserver.onData(streamId, buffer, byteCount, inFinished);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 895)           if (cancel) writer.rstStream(streamId, ErrorCode.CANCEL);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 896)           if (cancel || inFinished) {
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 897)             synchronized (Http2Connection.this) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 898)               currentPushRequests.remove(streamId);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 899)             }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 900)           }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 901)         } catch (IOException ignored) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 902)         }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 903)       }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 904)     });
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 905)   }
+                                                                                                                                         906)
+d1e845a4d okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Niklas Baudy   2016-11-29 15:53:08 +0000 907)   void pushResetLater(final int streamId, final ErrorCode errorCode) {
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 908)     pushExecutorExecute(new NamedRunnable("OkHttp %s Push Reset[%s]", hostname, streamId) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 909)       @Override public void execute() {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 910)         pushObserver.onReset(streamId, errorCode);
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 911)         synchronized (Http2Connection.this) {
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 912)           currentPushRequests.remove(streamId);
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 913)         }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 914)       }
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 915)     });
+a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 916)   }
+                                                                                                                                         917)
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 918)   private synchronized void pushExecutorExecute(NamedRunnable namedRunnable) {
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 919)     if (!isShutdown()) {
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 920)       pushExecutor.execute(namedRunnable);
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 921)     }
+2864001d9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-03-01 08:03:34 +0000 922)   }
+                                                                                                                                         923)
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 924)   /** Listener of streams and settings initiated by the peer. */
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 925)   public abstract static class Listener {
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 926)     public static final Listener REFUSE_INCOMING_STREAMS = new Listener() {
+                                                                                                                                         927)       @Override public void onStream(Http2Stream stream) throws IOException {
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 928)         stream.close(REFUSED_STREAM);
+                                                                                                                                         929)       }
+8f56e81f9 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Yuri Schimke   2018-01-28 16:42:37 +0000 930)     };
+                                                                                                                                         931)
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 932)     /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 933)      * Handle a new stream from this connection's peer. Implementations should respond by either
+a589b8170 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-12-27 01:24:50 +0000 934)      * {@linkplain Http2Stream#sendResponseHeaders replying to the stream} or {@linkplain
+a589b8170 okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (jwilson        2016-12-27 01:24:50 +0000 935)      * Http2Stream#close closing it}. This response does not need to be synchronous.
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 936)      */
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 937)     public abstract void onStream(Http2Stream stream) throws IOException;
+                                                                                                                                         938)
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 939)     /**
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 940)      * Notification that the connection's peer's settings may have changed. Implementations should
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 941)      * take appropriate action to handle the updated settings.
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 942)      *
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 943)      * <p>It is the implementation's responsibility to handle concurrent calls to this method. A
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 944)      * remote peer that sends multiple settings frames will trigger multiple calls to this method,
+98ae0fb92 okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2015-12-24 00:34:28 +0000 945)      * and those calls are not necessarily serialized.
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 946)      */
+3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 947)     public void onSettings(Http2Connection connection) {
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 948)     }
+38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 949)   }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 950) }

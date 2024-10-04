@@ -596,18 +596,40 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 if (found)
                     break;
                 for (UMLOperationBodyMapper umlOperationBodyMapper : classRenameDiffList.getOperationBodyMapperList()) {
-                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
+                	if (found)
+                        break;
+                	found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new RenameClassRefactoring(classRenameDiffList.getOriginalClass(), classRenameDiffList.getRenamedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
                     if (found)
                         break;
+                    for (UMLAnonymousClassDiff anonymousClassDiff : umlOperationBodyMapper.getAnonymousClassDiffs()) {
+            			if (found)
+                            break;
+            			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+            				 found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                             if (found)
+                                 break;
+            			}
+            		}
                 }
             }
             for (UMLClassMoveDiff classMoveDiff : classMovedDiffList) {
                 if (found)
                     break;
                 for (UMLOperationBodyMapper umlOperationBodyMapper : classMoveDiff.getOperationBodyMapperList()) {
-                    found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
+                	if (found)
+                        break;
+                	found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, new MoveClassRefactoring(classMoveDiff.getOriginalClass(), classMoveDiff.getMovedClass()), umlOperationBodyMapper.getContainer1(), umlOperationBodyMapper.getContainer2(), changeType);
                     if (found)
                         break;
+                    for (UMLAnonymousClassDiff anonymousClassDiff : umlOperationBodyMapper.getAnonymousClassDiffs()) {
+            			if (found)
+                            break;
+            			for (UMLOperationBodyMapper anonymousOperationBodyMapper : anonymousClassDiff.getOperationBodyMapperList()) {
+            				 found = addMethodChange(currentVersion, parentVersion, equalOperator, leftMethodSet, null, anonymousOperationBodyMapper.getContainer1(), anonymousOperationBodyMapper.getContainer2(), changeType);
+                             if (found)
+                                 break;
+            			}
+            		}
                 }
             }
             for (UMLClassDiff classDiff : umlModelDiffAll.getCommonClassDiffList()) {
