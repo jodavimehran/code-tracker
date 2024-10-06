@@ -1,0 +1,43 @@
+bb47b4203 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2007-12-14 09:16:27 +0000 1)  /*
+bb47b4203 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2007-12-14 09:16:27 +0000 2)   * Copyright (c) 2007 Mockito contributors
+bb47b4203 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2007-12-14 09:16:27 +0000 3)   * This program is made available under the terms of the MIT License.
+bb47b4203 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2007-12-14 09:16:27 +0000 4)   */
+                                                                                                                         5)
+9952454f4 src/org/mockito/internal/MatchersBinder.java                      (Szczepan Faber    2007-12-11 21:02:04 +0000 6)  package org.mockito.internal.invocation;
+                                                                                                                         7)
+                                                                                                                         8)
+eb814afe2 src/main/java/org/mockito/internal/invocation/MatchersBinder.java (Brice Dutheil     2016-07-12 11:49:44 +0000 9)  import static org.mockito.internal.exceptions.Reporter.invalidUseOfMatchers;
+                                                                                                                         10)
+cbc530c6a src/org/mockito/internal/invocation/MatchersBinder.java           (wesandevie        2009-10-30 06:10:17 +0000 11) import java.io.Serializable;
+ca6896347 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 12) import java.util.LinkedList;
+9952454f4 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2007-12-11 21:02:04 +0000 13) import java.util.List;
+                                                                                                                         14)
+35786f34e src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 15) import org.mockito.ArgumentMatcher;
+bd37bc544 src/org/mockito/internal/invocation/MatchersBinder.java           (MEDDAH Julien     2012-03-08 12:32:34 +0000 16) import org.mockito.internal.matchers.LocalizedMatcher;
+6d73019b0 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2008-12-28 20:31:46 +0000 17) import org.mockito.internal.progress.ArgumentMatcherStorage;
+60f0c0c76 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2012-03-31 22:12:10 +0000 18) import org.mockito.invocation.Invocation;
+                                                                                                                         19)
+e79f9c747 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2008-01-05 20:36:34 +0000 20) @SuppressWarnings("unchecked")
+cbc530c6a src/org/mockito/internal/invocation/MatchersBinder.java           (wesandevie        2009-10-30 06:10:17 +0000 21) public class MatchersBinder implements Serializable {
+                                                                                                                         22)
+60f0c0c76 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2012-03-31 22:12:10 +0000 23)     public InvocationMatcher bindMatchers(ArgumentMatcherStorage argumentMatcherStorage, Invocation invocation) {
+21649c3e5 src/org/mockito/internal/invocation/MatchersBinder.java           (Brice Dutheil     2012-03-09 20:06:55 +0000 24)         List<LocalizedMatcher> lastMatchers = argumentMatcherStorage.pullLocalizedMatchers();
+363dce3b8 src/org/mockito/internal/InvocationMatcherFactory.java            (Szczepan Faber    2007-12-10 22:06:47 +0000 25)         validateMatchers(invocation, lastMatchers);
+                                                                                                                         26)
+35786f34e src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 27)         List<ArgumentMatcher> matchers = new LinkedList<ArgumentMatcher>();
+ca6896347 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 28)         for (LocalizedMatcher m : lastMatchers) {
+ca6896347 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 29)             matchers.add(m.getMatcher());
+ca6896347 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 30)         }
+ca6896347 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2015-06-25 14:28:28 +0000 31)         return new InvocationMatcher(invocation, matchers);
+363dce3b8 src/org/mockito/internal/InvocationMatcherFactory.java            (Szczepan Faber    2007-12-10 22:06:47 +0000 32)     }
+                                                                                                                         33)
+60f0c0c76 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2012-03-31 22:12:10 +0000 34)     private void validateMatchers(Invocation invocation, List<LocalizedMatcher> lastMatchers) {
+21649c3e5 src/org/mockito/internal/invocation/MatchersBinder.java           (Brice Dutheil     2012-03-09 20:06:55 +0000 35)         if (!lastMatchers.isEmpty()) {
+21649c3e5 src/org/mockito/internal/invocation/MatchersBinder.java           (Brice Dutheil     2012-03-09 20:06:55 +0000 36)             int recordedMatchersSize = lastMatchers.size();
+3c5934e42 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2012-03-31 21:21:07 +0000 37)             int expectedMatchersSize = invocation.getArguments().length;
+773b904f8 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2008-02-07 23:39:52 +0000 38)             if (expectedMatchersSize != recordedMatchersSize) {
+e2b7ee259 src/main/java/org/mockito/internal/invocation/MatchersBinder.java (Christian Schwarz 2016-06-11 14:29:15 +0000 39)                 throw invalidUseOfMatchers(expectedMatchersSize, lastMatchers);
+773b904f8 src/org/mockito/internal/invocation/MatchersBinder.java           (Szczepan Faber    2008-02-07 23:39:52 +0000 40)             }
+363dce3b8 src/org/mockito/internal/InvocationMatcherFactory.java            (Szczepan Faber    2007-12-10 22:06:47 +0000 41)         }
+363dce3b8 src/org/mockito/internal/InvocationMatcherFactory.java            (Szczepan Faber    2007-12-10 22:06:47 +0000 42)     }
+363dce3b8 src/org/mockito/internal/InvocationMatcherFactory.java            (Szczepan Faber    2007-12-10 22:06:47 +0000 43) }

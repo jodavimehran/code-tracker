@@ -1,0 +1,58 @@
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 1)  /*
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 2)   * Hibernate Search, full-text search for your domain model
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 3)   *
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 4)   * License: GNU Lesser General Public License (LGPL), version 2.1 or later
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 5)   * See the lgpl.txt file in the root directory or <http://www.gnu.org/licenses/lgpl-2.1.html>.
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 6)   */
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 7)  package org.hibernate.search.backend.impl;
+                                                                                                                                              8)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 9)  import java.util.List;
+                                                                                                                                              10)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 11) import org.hibernate.search.backend.IndexingMonitor;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 12) import org.hibernate.search.backend.LuceneWork;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 13) import org.hibernate.search.backend.spi.OperationDispatcher;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 14) import org.hibernate.search.engine.spi.EntityIndexBinding;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 15) import org.hibernate.search.indexes.spi.IndexManager;
+1cf93d132 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-07-03 16:45:37 +0000 16) import org.hibernate.search.indexes.spi.IndexManagerSelector;
+3c42a071e engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-06-12 23:27:40 +0000 17) import org.hibernate.search.spi.IndexedTypeIdentifier;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 18) import org.hibernate.search.spi.SearchIntegrator;
+                                                                                                                                              19)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 20) /**
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 21)  * A streaming dispatcher, sending works to the
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 22)  * {@link IndexManager#performStreamOperation(LuceneWork, IndexingMonitor, boolean)}
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 23)  * method of their respective index manager.
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 24)  *
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 25)  * @author Yoann Rodiere
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 26)  */
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 27) public class StreamingOperationDispatcher implements OperationDispatcher {
+                                                                                                                                              28)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 29) 	private final boolean forceAsync;
+bb0e67026 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-04-20 10:39:52 +0000 30) 	private final SearchIntegrator integrator;
+                                                                                                                                              31)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 32) 	public StreamingOperationDispatcher(SearchIntegrator integrator, boolean forceAsync) {
+bb0e67026 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-04-20 10:39:52 +0000 33) 		this.integrator = integrator;
+bb0e67026 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-04-20 10:39:52 +0000 34) 		this.forceAsync = forceAsync;
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 35) 	}
+                                                                                                                                              36)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 37) 	@Override
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 38) 	public void dispatch(LuceneWork work, IndexingMonitor monitor) {
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 39) 		executeWork( work, monitor );
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 40) 	}
+                                                                                                                                              41)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 42) 	@Override
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 43) 	public void dispatch(List<LuceneWork> queue, IndexingMonitor monitor) {
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 44) 		for ( LuceneWork work : queue ) {
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 45) 			executeWork( work, monitor );
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 46) 		}
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 47) 	}
+                                                                                                                                              48)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 49) 	private void executeWork(LuceneWork work, IndexingMonitor progressMonitor) {
+3c42a071e engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-06-12 23:27:40 +0000 50) 		final IndexedTypeIdentifier entityType = work.getEntityType();
+bb0e67026 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Sanne Grinovero 2017-04-20 10:39:52 +0000 51) 		EntityIndexBinding entityIndexBinding = integrator.getIndexBinding( entityType );
+1cf93d132 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-07-03 16:45:37 +0000 52) 		IndexManagerSelector selector = entityIndexBinding.getIndexManagerSelector();
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 53) 		StreamingOperationExecutor executor =
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 54) 				work.acceptIndexWorkVisitor( StreamingOperationExecutorSelector.INSTANCE, null );
+1cf93d132 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-07-03 16:45:37 +0000 55) 		executor.performStreamOperation( work, selector, progressMonitor, forceAsync );
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 56) 	}
+                                                                                                                                              57)
+a3097e1b9 engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java (Yoann Rodière   2017-04-19 22:10:46 +0000 58) }

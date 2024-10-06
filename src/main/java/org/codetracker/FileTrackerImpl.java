@@ -46,6 +46,7 @@ import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.ExtractClassRefactoring;
+import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.ExtractSuperclassRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
@@ -984,6 +985,11 @@ public class FileTrackerImpl extends BaseTracker {
 			if (r instanceof MoveOperationRefactoring) {
 				MoveOperationRefactoring move = (MoveOperationRefactoring) r;
 				if (parentContainers.contains(move.getMovedOperation()))
+					return true;
+			}
+			else if (r.getRefactoringType().equals(RefactoringType.EXTRACT_AND_MOVE_OPERATION)) {
+				ExtractOperationRefactoring extract = (ExtractOperationRefactoring) r;
+				if (parentContainers.contains(extract.getExtractedOperation()))
 					return true;
 			}
 		}
