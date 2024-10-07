@@ -1,8 +1,9 @@
 package org.codetracker.blame.benchmark.impl.util;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.CodeElementWithRepr;
+import org.codetracker.blame.model.IBlameTool;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,23 +33,23 @@ public class CsvWriter {
         this.codeElementMap = codeElementMap;
     }
 
-    public void writeToCSV(Map<Integer, EnumMap<BlamerFactory, String>> table) {
+    public void writeToCSV(Map<Integer, Map<IBlameTool, String>> table) {
 
         try (PrintWriter writer = new PrintWriter(makeFile())) {
-            Set<BlamerFactory> blamerFactories = table.entrySet().iterator().next().getValue().keySet();
+            Set<IBlameTool> blamerFactories = table.entrySet().iterator().next().getValue().keySet();
             writer.print("LineNumber,");
-            Iterator<BlamerFactory> iterator = blamerFactories.iterator();
+            Iterator<IBlameTool> iterator = blamerFactories.iterator();
             while (iterator.hasNext()){
-                BlamerFactory next = iterator.next();
-                writer.print(next.getName());
+                IBlameTool next = iterator.next();
+                writer.print(next.getToolName());
                 if (iterator.hasNext()) writer.print(",");
             }
             if (codeElementMap != null)
                 writer.print(",CodeElement,ActualString");
             writer.println();
             // Write the data
-            for (Map.Entry<Integer, EnumMap<BlamerFactory, String>> entry : table.entrySet()) {
-                EnumMap<BlamerFactory, String> results = entry.getValue();
+            for (Map.Entry<Integer, Map<IBlameTool, String>> entry : table.entrySet()) {
+                Map<IBlameTool, String> results = entry.getValue();
                 Iterator<String> valueIterator = results.values().iterator();
                 writer.print(entry.getKey() + ",");
                 while (valueIterator.hasNext()){

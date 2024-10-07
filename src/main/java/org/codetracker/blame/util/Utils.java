@@ -93,4 +93,11 @@ public class Utils {
     public static String getProject(String gitURL){
         return gitURL.split("/")[4];
     }
+
+    public static Repository getRepository(String url, GitService _gitService, String reposPath) throws Exception {
+        String owner = getOwner(url);
+        String project = getProject(url);
+        String ownerSlashProject = owner + "/" + project;
+        return _gitService.cloneIfNotExists(reposPath + "/" + ownerSlashProject, URLHelper.getRepo(url));
+    }
 }

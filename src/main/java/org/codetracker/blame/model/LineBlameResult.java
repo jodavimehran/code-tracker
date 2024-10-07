@@ -6,16 +6,17 @@ import org.eclipse.jgit.blame.BlameResult;
 
 /* Created by pourya on 2024-07-02*/
 public class LineBlameResult {
-    private final String commitId;
-    private final String filePath;
-    private final String shortCommitId;
-    private final String beforeFilePath;
-    private final String committer;
-    private final String parentCommitId;
-    private final long commitDate;
-    private final int resultLineNumber;
+    private String commitId;
+    private String filePath;
+    private String shortCommitId;
+    private String beforeFilePath;
+    private String committer;
+    private String parentCommitId;
+    private long commitDate;
+    private int resultLineNumber;
+    private int originalLineNumber; //This is the original line number (the one that you pass as the input)
 
-    private final int originalLineNumber; //This is the original line number (the one that you pass as the input)
+    LineBlameResult(){}
 
     @Override
     public String toString() {
@@ -104,4 +105,6 @@ public class LineBlameResult {
         String filePath = blameResult.getSourcePath(i);
         return new LineBlameResult(commitId, blameResult.getResultPath(), filePath, committerName, "", commitTime, resultLineNumber, i + 1);
     }
+
+
 }

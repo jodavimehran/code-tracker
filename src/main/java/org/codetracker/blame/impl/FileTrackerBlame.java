@@ -17,6 +17,7 @@ public class FileTrackerBlame implements IBlame {
     private final static Logger logger = LoggerFactory.getLogger(FileTrackerBlame.class);
     @Override
     public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
+        System.out.println("Blaming file " + filePath + " in commit " + commitId);
         return this.blameFile(repository, commitId, filePath, 1, Integer.MAX_VALUE);
     }
 

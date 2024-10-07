@@ -1,6 +1,7 @@
 package org.codetracker.blame.benchmark.impl.record;
 
-import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.benchmark.EBlamer;
+import org.codetracker.blame.model.IBlameTool;
 import org.codetracker.blame.model.LineBlameResult;
 
 import java.util.EnumMap;
@@ -12,8 +13,8 @@ public class LineNumberToCommitIDRecordManager extends BenchmarkRecordManager<In
     public LineNumberToCommitIDRecordManager() {
         super();
     }
-    public void diff(EnumMap<BlamerFactory, List<LineBlameResult>> blameResults) {
-        for (Map.Entry<BlamerFactory, List<LineBlameResult>> blamerFactoryListEntry : blameResults.entrySet()) {
+    public void diff(Map<IBlameTool, List<LineBlameResult>> blameResults) {
+        for (Map.Entry<IBlameTool, List<LineBlameResult>> blamerFactoryListEntry : blameResults.entrySet()) {
             for (LineBlameResult result : blamerFactoryListEntry.getValue()) {
                 if (result != null) {
                     int lineNumber = result.getOriginalLineNumber();

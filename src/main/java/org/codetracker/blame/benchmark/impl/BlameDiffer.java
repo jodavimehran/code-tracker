@@ -1,10 +1,11 @@
 package org.codetracker.blame.benchmark.impl;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.benchmark.impl.record.LineNumberToCommitIDRecordManager;
 import org.codetracker.blame.benchmark.model.BlameDifferResult;
 import org.codetracker.blame.model.CodeElementWithRepr;
+import org.codetracker.blame.model.IBlameTool;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.Utils;
 import org.codetracker.util.CodeElementLocator;
@@ -17,21 +18,21 @@ import java.util.function.Predicate;
 /* Created by pourya on 2024-07-14*/
 public class BlameDiffer {
 
-    protected final Set<BlamerFactory> blamerFactories;
+    protected final Set<IBlameTool> blamerFactories;
     protected LineNumberToCommitIDRecordManager benchmarkRecordManager;
     protected BiPredicate<Integer, List<String>> emptyLinesCondition = (lineNumber, content) -> content.get(lineNumber-1).trim().isEmpty();
     protected final Predicate<String> ignoreCondition;
 
-    public BlameDiffer(Set<BlamerFactory> blamerFactories, Predicate<String> ignoreCondition){
+    public BlameDiffer(Set<IBlameTool> blamerFactories, Predicate<String> ignoreCondition){
         this.blamerFactories = blamerFactories;
         this.ignoreCondition = ignoreCondition;
     }
 
-    private EnumMap<BlamerFactory, List<LineBlameResult>> runBlamers(Repository repository, String commitId, String filePath) throws Exception {
-        EnumMap<BlamerFactory, List<LineBlameResult>> results = new EnumMap<>(BlamerFactory.class);
-        for (BlamerFactory blamerFactory : blamerFactories) {
+    private Map<IBlameTool, List<LineBlameResult>> runBlamers(Repository repository, String commitId, String filePath) throws Exception {
+        Map<IBlameTool, List<LineBlameResult>> results = new LinkedHashMap<>();
+        for (IBlameTool blamerFactory : blamerFactories) {
             System.out.println("Running " + blamerFactory);
-            List<LineBlameResult> lineBlameResults = blamerFactory.getBlamer().blameFile
+            List<LineBlameResult> lineBlameResults = blamerFactory.blameFile
                     (repository, commitId, filePath);
             results.put(blamerFactory, lineBlameResults);
             System.out.println("Finished " + blamerFactory);
@@ -39,32 +40,32 @@ public class BlameDiffer {
         return results;
     }
 
-    protected boolean verify(EnumMap<BlamerFactory, List<LineBlameResult>> results) {
+    protected boolean verify(Map<IBlameTool, List<LineBlameResult>> results) {
         if (results.size() != 2)
             throw new RuntimeException("BlameDiffer only works with two blamers");
         return true;
     }
 
     public final BlameDifferResult diff(Repository repository, String commitId, String filePath) throws Exception {
-        EnumMap<BlamerFactory, List<LineBlameResult>> blameResults = prepareResults(repository, commitId, filePath);
+        Map<IBlameTool, List<LineBlameResult>> blameResults = prepareResults(repository, commitId, filePath);
         List<String> content = Utils.getFileContentByCommit(repository, commitId, filePath);
         benchmarkRecordManager = new LineNumberToCommitIDRecordManager();
         benchmarkRecordManager.diff(blameResults);
-        Map<Integer, EnumMap<BlamerFactory, String>> table = benchmarkRecordManager.getRegistry();
+        Map<Integer, Map<IBlameTool, String>> table = benchmarkRecordManager.getRegistry();
         table.entrySet().removeIf(entry  -> ignoreCondition.test(content.get(entry.getKey() - 1)));
         int legitSize = table.size();
         table =  process(repository, commitId, filePath, table);
         return new BlameDifferResult(table, makeCodeElementMap(table.keySet(), repository, commitId, filePath), legitSize);
     }
 
-    protected Map<Integer, EnumMap<BlamerFactory, String>> process(Repository repository, String commitId, String filePath, Map<Integer, EnumMap<BlamerFactory, String>> table) {
+    protected Map<Integer, Map<IBlameTool, String>> process(Repository repository, String commitId, String filePath, Map<Integer, Map<IBlameTool, String>> table) {
         table.entrySet().removeIf(entry -> entry.getValue().values().stream().distinct().count() == 1);
         //TODO: For this one we dont consider the merge commits;
         return table;
     }
 
-    private EnumMap<BlamerFactory, List<LineBlameResult>> prepareResults(Repository repository, String commitId, String filePath) throws Exception {
-        EnumMap<BlamerFactory, List<LineBlameResult>> blameResults = runBlamers(repository, commitId, filePath);
+    private Map<IBlameTool, List<LineBlameResult>> prepareResults(Repository repository, String commitId, String filePath) throws Exception {
+        Map<IBlameTool, List<LineBlameResult>> blameResults = runBlamers(repository, commitId, filePath);
         verify(blameResults);
         return blameResults;
     }

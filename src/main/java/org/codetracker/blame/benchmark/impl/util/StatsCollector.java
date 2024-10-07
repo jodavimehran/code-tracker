@@ -1,8 +1,9 @@
 package org.codetracker.blame.benchmark.impl.util;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.BlamerFactory;
+import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.CodeElementWithRepr;
+import org.codetracker.blame.model.IBlameTool;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +20,7 @@ public class StatsCollector {
     int sum_diff_size = 0;
     int sum_legit_size = 0;
     int count = 0;
-    public void process(Map<Integer, EnumMap<BlamerFactory, String>> diff, int legitSize, Map<Integer, CodeElementWithRepr> codeElementMap) {
+    public void process(Map<Integer, Map<IBlameTool, String>> diff, int legitSize, Map<Integer, CodeElementWithRepr> codeElementMap) {
         sum_legit_size += legitSize;
         sum_diff_size += diff.size();
         count += 1;
