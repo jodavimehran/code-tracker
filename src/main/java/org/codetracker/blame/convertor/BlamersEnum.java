@@ -1,5 +1,8 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.convertor;
 
+import com.srlab.matching.LHDiff;
+import org.codetracker.blame.fromDiffer.NaiveDiffToBlame;
+import org.codetracker.blame.fromDiffer.RMDrivenDiffToBlame;
 import org.codetracker.blame.impl.*;
 import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.IBlameTool;
@@ -9,7 +12,7 @@ import org.eclipse.jgit.lib.Repository;
 
 import java.util.List;
 
-public enum EBlamer implements IBlameTool {
+public enum BlamersEnum implements IBlameTool {
     JGitBlameWithFollow(new JGitBlame()),
     JGitBlameHistogramWithFollow(new JGitBlame(DiffAlgorithm.getAlgorithm(DiffAlgorithm.SupportedAlgorithm.HISTOGRAM))),
     CliGitBlameIgnoringWhiteSpace(new CliGitBlameCustomizable(true)),
@@ -18,11 +21,16 @@ public enum EBlamer implements IBlameTool {
     CliGitBlameMoveAwareIgnoringWhiteSpace(new CliGitBlameCustomizable(true, new String[]{"-M"})),
     CliGitBlameCopyAware(new CliGitBlameCustomizable(false, new String[]{"-C"})),
     CliGitBlameCopyAwareIgnoringWhiteSpace(new CliGitBlameCustomizable(true, new String[]{"-C"})),
-//    CodeTrackerBlame(new CodeTrackerBlame()),
-    FileTrackerBlame(new FileTrackerBlameWithSerialization());
+    CodeTrackerBlame(new CodeTrackerBlame()), //Too slow
+    FileTrackerBlame(new FileTrackerBlameWithSerialization()),
+    LHDiffNaive(new LHDiffBlame(new NaiveDiffToBlame(true))),
+    LHDiffRMDriven(new LHDiffBlame(new RMDrivenDiffToBlame(true))),
+    LHDiffCustomizedNaive(new LHDiffBlame(new LHDiffer(new LHDiff()),new NaiveDiffToBlame(false))),
+    LHDiffCustomizedRMDriven(new LHDiffBlame(new LHDiffer(),new RMDrivenDiffToBlame(false))),
+    ;
     private final IBlame blamer;
 
-    EBlamer(IBlame iBlame) {
+    BlamersEnum(IBlame iBlame) {
         this.blamer = iBlame;
     }
 

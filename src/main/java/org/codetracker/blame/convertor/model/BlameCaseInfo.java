@@ -1,4 +1,4 @@
-package org.codetracker.blame.benchmark.model;
+package org.codetracker.blame.convertor.model;
 
 import java.io.Serializable;
 import java.util.Objects;

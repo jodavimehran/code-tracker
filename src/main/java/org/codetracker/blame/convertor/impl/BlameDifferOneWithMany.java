@@ -1,6 +1,5 @@
-package org.codetracker.blame.benchmark.impl;
+package org.codetracker.blame.convertor.impl;
 
-import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.IBlameTool;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.GithubUtilsWithCache;

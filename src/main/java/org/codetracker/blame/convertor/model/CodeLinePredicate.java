@@ -1,4 +1,4 @@
-package org.codetracker.blame.benchmark.model;
+package org.codetracker.blame.convertor.model;
 
 import java.util.Arrays;
 import java.util.function.Predicate;

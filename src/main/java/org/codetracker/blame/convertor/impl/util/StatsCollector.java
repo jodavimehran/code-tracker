@@ -1,17 +1,15 @@
-package org.codetracker.blame.benchmark.impl.util;
+package org.codetracker.blame.convertor.impl.util;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.CodeElementWithRepr;
 import org.codetracker.blame.model.IBlameTool;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.codetracker.blame.benchmark.impl.util.CsvWriter.getCodeElementName;
+import static org.codetracker.blame.convertor.impl.util.CsvWriter.getCodeElementName;
 
 
 /* Created by pourya on 2024-07-15*/

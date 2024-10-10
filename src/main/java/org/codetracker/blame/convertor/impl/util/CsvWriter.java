@@ -1,14 +1,12 @@
-package org.codetracker.blame.benchmark.impl.util;
+package org.codetracker.blame.convertor.impl.util;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.CodeElementWithRepr;
 import org.codetracker.blame.model.IBlameTool;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;

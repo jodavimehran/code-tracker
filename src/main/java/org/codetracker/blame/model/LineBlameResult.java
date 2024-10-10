@@ -16,6 +16,42 @@ public class LineBlameResult {
     private int resultLineNumber;
     private int originalLineNumber; //This is the original line number (the one that you pass as the input)
 
+    public void setCommitId(String commitId) {
+        this.commitId = commitId;
+    }
+
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
+    }
+
+    public void setShortCommitId(String shortCommitId) {
+        this.shortCommitId = shortCommitId;
+    }
+
+    public void setBeforeFilePath(String beforeFilePath) {
+        this.beforeFilePath = beforeFilePath;
+    }
+
+    public void setCommitter(String committer) {
+        this.committer = committer;
+    }
+
+    public void setParentCommitId(String parentCommitId) {
+        this.parentCommitId = parentCommitId;
+    }
+
+    public void setCommitDate(long commitDate) {
+        this.commitDate = commitDate;
+    }
+
+    public void setResultLineNumber(int resultLineNumber) {
+        this.resultLineNumber = resultLineNumber;
+    }
+
+    public void setOriginalLineNumber(int originalLineNumber) {
+        this.originalLineNumber = originalLineNumber;
+    }
+
     LineBlameResult(){}
 
     @Override
@@ -31,7 +67,7 @@ public class LineBlameResult {
                 '}';
     }
 
-    public LineBlameResult(String commitId, String filePath, String beforeFilePath, String committer, String parentCommitId, long commitDate, int resultLineNumber, int originalLineNumber) {
+    public  LineBlameResult(String commitId, String filePath, String beforeFilePath, String committer, String parentCommitId, long commitDate, int resultLineNumber, int originalLineNumber) {
         this.commitId = commitId;
         this.filePath = filePath;
         this.shortCommitId = (commitId == null || commitId.isEmpty()) ? "" : commitId.substring(0, 9);

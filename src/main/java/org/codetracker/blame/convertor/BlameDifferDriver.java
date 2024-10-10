@@ -1,12 +1,12 @@
-package org.codetracker.blame.benchmark;
+package org.codetracker.blame.convertor;
 
-import org.codetracker.blame.benchmark.impl.BlameDiffer;
-import org.codetracker.blame.benchmark.impl.BlameDifferOneWithMany;
-import org.codetracker.blame.benchmark.impl.util.CsvWriter;
-import org.codetracker.blame.benchmark.impl.util.StatsCollector;
-import org.codetracker.blame.benchmark.model.BlameCaseInfo;
-import org.codetracker.blame.benchmark.model.BlameDifferResult;
-import org.codetracker.blame.benchmark.model.CodeLinePredicate;
+import org.codetracker.blame.convertor.impl.BlameDiffer;
+import org.codetracker.blame.convertor.impl.BlameDifferOneWithMany;
+import org.codetracker.blame.convertor.impl.util.CsvWriter;
+import org.codetracker.blame.convertor.impl.util.StatsCollector;
+import org.codetracker.blame.convertor.model.BlameCaseInfo;
+import org.codetracker.blame.convertor.model.BlameDifferResult;
+import org.codetracker.blame.convertor.model.CodeLinePredicate;
 import org.codetracker.blame.impl.CliGitBlameCustomizable;
 import org.codetracker.blame.impl.FileTrackerBlameWithSerialization;
 import org.codetracker.blame.model.IBlame;
@@ -28,13 +28,13 @@ public class BlameDifferDriver {
     private static final String REPOS_PATH = System.getProperty("user.dir") + "/tmp";
     private static Set<IBlameTool> blamerFactories =
 //            new LinkedHashSet<>();
-            new LinkedHashSet<>(Set.of(EBlamer.values()))
+            new LinkedHashSet<>(Set.of(BlamersEnum.values()))
 //            new LinkedHashSet<>(Set.of(EBlamer.FileTrackerBlame))
     ;
     private static final Predicate<String> codeElementIgnoreCondition =
             CodeLinePredicate.BLANK_LINE.or(CodeLinePredicate.OPENING_AND_CLOSING_CURLY_BRACKET);
     private static final BlameDiffer blameDiffer = new BlameDifferOneWithMany(blamerFactories,
-            EBlamer.FileTrackerBlame, codeElementIgnoreCondition);
+            BlamersEnum.FileTrackerBlame, codeElementIgnoreCondition);
 
     private static final String[][] dummies = {
             {"https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3", "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java"},
@@ -65,32 +65,36 @@ public class BlameDifferDriver {
 
 
 
-    private static Set<IBlameTool> makeCliGitBlames(String firstParam, int lowerLimit, int higherLimit, boolean ignoreWhitespace) {
+    public static Set<IBlameTool> makeCliGitBlames(String firstParam, int lowerLimit, int higherLimit, boolean ignoreWhitespace) {
         Set<IBlameTool> iBlameTools = new LinkedHashSet<>();
         int num;
         for (int i = lowerLimit; i < higherLimit; i++) {
             num = i;
             String[] moreOptions = {firstParam + num};
-            IBlame cliGitBlameCustomizable = new CliGitBlameCustomizable(ignoreWhitespace, moreOptions);
-            IBlameTool customBlameTool = new IBlameTool() {
-                @Override
-                public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
-                    return cliGitBlameCustomizable.blameFile(repository, commitId, filePath);
-                }
-
-                @Override
-                public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine, int toLine) throws Exception {
-                    return cliGitBlameCustomizable.blameFile(repository, commitId, filePath, fromLine, toLine);
-                }
-
-                @Override
-                public String getToolName() {
-                    return "CliGitBlameCustomizable" + Arrays.toString(moreOptions) + "IgnoreWhitespace" + ignoreWhitespace;
-                }
-            };
-            iBlameTools.add(customBlameTool);
+            iBlameTools.add(getCliBlameTool(ignoreWhitespace, moreOptions));
         }
         return iBlameTools;
+    }
+
+    public static IBlameTool getCliBlameTool(boolean ignoreWhitespace, String[] moreOptions) {
+        IBlame cliGitBlameCustomizable = new CliGitBlameCustomizable(ignoreWhitespace, moreOptions);
+        IBlameTool customBlameTool = new IBlameTool() {
+            @Override
+            public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath) throws Exception {
+                return cliGitBlameCustomizable.blameFile(repository, commitId, filePath);
+            }
+
+            @Override
+            public List<LineBlameResult> blameFile(Repository repository, String commitId, String filePath, int fromLine, int toLine) throws Exception {
+                return cliGitBlameCustomizable.blameFile(repository, commitId, filePath, fromLine, toLine);
+            }
+
+            @Override
+            public String getToolName() {
+                return "CliGitBlameCustomizable" + Arrays.toString(moreOptions) + "IgnoreWhitespace" + ignoreWhitespace;
+            }
+        };
+        return customBlameTool;
     }
 
 

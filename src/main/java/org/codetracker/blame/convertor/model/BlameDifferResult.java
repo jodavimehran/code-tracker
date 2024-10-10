@@ -1,10 +1,8 @@
-package org.codetracker.blame.benchmark.model;
+package org.codetracker.blame.convertor.model;
 
-import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.CodeElementWithRepr;
 import org.codetracker.blame.model.IBlameTool;
 
-import java.util.EnumMap;
 import java.util.Map;
 
 public class BlameDifferResult{

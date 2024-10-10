@@ -1,9 +1,7 @@
-package org.codetracker.blame.benchmark.impl.record;
+package org.codetracker.blame.convertor.impl.record;
 
-import org.codetracker.blame.benchmark.EBlamer;
 import org.codetracker.blame.model.IBlameTool;
 
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;

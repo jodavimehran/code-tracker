@@ -1,9 +1,8 @@
-package org.codetracker.blame.benchmark.impl;
+package org.codetracker.blame.convertor.impl;
 
 import org.codetracker.api.CodeElement;
-import org.codetracker.blame.benchmark.EBlamer;
-import org.codetracker.blame.benchmark.impl.record.LineNumberToCommitIDRecordManager;
-import org.codetracker.blame.benchmark.model.BlameDifferResult;
+import org.codetracker.blame.convertor.impl.record.LineNumberToCommitIDRecordManager;
+import org.codetracker.blame.convertor.model.BlameDifferResult;
 import org.codetracker.blame.model.CodeElementWithRepr;
 import org.codetracker.blame.model.IBlameTool;
 import org.codetracker.blame.model.LineBlameResult;
