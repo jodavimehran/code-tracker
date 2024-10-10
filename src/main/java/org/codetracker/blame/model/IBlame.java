@@ -1,6 +1,5 @@
-package org.codetracker.blame;
+package org.codetracker.blame.model;
 
-import org.codetracker.blame.model.LineBlameResult;
 import org.eclipse.jgit.lib.Repository;
 
 import java.util.List;

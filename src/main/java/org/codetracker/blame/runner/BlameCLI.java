@@ -1,6 +1,7 @@
 package org.codetracker.blame.runner;
 
 import org.codetracker.blame.impl.CodeTrackerBlame;
+import org.codetracker.blame.impl.FileTrackerBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.BlameFormatter;
 import org.codetracker.blame.util.TabularPrint;
@@ -29,7 +30,7 @@ public class BlameCLI {
     private static void cmdApp(String filePath) throws Exception {
         Repository workingDirRepo = getWorkingDirRepo();
         String commitId = getWorkingDirCommit(workingDirRepo);
-        List<LineBlameResult> lineBlameResults = new CodeTrackerBlame().blameFile(workingDirRepo, commitId, filePath);
+        List<LineBlameResult> lineBlameResults = new FileTrackerBlame().blameFile(workingDirRepo, commitId, filePath);
         List<String[]> out = new BlameFormatter(Utils.getFileContentByCommit(workingDirRepo, commitId, filePath)).make(lineBlameResults);
         System.out.println(TabularPrint.make(out));
     }

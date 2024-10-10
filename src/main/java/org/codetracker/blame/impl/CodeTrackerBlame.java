@@ -2,7 +2,7 @@ package org.codetracker.blame.impl;
 
 import org.codetracker.api.CodeElement;
 import org.codetracker.api.History;
-import org.codetracker.blame.IBlame;
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.adaptor.LineTrackerFromCodeTracker;
 import org.codetracker.util.CodeElementLocator;

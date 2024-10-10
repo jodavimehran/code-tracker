@@ -66,7 +66,7 @@ public class BlameFormatter {
             shortCommitId = lineBlameResult.getShortCommitId();
             beforeFilePath = lineBlameResult.getBeforeFilePath();
             committer = "(" + lineBlameResult.getCommitter();
-            commitDate = simpleDateFormat.format(new Date(lineBlameResult.getCommitDate() * 1000L));
+            commitDate = lineBlameResult.getCommitDate() == 0 ? "" : simpleDateFormat.format(new Date(lineBlameResult.getCommitDate() * 1000L));
         }
         return new String[]
                 {

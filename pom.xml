@@ -30,7 +30,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <rm.version>3.0.8-SNAPSHOT</rm.version>
+        <rm.version>3.0.9-SNAPSHOT</rm.version>
     </properties>
     <dependencies>
         <dependency>
@@ -124,9 +124,19 @@
             <version>2.3.15.Final</version>
         </dependency>
         <dependency>
+            <groupId>org.json</groupId>
+            <artifactId>json</artifactId>
+            <version>20240303</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.17.1</version>
+        </dependency>
+        <dependency>
+            <groupId>ca.concordia.export</groupId>
+            <artifactId>lhdiff</artifactId>
+            <version>1.0.0</version>
         </dependency>
 
     </dependencies>

@@ -1,7 +1,7 @@
 package org.codetracker.blame.runner;
 
 import org.apache.commons.io.FileUtils;
-import org.codetracker.blame.IBlame;
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.impl.CodeTrackerBlame;
 import org.codetracker.blame.impl.JGitBlame;
 import org.refactoringminer.api.GitService;

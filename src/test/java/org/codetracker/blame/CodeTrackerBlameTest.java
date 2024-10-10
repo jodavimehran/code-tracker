@@ -6,6 +6,7 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.History;
 import org.codetracker.blame.impl.CodeTrackerBlame;
 import org.codetracker.blame.impl.JGitBlame;
+import org.codetracker.blame.model.IBlame;
 import org.codetracker.blame.model.LineBlameResult;
 import org.codetracker.blame.util.BlameFormatter;
 import org.codetracker.blame.util.TabularPrint;
