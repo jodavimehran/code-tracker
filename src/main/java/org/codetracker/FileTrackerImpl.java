@@ -56,7 +56,6 @@ import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLDocumentationDiffProvider;
 import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
-import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLJavadoc;
@@ -1509,25 +1508,10 @@ public class FileTrackerImpl extends BaseTracker {
 						if (leftMethod == null) {
 							leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndAnnotation);
 						}
-						//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
-						boolean otherExactMatchFound = false;
-						if (leftMethod != null) {
-							for (UMLClass leftClass : leftModel.getClassList()) {
-								for (UMLOperation leftOperation : leftClass.getOperations()) {
-									if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
-										otherExactMatchFound = true;
-										break;
-									}
-								}
-								if(otherExactMatchFound) {
-									break;
-								}
-							}
-						}
-						else {
+						if (leftMethod == null) {
 							notFoundMethods.put(rightMethod, startMethodChangeHistory);
 						}
-						if (leftMethod != null && !otherExactMatchFound) {
+						else {
 							if (!leftMethod.equalBody(rightMethod))
 								startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 							if (!leftMethod.equalDocuments(rightMethod))
@@ -1581,25 +1565,10 @@ public class FileTrackerImpl extends BaseTracker {
 					}
 					//CHANGE BODY OR DOCUMENT
 					leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
-					//check if there is another method in leftModel with identical bodyHashCode to the rightMethod
-					boolean otherExactMatchFound = false;
-					if (leftMethod != null) {
-						for (UMLClass leftClass : leftModel.getClassList()) {
-							for (UMLOperation leftOperation : leftClass.getOperations()) {
-								if (leftOperation.getBodyHashCode() == rightMethod.getUmlOperation().getBodyHashCode() && !leftOperation.equals(leftMethod.getUmlOperation())) {
-									otherExactMatchFound = true;
-									break;
-								}
-							}
-							if(otherExactMatchFound) {
-								break;
-							}
-						}
-					}
-					else {
+					if (leftMethod == null) {
 						notFoundMethods.put(rightMethod, startMethodChangeHistory);
 					}
-					if (leftMethod != null && !otherExactMatchFound) {
+					else {
 						if (!leftMethod.equalBody(rightMethod))
 							startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
 						if (!leftMethod.equalDocuments(rightMethod))

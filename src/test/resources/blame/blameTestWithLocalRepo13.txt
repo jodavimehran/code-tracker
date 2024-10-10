@@ -328,20 +328,20 @@ bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocal
 0a1a4c6e9 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 328)         return returnValue;
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 329)     }
                                                                                                                                                    330)
-0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 331)     /**
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 331)     /**
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 332)      * Gets final variable candidate for ast.
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 333)      * @param ast ast.
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 334)      * @return Optional of {@link FinalVariableCandidate} for ast from scopeStack.
-0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 335)      */
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 335)      */
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 336)     private Optional<FinalVariableCandidate> getFinalCandidate(DetailAST ast) {
 eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 337)         Optional<FinalVariableCandidate> result = Optional.empty();
-36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 338)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 338)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 339)         while (iterator.hasNext() && !result.isPresent()) {
-36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 340)             final ScopeData scopeData = iterator.next();
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 340)             final ScopeData scopeData = iterator.next();
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 341)             result = scopeData.findFinalVariableCandidateForAst(ast);
-0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 342)         }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 342)         }
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 343)         return result;
-0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 344)     }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 344)     }
                                                                                                                                                    345)
 628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 346)     /**
 628e893f2 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2016-01-24 14:35:35 +0000 347)      * Store un-initialized variables in a temporary stack for future use.
@@ -498,28 +498,28 @@ bb1b29851 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocal
 36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 498)         return ast.getPreviousSibling() == null;
 36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 499)     }
                                                                                                                                                    500)
-bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 501)     /**
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 501)     /**
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 502)      * Removes the final variable candidate from the Stack.
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 503)      * @param ast variable to remove.
-bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 504)      */
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 504)      */
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 505)     private void removeFinalVariableCandidateFromStack(DetailAST ast) {
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 506)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 507)         while (iterator.hasNext()) {
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 508)             final ScopeData scopeData = iterator.next();
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 506)         final Iterator<ScopeData> iterator = scopeStack.descendingIterator();
+53eddca5d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Michal Kordas       2015-04-25 23:35:30 +0000 507)         while (iterator.hasNext()) {
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 508)             final ScopeData scopeData = iterator.next();
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 509)             final Map<String, FinalVariableCandidate> scope = scopeData.scope;
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 510)             final FinalVariableCandidate candidate = scope.get(ast.getText());
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 511)             DetailAST storedVariable = null;
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 512)             if (candidate != null) {
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 513)                 storedVariable = candidate.variableIdent;
 55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 514)             }
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 515)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 515)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 516)                 if (shouldRemoveFinalVariableCandidate(scopeData, ast)) {
-bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 517)                     scope.remove(ast.getText());
-bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 518)                 }
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 519)                 break;
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 520)             }
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 521)         }
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 522)     }
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 517)                     scope.remove(ast.getText());
+36b91a59d src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Vladislav Lisetskiy 2015-11-01 13:41:29 +0000 518)                 }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 519)                 break;
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 520)             }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 521)         }
+0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 522)     }
                                                                                                                                                    523)
 4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 524)     /**
 4d214096f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (liscju              2016-12-07 21:22:51 +0000 525)      * Check if given parameter definition is a multiple type catch.
@@ -712,15 +712,15 @@ bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocal
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 712)          */
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 713)         public Optional<FinalVariableCandidate> findFinalVariableCandidateForAst(DetailAST ast) {
 eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 714)             Optional<FinalVariableCandidate> result = Optional.empty();
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 715)             DetailAST storedVariable = null;
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 715)             DetailAST storedVariable = null;
 eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 716)             final Optional<FinalVariableCandidate> candidate =
 eb5b977a4 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-06-23 12:38:02 +0000 717)                 Optional.ofNullable(scope.get(ast.getText()));
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 718)             if (candidate.isPresent()) {
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 719)                 storedVariable = candidate.get().variableIdent;
-55aa50d8f src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:31 +0000 720)             }
-11ff590ba src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Bhavik Patel        2015-06-18 21:42:16 +0000 721)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 720)             }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 721)             if (storedVariable != null && isSameVariables(storedVariable, ast)) {
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 722)                 result = candidate;
-0c717ef2a src/checkstyle/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java (Rick Giles          2003-09-11 12:01:47 +0000 723)             }
+bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 723)             }
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 724)             return result;
 bf69cf167 src/main/java/com/puppycrawl/tools/checkstyle/checks/coding/FinalLocalVariableCheck.java  (Andrei Selkin       2016-03-29 22:47:32 +0000 725)         }
                                                                                                                                                    726)
