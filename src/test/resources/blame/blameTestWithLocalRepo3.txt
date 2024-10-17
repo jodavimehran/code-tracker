@@ -322,9 +322,9 @@ f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Ko
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 322)         }
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 323)         catch (final IOException ioe) {
 127f72994 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (crude               2017-10-20 17:46:57 +0000 324)             log.debug("IOException occurred.", ioe);
-b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 325)             fileMessages.add(new LocalizedMessage(0,
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 325)             fileMessages.add(new LocalizedMessage(0,
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 326)                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 327)                     new String[] {ioe.getMessage()}, null, getClass(), null));
+6d5c0da42 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-08-09 14:41:42 +0000 327)                     new String[] {ioe.getMessage()}, null, getClass(), null));
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 328)         }
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 329)         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 330)         catch (Exception ex) {
@@ -339,10 +339,10 @@ a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach  
                                                                                                                      339)
 a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-05-26 14:11:30 +0000 340)             ex.printStackTrace(pw);
                                                                                                                      341)
-a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-05-26 14:11:30 +0000 342)             fileMessages.add(new LocalizedMessage(0,
-a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-05-26 14:11:30 +0000 343)                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
+b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 342)             fileMessages.add(new LocalizedMessage(0,
+b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 343)                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
 a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-05-26 14:11:30 +0000 344)                     new String[] {sw.getBuffer().toString()},
-a43191d49 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-05-26 14:11:30 +0000 345)                     null, getClass(), null));
+b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 345)                     null, getClass(), null));
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 346)         }
 77acd41cf src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-16 19:22:01 +0000 347)         return fileMessages;
 77acd41cf src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-16 19:22:01 +0000 348)     }
@@ -425,7 +425,7 @@ fe9057366 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Bu
 fe9057366 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-04-08 01:35:17 +0000 425)                                 + "moduleClassLoader must be specified");
 fe9057366 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-04-08 01:35:17 +0000 426)             }
                                                                                                                      427)
-b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 428)             final Set<String> packageNames = PackageNamesLoader
+fe9057366 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-04-08 01:35:17 +0000 428)             final Set<String> packageNames = PackageNamesLoader
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 429)                     .getPackageNames(moduleClassLoader);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 430)             moduleFactory = new PackageObjectFactory(packageNames,
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 431)                     moduleClassLoader);
@@ -460,8 +460,8 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 23:00:39 +0000 460)             }
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 461)         }
 d740f2e1c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-31 05:02:37 +0000 462)         catch (final CheckstyleException ex) {
-eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-02-04 19:32:47 +0000 463)             throw new CheckstyleException("cannot initialize module " + name
-eeba08c10 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-02-04 19:32:47 +0000 464)                     + " - " + ex.getMessage(), ex);
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 463)             throw new CheckstyleException("cannot initialize module " + name
+13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 464)                     + " - " + ex.getMessage(), ex);
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 465)         }
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 466)         if (child instanceof FileSetCheck) {
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 467)             final FileSetCheck fsc = (FileSetCheck) child;
@@ -481,7 +481,7 @@ a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Gile
 a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 23:00:39 +0000 481)             addListener(listener);
 a4222b86e src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 23:00:39 +0000 482)         }
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 483)         else {
-c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 484)             throw new CheckstyleException(name
+10330437d src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2003-01-28 20:50:29 +0000 484)             throw new CheckstyleException(name
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 485)                     + " is not allowed as a child in Checker");
 c3baa3fa7 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2003-07-11 18:35:17 +0000 486)         }
 6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 487)     }

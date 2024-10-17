@@ -468,7 +468,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				startBlock.checkElseBlockStart(lineNumber);
 				startBlock.checkElseBlockEnd(lineNumber);
 				startBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
-				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock);
+				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock, lineNumber);
 				blameInfo.put(lineNumber, historyInfo);
 			}
 			else if (startElement instanceof Class) {
@@ -1568,6 +1568,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
                 			}
                 		}
 						startMethodChangeHistory.setCurrent(leftMethod);
+						int leftLines = leftMethod.getLocation().getEndLine() - leftMethod.getLocation().getStartLine();
+						int rightLines = rightMethod.getLocation().getEndLine() - rightMethod.getLocation().getStartLine();
+						if (leftLines != rightLines) {
+							processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
+									startMethod, rightMethod, leftMethod);
+						}
 						continue;
 					}
 					//CHANGE BODY OR DOCUMENT

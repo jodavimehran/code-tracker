@@ -183,6 +183,30 @@ public class Block extends BaseCodeElement {
             return of((CompositeStatementObject) statement, method);
     }
 
+    public boolean differInFormatting(Block other) {
+    	if (composite instanceof StatementObject && other.composite instanceof StatementObject) {
+	    	String thisSignature = ((StatementObject) composite).getActualSignature();
+			String otherSignature = ((StatementObject) other.composite).getActualSignature();
+			if (thisSignature != null && otherSignature != null) {
+				int leftLines = this.getLocation().getEndLine() - this.getLocation().getStartLine();
+				int rightLines = other.getLocation().getEndLine() - other.getLocation().getStartLine();
+	    		return !thisSignature.equals(otherSignature) && leftLines != rightLines && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+	    	}
+    	}
+    	return false;
+    }
+
+	public int signatureStartLine() {
+		return composite.getLocationInfo().getStartLine();
+	}
+
+    public boolean isMultiLine() {
+    	if (composite instanceof StatementObject && ((StatementObject)composite).getActualSignature() != null) {
+    		return ((StatementObject)composite).getActualSignature().contains("\n");
+    	}
+    	return false;
+    }
+
     public void checkClosingBracketOfAnonymousClassDeclaration(int lineNumber) {
     	if (getComposite() instanceof StatementObject && getComposite().getAnonymousClassDeclarations().size() > 0 && getLocation().getEndLine() == lineNumber) {
     		setClosingCurlyBracket(true);

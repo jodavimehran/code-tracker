@@ -1,13 +1,19 @@
 package org.codetracker;
 
+import java.io.IOException;
+import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.History;
 import org.codetracker.api.History.HistoryInfo;
@@ -16,6 +22,7 @@ import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
+import org.codetracker.change.block.BlockSignatureFormatChange;
 import org.codetracker.change.block.ElseBlockAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
@@ -27,6 +34,12 @@ import org.codetracker.change.method.BodyChange;
 import org.codetracker.element.Block;
 import org.codetracker.element.Method;
 import org.refactoringminer.api.Refactoring;
+
+import com.github.difflib.DiffUtils;
+import com.github.difflib.patch.AbstractDelta;
+import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.InsertDelta;
+import com.github.difflib.patch.Patch;
 
 import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLType;
@@ -224,7 +237,8 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                                     List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
                                     if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                        blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                        //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                    	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody);
                                     }
                                     break;
                                 }
@@ -284,7 +298,8 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                             List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                                             List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
                                             if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                                blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                                //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                            	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody);
                                             }
                                             break;
                                         }
@@ -785,10 +800,16 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                 if (blockAfter != null && equalOperator.test(blockAfter)) {
                     Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), umlOperationBodyMapper.getContainer1(), parentVersion);
                     if (!blockBefore.getComposite().toString().equals(blockAfter.getComposite().toString())) {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                        addStatementChange(blockBefore, blockAfter);
                     }
                     else {
-                        blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    	if(blockBefore.differInFormatting(blockAfter)) {
+                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+                    		processChange(blockBefore, blockAfter);
+                    	}
+                    	else {
+                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                    	}
                     }
                     if(matches == 0) {
                     	elements.add(blockBefore);
@@ -803,6 +824,11 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
     	}
         return false;
     }
+
+	private void addStatementChange(Block blockBefore, Block blockAfter) {
+		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+		processChange(blockBefore, blockAfter);
+	}
 
     public void addedMethod(Method rightMethod, Block rightBlock, Version parentVersion) {
     	Block blockBefore = Block.of(rightBlock.getComposite(), rightMethod.getUmlOperation(), parentVersion);
@@ -898,6 +924,82 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
+    private Map<Pair<Block, Block>, List<Integer>> lineChangeMap = new LinkedHashMap<>();
+
+	public void processChange(Block blockBefore, Block blockAfter) {
+		if (blockBefore.isMultiLine() || blockAfter.isMultiLine()) {
+			try {
+				Pair<Block, Block> pair = Pair.of(blockBefore, blockAfter);
+				Block startBlock = getStart();
+				if (startBlock != null && startBlock.isMultiLine()) {
+					List<String> start = IOUtils.readLines(new StringReader(((StatementObject)startBlock.getComposite()).getActualSignature()));
+					List<String> original = IOUtils.readLines(new StringReader(((StatementObject)blockBefore.getComposite()).getActualSignature()));
+					List<String> revised = IOUtils.readLines(new StringReader(((StatementObject)blockAfter.getComposite()).getActualSignature()));
+		
+					Patch<String> patch = DiffUtils.diff(original, revised);
+					List<AbstractDelta<String>> deltas = patch.getDeltas();
+					for (int i=0; i<deltas.size(); i++) {
+						AbstractDelta<String> delta = deltas.get(i);
+						Chunk<String> target = delta.getTarget();
+						List<String> affectedLines = new ArrayList<>(target.getLines());
+						boolean subListFound = false;
+						if (affectedLines.size() > 1 && !(delta instanceof InsertDelta)) {
+							int index = Collections.indexOfSubList(start, affectedLines);
+							if (index != -1) {
+								subListFound = true;
+								for (int j=0; j<affectedLines.size(); j++) {
+									int actualLine = startBlock.signatureStartLine() + index + j;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+								}
+							}
+						}
+						if (!subListFound) {
+							for (String line : affectedLines) {
+								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								for (Integer index : matchingIndices) {
+									if (original.size() > index && revised.size() > index &&
+											original.get(index).equals(line) && revised.get(index).equals(line)) {
+										continue;
+									}
+									int actualLine = startBlock.signatureStartLine() + index;
+									if (lineChangeMap.containsKey(pair)) {
+										lineChangeMap.get(pair).add(actualLine);
+									}
+									else {
+										List<Integer> list = new ArrayList<>();
+										list.add(actualLine);
+										lineChangeMap.put(pair, list);
+									}
+									break;
+								}
+							}
+						}
+					}
+				}
+			} catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<startCommentLines.size(); i++) {
+			String element = startCommentLines.get(i).trim();
+			if(line.equals(element) || element.contains(line.trim())) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
+	}
+
 	public HistoryInfo<Block> blameReturn(Block startBlock) {
 		List<HistoryInfo<Block>> history = getHistory();
 		for (History.HistoryInfo<Block> historyInfo : history) {
@@ -919,6 +1021,45 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 					}
 					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
 						return historyInfo;
+					}
+				}
+			}
+		}
+		return null;
+	}
+
+	public HistoryInfo<Block> blameReturn(Block startBlock, int exactLineNumber) {
+		List<HistoryInfo<Block>> history = getHistory();
+		for (History.HistoryInfo<Block> historyInfo : history) {
+			Pair<Block, Block> pair = Pair.of(historyInfo.getElementBefore(), historyInfo.getElementAfter());
+			boolean multiLine = startBlock.isMultiLine();
+			for (Change change : historyInfo.getChangeList()) {
+				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
+					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
+						return historyInfo;
+					}
+				}
+				else if (startBlock.isClosingCurlyBracket()) {
+					if (change instanceof Introduced || change instanceof ReplacePipelineWithLoop) {
+						return historyInfo;
+					}
+				}
+				else {
+					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary) {
+						return historyInfo;
+					}
+					if (startBlock.getComposite() instanceof StatementObject && (change instanceof BodyChange || change instanceof BlockSignatureFormatChange)) {
+						if (multiLine) {
+							if (lineChangeMap.containsKey(pair)) {
+								if (lineChangeMap.get(pair).contains(exactLineNumber)) {
+									return historyInfo;
+								}
+							}
+						}
+						else {
+							return historyInfo;
+						}
 					}
 				}
 			}
