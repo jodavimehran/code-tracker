@@ -35,6 +35,7 @@ import gr.uom.java.xmi.diff.MergeOperationRefactoring;
 import gr.uom.java.xmi.diff.ModifyAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.MoveAndRenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.MoveAttributeRefactoring;
+import gr.uom.java.xmi.diff.MoveCodeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpAttributeRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
@@ -139,6 +140,24 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
                         extractMatches++;
                     }
                     break;
+                }
+                case MOVE_CODE: {
+                	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
+                	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
+                    if (equalMethod.test(extractedMethod)) {
+                    	Annotation annotationBefore;
+                        if (rightAnnotation.getOperation().isPresent())
+                        	annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getOperation().get(), parentVersion);
+                        else
+                        	annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getClazz().get(), parentVersion);
+                    	annotationChangeHistory.handleAdd(annotationBefore, rightAnnotation, moveCodeRefactoring.toString());
+                        if(extractMatches == 0) {
+                        	elements.addFirst(annotationBefore);
+                        }
+                        annotationChangeHistory.connectRelatedNodes();
+                        extractMatches++;
+                    }
+                	break;
                 }
                 case MERGE_OPERATION: {
                     MergeOperationRefactoring mergeOperationRefactoring = (MergeOperationRefactoring) refactoring;

@@ -58,6 +58,7 @@ import gr.uom.java.xmi.decomposition.VariableDeclaration;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
 import gr.uom.java.xmi.diff.InlineOperationRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
+import gr.uom.java.xmi.diff.MoveCodeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
@@ -326,6 +327,68 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         }
                     }
                     break;
+                }
+                case MOVE_CODE: {
+                	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
+                	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
+                    if (equalMethod.test(extractedMethod)) {
+                    	AbstractCodeFragment matchedBlockFromSourceMethod = null;
+                        UMLOperationBodyMapper bodyMapper = moveCodeRefactoring.getBodyMapper();
+                        for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                            if (mapping instanceof CompositeStatementObjectMapping) {
+                                Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
+                                    Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                    List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                        if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+                                        }
+                                        List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+                                        List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+                                        if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+                                            blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                        }
+                                    }
+                                    break;
+                                }
+                            }
+                            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    matchedBlockFromSourceMethod = mapping.getFragment1();
+                                    Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                    List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                    List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                    if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                        //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                    	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
+                        if (matchedBlockFromSourceMethod == null) {
+                            blockChangeHistory.handleAdd(blockBefore, rightBlock, moveCodeRefactoring.toString());
+                            if(extractMatches == 0) {
+                            	elements.add(blockBefore);
+                            }
+                        }
+                        else {
+                            VariableDeclarationContainer sourceOperation = moveCodeRefactoring.getSourceContainer();
+                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                            Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
+                            if(extractMatches == 0) {
+                            	elements.add(leftBlock);
+                            }
+                        }
+                        blockChangeHistory.connectRelatedNodes();
+                        extractMatches++;
+                    }
+                	break;
                 }
                 case MOVE_AND_INLINE_OPERATION:
                 case INLINE_OPERATION: {

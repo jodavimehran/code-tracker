@@ -54,6 +54,7 @@ import gr.uom.java.xmi.diff.MergeOperationRefactoring;
 import gr.uom.java.xmi.diff.ModifyAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.MoveAndRenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.MoveAttributeRefactoring;
+import gr.uom.java.xmi.diff.MoveCodeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpAttributeRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
@@ -285,6 +286,50 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                         }
                     }
                     break;
+                }
+                case MOVE_CODE: {
+                	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
+                	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
+                    if (equalMethod.test(extractedMethod)) {
+                    	UMLComment matchedCommentFromSourceMethod = null;
+                        UMLOperationBodyMapper bodyMapper = moveCodeRefactoring.getBodyMapper();
+                        UMLCommentListDiff commentListDiff = bodyMapper.getCommentListDiff();
+                        if (commentListDiff != null) {
+                            for (Pair<UMLComment, UMLComment> mapping : commentListDiff.getCommonComments()) {
+                                Comment matchedCommentInsideExtractedMethodBody = Comment.of(mapping.getRight(), bodyMapper.getContainer2(), currentVersion);
+                                if (matchedCommentInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
+                                    matchedCommentFromSourceMethod = mapping.getLeft();
+                                    Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
+                                    if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
+                                        processChange(commentBefore, matchedCommentInsideExtractedMethodBody);
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        Comment commentBefore;
+                        if (rightComment.getOperation().isPresent())
+                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+                        else
+                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
+                        if (matchedCommentFromSourceMethod == null) {
+                            commentChangeHistory.handleAdd(commentBefore, rightComment, moveCodeRefactoring.toString());
+                            if(extractMatches == 0) {
+                            	elements.addFirst(commentBefore);
+                            }
+                        }
+                        else {
+                            VariableDeclarationContainer sourceOperation = moveCodeRefactoring.getSourceContainer();
+                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                            Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
+                            if(extractMatches == 0) {
+                            	elements.addFirst(leftComment);
+                            }
+                        }
+                        commentChangeHistory.connectRelatedNodes();
+                        extractMatches++;
+                    }
+                	break;
                 }
                 case MOVE_AND_INLINE_OPERATION:
                 case INLINE_OPERATION: {

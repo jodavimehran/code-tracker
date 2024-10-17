@@ -89,7 +89,7 @@ e0e131335 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 8f30a6346 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-29 13:06:20 +0000 89)  	protected ClassTestDescriptor(UniqueId uniqueId, Function<Class<?>, String> defaultDisplayNameGenerator,
 8f30a6346 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-29 13:06:20 +0000 90)  			Class<?> testClass) {
                                                                                                                                                      91)
-a84575b84 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-09-08 11:40:20 +0000 92)  		super(uniqueId, determineDisplayName(Preconditions.notNull(testClass, "Class must not be null"),
+8f30a6346 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-29 13:06:20 +0000 92)  		super(uniqueId, determineDisplayName(Preconditions.notNull(testClass, "Class must not be null"),
 a84575b84 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-09-08 11:40:20 +0000 93)  			defaultDisplayNameGenerator), ClassSource.from(testClass));
                                                                                                                                                      94)
 8f30a6346 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-29 13:06:20 +0000 95)  		this.testClass = testClass;
@@ -155,20 +155,20 @@ b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
                                                                                                                                                      155)
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 156) 		Lifecycle lifecycle = getTestInstanceLifecycle(this.testClass, context.getConfigurationParameters());
 137f831bb junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-07-07 20:15:38 +0000 157) 		ThrowableCollector throwableCollector = new OpenTest4JAwareThrowableCollector();
-65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 158) 		ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(),
+83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 158) 		ClassExtensionContext extensionContext = new ClassExtensionContext(context.getExtensionContext(),
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 159) 			context.getExecutionListener(), this, lifecycle, context.getConfigurationParameters(), throwableCollector);
                                                                                                                                                      160)
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 161) 		this.beforeAllMethods = findBeforeAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 162) 		this.afterAllMethods = findAfterAllMethods(this.testClass, lifecycle == Lifecycle.PER_METHOD);
                                                                                                                                                      163)
-0027ade00 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-22 09:34:07 +0000 164) 		// @formatter:off
-5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 165) 		return context.extend()
+67ec62513 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 13:06:57 +0000 164) 		// @formatter:off
+efb867427 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 21:16:18 +0000 165) 		return context.extend()
 5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 166) 				.withTestInstanceProvider(testInstanceProvider(context, registry, extensionContext))
-5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 167) 				.withExtensionRegistry(registry)
-5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 168) 				.withExtensionContext(extensionContext)
-5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 169) 				.withThrowableCollector(throwableCollector)
-5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 170) 				.build();
-0027ade00 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-22 09:34:07 +0000 171) 		// @formatter:on
+dfe33b0e7 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 22:18:52 +0000 167) 				.withExtensionRegistry(registry)
+83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 168) 				.withExtensionContext(extensionContext)
+17360a5a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 16:05:16 +0000 169) 				.withThrowableCollector(throwableCollector)
+efb867427 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 21:16:18 +0000 170) 				.build();
+67ec62513 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 13:06:57 +0000 171) 		// @formatter:on
 0027ade00 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-22 09:34:07 +0000 172) 	}
                                                                                                                                                      173)
 57b31220d junit5-engine/src/main/java/org/junit/gen5/engine/junit5/JUnit5ClassDescriptor.java             (Marc Philipp    2015-12-08 13:55:37 +0000 174) 	@Override
@@ -294,7 +294,7 @@ fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
                                                                                                                                                      294)
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 295) 		try {
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 296) 			instance = this.testInstanceFactory.createTestInstance(
-180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 297) 				new DefaultTestInstanceFactoryContext(this.testClass, outerInstance), extensionContext);
+bdc9ef8db junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-01 17:08:05 +0000 297) 				new DefaultTestInstanceFactoryContext(this.testClass, outerInstance), extensionContext);
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 298) 		}
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 299) 		catch (Throwable throwable) {
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 300) 			BlacklistedExceptions.rethrowIfBlacklisted(throwable);
@@ -323,8 +323,8 @@ a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 323) 				testClassName += "@" + Integer.toHexString(System.identityHashCode(this.testClass));
 a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 324) 				instanceClassName += "@" + Integer.toHexString(System.identityHashCode(instanceClass));
 a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 325) 			}
-a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 326) 			String message = String.format(
-a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 327) 				"TestInstanceFactory [%s] failed to return an instance of [%s] and instead returned an instance of [%s].",
+180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 326) 			String message = String.format(
+180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 327) 				"TestInstanceFactory [%s] failed to return an instance of [%s] and instead returned an instance of [%s].",
 a4de34402 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-08-06 12:39:09 +0000 328) 				this.testInstanceFactory.getClass().getName(), testClassName, instanceClassName);
                                                                                                                                                      329)
 180df5a92 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-03 12:05:21 +0000 330) 			throw new TestInstantiationException(message);
@@ -345,7 +345,7 @@ bdc9ef8db junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 345) 	private void invokeTestInstancePostProcessors(Object instance, ExtensionRegistry registry,
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 346) 			ExtensionContext context) {
                                                                                                                                                      347)
-fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 348) 		registry.stream(TestInstancePostProcessor.class).forEach(
+ebfdc4d7f junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-24 22:09:27 +0000 348) 		registry.stream(TestInstancePostProcessor.class).forEach(
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 349) 			extension -> executeAndMaskThrowable(() -> extension.postProcessTestInstance(instance, context)));
 65e0bd548 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-13 13:55:54 +0000 350) 	}
                                                                                                                                                      351)
@@ -393,7 +393,7 @@ b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 393) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
                                                                                                                                                      394)
 41e5e5798 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-26 15:25:30 +0000 395) 		registry.getReversedExtensions(AfterAllCallback.class)//
-41e5e5798 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-26 15:25:30 +0000 396) 				.forEach(extension -> throwableCollector.execute(() -> extension.afterAll(extensionContext)));
+3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 396) 				.forEach(extension -> throwableCollector.execute(() -> extension.afterAll(extensionContext)));
 c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 19:54:24 +0000 397) 	}
                                                                                                                                                      398)
 6b575f2ee junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 22:18:39 +0000 399) 	private void registerBeforeEachMethodAdapters(ExtensionRegistry registry) {
@@ -430,8 +430,8 @@ b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
                                                                                                                                                      430)
 a97e4d308 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:00 +0000 431) 	private void invokeMethodInExtensionContext(Method method, ExtensionContext context, ExtensionRegistry registry) {
 bef03b5ce junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-10 16:34:34 +0000 432) 		Object testInstance = context.getRequiredTestInstance();
-ee8cb2e44 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 433) 		testInstance = ReflectionUtils.getOutermostInstance(testInstance, method.getDeclaringClass()).orElseThrow(
-ee8cb2e44 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 434) 			() -> new JUnitException("Failed to find instance for method: " + method.toGenericString()));
+323dac885 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 433) 		testInstance = ReflectionUtils.getOutermostInstance(testInstance, method.getDeclaringClass()).orElseThrow(
+fdadf9054 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 434) 			() -> new JUnitException("Failed to find instance for method: " + method.toGenericString()));
                                                                                                                                                      435)
 fdadf9054 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 436) 		executableInvoker.invoke(method, testInstance, context, registry);
 8db7e41d0 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 12:48:18 +0000 437) 	}

@@ -353,6 +353,8 @@ public final class ChangeFactory {
             		change = new AttributeSignatureFormatChange();
             	else if (isClass())
             		change = new ClassSignatureFormatChange();
+            	else if (isBlock())
+            		change = new BlockSignatureFormatChange();
             	break;
             }
             default:
@@ -360,6 +362,10 @@ public final class ChangeFactory {
         }
 
         return change;
+    }
+
+    private boolean isBlock() {
+        return "block".equals(elementType);
     }
 
     private boolean isMethod() {

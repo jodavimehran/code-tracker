@@ -60,6 +60,7 @@ import gr.uom.java.xmi.diff.ModifyMethodAnnotationRefactoring;
 import gr.uom.java.xmi.diff.ModifyVariableAnnotationRefactoring;
 import gr.uom.java.xmi.diff.MoveAndRenameClassRefactoring;
 import gr.uom.java.xmi.diff.MoveClassRefactoring;
+import gr.uom.java.xmi.diff.MoveCodeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
 import gr.uom.java.xmi.diff.MovedClassToAnotherSourceFolder;
@@ -423,6 +424,24 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                         }
                     }
                     break;
+                }
+                case MOVE_CODE: {
+                	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
+                	operationBefore = moveCodeRefactoring.getSourceContainer();
+                	VariableDeclarationContainer extractedOperation = moveCodeRefactoring.getTargetContainer();
+                	Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                    if (equalOperator.test(extractedOperationAfter) && moveCodeRefactoring.getMoveType().equals(MoveCodeRefactoring.Type.MOVE_TO_ADDED)) {
+                    	Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
+                        extractedOperationBefore.setAdded(true);
+                        methodChangeHistory.addChange(extractedOperationBefore, extractedOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED)
+                                .refactoring(moveCodeRefactoring).codeElement(extractedOperationAfter).hookedElement(Method.of(operationBefore, parentVersion)));
+                        methodChangeHistory.connectRelatedNodes();
+                        leftMethodSet.add(extractedOperationBefore);
+                        Method sourceOperationBefore = Method.of(operationBefore, parentVersion);
+                        setSourceOperation(sourceOperationBefore);
+                        return leftMethodSet;
+                    }
+                	break;
                 }
             }
 
