@@ -370,23 +370,16 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                 }
                             }
                         }
-                        Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
-                        if (matchedBlockFromSourceMethod == null) {
-                            blockChangeHistory.handleAdd(blockBefore, rightBlock, moveCodeRefactoring.toString());
-                            if(extractMatches == 0) {
-                            	elements.add(blockBefore);
-                            }
-                        }
-                        else {
+                        if (matchedBlockFromSourceMethod != null) {
                             VariableDeclarationContainer sourceOperation = moveCodeRefactoring.getSourceContainer();
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
                             	elements.add(leftBlock);
                             }
+                            blockChangeHistory.connectRelatedNodes();
+                            extractMatches++;
                         }
-                        blockChangeHistory.connectRelatedNodes();
-                        extractMatches++;
                     }
                 	break;
                 }
@@ -996,6 +989,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 				Block startBlock = getStart();
 				if (startBlock != null && startBlock.isMultiLine()) {
 					List<String> start = IOUtils.readLines(new StringReader(((StatementObject)startBlock.getComposite()).getActualSignature()));
+					List<String> startNoWhitespace = new ArrayList<String>();
+					for(String s : start) {
+						startNoWhitespace.add(s.replaceAll("\\s+", ""));
+					}
 					List<String> original = IOUtils.readLines(new StringReader(((StatementObject)blockBefore.getComposite()).getActualSignature()));
 					List<String> revised = IOUtils.readLines(new StringReader(((StatementObject)blockAfter.getComposite()).getActualSignature()));
 		
@@ -1003,6 +1000,9 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 					List<AbstractDelta<String>> deltas = patch.getDeltas();
 					for (int i=0; i<deltas.size(); i++) {
 						AbstractDelta<String> delta = deltas.get(i);
+						if (indentationChange(delta)) {
+							continue;
+						}
 						Chunk<String> target = delta.getTarget();
 						List<String> affectedLines = new ArrayList<>(target.getLines());
 						boolean subListFound = false;
@@ -1026,9 +1026,14 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 						if (!subListFound) {
 							for (String line : affectedLines) {
 								List<Integer> matchingIndices = findAllMatchingIndices(start, line);
+								if (matchingIndices.isEmpty()) {
+									matchingIndices = findAllMatchingIndices(startNoWhitespace, line.replaceAll("\\s+", ""));
+								}
 								for (Integer index : matchingIndices) {
-									if (original.size() > index && revised.size() > index &&
-											original.get(index).equals(line) && revised.get(index).equals(line)) {
+									if (original.size() > index && revised.size() > index && equalOrStripEqual(original, revised, line, index)) {
+										continue;
+									}
+									if(equalOrStripEqual(original, revised, line)) {
 										continue;
 									}
 									int actualLine = startBlock.signatureStartLine() + index;
@@ -1040,7 +1045,28 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 										list.add(actualLine);
 										lineChangeMap.put(pair, list);
 									}
-									break;
+									//break;
+								}
+								if (matchingIndices.isEmpty() && !line.isBlank()) {
+									matchingIndices = findAllMatchingIndicesRelaxed(start, line);
+									for (Integer index : matchingIndices) {
+										if (original.size() > index && revised.size() > index && equalOrStripEqual(original, revised, line, index)) {
+											continue;
+										}
+										if(equalOrStripEqual(original, revised, line)) {
+											continue;
+										}
+										int actualLine = startBlock.signatureStartLine() + index;
+										if (lineChangeMap.containsKey(pair)) {
+											lineChangeMap.get(pair).add(actualLine);
+										}
+										else {
+											List<Integer> list = new ArrayList<>();
+											list.add(actualLine);
+											lineChangeMap.put(pair, list);
+										}
+										break;
+									}
 								}
 							}
 						}
@@ -1052,11 +1078,90 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 		}
 	}
 
-	private List<Integer> findAllMatchingIndices(List<String> startCommentLines, String line) {
+	private boolean equalOrStripEqual(List<String> original, List<String> revised, String line) {
+		List<Integer> originalMatchingIndices = new ArrayList<>();
+		for(int i=0; i<original.size(); i++) {
+			String s = original.get(i);
+			if(s.strip().equals(line.strip())) {
+				originalMatchingIndices.add(i);
+			}
+		}
+		List<Integer> revisedMatchingIndices = new ArrayList<>();
+		for(int i=0; i<revised.size(); i++) {
+			String s = revised.get(i);
+			if(s.strip().equals(line.strip())) {
+				revisedMatchingIndices.add(i);
+			}
+		}
+		if(revisedMatchingIndices.equals(originalMatchingIndices) && originalMatchingIndices.size() > 0) {
+			return true;
+		}
+		if(revisedMatchingIndices.size() == originalMatchingIndices.size() && originalMatchingIndices.size() > 0) {
+			int matches = 0;
+			for(int i=0; i<originalMatchingIndices.size(); i++) {
+				int originalIndex = originalMatchingIndices.get(i);
+				int revisedIndex = revisedMatchingIndices.get(i);
+				if(originalIndex == revisedIndex) {
+					matches++;
+				}
+				else if(revisedIndex - originalIndex == revised.size() - original.size()) {
+					matches++;
+				}
+			}
+			return matches == originalMatchingIndices.size();
+		}
+		return false;
+	}
+
+	private boolean equalOrStripEqual(List<String> original, List<String> revised, String line, Integer index) {
+		String originalAtIndex = original.get(index);
+		String revisedAtIndex = revised.get(index);
+		return equalOrStripEqual(originalAtIndex, revisedAtIndex, line);
+	}
+
+	private boolean equalOrStripEqual(String originalAtIndex, String revisedAtIndex, String line) {
+		if(originalAtIndex.equals(line) && revisedAtIndex.equals(line))
+			return true;
+		String originalStripped = originalAtIndex.strip();
+		String revisedStripped = revisedAtIndex.strip();
+		if(originalStripped.equals(revisedStripped) && originalStripped.equals(line.strip()))
+			return true;
+		return false;
+	}
+
+	private boolean indentationChange(AbstractDelta<String> delta) {
+		Chunk<String> source = delta.getSource();
+		Chunk<String> target = delta.getTarget();
+		if (source.getLines().size() == target.getLines().size() && source.getLines().size() > 0) {
+			List<String> sourceStrippedLines = new ArrayList<String>();
+			List<String> targetStrippedLines = new ArrayList<String>();
+			for(int i=0; i<source.getLines().size(); i++) {
+				sourceStrippedLines.add(source.getLines().get(i).strip());
+				targetStrippedLines.add(target.getLines().get(i).strip());
+			}
+			if (sourceStrippedLines.equals(targetStrippedLines)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private List<Integer> findAllMatchingIndices(List<String> lines, String line) {
 		List<Integer> matchingIndices = new ArrayList<>();
-		for(int i=0; i<startCommentLines.size(); i++) {
-			String element = startCommentLines.get(i).trim();
-			if(line.equals(element) || element.contains(line.trim())) {
+		for(int i=0; i<lines.size(); i++) {
+			String element = lines.get(i);
+			if(element.strip().equals(line.strip())) {
+				matchingIndices.add(i);
+			}
+		}
+		return matchingIndices;
+	}
+
+	private List<Integer> findAllMatchingIndicesRelaxed(List<String> lines, String line) {
+		List<Integer> matchingIndices = new ArrayList<>();
+		for(int i=0; i<lines.size(); i++) {
+			String element = lines.get(i);
+			if(element.strip().contains(line.strip())) {
 				matchingIndices.add(i);
 			}
 		}
