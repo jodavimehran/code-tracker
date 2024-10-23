@@ -42,6 +42,7 @@ import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
@@ -1774,6 +1775,18 @@ public class FileTrackerImpl extends BaseTracker {
 		if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
 			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
 			bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
+			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
+				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {
+					rightSideOperations.addAll(umlClass.getOperations());
+					rightSideOperations.remove(rightMethod.getUmlOperation());
+				}
+			}
+			if (containsCallToExtractedMethod(bodyMapper, rightSideOperations)) {
+				UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
+				//this bodyMapper has mapping optimization
+				bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
+			}
 		}
 		else if (leftOperation instanceof UMLInitializer && rightOperation instanceof UMLInitializer) {
 			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);

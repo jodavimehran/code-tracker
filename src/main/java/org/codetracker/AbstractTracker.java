@@ -37,6 +37,7 @@ import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.AbstractCall;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
+import gr.uom.java.xmi.decomposition.AbstractCodeMapping;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.MoveSourceFolderRefactoring;
 import gr.uom.java.xmi.diff.UMLAbstractClassDiff;
@@ -145,6 +146,32 @@ public abstract class AbstractTracker {
 	        }
 	    }
 	    return false;
+	}
+	
+	protected static boolean containsCallToExtractedMethod(UMLOperationBodyMapper bodyMapper, List<UMLOperation> addedOperations) {
+		for(AbstractCodeFragment leaf2 : bodyMapper.getNonMappedLeavesT2()) {
+            AbstractCall invocation = leaf2.invocationCoveringEntireFragment();
+            if(invocation == null) {
+                invocation = leaf2.assignmentInvocationCoveringEntireStatement();
+            }
+            UMLOperation matchingOperation = null;
+            if(invocation != null && (matchingOperation = matchesOperation(invocation, addedOperations, bodyMapper.getContainer2(), null)) != null && matchingOperation.getBody() != null) {
+                return true;
+            }
+        }
+		for(AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+			if(!mapping.getFragment1().getString().equals(mapping.getFragment2().getString())) {
+				AbstractCall invocation = mapping.getFragment2().invocationCoveringEntireFragment();
+	            if(invocation == null) {
+	                invocation = mapping.getFragment2().assignmentInvocationCoveringEntireStatement();
+	            }
+	            UMLOperation matchingOperation = null;
+	            if(invocation != null && (matchingOperation = matchesOperation(invocation, addedOperations, bodyMapper.getContainer2(), null)) != null && matchingOperation.getBody() != null) {
+	                return true;
+	            }
+			}
+		}
+		return false;
 	}
 
 	private static UMLOperation matchesOperation(AbstractCall invocation, List<UMLOperation> operations, VariableDeclarationContainer callerOperation, UMLAbstractClassDiff classDiff) {

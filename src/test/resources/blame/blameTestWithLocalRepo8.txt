@@ -2519,22 +2519,22 @@ d9a1022f3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2519) 			annJoins = null;
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2520) 			annInverseJoins = null;
 d9a1022f3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2009-07-20 23:24:38 +0000 2521) 		}
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2522) 		Ejb3JoinColumn[] joinColumns = Ejb3JoinColumn.buildJoinTableJoinColumns(
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2522) 		Ejb3JoinColumn[] joinColumns = Ejb3JoinColumn.buildJoinTableJoinColumns(
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2523) 				annJoins,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2524) 				entityBinder.getSecondaryTables(),
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2525) 				propertyHolder,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2526) 				inferredData.getPropertyName(),
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2527) 				mappedBy,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2528) 				buildingContext
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2529) 		);
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2530) 		Ejb3JoinColumn[] inverseJoinColumns = Ejb3JoinColumn.buildJoinTableJoinColumns(
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2529) 		);
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2530) 		Ejb3JoinColumn[] inverseJoinColumns = Ejb3JoinColumn.buildJoinTableJoinColumns(
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2531) 				annInverseJoins,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2532) 				entityBinder.getSecondaryTables(),
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2533) 				propertyHolder,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2534) 				inferredData.getPropertyName(),
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2535) 				mappedBy,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2536) 				buildingContext
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2537) 		);
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2537) 		);
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2538) 		associationTableBinder.setBuildingContext( buildingContext );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2539) 		collectionBinder.setTableBinder( associationTableBinder );
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2540) 		collectionBinder.setJoinColumns( joinColumns );
