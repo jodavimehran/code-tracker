@@ -192,7 +192,7 @@ fc40d1cb6 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Co
 fc40d1cb6 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-09-07 23:03:37 +0000 192)              throw new IllegalArgumentException("The date must not be null");
 fc40d1cb6 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-09-07 23:03:37 +0000 193)          }
 35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 194)          return cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 195)                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+fc40d1cb6 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-09-07 23:03:37 +0000 195)                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
 35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 196)                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR);
 fc40d1cb6 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-09-07 23:03:37 +0000 197)      }
                                                                                                                     198)
@@ -251,12 +251,12 @@ b0053ca69 src/java/org/apache/commons/lang/time/DateUtils.java       (Gary D. Gr
 61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 251)              throw new IllegalArgumentException("The date must not be null");
 61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 252)          }
 35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 253)          return cal1.get(Calendar.MILLISECOND) == cal2.get(Calendar.MILLISECOND) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 254)                  cal1.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 255)                  cal1.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 256)                  cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 257)                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 258)                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
-35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 259)                  cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
+61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 254)                  cal1.get(Calendar.SECOND) == cal2.get(Calendar.SECOND) &&
+61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 255)                  cal1.get(Calendar.MINUTE) == cal2.get(Calendar.MINUTE) &&
+3e5d5dc9c src/main/java/org/apache/commons/lang3/time/DateUtils.java (Niall Pemberton     2011-02-02 21:55:15 +0000 256)                  cal1.get(Calendar.HOUR_OF_DAY) == cal2.get(Calendar.HOUR_OF_DAY) &&
+61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 257)                  cal1.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 258)                  cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 259)                  cal1.get(Calendar.ERA) == cal2.get(Calendar.ERA) &&
 35f1cc002 src/main/java/org/apache/commons/lang3/time/DateUtils.java (Benedikt Ritter     2015-04-06 19:48:22 +0000 260)                  cal1.getClass() == cal2.getClass();
 61cccd3e0 src/java/org/apache/commons/lang/time/DateUtils.java       (Stephen Colebourne  2004-10-16 17:08:42 +0000 261)      }
                                                                                                                     262)

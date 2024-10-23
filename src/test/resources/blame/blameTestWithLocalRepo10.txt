@@ -165,7 +165,7 @@ f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 165)             filters.add(filter);
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 166)         }
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 167)         else {
-4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 168)             throw new CheckstyleException(
+a17065517 src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars Kühne          2003-02-11 06:20:50 +0000 168)             throw new CheckstyleException(
 4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 169)                 "TreeWalker is not allowed as a parent of " + name
 4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 170)                         + " Please review 'Parent Module' section for this Check in web"
 4cef3f91f src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Subbu Dantu         2017-04-11 04:40:33 +0000 171)                         + " documentation if Check is standard.");
@@ -190,7 +190,7 @@ f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur 
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 190)                 addMessages(messages);
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 191)             }
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 192)             else {
-58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 193)                 final SortedSet<LocalizedMessage> filteredMessages =
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 193)                 final SortedSet<LocalizedMessage> filteredMessages =
 58327e1dd src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Pavel Bludov        2018-01-24 06:39:46 +0000 194)                     getFilteredMessages(file.getPath(), contents, rootAST);
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 195)                 addMessages(filteredMessages);
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 196)             }
@@ -209,7 +209,7 @@ f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur 
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 209)             String fileName, FileContents fileContents, DetailAST rootAST) {
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 210)         final SortedSet<LocalizedMessage> result = new TreeSet<>(messages);
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 211)         for (LocalizedMessage element : messages) {
-f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 212)             final TreeWalkerAuditEvent event =
+6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 212)             final TreeWalkerAuditEvent event =
 f99451271 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-08-23 15:11:26 +0000 213)                     new TreeWalkerAuditEvent(fileContents, fileName, element, rootAST);
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 214)             for (TreeWalkerFilter filter : filters) {
 6d9e8ece8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-07-24 20:38:15 +0000 215)                 if (!filter.accept(event)) {
@@ -248,7 +248,7 @@ a2fded8ed src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Lars K
 39ce82b92 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-02-08 21:46:27 +0000 248)                 else {
 be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 249)                     final String message = String.format(Locale.ROOT, "Token \"%s\" was "
 be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 250)                             + "not found in Acceptable tokens list in check %s",
-be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 251)                             token, check.getClass().getName());
+085ce12db src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-08-25 23:00:09 +0000 251)                             token, check.getClass().getName());
 085ce12db src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-08-25 23:00:09 +0000 252)                     throw new CheckstyleException(message);
 39ce82b92 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkravin          2015-02-08 21:46:27 +0000 253)                 }
 19257b2cd src/checkstyle/com/puppycrawl/tools/checkstyle/TreeWalker.java (Oliver Burn         2002-09-15 12:44:17 +0000 254)             }
@@ -286,8 +286,8 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (alexkr
 a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 286)         }
 cdf3e56ba src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ilja Dubinin        2015-08-27 12:17:01 +0000 287)         else if (TokenUtils.isCommentType(token)) {
 be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 288)             final String message = String.format(Locale.ROOT, "Check '%s' waits for comment type "
-be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 289)                     + "token ('%s') and should override 'isCommentNodesRequired()' "
-be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 290)                     + "method to return 'true'", check.getClass().getName(), token);
+4d8d047f4 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-09-06 12:17:36 +0000 289)                     + "token ('%s') and should override 'isCommentNodesRequired()' "
+ee518dfe8 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-04-13 21:43:00 +0000 290)                     + "method to return 'true'", check.getClass().getName(), token);
 0bff657f6 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Roman Ivanov        2015-09-14 01:19:24 +0000 291)             throw new CheckstyleException(message);
 a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 292)         }
 a24df47ca src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Baratali Izmailov   2014-10-18 05:19:10 +0000 293)         else {
@@ -308,7 +308,7 @@ afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei
 afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 308)                 if (Arrays.binarySearch(defaultTokens, token) < 0) {
 be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 309)                     final String message = String.format(Locale.ROOT, "Token \"%s\" from required "
 be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 310)                             + "tokens was not found in default tokens list in check %s",
-be3e035ce src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-10-13 23:37:10 +0000 311)                             token, check.getClass().getName());
+60ae95a62 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Michal Kordas       2015-08-27 12:41:39 +0000 311)                             token, check.getClass().getName());
 085ce12db src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Ruslan Diachenko    2015-08-25 23:00:09 +0000 312)                     throw new CheckstyleException(message);
 afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 313)                 }
 afd9a5c3e src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2015-08-25 12:29:56 +0000 314)             }
