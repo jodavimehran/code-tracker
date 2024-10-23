@@ -192,6 +192,11 @@ public abstract class AbstractCodeElementLocator {
 			return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
 		            block.getComposite().getLocationInfo().getEndLine() >= lineNumber;
 		}
+		else if (block.getComposite() instanceof StatementObject && block.getComposite().getAnonymousClassDeclarations().size() > 0) {
+			int anonymousStartLine = block.getComposite().getAnonymousClassDeclarations().get(0).getLocationInfo().getStartLine();
+			return block.getComposite().getLocationInfo().getStartLine() <= lineNumber &&
+					anonymousStartLine >= lineNumber;
+		}
 		else if (block.getComposite() instanceof CompositeStatementObject) {
 			CompositeStatementObject comp = (CompositeStatementObject)block.getComposite();
 			List<AbstractStatement> statements = comp.getStatements();

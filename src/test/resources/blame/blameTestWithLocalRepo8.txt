@@ -639,9 +639,9 @@ bf7607e24 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
                                                                                                                             639)
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 640)  		if ( inheritanceState.hasTable() ) {
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 641)  			Check checkAnn = clazzToProcess.getAnnotation( Check.class );
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 642)  			String constraints = checkAnn == null
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 643)  					? null
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 644)  					: checkAnn.constraints();
+9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 642)  			String constraints = checkAnn == null
+9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 643)  					? null
+9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 644)  					: checkAnn.constraints();
                                                                                                                             645)
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 646)  			EntityTableXref denormalizedTableXref = inheritanceState.hasDenormalizedTable()
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 647)  					? context.getMetadataCollector().getEntityTableXref( superEntity.getEntityName() )
@@ -847,9 +847,9 @@ bf7607e24 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 847)  		javax.persistence.DiscriminatorColumn discAnn = clazzToProcess.getAnnotation(
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 848)  				javax.persistence.DiscriminatorColumn.class
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 849)  		);
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 850)  		DiscriminatorType discriminatorType = discAnn != null
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 851)  				? discAnn.discriminatorType()
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 852)  				: DiscriminatorType.STRING;
+5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 850)  		DiscriminatorType discriminatorType = discAnn != null
+5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 851)  				? discAnn.discriminatorType()
+5329bba1e hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2013-12-13 06:57:47 +0000 852)  				: DiscriminatorType.STRING;
                                                                                                                             853)
 025b3cc14 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2009-12-11 19:14:01 +0000 854)  		org.hibernate.annotations.DiscriminatorFormula discFormulaAnn = clazzToProcess.getAnnotation(
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 855)  				org.hibernate.annotations.DiscriminatorFormula.class
@@ -2287,14 +2287,14 @@ b1a9c816a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2287) 					//components and regular basic types create SimpleValue objects
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2288) 					final SimpleValue value = ( SimpleValue ) propertyBinder.getValue();
 7c72886f6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-26 17:15:37 +0000 2289) 					if ( !isOverridden ) {
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2290) 						processId(
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2291) 								propertyHolder,
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2292) 								inferredData,
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2293) 								value,
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2294) 								classGenerators,
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2295) 								isIdentifierMapper,
+174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2290) 						processId(
+174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2291) 								propertyHolder,
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2292) 								inferredData,
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2293) 								value,
+174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2294) 								classGenerators,
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2295) 								isIdentifierMapper,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2296) 								context
-9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2297) 						);
+174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2297) 						);
 7c72886f6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-26 17:15:37 +0000 2298) 					}
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2299) 				}
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2300) 			}
@@ -2367,7 +2367,7 @@ e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 7c72886f6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-26 17:15:37 +0000 2367) 			boolean isIdentifierMapper,
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 2368) 			MetadataBuildingContext buildingContext) {
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2369) 		if ( isIdentifierMapper ) {
-174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2370) 			throw new AnnotationException(
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2370) 			throw new AnnotationException(
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2371) 					"@IdClass class should not have @Id nor @EmbeddedId properties: "
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2372) 							+ BinderHelper.getPath( propertyHolder, inferredData )
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2373) 			);
@@ -2381,12 +2381,12 @@ e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2381) 				|| idXProperty.isAnnotationPresent( EmbeddedId.class );
                                                                                                                             2382)
 9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2383) 		GeneratedValue generatedValue = idXProperty.getAnnotation( GeneratedValue.class );
-9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2384) 		String generatorType = generatedValue != null
-9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2385) 				? generatorType( generatedValue, buildingContext, entityXClass )
-9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2386) 				: "assigned";
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2387) 		String generatorName = generatedValue != null
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2388) 				? generatedValue.generator()
-8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2389) 				: BinderHelper.ANNOTATION_STRING_DEFAULT;
+7a1c15509 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-21 19:45:44 +0000 2384) 		String generatorType = generatedValue != null
+99428251c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2385) 				? generatorType( generatedValue, buildingContext, entityXClass )
+7a1c15509 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-21 19:45:44 +0000 2386) 				: "assigned";
+7a1c15509 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-21 19:45:44 +0000 2387) 		String generatorName = generatedValue != null
+7a1c15509 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-21 19:45:44 +0000 2388) 				? generatedValue.generator()
+7a1c15509 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-21 19:45:44 +0000 2389) 				: BinderHelper.ANNOTATION_STRING_DEFAULT;
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2390) 		if ( isComponent ) {
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2391) 			//a component must not have any generator
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2392) 			generatorType = "assigned";
@@ -2427,17 +2427,17 @@ b1a9c816a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (
 99428251c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2427) 			GeneratedValue generatedValueAnn,
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2428) 			final MetadataBuildingContext buildingContext,
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2429) 			final XClass javaTypeXClass) {
-8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2430) 		return buildingContext.getBuildingOptions().getIdGenerationTypeInterpreter().determineGeneratorName(
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2431) 				generatedValueAnn.strategy(),
-7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2432) 				new IdGeneratorStrategyInterpreter.GeneratorNameDeterminationContext() {
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2430) 		return buildingContext.getBuildingOptions().getIdGenerationTypeInterpreter().determineGeneratorName(
+99428251c hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2431) 				generatedValueAnn.strategy(),
+1f50efa34 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-27 03:54:01 +0000 2432) 				new IdGeneratorStrategyInterpreter.GeneratorNameDeterminationContext() {
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2433) 					Class javaType = null;
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2434) 					@Override
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2435) 					public Class getIdType() {
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2436) 						if ( javaType == null ) {
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2437) 							javaType = buildingContext
 8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2438) 									.getBootstrapContext()
-8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2439) 									.getReflectionManager()
-8f889e95d hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Andrea Boriero    2018-03-28 22:43:48 +0000 2440) 									.toClass( javaTypeXClass );
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2439) 									.getReflectionManager()
+5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2440) 									.toClass( javaTypeXClass );
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2441) 						}
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2442) 						return javaType;
 5d365cfa0 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-26 21:18:40 +0000 2443) 					}

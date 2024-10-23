@@ -345,7 +345,7 @@ bdc9ef8db junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 345) 	private void invokeTestInstancePostProcessors(Object instance, ExtensionRegistry registry,
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 346) 			ExtensionContext context) {
                                                                                                                                                      347)
-ebfdc4d7f junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-24 22:09:27 +0000 348) 		registry.stream(TestInstancePostProcessor.class).forEach(
+3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 348) 		registry.stream(TestInstancePostProcessor.class).forEach(
 fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:30 +0000 349) 			extension -> executeAndMaskThrowable(() -> extension.postProcessTestInstance(instance, context)));
 65e0bd548 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-13 13:55:54 +0000 350) 	}
                                                                                                                                                      351)

@@ -190,6 +190,23 @@ public class Block extends BaseCodeElement {
 			if (thisSignature != null && otherSignature != null) {
 				int leftLines = this.getLocation().getEndLine() - this.getLocation().getStartLine();
 				int rightLines = other.getLocation().getEndLine() - other.getLocation().getStartLine();
+				if (leftLines == rightLines) {
+					//check if lines start and end with the same character
+					String[] leftLineArray = thisSignature.split("\\r?\\n");
+					String[] rightLineArray = otherSignature.split("\\r?\\n");
+					int linesWithDifferences = 0;
+					for (int i=0; i<leftLineArray.length; i++) {
+						String leftLine = leftLineArray[i];
+						String rightLine = rightLineArray[i];
+						if(leftLine.length() > 1 && rightLine.length() > 1 &&
+								(leftLine.charAt(0) != rightLine.charAt(0) || leftLine.charAt(leftLine.length()-1) != rightLine.charAt(rightLine.length()-1))) {
+							linesWithDifferences++;
+						}
+					}
+					if(linesWithDifferences > 0) {
+						return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+					}
+				}
 	    		return !thisSignature.equals(otherSignature) && leftLines != rightLines && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
 	    	}
     	}
