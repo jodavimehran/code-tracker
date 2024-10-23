@@ -45,6 +45,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.decomposition.OperationBody;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.ExtractClassRefactoring;
 import gr.uom.java.xmi.diff.ExtractOperationRefactoring;
@@ -1564,7 +1565,15 @@ public class FileTrackerImpl extends BaseTracker {
 						startMethodChangeHistory.setCurrent(leftMethod);
 						int leftLines = leftMethod.getLocation().getEndLine() - leftMethod.getLocation().getStartLine();
 						int rightLines = rightMethod.getLocation().getEndLine() - rightMethod.getLocation().getStartLine();
-						if (leftLines != rightLines) {
+						OperationBody leftBody = leftMethod.getUmlOperation().getBody();
+						OperationBody rightBody = rightMethod.getUmlOperation().getBody();
+						boolean differInBodyLines = false;
+						if(leftBody != null && rightBody != null) {
+							int leftBodyLines = leftBody.getCompositeStatement().getLocationInfo().getEndLine() - leftBody.getCompositeStatement().getLocationInfo().getStartLine();
+							int rightBodyLines = rightBody.getCompositeStatement().getLocationInfo().getEndLine() - rightBody.getCompositeStatement().getLocationInfo().getStartLine();
+							differInBodyLines = leftBodyLines != rightBodyLines;
+						}
+						if (leftLines != rightLines || differInBodyLines) {
 							processNestedStatementsAndComments(rightModel, currentVersion, leftModel, parentVersion,
 									startMethod, rightMethod, leftMethod);
 						}
