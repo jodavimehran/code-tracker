@@ -45,6 +45,7 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.decomposition.OperationBody;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.ExtractClassRefactoring;
@@ -1787,8 +1788,15 @@ public class FileTrackerImpl extends BaseTracker {
 			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
 			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
 				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {
-					rightSideOperations.addAll(umlClass.getOperations());
-					rightSideOperations.remove(rightMethod.getUmlOperation());
+					UMLClass leftClass = leftModel.getClass((UMLClass)umlClass);
+					if(leftClass != null) {
+						for(UMLOperation operation : umlClass.getOperations()) {
+							if(!leftClass.containsOperationWithTheSameSignature(operation)) {
+								rightSideOperations.add(operation);
+							}
+						}
+						rightSideOperations.remove(rightMethod.getUmlOperation());
+					}
 				}
 			}
 			boolean allMapped = 

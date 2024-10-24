@@ -415,7 +415,7 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 6a415915c org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-15 21:49:47 +0000 415)  	 *            the shallow commits in the client
 6a415915c org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-15 21:49:47 +0000 416)  	 */
 6a415915c org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-15 21:49:47 +0000 417)  	public void setClientShallowCommits(Set<ObjectId> clientShallowCommits) {
-3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 21:47:23 +0000 418)  		stats.clientShallowCommits = Collections
+6a415915c org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-15 21:49:47 +0000 418)  		stats.clientShallowCommits = Collections
 3b4448637 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (David Pursehouse          2017-02-20 21:47:23 +0000 419)  				.unmodifiableSet(new HashSet<>(clientShallowCommits));
 6a415915c org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-06-15 21:49:47 +0000 420)  	}
                                                                                                                                            421)
@@ -911,7 +911,7 @@ c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter
 9952223e0 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Matt Fischer              2011-08-21 21:04:23 +0000 911)  		if (shallowPack && !(walk instanceof DepthWalk.ObjectWalk))
 d385a7a5e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2016-08-05 22:37:36 +0000 912)  			throw new IllegalArgumentException(
 d385a7a5e org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2016-08-05 22:37:36 +0000 913)  					JGitText.get().shallowPacksRequireDepthWalk);
-c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 914)  		findObjectsToPack(countingMonitor, walk, interestingObjects,
+5664fb3bf org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-13 21:43:11 +0000 914)  		findObjectsToPack(countingMonitor, walk, interestingObjects,
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 915)  				uninterestingObjects, noBitmaps);
 74333e63b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-16 19:18:39 +0000 916)  	}
                                                                                                                                            917)
@@ -1302,10 +1302,10 @@ dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1302) 		// really benefit from delta compression. Consequently just don't
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1303) 		// bother examining those types here.
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1304) 		//
-8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1305) 		ObjectToPack[] list = new ObjectToPack[
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1305) 		ObjectToPack[] list = new ObjectToPack[
 8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1306) 				  objectsLists[OBJ_TREE].size()
 8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1307) 				+ objectsLists[OBJ_BLOB].size()
-8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1308) 				+ edgeObjects.size()];
+dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1308) 				+ edgeObjects.size()];
 dfad23bf3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-07-10 02:14:18 +0000 1309) 		int cnt = 0;
 8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1310) 		cnt = findObjectsNeedingDelta(list, cnt, OBJ_TREE);
 8e83c36e2 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 16:43:02 +0000 1311) 		cnt = findObjectsNeedingDelta(list, cnt, OBJ_BLOB);
@@ -1791,7 +1791,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1791) 			BitmapIndex bitmapIndex = reader.getBitmapIndex();
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1792) 			if (bitmapIndex != null) {
 ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1793) 				BitmapWalker bitmapWalker = new BitmapWalker(
-ccf25f954 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2017-11-10 23:41:31 +0000 1794) 						walker, bitmapIndex, countingMonitor);
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1794) 						walker, bitmapIndex, countingMonitor);
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1795) 				findObjectsToPackUsingBitmaps(bitmapWalker, want, have);
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1796) 				endPhase(countingMonitor);
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 1797) 				stats.timeCounting = System.currentTimeMillis() - countingStart;
@@ -1957,7 +1957,7 @@ a1a8c6d77 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 733780e8a org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-18 05:32:03 +0000 1957) 		commits = null;
                                                                                                                                            1958)
 99e6cfb13 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-08-08 22:10:11 +0000 1959) 		if (thin && !baseTrees.isEmpty()) {
-461b012e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-03 21:20:22 +0000 1960) 			BaseSearch bases = new BaseSearch(countingMonitor, baseTrees, //
+13bcf05a9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-01 15:12:06 +0000 1960) 			BaseSearch bases = new BaseSearch(countingMonitor, baseTrees, //
 461b012e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-02-03 21:20:22 +0000 1961) 					objectsMap, edgeObjects, reader);
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1962) 			RevObject o;
 1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1963) 			while ((o = walker.nextObject()) != null) {
@@ -2080,10 +2080,10 @@ be7a135e9 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
                                                                                                                                            2080)
 4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2081) 		// Check if this object needs to be rejected, doing the cheaper
 4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2082) 		// checks first.
-32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2083) 		boolean reject = filterBlobLimit >= 0 &&
-32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2084) 			type == OBJ_BLOB &&
+4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2083) 		boolean reject = filterBlobLimit >= 0 &&
+4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2084) 			type == OBJ_BLOB &&
 32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2085) 			!want.contains(src) &&
-32798dcfd org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-07-21 00:09:05 +0000 2086) 			reader.getObjectSize(src, OBJ_BLOB) > filterBlobLimit;
+4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2086) 			reader.getObjectSize(src, OBJ_BLOB) > filterBlobLimit;
 4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2087) 		if (!reject) {
 4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2088) 			addObject(src, type, pathHashCode);
 4ac32e79b org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Jonathan Tan              2018-03-15 20:46:42 +0000 2089) 		}
@@ -2208,7 +2208,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2208) 		writeBitmaps = new PackBitmapIndexBuilder(byName);
 4bb523475 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2015-08-13 17:13:44 +0000 2209) 		byName = null;
                                                                                                                                            2210)
-80c7884ea org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-10-22 05:12:52 +0000 2211) 		PackWriterBitmapPreparer bitmapPreparer = new PackWriterBitmapPreparer(
+f82821728 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:15:19 +0000 2211) 		PackWriterBitmapPreparer bitmapPreparer = new PackWriterBitmapPreparer(
 80c7884ea org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2015-10-22 05:12:52 +0000 2212) 				reader, writeBitmaps, pm, stats.interestingObjects, config);
                                                                                                                                            2213)
 c46c720e9 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Terry Parker              2017-05-18 22:25:21 +0000 2214) 		Collection<PackWriterBitmapPreparer.BitmapCommit> selectedCommits = bitmapPreparer
@@ -2222,7 +2222,7 @@ dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 8f7d0a4fb org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Zhen Chen                 2017-05-03 22:02:33 +0000 2222) 			if (!cmit.isReuseWalker()) {
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2223) 				walker = bitmapPreparer.newBitmapWalker();
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2224) 			}
-9fd1325ec org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2014-09-26 13:45:46 +0000 2225) 			BitmapBuilder bitmap = walker.findObjects(
+dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2225) 			BitmapBuilder bitmap = walker.findObjects(
 9fd1325ec org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Matthias Sohn             2014-09-26 13:45:46 +0000 2226) 					Collections.singleton(cmit), null, false);
                                                                                                                                            2227)
 dafcb8f6d org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Colby Ranger              2013-03-05 19:14:45 +0000 2228) 			if (last != null && cmit.isReuseWalker() && !bitmap.contains(last))

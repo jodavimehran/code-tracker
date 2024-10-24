@@ -38,6 +38,7 @@ import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 
 import gr.uom.java.xmi.UMLAttribute;
+import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLEnumConstant;
 import gr.uom.java.xmi.UMLInitializer;
 import gr.uom.java.xmi.UMLJavadoc;
@@ -1794,8 +1795,15 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
 			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
 				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {
-					rightSideOperations.addAll(umlClass.getOperations());
-					rightSideOperations.remove(rightMethod.getUmlOperation());
+					UMLClass leftClass = leftModel.getClass((UMLClass)umlClass);
+					if(leftClass != null) {
+						for(UMLOperation operation : umlClass.getOperations()) {
+							if(!leftClass.containsOperationWithTheSameSignature(operation)) {
+								rightSideOperations.add(operation);
+							}
+						}
+						rightSideOperations.remove(rightMethod.getUmlOperation());
+					}
 				}
 			}
 			boolean allMapped = 
