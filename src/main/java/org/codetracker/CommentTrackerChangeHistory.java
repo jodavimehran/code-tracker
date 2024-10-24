@@ -307,27 +307,16 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                                 }
                             }
                         }
-                        Comment commentBefore;
-                        if (rightComment.getOperation().isPresent())
-                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
-                        else
-                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
-                        if (matchedCommentFromSourceMethod == null) {
-                            commentChangeHistory.handleAdd(commentBefore, rightComment, moveCodeRefactoring.toString());
-                            if(extractMatches == 0) {
-                            	elements.addFirst(commentBefore);
-                            }
-                        }
-                        else {
+                        if (matchedCommentFromSourceMethod != null) {
                             VariableDeclarationContainer sourceOperation = moveCodeRefactoring.getSourceContainer();
                             Method sourceMethod = Method.of(sourceOperation, parentVersion);
                             Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
                             if(extractMatches == 0) {
                             	elements.addFirst(leftComment);
                             }
+                            commentChangeHistory.connectRelatedNodes();
+                            extractMatches++;
                         }
-                        commentChangeHistory.connectRelatedNodes();
-                        extractMatches++;
                     }
                 	break;
                 }

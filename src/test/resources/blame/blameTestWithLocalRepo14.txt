@@ -64,17 +64,17 @@ ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/Dispat
 5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 64)  			LeaderElectionService leaderElectionService,
 ab8316f31 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-18 09:12:54 +0000 65)  			FatalErrorHandler fatalErrorHandler) throws IOException {
                                                                                                                                                      66)
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 67)  		super(
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 68)  			endpointConfiguration,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 69)  			leaderRetriever,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 70)  			clusterConfiguration,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 71)  			restConfiguration,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 72)  			resourceManagerRetriever,
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 67)  		super(
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 68)  			endpointConfiguration,
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 69)  			leaderRetriever,
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 70)  			clusterConfiguration,
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 71)  			restConfiguration,
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 72)  			resourceManagerRetriever,
 5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 73)  			transientBlobService,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 74)  			executor,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 75)  			metricQueryServiceRetriever,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 76)  			leaderElectionService,
-5f573804f flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-06 12:34:21 +0000 77)  			fatalErrorHandler);
+0e3027d4b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-12-13 21:34:32 +0000 74)  			executor,
+ac8225fd5 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-01-26 12:50:25 +0000 75)  			metricQueryServiceRetriever,
+ac8225fd5 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-01-26 12:50:25 +0000 76)  			leaderElectionService,
+ac8225fd5 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (gyao                2018-01-26 12:50:25 +0000 77)  			fatalErrorHandler);
                                                                                                                                                      78)
 ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2018-02-19 16:27:33 +0000 79)  		webSubmissionExtension = WebMonitorExtension.empty();
 6a62f1455 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-19 22:34:13 +0000 80)  	}
@@ -87,11 +87,11 @@ ec752138b flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/Dispat
                                                                                                                                                      87)
 c6243b8b1 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-09-21 07:30:50 +0000 88)  		final Time timeout = restConfiguration.getTimeout();
                                                                                                                                                      89)
-0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 90)  		JobSubmitHandler jobSubmitHandler = new JobSubmitHandler(
-0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 91)  			restAddressFuture,
-0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 92)  			leaderRetriever,
-0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 93)  			timeout,
-0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 94)  			responseHeaders,
+eddb5b0a4 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:41 +0000 90)  		JobSubmitHandler jobSubmitHandler = new JobSubmitHandler(
+eddb5b0a4 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:41 +0000 91)  			restAddressFuture,
+eddb5b0a4 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:41 +0000 92)  			leaderRetriever,
+eddb5b0a4 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (Till Rohrmann       2017-11-07 14:07:41 +0000 93)  			timeout,
+a25cd3fed flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-03 19:08:45 +0000 94)  			responseHeaders,
 0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 95)  			executor,
 0a5aebb01 flink-runtime/src/main/java/org/apache/flink/runtime/dispatcher/DispatcherRestEndpoint.java (zentol              2018-07-16 12:09:42 +0000 96)  			clusterConfiguration);
                                                                                                                                                      97)

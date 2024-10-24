@@ -371,10 +371,10 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 371)      */
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 372)     protected Statement withBefores(FrameworkMethod method, Object target,
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 373)             Statement statement) {
-123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 374)         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
-123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 375)                 Before.class);
-198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 376)         return befores.isEmpty() ? statement : new RunBefores(statement,
-198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 377)                 befores, target);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 374)         List<FrameworkMethod> befores = getTestClass().getAnnotatedMethods(
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 375)                 Before.class);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 376)         return befores.isEmpty() ? statement : new RunBefores(statement,
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 377)                 befores, target);
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 378)     }
                                                                                                                              379)
 7a3e99635 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 15:59:22 +0000 380)     /**
@@ -386,10 +386,10 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 386)      */
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 387)     protected Statement withAfters(FrameworkMethod method, Object target,
 bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 388)             Statement statement) {
-123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 389)         List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(
-123432f73 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-23 20:39:42 +0000 390)                 After.class);
-198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 391)         return afters.isEmpty() ? statement : new RunAfters(statement, afters,
-198df01b7 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-05-12 03:29:36 +0000 392)                 target);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 389)         List<FrameworkMethod> afters = getTestClass().getAnnotatedMethods(
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 390)                 After.class);
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 391)         return afters.isEmpty() ? statement : new RunAfters(statement, afters,
+b5fb9c92d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alistair A. Israel 2010-05-06 08:09:38 +0000 392)                 target);
 078e45bd3 src/main/java/org/junit/internal/runners/BlockJUnit4ClassRunner.java (kbeck              2008-06-16 17:52:02 +0000 393)     }
                                                                                                                              394)
 aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Alex Panchenko     2017-08-07 00:11:20 +0000 395)     private Statement withRules(FrameworkMethod method, Object target, Statement statement) {
