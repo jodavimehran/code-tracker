@@ -408,10 +408,10 @@ d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 408)     final Map<File, Set<File>> outs = Collections.singletonMap(outputDir, sourceRoots);
                                                                                                                                409)
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 410)     final ExternalJavacManager javacManager = getJavacManager();
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 411)     boolean compiledOk = javacManager != null && javacManager.forkJavac(
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 411)     boolean compiledOk = javacManager != null && javacManager.forkJavac(
 53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 412)       javaHome, -1, Collections.emptyList(), options, platformCp, classpath, upgradeModulePath, modulePath, sourcePath, files, outs, diagnostic, outputCollector,
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 413)       new JavacCompilerTool(), CanceledStatus.NULL
-53dfc81e3 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Roman Shevchenko    2018-07-19 14:38:33 +0000 414)     );
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 413)       new JavacCompilerTool(), CanceledStatus.NULL
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 414)     );
                                                                                                                                415)
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 416)     if (!compiledOk) {
 78d149224 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Anna.Kozlova        2016-08-08 15:08:03 +0000 417)       final List<CompilationException.Message> messages = new SmartList<>();
