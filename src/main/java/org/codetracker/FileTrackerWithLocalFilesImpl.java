@@ -1798,7 +1798,13 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					rightSideOperations.remove(rightMethod.getUmlOperation());
 				}
 			}
-			if (containsCallToExtractedMethod(bodyMapper, rightSideOperations)) {
+			boolean allMapped = 
+					bodyMapper.getNonMappedLeavesT1().size() == 0 &&
+					bodyMapper.getNonMappedLeavesT2().size() == 0 &&
+					bodyMapper.getNonMappedInnerNodesT1().size() == 0 &&
+					bodyMapper.getNonMappedInnerNodesT2().size() == 0 &&
+					bodyMapper.getMappings().size() > 0;
+			if (!allMapped && containsCallToExtractedMethod(bodyMapper, rightSideOperations)) {
 				UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 				//this bodyMapper has mapping optimization
 				bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
