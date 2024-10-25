@@ -20,7 +20,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [Experiments](#experiments)
 
 # How to cite CodeTracker
-If you are using CodeTracker in your research, please cite the following paper:
+If you are using CodeTracker in your research, please cite the following papers:
 
 Mehran Jodavi and Nikolaos Tsantalis, "[Accurate Method and Variable Tracking in Commit History](https://users.encs.concordia.ca/~nikolaos/publications/FSE_2022.pdf)," pp. 183-195, *30th ACM Joint European Software Engineering Conference and Symposium on the Foundations of Software Engineering* (ESEC/FSE'2022), Singapore, Singapore, November 14–18, 2022.
 
@@ -41,6 +41,16 @@ Mehran Jodavi and Nikolaos Tsantalis, "[Accurate Method and Variable Tracking in
 	   series = {ESEC/FSE 2022}
     }
 
+Mohammed Tayeeb Hasan, Nikolaos Tsantalis, and Pouria Alikhanifard, "[Refactoring-aware Block Tracking in Commit History](https://users.encs.concordia.ca/~nikolaos/publications/TSE_2024.pdf)," *IEEE Transactions on Software Engineering*, 2024.
+
+    @article{Hasan:TSE:2024:CodeTracker2.0,
+       author = {Hasan, Mohammed Tayeeb and Tsantalis, Nikolaos and Alikhanifard, Pouria},
+	   journal = {IEEE Transactions on Software Engineering},
+	   title = {Refactoring-aware Block Tracking in Commit History},
+	   year = {2024},
+	   pages = {1-20},
+	   doi = {10.1109/TSE.2024.3484586}
+    }
 
 # Requirements
 Java 11.0.15 or newer
