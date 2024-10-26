@@ -350,7 +350,7 @@ fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 65e0bd548 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-13 13:55:54 +0000 350) 	}
                                                                                                                                                      351)
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 352) 	private void invokeBeforeAllCallbacks(JupiterEngineExecutionContext context) {
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 353) 		ExtensionRegistry registry = context.getExtensionRegistry();
+b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 353) 		ExtensionRegistry registry = context.getExtensionRegistry();
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 354) 		ExtensionContext extensionContext = context.getExtensionContext();
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 355) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
                                                                                                                                                      356)
@@ -363,7 +363,7 @@ fa7f25613 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 19:54:24 +0000 363) 	}
                                                                                                                                                      364)
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 365) 	private void invokeBeforeAllMethods(JupiterEngineExecutionContext context) {
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 366) 		ExtensionRegistry registry = context.getExtensionRegistry();
+b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 366) 		ExtensionRegistry registry = context.getExtensionRegistry();
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 367) 		ExtensionContext extensionContext = context.getExtensionContext();
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 368) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
 bf1e000a7 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 369) 		Object testInstance = extensionContext.getTestInstance().orElse(null);
@@ -378,9 +378,9 @@ bf1e000a7 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 378) 	}
                                                                                                                                                      379)
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 380) 	private void invokeAfterAllMethods(JupiterEngineExecutionContext context) {
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 381) 		ExtensionRegistry registry = context.getExtensionRegistry();
+b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 381) 		ExtensionRegistry registry = context.getExtensionRegistry();
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 382) 		ExtensionContext extensionContext = context.getExtensionContext();
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 383) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
+62c433c14 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 19:29:20 +0000 383) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
 bf1e000a7 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 384) 		Object testInstance = extensionContext.getTestInstance().orElse(null);
                                                                                                                                                      385)
 7205f05c4 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-06-30 16:16:42 +0000 386) 		this.afterAllMethods.forEach(method -> throwableCollector.execute(
@@ -388,9 +388,9 @@ bf1e000a7 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
 b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 388) 	}
                                                                                                                                                      389)
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 390) 	private void invokeAfterAllCallbacks(JupiterEngineExecutionContext context) {
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 391) 		ExtensionRegistry registry = context.getExtensionRegistry();
+b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 391) 		ExtensionRegistry registry = context.getExtensionRegistry();
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 392) 		ExtensionContext extensionContext = context.getExtensionContext();
-3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 393) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
+62c433c14 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 19:29:20 +0000 393) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
                                                                                                                                                      394)
 41e5e5798 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-26 15:25:30 +0000 395) 		registry.getReversedExtensions(AfterAllCallback.class)//
 3e3b40213 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 20:02:49 +0000 396) 				.forEach(extension -> throwableCollector.execute(() -> extension.afterAll(extensionContext)));
