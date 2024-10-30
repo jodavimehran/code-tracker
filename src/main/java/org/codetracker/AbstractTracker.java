@@ -338,6 +338,61 @@ public abstract class AbstractTracker {
 	
 	}
 
+	protected static Pair<UMLModel, UMLModel> getUMLModelPair(final CommitModel commitModel, Class rightClass, final Predicate<String> rightSideFileNamePredicate, final boolean filterLeftSide) throws Exception {
+		final String rightSideFileName = rightClass.getFilePath();
+		if (rightSideFileName == null)
+	        throw new IllegalArgumentException("File name could not be null.");
+	
+	    if (filterLeftSide) {
+	        String leftSideFileName = rightSideFileName;
+	        if (commitModel.moveSourceFolderRefactorings != null) {
+	            boolean found = false;
+	            for (MoveSourceFolderRefactoring moveSourceFolderRefactoring : commitModel.moveSourceFolderRefactorings) {
+	                if (found)
+	                    break;
+	                for (Map.Entry<String, String> identicalPath : moveSourceFolderRefactoring.getIdenticalFilePaths().entrySet()) {
+	                    if (identicalPath.getValue().equals(rightSideFileName)) {
+	                        leftSideFileName = identicalPath.getKey();
+	                        found = true;
+	                        break;
+	                    }
+	                }
+	                if (!found) {
+	                	if(rightClass.getLocation().getSourceFolder().startsWith(moveSourceFolderRefactoring.getPattern().getAfter())) {
+							for(String key : commitModel.fileContentsBeforeOriginal.keySet()) {
+								if(key.startsWith(moveSourceFolderRefactoring.getPattern().getBefore()) && key.endsWith(rightClass.getUmlClass().getName().replaceAll("\\.", "/") + ".java")) {
+									leftSideFileName = key;
+									found = true;
+									break;
+								}
+							}
+						}
+	                }
+	            }
+	        }
+	
+	        final String leftSideFileNameFinal = leftSideFileName;
+	        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeOriginal.entrySet().stream().filter(map -> map.getKey().equals(leftSideFileNameFinal)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesBefore);
+	        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentOriginal.entrySet().stream().filter(map -> map.getKey().equals(rightSideFileName)).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)), commitModel.repositoryDirectoriesCurrent);
+	        optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
+	        return Pair.of(leftSideUMLModel, rightSideUMLModel);
+	    } else {
+	        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
+	        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent);
+	        optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
+	        //remove from rightSideModel the classes not matching the rightSideFileNamePredicate
+	        Set<UMLClass> rightClassesToBeRemoved = new HashSet<>();
+	        for (UMLClass rightUMLClass : rightSideUMLModel.getClassList()) {
+	            if (!rightSideFileNamePredicate.test(rightUMLClass.getSourceFile())) {
+	                rightClassesToBeRemoved.add(rightUMLClass);
+	            }
+	        }
+	        rightSideUMLModel.getClassList().removeAll(rightClassesToBeRemoved);
+	        return Pair.of(leftSideUMLModel, rightSideUMLModel);
+	    }
+	
+	}
+
 	private static void optimizeUMLModelPair(UMLModel leftSideUMLModel, UMLModel rightSideUMLModel, final String rightSideFileName, Map<String, String> renamedFilesHint) {
 	    for (UMLClass leftClass : leftSideUMLModel.getClassList()) {
 	        UMLClass rightClass = rightSideUMLModel.getClass(leftClass);
