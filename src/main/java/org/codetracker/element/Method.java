@@ -8,6 +8,7 @@ import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.StatementObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
+
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
 
@@ -34,7 +35,7 @@ public class Method extends BaseCodeElement {
     }
 
     public static Method of(VariableDeclarationContainer umlOperation, Version version) {
-        String sourceFolder = Util.getPath(umlOperation.getLocationInfo().getFilePath(), umlOperation.getClassName());
+        String sourceFolder = umlOperation.getLocationInfo().getSourceFolder();
         String identifierIgnoringVersion = null;
         String identifierIgnoringVersionAndDocumentationAndBody = null;
         String identifierIgnoringVersionAndAnnotation = null;
@@ -160,6 +161,26 @@ public class Method extends BaseCodeElement {
             	if (leaf instanceof StatementObject) {
 	                Block block = Block.of((StatementObject)leaf, this);
 	                if (block != null && equalOperator.test(block)) {
+	                	/*if (leaf.getLambdas().size() > 0) {
+	                		for (LambdaExpressionObject lambda : leaf.getLambdas()) {
+	                			if(lambda.getBody() != null) {
+	                				for (AbstractCodeFragment lambdaLeaf : lambda.getBody().getCompositeStatement().getLeaves()) {
+	                					if (lambdaLeaf instanceof StatementObject) {
+	                						Block lambdaBlock = Block.of((StatementObject)lambdaLeaf, this);
+	                						if (lambdaBlock != null && equalOperator.test(lambdaBlock)) {
+	                							return lambdaBlock;
+	                						}
+	                					}
+	                				}
+	                				for (CompositeStatementObject lambdaComposite : lambda.getBody().getCompositeStatement().getInnerNodes()) {
+	                					Block lambdaBlock = Block.of(lambdaComposite, this);
+	                					if (lambdaBlock != null && equalOperator.test(lambdaBlock)) {
+	                						return lambdaBlock;
+	                					}
+	                				}
+	                			}
+	                		}
+	                	}*/
 	                    return block;
 	                }
             	}
@@ -344,7 +365,7 @@ public class Method extends BaseCodeElement {
 
     public static String getIdentifierExcludeVersion(UMLOperation info, boolean containsBody, boolean containsDocumentation, boolean containsAnnotations) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
+        sb.append(info.getLocationInfo().getSourceFolder());
         sb.append(info.getClassName());
         sb.append(String.format("#(%s)", info.getVisibility().toString()));
 
@@ -395,7 +416,7 @@ public class Method extends BaseCodeElement {
 
     public static String getIdentifierExcludeVersion(UMLInitializer info, boolean containsBody, boolean containsDocumentation) {
         StringBuilder sb = new StringBuilder();
-        sb.append(Util.getPath(info.getLocationInfo().getFilePath(), info.getClassName()));
+        sb.append(info.getLocationInfo().getSourceFolder());
         sb.append(info.getClassName());
         sb.append("#");
 

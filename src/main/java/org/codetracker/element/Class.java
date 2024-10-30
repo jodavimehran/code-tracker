@@ -12,7 +12,6 @@ import gr.uom.java.xmi.UMLPackage;
 import org.codetracker.api.Version;
 
 import static org.codetracker.util.Util.annotationsToString;
-import static org.codetracker.util.Util.getPath;
 
 import java.util.Optional;
 import java.util.function.Predicate;
@@ -34,7 +33,7 @@ public class Class extends BaseCodeElement {
     }
 
     public static Class of(UMLAbstractClass umlClass, Version version) {
-        String sourceFolder = getPath(umlClass.getLocationInfo().getFilePath(), umlClass.getName());
+        String sourceFolder = umlClass.getLocationInfo().getSourceFolder();
         String packageName = umlClass.getPackageName();
         String name = umlClass.getName().replace(umlClass.getPackageName(), "").replace(".", "");
         String modifiersString = new ModifiersBuilder()

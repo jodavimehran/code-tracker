@@ -18,7 +18,6 @@ import org.codetracker.api.Version;
 import org.refactoringminer.util.PrefixSuffixUtils;
 
 import static org.codetracker.util.Util.annotationsToString;
-import static org.codetracker.util.Util.getPath;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -37,7 +36,7 @@ public class Attribute extends BaseCodeElement {
     }
 
     public static Attribute of(UMLAttribute umlAttribute, Version version) {
-        String sourceFolder = getPath(umlAttribute.getLocationInfo().getFilePath(), umlAttribute.getClassName());
+        String sourceFolder = umlAttribute.getLocationInfo().getSourceFolder();
         String name = umlAttribute.getName();
         String className = umlAttribute.getClassName();
         String visibility = umlAttribute.getVisibility().toString();
