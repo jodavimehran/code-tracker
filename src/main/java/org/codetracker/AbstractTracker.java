@@ -1,6 +1,7 @@
 package org.codetracker;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -377,8 +378,29 @@ public abstract class AbstractTracker {
 	        optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
 	        return Pair.of(leftSideUMLModel, rightSideUMLModel);
 	    } else {
-	        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
-	        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(commitModel.fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent);
+	    	//remove even the trimmed files, if they are in Move Source Folder refactoring
+	    	Map<String, String> fileContentsBeforeTrimmed = new HashMap<>(commitModel.fileContentsBeforeTrimmed);
+	    	Map<String, String> fileContentsCurrentTrimmed = new HashMap<>(commitModel.fileContentsCurrentTrimmed);
+	    	for(String key : commitModel.fileContentsBeforeTrimmed.keySet()) {
+		    	for(MoveSourceFolderRefactoring ref : commitModel.moveSourceFolderRefactorings) {
+		    		if(key.startsWith(ref.getPattern().getBefore())) {
+		    			String rightKey = key.replaceFirst(ref.getPattern().getBefore(), ref.getPattern().getAfter());
+		    			if(commitModel.fileContentsCurrentTrimmed.containsKey(rightKey)) {
+		    				fileContentsBeforeTrimmed.remove(key);
+		    				fileContentsCurrentTrimmed.remove(rightKey);
+		    			}
+		    		}
+		    	}
+	    	}
+	    	if(!rightSideFileName.contains("test")) {
+	    		for(String key : commitModel.fileContentsBeforeTrimmed.keySet()) {
+	    			if(key.contains("test")) {
+	    				fileContentsBeforeTrimmed.remove(key);
+	    			}
+	    		}
+	    	}
+	        UMLModel leftSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsBeforeTrimmed, commitModel.repositoryDirectoriesBefore);
+	        UMLModel rightSideUMLModel = GitHistoryRefactoringMinerImpl.createModel(fileContentsCurrentTrimmed, commitModel.repositoryDirectoriesCurrent);
 	        optimizeUMLModelPair(leftSideUMLModel, rightSideUMLModel, rightSideFileName, commitModel.renamedFilesHint);
 	        //remove from rightSideModel the classes not matching the rightSideFileNamePredicate
 	        Set<UMLClass> rightClassesToBeRemoved = new HashSet<>();

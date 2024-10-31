@@ -415,10 +415,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					}
 				}
 				{
-					Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
+					Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass, s -> true, false);
 					UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
-					List<Refactoring> refactorings = umlModelDiffAll.getRefactorings();
+					List<Refactoring> refactorings = umlModelPairAll.getLeft().getClassList().isEmpty() ?
+							Collections.emptyList() :
+							umlModelDiffAll.getRefactorings();
 
 					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 					boolean refactored = !classRefactored.isEmpty();
