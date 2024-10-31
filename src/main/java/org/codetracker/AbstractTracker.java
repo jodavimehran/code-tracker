@@ -392,7 +392,7 @@ public abstract class AbstractTracker {
 		    		}
 		    	}
 	    	}
-	    	if(!rightSideFileName.contains("test")) {
+	    	if(!rightSideFileName.contains("test") && !commitModel.moveSourceFolderRefactorings.isEmpty()) {
 	    		for(String key : commitModel.fileContentsBeforeTrimmed.keySet()) {
 	    			if(key.contains("test")) {
 	    				fileContentsBeforeTrimmed.remove(key);
