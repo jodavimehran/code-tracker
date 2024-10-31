@@ -237,6 +237,7 @@ public class FileTrackerImpl extends BaseTracker {
 					if (analysedCommits.contains(commitId))
 						continue;
 					analysedCommits.add(commitId);
+					long start = System.nanoTime();
 
 					Version currentVersion = gitRepository.getVersion(commitId);
 					String parentCommitId = gitRepository.getParentId(commitId);
@@ -334,6 +335,10 @@ public class FileTrackerImpl extends BaseTracker {
 							UMLClassBaseDiff lightweightInnerClassDiff = lightweightClassDiff(pair.getLeft().getUmlClass(), pair.getRight().getUmlClass());
 							processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion, Collections.emptyList());
 						}
+						long end = System.nanoTime();
+				        long elapsedTime = end - start;
+						double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+						System.out.println(commitId + "\t" + elapsedTimeInSecond);
 						continue;
 					}
 					else if (leftClass != null && (annotationChanged || modifiersChanged)) {
@@ -381,6 +386,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -411,6 +420,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -443,6 +456,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 
@@ -451,6 +468,10 @@ public class FileTrackerImpl extends BaseTracker {
 							processAddedAttributes(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
 							processAddedInnerClasses(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion, startClass);
 							processAddedImportsAndClassComments(rightClass, parentVersion);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -1793,13 +1814,8 @@ public class FileTrackerImpl extends BaseTracker {
 		VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
 		UMLOperationBodyMapper bodyMapper = null;
 		if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
-			if(modelDiffCache.containsKey(currentVersion.getId())) {
-				bodyMapper = findBodyMapper(modelDiffCache.get(currentVersion.getId()), rightMethod, currentVersion, parentVersion);
-			}
-			else {
-				UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
-				bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
-			}
+			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+			bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
 			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
 			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
 				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {

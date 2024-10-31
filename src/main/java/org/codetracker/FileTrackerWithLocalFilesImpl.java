@@ -1800,13 +1800,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
 		UMLOperationBodyMapper bodyMapper = null;
 		if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
-			if(modelDiffCache.containsKey(currentVersion.getId())) {
-				bodyMapper = findBodyMapper(modelDiffCache.get(currentVersion.getId()), rightMethod, currentVersion, parentVersion);
-			}
-			else {
-				UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
-				bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
-			}
+			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+			bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
 			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
 			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
 				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {
