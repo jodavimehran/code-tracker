@@ -64,6 +64,7 @@ import gr.uom.java.xmi.diff.UMLEnumConstantDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
 public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
+	private final Map<String, UMLModelDiff> modelDiffCache = new HashMap<>();
 	private final List<String> lines = new ArrayList<>();
 	private final Map<CodeElement, AbstractChangeHistory<? extends BaseCodeElement>> programElementMap = new LinkedHashMap<>();
 	private final Map<Integer, HistoryInfo<? extends BaseCodeElement>> blameInfo = new LinkedHashMap<>();
@@ -322,7 +323,14 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					Set<Pair<Class, Class>> foundInnerClasses = new LinkedHashSet<>();
 					processInnerClassesWithSameSignature(rightModel, currentVersion, leftModel, parentVersion, startClass, foundInnerClasses, notFoundInnerClasses);
 					if (notFoundMethods.size() > 0 || notFoundAttributes.size() > 0 || notFoundInnerClasses.size() > 0) {
-						UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
+						UMLModelDiff umlModelDiffLocal = null;
+						if(modelDiffCache.containsKey(currentVersion.getId())) {
+							umlModelDiffLocal = modelDiffCache.get(currentVersion.getId());
+						}
+						else {
+							umlModelDiffLocal = leftModel.diff(rightModel);
+							modelDiffCache.put(currentVersion.getId(), umlModelDiffLocal);
+						}
 						List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
 						processLocallyRefactoredMethods(notFoundMethods, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 						processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
@@ -1792,8 +1800,13 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		VariableDeclarationContainer rightOperation = rightMethod.getUmlOperation();
 		UMLOperationBodyMapper bodyMapper = null;
 		if (leftOperation instanceof UMLOperation && rightOperation instanceof UMLOperation) {
-			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
-			bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+			if(modelDiffCache.containsKey(currentVersion.getId())) {
+				bodyMapper = findBodyMapper(modelDiffCache.get(currentVersion.getId()), rightMethod, currentVersion, parentVersion);
+			}
+			else {
+				UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
+				bodyMapper = new UMLOperationBodyMapper((UMLOperation) leftOperation, (UMLOperation) rightOperation, lightweightClassDiff);
+			}
 			List<UMLOperation> rightSideOperations = new ArrayList<UMLOperation>();
 			for(UMLAbstractClass umlClass : rightModel.getClassList()) {
 				if(umlClass.getName().equals(rightMethod.getUmlOperation().getClassName())) {
@@ -1815,7 +1828,14 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					bodyMapper.getNonMappedInnerNodesT2().size() == 0 &&
 					bodyMapper.getMappings().size() > 0;
 			if (!allMapped && containsCallToExtractedMethod(bodyMapper, rightSideOperations)) {
-				UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
+				UMLModelDiff umlModelDiffLocal = null;
+				if(modelDiffCache.containsKey(currentVersion.getId())) {
+					umlModelDiffLocal = modelDiffCache.get(currentVersion.getId());
+				}
+				else {
+					umlModelDiffLocal = leftModel.diff(rightModel);
+					modelDiffCache.put(currentVersion.getId(), umlModelDiffLocal);
+				}
 				//this bodyMapper has mapping optimization
 				bodyMapper = findBodyMapper(umlModelDiffLocal, rightMethod, currentVersion, parentVersion);
 			}
