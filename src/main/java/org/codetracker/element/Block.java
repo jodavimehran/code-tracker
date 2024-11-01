@@ -184,31 +184,29 @@ public class Block extends BaseCodeElement {
     }
 
     public boolean differInFormatting(Block other) {
-    	if (composite instanceof StatementObject && other.composite instanceof StatementObject) {
-	    	String thisSignature = ((StatementObject) composite).getActualSignature();
-			String otherSignature = ((StatementObject) other.composite).getActualSignature();
-			if (thisSignature != null && otherSignature != null) {
-				int leftLines = this.getLocation().getEndLine() - this.getLocation().getStartLine();
-				int rightLines = other.getLocation().getEndLine() - other.getLocation().getStartLine();
-				if (leftLines == rightLines) {
-					//check if lines start and end with the same character
-					String[] leftLineArray = thisSignature.split("\\r?\\n");
-					String[] rightLineArray = otherSignature.split("\\r?\\n");
-					int linesWithDifferences = 0;
-					for (int i=0; i<leftLineArray.length; i++) {
-						String leftLine = leftLineArray[i];
-						String rightLine = rightLineArray[i];
-						if(leftLine.length() > 1 && rightLine.length() > 1 &&
-								(leftLine.charAt(0) != rightLine.charAt(0) || leftLine.charAt(leftLine.length()-1) != rightLine.charAt(rightLine.length()-1))) {
-							linesWithDifferences++;
-						}
-					}
-					if(linesWithDifferences > 0) {
-						return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+    	String thisSignature = composite.getActualSignature();
+		String otherSignature = other.composite.getActualSignature();
+		if (thisSignature != null && otherSignature != null) {
+			int leftLines = this.getLocation().getEndLine() - this.getLocation().getStartLine();
+			int rightLines = other.getLocation().getEndLine() - other.getLocation().getStartLine();
+			if (leftLines == rightLines) {
+				//check if lines start and end with the same character
+				String[] leftLineArray = thisSignature.split("\\r?\\n");
+				String[] rightLineArray = otherSignature.split("\\r?\\n");
+				int linesWithDifferences = 0;
+				for (int i=0; i<leftLineArray.length; i++) {
+					String leftLine = leftLineArray[i];
+					String rightLine = rightLineArray[i];
+					if(leftLine.length() > 1 && rightLine.length() > 1 &&
+							(leftLine.charAt(0) != rightLine.charAt(0) || leftLine.charAt(leftLine.length()-1) != rightLine.charAt(rightLine.length()-1))) {
+						linesWithDifferences++;
 					}
 				}
-	    		return !thisSignature.equals(otherSignature) && leftLines != rightLines && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
-	    	}
+				if(linesWithDifferences > 0) {
+					return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+				}
+			}
+    		return !thisSignature.equals(otherSignature) && leftLines != rightLines && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
     	}
     	return false;
     }
@@ -218,8 +216,8 @@ public class Block extends BaseCodeElement {
 	}
 
     public boolean isMultiLine() {
-    	if (composite instanceof StatementObject && ((StatementObject)composite).getActualSignature() != null) {
-    		return ((StatementObject)composite).getActualSignature().contains("\n");
+    	if (composite.getActualSignature() != null) {
+    		return composite.getActualSignature().contains("\n");
     	}
     	return false;
     }

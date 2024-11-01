@@ -279,8 +279,8 @@ f020066f8 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Iva
 f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 279)                 final String fileName = file.getAbsolutePath();
 d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 280)                 final long timestamp = file.lastModified();
 327c0bc84 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2018-01-04 01:30:24 +0000 281)                 if (cacheFile != null && cacheFile.isInCache(fileName, timestamp)
-327c0bc84 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2018-01-04 01:30:24 +0000 282)                         || !CommonUtils.matchesFileExtension(file, fileExtensions)
-327c0bc84 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2018-01-04 01:30:24 +0000 283)                         || !acceptFileStarted(fileName)) {
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-10-22 22:53:10 +0000 282)                         || !CommonUtils.matchesFileExtension(file, fileExtensions)
+fbaabe83c src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-10-22 22:53:10 +0000 283)                         || !acceptFileStarted(fileName)) {
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 284)                     continue;
 204c07329 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-25 09:30:21 +0000 285)                 }
 327c0bc84 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2018-01-04 01:30:24 +0000 286)                 if (cacheFile != null) {
