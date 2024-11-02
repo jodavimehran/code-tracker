@@ -222,7 +222,7 @@ df8581759 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
                                                                                                                              222)
 82118e728 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Dmitry Baev        2015-05-21 11:27:27 +0000 223)         if (computeTestMethods().isEmpty()) {
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 224)             errors.add(new Exception("No runnable methods"));
-5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 225)         }
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 225)         }
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 226)     }
                                                                                                                              227)
 cbf46b88c src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Jeremy Herault     2012-08-17 12:56:22 +0000 228)     protected void validateFields(List<Throwable> errors) {
@@ -438,17 +438,17 @@ aad22b88b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 a49240ade src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2011-01-12 05:06:08 +0000 438)     }
                                                                                                                              439)
 96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 440)     private Class<? extends Throwable> getExpectedException(Test annotation) {
-96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 441)         if (annotation == null || annotation.expected() == None.class) {
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 441)         if (annotation == null || annotation.expected() == None.class) {
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 442)             return null;
-96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 443)         } else {
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 443)         } else {
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 444)             return annotation.expected();
-96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 445)         }
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 445)         }
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 446)     }
                                                                                                                              447)
 96d7dd609 src/main/java/org/junit/internal/runners/model/TestAnnotation.java   (kbeck              2008-07-01 18:29:54 +0000 448)     private long getTimeout(Test annotation) {
-96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 449)         if (annotation == null) {
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 449)         if (annotation == null) {
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 450)             return 0;
-96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 451)         }
+bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Kevin Cooney       2012-10-24 19:31:00 +0000 451)         }
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 452)         return annotation.timeout();
 96d7dd609 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (kbeck              2008-07-01 18:29:54 +0000 453)     }
                                                                                                                              454)

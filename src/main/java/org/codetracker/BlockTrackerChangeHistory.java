@@ -22,8 +22,11 @@ import org.codetracker.change.AbstractChange;
 import org.codetracker.change.Change;
 import org.codetracker.change.ChangeFactory;
 import org.codetracker.change.Introduced;
+import org.codetracker.change.block.BlockBodyAdded;
+import org.codetracker.change.block.BlockBodyRemoved;
 import org.codetracker.change.block.BlockSignatureFormatChange;
 import org.codetracker.change.block.ElseBlockAdded;
+import org.codetracker.change.block.ElseBodyBlockAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
 import org.codetracker.change.block.ReplaceConditionalWithTernary;
@@ -839,6 +842,20 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_REMOVED));
                     		elseChange = true;
                     	}
+                    	else if (ifBefore.getStatements().size() == 2 && ifAfter.getStatements().size() == 2) {
+                    		if(ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+                    				!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+                    				!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BODY_BLOCK_REMOVED));
+                        		elseChange = true;
+                    		}
+                    		else if(!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+                    				!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT) &&
+                    				ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK)) {
+                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BODY_BLOCK_ADDED));
+                        		elseChange = true;
+                    		}
+                    	}
                     }
                     if (!bodyChange && !catchOrFinallyChange && !elseChange) {
                     	if(blockBefore.differInFormatting(blockAfter)) {
@@ -891,10 +908,10 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 				addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
 			}
 			if(blockBefore.getComposite().getActualSignature().endsWith("{") && !blockAfter.getComposite().getActualSignature().endsWith("{")) {
-        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BLOCK_BODY_REMOVED));
         	}
 			else if(!blockBefore.getComposite().getActualSignature().endsWith("{") && blockAfter.getComposite().getActualSignature().endsWith("{")) {
-        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BLOCK_BODY_ADDED));
         	}
 			if(blockBefore.differInFormatting(blockAfter)) {
         		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
@@ -1229,12 +1246,12 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 			boolean multiLine = startBlock.isMultiLine();
 			for (Change change : historyInfo.getChangeList()) {
 				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
-					if (change instanceof Introduced || change instanceof ElseBlockAdded) {
+					if (change instanceof ElseBodyBlockAdded || change instanceof Introduced || change instanceof ElseBlockAdded) {
 						return historyInfo;
 					}
 				}
 				else if (startBlock.isClosingCurlyBracket()) {
-					if (change instanceof Introduced || change instanceof ReplacePipelineWithLoop) {
+					if (change instanceof BlockBodyAdded || change instanceof Introduced || change instanceof ReplacePipelineWithLoop) {
 						return historyInfo;
 					}
 				}
@@ -1260,7 +1277,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 							return historyInfo;
 						}
 					}
-					if (startBlock.getComposite() instanceof CompositeStatementObject && (change instanceof ExpressionChange || change instanceof BlockSignatureFormatChange)) {
+					if (startBlock.getComposite() instanceof CompositeStatementObject && (change instanceof BlockBodyAdded || change instanceof BlockBodyRemoved || change instanceof ExpressionChange || change instanceof BlockSignatureFormatChange)) {
 						if (multiLine) {
 							if (lineChangeMap.containsKey(pair)) {
 								if (lineChangeMap.get(pair).contains(exactLineNumber)) {

@@ -165,12 +165,28 @@ public final class ChangeFactory {
                 change = new FinallyBlockRemoved();
                 break;
             }
+            case BLOCK_BODY_ADDED: {
+                change = new BlockBodyAdded();
+                break;
+            }
+            case BLOCK_BODY_REMOVED: {
+                change = new BlockBodyRemoved();
+                break;
+            }
             case ELSE_BLOCK_ADDED: {
                 change = new ElseBlockAdded();
                 break;
             }
             case ELSE_BLOCK_REMOVED: {
                 change = new ElseBlockRemoved();
+                break;
+            }
+            case ELSE_BODY_BLOCK_ADDED: {
+                change = new ElseBodyBlockAdded();
+                break;
+            }
+            case ELSE_BODY_BLOCK_REMOVED: {
+                change = new ElseBodyBlockRemoved();
                 break;
             }
             case INTERFACE_LIST_CHANGE: {
