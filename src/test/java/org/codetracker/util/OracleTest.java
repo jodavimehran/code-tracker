@@ -6,6 +6,7 @@ import org.codetracker.api.CodeElement;
 import org.codetracker.api.Edge;
 import org.codetracker.api.History;
 import org.codetracker.change.Change;
+import org.codetracker.change.block.BlockBodyChange;
 import org.codetracker.experiment.oracle.AbstractOracle;
 import org.codetracker.experiment.oracle.history.AbstractHistoryInfo;
 import org.codetracker.experiment.oracle.history.ChangeHistory;
@@ -115,7 +116,8 @@ public abstract class OracleTest {
 			Edge edgeValue = historyImpl.getGraph().getEdgeValue(edge).get();
 			Set<Change> changeList = edgeValue.getChangeList();
 			for (Change change : changeList) {
-				if (Change.Type.NO_CHANGE.equals(change.getType()) || Change.Type.SIGNATURE_FORMAT_CHANGE.equals(change.getType()))
+				if (Change.Type.NO_CHANGE.equals(change.getType()) || Change.Type.SIGNATURE_FORMAT_CHANGE.equals(change.getType()) ||
+						change instanceof BlockBodyChange)
 					continue;
 				ChangeHistory changeHistory = new ChangeHistory();
 

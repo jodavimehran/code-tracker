@@ -26,7 +26,7 @@ import org.codetracker.change.block.BlockBodyAdded;
 import org.codetracker.change.block.BlockBodyRemoved;
 import org.codetracker.change.block.BlockSignatureFormatChange;
 import org.codetracker.change.block.ElseBlockAdded;
-import org.codetracker.change.block.ElseBodyBlockAdded;
+import org.codetracker.change.block.ElseBlockBodyAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
 import org.codetracker.change.block.ReplaceConditionalWithTernary;
@@ -846,13 +846,13 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     		if(ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
                     				!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
                     				!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
-                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BODY_BLOCK_REMOVED));
+                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_BODY_REMOVED));
                         		elseChange = true;
                     		}
                     		else if(!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
                     				!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT) &&
                     				ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK)) {
-                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BODY_BLOCK_ADDED));
+                    			blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_BODY_ADDED));
                         		elseChange = true;
                     		}
                     	}
@@ -1246,7 +1246,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 			boolean multiLine = startBlock.isMultiLine();
 			for (Change change : historyInfo.getChangeList()) {
 				if (startBlock.isElseBlockStart() || startBlock.isElseBlockEnd()) {
-					if (change instanceof ElseBodyBlockAdded || change instanceof Introduced || change instanceof ElseBlockAdded) {
+					if (change instanceof ElseBlockBodyAdded || change instanceof Introduced || change instanceof ElseBlockAdded) {
 						return historyInfo;
 					}
 				}
