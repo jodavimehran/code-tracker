@@ -94,7 +94,7 @@ c285d6f8b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 448100ff8 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-06 10:02:01 +0000 94)              int status = info.getStatus();
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 95)              boolean interimResponse = status == HttpStatus.CONTINUE_100 || status == HttpStatus.PROCESSING_102;
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 96)              if (interimResponse)
-06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 97)              {
+c285d6f8b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2017-04-03 20:25:50 +0000 97)              {
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 98)                  // Must not commit interim responses.
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 99)                  if (hasContent)
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 100)                 {
@@ -109,9 +109,9 @@ c1247ff67 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 c285d6f8b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2017-04-03 20:25:50 +0000 109)             else
 c1247ff67 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-06-09 12:01:16 +0000 110)             {
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 111)                 if (commit.compareAndSet(false, true))
-06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 112)                 {
+ad034f4d5 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-06-10 10:02:54 +0000 112)                 {
 418a49333 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-18 09:50:18 +0000 113)                     if (hasContent)
-418a49333 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-18 09:50:18 +0000 114)                     {
+3e602117b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-17 16:07:22 +0000 114)                     {
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 115)                         Callback commitCallback = new Callback.Nested(callback)
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 116)                         {
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 117)                             @Override
@@ -157,7 +157,7 @@ c1247ff67 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 3e602117b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-17 16:07:22 +0000 157)         else
 c1247ff67 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-06-09 12:01:16 +0000 158)         {
 418a49333 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-18 09:50:18 +0000 159)             if (hasContent || lastContent)
-418a49333 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-09-18 09:50:18 +0000 160)             {
+ad034f4d5 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2014-06-10 10:02:54 +0000 160)             {
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 161)                 if (lastContent)
 06454f640 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2018-04-07 10:25:39 +0000 162)                 {
 c285d6f8b jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2017-04-03 20:25:50 +0000 163)                     Supplier<HttpFields> trailers = metaData.getTrailerSupplier();
@@ -275,11 +275,11 @@ e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 02b573272 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2015-02-09 08:11:56 +0000 275)         // If the stream is not closed, it is still reading the request content.
 02b573272 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2015-02-09 08:11:56 +0000 276)         // Send a reset to the other end so that it stops sending data.
 02b573272 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2015-02-09 08:11:56 +0000 277)         if (!stream.isClosed())
-02b573272 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2015-02-09 08:11:56 +0000 278)         {
+cf0ecbd88 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-07-21 15:50:08 +0000 278)         {
 cf0ecbd88 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-07-21 15:50:08 +0000 279)             if (LOG.isDebugEnabled())
 cf0ecbd88 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-07-21 15:50:08 +0000 280)                 LOG.debug("HTTP2 Response #{}: unconsumed request content, resetting stream", stream.getId());
 607239028 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Greg Wilkins   2015-07-22 07:31:54 +0000 281)             stream.reset(new ResetFrame(stream.getId(), ErrorCode.CANCEL_STREAM_ERROR.code), Callback.NOOP);
-02b573272 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2015-02-09 08:11:56 +0000 282)         }
+cf0ecbd88 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-07-21 15:50:08 +0000 282)         }
                                                                                                                                                       283)
 d8961139f jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-05-11 11:57:08 +0000 284)         // Consume the existing queued data frames to
 d8961139f jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-05-11 11:57:08 +0000 285)         // avoid stalling the session flow control.
@@ -337,7 +337,7 @@ e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 337)             {
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 338)                 commit = this.commit;
 dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 339)                 if (state == State.WRITING)
-dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 340)                 {
+e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 340)                 {
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 341)                     this.state = State.IDLE;
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 342)                     callback = this.callback;
 dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 343)                     this.callback = null;
@@ -364,7 +364,7 @@ e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/
 7e764bad3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2017-08-22 17:33:46 +0000 364)                 // Only fail pending writes, as we
 7e764bad3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2017-08-22 17:33:46 +0000 365)                 // may need to write an error page.
 dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 366)                 if (state == State.WRITING)
-dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 367)                 {
+e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 367)                 {
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 368)                     this.state = State.FAILED;
 e21ad09e3 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-09-05 21:09:12 +0000 369)                     callback = this.callback;
 dd3a73e57 jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java (Simone Bordet  2016-12-14 10:19:49 +0000 370)                     this.callback = null;

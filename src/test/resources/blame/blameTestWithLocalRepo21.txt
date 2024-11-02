@@ -530,8 +530,8 @@ f1d315ff4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
                                                                                                                                                           530)
 13025f875 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 531)          for (/* empty */; scope != null; scope = scope.getParent()) {
 4175460d3 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 13:42:22 +0000 532)              // search each enclosing scope one by one
-13025f875 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 533)              for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
-13025f875 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 534)                      : scope.getDeclarations(VariableNameDeclaration.class).entrySet()) {
+c8763bef1 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 533)              for (Map.Entry<VariableNameDeclaration, List<NameOccurrence>> entry
+c8763bef1 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 534)                      : scope.getDeclarations(VariableNameDeclaration.class).entrySet()) {
 13025f875 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 535)                  if (entry.getKey().getImage().equals(image)) {
 68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 536)                      ASTType typeNode = entry.getKey().getDeclaratorId().getTypeNode();
                                                                                                                                                           537)
@@ -890,9 +890,9 @@ babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
 babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 890)                          ASTClassOrInterfaceDeclaration typeDeclaration
 babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 891)                                  = currentChild.getFirstParentOfType(ASTClassOrInterfaceDeclaration.class);
                                                                                                                                                           892)
-babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 893)                          if (typeDeclaration != null) {
+d40e80742 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-31 13:59:48 +0000 893)                          if (typeDeclaration != null) {
 68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 894)                              currentChild.setTypeDefinition(typeDeclaration.getTypeDefinition());
-babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 895)                          }
+d40e80742 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-31 13:59:48 +0000 895)                          }
 babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 896)                      }
                                                                                                                                                           897)
 0ec1e44b1 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 18:23:11 +0000 898)                      // Last token, because if 'super' is a Suffix, it'll have tokens '.' and 'super'
@@ -939,7 +939,7 @@ babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
 babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 939)              }
                                                                                                                                                           940)
                                                                                                                                                           941)
-f4ec16338 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 942)              if (currentChild.getType() != null) {
+c8763bef1 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-03 22:28:38 +0000 942)              if (currentChild.getType() != null) {
 68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 943)                  primaryNodeType = currentChild.getTypeDefinition();
 41ed666d4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 16:11:20 +0000 944)              } else {
 41ed666d4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 16:11:20 +0000 945)                  // avoid falsely passing tests

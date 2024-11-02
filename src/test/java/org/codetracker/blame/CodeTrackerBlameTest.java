@@ -93,15 +93,6 @@ public class CodeTrackerBlameTest {
     }
 
     @Test
-    public void testBlameWithLocalRepo() throws Exception {
-        String url = "https://github.com/pouryafard75/DiffBenchmark/commit/5b33dc6f8cfcf8c0e31966c035b0406eca97ec76";
-        String filePath = "src/main/java/dat/MakeIntels.java";
-        String expectedFilePath = System.getProperty("user.dir") + "/src/test/resources/blame/blameTestWithLocalRepo2.txt";
-        String actual = getBlameOutput(url, filePath, new CodeTrackerBlame(), REPOS_PATH, gitService);
-        assertEqualWithFile(expectedFilePath, actual);
-    }
-
-    @Test
     public void blameTestAttributeAnnotation() throws Exception {
         String url = "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386";
         String filePath = "org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java";

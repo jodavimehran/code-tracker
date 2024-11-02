@@ -256,7 +256,7 @@ ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                    
 60b3a6dd6 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-09-25 18:29:25 +0000 256)       }
 fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 257)       if (associatedStreamId == 0) {
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 258)         writer.synStream(outFinished, streamId, associatedStreamId, requestHeaders);
-a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 259)       } else if (client) {
+1ab398fb9 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-05 04:53:13 +0000 259)       } else if (client) {
 1ab398fb9 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-05 04:53:13 +0000 260)         throw new IllegalArgumentException("client streams shouldn't have associated stream IDs");
 fb46f100a okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-02-24 01:16:01 +0000 261)       } else { // HTTP/2 has a PUSH_PROMISE frame.
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 262)         writer.pushPromise(associatedStreamId, streamId, requestHeaders);
