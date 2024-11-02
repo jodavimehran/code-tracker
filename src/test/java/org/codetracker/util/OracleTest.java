@@ -115,7 +115,7 @@ public abstract class OracleTest {
 			Edge edgeValue = historyImpl.getGraph().getEdgeValue(edge).get();
 			Set<Change> changeList = edgeValue.getChangeList();
 			for (Change change : changeList) {
-				if (Change.Type.NO_CHANGE.equals(change.getType()))
+				if (Change.Type.NO_CHANGE.equals(change.getType()) || Change.Type.SIGNATURE_FORMAT_CHANGE.equals(change.getType()))
 					continue;
 				ChangeHistory changeHistory = new ChangeHistory();
 

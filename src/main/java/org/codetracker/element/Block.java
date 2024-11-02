@@ -187,12 +187,10 @@ public class Block extends BaseCodeElement {
     	String thisSignature = composite.getActualSignature();
 		String otherSignature = other.composite.getActualSignature();
 		if (thisSignature != null && otherSignature != null) {
-			int leftLines = this.getLocation().getEndLine() - this.getLocation().getStartLine();
-			int rightLines = other.getLocation().getEndLine() - other.getLocation().getStartLine();
-			if (leftLines == rightLines) {
+			String[] leftLineArray = thisSignature.split("\\r?\\n");
+			String[] rightLineArray = otherSignature.split("\\r?\\n");
+			if (leftLineArray.length == rightLineArray.length) {
 				//check if lines start and end with the same character
-				String[] leftLineArray = thisSignature.split("\\r?\\n");
-				String[] rightLineArray = otherSignature.split("\\r?\\n");
 				int linesWithDifferences = 0;
 				for (int i=0; i<leftLineArray.length; i++) {
 					String leftLine = leftLineArray[i];
@@ -206,7 +204,7 @@ public class Block extends BaseCodeElement {
 					return !thisSignature.equals(otherSignature) && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
 				}
 			}
-    		return !thisSignature.equals(otherSignature) && leftLines != rightLines && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
+    		return !thisSignature.equals(otherSignature) && leftLineArray.length != rightLineArray.length && thisSignature.replaceAll("\\s+","").equals(otherSignature.replaceAll("\\s+",""));
     	}
     	return false;
     }
@@ -225,6 +223,12 @@ public class Block extends BaseCodeElement {
     public void checkClosingBracketOfAnonymousClassDeclaration(int lineNumber) {
     	if (getComposite() instanceof StatementObject && getComposite().getAnonymousClassDeclarations().size() > 0 && getLocation().getEndLine() == lineNumber) {
     		setClosingCurlyBracket(true);
+    	}
+    }
+
+    public void checkDoWhileConditional(int lineNumber) {
+    	if (getComposite() instanceof CompositeStatementObject && getLocation().getCodeElementType().equals(CodeElementType.DO_STATEMENT) && getLocation().getEndLine() == lineNumber) {
+    		setDoWhileConditional(true);
     	}
     }
 
@@ -257,7 +261,7 @@ public class Block extends BaseCodeElement {
 				}
 			}
 		}
-		if (getLocation().getEndLine() == lineNumber && getComposite() instanceof CompositeStatementObject) {
+		if (getLocation().getEndLine() == lineNumber && getComposite() instanceof CompositeStatementObject && !getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.DO_STATEMENT)) {
 			setClosingCurlyBracket(true);
 		}
 	}

@@ -218,10 +218,9 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                                     List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
                                     if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                        if (!blockBefore.getComposite().getActualSignature().equals(matchedBlockInsideExtractedMethodBody.getComposite().getActualSignature())) {
-                                            //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                        	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                        }
+                                        handleCompositeExpressionChange(blockBefore,
+												matchedBlockInsideExtractedMethodBody, stringRepresentationBefore,
+												stringRepresentationAfter);
                                         List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
                                         List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
                                         if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
@@ -280,10 +279,9 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                             List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                                             List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
                                             if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                                if (!blockBefore.getComposite().getActualSignature().equals(matchedBlockInsideExtractedMethodBody.getComposite().getActualSignature())) {
-                                                    //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                                	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                                }
+                                                handleCompositeExpressionChange(blockBefore,
+														matchedBlockInsideExtractedMethodBody,
+														stringRepresentationBefore, stringRepresentationAfter);
                                                 List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
                                                 List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
                                                 if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
@@ -345,10 +343,9 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                                     List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
                                     if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                                        if (!blockBefore.getComposite().getActualSignature().equals(matchedBlockInsideExtractedMethodBody.getComposite().getActualSignature())) {
-                                            //blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                        	addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                                        }
+                                        handleCompositeExpressionChange(blockBefore,
+												matchedBlockInsideExtractedMethodBody, stringRepresentationBefore,
+												stringRepresentationAfter);
                                         List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
                                         List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
                                         if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
@@ -748,10 +745,8 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
                     List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
                     if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
-                        if (!blockBefore.getComposite().getActualSignature().equals(blockAfter.getComposite().getActualSignature())) {
-                            //blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                            addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
-                        }
+                        handleCompositeExpressionChange(blockBefore, blockAfter, stringRepresentationBefore,
+								stringRepresentationAfter);
                         List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
                         List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
                         if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
@@ -847,8 +842,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     }
                     if (!bodyChange && !catchOrFinallyChange && !elseChange) {
                     	if(blockBefore.differInFormatting(blockAfter)) {
-                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
-                    		processChange(blockBefore, blockAfter);
+                    		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
                     	}
                     	else {
                     		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -870,8 +864,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     }
                     else {
                     	if(blockBefore.differInFormatting(blockAfter)) {
-                    		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
-                    		processChange(blockBefore, blockAfter);
+                    		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
                     	}
                     	else {
                     		blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
@@ -890,6 +883,29 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
     	}
         return false;
     }
+
+	private void handleCompositeExpressionChange(Block blockBefore, Block blockAfter,
+			List<String> stringRepresentationBefore, List<String> stringRepresentationAfter) {
+		if (!blockBefore.getComposite().getActualSignature().equals(blockAfter.getComposite().getActualSignature())) {
+			if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+				addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+			}
+			if(blockBefore.getComposite().getActualSignature().endsWith("{") && !blockAfter.getComposite().getActualSignature().endsWith("{")) {
+        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+        	}
+			else if(!blockBefore.getComposite().getActualSignature().endsWith("{") && blockAfter.getComposite().getActualSignature().endsWith("{")) {
+        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+        	}
+			if(blockBefore.differInFormatting(blockAfter)) {
+        		addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+        	}
+		}
+		else if (blockBefore.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.DO_STATEMENT)) {
+			if (!stringRepresentationBefore.get(0).equals(stringRepresentationAfter.get(0))) {
+				addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.EXPRESSION_CHANGE));
+			}
+		}
+	}
 
 	private void addStatementChange(Block blockBefore, Block blockAfter, ChangeFactory changeType) {
 		blockChangeHistory.addChange(blockBefore, blockAfter, changeType);
@@ -1222,6 +1238,11 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 						return historyInfo;
 					}
 				}
+				else if (startBlock.isDoWhileConditional()) {
+					if (change instanceof ExpressionChange) {
+						return historyInfo;
+					}
+				}
 				else {
 					if (change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
 							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary) {
@@ -1247,7 +1268,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 								}
 							}
 						}
-						else {
+						else if (!startBlock.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.DO_STATEMENT)) {
 							return historyInfo;
 						}
 					}

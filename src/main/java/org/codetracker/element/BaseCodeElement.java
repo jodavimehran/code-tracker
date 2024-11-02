@@ -18,6 +18,7 @@ public abstract class BaseCodeElement implements CodeElement {
     private boolean closingCurlyBracket;
     private boolean elseBlockStart;
     private boolean elseBlockEnd;
+    private boolean doWhileConditional;
 
     public BaseCodeElement(String identifierIgnoringVersion, String name, String filePath, Version version) {
         this.identifier = version != null ? identifierIgnoringVersion + version : identifierIgnoringVersion;
@@ -29,7 +30,15 @@ public abstract class BaseCodeElement implements CodeElement {
 
     public abstract BaseCodeElement of(Version anotherVersion);
 
-    public boolean isClosingCurlyBracket() {
+    public boolean isDoWhileConditional() {
+		return doWhileConditional;
+	}
+
+	public void setDoWhileConditional(boolean doWhileConditional) {
+		this.doWhileConditional = doWhileConditional;
+	}
+
+	public boolean isClosingCurlyBracket() {
     	return closingCurlyBracket;
     }
 
