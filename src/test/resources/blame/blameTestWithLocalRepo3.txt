@@ -315,7 +315,7 @@ ec2834e43 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Iva
 77acd41cf src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-16 19:22:01 +0000 315)     private SortedSet<LocalizedMessage> processFile(File file) throws CheckstyleException {
 fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 316)         final SortedSet<LocalizedMessage> fileMessages = new TreeSet<>();
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 317)         try {
-f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 318)             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 318)             final FileText theText = new FileText(file.getAbsoluteFile(), charset);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 319)             for (final FileSetCheck fsc : fileSetChecks) {
 f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-08-08 04:38:41 +0000 320)                 fileMessages.addAll(fsc.process(file, theText));
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 321)             }
@@ -324,7 +324,7 @@ f1e80e4ec src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Ko
 127f72994 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (crude               2017-10-20 17:46:57 +0000 324)             log.debug("IOException occurred.", ioe);
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 325)             fileMessages.add(new LocalizedMessage(0,
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 326)                     Definitions.CHECKSTYLE_BUNDLE, EXCEPTION_MSG,
-6d5c0da42 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Kordas       2015-08-09 14:41:42 +0000 327)                     new String[] {ioe.getMessage()}, null, getClass(), null));
+d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 327)                     new String[] {ioe.getMessage()}, null, getClass(), null));
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 328)         }
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 329)         // -@cs[IllegalCatch] There is no other way to obey haltOnException field
 b61daf7f4 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2016-12-07 23:21:03 +0000 330)         catch (Exception ex) {
