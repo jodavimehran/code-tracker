@@ -84,6 +84,7 @@ public class CodeTrackerBlameTest {
         String expectedFilePath = System.getProperty("user.dir") + testResultFileName;
         String commitId = URLHelper.getCommit(url);
         Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        org.codetracker.util.Util.enableSHACache();
         FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
         fileTracker.blame();
         BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
