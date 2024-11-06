@@ -244,6 +244,12 @@ public final class ChangeFactory {
                 change = new ReplaceConditionalWithTernary(refactoring);
                 break;
             }
+            case REPLACE_ANONYMOUS_WITH_LAMBDA: {
+            	if (refactoring == null)
+                    throw new NullPointerException();
+                change = new ReplaceAnonymousWithLambda(refactoring);
+                break;
+            }
             case EXPRESSION_CHANGE: {
                 change = new ExpressionChange();
                 break;

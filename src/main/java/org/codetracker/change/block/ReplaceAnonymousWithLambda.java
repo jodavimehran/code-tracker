@@ -2,15 +2,15 @@ package org.codetracker.change.block;
 
 import org.refactoringminer.api.Refactoring;
 
-public class ReplaceConditionalWithTernary extends BlockChange {
+public class ReplaceAnonymousWithLambda extends BlockChange {
     private final Refactoring refactoring;
 
-    public ReplaceConditionalWithTernary(Refactoring refactoring) {
-        super(Type.REPLACE_CONDITIONAL_WITH_TERNARY);
+    public ReplaceAnonymousWithLambda(Refactoring refactoring) {
+        super(Type.REPLACE_ANONYMOUS_WITH_LAMBDA);
         this.refactoring = refactoring;
     }
 
-    public Refactoring getReplaceConditionalWithTernaryRefactoring() {
+    public Refactoring getReplaceAnonymousWithLambdaRefactoring() {
         return refactoring;
     }
 

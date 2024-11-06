@@ -29,6 +29,7 @@ import org.codetracker.change.block.ElseBlockAdded;
 import org.codetracker.change.block.ElseBlockBodyAdded;
 import org.codetracker.change.block.ExpressionChange;
 import org.codetracker.change.block.MergeBlock;
+import org.codetracker.change.block.ReplaceAnonymousWithLambda;
 import org.codetracker.change.block.ReplaceConditionalWithTernary;
 import org.codetracker.change.block.ReplaceLoopWithPipeline;
 import org.codetracker.change.block.ReplacePipelineWithLoop;
@@ -66,6 +67,7 @@ import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
+import gr.uom.java.xmi.diff.ReplaceAnonymousWithLambdaRefactoring;
 import gr.uom.java.xmi.diff.ReplaceConditionalWithTernaryRefactoring;
 import gr.uom.java.xmi.diff.ReplaceLoopWithPipelineRefactoring;
 import gr.uom.java.xmi.diff.ReplacePipelineWithLoopRefactoring;
@@ -603,6 +605,19 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         }
                     }
                     break;
+                }
+                case REPLACE_ANONYMOUS_WITH_LAMBDA: {
+                	ReplaceAnonymousWithLambdaRefactoring anonymousWithLambdaRefactoring = (ReplaceAnonymousWithLambdaRefactoring) refactoring;
+                    if (anonymousWithLambdaRefactoring.getLambdaOwner() instanceof StatementObject) {
+                        StatementObject statement = (StatementObject) anonymousWithLambdaRefactoring.getLambdaOwner();
+                        Block addedBlockAfter = Block.of(statement, anonymousWithLambdaRefactoring.getOperationAfter(), currentVersion);
+                        if (equalOperator.test(addedBlockAfter)) {
+                        	blockBefore = Block.of((StatementObject) anonymousWithLambdaRefactoring.getAnonymousOwner(), anonymousWithLambdaRefactoring.getOperationBefore(), parentVersion);
+                        	blockAfter = addedBlockAfter;
+                            changeType = Change.Type.REPLACE_ANONYMOUS_WITH_LAMBDA;
+                        }
+                    }
+                	break;
                 }
                 case REPLACE_PIPELINE_WITH_LOOP: {
                     ReplacePipelineWithLoopRefactoring pipelineWithLoopRefactoring = (ReplacePipelineWithLoopRefactoring) refactoring;
@@ -1242,7 +1257,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 				}
 				else {
 					if (change instanceof ExpressionChange || change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
-							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary) {
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary || change instanceof ReplaceAnonymousWithLambda) {
 						return historyInfo;
 					}
 					if (startBlock.getComposite() instanceof StatementObject && change instanceof BodyChange) {
@@ -1277,7 +1292,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 				}
 				else {
 					if (change instanceof Introduced || change instanceof MergeBlock || change instanceof SplitBlock ||
-							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary) {
+							change instanceof ReplaceLoopWithPipeline || change instanceof ReplacePipelineWithLoop || change instanceof ReplaceConditionalWithTernary || change instanceof ReplaceAnonymousWithLambda) {
 						return historyInfo;
 					}
 					if (startBlock.getComposite() instanceof StatementObject && (change instanceof BodyChange || change instanceof BlockSignatureFormatChange)) {

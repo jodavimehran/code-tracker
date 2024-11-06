@@ -38,6 +38,7 @@ public interface Change {
         METHOD_MERGE("method merge"),
         REPLACE_PIPELINE_WITH_LOOP("pipeline replaced with loop"),
         REPLACE_LOOP_WITH_PIPELINE("loop replaced with pipeline"),
+        REPLACE_ANONYMOUS_WITH_LAMBDA("anonymous replaced with lambda"),
         REPLACE_CONDITIONAL_WITH_TERNARY("conditional replaced with ternary"),
         DOCUMENTATION_CHANGE("documentation change"),
         TYPE_PARAMETER_CHANGE("type parameter change"),
