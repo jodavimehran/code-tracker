@@ -292,7 +292,7 @@ d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Se
 13b7c6343 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2008-11-09 09:37:27 +0000 292)                 fireFileFinished(fileName);
 d46c2cf0e src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-09 17:50:02 +0000 293)             }
 25a37e504 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-09-14 20:58:34 +0000 294)             // -@cs[IllegalCatch] There is no other way to deliver filename that was under
-f020066f8 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov        2015-11-01 13:52:32 +0000 295)             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
+25a37e504 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-09-14 20:58:34 +0000 295)             // processing. See https://github.com/checkstyle/checkstyle/issues/2285
 f020066f8 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov        2015-11-01 13:52:32 +0000 296)             catch (Exception ex) {
 77acd41cf src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-02-16 19:22:01 +0000 297)                 // We need to catch all exceptions to put a reason failure (file name) in exception
 f020066f8 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Roman Ivanov        2015-11-01 13:52:32 +0000 298)                 throw new CheckstyleException("Exception was thrown while processing "

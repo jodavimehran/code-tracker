@@ -1,5 +1,6 @@
 package org.codetracker.util;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -236,17 +237,55 @@ public abstract class AbstractCodeElementLocator {
 	}
 
 	protected boolean endLineBlockPredicate(Block block) {
+		List<UMLComment> comments = block.getOperation().getComments();
 		if (block.getComposite() instanceof TryStatementObject) {
 			TryStatementObject tryStatement = (TryStatementObject)block.getComposite();
+			List<AbstractStatement> statements = tryStatement.getStatements();
+			AbstractStatement lastStatement = null;
+			if (statements.size() > 0) {
+				lastStatement = statements.get(statements.size()-1);
+			}
 			if (tryStatement.getCatchClauses().size() > 0) {
 				CompositeStatementObject catchClause = tryStatement.getCatchClauses().get(0);
-				if (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+				List<UMLComment> commentsBetweenTryCatch = new ArrayList<UMLComment>();
+				if(lastStatement != null) {
+					for (UMLComment comment : comments) {
+						if (comment.getLocationInfo().getStartLine() > lastStatement.getLocationInfo().getEndLine() &&
+								comment.getLocationInfo().getEndLine() < catchClause.getLocationInfo().getStartLine()) {
+							commentsBetweenTryCatch.add(comment);
+						}
+					}
+				}
+				boolean commentOnLineNumber = false;
+				for (UMLComment comment : commentsBetweenTryCatch) {
+					if (comment.getLocationInfo().getStartLine() >= lineNumber && comment.getLocationInfo().getEndLine() <= lineNumber) {
+						commentOnLineNumber = true;
+						break;
+					}
+				}
+				if (!commentOnLineNumber && (catchClause.getLocationInfo().getStartLine() == lineNumber || catchClause.getLocationInfo().getStartLine() == lineNumber + 1)) {
 					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
 				}
 			}
 			else if (tryStatement.getFinallyClause() != null) {
 				CompositeStatementObject finnalyClause = tryStatement.getFinallyClause();
-				if (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1) {
+				List<UMLComment> commentsBetweenTryFinally = new ArrayList<UMLComment>();
+				if(lastStatement != null) {
+					for (UMLComment comment : comments) {
+						if (comment.getLocationInfo().getStartLine() > lastStatement.getLocationInfo().getEndLine() &&
+								comment.getLocationInfo().getEndLine() < finnalyClause.getLocationInfo().getStartLine()) {
+							commentsBetweenTryFinally.add(comment);
+						}
+					}
+				}
+				boolean commentOnLineNumber = false;
+				for (UMLComment comment : commentsBetweenTryFinally) {
+					if (comment.getLocationInfo().getStartLine() >= lineNumber && comment.getLocationInfo().getEndLine() <= lineNumber) {
+						commentOnLineNumber = true;
+						break;
+					}
+				}
+				if (!commentOnLineNumber && (finnalyClause.getLocationInfo().getStartLine() == lineNumber || finnalyClause.getLocationInfo().getStartLine() == lineNumber + 1)) {
 					return block.getComposite().getLocationInfo().getStartLine() <= lineNumber;
 				}
 			}
