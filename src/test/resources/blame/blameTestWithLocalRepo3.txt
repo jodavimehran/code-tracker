@@ -416,7 +416,7 @@ ce196814d src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Michal Ko
 f1afaf83f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Oliver Burn         2007-12-15 08:14:40 +0000 416)     @Override
 35c607f16 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (rnveach             2017-12-13 02:52:11 +0000 417)     protected void finishLocalSetup() throws CheckstyleException {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 418)         final Locale locale = new Locale(localeLanguage, localeCountry);
-08d6efe49 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-10 19:13:35 +0000 419)         LocalizedMessage.setLocale(locale);
+6ffc8dd26 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-11-30 18:29:44 +0000 419)         LocalizedMessage.setLocale(locale);
                                                                                                                      420)
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 421)         if (moduleFactory == null) {
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 422)             if (moduleClassLoader == null) {
@@ -431,7 +431,7 @@ b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravi
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 431)                     moduleClassLoader);
 88e89a138 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-16 06:26:46 +0000 432)         }
                                                                                                                      433)
-08d6efe49 src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Lars Kühne          2002-12-10 19:13:35 +0000 434)         final DefaultContext context = new DefaultContext();
+16ba5b35f src/checkstyle/com/puppycrawl/tools/checkstyle/Checker.java (Rick Giles          2002-12-05 18:54:28 +0000 434)         final DefaultContext context = new DefaultContext();
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 435)         context.add("charset", charset);
 3bd699bd5 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Ruslan Diachenko    2015-08-12 05:19:21 +0000 436)         context.add("classLoader", classLoader);
 b8ca6a585 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (alexkravin          2015-01-19 14:38:32 +0000 437)         context.add("moduleFactory", moduleFactory);

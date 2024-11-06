@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -338,6 +339,17 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 }
                 case SPLIT_OPERATION: {
                     SplitOperationRefactoring splitOperationRefactoring = (SplitOperationRefactoring) refactoring;
+                    UMLOperationBodyMapper mapperWithLessMappings = null;
+                    boolean debatable = false;
+                    for (UMLOperationBodyMapper mapper : splitOperationRefactoring.getMappers()) {
+                    	if (mapperWithLessMappings == null) {
+                    		mapperWithLessMappings = mapper;
+                    	}
+                    	else if (looserMapper(mapperWithLessMappings, mapper)) {
+                    		debatable = debatable(mapperWithLessMappings, mapper);
+                    		mapperWithLessMappings = mapper;
+                    	}
+                    }
                     operationBefore = splitOperationRefactoring.getOriginalMethodBeforeSplit();
                     Method originalOperationBefore = Method.of(operationBefore, parentVersion);
                     for (VariableDeclarationContainer container : splitOperationRefactoring.getSplitMethods()) {
@@ -347,6 +359,16 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                             changeType = Change.Type.METHOD_SPLIT;
                             methodChangeHistory.addChange(originalOperationBefore, splitOperationAfter, ChangeFactory.forMethod(changeType).refactoring(refactoring));
                             methodChangeHistory.connectRelatedNodes();
+                            
+                            if (!debatable && mapperWithLessMappings.getContainer2().equals(container)) {
+	                            Method splitOperationBefore = Method.of(container, parentVersion);
+	                            splitOperationBefore.setAdded(true);
+	                            methodChangeHistory.addChange(splitOperationBefore, splitOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED)
+	                                    .refactoring(splitOperationRefactoring).codeElement(splitOperationAfter).hookedElement(Method.of(operationBefore, parentVersion)));
+	                            methodChangeHistory.connectRelatedNodes();
+	                            Method sourceOperationBefore = Method.of(operationBefore, parentVersion);
+	                            setSourceOperation(sourceOperationBefore);
+                            }
                             return leftMethodSet;
                         }
                     }
@@ -450,6 +472,31 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         methodChangeHistory.connectRelatedNodes();
         return leftMethodSet;
     }
+
+    private boolean debatable(UMLOperationBodyMapper previous, UMLOperationBodyMapper current) {
+    	Set<String> previousIntersection = parameterIntersection(previous);
+		Set<String> currentIntersection = parameterIntersection(current);
+		return current.mappingsWithoutBlocks() < previous.mappingsWithoutBlocks() &&
+				currentIntersection.size() < previousIntersection.size() &&
+				current.getContainer1().getName().equals(current.getContainer2().getName());
+    }
+
+	private boolean looserMapper(UMLOperationBodyMapper previous, UMLOperationBodyMapper current) {
+		Set<String> previousIntersection = parameterIntersection(previous);
+		Set<String> currentIntersection = parameterIntersection(current);
+		if (current.mappingsWithoutBlocks() < previous.mappingsWithoutBlocks() &&
+				currentIntersection.size() < previousIntersection.size()) {
+			return true;
+		}
+		return current.mappingsWithoutBlocks() < previous.mappingsWithoutBlocks() &&
+				!current.getContainer1().getName().equals(current.getContainer2().getName());
+	}
+
+	private Set<String> parameterIntersection(UMLOperationBodyMapper mapper) {
+		Set<String> parameterTypeIntersection = new LinkedHashSet<>(mapper.getContainer1().getParameterNameList());
+		parameterTypeIntersection.retainAll(mapper.getContainer2().getParameterNameList());
+		return parameterTypeIntersection;
+	}
 
     private static boolean checkOperationBodyChanged(OperationBody body1, OperationBody body2) {
         if (body1 == null && body2 == null) return false;
