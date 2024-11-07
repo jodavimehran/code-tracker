@@ -42,6 +42,7 @@ import org.refactoringminer.api.Refactoring;
 import com.github.difflib.DiffUtils;
 import com.github.difflib.patch.AbstractDelta;
 import com.github.difflib.patch.Chunk;
+import com.github.difflib.patch.EqualDelta;
 import com.github.difflib.patch.InsertDelta;
 import com.github.difflib.patch.Patch;
 
@@ -54,6 +55,7 @@ import gr.uom.java.xmi.decomposition.AbstractCodeMapping;
 import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.CompositeStatementObjectMapping;
+import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
 import gr.uom.java.xmi.decomposition.LeafMapping;
 import gr.uom.java.xmi.decomposition.StatementObject;
 import gr.uom.java.xmi.decomposition.TryStatementObject;
@@ -83,6 +85,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
     private final CodeElementType blockType;
     private final int blockStartLineNumber;
     private final int blockEndLineNumber;
+    private final Map<Block, BlockTrackerChangeHistory> nested = new LinkedHashMap<Block, BlockTrackerChangeHistory>();
 
 	public BlockTrackerChangeHistory(String methodName, int methodDeclarationLineNumber, CodeElementType blockType,
 			int blockStartLineNumber, int blockEndLineNumber) {
@@ -117,7 +120,11 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 		return blockEndLineNumber;
 	}
 
-    public boolean isStartBlock(Block block) {
+    public Map<Block, BlockTrackerChangeHistory> getNested() {
+		return nested;
+	}
+
+	public boolean isStartBlock(Block block) {
         return block.getComposite().getLocationInfo().getCodeElementType().equals(blockType) &&
                 block.getComposite().getLocationInfo().getStartLine() == blockStartLineNumber &&
                 block.getComposite().getLocationInfo().getEndLine() == blockEndLineNumber;
@@ -574,6 +581,225 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return false;
     }
 
+    private void processNestedMappings(Block parentBlockBefore, Block parentBlockAfter, Version currentVersion, Version parentVersion, Set<AbstractCodeMapping> mappings, VariableDeclarationContainer container1, VariableDeclarationContainer container2) {
+    	Block startBlock = getStart();
+    	Map<Integer, Integer> lineAlignment = new LinkedHashMap<Integer, Integer>();
+    	try {
+    		if (startBlock != null && startBlock.isMultiLine()) {
+    			List<String> start = IOUtils.readLines(new StringReader(startBlock.getComposite().getActualSignature()));
+    			List<String> original = IOUtils.readLines(new StringReader(parentBlockBefore.getComposite().getActualSignature()));
+    			List<String> revised = IOUtils.readLines(new StringReader(parentBlockAfter.getComposite().getActualSignature()));
+    			Patch<String> patch = DiffUtils.diff(revised, start, true);
+    			List<AbstractDelta<String>> deltas = patch.getDeltas();
+    			for (int i=0; i<deltas.size(); i++) {
+    				AbstractDelta<String> delta = deltas.get(i);
+    				if (delta instanceof EqualDelta) {
+    					Chunk<String> target = delta.getTarget();
+    					List<String> affectedLines = new ArrayList<>(target.getLines());
+    					for (int j=0; j<affectedLines.size(); j++) {
+    						int leftLine = parentBlockAfter.signatureStartLine() + j;
+    						int rightLine = startBlock.signatureStartLine() + j;
+    						lineAlignment.put(leftLine, rightLine);
+    					}
+    				}
+    			}
+    		}
+    	}
+    	catch(IOException e) {
+    		e.printStackTrace();
+    	}
+    	for (AbstractCodeMapping mapping : mappings) {
+    		if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+    			Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), container1, parentVersion);
+    			Block blockAfter = Block.of((StatementObject) mapping.getFragment2(), container2, currentVersion);
+    			int blockStartLine = lineAlignment.get(blockAfter.getLocation().getStartLine());
+    			AbstractCodeFragment fragmentStart = null;
+    			for (LambdaExpressionObject lambda : startBlock.getComposite().getLambdas()) {
+    				if (lambda.getBody() != null) {
+    					for (AbstractCodeFragment f : lambda.getBody().getCompositeStatement().getLeaves()) {
+    						if (f.getLocationInfo().getStartLine() == blockStartLine) {
+    							fragmentStart = f;
+    							break;
+    						}
+    					}
+    				}
+    			}
+    			Block blockStart = Block.of((StatementObject) fragmentStart, startBlock.getOperation(), startBlock.getVersion());
+    			//////
+    			CodeElementType type = blockStart.getLocation().getCodeElementType();
+    			int startLine = blockStart.getLocation().getStartLine();
+    			int endLine = blockStart.getLocation().getEndLine();
+    			BlockTrackerChangeHistory nestedHistory = new BlockTrackerChangeHistory(blockStart.getOperation().getName(), blockStart.getOperation().getLocationInfo().getStartLine(), type, startLine, endLine);
+    			nestedHistory.setStart(blockStart);
+    			//////
+    			if (!blockBefore.getComposite().getString().equals(blockAfter.getComposite().getString())) {
+    				nestedHistory.addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+    			}
+    			else {
+    				if(blockBefore.differInFormatting(blockAfter)) {
+    					nestedHistory.addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+    				}
+    				else {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+    				}
+    			}
+    			nestedHistory.get().connectRelatedNodes();
+    			nestedHistory.addFirst(blockBefore);
+    			nested.put(blockStart, nestedHistory);
+    		}
+    		else if (mapping instanceof CompositeStatementObjectMapping && !mapping.getFragment1().getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK)) {
+    			Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), container1, parentVersion);
+    			Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), container2, currentVersion);
+    			int blockStartLine = lineAlignment.get(blockAfter.getLocation().getStartLine());
+    			CompositeStatementObject fragmentStart = null;
+    			for (LambdaExpressionObject lambda : startBlock.getComposite().getLambdas()) {
+    				if (lambda.getBody() != null) {
+    					for (CompositeStatementObject f : lambda.getBody().getCompositeStatement().getInnerNodes()) {
+    						if (f.getLocationInfo().getStartLine() == blockStartLine) {
+    							fragmentStart = f;
+    							break;
+    						}
+    					}
+    				}
+    			}
+    			Block blockStart = Block.of(fragmentStart, startBlock.getOperation(), startBlock.getVersion());
+    			//////
+    			CodeElementType type = blockStart.getLocation().getCodeElementType();
+    			int startLine = blockStart.getLocation().getStartLine();
+    			int endLine = blockStart.getLocation().getEndLine();
+    			BlockTrackerChangeHistory nestedHistory = new BlockTrackerChangeHistory(blockStart.getOperation().getName(), blockStart.getOperation().getLocationInfo().getStartLine(), type, startLine, endLine);
+    			nestedHistory.setStart(blockStart);
+    			//////
+    			boolean bodyChange = false;
+    			boolean catchOrFinallyChange = false;
+    			boolean elseChange = false;
+    			List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+    			List<String> stringRepresentationAfter = blockAfter.getComposite().stringRepresentation();
+    			if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+    				handleCompositeExpressionChange(blockBefore, blockAfter, stringRepresentationBefore,
+    						stringRepresentationAfter);
+    				List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+    				List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+    				if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+    				}
+    				bodyChange = true;
+    			}
+    			if (blockBefore.getComposite() instanceof TryStatementObject && blockAfter.getComposite() instanceof TryStatementObject) {
+    				TryStatementObject tryBefore = (TryStatementObject) blockBefore.getComposite();
+    				TryStatementObject tryAfter = (TryStatementObject) blockAfter.getComposite();
+    				List<CompositeStatementObject> catchBlocksBefore = new ArrayList<>(tryBefore.getCatchClauses());
+    				List<CompositeStatementObject> catchBlocksAfter = new ArrayList<>(tryAfter.getCatchClauses());
+    				for (AbstractCodeMapping m : mappings) {
+    					if (m instanceof CompositeStatementObjectMapping) {
+    						CompositeStatementObject fragment1 = (CompositeStatementObject) m.getFragment1();
+    						CompositeStatementObject fragment2 = (CompositeStatementObject) m.getFragment2();
+    						if (m.getFragment1().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
+    								m.getFragment2().getLocationInfo().getCodeElementType().equals(CodeElementType.CATCH_CLAUSE) &&
+    								tryBefore.getCatchClauses().contains(fragment1) &&
+    								tryAfter.getCatchClauses().contains(fragment2)) {
+    							List<String> catchStringRepresentationBefore = fragment1.stringRepresentation();
+    							List<String> catchStringRepresentationAfter = fragment2.stringRepresentation();
+    							catchBlocksBefore.remove(fragment1);
+    							catchBlocksAfter.remove(fragment2);
+    							if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
+    								nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
+    								catchOrFinallyChange = true;
+    							}
+    						}
+    					}
+    				}
+    				Set<CompositeStatementObject> catchBlocksBeforeToRemove = new LinkedHashSet<>();
+    				Set<CompositeStatementObject> catchBlocksAfterToRemove = new LinkedHashSet<>();
+    				for (int i=0; i<Math.min(catchBlocksBefore.size(), catchBlocksAfter.size()); i++) {
+    					List<UMLType> typesBefore = new ArrayList<>();
+    					for (VariableDeclaration variableDeclaration : catchBlocksBefore.get(i).getVariableDeclarations()) {
+    						typesBefore.add(variableDeclaration.getType());
+    					}
+    					List<UMLType> typesAfter = new ArrayList<>();
+    					for (VariableDeclaration variableDeclaration : catchBlocksAfter.get(i).getVariableDeclarations()) {
+    						typesAfter.add(variableDeclaration.getType());
+    					}
+    					if (typesBefore.equals(typesAfter)) {
+    						List<String> catchStringRepresentationBefore = catchBlocksBefore.get(i).stringRepresentation();
+    						List<String> catchStringRepresentationAfter = catchBlocksAfter.get(i).stringRepresentation();
+    						catchBlocksBeforeToRemove.add(catchBlocksBefore.get(i));
+    						catchBlocksAfterToRemove.add(catchBlocksAfter.get(i));
+    						if (!catchStringRepresentationBefore.equals(catchStringRepresentationAfter)) {
+    							nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_CHANGE));
+    							catchOrFinallyChange = true;
+    						}
+    					}
+    				}
+    				catchBlocksBefore.removeAll(catchBlocksBeforeToRemove);
+    				catchBlocksAfter.removeAll(catchBlocksAfterToRemove);
+    				for (CompositeStatementObject catchBlockBefore : catchBlocksBefore) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_REMOVED));
+    					catchOrFinallyChange = true;
+    				}
+    				for (CompositeStatementObject catchBlockAfter : catchBlocksAfter) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.CATCH_BLOCK_ADDED));
+    					catchOrFinallyChange = true;
+    				}
+    				if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() != null) {
+    					List<String> finallyStringRepresentationBefore = tryBefore.getFinallyClause().stringRepresentation();
+    					List<String> finallyStringRepresentationAfter = tryAfter.getFinallyClause().stringRepresentation();
+    					if (!finallyStringRepresentationBefore.equals(finallyStringRepresentationAfter)) {
+    						nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_CHANGE));
+    						catchOrFinallyChange = true;
+    					}
+    				}
+    				else if (tryBefore.getFinallyClause() == null && tryAfter.getFinallyClause() != null) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_ADDED));
+    					catchOrFinallyChange = true;
+    				}
+    				else if (tryBefore.getFinallyClause() != null && tryAfter.getFinallyClause() == null) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.FINALLY_BLOCK_REMOVED));
+    					catchOrFinallyChange = true;
+    				}
+    			}
+    			if (blockBefore.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT) && 
+    					blockAfter.getComposite().getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+    				CompositeStatementObject ifBefore = (CompositeStatementObject) blockBefore.getComposite();
+    				CompositeStatementObject ifAfter = (CompositeStatementObject) blockAfter.getComposite();
+    				if (ifBefore.getStatements().size() == 1 && ifAfter.getStatements().size() == 2) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_ADDED));
+    					elseChange = true;
+    				}
+    				else if (ifBefore.getStatements().size() == 2 && ifAfter.getStatements().size() == 1) {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_REMOVED));
+    					elseChange = true;
+    				}
+    				else if (ifBefore.getStatements().size() == 2 && ifAfter.getStatements().size() == 2) {
+    					if(ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+    							!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+    							!ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT)) {
+    						nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_BODY_REMOVED));
+    						elseChange = true;
+    					}
+    					else if(!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK) &&
+    							!ifBefore.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.IF_STATEMENT) &&
+    							ifAfter.getStatements().get(1).getLocationInfo().getCodeElementType().equals(CodeElementType.BLOCK)) {
+    						nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.ELSE_BLOCK_BODY_ADDED));
+    						elseChange = true;
+    					}
+    				}
+    			}
+    			if (!bodyChange && !catchOrFinallyChange && !elseChange) {
+    				if(blockBefore.differInFormatting(blockAfter)) {
+    					nestedHistory.addStatementChange(blockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+    				}
+    				else {
+    					nestedHistory.get().addChange(blockBefore, blockAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+    				}
+    			}
+    			nestedHistory.get().connectRelatedNodes();
+    			nestedHistory.addFirst(blockBefore);
+    			nested.put(blockStart, nestedHistory);
+    		}
+    	}
+    }
+
     private Set<Block> analyseBlockRefactorings(Collection<Refactoring> refactorings, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
         Set<Block> leftBlockSet = new HashSet<>();
         for (Refactoring refactoring : refactorings) {
@@ -598,6 +824,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                             blockBefore = Block.of((CompositeStatementObject) fragmentBefore, loopWithPipelineRefactoring.getOperationBefore(), parentVersion);
                                             blockAfter = addedBlockAfter;
                                             changeType = Change.Type.REPLACE_LOOP_WITH_PIPELINE;
+                                            processNestedMappings(blockBefore, blockAfter, currentVersion, parentVersion, loopWithPipelineRefactoring.getNestedStatementMappings(), loopWithPipelineRefactoring.getOperationBefore(), loopWithPipelineRefactoring.getOperationAfter());
                                         }
                                     }
                                 }
@@ -615,6 +842,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         	blockBefore = Block.of((StatementObject) anonymousWithLambdaRefactoring.getAnonymousOwner(), anonymousWithLambdaRefactoring.getOperationBefore(), parentVersion);
                         	blockAfter = addedBlockAfter;
                             changeType = Change.Type.REPLACE_ANONYMOUS_WITH_LAMBDA;
+                            processNestedMappings(blockBefore, blockAfter, currentVersion, parentVersion, anonymousWithLambdaRefactoring.getMappings(), anonymousWithLambdaRefactoring.getOperationBefore(), anonymousWithLambdaRefactoring.getOperationAfter());
                         }
                     }
                 	break;

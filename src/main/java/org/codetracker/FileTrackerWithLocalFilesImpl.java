@@ -67,6 +67,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 	private final Map<String, UMLModelDiff> modelDiffCache = new HashMap<>();
 	private final List<String> lines = new ArrayList<>();
 	private final Map<CodeElement, AbstractChangeHistory<? extends BaseCodeElement>> programElementMap = new LinkedHashMap<>();
+	private final Map<CodeElement, AbstractChangeHistory<? extends BaseCodeElement>> nestedProgramElementMap = new LinkedHashMap<>();
 	private final Map<Integer, HistoryInfo<? extends BaseCodeElement>> blameInfo = new LinkedHashMap<>();
 
 	public FileTrackerWithLocalFilesImpl(String cloneURL, String startCommitId, String filePath) {
@@ -342,6 +343,10 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						UMLClassBaseDiff lightweightInnerClassDiff = lightweightClassDiff(pair.getLeft().getUmlClass(), pair.getRight().getUmlClass());
 						processImportsAndClassComments(lightweightInnerClassDiff, pair.getRight(), currentVersion, parentVersion, Collections.emptyList());
 					}
+					if(nestedProgramElementMap.size() > 0) {
+						programElementMap.putAll(nestedProgramElementMap);
+						nestedProgramElementMap.clear();
+					}
 					continue;
 				}
 				else if (leftClass != null && (annotationChanged || modifiersChanged)) {
@@ -484,6 +489,20 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				startBlock.checkDoWhileConditional(lineNumber);
 				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock, lineNumber);
 				blameInfo.put(lineNumber, historyInfo);
+				if (startBlockChangeHistory.getNested().size() > 0) {
+					for (Block nestedBlock : startBlockChangeHistory.getNested().keySet()) {
+						BlockTrackerChangeHistory nestedHistory = (BlockTrackerChangeHistory)programElementMap.get(nestedBlock);
+						if (nestedHistory.getBlockStartLineNumber() == lineNumber || nestedHistory.getBlockEndLineNumber() == lineNumber) {
+							nestedBlock.checkClosingBracket(lineNumber);
+							nestedBlock.checkElseBlockStart(lineNumber);
+							nestedBlock.checkElseBlockEnd(lineNumber);
+							nestedBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
+							nestedBlock.checkDoWhileConditional(lineNumber);
+							HistoryInfo<Block> nestedHistoryInfo = nestedHistory.blameReturn(nestedBlock, lineNumber);
+							blameInfo.put(lineNumber, nestedHistoryInfo);
+						}
+					}
+				}
 			}
 			else if (startElement instanceof Class) {
 				Class clazz = (Class)startElement;
@@ -1084,6 +1103,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							}
 							found = startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, findBodyMapper(umlModelDiff, rightMethod, currentVersion, parentVersion));
 							if (found) {
+								nestedProgramElementMap.putAll(startBlockChangeHistory.getNested());
 								continue;
 							}
 						}
@@ -1746,6 +1766,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						startBlockChangeHistory.poll();
 						alreadyProcessed.add(startBlock);
 						if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+							nestedProgramElementMap.putAll(startBlockChangeHistory.getNested());
 							continue;
 						}
 					}
@@ -1856,6 +1877,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					}
 					startBlockChangeHistory.poll();
 					if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+						nestedProgramElementMap.putAll(startBlockChangeHistory.getNested());
 						continue;
 					}
 				}

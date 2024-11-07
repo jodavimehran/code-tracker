@@ -92,15 +92,15 @@ a96567721 source/com/intellij/compiler/CompilerManagerImpl.java                 
 5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 92)      final LocalFileSystem lfs = LocalFileSystem.getInstance();
 5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 93)      myWatchRoots = lfs.addRootsToWatch(Collections.singletonList(FileUtil.toCanonicalPath(projectGeneratedSrcRoot.getPath())), true);
 06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 94)      Disposer.register(project, () -> {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 95)        final ExternalJavacManager manager = myExternalJavacManager;
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 96)        myExternalJavacManager = null;
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 97)        if (manager != null) {
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 98)          manager.stop();
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 99)        }
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 100)       lfs.removeWatchedRoots(myWatchRoots);
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 103)       }
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 95)        final ExternalJavacManager manager = myExternalJavacManager;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 96)        myExternalJavacManager = null;
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 97)        if (manager != null) {
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 98)          manager.stop();
+d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 99)        }
+                                                                                                                               100)       lfs.removeWatchedRoots(myWatchRoots);
+32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
+32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
+32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 103)       }
 06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 104)     });
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 105)   }
                                                                                                                                106)

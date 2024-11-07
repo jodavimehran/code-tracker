@@ -238,15 +238,15 @@ ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Se
 fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 238)         final Set<String> externalResources = new HashSet<>();
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 239)         fileSetChecks.stream().filter(check -> check instanceof ExternalResourceHolder)
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 240)             .forEach(check -> {
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 241)                 final Set<String> locations =
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 242)                     ((ExternalResourceHolder) check).getExternalResourceLocations();
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 243)                 externalResources.addAll(locations);
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 241)                 final Set<String> locations =
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 242)                     ((ExternalResourceHolder) check).getExternalResourceLocations();
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 243)                 externalResources.addAll(locations);
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 244)             });
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 245)         filters.getFilters().stream().filter(filter -> filter instanceof ExternalResourceHolder)
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 246)             .forEach(filter -> {
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 247)                 final Set<String> locations =
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 248)                     ((ExternalResourceHolder) filter).getExternalResourceLocations();
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 249)                 externalResources.addAll(locations);
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 247)                 final Set<String> locations =
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 248)                     ((ExternalResourceHolder) filter).getExternalResourceLocations();
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 249)                 externalResources.addAll(locations);
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 250)             });
 ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 251)         return externalResources;
 ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/Checker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 252)     }

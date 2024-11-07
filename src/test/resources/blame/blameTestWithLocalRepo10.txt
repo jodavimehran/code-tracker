@@ -482,9 +482,9 @@ ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei
 9c43a1d16 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Timur               2017-09-28 02:46:56 +0000 482)     private static Set<String> getExternalResourceLocationsOfChecks(Set<AbstractCheck> checks) {
 fbf3f95c2 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-09-21 02:52:06 +0000 483)         final Set<String> externalConfigurationResources = new HashSet<>();
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 484)         checks.stream().filter(check -> check instanceof ExternalResourceHolder).forEach(check -> {
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 485)             final Set<String> checkExternalResources =
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 486)                 ((ExternalResourceHolder) check).getExternalResourceLocations();
-de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 487)             externalConfigurationResources.addAll(checkExternalResources);
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 485)             final Set<String> checkExternalResources =
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 486)                 ((ExternalResourceHolder) check).getExternalResourceLocations();
+ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 487)             externalConfigurationResources.addAll(checkExternalResources);
 de022d243 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Mariia Mykhailova   2016-09-08 12:30:40 +0000 488)         });
 ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 489)         return externalConfigurationResources;
 ecbeaa6e1 src/main/java/com/puppycrawl/tools/checkstyle/TreeWalker.java  (Andrei Selkin       2016-05-16 20:53:12 +0000 490)     }
