@@ -97,7 +97,7 @@ d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 97)        if (manager != null) {
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 98)          manager.stop();
 d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2015-09-11 10:05:18 +0000 99)        }
-                                                                                                                               100)       lfs.removeWatchedRoots(myWatchRoots);
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 100)       lfs.removeWatchedRoots(myWatchRoots);
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 103)       }

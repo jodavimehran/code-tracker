@@ -50,9 +50,11 @@ import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
+import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.decomposition.AbstractCodeFragment;
 import gr.uom.java.xmi.decomposition.AbstractCodeMapping;
 import gr.uom.java.xmi.decomposition.AbstractExpression;
+import gr.uom.java.xmi.decomposition.AnonymousClassDeclarationObject;
 import gr.uom.java.xmi.decomposition.CompositeStatementObject;
 import gr.uom.java.xmi.decomposition.CompositeStatementObjectMapping;
 import gr.uom.java.xmi.decomposition.LambdaExpressionObject;
@@ -1204,6 +1206,26 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                 blockChangeHistory.connectRelatedNodes();
                 return true;
             }
+            for (AnonymousClassDeclarationObject anonymousClassDeclaration : composite.getAnonymousClassDeclarations()) {
+            	for (UMLAnonymousClass anonymousClass : umlOperationBodyMapper.getContainer2().getAnonymousClassList()) {
+            		if (anonymousClass.getLocationInfo().equals(anonymousClassDeclaration.getLocationInfo())) {
+            			for (UMLOperation operation : anonymousClass.getOperations()) {
+            				if (operation.getBody() != null) {
+        	            		for (CompositeStatementObject fragment : operation.getBody().getCompositeStatement().getInnerNodes()) {
+        	            			Block nestedBlockAfter = Block.of(fragment, umlOperationBodyMapper.getContainer2(), currentVersion);
+        	        	            if (equalOperator.test(nestedBlockAfter)) {
+        	        	            	Block nestedBlockBefore = Block.of(fragment, umlOperationBodyMapper.getContainer2(), parentVersion);
+        	        	                blockChangeHistory.handleAdd(nestedBlockBefore, nestedBlockAfter, "new statement");
+        	        	                elements.add(nestedBlockBefore);
+        	        	                blockChangeHistory.connectRelatedNodes();
+        	        	                return true;
+        	        	            }
+        	            		}
+        	            	}
+            			}
+            		}
+            	}
+            }
         }
         for (AbstractCodeFragment composite : umlOperationBodyMapper.getNonMappedLeavesT2()) {
         	if(composite instanceof StatementObject) {
@@ -1214,6 +1236,26 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 	                elements.add(blockBefore);
 	                blockChangeHistory.connectRelatedNodes();
 	                return true;
+	            }
+	            for (AnonymousClassDeclarationObject anonymousClassDeclaration : composite.getAnonymousClassDeclarations()) {
+	            	for (UMLAnonymousClass anonymousClass : umlOperationBodyMapper.getContainer2().getAnonymousClassList()) {
+	            		if (anonymousClass.getLocationInfo().equals(anonymousClassDeclaration.getLocationInfo())) {
+	            			for (UMLOperation operation : anonymousClass.getOperations()) {
+	            				if (operation.getBody() != null) {
+	        	            		for (AbstractCodeFragment fragment : operation.getBody().getCompositeStatement().getLeaves()) {
+	        	            			Block nestedBlockAfter = Block.of((StatementObject)fragment, umlOperationBodyMapper.getContainer2(), currentVersion);
+	        	        	            if (equalOperator.test(nestedBlockAfter)) {
+	        	        	            	Block nestedBlockBefore = Block.of((StatementObject)fragment, umlOperationBodyMapper.getContainer2(), parentVersion);
+	        	        	                blockChangeHistory.handleAdd(nestedBlockBefore, nestedBlockAfter, "new statement");
+	        	        	                elements.add(nestedBlockBefore);
+	        	        	                blockChangeHistory.connectRelatedNodes();
+	        	        	                return true;
+	        	        	            }
+	        	            		}
+	        	            	}
+	            			}
+	            		}
+	            	}
 	            }
         	}
         }
