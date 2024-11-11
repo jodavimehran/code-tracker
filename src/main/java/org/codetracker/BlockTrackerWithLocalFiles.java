@@ -175,7 +175,12 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                 {
                     //Local Refactoring
                     List<Refactoring> refactorings = umlModelDiffLocal.getRefactorings();
-                    boolean found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                    boolean found = changeHistory.isMergeMultiMapping(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
+                    if (found) {
+                        historyReport.step4PlusPlus();
+                        break;
+                    }
+                    found = changeHistory.checkForExtractionOrInline(currentVersion, parentVersion, equalMethod, rightBlock, refactorings);
                     if (found) {
                         historyReport.step4PlusPlus();
                         break;

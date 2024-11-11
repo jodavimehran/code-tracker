@@ -448,6 +448,8 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     Method methodAfter = Method.of(mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
                     if (equalMethod.test(methodAfter)) {
                     	int mergeMatches = 0;
+                    	AbstractCodeFragment fragment2 = null;
+                    	int fragment2Matches = 0;
                         for (UMLOperationBodyMapper bodyMapper : mergeOperationRefactoring.getMappers()) {
                             for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
                                 if (mapping instanceof CompositeStatementObjectMapping) {
@@ -491,9 +493,41 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                     }
                                 }
                             }
+                            for (CompositeStatementObject composite : bodyMapper.getNonMappedInnerNodesT2()) {
+	                        	Block blockAfter = Block.of(composite, bodyMapper.getContainer2(), currentVersion);
+	                        	if (blockAfter.equalIdentifierIgnoringVersion(rightBlock)) {
+	                        		if (fragment2 == null) {
+                                		fragment2 = composite;
+                                	}
+                                	else if (fragment2.equals(composite)) {
+                                		fragment2Matches++;
+                                	}
+	                        	}
+	                        }
+	                        for (AbstractCodeFragment fragment : bodyMapper.getNonMappedLeavesT2()) {
+	                        	if (fragment instanceof StatementObject) {
+		                        	Block blockAfter = Block.of((StatementObject) fragment, bodyMapper.getContainer2(), currentVersion);
+		                        	if (blockAfter.equalIdentifierIgnoringVersion(rightBlock)) {
+		                        		if (fragment2 == null) {
+                                    		fragment2 = fragment;
+                                    	}
+                                    	else if (fragment2.equals(fragment)) {
+                                    		fragment2Matches++;
+                                    	}
+		                        	}
+	                        	}
+	                        }
                         }
                         if(mergeMatches > 0) {
                         	return true;
+                        }
+                        if(fragment2 != null && mergeOperationRefactoring.getMappers().size() == fragment2Matches + 1) {
+                        	Block blockBefore = Block.of(fragment2 instanceof StatementObject ? (StatementObject) fragment2 : (CompositeStatementObject) fragment2, mergeOperationRefactoring.getNewMethodAfterMerge(), parentVersion);
+                        	Block blockAfter = Block.of(fragment2 instanceof StatementObject ? (StatementObject) fragment2 : (CompositeStatementObject) fragment2, mergeOperationRefactoring.getNewMethodAfterMerge(), currentVersion);
+                    		blockChangeHistory.handleAdd(blockBefore, blockAfter, "new block");
+                            elements.add(blockBefore);
+                            blockChangeHistory.connectRelatedNodes();
+                            return true;
                         }
                     }
                     break;
