@@ -202,7 +202,7 @@ efb867427 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 19:54:24 +0000 202) 	@Override
 9693d5389 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-06-10 10:56:39 +0000 203) 	public void after(JupiterEngineExecutionContext context) {
                                                                                                                                                      204)
-c1d682aee junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-07-07 20:15:38 +0000 205) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
+137f831bb junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-07-07 20:15:38 +0000 205) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
 c1d682aee junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-07-07 20:15:38 +0000 206) 		Throwable previousThrowable = throwableCollector.getThrowable();
                                                                                                                                                      207)
 62c433c14 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 19:29:20 +0000 208) 		if (context.beforeAllMethodsExecuted()) {
