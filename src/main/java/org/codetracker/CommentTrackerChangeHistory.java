@@ -204,38 +204,69 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     if (equalMethod.test(extractedMethod)) {
                         UMLComment matchedCommentFromSourceMethod = null;
                         UMLOperationBodyMapper bodyMapper = extractOperationRefactoring.getBodyMapper();
-                        UMLCommentListDiff commentListDiff = bodyMapper.getCommentListDiff();
-                        if (commentListDiff != null) {
-                            for (Pair<UMLComment, UMLComment> mapping : commentListDiff.getCommonComments()) {
-                                Comment matchedCommentInsideExtractedMethodBody = Comment.of(mapping.getRight(), bodyMapper.getContainer2(), currentVersion);
-                                if (matchedCommentInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
-                                    matchedCommentFromSourceMethod = mapping.getLeft();
-                                    Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
-                                    if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
-                                        processChange(commentBefore, matchedCommentInsideExtractedMethodBody);
-                                    }
-                                    break;
+                        if(rightComment.getComment() instanceof UMLComment) {
+	                        UMLCommentListDiff commentListDiff = bodyMapper.getCommentListDiff();
+	                        if (commentListDiff != null) {
+	                            for (Pair<UMLComment, UMLComment> mapping : commentListDiff.getCommonComments()) {
+	                                Comment matchedCommentInsideExtractedMethodBody = Comment.of(mapping.getRight(), bodyMapper.getContainer2(), currentVersion);
+	                                if (matchedCommentInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightComment)) {
+	                                    matchedCommentFromSourceMethod = mapping.getLeft();
+	                                    Comment commentBefore = Comment.of(mapping.getLeft(), bodyMapper.getContainer1(), parentVersion);
+	                                    if (!commentBefore.getComment().getText().equals(matchedCommentInsideExtractedMethodBody.getComment().getText())) {
+	                                        processChange(commentBefore, matchedCommentInsideExtractedMethodBody);
+	                                    }
+	                                    break;
+	                                }
+	                            }
+	                        }
+	                        Comment commentBefore;
+	                        if (rightComment.getOperation().isPresent())
+	                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+	                        else
+	                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
+	                        if (matchedCommentFromSourceMethod == null) {
+	                            commentChangeHistory.handleAdd(commentBefore, rightComment, extractOperationRefactoring.toString());
+	                            if(extractMatches == 0) {
+	                            	elements.addFirst(commentBefore);
+	                            }
+	                        }
+	                        else {
+	                            VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
+	                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+	                            Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
+	                            if(extractMatches == 0) {
+	                            	elements.addFirst(leftComment);
+	                            }
+	                        }
+                    	}
+                        if(bodyMapper.getJavadocDiff().isPresent()) {
+                        	UMLJavadocDiff extractedJavadocDiff = bodyMapper.getJavadocDiff().get();
+                        	Comment commentAfter = Comment.of(extractedJavadocDiff.getJavadocAfter(), bodyMapper.getContainer2(), currentVersion);
+                    		if (commentAfter != null && commentAfter.equalIdentifierIgnoringVersion(rightComment)) {
+                                Comment commentBefore = Comment.of(extractedJavadocDiff.getJavadocBefore(), bodyMapper.getContainer1(), parentVersion);
+                                if (!commentBefore.getComment().getText().equals(commentAfter.getComment().getText())) {
+                                    processChange(commentBefore, commentAfter);
                                 }
-                            }
-                        }
-                        Comment commentBefore;
-                        if (rightComment.getOperation().isPresent())
-                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
-                        else
-                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
-                        if (matchedCommentFromSourceMethod == null) {
-                            commentChangeHistory.handleAdd(commentBefore, rightComment, extractOperationRefactoring.toString());
-                            if(extractMatches == 0) {
-                            	elements.addFirst(commentBefore);
-                            }
+                                else {
+                                    commentChangeHistory.addChange(commentBefore, commentAfter, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                                }
+                                if(extractMatches == 0) {
+                                	elements.addFirst(commentBefore);
+                                }
+                    		}
                         }
                         else {
-                            VariableDeclarationContainer sourceOperation = extractOperationRefactoring.getSourceOperationBeforeExtraction();
-                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
-                            Comment leftComment = Comment.of(matchedCommentFromSourceMethod, sourceMethod);
-                            if(extractMatches == 0) {
-                            	elements.addFirst(leftComment);
-                            }
+                        	Comment commentBefore;
+	                        if (rightComment.getOperation().isPresent())
+	                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
+	                        else
+	                        	commentBefore = Comment.of(rightComment.getComment(), rightComment.getClazz().get(), parentVersion);
+	                        if (matchedCommentFromSourceMethod == null) {
+	                            commentChangeHistory.handleAdd(commentBefore, rightComment, extractOperationRefactoring.toString());
+	                            if(extractMatches == 0) {
+	                            	elements.addFirst(commentBefore);
+	                            }
+	                        }
                         }
                         commentChangeHistory.connectRelatedNodes();
                         extractMatches++;
