@@ -2370,7 +2370,7 @@ e14f58de2 core/src/main/java/org/hibernate/cfg/AnnotationBinder.java           (
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2370) 			throw new AnnotationException(
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2371) 					"@IdClass class should not have @Id nor @EmbeddedId properties: "
 174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2372) 							+ BinderHelper.getPath( propertyHolder, inferredData )
-174a568f8 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 13:16:05 +0000 2373) 			);
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2373) 			);
 7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 2374) 		}
 9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2375) 		XClass entityXClass = inferredData.getClassOrElement();
 9a75fa8d9 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2017-12-13 12:19:31 +0000 2376) 		XProperty idXProperty = inferredData.getProperty();
@@ -2576,7 +2576,7 @@ d9a1022f3 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2576) 			if ( propertyHolder.getPersistentClass().getIdentifier() != null ) {
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2577) 				throw new AnnotationException(
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2578) 						comp.getComponentClassName()
-153ad753e annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2010-03-04 21:55:10 +0000 2579) 								+ " must not have @Id properties when used as an @EmbeddedId: "
+8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2579) 								+ " must not have @Id properties when used as an @EmbeddedId: "
 153ad753e annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2010-03-04 21:55:10 +0000 2580) 								+ BinderHelper.getPath( propertyHolder, inferredData )
 153ad753e annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Hardy Ferentschik 2010-03-04 21:55:10 +0000 2581) 				);
 8577a68e6 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Emmanuel Bernard  2010-01-21 17:51:09 +0000 2582) 			}

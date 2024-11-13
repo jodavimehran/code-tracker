@@ -1389,6 +1389,9 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 								subListFound = true;
 								for (int j=0; j<affectedLines.size(); j++) {
 									int actualLine = startBlock.signatureStartLine() + index + j;
+									if(equalOrStripEqual(original, revised, affectedLines.get(j))) {
+										continue;
+									}
 									if (lineChangeMap.containsKey(pair)) {
 										lineChangeMap.get(pair).add(actualLine);
 									}
