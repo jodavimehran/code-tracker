@@ -171,7 +171,7 @@ efb867427 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 67ec62513 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 13:06:57 +0000 171) 		// @formatter:on
 0027ade00 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-22 09:34:07 +0000 172) 	}
                                                                                                                                                      173)
-57b31220d junit5-engine/src/main/java/org/junit/gen5/engine/junit5/JUnit5ClassDescriptor.java             (Marc Philipp    2015-12-08 13:55:37 +0000 174) 	@Override
+28ffd5ee9 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/JUnit5ClassDescriptor.java             (Marc Philipp    2015-12-08 13:32:26 +0000 174) 	@Override
 9693d5389 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-06-10 10:56:39 +0000 175) 	public JupiterEngineExecutionContext before(JupiterEngineExecutionContext context) {
 62c433c14 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 19:29:20 +0000 176) 		ThrowableCollector throwableCollector = context.getThrowableCollector();
                                                                                                                                                      177)
@@ -197,7 +197,7 @@ efb867427 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 62c433c14 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-06-25 19:29:20 +0000 197) 		throwableCollector.assertEmpty();
                                                                                                                                                      198)
 0027ade00 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-22 09:34:07 +0000 199) 		return context;
-57b31220d junit5-engine/src/main/java/org/junit/gen5/engine/junit5/JUnit5ClassDescriptor.java             (Marc Philipp    2015-12-08 13:55:37 +0000 200) 	}
+28ffd5ee9 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/JUnit5ClassDescriptor.java             (Marc Philipp    2015-12-08 13:32:26 +0000 200) 	}
                                                                                                                                                      201)
 c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 19:54:24 +0000 202) 	@Override
 9693d5389 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2018-06-10 10:56:39 +0000 203) 	public void after(JupiterEngineExecutionContext context) {
