@@ -1322,16 +1322,16 @@ a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (
 a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1322) 	private static void bindFilters(XAnnotatedElement annotatedElement, EntityBinder entityBinder) {
                                                                                                                             1323)
 a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1324) 		Filters filtersAnn = annotatedElement.getAnnotation( Filters.class );
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1325) 		if ( filtersAnn != null ) {
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1326) 			for ( Filter filter : filtersAnn.value() ) {
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1325) 		if ( filtersAnn != null ) {
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1326) 			for ( Filter filter : filtersAnn.value() ) {
 05dcc209a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Rob Worsnop       2012-07-12 14:58:11 +0000 1327) 				entityBinder.addFilter(filter);
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1328) 			}
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1329) 		}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1328) 			}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1329) 		}
                                                                                                                             1330)
 a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1331) 		Filter filterAnn = annotatedElement.getAnnotation( Filter.class );
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1332) 		if ( filterAnn != null ) {
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1332) 		if ( filterAnn != null ) {
 05dcc209a hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Rob Worsnop       2012-07-12 14:58:11 +0000 1333) 			entityBinder.addFilter(filterAnn);
-a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1334) 		}
+7337743c9 annotations/src/java/org/hibernate/cfg/AnnotationBinder.java         (Steve Ebersole    2008-10-28 18:41:10 +0000 1334) 		}
 a1e8d7cb0 annotations/src/main/java/org/hibernate/cfg/AnnotationBinder.java    (Sharath Reddy     2009-10-28 10:57:21 +0000 1335) 	}
                                                                                                                             1336)
 9caca0ce3 hibernate-core/src/main/java/org/hibernate/cfg/AnnotationBinder.java (Steve Ebersole    2015-03-10 21:53:51 +0000 1337) 	private static void bindFilterDefs(XAnnotatedElement annotatedElement, MetadataBuildingContext context) {
