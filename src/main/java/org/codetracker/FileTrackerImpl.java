@@ -238,6 +238,7 @@ public class FileTrackerImpl extends BaseTracker {
 					if (analysedCommits.contains(commitId))
 						continue;
 					analysedCommits.add(commitId);
+					long start = System.nanoTime();
 
 					Version currentVersion = gitRepository.getVersion(commitId);
 					String parentCommitId = gitRepository.getParentId(commitId);
@@ -339,6 +340,10 @@ public class FileTrackerImpl extends BaseTracker {
 							programElementMap.putAll(nestedProgramElementMap);
 							nestedProgramElementMap.clear();
 						}
+						long end = System.nanoTime();
+				        long elapsedTime = end - start;
+						double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+						System.out.println(commitId + "\t" + elapsedTimeInSecond);
 						continue;
 					}
 					else if (leftClass != null && (annotationChanged || modifiersChanged)) {
@@ -386,6 +391,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -416,6 +425,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -448,6 +461,10 @@ public class FileTrackerImpl extends BaseTracker {
 							}
 							Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 							leftSideClasses.forEach(startClassChangeHistory::addFirst);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 
@@ -456,6 +473,10 @@ public class FileTrackerImpl extends BaseTracker {
 							processAddedAttributes(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
 							processAddedInnerClasses(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion, startClass);
 							processAddedImportsAndClassComments(rightClass, parentVersion);
+							long end = System.nanoTime();
+					        long elapsedTime = end - start;
+							double elapsedTimeInSecond = (double) elapsedTime / 1_000_000_000;
+							System.out.println(commitId + "\t" + elapsedTimeInSecond);
 							break;
 						}
 					}
@@ -478,6 +499,7 @@ public class FileTrackerImpl extends BaseTracker {
 					startBlock.checkElseBlockStart(lineNumber);
 					startBlock.checkElseBlockEnd(lineNumber);
 					startBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
+					startBlock.checkClosingBracketOfLambda(lineNumber);
 					startBlock.checkDoWhileConditional(lineNumber);
 					HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock, lineNumber);
 					blameInfo.put(lineNumber, historyInfo);
@@ -489,6 +511,7 @@ public class FileTrackerImpl extends BaseTracker {
 								nestedBlock.checkElseBlockStart(lineNumber);
 								nestedBlock.checkElseBlockEnd(lineNumber);
 								nestedBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
+								nestedBlock.checkClosingBracketOfLambda(lineNumber);
 								nestedBlock.checkDoWhileConditional(lineNumber);
 								HistoryInfo<Block> nestedHistoryInfo = nestedHistory.blameReturn(nestedBlock, lineNumber);
 								blameInfo.put(lineNumber, nestedHistoryInfo);

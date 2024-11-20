@@ -1592,6 +1592,16 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 						return historyInfo;
 					}
 				}
+				else if (startBlock.isAnonymousClosingBracket()) {
+					if (change instanceof Introduced) {
+						return historyInfo;
+					}
+				}
+				else if (startBlock.isLambdaClosingBracket()) {
+					if (change instanceof Introduced || change instanceof ReplaceLoopWithPipeline) {
+						return historyInfo;
+					}
+				}
 				else if (startBlock.isDoWhileConditional()) {
 					if (change instanceof ExpressionChange) {
 						return historyInfo;

@@ -19,6 +19,8 @@ public abstract class BaseCodeElement implements CodeElement {
     private boolean elseBlockStart;
     private boolean elseBlockEnd;
     private boolean doWhileConditional;
+    private boolean anonymousClosingBracket;
+    private boolean lambdaClosingBracket;
 
     public BaseCodeElement(String identifierIgnoringVersion, String name, String filePath, Version version) {
         this.identifier = version != null ? identifierIgnoringVersion + version : identifierIgnoringVersion;
@@ -60,6 +62,22 @@ public abstract class BaseCodeElement implements CodeElement {
 
 	public void setElseBlockEnd(boolean elseBlockEnd) {
 		this.elseBlockEnd = elseBlockEnd;
+	}
+
+	public boolean isAnonymousClosingBracket() {
+		return anonymousClosingBracket;
+	}
+
+	public void setAnonymousClosingBracket(boolean anonymousClosingBracket) {
+		this.anonymousClosingBracket = anonymousClosingBracket;
+	}
+
+	public boolean isLambdaClosingBracket() {
+		return lambdaClosingBracket;
+	}
+
+	public void setLambdaClosingBracket(boolean lambdaClosingBracket) {
+		this.lambdaClosingBracket = lambdaClosingBracket;
 	}
 
 	@Override

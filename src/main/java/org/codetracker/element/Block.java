@@ -222,7 +222,18 @@ public class Block extends BaseCodeElement {
 
     public void checkClosingBracketOfAnonymousClassDeclaration(int lineNumber) {
     	if (getComposite() instanceof StatementObject && getComposite().getAnonymousClassDeclarations().size() > 0 && getLocation().getEndLine() == lineNumber) {
-    		setClosingCurlyBracket(true);
+    		setAnonymousClosingBracket(true);
+    	}
+    }
+
+    public void checkClosingBracketOfLambda(int lineNumber) {
+    	if (getComposite() instanceof StatementObject && getComposite().getLambdas().size() > 0) {
+    		for (LambdaExpressionObject lambda : getComposite().getLambdas()) {
+    			if (lambda.getBody() != null && getLocation().getEndLine() == lineNumber) {
+    				setLambdaClosingBracket(true);
+    				break;
+    			}
+    		}
     	}
     }
 

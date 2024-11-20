@@ -101,7 +101,7 @@ d65d57207 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java 
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 101)       if (ApplicationManager.getApplication().isUnitTestMode()) {    // force cleanup for created compiler system directory with generated sources
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 102)         FileUtil.delete(CompilerPaths.getCompilerSystemDirectory(project));
 32d665de0 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Maxim.Mossienko     2012-07-10 20:57:34 +0000 103)       }
-06156396f java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-04-25 14:19:19 +0000 104)     });
+5091777cf java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Eugene Zhuravlev    2012-05-21 12:19:11 +0000 104)     });
 7460e5ada source/com/intellij/compiler/CompilerManagerImpl.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 105)   }
                                                                                                                                106)
 c7998e175 java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java (Alexey Kudravtsev   2017-08-10 12:14:57 +0000 107)   // returns true if all javacs terminated

@@ -486,6 +486,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				startBlock.checkElseBlockStart(lineNumber);
 				startBlock.checkElseBlockEnd(lineNumber);
 				startBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
+				startBlock.checkClosingBracketOfLambda(lineNumber);
 				startBlock.checkDoWhileConditional(lineNumber);
 				HistoryInfo<Block> historyInfo = startBlockChangeHistory.blameReturn(startBlock, lineNumber);
 				blameInfo.put(lineNumber, historyInfo);
@@ -497,6 +498,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							nestedBlock.checkElseBlockStart(lineNumber);
 							nestedBlock.checkElseBlockEnd(lineNumber);
 							nestedBlock.checkClosingBracketOfAnonymousClassDeclaration(lineNumber);
+							nestedBlock.checkClosingBracketOfLambda(lineNumber);
 							nestedBlock.checkDoWhileConditional(lineNumber);
 							HistoryInfo<Block> nestedHistoryInfo = nestedHistory.blameReturn(nestedBlock, lineNumber);
 							blameInfo.put(lineNumber, nestedHistoryInfo);
