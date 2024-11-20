@@ -150,6 +150,7 @@ public class HistoryImpl<N extends CodeElement> implements History<N> {
     @Override
     public int compareTo(HistoryInfo<C> toCompare) {
       return Comparator.comparing(HistoryInfo<C>::getCommitTime)
+        .thenComparing(HistoryInfo<C>::getAuthoredTime)
         .thenComparing(HistoryInfo<C>::getChangeType)
         .compare(this, toCompare);
     }

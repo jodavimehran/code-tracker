@@ -25,7 +25,7 @@ a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyActio
 7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 25) public class CompileDirtyAction extends CompileActionBase {
                                                                                                                                       26)
 7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 27)   protected void doAction(DataContext dataContext, Project project) {
-0104f1489 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 09:30:57 +0000 28)     ProjectTaskManager.getInstance(project).buildAllModules();
+53ddd10a4 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Vladislav.Soroka    2016-09-21 09:30:57 +0000 28)     ProjectTaskManager.getInstance(project).buildAllModules();
 7460e5ada source/com/intellij/compiler/actions/CompileDirtyAction.java                 (Maxim Shafirov      2005-01-13 20:44:30 +0000 29)   }
                                                                                                                                       30)
 a2783ed22 java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java (Alexey Kudravtsev   2018-08-06 12:29:49 +0000 31)   public void update(@NotNull AnActionEvent e){
