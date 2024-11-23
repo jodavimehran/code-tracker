@@ -11,15 +11,15 @@
   "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
   "expectedChanges": [
     {
-      "parentCommitId": "e9823b57b4ff5a8a0b82e56b5720a96b5e5bbbd3",
-      "commitId": "45a0cadf8e7fc5cc082c11ef03f77dc017af64c4",
-      "commitTime": 1249778809,
+      "parentCommitId": "973fb6ce4096d344758b3e0988e90ab401275209",
+      "commitId": "ac490114aee005a66eeb0fba6c3c853552fc6a94",
+      "commitTime": 1259286194,
       "changeType": "introduced",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)$conversionService:ConversionService(166)",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$conversionService:ConversionService(195)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, PropertyDescriptor, MethodParameter)$conversionService:ConversionService(166)",
-      "comment": "new variable"
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$conversionService:ConversionService(195)",
+      "comment": "Extract Method private convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T extracted from protected convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, descriptor PropertyDescriptor, methodParam MethodParameter) : T in class org.springframework.beans.TypeConverterDelegate"
     }
   ]
 }
