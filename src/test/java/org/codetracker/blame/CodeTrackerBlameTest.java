@@ -76,6 +76,7 @@ public class CodeTrackerBlameTest {
         "https://github.com/hibernate/hibernate-search/commit/5b778035965d7588ad1d1ae522c4bafebd3a0e16, engine/src/main/java/org/hibernate/search/backend/impl/StreamingOperationDispatcher.java, /src/test/resources/blame/blameTestWithLocalRepo19.txt",
         "https://github.com/eclipse/jetty.project/commit/fc5dd874f3deda71e6cd42af994a5af5cb6be4af, jetty-http2/http2-server/src/main/java/org/eclipse/jetty/http2/server/HttpTransportOverHTTP2.java, /src/test/resources/blame/blameTestWithLocalRepo20.txt",
         "https://github.com/pmd/pmd/commit/d528dcd5d45582229ab3410deb7c40b2143d015d, pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java, /src/test/resources/blame/blameTestWithLocalRepo21.txt",
+        "https://github.com/apache/tomcat/commit/dbc805e237b98834a7b7afb6da7be44da428c399, java/org/apache/coyote/http2/ConnectionSettings.java, /src/test/resources/blame/blameTestWithLocalRepo22.txt",
         "https://github.com/eclipse/jgit/commit/bd1a82502680b5de5bf86f6c4470185fd1602386, org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java, /src/test/resources/blame/blameTestUntilCommitZero.txt",
         "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356, java/compiler/impl/src/com/intellij/compiler/CompilerManagerImpl.java, /src/test/resources/blame/blameTestUntilCommitZero2.txt",
         "https://github.com/JetBrains/intellij-community/commit/ecb1bb9d4d484ae63ee77f8ad45bdce154db9356, java/compiler/impl/src/com/intellij/compiler/actions/CompileDirtyAction.java, /src/test/resources/blame/blameTestUntilCommitZero3.txt"
@@ -113,6 +114,20 @@ public class CodeTrackerBlameTest {
         String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
         int lineNumber = 69;
         String expected = "LineBlameResult{commitId='b61daf7f44e5b3a817e712b6af84d6bca796fb28', filePath='src/main/java/com/puppycrawl/tools/checkstyle/Checker.java', shortCommitId='b61daf7f4', beforeFilePath='src/main/java/com/puppycrawl/tools/checkstyle/Checker.java', committer='rnveach', commitDate='1481152863', lineNumber=68}";
+        String commitId = URLHelper.getCommit(url);
+        Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+        History.HistoryInfo<? extends CodeElement> lineBlame =
+                new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+        LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame, lineNumber);
+        Assertions.assertEquals(expected, lineBlameResult.toString());
+    }
+
+    @Test
+    public void blameTestAttributeTDComment() throws Exception {
+        String url = "https://github.com/apache/tomcat/commit/dbc805e237b98834a7b7afb6da7be44da428c399";
+        String filePath = "java/org/apache/coyote/http2/ConnectionSettings.java";
+        int lineNumber = 31;
+        String expected = "LineBlameResult{commitId='a883a6b3dd2c096220e0e0ab2c0614773bb60787', filePath='java/org/apache/coyote/http2/ConnectionSettings.java', shortCommitId='a883a6b3d', beforeFilePath='java/org/apache/coyote/http2/ConnectionSettings.java', committer='Mark Thomas', commitDate='1432114403', lineNumber=31}";
         String commitId = URLHelper.getCommit(url);
         Repository repository = gitService.cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
         History.HistoryInfo<? extends CodeElement> lineBlame =

@@ -1,0 +1,139 @@
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 1)   /*
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 2)    *  Licensed to the Apache Software Foundation (ASF) under one or more
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 3)    *  contributor license agreements.  See the NOTICE file distributed with
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 4)    *  this work for additional information regarding copyright ownership.
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 5)    *  The ASF licenses this file to You under the Apache License, Version 2.0
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 6)    *  (the "License"); you may not use this file except in compliance with
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 7)    *  the License.  You may obtain a copy of the License at
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 8)    *
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 9)    *      http://www.apache.org/licenses/LICENSE-2.0
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 10)   *
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 11)   *  Unless required by applicable law or agreed to in writing, software
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 12)   *  distributed under the License is distributed on an "AS IS" BASIS,
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 13)   *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 14)   *  See the License for the specific language governing permissions and
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 15)   *  limitations under the License.
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 16)   */
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 17)  package org.apache.coyote.http2;
+                                                                                                      18)
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 19)  import java.io.IOException;
+                                                                                                      20)
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 21)  import org.apache.juli.logging.Log;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 22)  import org.apache.juli.logging.LogFactory;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 23)  import org.apache.tomcat.util.res.StringManager;
+                                                                                                      24)
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 25)  public class ConnectionSettings {
+                                                                                                      26)
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 27)      private final Log log = LogFactory.getLog(ConnectionSettings.class);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 28)      private final StringManager sm = StringManager.getManager(ConnectionSettings.class);
+                                                                                                      29)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 30)      public static final int DEFAULT_WINDOW_SIZE = (1 << 16) - 1;
+a883a6b3d java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-20 09:33:23 +0000 31)      // TODO: The maximum allowed in a settings frame as 2^32 (unsigned)
+a883a6b3d java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-20 09:33:23 +0000 32)      private static final int UNLIMITED = (1 << 31) -1; // Use the maximum possible
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 33)      private static final int MAX_WINDOW_SIZE = (1 << 31) - 1;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 34)      private static final int MIN_MAX_FRAME_SIZE = 1 << 14;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 35)      private static final int MAX_MAX_FRAME_SIZE = (1 << 24) - 1;
+                                                                                                      36)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 37)      private volatile int headerTableSize = 4096;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 38)      private volatile int enablePush = 1;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 39)      private volatile int maxConcurrentStreams = UNLIMITED;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 40)      private volatile int initialWindowSize = DEFAULT_WINDOW_SIZE;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 41)      private volatile int maxFrameSize = MIN_MAX_FRAME_SIZE;
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 42)      private volatile int maxHeaderListSize = UNLIMITED;
+                                                                                                      43)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 44)      public void set(int parameterId, int value) throws IOException {
+a42524ee0 java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 12:57:40 +0000 45)          if (log.isDebugEnabled()) {
+a42524ee0 java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 12:57:40 +0000 46)              log.debug(sm.getString("connectionSettings.debug",
+a42524ee0 java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 12:57:40 +0000 47)                      Integer.toString(parameterId), Long.toString(value)));
+a42524ee0 java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 12:57:40 +0000 48)          }
+                                                                                                      49)
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 50)          switch(parameterId) {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 51)          case 1:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 52)              setHeaderTableSize(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 53)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 54)          case 2:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 55)              setEnablePush(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 56)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 57)          case 3:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 58)              setMaxConcurrentStreams(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 59)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 60)          case 4:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 61)              setInitialWindowSize(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 62)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 63)          case 5:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 64)              setMaxFrameSize(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 65)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 66)          case 6:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 67)              setMaxHeaderListSize(value);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 68)              break;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 69)          default:
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 70)              // Unrecognised. Ignore it.
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 71)              log.warn(sm.getString("connectionSettings.unknown",
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 72)                      Integer.toString(parameterId), Long.toString(value)));
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 73)          }
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 74)      }
+                                                                                                      75)
+                                                                                                      76)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 77)      public int getHeaderTableSize() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 78)          return headerTableSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 79)      }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 80)      public void setHeaderTableSize(int headerTableSize) {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 81)          this.headerTableSize = headerTableSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 82)      }
+                                                                                                      83)
+                                                                                                      84)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 85)      public int getEnablePush() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 86)          return enablePush;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 87)      }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 88)      public void setEnablePush(int enablePush) throws IOException {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 89)          // Can't be less than zero since the result of the byte->long conversion
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 90)          // will never be negative
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 91)          if (enablePush > 1) {
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 92)              throw new Http2Exception(sm.getString("connectionSettings.enablePushInvalid",
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 93)                      Long.toString(enablePush)), 0, Http2Exception.PROTOCOL_ERROR);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 94)          }
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 95)          this.enablePush = enablePush;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 96)      }
+                                                                                                      97)
+                                                                                                      98)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 99)      public int getMaxConcurrentStreams() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 100)         return maxConcurrentStreams;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 101)     }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 102)     public void setMaxConcurrentStreams(int maxConcurrentStreams) {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 103)         this.maxConcurrentStreams = maxConcurrentStreams;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 104)     }
+                                                                                                      105)
+                                                                                                      106)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 107)     public int getInitialWindowSize() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 108)         return initialWindowSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 109)     }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 110)     public void setInitialWindowSize(int initialWindowSize) throws IOException {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 111)         if (initialWindowSize > MAX_WINDOW_SIZE) {
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 112)             throw new Http2Exception(sm.getString("connectionSettings.windowSizeTooBig",
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 113)                     Long.toString(initialWindowSize), Long.toString(MAX_WINDOW_SIZE)),
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 114)                     0, Http2Exception.PROTOCOL_ERROR);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 115)         }
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 116)         this.initialWindowSize = initialWindowSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 117)     }
+                                                                                                      118)
+                                                                                                      119)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 120)     public int getMaxFrameSize() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 121)         return maxFrameSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 122)     }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 123)     public void setMaxFrameSize(int maxFrameSize) throws IOException {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 124)         if (maxFrameSize < MIN_MAX_FRAME_SIZE || maxFrameSize > MAX_MAX_FRAME_SIZE) {
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 125)             throw new Http2Exception(sm.getString("connectionSettings.maxFrameSizeInvalid",
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 126)                     Long.toString(maxFrameSize), Long.toString(MIN_MAX_FRAME_SIZE),
+2b561c06c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:51:46 +0000 127)                     Long.toString(MAX_MAX_FRAME_SIZE)), 0, Http2Exception.PROTOCOL_ERROR);
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 128)         }
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 129)         this.maxFrameSize = maxFrameSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 130)     }
+                                                                                                      131)
+                                                                                                      132)
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 133)     public int getMaxHeaderListSize() {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 134)         return maxHeaderListSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 135)     }
+e98769d9f java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 20:36:27 +0000 136)     public void setMaxHeaderListSize(int maxHeaderListSize) {
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 137)         this.maxHeaderListSize = maxHeaderListSize;
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 138)     }
+499c4877c java/org/apache/coyote/http2/ConnectionSettings.java (Mark Thomas 2015-05-13 10:10:08 +0000 139) }
