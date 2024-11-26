@@ -511,91 +511,93 @@ public abstract class AbstractTracker {
 	protected static Set<String> getRightSideFileNames(String currentFilePath, String currentClassName, Set<String> toBeAddedFileNamesIfTheyAreNewFiles, CommitModel commitModel, UMLModelDiff umlModelDiff) {
 	    Set<String> fileNames = new HashSet<>();
 	    fileNames.add(currentFilePath);
-	    UMLAbstractClass classInChildModel = umlModelDiff.findClassInChildModel(currentClassName);
+	    Set<UMLAbstractClass> classesInChildModel = umlModelDiff.findClassesInChildModel(currentClassName);
 	    boolean newlyAddedFile = isNewlyAddedFile(commitModel, currentFilePath);
-	    if (classInChildModel instanceof UMLClass) {
-	        UMLClass umlClass = (UMLClass) classInChildModel;
-	
-	        StringBuilder regxSb = new StringBuilder();
-	
-	        String orChar = "";
-	        if (umlClass.getSuperclass() != null) {
-	            regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getSuperclass().getClassType());
-	            orChar = "|";
-	            if (newlyAddedFile) {
-	                regxSb.append(orChar).append("\\s*class\\s*").append(umlClass.getSuperclass().getClassType()).append("\\s\\s*");
-	            }
-	        }
-	
-	        for (UMLType implementedInterface : umlClass.getImplementedInterfaces()) {
-	            regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterface).append("\\s*");
-	            orChar = "|";
-	            if (newlyAddedFile) {
-	                regxSb.append(orChar).append("\\s*interface\\s*").append(implementedInterface.getClassType()).append("\\s*\\{");
-	            }
-	        }
-	
-	        //newly added file
-	        if (newlyAddedFile) {
-	            regxSb.append(orChar).append("@link\\s*").append(umlClass.getNonQualifiedName());
-	            orChar = "|";
-	            regxSb.append(orChar).append("new\\s*").append(umlClass.getNonQualifiedName()).append("\\(");
-	            regxSb.append(orChar).append("@deprecated\\s*.*").append(umlClass.getNonQualifiedName()).append("\\s*.*\n");
-	            regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\\{");
-	        }
-	
-	        String regx = regxSb.toString();
-	        if (!regx.isEmpty()) {
-	            Pattern pattern = Pattern.compile(regx);
-	            for (Map.Entry<String, String> entry : commitModel.fileContentsCurrentTrimmed.entrySet()) {
-	                Matcher matcher = pattern.matcher(entry.getValue());
-	                if (matcher.find()) {
-	                    String matcherGroup = matcher.group().trim();
-	                    String filePath = entry.getKey();
-	                    boolean isAnExistingFile = commitModel.fileContentsBeforeTrimmed.containsKey(filePath) || commitModel.renamedFilesHint.values().stream().anyMatch(s -> s.equals(filePath));
-	                    if (matcherGroup.startsWith("extends") && matcherGroup.contains(umlClass.getNonQualifiedName())) {
-	                        if (isAnExistingFile) {
-	                            fileNames.add(filePath);
-	                        }
-	                    } else if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
-	                        if (isAnExistingFile) {
-	                            String[] split = matcherGroup.split("\\s");
-	                            String className = split[split.length - 1];
-	                            if (className.contains(".")) {
-	                                className = className.substring(0, className.indexOf("."));
-	                            }
-	                            String[] tokens = CAMEL_CASE_SPLIT_PATTERN.split(className);
-	                            final String fileName = className + ".java";
-	                            if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName) || s.endsWith(tokens[tokens.length - 1] + ".java"))) {
-	                                fileNames.add(filePath);
-	                            }
-	                        }
-	                    } else if (matcherGroup.startsWith("new")) {
-	                        if (isAnExistingFile) {
-	                            fileNames.add(filePath);
-	                        }
-	                    } else if (matcherGroup.startsWith("@link")) {
-	                        fileNames.add(filePath); //TODO: add existing file condition and test
-	                    } else if (matcherGroup.startsWith("class")) {
-	                        if (isAnExistingFile) {
-	                            fileNames.add(filePath);
-	                        }
-	                    } else if (matcherGroup.startsWith("@deprecated")) {
-	                        if (isAnExistingFile) {
-	                            fileNames.add(filePath);
-	                        }
-	                    } else if (matcherGroup.startsWith("interface")) {
-	                        if (isAnExistingFile) {
-	                            fileNames.add(filePath);
-	                        }
-	                    }
-	
-	                }
-	            }
-	        }
-	        if (!umlClass.isTopLevel()) {
-	            fileNames.addAll(getRightSideFileNames(currentFilePath, umlClass.getPackageName(), toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff));
-	        }
+	    for (UMLAbstractClass classInChildModel : classesInChildModel) {
+		    if (classInChildModel instanceof UMLClass) {
+		        UMLClass umlClass = (UMLClass) classInChildModel;
+		
+		        StringBuilder regxSb = new StringBuilder();
+		
+		        String orChar = "";
+		        if (umlClass.getSuperclass() != null) {
+		            regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getSuperclass().getClassType());
+		            orChar = "|";
+		            if (newlyAddedFile) {
+		                regxSb.append(orChar).append("\\s*class\\s*").append(umlClass.getSuperclass().getClassType()).append("\\s\\s*");
+		            }
+		        }
+		
+		        for (UMLType implementedInterface : umlClass.getImplementedInterfaces()) {
+		            regxSb.append(orChar).append("\\s*implements\\s*.*").append(implementedInterface).append("\\s*");
+		            orChar = "|";
+		            if (newlyAddedFile) {
+		                regxSb.append(orChar).append("\\s*interface\\s*").append(implementedInterface.getClassType()).append("\\s*\\{");
+		            }
+		        }
+		
+		        //newly added file
+		        if (newlyAddedFile) {
+		            regxSb.append(orChar).append("@link\\s*").append(umlClass.getNonQualifiedName());
+		            orChar = "|";
+		            regxSb.append(orChar).append("new\\s*").append(umlClass.getNonQualifiedName()).append("\\(");
+		            regxSb.append(orChar).append("@deprecated\\s*.*").append(umlClass.getNonQualifiedName()).append("\\s*.*\n");
+		            regxSb.append(orChar).append("\\s*extends\\s*").append(umlClass.getNonQualifiedName()).append("\\s*\\{");
+		        }
+		
+		        String regx = regxSb.toString();
+		        if (!regx.isEmpty()) {
+		            Pattern pattern = Pattern.compile(regx);
+		            for (Map.Entry<String, String> entry : commitModel.fileContentsCurrentTrimmed.entrySet()) {
+		                Matcher matcher = pattern.matcher(entry.getValue());
+		                if (matcher.find()) {
+		                    String matcherGroup = matcher.group().trim();
+		                    String filePath = entry.getKey();
+		                    boolean isAnExistingFile = commitModel.fileContentsBeforeTrimmed.containsKey(filePath) || commitModel.renamedFilesHint.values().stream().anyMatch(s -> s.equals(filePath));
+		                    if (matcherGroup.startsWith("extends") && matcherGroup.contains(umlClass.getNonQualifiedName())) {
+		                        if (isAnExistingFile) {
+		                            fileNames.add(filePath);
+		                        }
+		                    } else if (matcherGroup.startsWith("implements") || matcherGroup.startsWith("extends")) {
+		                        if (isAnExistingFile) {
+		                            String[] split = matcherGroup.split("\\s");
+		                            String className = split[split.length - 1];
+		                            if (className.contains(".")) {
+		                                className = className.substring(0, className.indexOf("."));
+		                            }
+		                            String[] tokens = CAMEL_CASE_SPLIT_PATTERN.split(className);
+		                            final String fileName = className + ".java";
+		                            if (commitModel.fileContentsCurrentTrimmed.keySet().stream().anyMatch(s -> s.endsWith(fileName) || s.endsWith(tokens[tokens.length - 1] + ".java"))) {
+		                                fileNames.add(filePath);
+		                            }
+		                        }
+		                    } else if (matcherGroup.startsWith("new")) {
+		                        if (isAnExistingFile) {
+		                            fileNames.add(filePath);
+		                        }
+		                    } else if (matcherGroup.startsWith("@link")) {
+		                        fileNames.add(filePath); //TODO: add existing file condition and test
+		                    } else if (matcherGroup.startsWith("class")) {
+		                        if (isAnExistingFile) {
+		                            fileNames.add(filePath);
+		                        }
+		                    } else if (matcherGroup.startsWith("@deprecated")) {
+		                        if (isAnExistingFile) {
+		                            fileNames.add(filePath);
+		                        }
+		                    } else if (matcherGroup.startsWith("interface")) {
+		                        if (isAnExistingFile) {
+		                            fileNames.add(filePath);
+		                        }
+		                    }
+		
+		                }
+		            }
+		        }
+		        if (!umlClass.isTopLevel()) {
+		            fileNames.addAll(getRightSideFileNames(currentFilePath, umlClass.getPackageName(), toBeAddedFileNamesIfTheyAreNewFiles, commitModel, umlModelDiff));
+		        }
+		    }
 	    }
 	
 	
@@ -607,8 +609,10 @@ public abstract class AbstractTracker {
 	    );
 	
 	    if (newlyAddedFile) {
-	        final String currentMethodFileName = currentFilePath.substring(currentFilePath.lastIndexOf("/"));
-	        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
+	    	for (String s : new HashSet<>(fileNames)) {
+		        final String currentMethodFileName = s.substring(s.lastIndexOf("/"));
+		        fileNames.addAll(commitModel.fileContentsCurrentTrimmed.keySet().stream().filter(filePath -> filePath.endsWith(currentMethodFileName)).collect(Collectors.toSet()));
+	    	}
 	    }
 	
 	    return fileNames;
