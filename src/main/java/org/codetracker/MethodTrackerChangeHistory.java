@@ -850,23 +850,24 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         	}
         }
 
-        UMLClass addedClass = modelDiff.getAddedClass(className);
-        if (addedClass != null) {
+        Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
+	    for (UMLClass addedClass : addedClasses) {
             for (UMLOperation operation : addedClass.getOperations()) {
                 if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;
             }
         }
-        else {
+        if (addedClasses.isEmpty()) {
         	String prefix = new String(className);
+        	Set<UMLClass> outerAddedClasses = null;
         	while (prefix.contains(".")) {
         		prefix = prefix.substring(0, prefix.lastIndexOf("."));
-        		addedClass = modelDiff.getAddedClass(prefix);
-        		if (addedClass != null) {
+        		outerAddedClasses = modelDiff.getAllAddedClasses(prefix);
+        		if (!outerAddedClasses.isEmpty()) {
         			break;
         		}
         	}
-        	if (addedClass != null) {
+        	for (UMLClass addedClass : outerAddedClasses) {
         		for (UMLAnonymousClass anonymousClass : addedClass.getAnonymousClassList()) {
         			for (UMLOperation operation : anonymousClass.getOperations()) {
                         if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
@@ -930,7 +931,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "new initializer"))
                 return true;
         }
-        if (addedClass != null) {
+        for (UMLClass addedClass : addedClasses) {
             for (UMLInitializer operation : addedClass.getInitializers()) {
                 if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;

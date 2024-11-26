@@ -261,8 +261,8 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                 return true;
         }
 
-        UMLClass addedClass = modelDiff.getAddedClass(className);
-        if (addedClass != null) {
+        Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
+	    for (UMLClass addedClass : addedClasses) {
             for (UMLAttribute umlAttribute : addedClass.getAttributes()) {
                 if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new class"))
                     return true;

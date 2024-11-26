@@ -642,8 +642,8 @@ public abstract class AbstractTracker {
 	            return true;
 	    }
 	
-	    UMLClass addedClass = modelDiff.getAddedClass(className);
-	    if (addedClass != null) {
+	    Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
+	    for (UMLClass addedClass : addedClasses) {
 	        for (UMLAttribute attribute : addedClass.getAttributes()) {
 	            if (isAttributeAdded(attribute, equalOperator, currentVersion))
 	                return true;
@@ -714,8 +714,8 @@ public abstract class AbstractTracker {
 	            return true;
 	    }
 	
-	    UMLClass addedClass = modelDiff.getAddedClass(className);
-	    if (addedClass != null) {
+	    Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
+	    for (UMLClass addedClass : addedClasses) {
 	        for (UMLOperation operation : addedClass.getOperations()) {
 	            if (isMethodAdded(operation, equalOperator, addedMethodHandler, currentVersion))
 	                return true;
