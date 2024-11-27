@@ -80,6 +80,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         continue;
                     }
                     String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+                    String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
                     Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
                     if (rightBlock == null) {
                         continue;
@@ -294,7 +295,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             }
 
 
-                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 
@@ -374,6 +375,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         continue;
                     }
                     String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+                    String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
                     Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
                     if (rightBlock == null) {
                         continue;
@@ -588,7 +590,7 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                             }
 
 
-                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 

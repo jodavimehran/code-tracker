@@ -110,6 +110,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                     continue;
                 }
                 String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+                String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
                 Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
                 if (rightBlock == null) {
                     continue;
@@ -323,7 +324,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                         }
 
 
-                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
                         if (umlClassDiff != null) {
                             found = changeHistory.checkClassDiffForBlockChange(currentVersion, parentVersion, equalMethod, equalBlock, umlClassDiff);
 
