@@ -184,7 +184,7 @@ public abstract class AbstractTracker {
 	}
 
 	protected static UMLOperationBodyMapper findBodyMapper(UMLModelDiff umlModelDiff, Method method, Version currentVersion, Version parentVersion) throws RefactoringMinerTimedOutException {
-		UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getClassName());
+		UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, method.getUmlOperation().getLocationInfo().getSourceFolder(), method.getUmlOperation().getClassName());
 	    if (umlClassDiff != null) {
 	        for (UMLOperationBodyMapper operationBodyMapper : umlClassDiff.getOperationBodyMapperList()) {
 	            Method methodLeft = Method.of(operationBodyMapper.getContainer1(), parentVersion);
@@ -200,12 +200,12 @@ public abstract class AbstractTracker {
 	    return null;
 	}
 
-	protected static UMLAbstractClassDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String className) throws RefactoringMinerTimedOutException {
+	protected static UMLAbstractClassDiff getUMLClassDiff(UMLModelDiff umlModelDiff, String sourceFolder, String className) throws RefactoringMinerTimedOutException {
 	    int maxMatchedMembers = 0;
 	    UMLAbstractClassDiff maxRenameDiff = null;
 	    UMLAbstractClassDiff sameNameDiff = null;
 	    for (UMLClassBaseDiff classDiff : getAllClassesDiff(umlModelDiff)) {
-	        if (classDiff.getOriginalClass().getName().equals(className) || classDiff.getNextClass().getName().equals(className)) {
+	        if (matchCondition(sourceFolder, className, classDiff)) {
 	            if (classDiff instanceof UMLClassRenameDiff) {
 	                UMLClassMatcher.MatchResult matchResult = ((UMLClassRenameDiff) classDiff).getMatchResult();
 	                int matchedMembers = matchResult.getMatchedOperations() + matchResult.getMatchedAttributes();
@@ -275,6 +275,12 @@ public abstract class AbstractTracker {
 	        }
 	    }
 	    return sameNameDiff != null ? sameNameDiff : maxRenameDiff;
+	}
+
+	private static boolean matchCondition(String sourceFolder, String className, UMLClassBaseDiff classDiff) {
+		if (classDiff.getNextClass().getName().equals(className) && classDiff.getNextClass().getSourceFolder().equals(sourceFolder))
+			return true;
+		return false;
 	}
 
 	private static UMLAbstractClassDiff searchRecursively(String className, UMLAnonymousClassDiff anonymousClassDiff) {

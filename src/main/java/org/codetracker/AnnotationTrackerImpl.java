@@ -108,6 +108,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                        continue;
 		                    }
 		                    String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+		                    String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
 		                    Annotation rightAnnotation = rightMethod.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
 		                    if (rightAnnotation == null) {
 		                        continue;
@@ -301,7 +302,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                            }
 		
 		
-		                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+		                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
 		                            if (umlClassDiff != null) {
 		                                found = changeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, equalMethod, equalAnnotation, umlClassDiff);
 		
@@ -332,6 +333,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                        continue;
 		                    }
 		                    String rightAttributeClassName = rightAttribute.getUmlAttribute().getClassName();
+		                    String rightAttributeSourceFolder = rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder();
 		                    Annotation rightAnnotation = rightAttribute.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
 		                    if (rightAnnotation == null) {
 		                        continue;
@@ -366,7 +368,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                            historyReport.step4PlusPlus();
 		                            break;
 		                        }
-		                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightAttributeClassName);
+		                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightAttributeSourceFolder, rightAttributeClassName);
 		                        found = changeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, rightAttribute, equalAnnotation, umlClassDiff);
 		                        if (found) {
 		                            historyReport.step4PlusPlus();
@@ -430,7 +432,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
 		                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
 		
-		                                UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightAttributeClassName);
+		                                UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightAttributeSourceFolder, rightAttributeClassName);
 		                                boolean found = changeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, rightAttribute, equalAnnotation, umlClassDiff);
 				                        if (found) {
 				                            historyReport.step5PlusPlus();
@@ -493,7 +495,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                            }
 		
 		
-		                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightAttributeClassName);
+		                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightAttributeSourceFolder, rightAttributeClassName);
 		                            if (umlClassDiff != null) {
 		                                found = changeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, rightAttribute, equalAnnotation, umlClassDiff);
 		
@@ -522,6 +524,8 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                    if (rightClass == null) {
 	                        continue;
 	                    }
+	                    String rightClassName = rightClass.getUmlClass().getName();
+	                    String rightClassSourceFolder = rightClass.getUmlClass().getLocationInfo().getSourceFolder();
 	                    Annotation rightAnnotation = rightClass.findAnnotation(currentAnnotation::equalIdentifierIgnoringVersion);
 	                    if (rightAnnotation == null) {
 	                        continue;
@@ -547,7 +551,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
 	                    {
 	                        //Local Refactoring
-	                    	UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
+	                    	UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClassSourceFolder, rightClassName);
 	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 	                        if (found) {
 	                            historyReport.step4PlusPlus();
@@ -592,7 +596,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                            else {
 	                                UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
 	                                //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
-	                                UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+	                                UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClassSourceFolder, rightClassName);
 	    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, classDiff);
 	    	                        if (found) {
 	                                    historyReport.step5PlusPlus();
@@ -615,7 +619,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 	                                }
 	                            }
 	
-	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+	                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClassSourceFolder, rightClassName);
 	                            if (umlClassDiff != null) {
 	                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, umlClassDiff);
 	                                if (found) {

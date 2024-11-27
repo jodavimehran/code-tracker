@@ -110,6 +110,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                     continue;
                 }
                 String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+                String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
 
                 Variable rightVariable = rightMethod.findVariable(currentVariable::equalIdentifierIgnoringVersion);
                 if (rightVariable == null) {
@@ -309,7 +310,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                         }
 
 
-                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                        UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
                         if (umlClassDiff != null) {
                             found = changeHistory.checkClassDiffForVariableChange(currentVersion, parentVersion, equalMethod, equalVariable, umlClassDiff);
 

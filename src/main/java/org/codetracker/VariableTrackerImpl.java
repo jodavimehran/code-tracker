@@ -79,6 +79,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         continue;
                     }
                     String rightMethodClassName = rightMethod.getUmlOperation().getClassName();
+                    String rightMethodSourceFolder = rightMethod.getUmlOperation().getLocationInfo().getSourceFolder();
 
                     Variable rightVariable = rightMethod.findVariable(currentVariable::equalIdentifierIgnoringVersion);
                     if (rightVariable == null) {
@@ -280,7 +281,7 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                             }
 
 
-                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodClassName);
+                            UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightMethodSourceFolder, rightMethodClassName);
                             if (umlClassDiff != null) {
                                 found = changeHistory.checkClassDiffForVariableChange(currentVersion, parentVersion, equalMethod, equalVariable, umlClassDiff);
 
