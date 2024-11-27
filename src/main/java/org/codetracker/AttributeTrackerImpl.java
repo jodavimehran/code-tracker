@@ -163,7 +163,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             }
                         }
                         {
-                            Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
+                            Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
                             if (extractedClassFilePath != null) {
                                 fileNames.add(extractedClassFilePath);
                             }
@@ -210,7 +210,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 break;
                             }
 
-                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
@@ -361,7 +361,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                             }
                         }
                         {
-                            Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
+                            Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
                             if (extractedClassFilePath != null) {
                                 fileNames.add(extractedClassFilePath);
                             }
@@ -408,7 +408,7 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                                 break;
                             }
 
-                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                            if (changeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                                 historyReport.step5PlusPlus();
                                 break;
                             }

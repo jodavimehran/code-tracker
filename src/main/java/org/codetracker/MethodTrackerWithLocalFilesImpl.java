@@ -243,7 +243,7 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                             break;
                         }
 
-                        if (changeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+                        if (changeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
                             historyReport.step5PlusPlus();
                             break;
                         }

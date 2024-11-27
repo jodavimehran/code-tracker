@@ -312,7 +312,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                                }
 		                            }
 		
-		                            if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
+		                            if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
 		                            }, currentVersion)) {
 		                            	Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getOperation().get(), parentVersion);
 		                                changeHistory.get().handleAdd(annotationBefore, rightAnnotation, "added with method");
@@ -441,7 +441,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                            }
 		                        }
 		                        {
-		                        	Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
+		                        	Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
 		                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
 		                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 		
@@ -505,7 +505,7 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
 		                                }
 		                            }
 		
-		                            if (isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), rightAttribute::equalIdentifierIgnoringVersion, currentVersion)) {
+		                            if (isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), rightAttribute::equalIdentifierIgnoringVersion, currentVersion)) {
 		                            	Annotation annotationBefore = Annotation.of(rightAnnotation.getAnnotation(), rightAnnotation.getOperation().get(), parentVersion);
 		                                changeHistory.get().handleAdd(annotationBefore, rightAnnotation, "added with attribute");
 		                                changeHistory.add(annotationBefore);

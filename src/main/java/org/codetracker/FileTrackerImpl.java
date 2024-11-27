@@ -757,7 +757,7 @@ public class FileTrackerImpl extends BaseTracker {
 				Attribute rightAttribute = getAttribute(rightModel, currentVersion, currentAttribute::equalIdentifierIgnoringVersion);
 				if (rightAttribute == null)
 					rightAttribute = currentAttribute;
-				if (startAttributeChangeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+				if (startAttributeChangeHistory.isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Comment) {
 							Comment startComment = (Comment)key2;
@@ -810,7 +810,7 @@ public class FileTrackerImpl extends BaseTracker {
 				Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
 				if (rightMethod == null)
 					rightMethod = currentMethod;
-				if (startMethodChangeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
+				if (startMethodChangeHistory.isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiffAll))) {
 					for (CodeElement key2 : programElementMap.keySet()) {
 						if (key2 instanceof Block) {
 							Block startBlock = (Block)key2;
@@ -993,7 +993,7 @@ public class FileTrackerImpl extends BaseTracker {
 					}
 				}
 			}
-			else if(startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
+			else if(startAttributeChangeHistory.isAttributeAdded(umlModelDiff, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
 				for (CodeElement key2 : programElementMap.keySet()) {
 					if (key2 instanceof Comment) {
 						Comment startComment = (Comment)key2;
@@ -1231,7 +1231,7 @@ public class FileTrackerImpl extends BaseTracker {
 					startMethodChangeHistory.handleAddOperation(currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, rightMethod.getUmlOperation(), "moved method");
 				}
 			}
-			else if(startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
+			else if(startMethodChangeHistory.isMethodAdded(umlModelDiff, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), currentVersion, parentVersion, rightMethod::equalIdentifierIgnoringVersion, getAllClassesDiff(umlModelDiff))) {
 				for (CodeElement key2 : programElementMap.keySet()) {
 					if (key2 instanceof Block) {
 						Block startBlock = (Block)key2;

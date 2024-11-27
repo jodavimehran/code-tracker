@@ -331,7 +331,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 		                                }
 		                            }
 		
-		                            if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
+		                            if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
 		                            }, currentVersion)) {
 		                                Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
 		                                changeHistory.get().handleAdd(commentBefore, rightComment, "added with method");
@@ -460,7 +460,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 		                            }
 		                        }
 		                        {
-		                        	Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
+		                        	Set<String> fileNames = getRightSideFileNames(currentAttribute.getFilePath(), currentAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), currentAttribute.getUmlAttribute().getClassName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
 		                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, currentAttribute.getFilePath(), fileNames::contains, false);
 		                            UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 		
@@ -524,7 +524,7 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
 		                                }
 		                            }
 		
-		                            if (isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getClassName(), rightAttribute::equalIdentifierIgnoringVersion, currentVersion)) {
+		                            if (isAttributeAdded(umlModelDiffAll, rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder(), rightAttribute.getUmlAttribute().getClassName(), rightAttribute::equalIdentifierIgnoringVersion, currentVersion)) {
 		                            	Comment commentBefore = Comment.of(rightComment.getComment(), rightComment.getOperation().get(), parentVersion);
 		                                changeHistory.get().handleAdd(commentBefore, rightComment, "added with attribute");
 		                                changeHistory.add(commentBefore);

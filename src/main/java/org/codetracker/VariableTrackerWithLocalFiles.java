@@ -320,7 +320,7 @@ public class VariableTrackerWithLocalFiles extends BaseTrackerWithLocalFiles imp
                             }
                         }
 
-                        if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
+                        if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
                         }, currentVersion)) {
                             Variable variableBefore = Variable.of(rightVariable.getVariableDeclaration(), rightVariable.getOperation(), parentVersion);
                             changeHistory.get().handleAdd(variableBefore, rightVariable, "added with method");

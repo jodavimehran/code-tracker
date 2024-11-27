@@ -334,7 +334,7 @@ public class BlockTrackerWithLocalFiles extends BaseTrackerWithLocalFiles implem
                             }
                         }
 
-                        if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
+                        if (isMethodAdded(umlModelDiffAll, rightMethod.getUmlOperation().getLocationInfo().getSourceFolder(), rightMethod.getUmlOperation().getClassName(), rightMethod::equalIdentifierIgnoringVersion, method -> {
                         }, currentVersion)) {
                             Block blockBefore = Block.of(rightBlock.getComposite(), rightBlock.getOperation(), parentVersion);
                             changeHistory.get().handleAdd(blockBefore, rightBlock, "added with method");

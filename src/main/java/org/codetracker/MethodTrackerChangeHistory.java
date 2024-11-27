@@ -827,7 +827,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         return Collections.emptySet();
     }
 
-    public boolean isMethodAdded(UMLModelDiff modelDiff, String className, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
+    public boolean isMethodAdded(UMLModelDiff modelDiff, String sourceFolder, String className, Version currentVersion, Version parentVersion, Predicate<Method> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
         List<UMLOperation> addedOperations = allClassesDiff
                 .stream()
                 .map(UMLClassBaseDiff::getAddedOperations)
@@ -859,24 +859,23 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         	}
         }
 
-        Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
-	    for (UMLClass addedClass : addedClasses) {
+        UMLClass addedClass = modelDiff.getAddedClass(sourceFolder, className);
+        if (addedClass != null) {
             for (UMLOperation operation : addedClass.getOperations()) {
                 if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;
             }
         }
-        if (addedClasses.isEmpty()) {
+        else {
         	String prefix = new String(className);
-        	Set<UMLClass> outerAddedClasses = null;
         	while (prefix.contains(".")) {
         		prefix = prefix.substring(0, prefix.lastIndexOf("."));
-        		outerAddedClasses = modelDiff.getAllAddedClasses(prefix);
-        		if (!outerAddedClasses.isEmpty()) {
+        		addedClass = modelDiff.getAddedClass(sourceFolder, prefix);
+        		if (addedClass != null) {
         			break;
         		}
         	}
-        	for (UMLClass addedClass : outerAddedClasses) {
+        	if (addedClass != null) {
         		for (UMLAnonymousClass anonymousClass : addedClass.getAnonymousClassList()) {
         			for (UMLOperation operation : anonymousClass.getOperations()) {
                         if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
@@ -940,7 +939,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
             if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "new initializer"))
                 return true;
         }
-        for (UMLClass addedClass : addedClasses) {
+        if (addedClass != null) {
             for (UMLInitializer operation : addedClass.getInitializers()) {
                 if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                     return true;

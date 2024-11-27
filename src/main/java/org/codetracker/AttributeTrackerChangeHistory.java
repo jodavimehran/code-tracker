@@ -240,7 +240,7 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
         return false;
     }
 
-    public boolean isAttributeAdded(UMLModelDiff modelDiff, String className, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
+    public boolean isAttributeAdded(UMLModelDiff modelDiff, String sourceFolder, String className, Version currentVersion, Version parentVersion, Predicate<Attribute> equalOperator, List<UMLClassBaseDiff> allClassesDiff) {
         List<UMLAttribute> addedAttributes = allClassesDiff
                 .stream()
                 .map(UMLClassBaseDiff::getAddedAttributes)
@@ -261,8 +261,8 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                 return true;
         }
 
-        Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);
-	    for (UMLClass addedClass : addedClasses) {
+        UMLClass addedClass = modelDiff.getAddedClass(sourceFolder, className);
+        if (addedClass != null) {
             for (UMLAttribute umlAttribute : addedClass.getAttributes()) {
                 if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new class"))
                     return true;
