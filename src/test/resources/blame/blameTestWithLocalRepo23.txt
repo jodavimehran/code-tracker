@@ -1,0 +1,51 @@
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 1)  /*
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 2)   * Copyright (C) The Apache Software Foundation. All rights reserved.
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 3)   *
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 4)   * This software is published under the terms of the Apache Software License
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 5)   * version 1.1, a copy of which has been included  with this distribution in
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 6)   * the LICENSE.txt file.
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 7)   */
+04744d1c3 proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (Peter Donald 2002-03-17 08:07:10 +0000 8)  package org.apache.myrmidon.components.property.test;
+                                                                                                                                                               9)
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 10) import org.apache.myrmidon.interfaces.property.PropertyResolver;
+04744d1c3 proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (Peter Donald 2002-03-17 08:07:10 +0000 11) import org.apache.myrmidon.components.property.test.AbstractPropertyResolverTestCase;
+04744d1c3 proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (Peter Donald 2002-03-17 08:07:10 +0000 12) import org.apache.myrmidon.components.property.DefaultPropertyResolver;
+0f1259d2f proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-08 10:45:06 +0000 13) import org.apache.myrmidon.components.store.DefaultPropertyStore;
+0f1259d2f proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-08 10:45:06 +0000 14) import org.apache.avalon.excalibur.i18n.Resources;
+                                                                                                                                                               15)
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 16) /**
+04744d1c3 proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (Peter Donald 2002-03-17 08:07:10 +0000 17)  * Functional tests for {@link org.apache.myrmidon.components.property.DefaultPropertyResolver}.
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 18)  *
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 19)  * @author <a href="mailto:darrell@apache.org">Darrell DeBoer</a>
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 20)  * @version $Revision$ $Date$
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 21)  */
+04744d1c3 proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (Peter Donald 2002-03-17 08:07:10 +0000 22) public class DefaultPropertyResolverTestCase
+04744d1c3 proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (Peter Donald 2002-03-17 08:07:10 +0000 23)     extends AbstractPropertyResolverTestCase
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 24) {
+04744d1c3 proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (Peter Donald 2002-03-17 08:07:10 +0000 25)     public DefaultPropertyResolverTestCase( final String name )
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 26)     {
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 27)         super( name );
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 28)     }
+                                                                                                                                                               29)
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 30)     protected PropertyResolver createResolver()
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 31)     {
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 32)         return new DefaultPropertyResolver();
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 33)     }
+                                                                                                                                                               34)
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 35)     /**
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 36)      * Tests handing undefined property.
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 37)      */
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 38)     public void testUndefinedProp() throws Exception
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 39)     {
+0f1259d2f proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-08 10:45:06 +0000 40)         final Resources rez = getResourcesForTested( DefaultPropertyStore.class );
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 41)         final String undefinedProp = "undefinedProperty";
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 42)         doTestFailure( "${" + undefinedProp + "}",
+0f1259d2f proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-08 10:45:06 +0000 43)                        rez.getString( "unknown-prop.error", undefinedProp ),
+7eb8a34e5 proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-09 02:26:35 +0000 44)                        m_context );
+                                                                                                                                                               45)
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 46)         //TODO - "" should be disallowed as a property name
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 47)         doTestFailure( "${}",
+0f1259d2f proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-08 10:45:06 +0000 48)                        rez.getString( "unknown-prop.error", "" ),
+7eb8a34e5 proposal/myrmidon/src/test/org/apache/myrmidon/components/property/test/DefaultPropertyResolverTestCase.java (adammurdoch  2002-04-09 02:26:35 +0000 49)                        m_context );
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 50)     }
+6ff9bf50a proposal/myrmidon/src/testcases/org/apache/myrmidon/components/property/DefaultPropertyResolverTest.java     (adammurdoch  2002-03-13 07:35:19 +0000 51) }

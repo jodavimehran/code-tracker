@@ -257,6 +257,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				if (rightClass == null) {
 					continue;
 				}
+				String rightClassName = rightClass.getUmlClass().getName();
+                String rightClassSourceFolder = rightClass.getUmlClass().getLocationInfo().getSourceFolder();
 				if ("0".equals(parentCommitId)) {
 					Class leftClass = Class.of(rightClass.getUmlClass(), parentVersion);
 					startClassChangeHistory.get().handleAdd(leftClass, rightClass, "Initial commit!");
@@ -386,10 +388,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffLocal, currentVersion, parentVersion, refactorings);
 						}
-						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightClass.getUmlClass().getName());
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffLocal, rightClassSourceFolder, rightClassName);
 						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactorings);
 						for (Pair<Class, Class> pair : foundInnerClasses) {
-							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffLocal, pair.getRight().getUmlClass().getName());
+							String rightInnerClassName = pair.getRight().getUmlClass().getName();
+		                    String rightInnerClassSourceFolder = pair.getRight().getUmlClass().getLocationInfo().getSourceFolder();
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffLocal, rightInnerClassSourceFolder, rightInnerClassName);
 							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactorings);
 						}
 						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -416,10 +420,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
 							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffPartial, currentVersion, parentVersion, refactoringsPartial);
 						}
-						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClass.getUmlClass().getName());
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffPartial, rightClassSourceFolder, rightClassName);
 						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactoringsPartial);
 						for (Pair<Class, Class> pair : foundInnerClasses) {
-							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, pair.getRight().getUmlClass().getName());
+							String rightInnerClassName = pair.getRight().getUmlClass().getName();
+		                    String rightInnerClassSourceFolder = pair.getRight().getUmlClass().getLocationInfo().getSourceFolder();
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffPartial, rightInnerClassSourceFolder, rightInnerClassName);
 							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactoringsPartial);
 						}
 						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -448,10 +454,12 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							processLocallyRefactoredAttributes(notFoundAttributes, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 							processLocallyRefactoredInnerClasses(notFoundInnerClasses, umlModelDiffAll, currentVersion, parentVersion, refactorings);
 						}
-						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClass.getUmlClass().getName());
+						UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiffAll, rightClassSourceFolder, rightClassName);
 						processImportsAndClassComments(umlClassDiff, rightClass, currentVersion, parentVersion, refactorings);
 						for (Pair<Class, Class> pair : foundInnerClasses) {
-							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffAll, pair.getRight().getUmlClass().getName());
+							String rightInnerClassName = pair.getRight().getUmlClass().getName();
+		                    String rightInnerClassSourceFolder = pair.getRight().getUmlClass().getLocationInfo().getSourceFolder();
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiffAll, rightInnerClassSourceFolder, rightInnerClassName);
 							processImportsAndClassComments(innerClassDiff, pair.getRight(), currentVersion, parentVersion, refactorings);
 						}
 						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
@@ -859,6 +867,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 
 	private void processLocallyRefactoredAttributes(Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws Exception {
 		for (Attribute rightAttribute : notFoundAttributes.keySet()) {
+			String rightAttributeClassName = rightAttribute.getUmlAttribute().getClassName();
+            String rightAttributeSourceFolder = rightAttribute.getUmlAttribute().getLocationInfo().getSourceFolder();
 			AttributeTrackerChangeHistory startAttributeChangeHistory = notFoundAttributes.get(rightAttribute);
 			Set<Attribute> attributeContainerChanged = startAttributeChangeHistory.isAttributeContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightAttribute::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
 			boolean containerChanged = !attributeContainerChanged.isEmpty();
@@ -919,7 +929,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							if (found) {
 								continue;
 							}
-							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff,  rightAttributeSourceFolder, rightAttributeClassName);
 						    if (umlClassDiff != null) {
 						    	Pair<? extends UMLAttribute, ? extends UMLAttribute> foundPair = null;
 						    	for (Pair<UMLAttribute, UMLAttribute> pair : umlClassDiff.getCommonAtrributes()) {
@@ -970,7 +980,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 							if (found) {
 								continue;
 							}
-							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff, rightAttribute.getUmlAttribute().getClassName());
+							UMLAbstractClassDiff umlClassDiff = getUMLClassDiff(umlModelDiff,  rightAttributeSourceFolder, rightAttributeClassName);
 							startAnnotationChangeHistory.checkClassDiffForAnnotationChange(currentVersion, parentVersion, rightAttribute, currentAnnotation::equalIdentifierIgnoringVersion, umlClassDiff);
 						}
 					}
@@ -1392,6 +1402,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 
 	private void processLocallyRefactoredInnerClasses(Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses, UMLModelDiff umlModelDiff, Version currentVersion, Version parentVersion, List<Refactoring> refactorings) throws RefactoringMinerTimedOutException {
 		for (Class rightInnerClass : notFoundInnerClasses.keySet()) {
+			String rightInnerClassName = rightInnerClass.getUmlClass().getName();
+            String rightInnerClassSourceFolder = rightInnerClass.getUmlClass().getLocationInfo().getSourceFolder();
 			ClassTrackerChangeHistory startInnerClassChangeHistory = notFoundInnerClasses.get(rightInnerClass);
 			Set<Class> classRefactored = startInnerClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightInnerClass::equalIdentifierIgnoringVersion);
 			Set<Class> innerClassContainerChanged = startInnerClassChangeHistory.isInnerClassContainerChanged(umlModelDiff, refactorings, currentVersion, parentVersion, rightInnerClass::equalIdentifierIgnoringVersion, getClassMoveDiffList(umlModelDiff));
@@ -1418,7 +1430,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 								continue;
 							}
 							startCommentChangeHistory.poll();
-							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiff, rightInnerClass.getUmlClass().getName());
+							UMLAbstractClassDiff innerClassDiff = getUMLClassDiff(umlModelDiff, rightInnerClassSourceFolder, rightInnerClassName);
 							startCommentChangeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, innerClassDiff);
 						}
 					}
