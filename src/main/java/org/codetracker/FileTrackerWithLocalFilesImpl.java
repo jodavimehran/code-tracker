@@ -443,7 +443,14 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 
 					Set<Class> classRefactored = startClassChangeHistory.analyseClassRefactorings(refactorings, currentVersion, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 					boolean refactored = !classRefactored.isEmpty();
-					if (refactored) {
+					boolean extractedClass = false;
+					for (Class c : classRefactored) {
+						if (c.isAdded()) {
+							extractedClass = true;
+							break;
+						}
+					}
+					if (refactored && !extractedClass) {
 						Map<Method, MethodTrackerChangeHistory> notFoundMethods = processMethodsWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
 						Map<Attribute, AttributeTrackerChangeHistory> notFoundAttributes = processAttributesWithSameSignature(umlModelPairAll.getRight(), currentVersion, umlModelPairAll.getLeft(), parentVersion);
 						Map<Class, ClassTrackerChangeHistory> notFoundInnerClasses = new LinkedHashMap<>();
@@ -464,6 +471,13 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						}
 						Set<Class> leftSideClasses = new HashSet<>(classRefactored);
 						leftSideClasses.forEach(startClassChangeHistory::addFirst);
+						break;
+					}
+					else if(extractedClass) {
+						processAddedMethods(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
+						processAddedAttributes(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion);
+						processAddedInnerClasses(umlModelPairAll.getRight(), umlModelDiffAll, currentVersion, parentVersion, startClass);
+						processAddedImportsAndClassComments(rightClass, parentVersion);
 						break;
 					}
 

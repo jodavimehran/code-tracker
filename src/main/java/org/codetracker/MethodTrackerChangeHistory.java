@@ -848,6 +848,15 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
         			}
         		}
         	}
+        	if (classDiff instanceof UMLClassRenameDiff || classDiff instanceof UMLClassMoveDiff) {
+        		if (!classDiff.getOriginalClass().isTopLevel() && classDiff.getNextClass().isTopLevel() && classDiff.getNextClassName().equals(className)) {
+        			for (UMLOperationBodyMapper mapper : classDiff.getOperationBodyMapperList()) {
+        				VariableDeclarationContainer container = mapper.getContainer2();
+        				if (handleAddOperation(currentVersion, parentVersion, equalOperator, container, "new method"))
+        	                return true;
+        			}
+        		}
+        	}
         }
 
         Set<UMLClass> addedClasses = modelDiff.getAllAddedClasses(className);

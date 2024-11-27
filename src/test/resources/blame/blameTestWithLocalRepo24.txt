@@ -1,0 +1,66 @@
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 1)  /*
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 2)   * Copyright (C) The Apache Software Foundation. All rights reserved.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 3)   *
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 4)   * This software is published under the terms of the Apache Software License
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 5)   * version 1.1, a copy of which has been included  with this distribution in
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 6)   * the LICENSE.txt file.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 7)   */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultFileSystemManager.java (adammurdoch 2002-03-09 10:31:31 +0000 8)  package org.apache.aut.vfs.impl;
+                                                                                                                                  9)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 10) import java.util.HashMap;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 11) import java.util.Map;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 12) import org.apache.aut.vfs.FileObject;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 13) import org.apache.aut.vfs.FileSystemException;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 14) import org.apache.aut.vfs.provider.FileSystem;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 15) import org.apache.aut.vfs.provider.FileSystemProviderContext;
+                                                                                                                                  16)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 17) /**
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 18)  * A provider context implementation.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 19)  *
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 20)  * @author <a href="mailto:adammurdoch@apache.org">Adam Murdoch</a>
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 21)  * @version $Revision$ $Date$
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 22)  */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultFileSystemManager.java (adammurdoch 2002-03-09 10:31:31 +0000 23) final class DefaultProviderContext
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultFileSystemManager.java (adammurdoch 2002-03-09 10:31:31 +0000 24)     implements FileSystemProviderContext
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultFileSystemManager.java (adammurdoch 2002-03-09 10:31:31 +0000 25) {
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 26)     private final DefaultFileSystemManager m_manager;
+                                                                                                                                  27)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 28)     /**
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 29)      * The cached file systems.  This is a mapping from root URI to
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 30)      * FileSystem object.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 31)      */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 32)     private final Map m_fileSystems = new HashMap();
+                                                                                                                                  33)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 34)     public DefaultProviderContext( final DefaultFileSystemManager manager )
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 35)     {
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 36)         m_manager = manager;
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 37)     }
+                                                                                                                                  38)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 39)     /**
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 40)      * Locate a file by name.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 41)      */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 42)     public FileObject resolveFile( final FileObject baseFile, final String name )
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 43)         throws FileSystemException
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 44)     {
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 45)         return m_manager.resolveFile( baseFile, name );
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 46)     }
+                                                                                                                                  47)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 48)     /**
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 49)      * Locates a cached file system by root URI.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 50)      */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 51)     public FileSystem getFileSystem( final String rootURI )
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 52)     {
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 53)         // TODO - need to have a per-fs uri comparator
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 54)         return (FileSystem)m_fileSystems.get( rootURI );
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 55)     }
+                                                                                                                                  56)
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 57)     /**
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 58)      * Registers a file system for caching.
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 59)      */
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 60)     public void putFileSystem( final String rootURI, final FileSystem fs )
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 61)         throws FileSystemException
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 62)     {
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 63)         // TODO - should really check that there's not one already cached
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 64)         m_fileSystems.put( rootURI, fs );
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultProviderContext.java   (adammurdoch 2002-03-09 10:31:31 +0000 65)     }
+52926715b proposal/myrmidon/src/java/org/apache/aut/vfs/impl/DefaultFileSystemManager.java (adammurdoch 2002-03-09 10:31:31 +0000 66) }

@@ -134,8 +134,13 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
                     MoveAndRenameClassRefactoring moveAndRenameClassRefactoring = (MoveAndRenameClassRefactoring) refactoring;
                     leftUMLClass = moveAndRenameClassRefactoring.getOriginalClass();
                     rightUMLClass = moveAndRenameClassRefactoring.getRenamedClass();
-                    changeType = Change.Type.RENAME;
-                    changeType2 = Change.Type.MOVED;
+                    if (!leftUMLClass.isTopLevel() && rightUMLClass.isTopLevel()) {
+                    	changeType = Change.Type.INTRODUCED;
+                    }
+                    else {
+	                    changeType = Change.Type.RENAME;
+	                    changeType2 = Change.Type.MOVED;
+                    }
                     break;
                 }
                 case ADD_CLASS_ANNOTATION: {
