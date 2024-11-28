@@ -1,0 +1,101 @@
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 1)   /*
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 2)    * Copyright (C) The Apache Software Foundation. All rights reserved.
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 3)    *
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 4)    * This software is published under the terms of the Apache Software License
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 5)    * version 1.1, a copy of which has been included with this distribution in
+255020c00 proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-23 06:35:02 +0000 6)    * the LICENSE.txt file.
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 7)    */
+7fb359263 proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2002-03-17 09:42:25 +0000 8)   package org.apache.tools.todo.util.regexp;
+                                                                                                                                           9)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 10)  import java.util.regex.Matcher;
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 11)  import java.util.regex.Pattern;
+b8c50342c proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-16 00:39:05 +0000 12)  import org.apache.myrmidon.api.TaskException;
+7fb359263 proposal/myrmidon/src/main/org/apache/tools/todo/util/regexp/Jdk14RegexpRegexp.java (Peter Donald      2002-03-17 09:42:25 +0000 13)  import org.apache.tools.todo.util.regexp.Jdk14RegexpMatcher;
+                                                                                                                                           14)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 15)  /**
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 16)   * Regular expression implementation using the JDK 1.4 regular expression
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 17)   * package
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 18)   *
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 19)   * @author Matthew Inger <a href="mailto:mattinger@mindless.com">
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 20)   *      mattinger@mindless.com</a>
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 21)   */
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 22)  public class Jdk14RegexpRegexp extends Jdk14RegexpMatcher implements Regexp
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 23)  {
+                                                                                                                                           24)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 25)      public Jdk14RegexpRegexp()
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 26)      {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 27)          super();
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 28)      }
+                                                                                                                                           29)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 30)      public String substitute( String input, String argument, int options )
+b8c50342c proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-16 00:39:05 +0000 31)          throws TaskException
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 32)      {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 33)          // translate \1 to $(1) so that the Matcher will work
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 34)          StringBuffer subst = new StringBuffer();
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 35)          for( int i = 0; i < argument.length(); i++ )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 36)          {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 37)              char c = argument.charAt( i );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 38)              if( c == '\\' )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 39)              {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 40)                  if( ++i < argument.length() )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 41)                  {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 42)                      c = argument.charAt( i );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 43)                      int value = Character.digit( c, 10 );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 44)                      if( value > -1 )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 45)                      {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 46)                          subst.append( "$" ).append( value );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 47)                      }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 48)                      else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 49)                      {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 50)                          subst.append( c );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 51)                      }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 52)                  }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 53)                  else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 54)                  {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 55)                      // XXX - should throw an exception instead?
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 56)                      subst.append( '\\' );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 57)                  }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 58)              }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 59)              else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 60)              {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 61)                  subst.append( c );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 62)              }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 63)          }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 64)          argument = subst.toString();
+                                                                                                                                           65)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 66)          int sOptions = getSubsOptions( options );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 67)          Pattern p = getCompiledPattern( options );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 68)          StringBuffer sb = new StringBuffer();
+                                                                                                                                           69)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 70)          Matcher m = p.matcher( input );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 71)          if( RegexpUtil.hasFlag( sOptions, REPLACE_ALL ) )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 72)          {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 73)              sb.append( m.replaceAll( argument ) );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 74)          }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 75)          else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 76)          {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 77)              boolean res = m.find();
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 78)              if( res )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 79)              {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 80)                  m.appendReplacement( sb, argument );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 81)                  m.appendTail( sb );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 82)              }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 83)              else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 84)              {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 85)                  sb.append( input );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 86)              }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 87)          }
+                                                                                                                                           88)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 89)          return sb.toString();
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 90)      }
+                                                                                                                                           91)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 92)      protected int getSubsOptions( int options )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 93)      {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 94)          int subsOptions = REPLACE_FIRST;
+36a0800e7 proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2002-02-06 13:38:45 +0000 95)          if( RegexpUtil.hasFlag( options, REPLACE_ALL ) )
+36a0800e7 proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2002-02-06 13:38:45 +0000 96)          {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 97)              subsOptions = REPLACE_ALL;
+8ce1de217 proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Stephane Bailliez 2002-01-20 17:35:02 +0000 98)          }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 99)          return subsOptions;
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 100)     }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/util/regexp/Jdk14RegexpRegexp.java  (Peter Donald      2001-12-15 12:06:33 +0000 101) }

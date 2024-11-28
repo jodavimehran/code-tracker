@@ -1,0 +1,57 @@
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 1)  /*
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 2)   * Copyright (C) The Apache Software Foundation. All rights reserved.
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 3)   *
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 4)   * This software is published under the terms of the Apache Software License
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 5)   * version 1.1, a copy of which has been included with this distribution in
+255020c00 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-23 06:35:02 +0000 6)   * the LICENSE.txt file.
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 7)   */
+c42fc5db2 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-03-17 09:56:57 +0000 8)  package org.apache.tools.todo.taskdefs.perforce;
+                                                                                                                                           9)
+b8c50342c proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-16 00:39:05 +0000 10) import org.apache.myrmidon.api.TaskException;
+71aa092e8 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (adammurdoch  2002-03-11 08:41:36 +0000 11) import org.apache.myrmidon.api.AbstractTask;
+71aa092e8 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (adammurdoch  2002-03-11 08:41:36 +0000 12) import org.apache.myrmidon.api.TaskContext;
+                                                                                                                                           13)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 14) /**
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 15)  * P4Submit - submit a numbered changelist to Perforce. <B>Note:</B> P4Submit
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 16)  * cannot (yet) submit the default changelist. This shouldn't be a problem with
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 17)  * the ANT API as the usual flow is P4Change to create a new numbered change
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 18)  * followed by P4Edit then P4Submit. Example Usage:-<br>
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 19)  * &lt;p4submit change="${p4.change}" /&gt;
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 20)  *
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 21)  * @author <A HREF="mailto:leslie.hughes@rubus.com">Les Hughes</A>
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 22)  */
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 23) public class P4Submit
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 24)     extends P4Base
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 25) {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 26)     //ToDo: If dealing with default cl need to parse out <enter description here>
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 27)     private String m_change;
+                                                                                                                                           28)
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 29)     public void setChange( final String change )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 30)     {
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 31)         m_change = change;
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 32)     }
+                                                                                                                                           33)
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 34)     /**
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 35)      * Receive notification about the process writing
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 36)      * to standard output.
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 37)      */
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 38)     public void stdout( final String line )
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 39)     {
+71aa092e8 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (adammurdoch  2002-03-11 08:41:36 +0000 40)         getContext().debug( line );
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 41)     }
+                                                                                                                                           42)
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 43)     public void execute()
+b8c50342c proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-16 00:39:05 +0000 44)         throws TaskException
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 45)     {
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 46)         if( m_change != null )
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 47)         {
+0db510656 proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2002-01-06 02:30:43 +0000 48)             execP4Command( "submit -c " + m_change, this );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 49)         }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 50)         else
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 51)         {
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 52)             //here we'd parse the output from change -o into submit -i
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 53)             //in order to support default change.
+b8c50342c proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-16 00:39:05 +0000 54)             throw new TaskException( "No change specified (no support for default change yet...." );
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 55)         }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 56)     }
+d1064deab proposal/myrmidon/src/main/org/apache/tools/ant/taskdefs/optional/perforce/P4Submit.java (Peter Donald 2001-12-15 12:06:33 +0000 57) }
