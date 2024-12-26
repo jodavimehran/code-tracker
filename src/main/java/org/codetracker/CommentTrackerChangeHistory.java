@@ -32,7 +32,6 @@ import com.github.difflib.patch.Chunk;
 import com.github.difflib.patch.InsertDelta;
 import com.github.difflib.patch.Patch;
 
-import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAnonymousClass;
@@ -806,8 +805,8 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
 
     public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Comment rightComment, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
+            VariableDeclarationContainer operationBefore = null;
+            VariableDeclarationContainer operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
             switch (refactoring.getRefactoringType()) {
                 case PULL_UP_OPERATION: {

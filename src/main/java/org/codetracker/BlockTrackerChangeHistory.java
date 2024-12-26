@@ -1311,8 +1311,8 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
 
     public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Block rightBlock, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
+        	VariableDeclarationContainer operationBefore = null;
+        	VariableDeclarationContainer operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
             switch (refactoring.getRefactoringType()) {
                 case PULL_UP_OPERATION: {

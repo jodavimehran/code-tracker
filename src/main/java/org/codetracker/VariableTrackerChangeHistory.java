@@ -512,7 +512,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
 
     public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Variable rightVariable, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationAfter = null;
+            VariableDeclarationContainer operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
             switch (refactoring.getRefactoringType()) {
                 case PULL_UP_OPERATION: {

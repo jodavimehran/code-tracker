@@ -22,7 +22,6 @@ import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.UMLAnnotation;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLEnumConstant;
-import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
@@ -485,8 +484,8 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
 
     public boolean checkRefactoredMethod(Version currentVersion, Version parentVersion, Predicate<Method> equalMethod, Annotation rightAnnotation, List<Refactoring> refactorings) {
         for (Refactoring refactoring : refactorings) {
-            UMLOperation operationBefore = null;
-            UMLOperation operationAfter = null;
+        	VariableDeclarationContainer operationBefore = null;
+            VariableDeclarationContainer operationAfter = null;
             UMLOperationBodyMapper umlOperationBodyMapper = null;
             switch (refactoring.getRefactoringType()) {
                 case PULL_UP_OPERATION: {
