@@ -1329,7 +1329,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				return true;
 			}
 			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
-				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgnoringTypeParameters((UMLOperation)container);
 			}
 		}
 		return false;
@@ -1342,7 +1342,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				return true;
 			}
 			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
-				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgnoringTypeParameters((UMLOperation)container);
 			}
 		}
 		return false;
@@ -1356,7 +1356,7 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 				return true;
 			}
 			if(rightMethod.getUmlOperation() instanceof UMLOperation && container instanceof UMLOperation) {
-				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgoringTypeParameters((UMLOperation)container);
+				return ((UMLOperation)rightMethod.getUmlOperation()).equalsIgnoringTypeParameters((UMLOperation)container);
 			}
 		}
 		return false;
