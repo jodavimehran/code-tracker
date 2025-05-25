@@ -34,6 +34,7 @@ import gr.uom.java.xmi.diff.InlineOperationRefactoring;
 import gr.uom.java.xmi.diff.MergeOperationRefactoring;
 import gr.uom.java.xmi.diff.MergeVariableRefactoring;
 import gr.uom.java.xmi.diff.ModifyVariableAnnotationRefactoring;
+import gr.uom.java.xmi.diff.MoveCodeRefactoring;
 import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
@@ -234,6 +235,36 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                                 }
                             }
                         }
+                    }
+                    break;
+                }
+                case MOVE_CODE: {
+                    MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
+                    Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
+                    if (equalMethod.test(extractedMethod) && moveCodeRefactoring.getMoveType().equals(MoveCodeRefactoring.Type.MOVE_TO_ADDED)) {
+                        VariableDeclaration matchedVariableFromSourceMethod = null;
+                        UMLOperationBodyMapper bodyMapper = moveCodeRefactoring.getBodyMapper();
+                        for (Pair<VariableDeclaration, VariableDeclaration> matchedVariablePair : bodyMapper.getMatchedVariables()) {
+                            Variable matchedVariableInsideExtractedMethodBody = Variable.of(matchedVariablePair.getRight(), bodyMapper.getContainer2(), currentVersion);
+                            if (matchedVariableInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightVariable)) {
+                                matchedVariableFromSourceMethod = matchedVariablePair.getLeft();
+                                break;
+                            }
+                        }
+                        Variable variableBefore = Variable.of(rightVariable.getVariableDeclaration(), rightVariable.getOperation(), parentVersion);
+                        if (matchedVariableFromSourceMethod == null) {
+                            variableChangeHistory.handleAdd(variableBefore, rightVariable, moveCodeRefactoring.toString());
+                        }
+                        else {
+                            VariableDeclarationContainer sourceOperation = moveCodeRefactoring.getSourceContainer();
+                            Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                            variableChangeHistory.addChange(variableBefore, rightVariable, ChangeFactory.forVariable(Change.Type.INTRODUCED)
+                                    .refactoring(moveCodeRefactoring).codeElement(rightVariable).hookedElement(Variable.of(matchedVariableFromSourceMethod, sourceMethod)));
+                            variableBefore.setAdded(true);
+                        }
+                        elements.add(variableBefore);
+                        variableChangeHistory.connectRelatedNodes();
+                        return true;
                     }
                     break;
                 }
