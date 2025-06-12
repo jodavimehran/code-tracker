@@ -571,8 +571,8 @@ c4efcd93b src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java   
                                                                                                                                          571)
 38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 572)     public Builder listener(Listener listener) {
 38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 573)       this.listener = listener;
-38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 574)       return this;
-38aaf7bca okhttp/src/main/java/com/squareup/okhttp/internal/framed/FramedConnection.java       (jwilson        2015-12-06 14:59:24 +0000 575)     }
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 574)       return this;
+ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 575)     }
                                                                                                                                          576)
 a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 577)     public Builder pushObserver(PushObserver pushObserver) {
 a5ba3e906 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-03-02 05:23:04 +0000 578)       this.pushObserver = pushObserver;
