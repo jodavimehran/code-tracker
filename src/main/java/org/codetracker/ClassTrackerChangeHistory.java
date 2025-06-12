@@ -36,6 +36,7 @@ import com.github.difflib.patch.Patch;
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
+import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.diff.AddClassAnnotationRefactoring;
 import gr.uom.java.xmi.diff.AddClassModifierRefactoring;
 import gr.uom.java.xmi.diff.ChangeClassAccessModifierRefactoring;
@@ -50,6 +51,7 @@ import gr.uom.java.xmi.diff.MovedClassToAnotherSourceFolder;
 import gr.uom.java.xmi.diff.RemoveClassAnnotationRefactoring;
 import gr.uom.java.xmi.diff.RemoveClassModifierRefactoring;
 import gr.uom.java.xmi.diff.RenameClassRefactoring;
+import gr.uom.java.xmi.diff.ReplaceAnonymousWithClassRefactoring;
 import gr.uom.java.xmi.diff.UMLClassMoveDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
@@ -243,6 +245,19 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
                 elements.addFirst(leftClass);
                 return true;
             }
+        }
+        for (Refactoring r : modelDiff.getDetectedRefactorings()) {
+        	if (r instanceof ReplaceAnonymousWithClassRefactoring) {
+        		ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
+        		Class rightClass = Class.of(replaceAnonymous.getAddedClass(), currentVersion);
+                if (equalOperator.test(rightClass)) {
+                    Class leftClass = Class.of(replaceAnonymous.getAddedClass(), parentVersion);
+                    classChangeHistory.handleAdd(leftClass, rightClass, "new class");
+                    classChangeHistory.connectRelatedNodes();
+                    elements.addFirst(leftClass);
+                    return true;
+                }
+        	}
         }
         return false;
     }

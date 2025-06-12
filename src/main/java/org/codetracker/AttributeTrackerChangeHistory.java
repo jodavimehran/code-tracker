@@ -39,6 +39,7 @@ import gr.uom.java.xmi.UMLAnonymousClass;
 import gr.uom.java.xmi.UMLAttribute;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLEnumConstant;
+import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.decomposition.AbstractExpression;
 import gr.uom.java.xmi.decomposition.UMLOperationBodyMapper;
 import gr.uom.java.xmi.diff.AddAttributeAnnotationRefactoring;
@@ -59,6 +60,7 @@ import gr.uom.java.xmi.diff.RemoveAttributeAnnotationRefactoring;
 import gr.uom.java.xmi.diff.RemoveAttributeModifierRefactoring;
 import gr.uom.java.xmi.diff.RenameAttributeRefactoring;
 import gr.uom.java.xmi.diff.RenameClassRefactoring;
+import gr.uom.java.xmi.diff.ReplaceAnonymousWithClassRefactoring;
 import gr.uom.java.xmi.diff.UMLAnonymousClassDiff;
 import gr.uom.java.xmi.diff.UMLAttributeDiff;
 import gr.uom.java.xmi.diff.UMLClassBaseDiff;
@@ -310,6 +312,15 @@ public class AttributeTrackerChangeHistory extends AbstractChangeHistory<Attribu
                         return true;
                 }
             }
+        }
+        for (Refactoring r : modelDiff.getDetectedRefactorings()) {
+        	if (r instanceof ReplaceAnonymousWithClassRefactoring) {
+        		ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
+        		for (UMLAttribute umlAttribute : replaceAnonymous.getAddedClass().getAttributes()) {
+                    if (handleAddAttribute(currentVersion, parentVersion, equalOperator, umlAttribute, "added with new class"))
+                        return true;
+                }
+        	}
         }
         return false;
     }

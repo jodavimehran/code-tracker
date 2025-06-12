@@ -71,6 +71,7 @@ import gr.uom.java.xmi.diff.MoveOperationRefactoring;
 import gr.uom.java.xmi.diff.PullUpOperationRefactoring;
 import gr.uom.java.xmi.diff.PushDownOperationRefactoring;
 import gr.uom.java.xmi.diff.RenameOperationRefactoring;
+import gr.uom.java.xmi.diff.ReplaceAnonymousWithClassRefactoring;
 import gr.uom.java.xmi.diff.ReplaceAnonymousWithLambdaRefactoring;
 import gr.uom.java.xmi.diff.ReplaceConditionalWithTernaryRefactoring;
 import gr.uom.java.xmi.diff.ReplaceLoopWithPipelineRefactoring;
@@ -352,6 +353,94 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     }
                     break;
                 }
+                case REPLACE_ANONYMOUS_WITH_CLASS: {
+                	ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
+                	for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
+                		VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
+                		Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                		if (equalMethod.test(extractedOperationAfter)) {
+                			for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                if (mapping instanceof CompositeStatementObjectMapping) {
+                                    Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    	addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
+                                    }
+                                }
+                                else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                    Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                    	addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
+                                    }
+                                }
+                			}
+                		}
+                	}
+                	break;
+                }
+                /*
+                case REPLACE_ANONYMOUS_WITH_CLASS: {
+                	ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
+                	for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
+                		VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
+                		Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                		if (equalMethod.test(extractedOperationAfter)) {
+                			AbstractCodeFragment matchedBlockFromSourceMethod = null;
+                			for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                                if (mapping instanceof CompositeStatementObjectMapping) {
+                                    Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        matchedBlockFromSourceMethod = (CompositeStatementObject) mapping.getFragment1();
+                                        Block blockBefore = Block.of((CompositeStatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        List<String> stringRepresentationBefore = blockBefore.getComposite().stringRepresentation();
+                                        List<String> stringRepresentationAfter = matchedBlockInsideExtractedMethodBody.getComposite().stringRepresentation();
+                                        if (!stringRepresentationBefore.equals(stringRepresentationAfter)) {
+                                            handleCompositeExpressionChange(blockBefore,
+    												matchedBlockInsideExtractedMethodBody, stringRepresentationBefore,
+    												stringRepresentationAfter);
+                                            List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
+                                            List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
+                                            if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
+                                                blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                            }
+                                        }
+                                        break;
+                                    }
+                                }
+                                else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                                    Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
+                                    if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
+                                        matchedBlockFromSourceMethod = mapping.getFragment1();
+                                        Block blockBefore = Block.of((StatementObject) mapping.getFragment1(), bodyMapper.getContainer1(), parentVersion);
+                                        if (!blockBefore.getComposite().getString().equals(matchedBlockInsideExtractedMethodBody.getComposite().getString())) {
+                                            addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
+                                        }
+                                        else {
+                                        	if(blockBefore.differInFormatting(matchedBlockInsideExtractedMethodBody)) {
+                                        		addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+                                        	}
+                                        	else {
+                                        		blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                                        	}
+                                        }
+                                        break;
+                                    }
+                                }
+                            }
+                            if (matchedBlockFromSourceMethod != null) {
+                                VariableDeclarationContainer sourceOperation = bodyMapper.getContainer1();
+                                Method sourceMethod = Method.of(sourceOperation, parentVersion);
+                                Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
+                                if(extractMatches == 0) {
+                                	elements.add(leftBlock);
+                                }
+                                blockChangeHistory.connectRelatedNodes();
+                                extractMatches++;
+                            }
+                		}
+                	}
+                	break;
+                }
+                */
                 case MOVE_CODE: {
                 	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                 	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
