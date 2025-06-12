@@ -247,9 +247,9 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
             }
         }
         for (Refactoring r : modelDiff.getDetectedRefactorings()) {
-        	if (r instanceof ReplaceAnonymousWithClassRefactoring) {
-        		ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
-        		Class rightClass = Class.of(replaceAnonymous.getAddedClass(), currentVersion);
+            if (r instanceof ReplaceAnonymousWithClassRefactoring) {
+                ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
+                Class rightClass = Class.of(replaceAnonymous.getAddedClass(), currentVersion);
                 if (equalOperator.test(rightClass)) {
                     Class leftClass = Class.of(replaceAnonymous.getAddedClass(), parentVersion);
                     classChangeHistory.handleAdd(leftClass, rightClass, "new class");
@@ -257,7 +257,7 @@ public class ClassTrackerChangeHistory extends AbstractChangeHistory<Class> {
                     elements.addFirst(leftClass);
                     return true;
                 }
-        	}
+            }
         }
         return false;
     }

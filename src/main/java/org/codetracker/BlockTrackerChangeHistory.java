@@ -354,38 +354,38 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     break;
                 }
                 case REPLACE_ANONYMOUS_WITH_CLASS: {
-                	ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
-                	for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
-                		VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
-                		Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
-                		if (equalMethod.test(extractedOperationAfter)) {
-                			for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                    ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
+                    for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
+                        VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
+                        Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                        if (equalMethod.test(extractedOperationAfter)) {
+                            for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
                                 if (mapping instanceof CompositeStatementObjectMapping) {
                                     Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                    	addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
+                                        addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
                                     }
                                 }
                                 else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
                                     Block matchedBlockInsideExtractedMethodBody = Block.of((StatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
-                                    	addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
+                                        addedMethod(extractedOperationAfter, matchedBlockInsideExtractedMethodBody, parentVersion);
                                     }
                                 }
-                			}
-                		}
-                	}
-                	break;
+                            }
+                        }
+                    }
+                    break;
                 }
                 /*
                 case REPLACE_ANONYMOUS_WITH_CLASS: {
-                	ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
-                	for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
-                		VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
-                		Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
-                		if (equalMethod.test(extractedOperationAfter)) {
-                			AbstractCodeFragment matchedBlockFromSourceMethod = null;
-                			for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
+                    ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
+                    for (UMLOperationBodyMapper bodyMapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
+                        VariableDeclarationContainer extractedOperation = bodyMapper.getContainer2();
+                        Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                        if (equalMethod.test(extractedOperationAfter)) {
+                            AbstractCodeFragment matchedBlockFromSourceMethod = null;
+                            for (AbstractCodeMapping mapping : bodyMapper.getMappings()) {
                                 if (mapping instanceof CompositeStatementObjectMapping) {
                                     Block matchedBlockInsideExtractedMethodBody = Block.of((CompositeStatementObject) mapping.getFragment2(), bodyMapper.getContainer2(), currentVersion);
                                     if (matchedBlockInsideExtractedMethodBody.equalIdentifierIgnoringVersion(rightBlock)) {
@@ -415,12 +415,12 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                             addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.BODY_CHANGE));
                                         }
                                         else {
-                                        	if(blockBefore.differInFormatting(matchedBlockInsideExtractedMethodBody)) {
-                                        		addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
-                                        	}
-                                        	else {
-                                        		blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
-                                        	}
+                                            if(blockBefore.differInFormatting(matchedBlockInsideExtractedMethodBody)) {
+                                                addStatementChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.forBlock(Change.Type.SIGNATURE_FORMAT_CHANGE));
+                                            }
+                                            else {
+                                                blockChangeHistory.addChange(blockBefore, matchedBlockInsideExtractedMethodBody, ChangeFactory.of(AbstractChange.Type.NO_CHANGE));
+                                            }
                                         }
                                         break;
                                     }
@@ -431,14 +431,14 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                                 Method sourceMethod = Method.of(sourceOperation, parentVersion);
                                 Block leftBlock = Block.of(matchedBlockFromSourceMethod instanceof StatementObject ? (StatementObject) matchedBlockFromSourceMethod : (CompositeStatementObject) matchedBlockFromSourceMethod, sourceMethod);
                                 if(extractMatches == 0) {
-                                	elements.add(leftBlock);
+                                    elements.add(leftBlock);
                                 }
                                 blockChangeHistory.connectRelatedNodes();
                                 extractMatches++;
                             }
-                		}
-                	}
-                	break;
+                        }
+                    }
+                    break;
                 }
                 */
                 case MOVE_CODE: {

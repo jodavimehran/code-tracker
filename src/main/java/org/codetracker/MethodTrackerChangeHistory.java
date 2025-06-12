@@ -467,13 +467,13 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 	break;
                 }
                 case REPLACE_ANONYMOUS_WITH_CLASS: {
-                	ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
-                	for (UMLOperationBodyMapper mapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
-                		operationBefore = mapper.getContainer1();
-                		VariableDeclarationContainer extractedOperation = mapper.getContainer2();
-                		Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
-                		if (equalOperator.test(extractedOperationAfter)) {
-                			Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
+                    ReplaceAnonymousWithClassRefactoring anonymousWithClassRefactoring = (ReplaceAnonymousWithClassRefactoring)refactoring;
+                    for (UMLOperationBodyMapper mapper : anonymousWithClassRefactoring.getDiff().getOperationBodyMapperList()) {
+                        operationBefore = mapper.getContainer1();
+                        VariableDeclarationContainer extractedOperation = mapper.getContainer2();
+                        Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
+                        if (equalOperator.test(extractedOperationAfter)) {
+                            Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
                             extractedOperationBefore.setAdded(true);
                             methodChangeHistory.addChange(extractedOperationBefore, extractedOperationAfter, ChangeFactory.forMethod(Change.Type.INTRODUCED)
                                     .refactoring(anonymousWithClassRefactoring).codeElement(extractedOperationAfter).hookedElement(Method.of(operationBefore, parentVersion)));
@@ -482,9 +482,9 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                             Method sourceOperationBefore = Method.of(operationBefore, parentVersion);
                             setSourceOperation(sourceOperationBefore);
                             return leftMethodSet;
-                		}
-                	}
-                	break;
+                        }
+                    }
+                    break;
                 }
             }
 
@@ -944,20 +944,20 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                 }
             }
             for (UMLAnonymousClass addedAnonymousClass : classDiff.getNextClass().getAnonymousClassList()) {
-            	for (UMLOperation operation : addedAnonymousClass.getOperations()) {
+                for (UMLOperation operation : addedAnonymousClass.getOperations()) {
                     if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new anonymous class"))
                         return true;
                 }
             }
         }
         for (Refactoring r : modelDiff.getDetectedRefactorings()) {
-        	if (r instanceof ReplaceAnonymousWithClassRefactoring) {
-        		ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
-        		for (UMLOperation operation : replaceAnonymous.getAddedClass().getOperations()) {
+            if (r instanceof ReplaceAnonymousWithClassRefactoring) {
+                ReplaceAnonymousWithClassRefactoring replaceAnonymous = (ReplaceAnonymousWithClassRefactoring)r;
+                for (UMLOperation operation : replaceAnonymous.getAddedClass().getOperations()) {
                     if (handleAddOperation(currentVersion, parentVersion, equalOperator, operation, "added with new class"))
                         return true;
                 }
-        	}
+            }
         }
         List<UMLInitializer> addedInitializers = allClassesDiff
                 .stream()
