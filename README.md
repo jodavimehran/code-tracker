@@ -10,6 +10,9 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
       * [Eclipse IDE](#eclipse-ide)
       * [IntelliJ IDEA](#intellij-idea)
   * [How to add as a Maven dependency](#how-to-add-as-a-maven-dependency)
+  * [Refactoring-aware Blame](#refactoring-aware-blame)
+      * [How to blame a single line](#how-to-blame-a-single-line)
+      * [How to blame an entire file](#how-to-blame-an-entire-file)
   * [How to Track Blocks](#how-to-track-blocks)
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
@@ -192,6 +195,39 @@ In order to use CodeTracker as a maven dependency in your project, add the follo
 **build.gradle**
 
     implementation 'io.github.jodavimehran:code-tracker:2.6'
+
+# Refactoring-aware Blame
+
+## How to blame a single line
+```java
+import static org.codetracker.blame.util.Utils.getOwner;
+import static org.codetracker.blame.util.Utils.getProject;
+
+// REPOS_PATH is the directory where the repository is locally cloned
+String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
+String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+int lineNumber = 69;
+String commitId = URLHelper.getCommit(url);
+Repository repository = new GitServiceImpl().cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+History.HistoryInfo<? extends CodeElement> lineBlame =
+	new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
+LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame, lineNumber);
+```
+
+## How to blame an entire file
+```java
+import static org.codetracker.blame.util.Utils.getOwner;
+import static org.codetracker.blame.util.Utils.getProject;
+
+// REPOS_PATH is the directory where the repository is locally cloned
+String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
+String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
+fileTracker.blame();
+BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
+List<String[]> results = blameFormatter.make(fileTracker.getBlameInfo());
+String actual = TabularPrint.make(results);
+```
 
 # How to Track Blocks
 CodeTracker can track the history of code blocks in git repositories.
