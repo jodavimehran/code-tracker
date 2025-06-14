@@ -209,6 +209,7 @@ String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
 int lineNumber = 69;
 String commitId = URLHelper.getCommit(url);
 Repository repository = new GitServiceImpl().cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+
 History.HistoryInfo<? extends CodeElement> lineBlame =
 	new CodeTrackerBlame().getLineBlame(repository, commitId, filePath, lineNumber);
 LineBlameResult lineBlameResult = LineBlameResult.of(lineBlame, lineNumber);
@@ -222,6 +223,9 @@ import static org.codetracker.blame.util.Utils.getProject;
 // REPOS_PATH is the directory where the repository is locally cloned
 String url = "https://github.com/checkstyle/checkstyle/commit/119fd4fb33bef9f5c66fc950396669af842c21a3";
 String filePath = "src/main/java/com/puppycrawl/tools/checkstyle/Checker.java";
+String commitId = URLHelper.getCommit(url);
+Repository repository = new GitServiceImpl().cloneIfNotExists(REPOS_PATH + "/" + getOwner(url) + "/" + getProject(url), URLHelper.getRepo(url));
+
 FileTrackerImpl fileTracker = new FileTrackerImpl(repository, commitId, filePath);
 fileTracker.blame();
 BlameFormatter blameFormatter = new BlameFormatter(fileTracker.getLines());
