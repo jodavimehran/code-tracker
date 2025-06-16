@@ -189,12 +189,12 @@ In order to use CodeTracker as a maven dependency in your project, add the follo
     <dependency>
       <groupId>io.github.jodavimehran</groupId>
       <artifactId>code-tracker</artifactId>
-      <version>2.6</version>
+      <version>3.0</version>
     </dependency>
 
 **build.gradle**
 
-    implementation 'io.github.jodavimehran:code-tracker:2.6'
+    implementation 'io.github.jodavimehran:code-tracker:3.0'
 
 # Refactoring-aware Blame
 
