@@ -11,6 +11,17 @@
   "startCommitId": "b325c74216fd9564a36602158fa1269e2e832874",
   "expectedChanges": [
     {
+      "parentCommitId": "3eff36452908c06774eb4e40e4943cb794674c05",
+      "commitId": "ee36c80ca961a5b2af233cd26a5483d57939c0af",
+      "commitTime": 1329142650,
+      "changeType": "type change",
+      "elementFileBefore": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameBefore": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$readerClass:Class<?>(214)",
+      "elementFileAfter": "spring-context/src/main/java/org/springframework/context/annotation/ConfigurationClassParser.java",
+      "elementNameAfter": "spring-context/src/main/java/org.springframework.context.annotation.ConfigurationClassParser#doProcessConfigurationClass(ConfigurationClass, AnnotationMetadata)$readerClass:Class<?extendsBeanDefinitionReader>(219)",
+      "comment": "Change Variable Type readerClass : Class<?> to readerClass : Class<? extends BeanDefinitionReader> in method protected doProcessConfigurationClass(configClass ConfigurationClass, metadata AnnotationMetadata) : void from class org.springframework.context.annotation.ConfigurationClassParser"
+    },
+    {
       "parentCommitId": "75d0f9b95cbaa7d4ea025f314ab55e3074611a2c",
       "commitId": "d1b3f57320d5567ff8f6420c9bcf07521ea5e2b9",
       "commitTime": 1262202132,
