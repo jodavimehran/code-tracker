@@ -25,12 +25,34 @@
       "parentCommitId": "5b75cf83b2db408f8228b26910a8d3d3633cd54f",
       "commitId": "2fbbf47aaf12f3efc333caf06bb61d63472d610e",
       "commitTime": 1286161487,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
-      "elementNameBefore": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$bom:BOMInputStream(428)",
+      "elementNameBefore": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
       "elementFileAfter": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
       "elementNameAfter": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$bom:BOMInputStream(428)",
-      "comment": "new variable"
+      "comment": "Rename Variable pis : BufferedInputStream to bom : BOMInputStream in method private doHttpStream(is InputStream, httpContentType String, lenient boolean) : void from class org.apache.commons.io.input.XmlStreamReader"
+    },
+    {
+      "parentCommitId": "5b75cf83b2db408f8228b26910a8d3d3633cd54f",
+      "commitId": "2fbbf47aaf12f3efc333caf06bb61d63472d610e",
+      "commitTime": 1286161487,
+      "changeType": "type change",
+      "elementFileBefore": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
+      "elementNameBefore": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
+      "elementFileAfter": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
+      "elementNameAfter": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$bom:BOMInputStream(428)",
+      "comment": "Change Variable Type pis : BufferedInputStream to bom : BOMInputStream in method private doHttpStream(is InputStream, httpContentType String, lenient boolean) : void from class org.apache.commons.io.input.XmlStreamReader"
+    },
+    {
+      "parentCommitId": "d43262058d2a3530c4d7305ea1a1e03d7001bd1d",
+      "commitId": "5b75cf83b2db408f8228b26910a8d3d3633cd54f",
+      "commitTime": 1286161189,
+      "changeType": "introduced",
+      "elementFileBefore": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
+      "elementNameBefore": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
+      "elementFileAfter": "src/java/org/apache/commons/io/input/XmlStreamReader.java",
+      "elementNameAfter": "src/java/org.apache.commons.io.input.XmlStreamReader#doHttpStream(InputStream, String, boolean)$pis:BufferedInputStream(419)",
+      "comment": "added with method"
     }
   ]
 }

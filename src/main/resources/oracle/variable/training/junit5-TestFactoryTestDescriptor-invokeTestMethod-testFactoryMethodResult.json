@@ -25,12 +25,34 @@
       "parentCommitId": "11850fce68fddb5fdcf6ae67a0474fb827710918",
       "commitId": "abcdd7d3b4e072923ac92a2ed99dbc6ce0954319",
       "commitTime": 1464034599,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
-      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicMethodResult:Object(67)",
+      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicTestStream:Stream<DynamicTest>(61)",
       "elementFileAfter": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
       "elementNameAfter": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicMethodResult:Object(67)",
-      "comment": "new variable"
+      "comment": "Rename Variable dynamicTestStream : Stream<DynamicTest> to dynamicMethodResult : Object in method protected invokeTestMethod(context JUnit5EngineExecutionContext, testExtensionContext TestExtensionContext, throwableCollector ThrowableCollector) : void from class org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor"
+    },
+    {
+      "parentCommitId": "11850fce68fddb5fdcf6ae67a0474fb827710918",
+      "commitId": "abcdd7d3b4e072923ac92a2ed99dbc6ce0954319",
+      "commitTime": 1464034599,
+      "changeType": "type change",
+      "elementFileBefore": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicTestStream:Stream<DynamicTest>(61)",
+      "elementFileAfter": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameAfter": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicMethodResult:Object(67)",
+      "comment": "Change Variable Type dynamicTestStream : Stream<DynamicTest> to dynamicMethodResult : Object in method protected invokeTestMethod(context JUnit5EngineExecutionContext, testExtensionContext TestExtensionContext, throwableCollector ThrowableCollector) : void from class org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor"
+    },
+    {
+      "parentCommitId": "03255925caa091dd6a36d1c1ae05accc2a4ef285",
+      "commitId": "ac7bb522519cd8a600324aa909a5c17a110cb97f",
+      "commitTime": 1464031301,
+      "changeType": "introduced",
+      "elementFileBefore": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameBefore": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicTestStream:Stream<DynamicTest>(61)",
+      "elementFileAfter": "junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/DynamicMethodTestDescriptor.java",
+      "elementNameAfter": "junit5-engine/src/main/java/org.junit.gen5.engine.junit5.descriptor.DynamicMethodTestDescriptor#invokeTestMethod(JUnit5EngineExecutionContext, TestExtensionContext, ThrowableCollector)$dynamicTestStream:Stream<DynamicTest>(61)",
+      "comment": "added with method"
     }
   ]
 }
