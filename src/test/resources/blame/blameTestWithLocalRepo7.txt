@@ -227,31 +227,31 @@ c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
                                                                                                                                                      227)
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 228) 		List<TestInstanceFactory> localFactories = registry.getLocalExtensions(TestInstanceFactory.class);
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 229) 		if (localFactories.isEmpty()) {
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 230) 			return null;
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 231) 		}
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 230) 			return null;
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 231) 		}
                                                                                                                                                      232)
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 233) 		ExtensionRegistry parentRegistry = registry.getParent();
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 234) 		if (parentRegistry != null) {
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 235) 			List<TestInstanceFactory> parentFactories = parentRegistry.getExtensions(TestInstanceFactory.class);
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 234) 		if (parentRegistry != null) {
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 235) 			List<TestInstanceFactory> parentFactories = parentRegistry.getExtensions(TestInstanceFactory.class);
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 236) 			localFactories.removeAll(parentFactories);
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 237) 			if (localFactories.isEmpty()) {
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 238) 				return null;
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 239) 			}
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 240) 		}
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 240) 		}
                                                                                                                                                      241)
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 242) 		if (localFactories.size() > 1) {
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 243) 			String factoryNames = localFactories.stream().map(factory -> factory.getClass().getName()).collect(
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 244) 				joining(", "));
+58fdc01b4 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-01 16:49:03 +0000 244) 				joining(", "));
                                                                                                                                                      245)
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 246) 			String errorMessage = String.format(
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 247) 				"The following TestInstanceFactory extensions were registered for test class [%s], but only one is permitted: %s",
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 248) 				testClass.getName(), factoryNames);
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 246) 			String errorMessage = String.format(
+58fdc01b4 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-01 16:49:03 +0000 247) 				"The following TestInstanceFactory extensions were registered for test class [%s], but only one is permitted: %s",
+87a3005b9 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-06-30 16:08:31 +0000 248) 				testClass.getName(), factoryNames);
                                                                                                                                                      249)
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 250) 			throw new ExtensionConfigurationException(errorMessage);
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 251) 		}
+87a3005b9 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-06-30 16:08:31 +0000 250) 			throw new ExtensionConfigurationException(errorMessage);
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 251) 		}
                                                                                                                                                      252)
 4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 253) 		return localFactories.get(0);
-4c55c3a6f junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-07-02 14:33:52 +0000 254) 	}
+5b4c642be junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Kevin Wooten    2018-06-30 14:27:13 +0000 254) 	}
                                                                                                                                                      255)
 902d36a3e junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-06-30 16:16:42 +0000 256) 	private TestInstanceProvider testInstanceProvider(JupiterEngineExecutionContext parentExecutionContext,
 5d7d85d0b junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-11-03 21:03:27 +0000 257) 			ExtensionRegistry registry, ClassExtensionContext extensionContext) {
