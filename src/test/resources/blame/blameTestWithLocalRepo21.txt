@@ -490,7 +490,7 @@ ed9b015c9 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
 f1d315ff4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-23 18:34:45 +0000 490)      private JavaTypeDefinition getFieldType(JavaTypeDefinition typeToSearch, String fieldImage, Class<?>
 f1d315ff4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-23 18:34:45 +0000 491)              accessingClass) {
 3bd69b15f pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:16:23 +0000 492)          while (typeToSearch != null && typeToSearch.getType() != Object.class) {
-68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 493)              try {
+b8e1738f5 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 00:48:15 +0000 493)              try {
 3bd69b15f pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:16:23 +0000 494)                  final Field field = typeToSearch.getType().getDeclaredField(fieldImage);
 b8e1738f5 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 00:48:15 +0000 495)                  if (isMemberVisibleFromClass(typeToSearch.getType(), field.getModifiers(), accessingClass)) {
 3bd69b15f pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:16:23 +0000 496)                      return typeToSearch.resolveTypeDefinition(field.getGenericType());
@@ -503,13 +503,13 @@ b6482bb33 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
 729d77614 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-12-31 03:48:23 +0000 503)                  }
 b6482bb33 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:36:30 +0000 504)                  // TODO : report a missing class once we start doing that...
 b6482bb33 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:36:30 +0000 505)                  return null;
-68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 506)              }
+b8e1738f5 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 00:48:15 +0000 506)              }
                                                                                                                                                           507)
 4175460d3 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 13:42:22 +0000 508)              // transform the type into it's supertype
 3bd69b15f pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Juan Martín Sotuyo Dodero 2017-06-29 23:16:23 +0000 509)              typeToSearch = typeToSearch.resolveTypeDefinition(typeToSearch.getType().getGenericSuperclass());
-68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 510)          }
+b8e1738f5 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 00:48:15 +0000 510)          }
                                                                                                                                                           511)
-68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 512)          return null;
+b8e1738f5 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 00:48:15 +0000 512)          return null;
 68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 513)      }
                                                                                                                                                           514)
 4175460d3 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 13:42:22 +0000 515)      /**

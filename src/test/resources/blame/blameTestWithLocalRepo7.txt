@@ -422,11 +422,11 @@ fedf713f8 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor
                                                                                                                                                      422)
 fedf713f8 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-10-08 16:40:04 +0000 423) 	private BeforeEachMethodAdapter synthesizeBeforeEachMethodAdapter(Method method) {
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 424) 		return (extensionContext, registry) -> invokeMethodInExtensionContext(method, extensionContext, registry);
-b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 425) 	}
+9027966eb junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 425) 	}
                                                                                                                                                      426)
 fedf713f8 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-10-08 16:40:04 +0000 427) 	private AfterEachMethodAdapter synthesizeAfterEachMethodAdapter(Method method) {
 83b3eb665 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Marc Philipp    2017-07-01 11:45:30 +0000 428) 		return (extensionContext, registry) -> invokeMethodInExtensionContext(method, extensionContext, registry);
-b2ba6b951 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 429) 	}
+9027966eb junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 15:30:42 +0000 429) 	}
                                                                                                                                                      430)
 a97e4d308 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-04 11:00:00 +0000 431) 	private void invokeMethodInExtensionContext(Method method, ExtensionContext context, ExtensionRegistry registry) {
 bef03b5ce junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2017-07-10 16:34:34 +0000 432) 		Object testInstance = context.getRequiredTestInstance();
