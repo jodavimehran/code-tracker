@@ -862,7 +862,7 @@ de9c2b0e3 pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver
 40a46d11a pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java                          (Ryan Gustafson            2008-03-05 06:36:33 +0000 862)      }
                                                                                                                                                           863)
                                                                                                                                                           864)
-babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 865)      @Override
+de9c2b0e3 pmd/src/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java                (Xavier Le Vourch          2008-06-22 18:07:30 +0000 865)      @Override
 babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 866)      public Object visit(ASTPrimaryExpression primaryNode, Object data) {
 c2bb8e5f4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-07-20 22:31:54 +0000 867)          // visit method arguments in reverse
 c2bb8e5f4 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-07-20 22:31:54 +0000 868)          for (int i = primaryNode.jjtGetNumChildren() - 1; i >= 0; --i) {
@@ -952,8 +952,8 @@ babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/Cl
                                                                                                                                                           952)
 68c8fabdf pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-14 22:55:55 +0000 953)          primaryNode.setTypeDefinition(primaryNodeType);
                                                                                                                                                           954)
-babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 955)          return data;
-babe32a16 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-05-30 15:37:47 +0000 956)      }
+40a46d11a pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java                          (Ryan Gustafson            2008-03-05 06:36:33 +0000 955)          return data;
+40a46d11a pmd/src/net/sourceforge/pmd/typeresolution/ClassTypeResolver.java                          (Ryan Gustafson            2008-03-05 06:36:33 +0000 956)      }
                                                                                                                                                           957)
 4175460d3 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-06-15 13:42:22 +0000 958)      /**
 ed9b015c9 pmd-java/src/main/java/net/sourceforge/pmd/lang/java/typeresolution/ClassTypeResolver.java (Bendegúz Nagy             2017-07-05 11:57:50 +0000 959)       * Returns the the first Class declaration around the node.
