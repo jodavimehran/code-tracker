@@ -317,6 +317,7 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                     }
                     break;
                 }
+                case EXTRACT_FIXTURE:
                 case MOVE_CODE: {
                 	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                 	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);

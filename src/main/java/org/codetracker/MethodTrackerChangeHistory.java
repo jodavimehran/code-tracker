@@ -448,6 +448,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     }
                     break;
                 }
+                case EXTRACT_FIXTURE:
                 case MOVE_CODE: {
                 	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                 	operationBefore = moveCodeRefactoring.getSourceContainer();

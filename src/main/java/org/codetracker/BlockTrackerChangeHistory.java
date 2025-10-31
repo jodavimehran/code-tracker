@@ -441,6 +441,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                     break;
                 }
                 */
+                case EXTRACT_FIXTURE:
                 case MOVE_CODE: {
                 	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                 	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
