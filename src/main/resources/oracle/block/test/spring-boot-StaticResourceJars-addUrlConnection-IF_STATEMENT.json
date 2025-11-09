@@ -26,12 +26,23 @@
       "parentCommitId": "b1c689b9b26c5f70f9b97d75ff2f1fbfc59e2c02",
       "commitId": "9d61882bb114fd03abd647e0e9d76c778e7f911f",
       "commitTime": 1489553927,
-      "changeType": "introduced",
-      "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/servlet/server/StaticResourceJars.java",
-      "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.servlet.server.StaticResourceJars#addUrlConnection(List, URL, URLConnection)$if(74-76)",
+      "changeType": "body change",
+      "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/web/servlet/server/AbstractServletWebServerFactory.java",
+      "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.web.servlet.server.AbstractServletWebServerFactory#getUrlsOfJarsWithMetaInfResources()$if(342-344)",
       "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/web/servlet/server/StaticResourceJars.java",
       "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.web.servlet.server.StaticResourceJars#addUrlConnection(List, URL, URLConnection)$if(74-76)",
-      "comment": "added with method"
+      "comment": "Extract Method private addUrlConnection(urls List<URL>, url URL, connection URLConnection) : void extracted from protected getUrlsOfJarsWithMetaInfResources() : List<URL> in class org.springframework.boot.web.servlet.server.StaticResourceJars"
+    },
+    {
+      "parentCommitId": "f72c5b70c63fc50314b123039ef9d41d87c6c0b9",
+      "commitId": "b527e7147499165d0cdef76e140cc7c284435282",
+      "commitTime": 1489065974,
+      "changeType": "introduced",
+      "elementFileBefore": "spring-boot/src/main/java/org/springframework/boot/context/embedded/AbstractEmbeddedServletContainerFactory.java",
+      "elementNameBefore": "spring-boot/src/main/java/org.springframework.boot.context.embedded.AbstractEmbeddedServletContainerFactory#getUrlsOfJarsWithMetaInfResources()$if(112-114)",
+      "elementFileAfter": "spring-boot/src/main/java/org/springframework/boot/context/embedded/AbstractEmbeddedServletContainerFactory.java",
+      "elementNameAfter": "spring-boot/src/main/java/org.springframework.boot.context.embedded.AbstractEmbeddedServletContainerFactory#getUrlsOfJarsWithMetaInfResources()$if(112-114)",
+      "comment": "new block"
     }
   ]
 }
