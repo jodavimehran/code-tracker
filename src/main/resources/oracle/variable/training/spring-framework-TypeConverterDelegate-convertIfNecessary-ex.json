@@ -14,11 +14,22 @@
       "parentCommitId": "207b2315eda924916e12cfc97c652d63a04c8053",
       "commitId": "84be348cb0ac99896674170dc9f99021b43ba9ee",
       "commitTime": 1322927839,
-      "changeType": "introduced",
+      "changeType": "rename",
       "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
-      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$ex:ConversionFailedException(145)",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$e:ConversionFailedException(142)",
       "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
       "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$ex:ConversionFailedException(145)",
+      "comment": "Rename Variable e : ConversionFailedException to ex : ConversionFailedException in method public convertIfNecessary(propertyName String, oldValue Object, newValue Object, requiredType Class<T>, typeDescriptor TypeDescriptor) : T from class org.springframework.beans.TypeConverterDelegate"
+    },
+    {
+      "parentCommitId": "9ece4a88a9994ba4350a3bfe4570a5797baca6d7",
+      "commitId": "2127b160512911e5f65a4e304f0b57826710a91d",
+      "commitTime": 1307253889,
+      "changeType": "introduced",
+      "elementFileBefore": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameBefore": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$e:ConversionFailedException(141)",
+      "elementFileAfter": "org.springframework.beans/src/main/java/org/springframework/beans/TypeConverterDelegate.java",
+      "elementNameAfter": "org.springframework.beans/src/main/java/org.springframework.beans.TypeConverterDelegate#convertIfNecessary(String, Object, Object, Class, TypeDescriptor)$e:ConversionFailedException(141)",
       "comment": "new variable"
     }
   ]
