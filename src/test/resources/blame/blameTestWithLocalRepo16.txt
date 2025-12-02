@@ -275,7 +275,7 @@ b95a0ccbc okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyC
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 275)     writer.synReply(outFinished, streamId, alternating);
 ea63463c2 src/main/java/libcore/net/spdy/SpdyConnection.java                                   (Jesse Wilson   2012-07-23 14:02:28 +0000 276)   }
                                                                                                                                          277)
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 278)   /**
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 278)   /**
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 279)    * Callers of this method are not thread safe, and sometimes on application threads. Most often,
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 280)    * this method will be called to send a buffer worth of data to the peer.
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 281)    *
@@ -286,13 +286,13 @@ a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 286)    *
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 287)    * <p>Zero {@code byteCount} writes are not subject to flow control and will not block. The only
 a075e848c okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (jwilson        2015-04-19 14:40:32 +0000 288)    * use case for zero {@code byteCount} is closing a flushed output stream.
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 289)    */
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 289)    */
 b24202421 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Jesse Wilson   2014-04-16 03:59:06 +0000 290)   public void writeData(int streamId, boolean outFinished, Buffer buffer, long byteCount)
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 291)       throws IOException {
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 292)     if (byteCount == 0) { // Empty data frames are not flow-controlled.
+39c0d7d56 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-14 11:25:25 +0000 291)       throws IOException {
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 292)     if (byteCount == 0) { // Empty data frames are not flow-controlled.
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 293)       writer.data(outFinished, streamId, buffer, 0);
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 294)       return;
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 295)     }
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 294)       return;
+d990b5819 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 22:01:36 +0000 295)     }
                                                                                                                                          296)
 84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 297)     while (byteCount > 0) {
 84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 298)       int toWrite;
@@ -314,12 +314,12 @@ aac684aea okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java      
 2a9f9fd92 okhttp/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java           (Adrian Cole    2014-09-22 16:32:26 +0000 314)         toWrite = (int) Math.min(byteCount, bytesLeftInWriteWindow);
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 315)         toWrite = Math.min(toWrite, writer.maxDataLength());
 84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 316)         bytesLeftInWriteWindow -= toWrite;
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 317)       }
+b9b5c8462 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (Adrian Cole    2014-01-26 17:36:54 +0000 317)       }
                                                                                                                                          318)
 84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 319)       byteCount -= toWrite;
 3d43a8dba okhttp/src/main/java/okhttp3/internal/framed/FramedConnection.java                   (jwilson        2016-07-09 22:09:19 +0000 320)       writer.data(outFinished && byteCount == 0, streamId, buffer, toWrite);
 84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 321)     }
-84184afdb okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2014-02-23 23:13:58 +0000 322)   }
+39c0d7d56 okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-14 11:25:25 +0000 322)   }
                                                                                                                                          323)
 6e382aa9b okhttp-protocols/src/main/java/com/squareup/okhttp/internal/spdy/SpdyConnection.java (jwilson        2013-08-19 18:09:34 +0000 324)   void writeSynResetLater(final int streamId, final ErrorCode errorCode) {
 91b1b671f okhttp/src/main/java/okhttp3/internal/http2/Http2Connection.java                     (Jesse Wilson   2018-02-24 04:03:46 +0000 325)     try {
