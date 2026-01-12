@@ -187,7 +187,7 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 fc7acc64d src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (David Saff         2009-07-01 03:19:05 +0000 187)     protected void validateOnlyOneConstructor(List<Throwable> errors) {
 095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 188)         if (!hasOneConstructor()) {
 095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 189)             String gripe = "Test class should have exactly one public constructor";
-5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 190)             errors.add(new Exception(gripe));
+095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 190)             errors.add(new Exception(gripe));
 095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 191)         }
 095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 192)     }
                                                                                                                              193)
@@ -200,7 +200,7 @@ bb91daf8e src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (
 101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 200)                 && hasOneConstructor()
 101443669 src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (Stefan Birkner     2011-09-18 21:20:46 +0000 201)                 && (getTestClass().getOnlyConstructor().getParameterTypes().length != 0)) {
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 202)             String gripe = "Test class should have exactly one public zero-argument constructor";
-095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 203)             errors.add(new Exception(gripe));
+5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 203)             errors.add(new Exception(gripe));
 5d957024b src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-30 19:23:24 +0000 204)         }
 095d3f8df src/main/java/org/junit/runners/BlockJUnit4ClassRunner.java          (dsaff              2008-07-31 14:20:56 +0000 205)     }
                                                                                                                              206)
