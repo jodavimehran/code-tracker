@@ -407,7 +407,7 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     }
                     changeType = Change.Type.BODY_CHANGE;
 
-                    UMLOperation extractedOperation = extractOperationRefactoring.getExtractedOperation();
+                    VariableDeclarationContainer extractedOperation = extractOperationRefactoring.getExtractedOperation();
                     Method extractedOperationAfter = Method.of(extractedOperation, currentVersion);
                     if (equalOperator.test(extractedOperationAfter)) {
                         Method extractedOperationBefore = Method.of(extractedOperation, parentVersion);
