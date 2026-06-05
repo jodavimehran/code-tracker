@@ -19,19 +19,33 @@ public class CommentTransitionAnalyzer {
         Map<String, UMLComment> addedCommentsHash;
 
         if (!deletedComments.isEmpty()) {
-            deletedCommentsHash = generateCommentTextHashMap(deletedComments);
-            if (isUncommentedCodeDetected(deletedCommentsHash, umlOperationBodyMapper, blockAfter))
+            List<UMLComment> inScopeDeletedComments;
+            inScopeDeletedComments = removeOutOfScopeComments(deletedComments, blockBefore);
+            deletedCommentsHash = generateCommentTextHashMap(inScopeDeletedComments);
+            if (isUncommentedCodeDetected(deletedCommentsHash, umlOperationBodyMapper, blockAfter)) {
                 changeTypes.add(Change.Type.UNCOMMENTED_STATEMENT);
+            }
         }
         if (!addedComments.isEmpty()) {
-            addedCommentsHash = generateCommentTextHashMap(addedComments);
+            List<UMLComment> inScopeAddedComments;
+            inScopeAddedComments = removeOutOfScopeComments(addedComments, blockAfter);
+            addedCommentsHash = generateCommentTextHashMap(inScopeAddedComments);
             if (isCommentedOutCodeDetected(addedCommentsHash, umlOperationBodyMapper, blockBefore)) {
                 changeTypes.add(Change.Type.COMMENTED_OUT_STATEMENT);
             }
         }
         return changeTypes;
     }
-
+    private static List<UMLComment> removeOutOfScopeComments(List<UMLComment> commentList, Block block){
+        List<UMLComment> inScopeComments = new ArrayList<>();
+        for (int i = 0; i < commentList.size(); i++) {
+            if ((commentList.get(i).getLocationInfo().getStartLine() > block.getLocation().getStartLine() &&
+                    commentList.get(i).getLocationInfo().getEndLine() < block.getLocation().getEndLine())) {
+                inScopeComments.add(commentList.get(i));
+            }
+        }
+        return inScopeComments;
+    }
     private static boolean isUncommentedCodeDetected(Map<String, UMLComment> deletedCommentsHash, UMLOperationBodyMapper umlOperationBodyMapper, Block blockAfter) {
         if (deletedCommentsHash.isEmpty())
             return false;
@@ -54,21 +68,6 @@ public class CommentTransitionAnalyzer {
                     if (deletedCommentsHash.containsKey(codeFragmentHash)) {
                         return true;
                     }
-                }
-            }
-        }
-        // RefactoringMiner may create leaf mappings between semantically different statements when textual similarity is high enough,
-        // even when one side is actually a commented/uncommented transition.
-        if (!umlOperationBodyMapper.getMappings().isEmpty()) {
-            for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
-                if (!(mapping instanceof LeafMapping)) // does not happen in composite(i guess)
-                    continue;
-                if (!isMappingBelongToTrackedBlock(mapping, blockAfter, true))
-                    continue;
-                //this issue only happens with leaf statements and not composites....
-                String codeFragmentHashCurrent = Util.getSHA512(mapping.getFragment2().getString().trim());
-                if (deletedCommentsHash.containsKey(codeFragmentHashCurrent)) {
-                    return true;
                 }
             }
         }
@@ -99,20 +98,6 @@ public class CommentTransitionAnalyzer {
                     if (addedCommentsHash.containsKey(codeFragmentHash)) {
                         return true;
                     }
-                }
-            }
-        }
-        // RefactoringMiner may create leaf mappings between semantically different statements when textual similarity is high enough,
-        // even when one side is actually a commented/uncommented transition.
-        if (!umlOperationBodyMapper.getMappings().isEmpty()) {
-            for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
-                if (!(mapping instanceof LeafMapping))
-                    continue;
-                if (!isMappingBelongToTrackedBlock(mapping, blockBefore, false))
-                    continue;
-                String codeFragmentHashParent = Util.getSHA512(mapping.getFragment1().getString().trim());
-                if (!addedCommentsHash.isEmpty() && addedCommentsHash.containsKey(codeFragmentHashParent)) {
-                    return true;
                 }
             }
         }
