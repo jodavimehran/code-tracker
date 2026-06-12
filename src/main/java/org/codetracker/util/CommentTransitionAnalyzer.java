@@ -71,6 +71,22 @@ public class CommentTransitionAnalyzer {
                 }
             }
         }
+        // RefactoringMiner may create leaf mappings between semantically different statements when textual similarity is high enough,
+        // even when one side is actually a commented/uncommented transition.
+        if (!umlOperationBodyMapper.getMappings().isEmpty()) {
+            for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+                if (!(mapping instanceof LeafMapping)) // does not happen in composite
+                    continue;
+                if(mapping.getReplacements().isEmpty()) //real mapping
+                    continue;
+                if (!isMappingBelongToTrackedBlock(mapping, blockAfter, true))
+                    continue;
+                String codeFragmentHashCurrent = Util.getSHA512(mapping.getFragment2().getString().trim());
+                if (deletedCommentsHash.containsKey(codeFragmentHashCurrent)) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
@@ -98,6 +114,22 @@ public class CommentTransitionAnalyzer {
                     if (addedCommentsHash.containsKey(codeFragmentHash)) {
                         return true;
                     }
+                }
+            }
+        }
+        // RefactoringMiner may create leaf mappings between semantically different statements when textual similarity is high enough,
+        // even when one side is actually a commented/uncommented transition.
+        if (!umlOperationBodyMapper.getMappings().isEmpty()) {
+            for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+                if (!(mapping instanceof LeafMapping)) // does not happen in composite
+                    continue;
+                if(mapping.getReplacements().isEmpty()) //real mapping
+                    continue;
+                if (!isMappingBelongToTrackedBlock(mapping, blockBefore, false))
+                    continue;
+                String codeFragmentHashParent = Util.getSHA512(mapping.getFragment1().getString().trim());
+                if (!addedCommentsHash.isEmpty() && addedCommentsHash.containsKey(codeFragmentHashParent)) {
+                    return true;
                 }
             }
         }
