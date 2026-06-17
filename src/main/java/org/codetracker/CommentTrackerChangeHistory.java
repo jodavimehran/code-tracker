@@ -917,8 +917,8 @@ public class CommentTrackerChangeHistory extends AbstractChangeHistory<Comment> 
                 }
                 case CHANGE_ATTRIBUTE_TYPE: {
                     ChangeAttributeTypeRefactoring changeAttributeTypeRefactoring = (ChangeAttributeTypeRefactoring) refactoring;
-                    attributeBefore = changeAttributeTypeRefactoring.getOriginalAttribute();
-                    attributeAfter = changeAttributeTypeRefactoring.getChangedTypeAttribute();
+                    attributeBefore = changeAttributeTypeRefactoring.getAttributeBefore();
+                    attributeAfter = changeAttributeTypeRefactoring.getAttributeAfter();
                     changeType = Change.Type.TYPE_CHANGE;
                     break;
                 }
