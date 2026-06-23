@@ -1,5 +1,6 @@
 package org.codetracker;
 
+import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.diff.*;
@@ -268,6 +269,26 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                                 historyReport.step5PlusPlus();
                                 break;
                             }
+                        }
+                        if(commitModel.fileContentsBeforeOriginal.isEmpty()) {
+                        	Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
+                        	List<UMLClass> classList = umlModelPairPartial.getRight().getClassList();
+                        	UMLClass matchedClass = null;
+                        	for(UMLClass umlClass : classList) {
+                        		Class tempClass = Class.of(umlClass, currentVersion);
+                        		if(rightClass.equalIdentifierIgnoringVersion(tempClass)) {
+                        			matchedClass = umlClass;
+                        			break;
+                        		}
+                        	}
+                        	if(matchedClass != null) {
+                                leftClass = Class.of(matchedClass, parentVersion);
+                                changeHistory.get().handleAdd(leftClass, rightClass, "new class");
+                                changeHistory.get().connectRelatedNodes();
+                                changeHistory.addFirst(leftClass);
+                                historyReport.step5PlusPlus();
+                                break;
+                        	}
                         }
                         {
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);

@@ -36,7 +36,6 @@ import com.github.difflib.patch.Patch;
 import gr.uom.java.xmi.UMLAbstractClass;
 import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
-import gr.uom.java.xmi.UMLOperation;
 import gr.uom.java.xmi.diff.AddClassAnnotationRefactoring;
 import gr.uom.java.xmi.diff.AddClassModifierRefactoring;
 import gr.uom.java.xmi.diff.ChangeClassAccessModifierRefactoring;
