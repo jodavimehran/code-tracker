@@ -140,7 +140,7 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
                     }
                     break;
                 }
-                case EXTRACT_FIXTURE:
+//                case EXTRACT_FIXTURE:TODO: upgrade RM version then uncomment
                 case MOVE_CODE: {
                 	MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                 	Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);
@@ -596,8 +596,8 @@ public class AnnotationTrackerChangeHistory extends AbstractChangeHistory<Annota
                 }
                 case CHANGE_ATTRIBUTE_TYPE: {
                     ChangeAttributeTypeRefactoring changeAttributeTypeRefactoring = (ChangeAttributeTypeRefactoring) refactoring;
-                    attributeBefore = changeAttributeTypeRefactoring.getOriginalAttribute();
-                    attributeAfter = changeAttributeTypeRefactoring.getChangedTypeAttribute();
+                    attributeBefore = changeAttributeTypeRefactoring.getAttributeBefore();
+                    attributeAfter = changeAttributeTypeRefactoring.getAttributeAfter();
                     changeType = Change.Type.TYPE_CHANGE;
                     break;
                 }

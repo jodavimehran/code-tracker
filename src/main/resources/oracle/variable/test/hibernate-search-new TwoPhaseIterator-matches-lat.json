@@ -11,15 +11,15 @@
   "startCommitId": "5b778035965d7588ad1d1ae522c4bafebd3a0e16",
   "expectedChanges": [
     {
-      "parentCommitId": "08413b5986ba2e7291426fa68906c222e4c731bc",
-      "commitId": "991b9e7244fd848ab1806d42fd511e5e27d4ea29",
-      "commitTime": 1494329543,
+      "parentCommitId": "3233e05434ae069747eb0b422509be9fbcd48f8b",
+      "commitId": "c426c745258628f795a31c2f23cdf6323f650e83",
+      "commitTime": 1435855693,
       "changeType": "introduced",
-      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
-      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery.createDocIdSetIterator.new TwoPhaseIterator#matches()$lat:double(165)",
-      "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
-      "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery.createDocIdSetIterator.new TwoPhaseIterator#matches()$lat:double(165)",
-      "comment": "added with method"
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter.getDocIdSet.new FilteredDocIdSet#match(int)$lat:double(108)",
+      "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter.getDocIdSet.new FilteredDocIdSet#match(int)$lat:double(108)",
+      "comment": "Extract Variable lat : double in method protected match(documentIndex int) : boolean from class org.hibernate.search.spatial.impl.DistanceFilter.getDocIdSet.new FilteredDocIdSet"
     }
   ]
 }
