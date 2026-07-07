@@ -658,6 +658,9 @@ public class MethodTrackerChangeHistory extends AbstractChangeHistory<Method> {
                     for (MovedClassToAnotherSourceFolder movedClassToAnotherSourceFolder : moveSourceFolderRefactoring.getMovedClassesToAnotherSourceFolder()) {
                         UMLClass originalClass = movedClassToAnotherSourceFolder.getOriginalClass();
                         UMLClass movedClass = movedClassToAnotherSourceFolder.getMovedClass();
+                        if(originalClass == null || movedClass == null) {
+                        	continue;
+                        }
                         List<UMLOperation> leftOperations = new ArrayList<UMLOperation>();
                         leftOperations.addAll(originalClass.getOperations());
                         for (UMLAnonymousClass anonymous : originalClass.getAnonymousClassList()) {

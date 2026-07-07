@@ -14,12 +14,12 @@
       "parentCommitId": "08413b5986ba2e7291426fa68906c222e4c731bc",
       "commitId": "991b9e7244fd848ab1806d42fd511e5e27d4ea29",
       "commitTime": 1494329543,
-      "changeType": "introduced",
-      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
-      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery.createDocIdSetIterator.new TwoPhaseIterator#matches()$docID:int(163)",
+      "changeType": "rename",
+      "elementFileBefore": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceFilter.java",
+      "elementNameBefore": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceFilter.getDocIdSet.new FilteredDocIdSet#match(int)$documentIndex:int(117)",
       "elementFileAfter": "engine/src/main/java/org/hibernate/search/spatial/impl/DistanceQuery.java",
       "elementNameAfter": "engine/src/main/java/org.hibernate.search.spatial.impl.DistanceQuery.createDocIdSetIterator.new TwoPhaseIterator#matches()$docID:int(163)",
-      "comment": "added with method"
+      "comment": "Localize Parameter documentIndex : int to docID : int in method public matches() : boolean from class org.hibernate.search.spatial.impl.DistanceQuery.createDocIdSetIterator.new TwoPhaseIterator"
     }
   ]
 }
