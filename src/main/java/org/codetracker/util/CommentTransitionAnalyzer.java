@@ -11,7 +11,7 @@ import java.util.*;
 
 public class CommentTransitionAnalyzer {
 
-    public static Set<Change.Type> DetectCommentTransitionsInsideMatchedBlock(UMLOperationBodyMapper umlOperationBodyMapper, Block blockBefore, Block blockAfter, Version currentVersion, Version parentVersion) {
+    public static Set<Change.Type> detectCommentTransitionsInsideMatchedBlock(UMLOperationBodyMapper umlOperationBodyMapper, Block blockBefore, Block blockAfter, Version currentVersion, Version parentVersion) {
         Set<Change.Type> changeTypes = new HashSet<>();
         List<UMLComment> deletedComments = umlOperationBodyMapper.getCommentListDiff().getDeletedComments();
         List<UMLComment> addedComments = umlOperationBodyMapper.getCommentListDiff().getAddedComments();
@@ -151,16 +151,19 @@ public class CommentTransitionAnalyzer {
             }
         }
         for (CompositeStatementObject inner : uncommentedBlock.getInnerNodes()) {
+            if(inner.getActualSignature().equals(uncommentedBlock.getActualSignature())){
+                continue;
+            }
             if (!isBracketAndBelongsToStandAloneBlock(inner)) {
                 continue;
             }
-            String hash = Util.getSHA512(inner.getActualSignature().trim());
+            String hash = Util.getSHA512(inner.getActualSignature().replaceAll("\\s+", " ").trim());
             if(!existsAsMappedOrComment(hash, mappedFragments, deletedComments)){
                 return false;
             }
         }
         for (AbstractCodeFragment leaf : uncommentedBlock.getLeaves()) {
-            String hash = Util.getSHA512(((StatementObject) leaf).getActualSignature());
+            String hash = Util.getSHA512(((StatementObject) leaf).getActualSignature().replaceAll("\\s+", " ").trim());
             if(!existsAsMappedOrComment(hash, mappedFragments, deletedComments))
                 return false;
         }
@@ -197,23 +200,35 @@ public class CommentTransitionAnalyzer {
         }
         return true;
     }
-    private static boolean existsAsMappedOrComment(String hash, Set<String> mappedFragments, Map<String, UMLComment> comments){
-        return mappedFragments.contains(hash) || comments.containsKey(hash);
+    private static boolean existsAsMappedOrComment(String hash, Set<String> mappedFragments, Map<String, UMLComment> commentsHash){
+        return mappedFragments.contains(hash) || commentsHash.containsKey(hash);
     }
     public static String normalizeCommentText(String commentText) {
+        commentText = commentText.trim();
         if (commentText.startsWith("//")) {
             commentText = commentText.substring(2);
         }
+        if (commentText.startsWith("/*")) {
+            commentText = commentText.substring(2);
+        }
+        if (commentText.endsWith("*/")) {
+            commentText = commentText.substring(0, commentText.length() - 2);
+        }
         commentText = commentText.trim();
-        return commentText;
+        if (commentText.startsWith("*")) {
+            commentText = commentText.substring(1);
+        }
+        return commentText.trim();
     }
 
     public static Map<String, UMLComment> generateCommentTextHashMap(List<UMLComment> commentList) {
         Map<String, UMLComment> commentTextHashMap = new HashMap<>();
         for (UMLComment comment : commentList) {
             String text = comment.getText();
-            // remove /* */
-            text = text.replace("/*", "").replace("*/", "");
+            text = normalizeCommentText(text);
+            if(comment.getFullText().startsWith("/*")){
+                commentTextHashMap.put(Util.getSHA512(text.replaceAll("\\s+", " ").trim()), comment);
+            }
             String[] lines = text.split("\\R");
             for (String line : lines) {
                 line = normalizeCommentText(line);
@@ -225,5 +240,156 @@ public class CommentTransitionAnalyzer {
         }
         return commentTextHashMap;
     }
+    public static Map<String, String> generateUnCommentedBlockSignaturetHashMap(List<UMLComment> commentList) {
+        Map<String, String> blockSignatureUnCommentedHashMap = new HashMap<>();
+        List<String> blockSignatureUnCommented = extractBlockSignaturesFromComments(commentList);
+        for(String signature : blockSignatureUnCommented){
+            String normalized = signature.replaceAll("\\s+", " ").trim();
+            blockSignatureUnCommentedHashMap.put(Util.getSHA512(normalized), normalized);
+        }
+        return blockSignatureUnCommentedHashMap;
+    }
+public static List<String> extractBlockSignaturesFromComments(List<UMLComment> comments) {
+    List<String> signatures = new ArrayList<>();
 
+    for (int i = 0; i < comments.size(); i++) {
+        UMLComment comment = comments.get(i);
+        String text = normalizeCommentText(comment.getText());
+        if (text.isBlank())
+            continue;
+        if (isLeafStatement(text))
+            continue;
+        // Complete one-line signature
+        if (isCompleteBlockSignature(text)) {
+            signatures.add(text);
+            continue;
+        }
+        if (comment.getFullText().startsWith("/*")) {
+            signatures.addAll(extractFromBlockComment(text));
+        }
+        else if (comment.getFullText().startsWith("//")) {
+            if (!hasBlockKeyword(text))
+                continue;
+            SingleLineExtractionResult singleLineExtractionResult = extractFromSingleLineComments(comments, i, text);
+            signatures.addAll(singleLineExtractionResult.getSignatures());
+            i = singleLineExtractionResult.getLastConsumedIndex();
+        }
+    }
+    return signatures;
 }
+private static boolean isCompleteBlockSignature(String text) {
+        return hasBlockKeyword(text) && text.trim().endsWith("{");
+    }
+    private static boolean signatureEnds(String text) {
+        return text.trim().endsWith("{");
+    }
+    private static boolean hasBlockKeyword(String text) {
+        String trimmed = text.trim();
+        return trimmed.startsWith("if")
+                || trimmed.startsWith("else")
+                || trimmed.startsWith("for")
+                || trimmed.startsWith("while")
+                || trimmed.startsWith("do")
+                || trimmed.startsWith("try")
+                || trimmed.startsWith("catch")
+                || trimmed.startsWith("finally")
+                || trimmed.startsWith("switch")
+                || trimmed.startsWith("synchronized")
+                || trimmed.startsWith("static");
+        //TODO:Add support for  standalone block {}
+    }
+    private static boolean areConsecutiveComments(
+            UMLComment current,
+            UMLComment next) {
+
+        return next.getLocationInfo().getStartLine()
+                == current.getLocationInfo().getEndLine() + 1;
+    }
+    private static boolean isLeafStatement(String text) {
+        return (!hasBlockKeyword(text) && text.trim().endsWith(";"));
+    }
+
+    private static List<String> extractFromBlockComment(String commentText) {
+        List<String> signatures = new ArrayList<>();
+        String[] lines = commentText.split("\\R");
+        for (int j = 0; j < lines.length; j++) {
+            if (isLeafStatement(lines[j]))
+                continue;
+            if (!hasBlockKeyword(lines[j]))
+                continue;
+            StringBuilder signatureBuilder = new StringBuilder();
+            signatureBuilder.append(lines[j]);
+            int currentIndex = j + 1;
+            while (!signatureEnds(signatureBuilder.toString())
+                    && currentIndex < lines.length) {
+                String nextLine = lines[currentIndex];
+                if (isLeafStatement(nextLine)) {
+                    if (signatureBuilder.toString().trim().endsWith(")")) {
+                        signatures.add(signatureBuilder.toString());
+                    }
+                    break;
+                }
+                // another block signature starts
+                if (hasBlockKeyword(nextLine))
+                    break;
+                signatureBuilder.append("\n").append(nextLine);
+                currentIndex++;
+            }
+            if (signatureEnds(signatureBuilder.toString())) {
+                signatures.add(signatureBuilder.toString());
+            }
+            j = currentIndex - 1;
+        }
+    return signatures;
+    }
+
+    private static SingleLineExtractionResult extractFromSingleLineComments(List<UMLComment> comments, int index, String commentText){
+        int lastConsumedIndex = index;
+        List<String> signatures = new ArrayList<>();
+        StringBuilder signatureBuilder = new StringBuilder();
+        signatureBuilder.append(commentText);
+        int currentIndex = index;
+        while (!signatureEnds(signatureBuilder.toString())
+                && currentIndex + 1 < comments.size()) {
+            UMLComment current = comments.get(currentIndex);
+            UMLComment next = comments.get(currentIndex + 1);
+            if (!areConsecutiveComments(current, next))
+                break;
+            String nextText = normalizeCommentText(next.getText());
+            if (isLeafStatement(nextText)) {
+                if (signatureBuilder.toString().trim().endsWith(")")) {
+                    signatures.add(signatureBuilder.toString());
+                }
+                break;
+            }
+            // another block signature starts inside the same comment
+            if (hasBlockKeyword(nextText))
+                break;
+            signatureBuilder.append("\n").append(nextText);
+            currentIndex++;
+        }
+        if (signatureEnds(signatureBuilder.toString())) {
+            signatures.add(signatureBuilder.toString());
+            lastConsumedIndex = currentIndex;
+        }
+        return new SingleLineExtractionResult(signatures, lastConsumedIndex);
+    }
+    private static class SingleLineExtractionResult {
+        private  List<String> signatures;
+        private  int lastConsumedIndex;
+
+        SingleLineExtractionResult(List<String> signatures,
+                                   int lastConsumedIndex) {
+            this.signatures = signatures;
+            this.lastConsumedIndex = lastConsumedIndex;
+        }
+        public List<String> getSignatures() {
+            return signatures;
+        }
+
+        public int getLastConsumedIndex() {
+            return lastConsumedIndex;
+        }
+    }
+}
+

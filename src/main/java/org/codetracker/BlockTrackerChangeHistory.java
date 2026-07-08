@@ -682,22 +682,27 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
        List<UMLComment> deletedComments = umlCommentListDiff.getDeletedComments();
         if(currentNonMappedInnerNodes.size() == 0 || deletedComments == null || deletedComments.isEmpty())
             return false;
-        Map<String, UMLComment> deletedCommentsHashMap =  generateCommentTextHashMap(deletedComments);
+        //reconstruct multiline block signature
+        Map<String, UMLComment> allDeletedCommentsHashMap =  generateCommentTextHashMap(deletedComments);
+        Map<String, String> deletedCommentsBlockSignatureHashMap =  generateUnCommentedBlockSignaturetHashMap(deletedComments);
+        if(deletedCommentsBlockSignatureHashMap.isEmpty())
+            return false;
         for(CompositeStatementObject nonMappedInnerNode : currentNonMappedInnerNodes) {
-            String hashOfNonMappedInnerNode = Util.getSHA512(nonMappedInnerNode.getActualSignature());
-            if (!deletedCommentsHashMap.containsKey(hashOfNonMappedInnerNode))
+            String normalizedSignature = nonMappedInnerNode.getActualSignature().replaceAll("\\s+", " ").trim();
+            String hashOfNonMappedInnerNode = Util.getSHA512(normalizedSignature);
+            if (!deletedCommentsBlockSignatureHashMap.containsKey(hashOfNonMappedInnerNode))
                 continue;
             Block blockAfter = Block.of(nonMappedInnerNode, umlOperationBodyMapper.getContainer2(), currentVersion);
             if (!equalOperator.test(blockAfter))
                 continue;
             //check block body continuity
-            if (!isBlockBodyUnchangedDuringUncomment(umlOperationBodyMapper, nonMappedInnerNode, deletedCommentsHashMap, blockAfter))
+            if (!isBlockBodyUnchangedDuringUncomment(umlOperationBodyMapper, nonMappedInnerNode, allDeletedCommentsHashMap, blockAfter))
                 continue;
             Block virtualBlockBefore = Block.of(nonMappedInnerNode, umlOperationBodyMapper.getContainer2(), parentVersion); // add metadata later, flag isVirtual = true;
             blockChangeHistory.addChange(virtualBlockBefore, blockAfter, ChangeFactory.forBlock(Change.Type.UNCOMMENTED_BLOCK));
             elements.add(virtualBlockBefore);
             blockChangeHistory.connectRelatedNodes();
-            return true;
+             return true;
             }
         return false;
     }
@@ -1142,7 +1147,7 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
                         List<String> stringRepresentationBodyBefore = stringRepresentationBefore.subList(1, stringRepresentationBefore.size());
                         List<String> stringRepresentationBodyAfter = stringRepresentationAfter.subList(1, stringRepresentationAfter.size());
                         if (!stringRepresentationBodyBefore.equals(stringRepresentationBodyAfter)) {
-                            Set<Change.Type> commentTransitions = DetectCommentTransitionsInsideMatchedBlock(umlOperationBodyMapper, blockBefore, blockAfter, currentVersion, parentVersion);
+                            Set<Change.Type> commentTransitions = detectCommentTransitionsInsideMatchedBlock(umlOperationBodyMapper, blockBefore, blockAfter, currentVersion, parentVersion);
                             if(!commentTransitions.isEmpty()){
                                 for(Change.Type changeType : commentTransitions){
                                     blockChangeHistory.addChange(blockBefore, blockAfter, ChangeFactory.forBlock(changeType));
