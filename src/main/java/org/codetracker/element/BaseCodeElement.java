@@ -125,6 +125,10 @@ public abstract class BaseCodeElement implements CodeElement {
     }
 
     public boolean equalIdentifierIgnoringVersion(BaseCodeElement codeElement) {
+        if(codeElement.identifierIgnoringVersion.startsWith(this.identifierIgnoringVersion))
+            return true;
+        if(this.identifierIgnoringVersion.startsWith(codeElement.identifierIgnoringVersion))
+            return true;
         return this.identifierIgnoringVersion.equals(codeElement.identifierIgnoringVersion);
     }
 

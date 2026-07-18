@@ -343,8 +343,8 @@ public final class ChangeFactory {
                 break;
             }
             case ANNOTATION_CHANGE: {
-                if (refactoring == null)
-                    throw new NullPointerException();
+                //if (refactoring == null)
+                //    throw new NullPointerException();
                 if (isMethod()) {
                     change = new MethodAnnotationChange(refactoring);
                 } else if (isVariable()) {

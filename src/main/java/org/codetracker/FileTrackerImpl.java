@@ -1565,6 +1565,9 @@ public class FileTrackerImpl extends BaseTracker {
 	                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
 	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
 	                			}
+	                			if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
+	                			}
 	                		}
 							continue;
 						}
@@ -1588,6 +1591,9 @@ public class FileTrackerImpl extends BaseTracker {
 	                			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
 	                			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
 	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+	                			}
+	                			if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+	                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
 	                			}
 	                		}
 							startMethodChangeHistory.get().connectRelatedNodes();
@@ -1624,6 +1630,9 @@ public class FileTrackerImpl extends BaseTracker {
                 			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
                 				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
                 			}
+                			if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
+                			}
                 		}
 						startMethodChangeHistory.setCurrent(leftMethod);
 						int leftLines = leftMethod.getLocation().getEndLine() - leftMethod.getLocation().getStartLine();
@@ -1659,6 +1668,9 @@ public class FileTrackerImpl extends BaseTracker {
                 			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
                 			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
                 				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                			}
+                			if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+                				startMethodChangeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
                 			}
                 		}
 						startMethodChangeHistory.get().connectRelatedNodes();
