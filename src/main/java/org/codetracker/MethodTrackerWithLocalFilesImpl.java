@@ -19,7 +19,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles implements MethodTracker {
-	private final MethodTrackerChangeHistory changeHistory;
+    private final MethodTrackerChangeHistory changeHistory;
 
     public MethodTrackerWithLocalFilesImpl(String cloneURL, String startCommitId, String filePath, String methodName, int methodDeclarationLineNumber) {
         super(cloneURL, startCommitId, filePath);
@@ -32,12 +32,12 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
         Version startVersion = new VersionImpl(startCommitId, 0, 0, "");
         CommitModel startModel = getCommitModel(startCommitId);
         Set<String> startFileNames = Collections.singleton(filePath);
-    	Map<String, String> startFileContents = new LinkedHashMap<>();
-    	for(String rightFileName : startFileNames) {
-    		startFileContents.put(rightFileName, startModel.fileContentsCurrentOriginal.get(rightFileName));
-    	}
-    	UMLModel umlModel = GitHistoryRefactoringMinerImpl.createModel(startFileContents, startModel.repositoryDirectoriesCurrent);
-    	umlModel.setPartial(true);
+        Map<String, String> startFileContents = new LinkedHashMap<>();
+        for(String rightFileName : startFileNames) {
+            startFileContents.put(rightFileName, startModel.fileContentsCurrentOriginal.get(rightFileName));
+        }
+        UMLModel umlModel = GitHistoryRefactoringMinerImpl.createModel(startFileContents, startModel.repositoryDirectoriesCurrent);
+        umlModel.setPartial(true);
         Method start = getMethod(umlModel, startVersion, changeHistory::isStartMethod);
         String startFilePath = start.getFilePath();
         if (start == null) {
@@ -59,8 +59,8 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
             if (commits == null || !currentMethodFilePath.equals(lastFileName)) {
                 lastFileName = currentMethodFilePath;
                 String repoName = cloneURL.substring(cloneURL.lastIndexOf('/') + 1, cloneURL.lastIndexOf('.'));
-        		String className = startFilePath.substring(startFilePath.lastIndexOf("/") + 1);
-        		className = className.endsWith(".java") ? className.substring(0, className.length()-5) : className;
+                String className = startFilePath.substring(startFilePath.lastIndexOf("/") + 1);
+                className = className.endsWith(".java") ? className.substring(0, className.length()-5) : className;
                 String jsonPath = System.getProperty("user.dir") + "/src/test/resources/method/" + repoName + "-" + className + "-" + changeHistory.getMethodName() + ".json";
                 File jsonFile = new File(jsonPath);
                 commits = getCommits(currentMethod.getVersion().getId(), jsonFile);
@@ -79,11 +79,11 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 String parentCommitId = lightCommitModel.parentCommitId;
                 Version currentVersion = new VersionImpl(commitId, 0, 0, "");
                 Version parentVersion = new VersionImpl(parentCommitId, 0, 0, "");
-            	
-            	UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsBeforeOriginal, lightCommitModel.repositoryDirectoriesBefore);
-            	leftModel.setPartial(true);
-            	UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsCurrentOriginal, lightCommitModel.repositoryDirectoriesCurrent);
-            	rightModel.setPartial(true);
+
+                UMLModel leftModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsBeforeOriginal, lightCommitModel.repositoryDirectoriesBefore);
+                leftModel.setPartial(true);
+                UMLModel rightModel = GitHistoryRefactoringMinerImpl.createModel(lightCommitModel.fileContentsCurrentOriginal, lightCommitModel.repositoryDirectoriesCurrent);
+                rightModel.setPartial(true);
                 Method rightMethod = getMethod(rightModel, currentVersion, currentMethod::equalIdentifierIgnoringVersion);
                 if (rightMethod == null) {
                     continue;
@@ -98,17 +98,22 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 }
 
                 //NO CHANGE
-                Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
+                Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndAnnotation);
                 if (leftMethod != null) {
-                	if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
-            			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
-            			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
-            			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
-            				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-                			currentMethod = leftMethod;
-            			}
-            		}
+                    if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
+                        UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                        UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                        if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                            changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                            currentMethod = leftMethod;
+                        }
+                        if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+                            changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                            currentMethod = leftMethod;
+                        }
+                    }
                     historyReport.step2PlusPlus();
                     continue;
                 }
@@ -118,16 +123,19 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
 
                 if (leftMethod != null) {
                     if (!leftMethod.equalBody(rightMethod))
-                    	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
+                        changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.BODY_CHANGE));
                     if (!leftMethod.equalDocuments(rightMethod))
-                    	changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
+                        changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.DOCUMENTATION_CHANGE));
                     if (leftMethod.getUmlOperation() instanceof UMLOperation && rightMethod.getUmlOperation() instanceof UMLOperation) {
-            			UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
-            			UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
-            			if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
-            				changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
-            			}
-            		}
+                        UMLOperation leftOperation = (UMLOperation)leftMethod.getUmlOperation();
+                        UMLOperation rightOperation = (UMLOperation)rightMethod.getUmlOperation();
+                        if (!leftOperation.getTypeParameters().equals(rightOperation.getTypeParameters())) {
+                            changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.TYPE_PARAMETER_CHANGE));
+                        }
+                        if (!leftOperation.getAnnotations().equals(rightOperation.getAnnotations())) {
+                            changeHistory.get().addChange(leftMethod, rightMethod, ChangeFactory.forMethod(Change.Type.ANNOTATION_CHANGE));
+                        }
+                    }
                     changeHistory.get().connectRelatedNodes();
                     currentMethod = leftMethod;
                     historyReport.step3PlusPlus();
