@@ -1,0 +1,132 @@
+{
+  "repositoryName": "intellij-community",
+  "repositoryWebURL": "https://github.com/JetBrains/intellij-community.git",
+  "startCommitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+  "filePath": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+  "functionName": "buildPathMatcher",
+  "functionKey": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+  "functionStartLine": 76,
+  "expectedChanges": [
+    {
+      "parentCommitId": "d435d7548e8b152f3daaa77fc0a7d3ed534aad82",
+      "commitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+      "commitTime": 1781271095,
+      "changeType": "body change",
+      "elementFileBefore": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+      "comment": "Body Change"
+    },
+    {
+      "parentCommitId": "d435d7548e8b152f3daaa77fc0a7d3ed534aad82",
+      "commitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+      "commitTime": 1781271095,
+      "changeType": "modifier change",
+      "elementFileBefore": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+      "comment": "Remove Method Modifier static in method private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher"
+    },
+    {
+      "parentCommitId": "d435d7548e8b152f3daaa77fc0a7d3ed534aad82",
+      "commitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+      "commitTime": 1781271095,
+      "changeType": "parameter change",
+      "elementFileBefore": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+      "comment": "Remove Parameter Annotation @NotNull in parameter fileMasks : Collection<String> in method private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher"
+    },
+    {
+      "parentCommitId": "d435d7548e8b152f3daaa77fc0a7d3ed534aad82",
+      "commitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+      "commitTime": 1781271095,
+      "changeType": "annotation change",
+      "elementFileBefore": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+      "comment": "Remove Method Annotation @NotNull in method private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher"
+    },
+    {
+      "parentCommitId": "d435d7548e8b152f3daaa77fc0a7d3ed534aad82",
+      "commitId": "2f6c8c057c950b8eaaea5a48c478c593aa977720",
+      "commitTime": 1781271095,
+      "changeType": "moved",
+      "elementFileBefore": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion#buildPathMatcher(Collection)",
+      "comment": "Move Method private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher to private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion"
+    },
+    {
+      "parentCommitId": "e47f455e745d3518ff99cd01843ffaf318c641c3",
+      "commitId": "9e2898c2d1b5ce4f20b15590eed2c0424b9ec81c",
+      "commitTime": 1743685699,
+      "changeType": "container change",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/backend/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "Move Source Folder json to json/backend"
+    },
+    {
+      "parentCommitId": "ddcc95124c3971be1895a3e46c722cc413964db3",
+      "commitId": "25233df1b19338f3f586e898ad30cde710c07e49",
+      "commitTime": 1735310474,
+      "changeType": "body change",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "Body Change"
+    },
+    {
+      "parentCommitId": "90daf4b47adc13cb46d50e65ad972c6a9ee43734",
+      "commitId": "d6d9b071b6c00d4b482a9d8af24b54737744069e",
+      "commitTime": 1681087354,
+      "changeType": "body change",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "Body Change"
+    },
+    {
+      "parentCommitId": "90daf4b47adc13cb46d50e65ad972c6a9ee43734",
+      "commitId": "d6d9b071b6c00d4b482a9d8af24b54737744069e",
+      "commitTime": 1681087354,
+      "changeType": "parameter change",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "Localize Parameter fileMatches : Collection<String> to refinedFileMasks : List<String> in method private buildPathMatcher(fileMasks Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher"
+    },
+    {
+      "parentCommitId": "90daf4b47adc13cb46d50e65ad972c6a9ee43734",
+      "commitId": "d6d9b071b6c00d4b482a9d8af24b54737744069e",
+      "commitTime": 1681087354,
+      "changeType": "parameter change",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "Remove Parameter Annotation @NotNull in parameter fileMatches : Collection<String> in method private buildPathMatcher(fileMatches Collection<String>) : PathMatcher from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher"
+    },
+    {
+      "parentCommitId": "c2392db0c9c671f1bfcb79a7193abc5d106bcb6b",
+      "commitId": "325f9056271235733fa03dd1b5d024d819ff5322",
+      "commitTime": 1592327854,
+      "changeType": "introduced",
+      "elementFileBefore": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameBefore": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "elementFileAfter": "json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java",
+      "elementNameAfter": "json/src/com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager.FileMatcher#buildPathMatcher(Collection)",
+      "comment": "added with new class"
+    }
+  ]
+}

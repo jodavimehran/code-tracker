@@ -60,7 +60,10 @@ public class MethodTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles i
                 lastFileName = currentMethodFilePath;
                 String repoName = cloneURL.substring(cloneURL.lastIndexOf('/') + 1, cloneURL.lastIndexOf('.'));
                 String className = startFilePath.substring(startFilePath.lastIndexOf("/") + 1);
-                className = className.endsWith(".java") ? className.substring(0, className.length()-5) : className;
+                if(className.endsWith(".java"))
+                    className = className.substring(0, className.length()-5);
+                else if(className.endsWith(".kt"))
+                    className = className.substring(0, className.length()-3);
                 String jsonPath = System.getProperty("user.dir") + "/src/test/resources/method/" + repoName + "-" + className + "-" + changeHistory.getMethodName() + ".json";
                 File jsonFile = new File(jsonPath);
                 commits = getCommits(currentMethod.getVersion().getId(), jsonFile);
