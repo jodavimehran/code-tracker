@@ -238,7 +238,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
                     }
                     break;
                 }
-                case EXTRACT_FIXTURE:
+//                case EXTRACT_FIXTURE: TODO: upgrade RM version then uncomment
                 case MOVE_CODE: {
                     MoveCodeRefactoring moveCodeRefactoring = (MoveCodeRefactoring) refactoring;
                     Method extractedMethod = Method.of(moveCodeRefactoring.getTargetContainer(), currentVersion);

@@ -141,6 +141,19 @@ public final class ChangeFactory {
                 change = new BodyChange();
                 break;
             }
+            case UNCOMMENTED_STATEMENT:{
+                change = new UncommentedCodeInBlock();
+                break;
+            }
+            case COMMENTED_OUT_STATEMENT:{
+                change = new CommentedOutCodeInBlock();
+                break;
+            }
+            case UNCOMMENTED_BLOCK:{
+                change = new UncommentedBlock();
+                break;
+            }
+
             case CATCH_BLOCK_CHANGE: {
                 change = new CatchBlockChange();
                 break;

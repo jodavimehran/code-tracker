@@ -56,8 +56,10 @@ public interface Change {
         INITIALIZER_ADDED("initializer added"),
         INITIALIZER_REMOVED("initializer removed"),
         SUPERCLASS_CHANGE("superclass change"),
-        INTERFACE_LIST_CHANGE("interface list change");
-
+        INTERFACE_LIST_CHANGE("interface list change"),
+        COMMENTED_OUT_STATEMENT("commented out statement"),
+        UNCOMMENTED_STATEMENT("uncommented statement"),
+        UNCOMMENTED_BLOCK("uncommented Block");
         private static final Map<String, Type> lookup = new HashMap<>();
 
         static {
