@@ -7,7 +7,8 @@ import org.eclipse.jgit.lib.Repository;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 
 public interface AnnotationTracker extends CodeTracker {
-    default History.HistoryInfo<Annotation> blame() throws Exception{
+	History<Annotation> track() throws Exception;
+	default History.HistoryInfo<Annotation> blame() throws Exception{
         throw new UnsupportedOperationException();
     }
 
