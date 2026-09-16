@@ -17,6 +17,7 @@ This project aims to introduce CodeTracker, a refactoring-aware tool that can ge
   * [How to Track Methods](#how-to-track-methods)
   * [How to Track Variables](#how-to-track-variables)
   * [How to Track Attributes](#how-to-track-attributes)
+  * [Cross-language Tracking](#cross-language-tracking)
   * [How to Run the REST API](#how-to-run-the-rest-api)
   * [REST API Endpoints](#rest-api-endpoints)
   * [Oracle](#oracle)
@@ -392,7 +393,79 @@ In the code snippet below we demonstrate how to print all changes performed in t
         System.out.println("======================================================");
     }
 ```
+# Cross-language Tracking
+All provided APIs provide built-in support for cross-language tracking without any additional configuration.
+For example, the following code snippet track a Kotlin function migrated from a Java method:
+```java
+    GitService gitService = new GitServiceImpl();
+    try (Repository repository = gitService.cloneIfNotExists("tmp/intellij-community",
+            "https://github.com/JetBrains/intellij-community.git")){
 
+        MethodTracker methodTracker = CodeTracker.methodTracker()
+            .repository(repository)
+            .filePath("json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt")
+            .startCommitId("2f6c8c057c950b8eaaea5a48c478c593aa977720")
+            //.methodName("buildPathMatcher")
+            //.methodDeclarationLineNumber(76)
+            .methodName("getRelativePath")
+            .methodDeclarationLineNumber(59)
+            .build();
+     
+        History<Method> methodHistory = methodTracker.track();
+
+        for (History.HistoryInfo<Method> historyInfo : methodHistory.getHistoryInfoList()) {
+            System.out.println("======================================================");
+            System.out.println("Commit ID: " + historyInfo.getCommitId());
+            System.out.println("Date: " + 
+                LocalDateTime.ofEpochSecond(historyInfo.getCommitTime(), 0, ZoneOffset.UTC));
+            System.out.println("Before: " + historyInfo.getElementBefore().getFilePath() +
+                "(" + historyInfo.getElementBefore().getLocation().getStartLine() + "-" +
+                historyInfo.getElementBefore().getLocation().getEndLine() + ")");
+            System.out.println("After: " + historyInfo.getElementAfter().getFilePath() +
+                "(" + historyInfo.getElementAfter().getLocation().getStartLine() + "-" +
+                historyInfo.getElementAfter().getLocation().getEndLine() + ")");
+            
+            for (Change change : historyInfo.getChangeList()) {
+                System.out.println(change.getType().getTitle() + ": " + change);
+            }
+        }
+        System.out.println("======================================================");
+    }
+```
+
+```
+======================================================
+Commit ID: 2f6c8c057c950b8eaaea5a48c478c593aa977720
+Date: 2026-06-12T13:31:35
+Before: json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(244-258)
+After: json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogEntryFileMatcher.kt(58-74)
+body change: Body Change
+modifier change: Remove Method Modifier	static in method private getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager
+modifier change: Change Method Access Modifier	private to public in method public getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion
+parameter change: Remove Parameter Annotation	@NotNull in parameter project : Project in method private getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager
+parameter change: Remove Parameter Annotation	@NotNull in parameter file : VirtualFile in method private getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager
+annotation change: Add Method Annotation	@JvmStatic in method public getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion
+annotation change: Remove Method Annotation	@Nullable in method private getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager
+moved: Move Method	private getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogManager to public getRelativePath(file VirtualFile, project Project) : String from class com.jetbrains.jsonSchema.remote.JsonSchemaCatalogEntryFileMatcher.Companion
+======================================================
+Commit ID: 9718041ae062e83d2076da2c4f1a20195ffbd34d
+Date: 2026-06-09T00:35:19
+Before: json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(208-222)
+After: json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(244-258)
+body change: Body Change
+======================================================
+Commit ID: 9e2898c2d1b5ce4f20b15590eed2c0424b9ec81c
+Date: 2025-04-03T13:08:19
+Before: json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(206-220)
+After: json/backend/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(206-220)
+container change: Move Source Folder	json to json/backend
+======================================================
+Commit ID: 325f9056271235733fa03dd1b5d024d819ff5322
+Date: 2020-06-16T17:17:34
+Before: json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(179-193)
+After: json/src/com/jetbrains/jsonSchema/remote/JsonSchemaCatalogManager.java(179-193)
+introduced: new method
+```
 # How to Run the REST API
 
 You can serve CodeTracker as a REST API. 
