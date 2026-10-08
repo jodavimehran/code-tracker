@@ -4,6 +4,8 @@ import gr.uom.java.xmi.UMLClass;
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.UMLType;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.ClassTracker;
 import org.codetracker.api.History;
@@ -18,9 +20,10 @@ import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
-	private final ClassTrackerChangeHistory changeHistory;
+    private final ClassTrackerChangeHistory changeHistory;
 
     public ClassTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber) {
         super(repository, startCommitId, filePath);
@@ -82,30 +85,40 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
-
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(rightClass.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                     if (leftClass != null) {
-                    	UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
-						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
-						if (leftSuperclass != null && rightSuperclass != null) {
-                    		if (!leftSuperclass.equals(rightSuperclass)) {
-                    			changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                    			changeHistory.get().connectRelatedNodes();
-                    		}
-                    	}
-						else if (leftSuperclass != null && rightSuperclass == null) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
-						else if (leftSuperclass == null && rightSuperclass != null) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
-						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
+                        UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+                        UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+                        if (leftSuperclass != null && rightSuperclass != null) {
+                            if (!leftSuperclass.equals(rightSuperclass)) {
+                                changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                                changeHistory.get().connectRelatedNodes();
+                            }
+                        }
+                        else if (leftSuperclass != null && rightSuperclass == null) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
+                        else if (leftSuperclass == null && rightSuperclass != null) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
+                        if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
                         historyReport.step2PlusPlus();
                         continue;
                     }
@@ -187,8 +200,8 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Class> blame = startPackage != null ? changeHistory.blameReturn(startPackage) : changeHistory.blameReturn(startClass);
-            	if (blame != null) return blame;
+                History.HistoryInfo<Class> blame = startPackage != null ? changeHistory.blameReturn(startPackage) : changeHistory.blameReturn(startClass);
+                if (blame != null) return blame;
                 Class currentClass = changeHistory.poll();
                 if (currentClass.isAdded()) {
                     commits = null;
@@ -226,30 +239,40 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
-
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(rightClass.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                     if (leftClass != null) {
-                    	UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
-						UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
-						if (leftSuperclass != null && rightSuperclass != null) {
-                    		if (!leftSuperclass.equals(rightSuperclass)) {
-                    			changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                    			changeHistory.get().connectRelatedNodes();
-                    		}
-                    	}
-						else if (leftSuperclass != null && rightSuperclass == null) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
-						else if (leftSuperclass == null && rightSuperclass != null) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
-						if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
-							changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
-                			changeHistory.get().connectRelatedNodes();
-						}
+                        UMLType leftSuperclass = leftClass.getUmlClass().getSuperclass();
+                        UMLType rightSuperclass = rightClass.getUmlClass().getSuperclass();
+                        if (leftSuperclass != null && rightSuperclass != null) {
+                            if (!leftSuperclass.equals(rightSuperclass)) {
+                                changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                                changeHistory.get().connectRelatedNodes();
+                            }
+                        }
+                        else if (leftSuperclass != null && rightSuperclass == null) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
+                        else if (leftSuperclass == null && rightSuperclass != null) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.SUPERCLASS_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
+                        if (!leftClass.getUmlClass().getImplementedInterfaces().equals(rightClass.getUmlClass().getImplementedInterfaces())) {
+                            changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
+                            changeHistory.get().connectRelatedNodes();
+                        }
                         historyReport.step2PlusPlus();
                         continue;
                     }
@@ -271,24 +294,24 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             }
                         }
                         if(commitModel.fileContentsBeforeOriginal.isEmpty()) {
-                        	Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
-                        	List<UMLClass> classList = umlModelPairPartial.getRight().getClassList();
-                        	UMLClass matchedClass = null;
-                        	for(UMLClass umlClass : classList) {
-                        		Class tempClass = Class.of(umlClass, currentVersion);
-                        		if(rightClass.equalIdentifierIgnoringVersion(tempClass)) {
-                        			matchedClass = umlClass;
-                        			break;
-                        		}
-                        	}
-                        	if(matchedClass != null) {
+                            Pair<UMLModel, UMLModel> umlModelPairPartial = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, true);
+                            List<UMLClass> classList = umlModelPairPartial.getRight().getClassList();
+                            UMLClass matchedClass = null;
+                            for(UMLClass umlClass : classList) {
+                                Class tempClass = Class.of(umlClass, currentVersion);
+                                if(rightClass.equalIdentifierIgnoringVersion(tempClass)) {
+                                    matchedClass = umlClass;
+                                    break;
+                                }
+                            }
+                            if(matchedClass != null) {
                                 leftClass = Class.of(matchedClass, parentVersion);
                                 changeHistory.get().handleAdd(leftClass, rightClass, "new class");
                                 changeHistory.get().connectRelatedNodes();
                                 changeHistory.addFirst(leftClass);
                                 historyReport.step5PlusPlus();
                                 break;
-                        	}
+                            }
                         }
                         {
                             Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);

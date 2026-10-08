@@ -4,6 +4,8 @@ import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.*;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.BlockTracker;
 import org.codetracker.api.CodeElementNotFoundException;
@@ -18,6 +20,7 @@ import org.refactoringminer.api.RefactoringType;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
     private final BlockTrackerChangeHistory changeHistory;
@@ -97,6 +100,17 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethod.getFilePath()));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentMethod.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                     if (leftMethod != null) {
@@ -345,8 +359,8 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Block> blame = changeHistory.blameReturn(startBlock);
-            	if (blame != null) return blame;
+                History.HistoryInfo<Block> blame = changeHistory.blameReturn(startBlock);
+                if (blame != null) return blame;
                 Block currentBlock = changeHistory.poll();
                 if (currentBlock.isAdded()) {
                     commits = null;
@@ -392,6 +406,17 @@ public class BlockTrackerImpl extends BaseTracker implements BlockTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethod.getFilePath()));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentMethod.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                     if (leftMethod != null) {

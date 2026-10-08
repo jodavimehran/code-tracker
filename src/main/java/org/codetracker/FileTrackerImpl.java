@@ -12,7 +12,9 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.CodeElement;
@@ -278,6 +280,17 @@ public class FileTrackerImpl extends BaseTracker {
 						break;
 					}
 					UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
+					if(leftModel.getClassList().isEmpty()) {
+						Set<String> filePathsBefore = new LinkedHashSet<String>();
+						Set<String> filePathsCurrent = new LinkedHashSet<String>();
+						Map<String, String> renamedFilesHint = new HashMap<String, String>();
+						populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+						String noExtension = FilenameUtils.removeExtension(rightClass.getFilePath());
+						Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+						if(matchingNames.size() > 0) {
+							leftModel = getUMLModel(parentCommitId, matchingNames);
+						}
+					}
 
 					Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
 					boolean annotationChanged = false;

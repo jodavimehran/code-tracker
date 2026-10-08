@@ -3,6 +3,8 @@ package org.codetracker;
 import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.decomposition.*;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.lib.Repository;
@@ -14,6 +16,7 @@ import org.codetracker.element.Variable;
 
 import java.util.*;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 public class VariableTrackerImpl extends BaseTracker implements VariableTracker {
     private final VariableTrackerChangeHistory changeHistory;
@@ -97,6 +100,17 @@ public class VariableTrackerImpl extends BaseTracker implements VariableTracker 
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethod.getFilePath()));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentMethod.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
 
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);

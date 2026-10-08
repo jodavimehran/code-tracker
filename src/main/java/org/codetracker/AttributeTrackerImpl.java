@@ -2,6 +2,8 @@ package org.codetracker;
 
 import gr.uom.java.xmi.UMLModel;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.AttributeTracker;
 import org.codetracker.api.CodeElementNotFoundException;
@@ -15,6 +17,7 @@ import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AttributeTrackerImpl extends BaseTracker implements AttributeTracker {
     private final AttributeTrackerChangeHistory changeHistory;
@@ -85,7 +88,17 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightAttribute.getFilePath()));
-
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(rightAttribute.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                     if (leftAttribute != null) {
@@ -284,7 +297,17 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightAttribute.getFilePath()));
-
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(rightAttribute.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                     if (leftAttribute != null) {

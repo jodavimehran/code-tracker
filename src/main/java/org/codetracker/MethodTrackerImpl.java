@@ -2,6 +2,8 @@ package org.codetracker;
 
 import gr.uom.java.xmi.*;
 import gr.uom.java.xmi.diff.*;
+
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
@@ -15,7 +17,6 @@ import org.eclipse.jgit.lib.Repository;
 import org.refactoringminer.api.Refactoring;
 import org.refactoringminer.api.RefactoringType;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -82,6 +83,17 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethodFilePath));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentMethodFilePath);
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
 
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndAnnotation);
@@ -323,6 +335,17 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentMethodFilePath));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentMethodFilePath);
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
 
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);

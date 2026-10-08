@@ -1,11 +1,15 @@
 package org.codetracker;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.codetracker.api.CodeElementNotFoundException;
 import org.codetracker.api.History;
@@ -26,13 +30,13 @@ import gr.uom.java.xmi.diff.UMLClassBaseDiff;
 import gr.uom.java.xmi.diff.UMLModelDiff;
 
 public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
-	private final ImportTrackerChangeHistory changeHistory;
+    private final ImportTrackerChangeHistory changeHistory;
 
-	public ImportTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber,
-			CodeElementType codeElementType, int importStartLineNumber, int importEndLineNumber) {
-		super(repository, startCommitId, filePath);
-		this.changeHistory = new ImportTrackerChangeHistory(className, classDeclarationLineNumber, codeElementType, importStartLineNumber, importEndLineNumber);
-	}
+    public ImportTrackerImpl(Repository repository, String startCommitId, String filePath, String className, int classDeclarationLineNumber,
+            CodeElementType codeElementType, int importStartLineNumber, int importEndLineNumber) {
+        super(repository, startCommitId, filePath);
+        this.changeHistory = new ImportTrackerChangeHistory(className, classDeclarationLineNumber, codeElementType, importStartLineNumber, importEndLineNumber);
+    }
 
     public History.HistoryInfo<Import> blame() throws Exception {
         HistoryImpl.HistoryReportImpl historyReport = new HistoryImpl.HistoryReportImpl();
@@ -54,8 +58,8 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
             List<String> commits = null;
             String lastFileName = null;
             while (!changeHistory.isEmpty()) {
-            	History.HistoryInfo<Import> blame = changeHistory.blameReturn();
-            	if (blame != null) return blame;
+                History.HistoryInfo<Import> blame = changeHistory.blameReturn();
+                if (blame != null) return blame;
                 Import currentImport = changeHistory.poll();
                 if (currentImport.isAdded()) {
                     commits = null;
@@ -78,8 +82,8 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                     String parentCommitId = gitRepository.getParentId(commitId);
                     Version parentVersion = gitRepository.getVersion(parentCommitId);
                     Class currentClass = Class.of(currentImport.getClazz(), currentVersion);
-                	UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentClass.getFilePath()));
-                	Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
+                    UMLModel rightModel = getUMLModel(commitId, Collections.singleton(currentClass.getFilePath()));
+                    Class rightClass = getClass(rightModel, currentVersion, currentClass::equalIdentifierIgnoringVersion);
                     if (rightClass == null) {
                         continue;
                     }
@@ -99,6 +103,17 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                         break;
                     }
                     UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(currentClass.getFilePath()));
+                    if(leftModel.getClassList().isEmpty()) {
+                        Set<String> filePathsBefore = new LinkedHashSet<String>();
+                        Set<String> filePathsCurrent = new LinkedHashSet<String>();
+                        Map<String, String> renamedFilesHint = new HashMap<String, String>();
+                        populateFileSets(commitId, filePathsBefore, filePathsCurrent, renamedFilesHint);
+                        String noExtension = FilenameUtils.removeExtension(currentClass.getFilePath());
+                        Set<String> matchingNames = filePathsBefore.stream().filter(path -> path.startsWith(noExtension + ".")).collect(Collectors.toSet());
+                        if(matchingNames.size() > 0) {
+                            leftModel = getUMLModel(parentCommitId, matchingNames);
+                        }
+                    }
                     //NO CHANGE
                     Class leftClass = getClass(leftModel, parentVersion, rightClass::equalIdentifierIgnoringVersion);
                     if (leftClass != null) {
@@ -110,7 +125,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
-                    	UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClassSourceFolder, rightClassName);
+                        UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffLocal, rightClassSourceFolder, rightClassName);
                         boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
                         if (found) {
                             historyReport.step4PlusPlus();
@@ -156,8 +171,8 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                                 UMLModelDiff umlModelDiffPartial = umlModelPairPartial.getLeft().diff(umlModelPairPartial.getRight());
                                 //List<Refactoring> refactoringsPartial = umlModelDiffPartial.getRefactorings();
                                 UMLAbstractClassDiff classDiff = getUMLClassDiff(umlModelDiffPartial, rightClassSourceFolder, rightClassName);
-    	                        boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
-    	                        if (found) {
+                                boolean found = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, classDiff);
+                                if (found) {
                                     historyReport.step5PlusPlus();
                                     break;
                                 }
@@ -165,7 +180,7 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                         }
                         {
                             //Set<String> fileNames = getRightSideFileNames(currentClass.getFilePath(), currentClass.getUmlClass().getName(), Collections.emptySet(), commitModel, umlModelDiffLocal);
-                        	Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
+                            Pair<UMLModel, UMLModel> umlModelPairAll = getUMLModelPair(commitModel, rightClass.getFilePath(), s -> true, false);
                             UMLModelDiff umlModelDiffAll = umlModelPairAll.getLeft().diff(umlModelPairAll.getRight());
 
                             Set<Refactoring> moveRenameClassRefactorings = umlModelDiffAll.getMoveRenameClassRefactorings();
