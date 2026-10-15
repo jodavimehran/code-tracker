@@ -331,7 +331,7 @@ public class VariableTrackerChangeHistory extends AbstractChangeHistory<Variable
     }
 
     private boolean matchingVariables(VariableDeclarationContainer leftMethod, Variable rightVariable, Version parentVersion, VariableDeclaration leftVariable) {
-        if (leftVariable.equalVariableDeclarationType(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
+        if (leftVariable.equalVariableDeclarationKind(rightVariable.getVariableDeclaration()) && leftVariable.getVariableName().equals(rightVariable.getVariableDeclaration().getVariableName())) {
             Set<AbstractCodeFragment> leftStatementsInScope = leftVariable.getStatementsInScopeUsingVariable();
             Set<AbstractCodeFragment> rightStatementsInScope = rightVariable.getVariableDeclaration().getStatementsInScopeUsingVariable();
             boolean identicalStatementsInScope = false;
