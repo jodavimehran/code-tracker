@@ -161,6 +161,8 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                                     changeHistory.processChange(commentBefore, commentAfter);
                                     changeHistory.addFirst(commentBefore);
                                     changeHistory.get().connectRelatedNodes();
+                                    historyReport.step2PlusPlus();
+                                    break;
                                 }
                                 historyReport.step2PlusPlus();
                                 continue;
@@ -386,8 +388,11 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                             Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             if (leftAttribute != null) {
                                 Pair<UMLAttribute, UMLAttribute> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
-                                changeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, equalComment, pair);
+                                boolean matched = changeHistory.checkBodyOfMatchedAttributes(currentVersion, parentVersion, equalComment, pair);
                                 historyReport.step2PlusPlus();
+                                if (matched) {
+                                    break;
+                                }
                                 continue;
                             }
                             
@@ -577,7 +582,10 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                         if (leftClass != null) {
                             historyReport.step2PlusPlus();
                             UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-                            changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            boolean matched = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightComment::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            if (matched) {
+                                break;
+                            }
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);

@@ -142,8 +142,11 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             if (leftMethod != null) {
                                 Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(leftMethod.getUmlOperation(), rightMethod.getUmlOperation());
-                                changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+                                boolean matched = changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
                                 historyReport.step2PlusPlus();
+                                if (matched) {
+                                    break;
+                                }
                                 continue;
                             }
                             //CHANGE BODY OR DOCUMENT
@@ -367,8 +370,11 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             if (leftAttribute != null) {
                                 Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
-                                changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+                                boolean matched = changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
                                 historyReport.step2PlusPlus();
+                                if (matched) {
+                                    break;
+                                }
                                 continue;
                             }
                             
@@ -558,7 +564,10 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                         if (leftClass != null) {
                             historyReport.step2PlusPlus();
                             UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-                            changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            boolean matched = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            if (matched) {
+                                break;
+                            }
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
@@ -750,8 +759,11 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                             if (leftMethod != null) {
                                 Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(leftMethod.getUmlOperation(), rightMethod.getUmlOperation());
-                                changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+                                boolean matched = changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
                                 historyReport.step2PlusPlus();
+                                if (matched) {
+                                    break;
+                                }
                                 continue;
                             }
                             //CHANGE BODY OR DOCUMENT
@@ -975,8 +987,11 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             Attribute leftAttribute = getAttribute(leftModel, parentVersion, rightAttribute::equalIdentifierIgnoringVersion);
                             if (leftAttribute != null) {
                                 Pair<VariableDeclarationContainer, VariableDeclarationContainer> pair = Pair.of(leftAttribute.getUmlAttribute(), rightAttribute.getUmlAttribute());
-                                changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
+                                boolean matched = changeHistory.checkBodyOfMatched(currentVersion, parentVersion, equalAnnotation, pair);
                                 historyReport.step2PlusPlus();
+                                if (matched) {
+                                    break;
+                                }
                                 continue;
                             }
                             
@@ -1166,7 +1181,10 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                         if (leftClass != null) {
                             historyReport.step2PlusPlus();
                             UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftClass.getUmlClass(), rightClass.getUmlClass());
-                            changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            boolean matched = changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightAnnotation::equalIdentifierIgnoringVersion, lightweightClassDiff);
+                            if (matched) {
+                                break;
+                            }
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
