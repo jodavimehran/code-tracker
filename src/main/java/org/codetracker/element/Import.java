@@ -2,6 +2,7 @@ package org.codetracker.element;
 
 import org.codetracker.api.Version;
 import org.codetracker.util.Util;
+import org.codetracker.util.IdentityMemo;
 
 import gr.uom.java.xmi.LocationInfo;
 import gr.uom.java.xmi.UMLAbstractClass;
@@ -37,14 +38,9 @@ public class Import extends BaseCodeElement {
 	public static Import of(UMLImport umlImport, Class clazz) {
 		LocationInfo importLocationInfo = umlImport.getLocationInfo();
 		String statementType = importLocationInfo.getCodeElementType().name();
-		String name = String.format("%s$%s(%d-%d)", clazz.getName(), statementType, importLocationInfo.getStartLine(), importLocationInfo.getEndLine());
-		String sha512 = Util.getSHA512(umlImport.getName());
-		String identifierExcludeVersion = String.format(
-				"%s$%s:{%s}",
-				clazz.getIdentifierIgnoringVersion(),
-				statementType,
-				sha512
-				);
+		String name = clazz.getName() + "$" + statementType + "(" + importLocationInfo.getStartLine() + "-" + importLocationInfo.getEndLine() + ")";
+		String tail = IdentityMemo.get(umlImport, imp -> imp.getLocationInfo().getCodeElementType().name() + ":{" + Util.getSHA512(imp.getName()) + "}");
+		String identifierExcludeVersion = clazz.getIdentifierIgnoringVersion() + "$" + tail;
 		return new Import(umlImport, clazz.getUmlClass(), identifierExcludeVersion, name, importLocationInfo.getFilePath(), clazz.getVersion());
 	}
 

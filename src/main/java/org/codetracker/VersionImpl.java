@@ -52,6 +52,6 @@ public class VersionImpl implements Version {
 
   @Override
   public String toString() {
-    return String.format("<%s>", getId());
+    return "<" + getId() + ">";
   }
 }

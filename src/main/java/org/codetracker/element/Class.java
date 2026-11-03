@@ -10,6 +10,7 @@ import gr.uom.java.xmi.UMLJavadoc;
 import gr.uom.java.xmi.UMLPackage;
 
 import org.codetracker.api.Version;
+import org.codetracker.util.IdentityMemo;
 
 import static org.codetracker.util.Util.annotationsToString;
 
@@ -33,6 +34,11 @@ public class Class extends BaseCodeElement {
     }
 
     public static Class of(UMLAbstractClass umlClass, Version version) {
+        String[] ids = IdentityMemo.get(umlClass, Class::computeIdentifiers);
+        return new Class(umlClass, ids[0], ids[1], ids[2], ids[3], umlClass.getLocationInfo().getFilePath(), version);
+    }
+
+    private static String[] computeIdentifiers(UMLAbstractClass umlClass) {
         String sourceFolder = umlClass.getLocationInfo().getSourceFolder();
         String packageName = umlClass.getPackageName();
         String name = umlClass.getName().replace(umlClass.getPackageName(), "").replace(".", "");
@@ -46,7 +52,7 @@ public class Class extends BaseCodeElement {
         String identifierExcludeVersionAndAnnotation = String.format("%s%s.(%s)%s(%s)%s", sourceFolder, packageName, visibility, modifiersString, umlClass.getTypeDeclarationKind(), name);
         String identifierExcludeVersionAndModifiers = String.format("%s%s.(%s)%s%s", sourceFolder, packageName, umlClass.getTypeDeclarationKind(), name, annotationsToString(umlClass.getAnnotations()));
         String className = String.format("%s%s.(%s)%s%s(%d)", sourceFolder, packageName, visibility, modifiersString, name, umlClass.getLocationInfo().getStartLine());
-        return new Class(umlClass, identifierExcludeVersion, identifierExcludeVersionAndAnnotation, identifierExcludeVersionAndModifiers, className, umlClass.getLocationInfo().getFilePath(), version);
+        return new String[] {identifierExcludeVersion, identifierExcludeVersionAndAnnotation, identifierExcludeVersionAndModifiers, className};
     }
 
     public boolean differInFormatting(Class other) {

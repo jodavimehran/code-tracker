@@ -5,6 +5,7 @@ import gr.uom.java.xmi.VariableDeclarationContainer;
 import gr.uom.java.xmi.LocationInfo.CodeElementType;
 import gr.uom.java.xmi.decomposition.*;
 import org.codetracker.api.Version;
+import org.codetracker.util.IdentityMemo;
 import org.codetracker.util.Util;
 
 import java.util.ArrayList;
@@ -40,16 +41,10 @@ public class Block extends BaseCodeElement {
 
     public static Block of(CompositeStatementObject composite, Method method) {
         LocationInfo compositeLocationInfo = composite.getLocationInfo();
-        String statementType = compositeLocationInfo.getCodeElementType().getName() != null ? compositeLocationInfo.getCodeElementType().getName() : composite.toString();
-        String name = String.format("%s$%s(%d-%d)", method.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
-        String sha512 = Util.getSHA512(composite.getAllStatements().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
-        String identifierExcludeVersion = String.format(
-                "%s$%s:{%s,%s}",
-                method.getIdentifierIgnoringVersion(),
-                statementType,
-                sha512,
-                composite.getSignature()
-        );
+        String[] parts = IdentityMemo.get(composite, Block::compositeParts);
+        String statementType = parts[0];
+        String name = method.getName() + "$" + statementType + "(" + compositeLocationInfo.getStartLine() + "-" + compositeLocationInfo.getEndLine() + ")";
+        String identifierExcludeVersion = method.getIdentifierIgnoringVersion() + "$" + parts[1];
         return new Block(composite, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
     }
 
@@ -75,31 +70,25 @@ public class Block extends BaseCodeElement {
 
     public static Block of(StatementObject statement, Method method) {
         LocationInfo compositeLocationInfo = statement.getLocationInfo();
-        List<AbstractCall> streamAPICalls = streamAPICalls(statement);
-        if(streamAPICalls.size() > 0) {
-            String statementType = streamAPICalls.get(0).getName();
-            String name = String.format("%s$%s(%d-%d)", method.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
-            String sha512 = Util.getSHA512(statement.toString());
-            String identifierExcludeVersion = String.format(
-                    "%s$%s:{%s,%s}",
-                    method.getIdentifierIgnoringVersion(),
-                    statementType,
-                    sha512,
-                    signature(statement, statementType)
-            );
-            return new Block(statement, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
-        }
-    	String statementType = statement.getLocationInfo().getCodeElementType().name();
-        String name = String.format("%s$%s(%d-%d)", method.getName(), statementType, compositeLocationInfo.getStartLine(), compositeLocationInfo.getEndLine());
-        String sha512 = Util.getSHA512(statement.toString());
-        String identifierExcludeVersion = String.format(
-                "%s$%s:{%s,%s}",
-                method.getIdentifierIgnoringVersion(),
-                statementType,
-                sha512,
-                signature(statement, statementType)
-        );
+        String[] parts = IdentityMemo.get(statement, Block::statementParts);
+        String statementType = parts[0];
+        String name = method.getName() + "$" + statementType + "(" + compositeLocationInfo.getStartLine() + "-" + compositeLocationInfo.getEndLine() + ")";
+        String identifierExcludeVersion = method.getIdentifierIgnoringVersion() + "$" + parts[1];
         return new Block(statement, method.getUmlOperation(), identifierExcludeVersion, name, compositeLocationInfo.getFilePath(), method.getVersion());
+    }
+
+    private static String[] compositeParts(CompositeStatementObject composite) {
+        LocationInfo l = composite.getLocationInfo();
+        String statementType = l.getCodeElementType().getName() != null ? l.getCodeElementType().getName() : composite.toString();
+        String sha512 = Util.getSHA512(composite.getAllStatements().stream().map(AbstractCodeFragment::toString).collect(Collectors.joining()));
+        return new String[] {statementType, statementType + ":{" + sha512 + "," + composite.getSignature() + "}"};
+    }
+
+    private static String[] statementParts(StatementObject statement) {
+        List<AbstractCall> streamAPICalls = streamAPICalls(statement);
+        String statementType = streamAPICalls.size() > 0 ? streamAPICalls.get(0).getName() : statement.getLocationInfo().getCodeElementType().name();
+        String sha512 = Util.getSHA512(statement.toString());
+        return new String[] {statementType, statementType + ":{" + sha512 + "," + signature(statement, statementType) + "}"};
     }
 
     public static Block of(StatementObject statement, Attribute attribute) {

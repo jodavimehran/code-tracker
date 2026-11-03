@@ -10,6 +10,7 @@ import gr.uom.java.xmi.decomposition.StatementObject;
 import gr.uom.java.xmi.decomposition.VariableDeclaration;
 
 import org.codetracker.api.Version;
+import org.codetracker.util.IdentityMemo;
 import org.codetracker.util.Util;
 
 import java.util.*;
@@ -22,10 +23,10 @@ public class Method extends BaseCodeElement {
     private final String identifierIgnoringVersionAndDocumentationAndBody;
     private final String identifierIgnoringVersionAndAnnotation;
 
-    private Method(VariableDeclarationContainer umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String identifierIgnoringVersionAndAnnotation, String name, String filePath, Version version) {
+    private Method(VariableDeclarationContainer umlOperation, String identifierIgnoringVersion, String identifierIgnoringVersionAndDocumentationAndBody, String identifierIgnoringVersionAndAnnotation, String name, String filePath, Version version, String documentsHashCode) {
         super(identifierIgnoringVersion, name, filePath, version);
         this.umlOperation = umlOperation;
-        this.documentsHashCode = getDocumentsSha512(umlOperation);
+        this.documentsHashCode = documentsHashCode;
         this.identifierIgnoringVersionAndDocumentationAndBody = identifierIgnoringVersionAndDocumentationAndBody;
         this.identifierIgnoringVersionAndAnnotation = identifierIgnoringVersionAndAnnotation;
     }
@@ -35,6 +36,11 @@ public class Method extends BaseCodeElement {
     }
 
     public static Method of(VariableDeclarationContainer umlOperation, Version version) {
+        String[] ids = IdentityMemo.get(umlOperation, Method::computeIdentifiers);
+        return new Method(umlOperation, ids[0], ids[1], ids[2], ids[3], umlOperation.getLocationInfo().getFilePath(), version, ids[4]);
+    }
+
+    private static String[] computeIdentifiers(VariableDeclarationContainer umlOperation) {
         String sourceFolder = umlOperation.getLocationInfo().getSourceFolder();
         String identifierIgnoringVersion = null;
         String identifierIgnoringVersionAndDocumentationAndBody = null;
@@ -44,15 +50,15 @@ public class Method extends BaseCodeElement {
             identifierIgnoringVersion = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true, true);
             identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLOperation) umlOperation, false, false, true);
             identifierIgnoringVersionAndAnnotation = getIdentifierExcludeVersion((UMLOperation) umlOperation, true, true, false);
-            name = String.format("%s%s", sourceFolder, ((UMLOperation) umlOperation).getKey());
+            name = sourceFolder + ((UMLOperation) umlOperation).getKey();
         }
         else if (umlOperation instanceof UMLInitializer) {
             identifierIgnoringVersion = getIdentifierExcludeVersion((UMLInitializer) umlOperation, true, true);
             identifierIgnoringVersionAndDocumentationAndBody = getIdentifierExcludeVersion((UMLInitializer) umlOperation, false, false);
             identifierIgnoringVersionAndAnnotation = identifierIgnoringVersion;
-            name = String.format("%s%s", sourceFolder, umlOperation.getName());
+            name = sourceFolder + umlOperation.getName();
         }
-        return new Method(umlOperation, identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, identifierIgnoringVersionAndAnnotation, name, umlOperation.getLocationInfo().getFilePath(), version);
+        return new String[] {identifierIgnoringVersion, identifierIgnoringVersionAndDocumentationAndBody, identifierIgnoringVersionAndAnnotation, name, getDocumentsSha512(umlOperation)};
     }
 
     public boolean differInFormatting(Method other) {
