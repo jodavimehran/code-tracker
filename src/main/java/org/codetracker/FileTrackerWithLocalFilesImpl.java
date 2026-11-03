@@ -1815,6 +1815,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 		for (Pair<Method, Method> pair : methodPairs) {
 			Method rightMethod = pair.getRight();
 			UMLOperationBodyMapper bodyMapper = mappers.get(pair);
+			Map<String, AbstractStatement> rightBlockIndex = null;
+			Map<String, List<AbstractCodeMapping>> mappingIndex = null;
 			for (CodeElement key2 : programElementMap.keySet()) {
 				if (alreadyProcessed.contains(key2)) {
 					continue;
@@ -1828,13 +1830,19 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 						if (currentBlock == null) {
 							continue;
 						}
-						Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+						if (rightBlockIndex == null) {
+							rightBlockIndex = rightMethod.blockIndex();
+						}
+						Block rightBlock = rightMethod.findBlock(rightBlockIndex, currentBlock.getIdentifierIgnoringVersion());
 						if (rightBlock == null) {
 							continue;
 						}
 						startBlockChangeHistory.poll();
 						alreadyProcessed.add(startBlock);
-						if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+						if (mappingIndex == null) {
+							mappingIndex = BlockTrackerChangeHistory.mappingIndex(bodyMapper, currentVersion);
+						}
+						if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock, bodyMapper, mappingIndex)) {
 							nestedProgramElementMap.putAll(startBlockChangeHistory.getNested());
 							continue;
 						}
@@ -1930,6 +1938,8 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 			UMLClassBaseDiff lightweightClassDiff = lightweightClassDiff(leftModel, rightModel, leftOperation, rightOperation);
 			bodyMapper = new UMLOperationBodyMapper((UMLInitializer) leftOperation, (UMLInitializer) rightOperation, lightweightClassDiff);
 		}
+		Map<String, AbstractStatement> rightBlockIndex = null;
+		Map<String, List<AbstractCodeMapping>> mappingIndex = null;
 		for (CodeElement key2 : programElementMap.keySet()) {
 			if (key2 instanceof Block) {
 				Block startBlock = (Block)key2;
@@ -1940,12 +1950,18 @@ public class FileTrackerWithLocalFilesImpl extends BaseTrackerWithLocalFiles {
 					if (currentBlock == null) {
 						continue;
 					}
-					Block rightBlock = rightMethod.findBlock(currentBlock::equalIdentifierIgnoringVersion);
+					if (rightBlockIndex == null) {
+						rightBlockIndex = rightMethod.blockIndex();
+					}
+					Block rightBlock = rightMethod.findBlock(rightBlockIndex, currentBlock.getIdentifierIgnoringVersion());
 					if (rightBlock == null) {
 						continue;
 					}
 					startBlockChangeHistory.poll();
-					if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock::equalIdentifierIgnoringVersion, bodyMapper)) {
+					if (mappingIndex == null) {
+						mappingIndex = BlockTrackerChangeHistory.mappingIndex(bodyMapper, currentVersion);
+					}
+					if (startBlockChangeHistory.checkBodyOfMatchedOperations(currentVersion, parentVersion, rightBlock, bodyMapper, mappingIndex)) {
 						nestedProgramElementMap.putAll(startBlockChangeHistory.getNested());
 						continue;
 					}

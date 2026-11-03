@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -1119,9 +1120,59 @@ public class BlockTrackerChangeHistory extends AbstractChangeHistory<Block> {
         return leftBlockSet;
     }
 
+    /**
+     * Groups the mappings of a body mapper by the identifier (ignoring version) of the block on the right side,
+     * keeping the original mapping order within each group. Only the mappings that
+     * {@link #isMatched(UMLOperationBodyMapper, Version, Version, Predicate)} can match are indexed.
+     */
+    public static Map<String, List<AbstractCodeMapping>> mappingIndex(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion) {
+        Map<String, List<AbstractCodeMapping>> index = new HashMap<>();
+        if (umlOperationBodyMapper == null)
+            return index;
+        Method method = Method.of(umlOperationBodyMapper.getContainer2(), currentVersion);
+        for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+            Block blockAfter = null;
+            if (mapping instanceof CompositeStatementObjectMapping) {
+                blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), method);
+            }
+            else if (mapping instanceof LeafMapping && mapping.getFragment1() instanceof StatementObject && mapping.getFragment2() instanceof StatementObject) {
+                blockAfter = Block.of((StatementObject) mapping.getFragment2(), method);
+            }
+            if (blockAfter != null) {
+                index.computeIfAbsent(blockAfter.getIdentifierIgnoringVersion(), k -> new ArrayList<>()).add(mapping);
+            }
+        }
+        return index;
+    }
+
+    /**
+     * Same as {@link #checkBodyOfMatchedOperations(Version, Version, Predicate, UMLOperationBodyMapper)} with
+     * {@code rightBlock::equalIdentifierIgnoringVersion}, but looks up the matched mappings in an index built by
+     * {@link #mappingIndex(UMLOperationBodyMapper, Version)} instead of scanning all mappings.
+     */
+    public boolean checkBodyOfMatchedOperations(Version currentVersion, Version parentVersion, Block rightBlock, UMLOperationBodyMapper umlOperationBodyMapper, Map<String, List<AbstractCodeMapping>> mappingIndex) {
+        if (umlOperationBodyMapper == null)
+            return false;
+        Predicate<Block> equalOperator = rightBlock::equalIdentifierIgnoringVersion;
+        Set<Refactoring> refactorings = umlOperationBodyMapper.getRefactoringsAfterPostProcessing();
+        //Check if refactored
+        if (isBlockRefactored(refactorings, currentVersion, parentVersion, equalOperator))
+            return true;
+        // check if it is in the matched
+        List<AbstractCodeMapping> candidates = mappingIndex.getOrDefault(rightBlock.getIdentifierIgnoringVersion(), Collections.emptyList());
+        if (isMatched(umlOperationBodyMapper, candidates, currentVersion, parentVersion, equalOperator))
+            return true;
+        //Check if is added
+        return isAdded(umlOperationBodyMapper, currentVersion, parentVersion, equalOperator);
+    }
+
     public boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
+        return isMatched(umlOperationBodyMapper, umlOperationBodyMapper.getMappings(), currentVersion, parentVersion, equalOperator);
+    }
+
+    private boolean isMatched(UMLOperationBodyMapper umlOperationBodyMapper, Collection<AbstractCodeMapping> mappings, Version currentVersion, Version parentVersion, Predicate<Block> equalOperator) {
     	int matches = 0;
-    	for (AbstractCodeMapping mapping : umlOperationBodyMapper.getMappings()) {
+    	for (AbstractCodeMapping mapping : mappings) {
             if (mapping instanceof CompositeStatementObjectMapping) {
                 Block blockAfter = Block.of((CompositeStatementObject) mapping.getFragment2(), umlOperationBodyMapper.getContainer2(), currentVersion);
                 if (equalOperator.test(blockAfter)) {

@@ -160,6 +160,50 @@ public class Method extends BaseCodeElement {
         return null;
     }
 
+    /**
+     * Indexes the statements of this method by the identifier (ignoring version) of their block, in the same
+     * traversal order as {@link #findBlock(Predicate)}. For an identifier, the index holds the statement of the block
+     * that {@code findBlock(b -> b.getIdentifierIgnoringVersion().equals(identifier))} would return.
+     * Use {@link #findBlock(Map, String)} to look up a block.
+     */
+    public Map<String, AbstractStatement> blockIndex() {
+        Map<String, AbstractStatement> index = new HashMap<>();
+        if (umlOperation.getBody() != null) {
+            indexBlocks(umlOperation.getBody().getCompositeStatement().getAllStatements(), index);
+        }
+        for (UMLAnonymousClass anonymousClass : umlOperation.getAnonymousClassList()) {
+            for (UMLOperation operation : anonymousClass.getOperations()) {
+                if (operation.getBody() != null) {
+                    indexBlocks(operation.getBody().getCompositeStatement().getAllStatements(), index);
+                }
+            }
+        }
+        for (LambdaExpressionObject lambda : umlOperation.getAllLambdas()) {
+            if (lambda.getBody() != null) {
+                indexBlocks(lambda.getBody().getCompositeStatement().getAllStatements(), index);
+            }
+        }
+        return index;
+    }
+
+    private void indexBlocks(List<AbstractStatement> statements, Map<String, AbstractStatement> index) {
+        for (AbstractStatement composite : statements) {
+            Block block = Block.of(composite, this);
+            if (block != null) {
+                index.putIfAbsent(block.getIdentifierIgnoringVersion(), composite);
+            }
+        }
+    }
+
+    /**
+     * Equivalent to {@code findBlock(b -> b.getIdentifierIgnoringVersion().equals(identifier))}, using an index
+     * built by {@link #blockIndex()} for this method. Returns a new Block, like findBlock.
+     */
+    public Block findBlock(Map<String, AbstractStatement> blockIndex, String identifier) {
+        AbstractStatement statement = blockIndex.get(identifier);
+        return statement != null ? Block.of(statement, this) : null;
+    }
+
     public Block findBlockWithoutName(Predicate<Block> equalOperator) {
         if (umlOperation.getBody() != null) {
         	//first process leaves then composites
