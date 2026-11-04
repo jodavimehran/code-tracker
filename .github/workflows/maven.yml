@@ -23,9 +23,34 @@ jobs:
       releaseVersion: CI-RM-SNAPSHOT
 
     steps:
-      - uses: actions/checkout@v3
+      # Reuse the git objects of an earlier master build, including those of the oracle submodule, so that the checkout
+      # fetches only the objects changed since then. The checkout reuses a .git with the same remote.
+      - name: Restore git objects
+        uses: actions/cache/restore@v4
+        with:
+          path: .git
+          key: git-${{ runner.os }}-${{ github.sha }}
+          restore-keys: git-${{ runner.os }}-
+
+      # The credentials are not kept in .git/config, so that the cached .git does not contain the token
+      - uses: actions/checkout@v4
         with:
           submodules: true
+          persist-credentials: false
+
+      # Drop the objects of the older snapshot, so that the cache does not grow with every build (small fetches leave loose objects, which only prune removes)
+      - name: Drop git objects of older snapshots
+        if: github.ref == 'refs/heads/master'
+        run: |
+          git reflog expire --expire=now --all && git repack -a -d -q && git prune --expire=now
+          git submodule foreach --quiet 'git reflog expire --expire=now --all && git repack -a -d -q && git prune --expire=now'
+
+      - name: Save git objects
+        if: github.ref == 'refs/heads/master'
+        uses: actions/cache/save@v4
+        with:
+          path: .git
+          key: git-${{ runner.os }}-${{ github.sha }}
 
       - name: Set up JDK 17
         uses: actions/setup-java@v3
@@ -59,11 +84,46 @@ jobs:
 #          git clone --no-checkout https://gerrit.googlesource.com/jgit && mv jgit eclipse\\jgit
 #          git clone --no-checkout https://github.com/pmd/pmd && mv pmd pmd\\pmd
 
-      - name: Clone RefactoringMiner repository and publishToMavenLocal
+      - name: Find the RefactoringMiner master commit
+        id: rm
+        run: echo "sha=$(git ls-remote https://github.com/tsantalis/RefactoringMiner.git refs/heads/master | cut -f1)" >> "$GITHUB_OUTPUT"
+
+      # Reuse the git objects of the RefactoringMiner commit of an earlier build, so that the fetch downloads only
+      # the objects changed since then, instead of the whole tree of its test resources
+      - name: Restore RefactoringMiner git objects
+        id: rm-cache
+        uses: actions/cache/restore@v4
+        with:
+          path: RefactoringMiner/.git
+          key: rm-git-${{ runner.os }}-${{ steps.rm.outputs.sha }}
+          restore-keys: rm-git-${{ runner.os }}-
+
+      - name: Fetch RefactoringMiner
         run: |
-          git clone -b master --depth 1 --single-branch https://github.com/tsantalis/RefactoringMiner.git &&
-          cd RefactoringMiner &&
-          ./gradlew publishToMavenLocal -x test -x javadoc -PbuildVersion=${{ env.releaseVersion }}
+          mkdir -p RefactoringMiner && cd RefactoringMiner
+          if [ ! -d .git ]; then
+            git init -q && git remote add origin https://github.com/tsantalis/RefactoringMiner.git
+          fi
+          git fetch -q --depth 1 origin ${{ steps.rm.outputs.sha }}
+          git checkout -q -f -B master FETCH_HEAD
+          git clean -q -ffdx
+
+      # Drop the objects of the older RefactoringMiner commit, so that the cache does not grow with every build
+      - name: Drop RefactoringMiner git objects of older snapshots
+        if: github.ref == 'refs/heads/master' && steps.rm-cache.outputs.cache-hit != 'true'
+        working-directory: RefactoringMiner
+        run: git reflog expire --expire=now --all && git repack -a -d -q && git prune --expire=now
+
+      - name: Save RefactoringMiner git objects
+        if: github.ref == 'refs/heads/master' && steps.rm-cache.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: RefactoringMiner/.git
+          key: rm-git-${{ runner.os }}-${{ steps.rm.outputs.sha }}
+
+      - name: Publish RefactoringMiner to the local Maven repository
+        working-directory: RefactoringMiner
+        run: ./gradlew publishToMavenLocal -x test -x javadoc -PbuildVersion=${{ env.releaseVersion }}
 
       - name: Build with Maven
         run: ./mvnw -Drm.version=${{ env.releaseVersion }} -B package --file pom.xml
