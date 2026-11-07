@@ -1619,7 +1619,7 @@ bb1956e64 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java    
 28ba4747b org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-08-21 00:59:36 +0000 1619) 	void writeObject(PackOutputStream out, ObjectToPack otp) throws IOException {
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1620) 		if (!otp.isWritten())
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1621) 			writeObjectImpl(out, otp);
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1622) 	}
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1622) 	}
                                                                                                                                            1623)
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1624) 	private void writeObjectImpl(PackOutputStream out, ObjectToPack otp)
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1625) 			throws IOException {
@@ -1631,7 +1631,7 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1631) 			// delta, and write this object.
 5d446f410 org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-05 17:07:14 +0000 1632) 			reselectNonDelta(otp);
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1633) 		}
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1634) 		otp.markWantWrite();
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1634) 		otp.markWantWrite();
                                                                                                                                            1635)
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1636) 		while (otp.isReuseAsIs()) {
 8ac65d33e org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-04-01 21:40:33 +0000 1637) 			writeBase(out, otp.getDeltaBase());
@@ -1639,7 +1639,7 @@ ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java             
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1639) 				return; // Delta chain cycle caused this to write already.
                                                                                                                                            1640)
 eb17495ca org.eclipse.jgit/src/org/eclipse/jgit/internal/storage/pack/PackWriter.java (Shawn Pearce              2013-04-10 19:58:50 +0000 1641) 			crc32.reset();
-ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1642) 			otp.setOffset(out.length());
+1a6964c82 org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Git Development Community 2009-09-29 23:47:03 +0000 1642) 			otp.setOffset(out.length());
 ece88b99e org.eclipse.jgit/src/org/eclipse/jgit/lib/PackWriter.java                   (Shawn O. Pearce           2010-06-26 21:46:05 +0000 1643) 			try {
 1b2062fe3 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2011-03-02 20:23:58 +0000 1644) 				reuseSupport.copyObjectAsIs(out, otp, reuseValidate);
 6b62e53b6 org.eclipse.jgit/src/org/eclipse/jgit/storage/pack/PackWriter.java          (Shawn O. Pearce           2010-06-28 18:47:28 +0000 1645) 				out.endObject();

@@ -399,7 +399,7 @@ c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 6b575f2ee junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 22:18:39 +0000 399) 	private void registerBeforeEachMethodAdapters(ExtensionRegistry registry) {
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 400) 		List<Method> beforeEachMethods = findBeforeEachMethods(this.testClass);
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 401) 		registerMethodsAsExtensions(beforeEachMethods, registry, this::synthesizeBeforeEachMethodAdapter);
-8db7e41d0 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 12:48:18 +0000 402) 	}
+fa681a536 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 10:56:45 +0000 402) 	}
                                                                                                                                                      403)
 6b575f2ee junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 22:18:39 +0000 404) 	private void registerAfterEachMethodAdapters(ExtensionRegistry registry) {
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 405) 		// Make a local copy since findAfterEachMethods() returns an immutable list.
@@ -412,7 +412,7 @@ c2d9a533b junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/Cl
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 412) 		Collections.reverse(afterEachMethods);
                                                                                                                                                      413)
 65d54b1a0 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2018-01-12 13:20:37 +0000 414) 		registerMethodsAsExtensions(afterEachMethods, registry, this::synthesizeAfterEachMethodAdapter);
-8db7e41d0 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Johannes Link   2015-12-17 12:48:18 +0000 415) 	}
+fc5ff8d87 junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Marc Philipp    2015-12-09 21:37:13 +0000 415) 	}
                                                                                                                                                      416)
 6b575f2ee junit5-engine/src/main/java/org/junit/gen5/engine/junit5/descriptor/ClassTestDescriptor.java    (Sam Brannen     2016-05-02 22:18:39 +0000 417) 	private void registerMethodsAsExtensions(List<Method> methods, ExtensionRegistry registry,
 fedf713f8 junit-jupiter-engine/src/main/java/org/junit/jupiter/engine/descriptor/ClassTestDescriptor.java (Sam Brannen     2016-10-08 16:40:04 +0000 418) 			Function<Method, Extension> extensionSynthesizer) {
