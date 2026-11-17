@@ -279,6 +279,11 @@ public class FileTrackerImpl extends BaseTracker {
 						}
 						break;
 					}
+					//NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+					//the file content was brought in by the merged branch, its history continues in the commits of that branch
+					if (fileUnchangedOnlyInNonFirstParent(commitId, rightClass.getFilePath())) {
+						continue;
+					}
 					UMLModel leftModel = getUMLModel(parentCommitId, Collections.singleton(rightClass.getFilePath()));
 					if(leftModel.getClassList().isEmpty()) {
 						Set<String> filePathsBefore = new LinkedHashSet<String>();

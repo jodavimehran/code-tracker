@@ -15,6 +15,15 @@ public interface IRepository {
   String getParentId(String commitId);
 
   /**
+   * @param commitId the commit id that you wanted to find its parents IDs
+   * @return all parent commit IDs in order (the first parent first), or an empty list for a root commit
+   */
+  default java.util.List<String> getParentIds(String commitId) {
+    String parentId = getParentId(commitId);
+    return "0".equals(parentId) ? java.util.Collections.emptyList() : java.util.Collections.singletonList(parentId);
+  }
+
+  /**
    * @param commitId the commit ID that you wanted to find its time
    * @return commit time
    */

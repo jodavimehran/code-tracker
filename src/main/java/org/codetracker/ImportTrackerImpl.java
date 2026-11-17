@@ -122,6 +122,12 @@ public class ImportTrackerImpl extends BaseTracker implements ImportTracker {
                         changeHistory.checkBodyOfMatchedClasses(currentVersion, parentVersion, rightImport::equalIdentifierIgnoringVersion, lightweightClassDiff);
                         continue;
                     }
+
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> { Class l = getClass(model, version, rightClass::equalIdentifierIgnoringVersion); return l != null && l.findImport(rightImport::equalIdentifierIgnoringVersion) != null; })) {
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                     {
                         //Local Refactoring
