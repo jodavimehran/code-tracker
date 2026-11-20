@@ -125,6 +125,12 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                         continue;
                     }
 
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightMethod.getFilePath(), (model, version) -> getMethod(model, version, rightMethod::equalIdentifierIgnoringVersionAndAnnotation) != null)) {
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
+
                     //CHANGE BODY OR DOCUMENT
                     leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
 
@@ -350,6 +356,12 @@ public class MethodTrackerImpl extends BaseTracker implements MethodTracker {
                     //NO CHANGE
                     Method leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersion);
                     if (leftMethod != null) {
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
+
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightMethod.getFilePath(), (model, version) -> getMethod(model, version, rightMethod::equalIdentifierIgnoringVersion) != null)) {
                         historyReport.step2PlusPlus();
                         continue;
                     }

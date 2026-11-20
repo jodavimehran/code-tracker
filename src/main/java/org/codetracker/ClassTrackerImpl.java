@@ -123,6 +123,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                         continue;
                     }
 
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> getClass(model, version, rightClass::equalIdentifierIgnoringVersion) != null)) {
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
+
 //                    //Local Refactoring
 //                    UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel, new HashMap<>());
 //                    {
@@ -273,6 +279,12 @@ public class ClassTrackerImpl extends BaseTracker implements ClassTracker {
                             changeHistory.get().addChange(leftClass, rightClass, ChangeFactory.forClass(Change.Type.INTERFACE_LIST_CHANGE));
                             changeHistory.get().connectRelatedNodes();
                         }
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
+
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> getClass(model, version, rightClass::equalIdentifierIgnoringVersion) != null)) {
                         historyReport.step2PlusPlus();
                         continue;
                     }

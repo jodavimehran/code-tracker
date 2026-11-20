@@ -167,6 +167,12 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                                 historyReport.step2PlusPlus();
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightMethod.getFilePath(), (model, version) -> { Method l = getMethod(model, version, rightMethod::equalIdentifierIgnoringVersion); return l != null && l.findComment(rightComment::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             //CHANGE BODY OR DOCUMENT
                             leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
                             //check if there is another method in leftModel with identical bodyHashCode to the rightMethod
@@ -395,6 +401,12 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                                 }
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightAttribute.getFilePath(), (model, version) -> { Attribute l = getAttribute(model, version, rightAttribute::equalIdentifierIgnoringVersion); return l != null && l.findComment(rightComment::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             
                             UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                             {
@@ -586,6 +598,12 @@ public class CommentTrackerImpl extends BaseTracker implements CommentTracker {
                             if (matched) {
                                 break;
                             }
+                            continue;
+                        }
+
+                        //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                        if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> { Class l = getClass(model, version, rightClass::equalIdentifierIgnoringVersion); return l != null && l.findComment(rightComment::equalIdentifierIgnoringVersion) != null; })) {
+                            historyReport.step2PlusPlus();
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);

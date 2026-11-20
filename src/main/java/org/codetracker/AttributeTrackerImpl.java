@@ -108,6 +108,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                         continue;
                     }
 
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightAttribute.getFilePath(), (model, version) -> getAttribute(model, version, rightAttribute::equalIdentifierIgnoringVersion) != null)) {
+                        historyReport.step2PlusPlus();
+                        continue;
+                    }
+
                     String extractedClassFilePath = null;
                     //Local Refactoring
                     UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
@@ -313,6 +319,12 @@ public class AttributeTrackerImpl extends BaseTracker implements AttributeTracke
                     if (leftAttribute != null) {
                         historyReport.step2PlusPlus();
                         changeHistory.checkInitializerChange(rightAttribute, leftAttribute);
+                        continue;
+                    }
+
+                    //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                    if (existsInNonFirstParent(commitId, rightAttribute.getFilePath(), (model, version) -> getAttribute(model, version, rightAttribute::equalIdentifierIgnoringVersion) != null)) {
+                        historyReport.step2PlusPlus();
                         continue;
                     }
 

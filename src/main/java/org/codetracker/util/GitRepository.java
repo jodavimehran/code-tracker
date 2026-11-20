@@ -5,7 +5,9 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class GitRepository implements IRepository {
   private final Repository repository;
@@ -35,6 +37,16 @@ public class GitRepository implements IRepository {
     RevCommit revCommit = getRevCommit(commitId);
     if (revCommit.getParentCount() > 0) return revCommit.getParent(0).getId().getName();
     return "0";
+  }
+
+  @Override
+  public List<String> getParentIds(String commitId) {
+    RevCommit revCommit = getRevCommit(commitId);
+    List<String> parentIds = new ArrayList<>(revCommit.getParentCount());
+    for (RevCommit parent : revCommit.getParents()) {
+      parentIds.add(parent.getId().getName());
+    }
+    return parentIds;
   }
 
   @Override

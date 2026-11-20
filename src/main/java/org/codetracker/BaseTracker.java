@@ -12,6 +12,9 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.revwalk.RevCommit;
 import org.eclipse.jgit.revwalk.RevWalk;
 import org.eclipse.jgit.revwalk.filter.RevFilter;
+import org.eclipse.jgit.treewalk.TreeWalk;
+import org.eclipse.jgit.lib.ObjectId;
+import org.codetracker.api.Version;
 import org.refactoringminer.rm1.GitHistoryRefactoringMinerImpl;
 import org.refactoringminer.util.GitServiceImpl;
 
@@ -162,4 +165,57 @@ public abstract class BaseTracker extends AbstractTracker {
 				fileContentsBefore, fileContentsCurrent, renamedFilesHint, repositoryDirectoriesBefore, repositoryDirectoriesCurrent, new File(REPOS));
     }
     */
+
+    /**
+     * For a merge commit, checks whether the tracked code element exists unchanged in a parent other than the first one.
+     * In that case, the element was brought in by the merged branch, and its history continues in the commits of that branch.
+     * Comparing only against the first parent would wrongly consider the element as added or moved from another file,
+     * triggering an expensive analysis of the entire (usually very large) merge commit.
+     *
+     * @param commitId         the commit under analysis
+     * @param filePath         the file containing the code element in the commit under analysis
+     * @param existsUnchanged  tests whether the code element exists unchanged in the model of a parent commit
+     * @return true if commitId is a merge commit and the code element exists unchanged in a non-first parent
+     */
+    protected boolean existsInNonFirstParent(String commitId, String filePath, java.util.function.BiPredicate<UMLModel, Version> existsUnchanged) throws Exception {
+        List<String> parentIds = gitRepository.getParentIds(commitId);
+        for (int i = 1; i < parentIds.size(); i++) {
+            String parentId = parentIds.get(i);
+            UMLModel parentModel = getUMLModel(parentId, Collections.singleton(filePath));
+            if (parentModel != null && existsUnchanged.test(parentModel, gitRepository.getVersion(parentId))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * For a merge commit, checks whether the content of the file differs from the first parent,
+     * but is identical to the content of the file in another parent.
+     */
+    protected boolean fileUnchangedOnlyInNonFirstParent(String commitId, String filePath) throws IOException {
+        List<String> parentIds = gitRepository.getParentIds(commitId);
+        if (parentIds.size() < 2) {
+            return false;
+        }
+        ObjectId blobId = getBlobId(commitId, filePath);
+        if (blobId == null || blobId.equals(getBlobId(parentIds.get(0), filePath))) {
+            return false;
+        }
+        for (int i = 1; i < parentIds.size(); i++) {
+            if (blobId.equals(getBlobId(parentIds.get(i), filePath))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private ObjectId getBlobId(String commitId, String filePath) throws IOException {
+        try (RevWalk walk = new RevWalk(repository)) {
+            RevCommit revCommit = walk.parseCommit(ObjectId.fromString(commitId));
+            try (TreeWalk treeWalk = TreeWalk.forPath(repository, filePath, revCommit.getTree())) {
+                return treeWalk != null ? treeWalk.getObjectId(0) : null;
+            }
+        }
+    }
 }

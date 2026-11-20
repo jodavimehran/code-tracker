@@ -149,6 +149,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                                 }
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightMethod.getFilePath(), (model, version) -> { Method l = getMethod(model, version, rightMethod::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             //CHANGE BODY OR DOCUMENT
                             leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
                             //check if there is another method in leftModel with identical bodyHashCode to the rightMethod
@@ -377,6 +383,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                                 }
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightAttribute.getFilePath(), (model, version) -> { Attribute l = getAttribute(model, version, rightAttribute::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             
                             UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                             {
@@ -568,6 +580,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             if (matched) {
                                 break;
                             }
+                            continue;
+                        }
+
+                        //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                        if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> { Class l = getClass(model, version, rightClass::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                            historyReport.step2PlusPlus();
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
@@ -766,6 +784,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                                 }
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightMethod.getFilePath(), (model, version) -> { Method l = getMethod(model, version, rightMethod::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             //CHANGE BODY OR DOCUMENT
                             leftMethod = getMethod(leftModel, parentVersion, rightMethod::equalIdentifierIgnoringVersionAndDocumentAndBody);
                             //check if there is another method in leftModel with identical bodyHashCode to the rightMethod
@@ -994,6 +1018,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                                 }
                                 continue;
                             }
+
+                            //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                            if (existsInNonFirstParent(commitId, rightAttribute.getFilePath(), (model, version) -> { Attribute l = getAttribute(model, version, rightAttribute::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                                historyReport.step2PlusPlus();
+                                continue;
+                            }
                             
                             UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
                             {
@@ -1185,6 +1215,12 @@ public class AnnotationTrackerImpl extends BaseTracker implements AnnotationTrac
                             if (matched) {
                                 break;
                             }
+                            continue;
+                        }
+
+                        //NO CHANGE IN A NON-FIRST PARENT OF A MERGE COMMIT
+                        if (existsInNonFirstParent(commitId, rightClass.getFilePath(), (model, version) -> { Class l = getClass(model, version, rightClass::equalIdentifierIgnoringVersion); return l != null && l.findAnnotation(rightAnnotation::equalIdentifierIgnoringVersion) != null; })) {
+                            historyReport.step2PlusPlus();
                             continue;
                         }
                         UMLModelDiff umlModelDiffLocal = leftModel.diff(rightModel);
